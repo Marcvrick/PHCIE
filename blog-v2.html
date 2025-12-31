@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Actualités et conseils santé de la Pharmacie Charnal à Quéven">
+    <title>Actualités & Conseils | Pharmacie Charnal - Quéven</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@400;600;700&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style-v2.css">
+    <style>
+        .blog-card {
+            background-color: var(--white);
+            border: 1px solid var(--beige);
+            border-radius: var(--radius-xl);
+            overflow: hidden;
+            transition: var(--transition);
+        }
+        .blog-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--sage);
+        }
+        .blog-image-placeholder {
+            height: 280px;
+            background: linear-gradient(135deg, var(--cream-dark) 0%, var(--beige) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 56px;
+        }
+        .blog-content {
+            padding: var(--space-xl);
+        }
+        .blog-date {
+            display: inline-block;
+            padding: var(--space-xs) var(--space-md);
+            background-color: var(--cream);
+            color: var(--sage-dark);
+            border-radius: var(--radius-full);
+            font-size: var(--text-sm);
+            font-weight: 600;
+            margin-bottom: var(--space-md);
+        }
+        .blog-title {
+            font-size: var(--text-2xl);
+            color: var(--charcoal);
+            margin-bottom: var(--space-sm);
+        }
+        .blog-excerpt {
+            font-size: var(--text-lg);
+            color: var(--gray);
+            line-height: 1.7;
+            margin-bottom: var(--space-md);
+        }
+        .blog-link {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--space-xs);
+            color: var(--teal);
+            font-weight: 600;
+            font-size: var(--text-base);
+            transition: var(--transition);
+        }
+        .blog-link:hover {
+            gap: var(--space-sm);
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index-v2.html" class="nav-logo-link">
+                <div class="nav-logo">
+                    <div class="logo-icon">
+                        <img src="images /Pharmacie Charnal logo.png" alt="Logo Pharmacie Charnal" style="width: 100%; height: 100%; object-fit: contain;">
+                    </div>
+                    <div class="logo-text">
+                        <span class="logo-name">Pharmacie Charnal</span>
+                        <span class="logo-tagline">Quéven</span>
+                    </div>
+                </div>
+            </a>
+            <ul class="nav-links">
+                <li><a href="index-v2.html" class="nav-link">Accueil</a></li>
+                <li><a href="histoire-v2.html" class="nav-link">Notre Histoire</a></li>
+                <li><a href="services-v2.html" class="nav-link">Services</a></li>
+                <li><a href="blog-v2.html" class="nav-link active">Actualités</a></li>
+                <li><a href="contact-v2.html" class="nav-link nav-link-cta">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="hero" style="padding: 6rem 0 4rem">
+        <div class="hero-background">
+            <div class="hero-shape hero-shape-1"></div>
+            <div class="hero-shape hero-shape-2"></div>
+        </div>
+        <div class="container">
+            <div class="section-header" style="text-align: center;">
+                <span class="section-badge fade-in">Actualités</span>
+                <h1 class="section-title fade-in" style="font-size: var(--text-5xl); margin-top: var(--space-md);">
+                    Conseils santé &<br>
+                    <span class="gradient-text">actualités pharmacie</span>
+                </h1>
+                <p class="fade-in" style="font-size: var(--text-lg); color: var(--gray); max-width: 680px; margin: var(--space-lg) auto 0;">
+                    Retrouvez nos conseils, actualités et informations pour prendre soin de votre santé au quotidien.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Articles -->
+    <section style="padding: var(--space-3xl) 0; background-color: var(--white);">
+        <div class="container">
+            <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(380px, 1fr)); gap: var(--space-2xl);">
+
+                <!-- Article 1 -->
+                <article class="blog-card fade-up">
+                    <div class="blog-image-placeholder">🌡️</div>
+                    <div class="blog-content">
+                        <span class="blog-date">31 Décembre 2025</span>
+                        <h2 class="blog-title">Prévenir les maux de l'hiver à Quéven</h2>
+                        <p class="blog-excerpt">
+                            Avec le froid qui s'installe en Bretagne, découvrez les conseils de votre pharmacien pour renforcer vos défenses immunitaires et éviter rhume, grippe et infections hivernales.
+                        </p>
+                        <a href="blog/prevenir-maux-hiver-queven.html" class="blog-link">
+                            <span>Lire la suite</span>
+                            <svg width="30" height="30" viewBox="0 0 24 24" fill="none">
+                                <path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </a>
+                    </div>
+                </article>
+
+                <!-- Article 2 -->
+                <article class="blog-card fade-up" style="animation-delay: 0.1s;">
+                    <div class="blog-image-placeholder">💉</div>
+                    <div class="blog-content">
+                        <span class="blog-date">20 Décembre 2025</span>
+                        <h2 class="blog-title">Vaccination adulte : le guide pratique</h2>
+                        <p class="blog-excerpt">
+                            Rappels à 25, 45 et 65 ans, vaccin HPV, vaccination grossesse... Découvrez quand et pourquoi se faire vacciner à l'âge adulte.
+                        </p>
+                        <a href="blog/vaccination-adulte-guide-pratique.html" class="blog-link">
+                            <span>Lire la suite</span>
+                            <svg width="30" height="30" viewBox="0 0 24 24" fill="none">
+                                <path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </a>
+                    </div>
+                </article>
+
+                <!-- Article 3 - MASQUÉ - Article non publié
+                <article class="blog-card fade-up" style="animation-delay: 0.2s;">
+                    <div class="blog-image-placeholder">🌿</div>
+                    <div class="blog-content">
+                        <span class="blog-date">20 Décembre 2024</span>
+                        <h2 class="blog-title">Les bienfaits de la phytothérapie</h2>
+                        <p class="blog-excerpt">
+                            La phytothérapie utilise les plantes médicinales pour prévenir et traiter différents maux. Découvrez comment elles peuvent vous accompagner.
+                        </p>
+                        <a href="#" class="blog-link">
+                            <span>Lire la suite</span>
+                            <svg width="30" height="30" viewBox="0 0 24 24" fill="none">
+                                <path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </a>
+                    </div>
+                </article>
+                -->
+
+                <!-- Article 4 - MASQUÉ - Article non publié
+                <article class="blog-card fade-up" style="animation-delay: 0.3s;">
+                    <div class="blog-image-placeholder">🧴</div>
+                    <div class="blog-content">
+                        <span class="blog-date">10 Décembre 2024</span>
+                        <h2 class="blog-title">Protéger sa peau en hiver</h2>
+                        <p class="blog-excerpt">
+                            Le froid, le vent et le chauffage mettent notre peau à rude épreuve. Nos conseils pour garder une peau hydratée et protégée.
+                        </p>
+                        <a href="#" class="blog-link">
+                            <span>Lire la suite</span>
+                            <svg width="30" height="30" viewBox="0 0 24 24" fill="none">
+                                <path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </a>
+                    </div>
+                </article>
+                -->
+
+                <!-- Article 5 - MASQUÉ - Article non publié
+                <article class="blog-card fade-up" style="animation-delay: 0.4s;">
+                    <div class="blog-image-placeholder">🚗</div>
+                    <div class="blog-content">
+                        <span class="blog-date">1 Décembre 2024</span>
+                        <h2 class="blog-title">Nouveau : Service Drive disponible</h2>
+                        <p class="blog-excerpt">
+                            Commandez vos médicaments par téléphone et récupérez-les sans sortir de votre voiture. Simple, rapide et pratique !
+                        </p>
+                        <a href="#" class="blog-link">
+                            <span>Lire la suite</span>
+                            <svg width="30" height="30" viewBox="0 0 24 24" fill="none">
+                                <path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </a>
+                    </div>
+                </article>
+                -->
+
+                <!-- Article 6 - MASQUÉ - Article non publié
+                <article class="blog-card fade-up" style="animation-delay: 0.5s;">
+                    <div class="blog-image-placeholder">💚</div>
+                    <div class="blog-content">
+                        <span class="blog-date">15 Novembre 2024</span>
+                        <h2 class="blog-title">Nos engagements pour votre santé</h2>
+                        <p class="blog-excerpt">
+                            À la Pharmacie Charnal, votre bien-être est notre priorité. Découvrez nos engagements au service de votre santé.
+                        </p>
+                        <a href="#" class="blog-link">
+                            <span>Lire la suite</span>
+                            <svg width="30" height="30" viewBox="0 0 24 24" fill="none">
+                                <path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </a>
+                    </div>
+                </article>
+                -->
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-col footer-about">
+                    <div class="footer-logo">
+                        <div class="logo-icon">
+                            <img src="images /Pharmacie Charnal logo.png" alt="Logo Pharmacie Charnal" style="width: 100%; height: 100%; object-fit: contain;">
+                        </div>
+                        <div>
+                            <div class="footer-logo-name">Pharmacie Charnal</div>
+                            <div class="footer-logo-tagline">Quéven</div>
+                        </div>
+                    </div>
+                    <p>Votre pharmacie familiale depuis près de 40 ans. Une tradition de soins personnalisés et attentifs.</p>
+                    <div class="footer-social">
+                        <h4>Suivez-nous</h4>
+                        <div class="social-links">
+                            <a href="https://www.instagram.com/pharmaciecharnalqueven/" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Instagram">
+                                <svg width="30" height="30" viewBox="0 0 24 24" fill="none">
+                                    <rect x="2" y="2" width="20" height="20" rx="5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <circle cx="17.5" cy="6.5" r="0.5" fill="currentColor"/>
+                                </svg>
+                            </a>
+                            <a href="https://www.facebook.com/pharmaciecharnal/" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Facebook">
+                                <svg width="30" height="30" viewBox="0 0 24 24" fill="none">
+                                    <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h4>Navigation</h4>
+                    <ul>
+                        <li><a href="index-v2.html">Accueil</a></li>
+                        <li><a href="histoire-v2.html">Notre Histoire</a></li>
+                        <li><a href="services-v2.html">Services</a></li>
+                        <li><a href="blog-v2.html">Actualités</a></li>
+                        <li><a href="contact-v2.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Contact</h4>
+                    <ul>
+                        <li>10 Place de Toulouse</li>
+                        <li>56530 Quéven</li>
+                        <li><a href="tel:0297397322">02 97 39 73 22</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Horaires</h4>
+                    <ul>
+                        <li>Lun-Ven: 8h30-12h30 / 14h-20h</li>
+                        <li>Samedi: 9h-12h30</li>
+                        <li>Dimanche: Fermé</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Pharmacie Charnal - Tous droits réservés</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="animations.js"></script>
+</body>
+</html>
