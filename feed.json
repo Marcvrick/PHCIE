@@ -1,0 +1,105 @@
+{
+  "version": "https://jsonfeed.org/version/1.1",
+  "title": "Blog Pharmacie Charnal - Au comptoir",
+  "home_page_url": "https://www.pharmaciecharnal.fr",
+  "feed_url": "https://www.pharmaciecharnal.fr/feed.json",
+  "description": "Au comptoir de la Pharmacie Charnal à Quéven : conseils santé, prévention hiver, vaccinations, phytothérapie, dermatologie. Articles rédigés par nos pharmaciens.",
+  "icon": "https://www.pharmaciecharnal.fr/images/pharmacie-charnal-logo.png",
+  "favicon": "https://www.pharmaciecharnal.fr/images/pharmacie-charnal-logo.png",
+  "authors": [
+    {
+      "name": "Laure Charnal",
+      "url": "https://www.pharmaciecharnal.fr/histoire-v2.html",
+      "avatar": "https://www.pharmaciecharnal.fr/images/pharmacie-charnal-logo.png"
+    }
+  ],
+  "language": "fr-FR",
+  "items": [
+    {
+      "id": "https://www.pharmaciecharnal.fr/blog/prevenir-maux-hiver-queven.html",
+      "url": "https://www.pharmaciecharnal.fr/blog/prevenir-maux-hiver-queven.html",
+      "title": "Prévenir les maux de l'hiver à Quéven",
+      "content_html": "Les conseils de Laure, votre pharmacienne à Quéven, pour passer l'hiver sereinement. Vitamines, remèdes naturels, gestes simples du quotidien.",
+      "summary": "Avec le froid qui s'installe en Bretagne, découvrez les conseils de votre pharmacien pour renforcer vos défenses immunitaires et éviter rhume, grippe et infections hivernales.",
+      "date_published": "2025-12-31T00:00:00+01:00",
+      "date_modified": "2025-12-31T00:00:00+01:00",
+      "authors": [
+        {
+          "name": "Laure Charnal"
+        }
+      ],
+      "tags": [
+        "prévention hiver",
+        "rhume",
+        "grippe",
+        "immunité",
+        "vitamine D",
+        "remèdes naturels"
+      ],
+      "language": "fr-FR",
+      "_medical_topic": {
+        "conditions": ["Rhume", "Grippe", "Infections respiratoires"],
+        "audience": "Patient",
+        "specialty": "Pharmacie"
+      }
+    },
+    {
+      "id": "https://www.pharmaciecharnal.fr/blog/vaccination-adulte-guide-pratique.html",
+      "url": "https://www.pharmaciecharnal.fr/blog/vaccination-adulte-guide-pratique.html",
+      "title": "Vaccination à l'âge adulte : le guide pratique pour rester à jour",
+      "content_html": "Les conseils de Laure sur la vaccination adulte : rappels à 25, 45 et 65 ans, vaccin HPV, vaccination pendant la grossesse. Guide pratique complet.",
+      "summary": "Rappels à 25, 45 et 65 ans, vaccin HPV, vaccination grossesse... Découvrez quand et pourquoi se faire vacciner à l'âge adulte.",
+      "date_published": "2025-12-20T00:00:00+01:00",
+      "date_modified": "2025-12-20T00:00:00+01:00",
+      "authors": [
+        {
+          "name": "Laure Charnal"
+        }
+      ],
+      "tags": [
+        "vaccination adulte",
+        "rappel vaccinal",
+        "vaccin HPV",
+        "calendrier vaccinal",
+        "vaccination grossesse",
+        "vaccin coqueluche",
+        "vaccin zona"
+      ],
+      "language": "fr-FR",
+      "_medical_topic": {
+        "procedures": ["Vaccination adulte", "Rappel vaccinal", "Vaccin HPV", "Vaccination grossesse"],
+        "audience": "Patient",
+        "specialty": "Pharmacie"
+      }
+    },
+    {
+      "id": "https://www.pharmaciecharnal.fr/blog/professionnels-sante-queven-2026.html",
+      "url": "https://www.pharmaciecharnal.fr/blog/professionnels-sante-queven-2026.html",
+      "title": "Guide Santé Quéven : Tous les Professionnels Médicaux",
+      "content_html": "Guide complet des médecins généralistes, laboratoires, dentistes et professionnels de santé à Quéven. Carte interactive, adresses, téléphones et horaires.",
+      "summary": "Vous cherchez un médecin, un laboratoire ou un professionnel de santé à Quéven ? Découvrez notre guide complet avec carte interactive, adresses et coordonnées de tous les praticiens de votre ville.",
+      "date_published": "2025-12-10T09:00:00+01:00",
+      "date_modified": "2025-12-10T09:00:00+01:00",
+      "authors": [
+        {
+          "name": "Laure Charnal"
+        }
+      ],
+      "tags": [
+        "médecins Quéven",
+        "laboratoire Quéven",
+        "professionnels santé",
+        "guide local",
+        "cabinet médical",
+        "dentiste Quéven",
+        "Maison Médicale"
+      ],
+      "language": "fr-FR",
+      "_medical_topic": {
+        "services": ["Médecine générale", "Analyses médicales", "Soins dentaires", "Soins infirmiers"],
+        "audience": "Patient",
+        "specialty": "Guide santé local"
+      }
+    }
+  ]
+}

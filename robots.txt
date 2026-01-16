@@ -1,0 +1,41 @@
+# Robots.txt - Pharmacie Charnal
+# Ce fichier indique aux robots d'indexation comment explorer le site
+
+# Autoriser tous les robots à indexer tout le contenu
+User-agent: *
+Allow: /
+
+# Sitemap XML - Aide à l'indexation complète du site
+Sitemap: https://www.pharmaciecharnal.fr/sitemap.xml
+
+# Optimisation pour les principaux moteurs de recherche
+# Google
+User-agent: Googlebot
+Allow: /
+
+# Bing
+User-agent: Bingbot
+Allow: /
+
+# ChatGPT (OpenAI)
+User-agent: GPTBot
+Allow: /
+
+# Claude (Anthropic)
+User-agent: ClaudeBot
+Allow: /
+
+# Perplexity
+User-agent: PerplexityBot
+Allow: /
+
+# Google Extended (Bard/Gemini AI training)
+User-agent: Google-Extended
+Allow: /
+
+# Common Crawl (utilisé par de nombreux LLMs)
+User-agent: CCBot
+Allow: /
+
+# Politesse - Délai entre les requêtes (en secondes)
+Crawl-delay: 1

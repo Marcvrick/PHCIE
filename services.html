@@ -3,21 +3,208 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Tous les services de la Pharmacie Charnal à Quéven">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <meta name="description" content="Tous nos services à Quéven : délivrance d'ordonnances, vaccinations, livraison à domicile, phytothérapie, téléconsultation et parapharmacie. Conseils personnalisés.">
     <title>Nos Services | Pharmacie Charnal - Quéven</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@400;600;700&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style-v2.css">
+    <link rel="canonical" href="https://www.pharmaciecharnal.fr/services.html">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.pharmaciecharnal.fr/services.html">
+    <meta property="og:title" content="Nos Services | Pharmacie Charnal - Quéven">
+    <meta property="og:description" content="Délivrance d'ordonnances, vaccinations, livraison à domicile, phytothérapie, téléconsultation et parapharmacie. Conseils personnalisés.">
+    <meta property="og:image" content="https://www.pharmaciecharnal.fr/images/pharmacie-charnal-logo.png">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://www.pharmaciecharnal.fr/services.html">
+    <meta name="twitter:title" content="Nos Services | Pharmacie Charnal - Quéven">
+    <meta name="twitter:description" content="Délivrance d'ordonnances, vaccinations, livraison à domicile, phytothérapie, téléconsultation et parapharmacie. Conseils personnalisés.">
+    <meta name="twitter:image" content="https://www.pharmaciecharnal.fr/images/pharmacie-charnal-logo.png">
+    <link rel="stylesheet" href="style.css?v=5">
+
+    <!-- Schema.org Markup -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Pharmacy",
+      "name": "Pharmacie Charnal",
+      "image": "https://www.pharmaciecharnal.fr/images/pharmacie-charnal-logo.png",
+      "description": "Services complets : délivrance d'ordonnances, vaccinations, livraison à domicile, phytothérapie, téléconsultation et parapharmacie.",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "32 Place de Toulouse",
+        "addressLocality": "Quéven",
+        "postalCode": "56530",
+        "addressCountry": "FR"
+      },
+      "telephone": "+33297050931",
+      "url": "https://www.pharmaciecharnal.fr",
+      "openingHoursSpecification": [
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+          "opens": "09:00",
+          "closes": "12:30"
+        },
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+          "opens": "14:00",
+          "closes": "19:15"
+        },
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": "Saturday",
+          "opens": "09:00",
+          "closes": "12:30"
+        }
+      ],
+      "priceRange": "€€",
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": "47.7878481",
+        "longitude": "-3.4182827"
+      },
+      "areaServed": [
+        {
+          "@type": "City",
+          "name": "Quéven"
+        },
+        {
+          "@type": "City",
+          "name": "Lorient"
+        },
+        {
+          "@type": "City",
+          "name": "Lanester"
+        },
+        {
+          "@type": "State",
+          "name": "Morbihan"
+        }
+      ],
+      "paymentAccepted": "Carte Bancaire, Espèces, Chèque, Carte Vitale",
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "5.0",
+        "reviewCount": "20",
+        "bestRating": "5",
+        "worstRating": "1"
+      },
+      "review": [
+        {
+          "@type": "Review",
+          "author": {
+            "@type": "Person",
+            "name": "Christian O."
+          },
+          "datePublished": "2022-04-19",
+          "reviewBody": "La meilleure pharmacie de la région. Toujours aimable, absolument fiable et compétente.",
+          "reviewRating": {
+            "@type": "Rating",
+            "ratingValue": "5",
+            "bestRating": "5"
+          }
+        },
+        {
+          "@type": "Review",
+          "author": {
+            "@type": "Person",
+            "name": "Mariama L."
+          },
+          "datePublished": "2022-04-26",
+          "reviewBody": "Personnel serviable et à l'écoute, toujours bien conseillé.",
+          "reviewRating": {
+            "@type": "Rating",
+            "ratingValue": "5",
+            "bestRating": "5"
+          }
+        },
+        {
+          "@type": "Review",
+          "author": {
+            "@type": "Person",
+            "name": "Ludovic A."
+          },
+          "datePublished": "2021-10-26",
+          "reviewBody": "Très bonne pharmacie. Des gens très compétant, serviable et professionnel. Je recommande fortement.",
+          "reviewRating": {
+            "@type": "Rating",
+            "ratingValue": "5",
+            "bestRating": "5"
+          }
+        },
+        {
+          "@type": "Review",
+          "author": {
+            "@type": "Person",
+            "name": "Sophie A."
+          },
+          "datePublished": "2020-03-10",
+          "reviewBody": "Super pharmacie avec du personnel avenant et très professionnel. La patronne Laure a de bons conseils.",
+          "reviewRating": {
+            "@type": "Rating",
+            "ratingValue": "5",
+            "bestRating": "5"
+          }
+        },
+        {
+          "@type": "Review",
+          "author": {
+            "@type": "Person",
+            "name": "Allannic R."
+          },
+          "datePublished": "2020-09-16",
+          "reviewBody": "C'est toujours un plaisir de retrouver Laure et son équipe... accueil, conseils et services au top.",
+          "reviewRating": {
+            "@type": "Rating",
+            "ratingValue": "5",
+            "bestRating": "5"
+          }
+        }
+      ],
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Services de la Pharmacie Charnal",
+        "itemListElement": [
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Délivrance d'ordonnances",
+              "description": "Conseils personnalisés et suivi pharmaceutique attentif"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Vaccinations",
+              "description": "Service de vaccination sur rendez-vous par nos pharmaciens"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Livraison à domicile",
+              "description": "Livraison à domicile le jour même"
+            }
+          }
+        ]
+      }
+    }
+    </script>
 </head>
 <body>
     <!-- Navigation -->
     <nav class="navbar">
         <div class="nav-container">
-            <a href="index-v2.html" class="nav-logo-link">
+            <a href="index.html" class="nav-logo-link">
                 <div class="nav-logo">
                     <div class="logo-icon">
-                        <img src="images /Pharmacie Charnal logo.png" alt="Logo Pharmacie Charnal" style="width: 100%; height: 100%; object-fit: contain;">
+                        <img src="images/pharmacie-charnal-logo.png" alt="Logo Pharmacie Charnal" style="width: 100%; height: 100%; object-fit: contain;">
                     </div>
                     <div class="logo-text">
                         <span class="logo-name">Pharmacie Charnal</span>
@@ -25,12 +212,19 @@
                     </div>
                 </div>
             </a>
+            <!-- Bouton hamburger mobile -->
+            <button class="mobile-menu-toggle" aria-label="Menu" aria-expanded="false">
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+            </button>
+
             <ul class="nav-links">
-                <li><a href="index-v2.html" class="nav-link">Accueil</a></li>
-                <li><a href="histoire-v2.html" class="nav-link">Notre Histoire</a></li>
-                <li><a href="services-v2.html" class="nav-link active">Services</a></li>
-                <li><a href="blog-v2.html" class="nav-link">Actualités</a></li>
-                <li><a href="contact-v2.html" class="nav-link nav-link-cta">Contact</a></li>
+                <li><a href="index.html" class="nav-link">Accueil</a></li>
+                <li><a href="histoire.html" class="nav-link">Notre Histoire</a></li>
+                <li><a href="services.html" class="nav-link active">Services</a></li>
+                <li><a href="blog.html" class="nav-link nav-link-blog">Au comptoir</a></li>
+                <li><a href="contact.html" class="nav-link">Contact</a></li>
             </ul>
         </div>
     </nav>
@@ -97,7 +291,7 @@
                 </div>
 
                 <!-- Service 2 -->
-                <div id="drive-livraison" class="service-card fade-up" style="padding: var(--space-2xl); display: grid; grid-template-columns: auto 1fr; gap: var(--space-lg); align-items: start; animation-delay: 0.1s; scroll-margin-top: 120px;">
+                <div id="livraison" class="service-card fade-up" style="padding: var(--space-2xl); display: grid; grid-template-columns: auto 1fr; gap: var(--space-lg); align-items: start; animation-delay: 0.1s; scroll-margin-top: 120px;">
                     <div class="service-icon" style="width: 80px; height: 80px; flex-shrink: 0;">
                         <svg viewBox="0 0 24 24" fill="none">
                             <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z" stroke="currentColor" stroke-width="2"/>
@@ -109,9 +303,9 @@
                         </svg>
                     </div>
                     <div>
-                        <h3 style="font-size: var(--text-2xl); margin-bottom: var(--space-md);">Drive & Livraison à domicile</h3>
+                        <h3 style="font-size: var(--text-2xl); margin-bottom: var(--space-md);">Livraison à domicile</h3>
                         <p style="font-size: var(--text-lg); color: var(--gray); line-height: 1.8; margin-bottom: var(--space-md);">
-                            Pour vous faciliter la vie, nous proposons un service drive et une livraison à domicile. Commandez par téléphone et récupérez vos médicaments sans sortir de votre voiture ou recevez-les directement chez vous.
+                            Nous accompagnons les personnes à mobilité réduite ou très malades en apportant leurs médicaments à domicile. Ce service d'assistance est destiné aux patients qui ne peuvent se déplacer en raison de leur état de santé.
                         </p>
                         <ul style="list-style: none; padding: 0; display: flex; flex-direction: column; gap: var(--space-xs);">
                             <li style="font-size: var(--text-base); color: var(--gray); padding-left: var(--space-lg); position: relative;">
@@ -120,15 +314,11 @@
                             </li>
                             <li style="font-size: var(--text-base); color: var(--gray); padding-left: var(--space-lg); position: relative;">
                                 <span style="position: absolute; left: 0; color: var(--sage);">✓</span>
-                                Service drive : récupération sans descendre de voiture
-                            </li>
-                            <li style="font-size: var(--text-base); color: var(--gray); padding-left: var(--space-lg); position: relative;">
-                                <span style="position: absolute; left: 0; color: var(--sage);">✓</span>
                                 Idéal pour les personnes à mobilité réduite
                             </li>
                             <li style="font-size: var(--text-base); color: var(--gray); padding-left: var(--space-lg); position: relative;">
                                 <span style="position: absolute; left: 0; color: var(--sage);">✓</span>
-                                Commande par téléphone : 02 97 39 73 22
+                                Commande par téléphone : 02 97 05 09 31
                             </li>
                         </ul>
                     </div>
@@ -145,7 +335,7 @@
                     <div>
                         <h3 style="font-size: var(--text-2xl); margin-bottom: var(--space-md);">Vaccinations</h3>
                         <p style="font-size: var(--text-lg); color: var(--gray); line-height: 1.8; margin-bottom: var(--space-md);">
-                            Nos pharmaciens sont habilités à vous vacciner directement à la pharmacie. Service rapide et professionnel sur rendez-vous.
+                            Notre équipe (pharmaciens et préparatrices) est habilitée à vous vacciner directement à la pharmacie. Service rapide et professionnel.
                         </p>
                         <ul style="list-style: none; padding: 0; display: flex; flex-direction: column; gap: var(--space-xs);">
                             <li style="font-size: var(--text-base); color: var(--gray); padding-left: var(--space-lg); position: relative;">
@@ -172,8 +362,9 @@
                 <div id="produits-naturels" class="service-card fade-up" style="padding: var(--space-2xl); display: grid; grid-template-columns: auto 1fr; gap: var(--space-lg); align-items: start; animation-delay: 0.3s; scroll-margin-top: 120px;">
                     <div class="service-icon" style="width: 80px; height: 80px; flex-shrink: 0;">
                         <svg viewBox="0 0 24 24" fill="none">
-                            <path d="M12 2v20M2 12h20" stroke="currentColor" stroke-width="2"/>
-                            <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/>
+                            <path d="M20.24 12.24a6 6 0 0 0-8.49-8.49L5 10.5V19h8.5z" stroke="currentColor" stroke-width="2"/>
+                            <line x1="16" y1="8" x2="2" y2="22" stroke="currentColor" stroke-width="2"/>
+                            <line x1="17.5" y1="15" x2="9" y2="15" stroke="currentColor" stroke-width="2"/>
                         </svg>
                     </div>
                     <div>
@@ -203,30 +394,33 @@
                 </div>
 
                 <!-- Service 5 -->
-                <div id="teleconsultation" class="service-card fade-up" style="padding: var(--space-2xl); display: grid; grid-template-columns: auto 1fr; gap: var(--space-lg); align-items: start; animation-delay: 0.4s; scroll-margin-top: 120px;">
+                <div id="materiel-medical" class="service-card fade-up" style="padding: var(--space-2xl); display: grid; grid-template-columns: auto 1fr; gap: var(--space-lg); align-items: start; animation-delay: 0.4s; scroll-margin-top: 120px;">
                     <div class="service-icon" style="width: 80px; height: 80px; flex-shrink: 0;">
                         <svg viewBox="0 0 24 24" fill="none">
-                            <rect x="2" y="7" width="20" height="14" rx="2" stroke="currentColor" stroke-width="2"/>
-                            <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16" stroke="currentColor" stroke-width="2"/>
+                            <rect x="2" y="12" width="20" height="6" rx="1" stroke="currentColor" stroke-width="2"/>
+                            <line x1="2" y1="12" x2="2" y2="9" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                            <line x1="22" y1="12" x2="22" y2="9" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                            <line x1="2" y1="18" x2="2" y2="21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                            <line x1="22" y1="18" x2="22" y2="21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
                         </svg>
                     </div>
                     <div>
-                        <h3 style="font-size: var(--text-2xl); margin-bottom: var(--space-md);">Téléconsultation</h3>
+                        <h3 style="font-size: var(--text-2xl); margin-bottom: var(--space-md);">Matériel médical</h3>
                         <p style="font-size: var(--text-lg); color: var(--gray); line-height: 1.8; margin-bottom: var(--space-md);">
-                            Accédez à des consultations médicales à distance directement depuis la pharmacie. Un service pratique pour obtenir rapidement un avis médical.
+                            Location et vente de matériel médical pour faciliter votre convalescence et améliorer votre confort à domicile.
                         </p>
                         <ul style="list-style: none; padding: 0; display: flex; flex-direction: column; gap: var(--space-xs);">
                             <li style="font-size: var(--text-base); color: var(--gray); padding-left: var(--space-lg); position: relative;">
                                 <span style="position: absolute; left: 0; color: var(--sage);">✓</span>
-                                Consultation avec un médecin à distance
+                                Location de béquilles et déambulateurs
                             </li>
                             <li style="font-size: var(--text-base); color: var(--gray); padding-left: var(--space-lg); position: relative;">
                                 <span style="position: absolute; left: 0; color: var(--sage);">✓</span>
-                                Renouvellement d'ordonnances
+                                Lits médicalisés et matelas anti-escarres
                             </li>
                             <li style="font-size: var(--text-base); color: var(--gray); padding-left: var(--space-lg); position: relative;">
                                 <span style="position: absolute; left: 0; color: var(--sage);">✓</span>
-                                Prise de rendez-vous simplifiée
+                                Équipements d'assistance médicale
                             </li>
                         </ul>
                     </div>
@@ -236,9 +430,9 @@
                 <div id="parapharmacie" class="service-card fade-up" style="padding: var(--space-2xl); display: grid; grid-template-columns: auto 1fr; gap: var(--space-lg); align-items: start; animation-delay: 0.5s; scroll-margin-top: 120px;">
                     <div class="service-icon" style="width: 80px; height: 80px; flex-shrink: 0;">
                         <svg viewBox="0 0 24 24" fill="none">
-                            <path d="M20.24 12.24a6 6 0 0 0-8.49-8.49L5 10.5V19h8.5z" stroke="currentColor" stroke-width="2"/>
-                            <line x1="16" y1="8" x2="2" y2="22" stroke="currentColor" stroke-width="2"/>
-                            <line x1="17.5" y1="15" x2="9" y2="15" stroke="currentColor" stroke-width="2"/>
+                            <rect x="8" y="4" width="8" height="16" rx="4" stroke="currentColor" stroke-width="2"/>
+                            <path d="M10 8h4M10 12h4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                            <ellipse cx="12" cy="3" rx="3" ry="2" stroke="currentColor" stroke-width="2"/>
                         </svg>
                     </div>
                     <div>
@@ -280,7 +474,7 @@
             <p style="font-size: var(--text-xl); color: var(--white); margin-bottom: var(--space-xl);">
                 Notre équipe se fera un plaisir de vous renseigner
             </p>
-            <a href="contact-v2.html" class="btn btn-secondary" style="background-color: var(--white); color: var(--teal); border-color: var(--white);">
+            <a href="contact.html" class="btn btn-secondary" style="background-color: var(--white); color: var(--teal); border-color: var(--white);">
                 <span>Nous contacter</span>
             </a>
         </div>
@@ -293,14 +487,14 @@
                 <div class="footer-col footer-about">
                     <div class="footer-logo">
                         <div class="logo-icon">
-                            <img src="images /Pharmacie Charnal logo.png" alt="Logo Pharmacie Charnal" style="width: 100%; height: 100%; object-fit: contain;">
+                            <img src="images/pharmacie-charnal-logo.png" alt="Logo Pharmacie Charnal" style="width: 100%; height: 100%; object-fit: contain;">
                         </div>
                         <div>
                             <div class="footer-logo-name">Pharmacie Charnal</div>
                             <div class="footer-logo-tagline">Quéven</div>
                         </div>
                     </div>
-                    <p>Votre pharmacie familiale depuis près de 40 ans. Une tradition de soins personnalisés et attentifs.</p>
+                    <p>Votre pharmacie familiale depuis plus de 40 ans. Une tradition de soins personnalisés et attentifs.</p>
                     <div class="footer-social">
                         <h4>Suivez-nous</h4>
                         <div class="social-links">
@@ -322,25 +516,25 @@
                 <div class="footer-col">
                     <h4>Navigation</h4>
                     <ul>
-                        <li><a href="index-v2.html">Accueil</a></li>
-                        <li><a href="histoire-v2.html">Notre Histoire</a></li>
-                        <li><a href="services-v2.html">Services</a></li>
-                        <li><a href="blog-v2.html">Actualités</a></li>
-                        <li><a href="contact-v2.html">Contact</a></li>
+                        <li><a href="index.html">Accueil</a></li>
+                        <li><a href="histoire.html">Notre Histoire</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="blog.html">Au comptoir</a></li>
+                        <li><a href="contact.html">Contact</a></li>
                     </ul>
                 </div>
                 <div class="footer-col">
                     <h4>Contact</h4>
                     <ul>
-                        <li>10 Place de Toulouse</li>
+                        <li>32 Place de Toulouse</li>
                         <li>56530 Quéven</li>
-                        <li><a href="tel:0297397322">02 97 39 73 22</a></li>
+                        <li><a href="tel:0297050931">02 97 05 09 31</a></li>
                     </ul>
                 </div>
                 <div class="footer-col">
                     <h4>Horaires</h4>
                     <ul>
-                        <li>Lun-Ven: 8h30-12h30 / 14h-20h</li>
+                        <li>Lun-Ven: 9h-12h30 / 14h-19h15</li>
                         <li>Samedi: 9h-12h30</li>
                         <li>Dimanche: Fermé</li>
                     </ul>
@@ -353,5 +547,35 @@
     </footer>
 
     <script src="animations.js"></script>
+    <script>
+        // Menu mobile toggle
+        const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
+        const navLinks = document.querySelector('.nav-links');
+
+        if (mobileMenuToggle) {
+            mobileMenuToggle.addEventListener('click', () => {
+                const isExpanded = mobileMenuToggle.getAttribute('aria-expanded') === 'true';
+                mobileMenuToggle.setAttribute('aria-expanded', !isExpanded);
+                navLinks.classList.toggle('active');
+            });
+
+            // Fermer le menu quand on clique sur un lien
+            const links = navLinks.querySelectorAll('.nav-link');
+            links.forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileMenuToggle.setAttribute('aria-expanded', 'false');
+                    navLinks.classList.remove('active');
+                });
+            });
+
+            // Fermer le menu si on clique en dehors
+            document.addEventListener('click', (e) => {
+                if (!navLinks.contains(e.target) && !mobileMenuToggle.contains(e.target)) {
+                    mobileMenuToggle.setAttribute('aria-expanded', 'false');
+                    navLinks.classList.remove('active');
+                }
+            });
+        }
+    </script>
 </body>
 </html>

@@ -1,0 +1,86 @@
+📁 TÉLÉCHARGEMENT DES FONTS AUTO-HÉBERGÉES (RGPD)
+====================================================
+
+Pour respecter le RGPD, les fonts Google sont maintenant auto-hébergées.
+Vous devez télécharger les fichiers de fonts et les placer dans ce dossier.
+
+📦 FONTS NÉCESSAIRES
+--------------------
+
+1. Crimson Pro (Font Display - Titres)
+   - CrimsonPro-Regular.woff2 (weight 400)
+   - CrimsonPro-SemiBold.woff2 (weight 600)
+   - CrimsonPro-Bold.woff2 (weight 700)
+
+2. DM Sans (Font Body - Texte)
+   - DMSans-Regular.woff2 (weight 400)
+   - DMSans-Medium.woff2 (weight 500)
+   - DMSans-SemiBold.woff2 (weight 600)
+   - DMSans-Bold.woff2 (weight 700)
+
+Total : 7 fichiers .woff2
+
+🔗 OÙ TÉLÉCHARGER ?
+-------------------
+
+Option 1 - Google Webfonts Helper (RECOMMANDÉ) :
+https://gwfh.mranftl.com/fonts
+
+1. Cherchez "Crimson Pro"
+2. Sélectionnez : regular (400), 600, bold (700)
+3. Copiez le CSS (@font-face) - déjà fait dans style-v2.css !
+4. Téléchargez les fichiers .woff2
+5. Renommez-les exactement comme ci-dessus
+6. Répétez pour "DM Sans" : regular (400), 500, 600, bold (700)
+
+Option 2 - Directement depuis Google Fonts :
+https://fonts.google.com/
+
+1. Ajoutez Crimson Pro + DM Sans au panier
+2. Sélectionnez les weights nécessaires
+3. Téléchargez les familles
+4. Extrayez les fichiers .ttf
+5. Convertissez en .woff2 avec https://cloudconvert.com/ttf-to-woff2
+6. Renommez selon la nomenclature ci-dessus
+
+📋 CHECKLIST INSTALLATION
+-------------------------
+
+Après téléchargement, ce dossier doit contenir :
+☐ CrimsonPro-Regular.woff2
+☐ CrimsonPro-SemiBold.woff2
+☐ CrimsonPro-Bold.woff2
+☐ DMSans-Regular.woff2
+☐ DMSans-Medium.woff2
+☐ DMSans-SemiBold.woff2
+☐ DMSans-Bold.woff2
+
+✅ VÉRIFICATION
+---------------
+
+1. Placez tous les fichiers .woff2 dans ce dossier fonts/
+2. Ouvrez index-v2.html dans votre navigateur
+3. Les fonts doivent s'afficher correctement
+4. Vérifiez dans l'inspecteur (F12) que les fonts sont chargées depuis /fonts/
+
+⚠️ IMPORTANT
+------------
+
+- Les fichiers DOIVENT être nommés EXACTEMENT comme indiqué
+- Format WOFF2 uniquement (meilleure compression)
+- Pas besoin de sous-dossiers, tous les fichiers au même niveau
+- Le CSS est déjà configuré dans style-v2.css
+
+🎯 BÉNÉFICE RGPD
+----------------
+
+✅ Plus aucune donnée envoyée à Google
+✅ Conformité RGPD complète
+✅ Site plus rapide (fonts en local)
+✅ Fonctionne sans connexion internet
+
+📞 BESOIN D'AIDE ?
+------------------
+
+Les @font-face sont déjà configurés dans style-v2.css (lignes 6-64)
+Il suffit juste de placer les 7 fichiers .woff2 dans ce dossier !

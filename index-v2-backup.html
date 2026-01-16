@@ -3,21 +3,178 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Pharmacie Charnal à Quéven - Votre pharmacie familiale depuis près de 40 ans">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <meta name="description" content="Pharmacie Charnal à Quéven : votre pharmacie familiale depuis plus de 40 ans. Délivrance d'ordonnances, vaccinations, livraison à domicile et produits naturels. Tél: 02 97 05 09 31">
     <title>Pharmacie Charnal - Quéven | Votre pharmacie de confiance</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@400;600;700&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style-v2.css">
+    <link rel="canonical" href="https://www.pharmaciecharnal.fr/index.html">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.pharmaciecharnal.fr/index.html">
+    <meta property="og:title" content="Pharmacie Charnal - Quéven | Votre pharmacie de confiance">
+    <meta property="og:description" content="Pharmacie Charnal à Quéven : votre pharmacie familiale depuis plus de 40 ans. Délivrance d'ordonnances, vaccinations, livraison à domicile et produits naturels.">
+    <meta property="og:image" content="https://www.pharmaciecharnal.fr/images/pharmacie-charnal-logo.png">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://www.pharmaciecharnal.fr/index.html">
+    <meta name="twitter:title" content="Pharmacie Charnal - Quéven | Votre pharmacie de confiance">
+    <meta name="twitter:description" content="Pharmacie Charnal à Quéven : votre pharmacie familiale depuis plus de 40 ans. Délivrance d'ordonnances, vaccinations, livraison à domicile et produits naturels.">
+    <meta name="twitter:image" content="https://www.pharmaciecharnal.fr/images/pharmacie-charnal-logo.png">
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Schema.org Markup -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Pharmacy",
+      "name": "Pharmacie Charnal",
+      "image": "https://www.pharmaciecharnal.fr/images/pharmacie-charnal-logo.png",
+      "description": "Pharmacie familiale à Quéven depuis plus de 40 ans. Délivrance d'ordonnances, vaccinations, livraison à domicile et produits naturels.",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "32 Place de Toulouse",
+        "addressLocality": "Quéven",
+        "postalCode": "56530",
+        "addressCountry": "FR"
+      },
+      "telephone": "+33297050931",
+      "url": "https://www.pharmaciecharnal.fr",
+      "openingHoursSpecification": [
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+          "opens": "09:00",
+          "closes": "12:30"
+        },
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+          "opens": "14:00",
+          "closes": "19:15"
+        },
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": "Saturday",
+          "opens": "09:00",
+          "closes": "12:30"
+        }
+      ],
+      "priceRange": "€€",
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": "47.7878481",
+        "longitude": "-3.4182827"
+      },
+      "areaServed": [
+        {
+          "@type": "City",
+          "name": "Quéven"
+        },
+        {
+          "@type": "City",
+          "name": "Lorient"
+        },
+        {
+          "@type": "City",
+          "name": "Lanester"
+        },
+        {
+          "@type": "State",
+          "name": "Morbihan"
+        }
+      ],
+      "paymentAccepted": "Carte Bancaire, Espèces, Chèque, Carte Vitale",
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "5.0",
+        "reviewCount": "20",
+        "bestRating": "5",
+        "worstRating": "1"
+      },
+      "review": [
+        {
+          "@type": "Review",
+          "author": {
+            "@type": "Person",
+            "name": "Christian O."
+          },
+          "datePublished": "2022-04-19",
+          "reviewBody": "La meilleure pharmacie de la région. Toujours aimable, absolument fiable et compétente.",
+          "reviewRating": {
+            "@type": "Rating",
+            "ratingValue": "5",
+            "bestRating": "5"
+          }
+        },
+        {
+          "@type": "Review",
+          "author": {
+            "@type": "Person",
+            "name": "Mariama L."
+          },
+          "datePublished": "2022-04-26",
+          "reviewBody": "Personnel serviable et à l'écoute, toujours bien conseillé.",
+          "reviewRating": {
+            "@type": "Rating",
+            "ratingValue": "5",
+            "bestRating": "5"
+          }
+        },
+        {
+          "@type": "Review",
+          "author": {
+            "@type": "Person",
+            "name": "Ludovic A."
+          },
+          "datePublished": "2021-10-26",
+          "reviewBody": "Très bonne pharmacie. Des gens très compétant, serviable et professionnel. Je recommande fortement.",
+          "reviewRating": {
+            "@type": "Rating",
+            "ratingValue": "5",
+            "bestRating": "5"
+          }
+        },
+        {
+          "@type": "Review",
+          "author": {
+            "@type": "Person",
+            "name": "Sophie A."
+          },
+          "datePublished": "2020-03-10",
+          "reviewBody": "Super pharmacie avec du personnel avenant et très professionnel. La patronne Laure a de bons conseils.",
+          "reviewRating": {
+            "@type": "Rating",
+            "ratingValue": "5",
+            "bestRating": "5"
+          }
+        },
+        {
+          "@type": "Review",
+          "author": {
+            "@type": "Person",
+            "name": "Allannic R."
+          },
+          "datePublished": "2020-09-16",
+          "reviewBody": "C'est toujours un plaisir de retrouver Laure et son équipe... accueil, conseils et services au top.",
+          "reviewRating": {
+            "@type": "Rating",
+            "ratingValue": "5",
+            "bestRating": "5"
+          }
+        }
+      ]
+    }
+    </script>
 </head>
 <body>
     <!-- Navigation -->
     <nav class="navbar">
         <div class="nav-container">
-            <a href="index-v2.html" class="nav-logo-link">
+            <a href="index.html" class="nav-logo-link">
                 <div class="nav-logo">
                     <div class="logo-icon">
-                        <img src="images /Pharmacie Charnal logo.png" alt="Logo Pharmacie Charnal" style="width: 100%; height: 100%; object-fit: contain;">
+                        <img src="images/pharmacie-charnal-logo.png" alt="Logo Pharmacie Charnal" style="width: 100%; height: 100%; object-fit: contain;">
                     </div>
                     <div class="logo-text">
                         <span class="logo-name">Pharmacie Charnal</span>
@@ -26,11 +183,11 @@
                 </div>
             </a>
             <ul class="nav-links">
-                <li><a href="index-v2.html" class="nav-link active">Accueil</a></li>
-                <li><a href="histoire-v2.html" class="nav-link">Notre Histoire</a></li>
-                <li><a href="services-v2.html" class="nav-link">Services</a></li>
-                <li><a href="blog-v2.html" class="nav-link">Actualités</a></li>
-                <li><a href="contact-v2.html" class="nav-link nav-link-cta">Contact</a></li>
+                <li><a href="index.html" class="nav-link active">Accueil</a></li>
+                <li><a href="histoire.html" class="nav-link">Notre Histoire</a></li>
+                <li><a href="services.html" class="nav-link">Services</a></li>
+                <li><a href="blog.html" class="nav-link">Au comptoir</a></li>
+                <li><a href="contact.html" class="nav-link nav-link-cta">Contact</a></li>
             </ul>
         </div>
     </nav>
@@ -48,7 +205,7 @@
                         <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/>
                         <path d="M12 6v6l4 2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
                     </svg>
-                    <span>Depuis près de 40 ans à votre service</span>
+                    <span>Depuis plus de 40 ans à votre service</span>
                 </div>
                 <h1 class="hero-title fade-in">
                     Votre santé,<br>
@@ -58,12 +215,6 @@
                     Une pharmacie familiale au cœur de Quéven, où tradition et modernité se rencontrent pour vous offrir des soins personnalisés et attentifs.
                 </p>
                 <div class="hero-buttons fade-in">
-                    <a href="contact-v2.html" class="btn btn-primary">
-                        <span>Nous contacter</span>
-                        <svg width="30" height="30" viewBox="0 0 24 24" fill="none">
-                            <path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                        </svg>
-                    </a>
                     <a href="#services" class="btn btn-secondary">
                         <span>Nos services</span>
                     </a>
@@ -90,7 +241,7 @@
                     </div>
                     <div class="info-content">
                         <h3>Adresse</h3>
-                        <p>10 Place de Toulouse<br>56530 Quéven</p>
+                        <p>32 Place de Toulouse<br>56530 Quéven</p>
                     </div>
                 </div>
                 <div class="info-card fade-up" style="animation-delay: 0.1s">
@@ -101,7 +252,7 @@
                     </div>
                     <div class="info-content">
                         <h3>Téléphone</h3>
-                        <p><a href="tel:0297397322">02 97 39 73 22</a></p>
+                        <p><a href="tel:0297050931">02 97 05 09 31</a></p>
                     </div>
                 </div>
                 <div class="info-card fade-up" style="animation-delay: 0.2s">
@@ -113,7 +264,7 @@
                     </div>
                     <div class="info-content">
                         <h3>Horaires</h3>
-                        <p>Lun-Ven: 8h30-12h30 / 14h-20h<br>Sam: 9h-12h30</p>
+                        <p>Lun-Ven: 9h-12h30 / 14h-19h15<br>Sam: 9h-12h30</p>
                     </div>
                 </div>
             </div>
@@ -131,7 +282,7 @@
                 </h2>
             </div>
             <div class="services-grid">
-                <a href="services-v2.html#ordonnances" class="service-card fade-up">
+                <a href="services.html#ordonnances" class="service-card fade-up">
                     <div class="service-icon">
                         <svg viewBox="0 0 24 24" fill="none">
                             <rect x="3" y="3" width="7" height="7" rx="1" stroke="currentColor" stroke-width="2"/>
@@ -143,7 +294,7 @@
                     <h3>Délivrance d'ordonnances</h3>
                     <p>Conseils personnalisés et suivi pharmaceutique attentif</p>
                 </a>
-                <a href="services-v2.html#drive-livraison" class="service-card fade-up" style="animation-delay: 0.1s">
+                <a href="services.html#livraison" class="service-card fade-up" style="animation-delay: 0.1s">
                     <div class="service-icon">
                         <svg viewBox="0 0 24 24" fill="none">
                             <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" stroke="currentColor" stroke-width="2"/>
@@ -151,10 +302,10 @@
                             <path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75" stroke="currentColor" stroke-width="2"/>
                         </svg>
                     </div>
-                    <h3>Drive & Livraison</h3>
-                    <p>Récupération rapide ou livraison à domicile le jour même</p>
+                    <h3>Livraison à domicile</h3>
+                    <p>Livraison à domicile le jour même</p>
                 </a>
-                <a href="services-v2.html#vaccinations" class="service-card fade-up" style="animation-delay: 0.2s">
+                <a href="services.html#vaccinations" class="service-card fade-up" style="animation-delay: 0.2s">
                     <div class="service-icon">
                         <svg viewBox="0 0 24 24" fill="none">
                             <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" stroke="currentColor" stroke-width="2"/>
@@ -164,7 +315,7 @@
                     <h3>Vaccinations</h3>
                     <p>Service de vaccination sur rendez-vous par nos pharmaciens</p>
                 </a>
-                <a href="services-v2.html#produits-naturels" class="service-card fade-up" style="animation-delay: 0.3s">
+                <a href="services.html#produits-naturels" class="service-card fade-up" style="animation-delay: 0.3s">
                     <div class="service-icon">
                         <svg viewBox="0 0 24 24" fill="none">
                             <path d="M12 2v20M2 12h20" stroke="currentColor" stroke-width="2"/>
@@ -174,7 +325,7 @@
                     <h3>Produits naturels</h3>
                     <p>Phytothérapie, aromathérapie et compléments alimentaires</p>
                 </a>
-                <a href="services-v2.html#teleconsultation" class="service-card fade-up" style="animation-delay: 0.4s">
+                <a href="services.html#teleconsultation" class="service-card fade-up" style="animation-delay: 0.4s">
                     <div class="service-icon">
                         <svg viewBox="0 0 24 24" fill="none">
                             <rect x="2" y="7" width="20" height="14" rx="2" stroke="currentColor" stroke-width="2"/>
@@ -184,7 +335,7 @@
                     <h3>Téléconsultation</h3>
                     <p>Consultation médicale à distance depuis la pharmacie</p>
                 </a>
-                <a href="services-v2.html#parapharmacie" class="service-card fade-up" style="animation-delay: 0.5s">
+                <a href="services.html#parapharmacie" class="service-card fade-up" style="animation-delay: 0.5s">
                     <div class="service-icon">
                         <svg viewBox="0 0 24 24" fill="none">
                             <path d="M20.24 12.24a6 6 0 0 0-8.49-8.49L5 10.5V19h8.5z" stroke="currentColor" stroke-width="2"/>
@@ -245,14 +396,14 @@
                 <div class="footer-col footer-about">
                     <div class="footer-logo">
                         <div class="logo-icon">
-                            <img src="images /Pharmacie Charnal logo.png" alt="Logo Pharmacie Charnal" style="width: 100%; height: 100%; object-fit: contain;">
+                            <img src="images/pharmacie-charnal-logo.png" alt="Logo Pharmacie Charnal" style="width: 100%; height: 100%; object-fit: contain;">
                         </div>
                         <div>
                             <div class="footer-logo-name">Pharmacie Charnal</div>
                             <div class="footer-logo-tagline">Quéven</div>
                         </div>
                     </div>
-                    <p>Votre pharmacie familiale depuis près de 40 ans. Une tradition de soins personnalisés et attentifs.</p>
+                    <p>Votre pharmacie familiale depuis plus de 40 ans. Une tradition de soins personnalisés et attentifs.</p>
                     <div class="footer-social">
                         <h4>Suivez-nous</h4>
                         <div class="social-links">
@@ -274,25 +425,25 @@
                 <div class="footer-col">
                     <h4>Navigation</h4>
                     <ul>
-                        <li><a href="index-v2.html">Accueil</a></li>
-                        <li><a href="histoire-v2.html">Notre Histoire</a></li>
-                        <li><a href="services-v2.html">Services</a></li>
-                        <li><a href="blog-v2.html">Actualités</a></li>
-                        <li><a href="contact-v2.html">Contact</a></li>
+                        <li><a href="index.html">Accueil</a></li>
+                        <li><a href="histoire.html">Notre Histoire</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="blog.html">Au comptoir</a></li>
+                        <li><a href="contact.html">Contact</a></li>
                     </ul>
                 </div>
                 <div class="footer-col">
                     <h4>Contact</h4>
                     <ul>
-                        <li>10 Place de Toulouse</li>
+                        <li>32 Place de Toulouse</li>
                         <li>56530 Quéven</li>
-                        <li><a href="tel:0297397322">02 97 39 73 22</a></li>
+                        <li><a href="tel:0297050931">02 97 05 09 31</a></li>
                     </ul>
                 </div>
                 <div class="footer-col">
                     <h4>Horaires</h4>
                     <ul>
-                        <li>Lun-Ven: 8h30-12h30 / 14h-20h</li>
+                        <li>Lun-Ven: 9h-12h30 / 14h-19h15</li>
                         <li>Samedi: 9h-12h30</li>
                         <li>Dimanche: Fermé</li>
                     </ul>

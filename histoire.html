@@ -3,21 +3,178 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="L'histoire de la Pharmacie Charnal - Une pharmacie familiale à Quéven depuis près de 40 ans">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <meta name="description" content="Découvrez 40 ans d'histoire de la Pharmacie Charnal à Quéven. Une tradition familiale de soins personnalisés, du père à Laure Charnal. Proximité, expertise et innovation.">
     <title>Notre Histoire | Pharmacie Charnal - Quéven</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@400;600;700&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style-v2.css">
+    <link rel="canonical" href="https://www.pharmaciecharnal.fr/histoire.html">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.pharmaciecharnal.fr/histoire.html">
+    <meta property="og:title" content="Notre Histoire | Pharmacie Charnal - Quéven">
+    <meta property="og:description" content="Découvrez 40 ans d'histoire de la Pharmacie Charnal à Quéven. Une tradition familiale de soins personnalisés, du père à Laure Charnal.">
+    <meta property="og:image" content="https://www.pharmaciecharnal.fr/images/pharmacie-charnal-logo.png">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://www.pharmaciecharnal.fr/histoire.html">
+    <meta name="twitter:title" content="Notre Histoire | Pharmacie Charnal - Quéven">
+    <meta name="twitter:description" content="Découvrez 40 ans d'histoire de la Pharmacie Charnal à Quéven. Une tradition familiale de soins personnalisés, du père à Laure Charnal.">
+    <meta name="twitter:image" content="https://www.pharmaciecharnal.fr/images/pharmacie-charnal-logo.png">
+    <link rel="stylesheet" href="style.css?v=5">
+
+    <!-- Schema.org Markup -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Pharmacy",
+      "name": "Pharmacie Charnal",
+      "image": "https://www.pharmaciecharnal.fr/images/pharmacie-charnal-logo.png",
+      "description": "Pharmacie familiale à Quéven depuis plus de 40 ans. Une tradition de soins personnalisés transmise de père en fille.",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "32 Place de Toulouse",
+        "addressLocality": "Quéven",
+        "postalCode": "56530",
+        "addressCountry": "FR"
+      },
+      "telephone": "+33297050931",
+      "url": "https://www.pharmaciecharnal.fr",
+      "openingHoursSpecification": [
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+          "opens": "09:00",
+          "closes": "12:30"
+        },
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+          "opens": "14:00",
+          "closes": "19:15"
+        },
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": "Saturday",
+          "opens": "09:00",
+          "closes": "12:30"
+        }
+      ],
+      "priceRange": "€€",
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": "47.7878481",
+        "longitude": "-3.4182827"
+      },
+      "areaServed": [
+        {
+          "@type": "City",
+          "name": "Quéven"
+        },
+        {
+          "@type": "City",
+          "name": "Lorient"
+        },
+        {
+          "@type": "City",
+          "name": "Lanester"
+        },
+        {
+          "@type": "State",
+          "name": "Morbihan"
+        }
+      ],
+      "paymentAccepted": "Carte Bancaire, Espèces, Chèque, Carte Vitale",
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "5.0",
+        "reviewCount": "20",
+        "bestRating": "5",
+        "worstRating": "1"
+      },
+      "review": [
+        {
+          "@type": "Review",
+          "author": {
+            "@type": "Person",
+            "name": "Christian O."
+          },
+          "datePublished": "2022-04-19",
+          "reviewBody": "La meilleure pharmacie de la région. Toujours aimable, absolument fiable et compétente.",
+          "reviewRating": {
+            "@type": "Rating",
+            "ratingValue": "5",
+            "bestRating": "5"
+          }
+        },
+        {
+          "@type": "Review",
+          "author": {
+            "@type": "Person",
+            "name": "Mariama L."
+          },
+          "datePublished": "2022-04-26",
+          "reviewBody": "Personnel serviable et à l'écoute, toujours bien conseillé.",
+          "reviewRating": {
+            "@type": "Rating",
+            "ratingValue": "5",
+            "bestRating": "5"
+          }
+        },
+        {
+          "@type": "Review",
+          "author": {
+            "@type": "Person",
+            "name": "Ludovic A."
+          },
+          "datePublished": "2021-10-26",
+          "reviewBody": "Très bonne pharmacie. Des gens très compétant, serviable et professionnel. Je recommande fortement.",
+          "reviewRating": {
+            "@type": "Rating",
+            "ratingValue": "5",
+            "bestRating": "5"
+          }
+        },
+        {
+          "@type": "Review",
+          "author": {
+            "@type": "Person",
+            "name": "Sophie A."
+          },
+          "datePublished": "2020-03-10",
+          "reviewBody": "Super pharmacie avec du personnel avenant et très professionnel. La patronne Laure a de bons conseils.",
+          "reviewRating": {
+            "@type": "Rating",
+            "ratingValue": "5",
+            "bestRating": "5"
+          }
+        },
+        {
+          "@type": "Review",
+          "author": {
+            "@type": "Person",
+            "name": "Allannic R."
+          },
+          "datePublished": "2020-09-16",
+          "reviewBody": "C'est toujours un plaisir de retrouver Laure et son équipe... accueil, conseils et services au top.",
+          "reviewRating": {
+            "@type": "Rating",
+            "ratingValue": "5",
+            "bestRating": "5"
+          }
+        }
+      ]
+    }
+    </script>
 </head>
 <body>
     <!-- Navigation -->
     <nav class="navbar">
         <div class="nav-container">
-            <a href="index-v2.html" class="nav-logo-link">
+            <a href="index.html" class="nav-logo-link">
                 <div class="nav-logo">
                     <div class="logo-icon">
-                        <img src="images /Pharmacie Charnal logo.png" alt="Logo Pharmacie Charnal" style="width: 100%; height: 100%; object-fit: contain;">
+                        <img src="images/pharmacie-charnal-logo.png" alt="Logo Pharmacie Charnal" style="width: 100%; height: 100%; object-fit: contain;">
                     </div>
                     <div class="logo-text">
                         <span class="logo-name">Pharmacie Charnal</span>
@@ -25,12 +182,19 @@
                     </div>
                 </div>
             </a>
+            <!-- Bouton hamburger mobile -->
+            <button class="mobile-menu-toggle" aria-label="Menu" aria-expanded="false">
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+            </button>
+
             <ul class="nav-links">
-                <li><a href="index-v2.html" class="nav-link">Accueil</a></li>
-                <li><a href="histoire-v2.html" class="nav-link active">Notre Histoire</a></li>
-                <li><a href="services-v2.html" class="nav-link">Services</a></li>
-                <li><a href="blog-v2.html" class="nav-link">Actualités</a></li>
-                <li><a href="contact-v2.html" class="nav-link nav-link-cta">Contact</a></li>
+                <li><a href="index.html" class="nav-link">Accueil</a></li>
+                <li><a href="histoire.html" class="nav-link active">Notre Histoire</a></li>
+                <li><a href="services.html" class="nav-link">Services</a></li>
+                <li><a href="blog.html" class="nav-link nav-link-blog">Au comptoir</a></li>
+                <li><a href="contact.html" class="nav-link">Contact</a></li>
             </ul>
         </div>
     </nav>
@@ -49,7 +213,7 @@
                     <span class="gradient-text">au service de votre santé</span>
                 </h1>
                 <p class="fade-in" style="font-size: var(--text-lg); color: var(--gray); max-width: 680px; margin: var(--space-lg) auto 0;">
-                    Depuis près de 40 ans, la Pharmacie Charnal est un pilier de santé et de confiance au cœur de Quéven.
+                    Depuis plus de 40 ans, la Pharmacie Charnal est un pilier de santé et de confiance au cœur de Quéven.
                 </p>
             </div>
         </div>
@@ -61,17 +225,17 @@
             <div style="display: flex; flex-direction: column; gap: var(--space-xl);">
                 <div class="fade-up" style="padding: var(--space-xl); background: var(--cream); border-radius: var(--radius-xl); border-left: 4px solid var(--sage);">
                     <div style="display: flex; align-items: center; gap: var(--space-md); margin-bottom: var(--space-md);">
-                        <div style="font-family: var(--font-display); font-size: var(--text-3xl); font-weight: 700; color: var(--sage);">1980s</div>
+                        <div style="font-family: var(--font-display); font-size: var(--text-3xl); font-weight: 700; color: var(--sage);">1982</div>
                         <div style="font-size: var(--text-xl); font-weight: 600; color: var(--charcoal);">Les débuts</div>
                     </div>
                     <p style="font-size: var(--text-lg); line-height: 1.8; color: var(--gray); margin-bottom: 0;">
-                        La Pharmacie Charnal ouvre ses portes à Quéven, Place de la Ville de Toulouse. Une pharmacie de quartier pensée pour être proche des habitants et répondre à leurs besoins quotidiens en matière de santé.
+                        La Pharmacie Charnal ouvre ses portes en 1982 à Quéven, Place de Toulouse. Une pharmacie de quartier pensée pour être proche des habitants et répondre à leurs besoins quotidiens en matière de santé.
                     </p>
                 </div>
 
                 <div class="fade-up" style="padding: var(--space-xl); background: var(--cream); border-radius: var(--radius-xl); border-left: 4px solid var(--teal); animation-delay: 0.1s;">
                     <div style="display: flex; align-items: center; gap: var(--space-md); margin-bottom: var(--space-md);">
-                        <div style="font-family: var(--font-display); font-size: var(--text-3xl); font-weight: 700; color: var(--teal);">1990s</div>
+                        <div style="font-family: var(--font-display); font-size: var(--text-3xl); font-weight: 700; color: var(--teal);">1990</div>
                         <div style="font-size: var(--text-xl); font-weight: 600; color: var(--charcoal);">Développement</div>
                     </div>
                     <p style="font-size: var(--text-lg); line-height: 1.8; color: var(--gray); margin-bottom: 0;">
@@ -81,21 +245,21 @@
 
                 <div class="fade-up" style="padding: var(--space-xl); background: var(--cream); border-radius: var(--radius-xl); border-left: 4px solid var(--sage); animation-delay: 0.2s;">
                     <div style="display: flex; align-items: center; gap: var(--space-md); margin-bottom: var(--space-md);">
-                        <div style="font-family: var(--font-display); font-size: var(--text-3xl); font-weight: 700; color: var(--sage);">2000s</div>
+                        <div style="font-family: var(--font-display); font-size: var(--text-3xl); font-weight: 700; color: var(--sage);">2000</div>
                         <div style="font-size: var(--text-xl); font-weight: 600; color: var(--charcoal);">Équipe & modernisation</div>
                     </div>
                     <p style="font-size: var(--text-lg); line-height: 1.8; color: var(--gray); margin-bottom: 0;">
-                        La pharmacie accueille de nouveaux pharmaciens et se modernise tout en gardant son esprit familial. L'accent est mis sur le conseil personnalisé et l'accompagnement des patients.
+                        La pharmacie accueille de nouveaux pharmaciens et se modernise tout en gardant son esprit familial. Deux rénovations successives sont réalisées pour mieux servir les Quévenois, améliorant l'espace d'accueil et les équipements. L'accent est mis sur le conseil personnalisé et l'accompagnement des patients.
                     </p>
                 </div>
 
                 <div class="fade-up" style="padding: var(--space-xl); background: linear-gradient(135deg, var(--sage-light) 0%, var(--teal-light) 100%); border-radius: var(--radius-xl); color: var(--white); animation-delay: 0.3s;">
                     <div style="display: flex; align-items: center; gap: var(--space-md); margin-bottom: var(--space-md);">
-                        <div style="font-family: var(--font-display); font-size: var(--text-3xl); font-weight: 700; color: var(--white);">Aujourd'hui</div>
+                        <div style="font-family: var(--font-display); font-size: var(--text-3xl); font-weight: 700; color: var(--white);">Depuis 2009</div>
                         <div style="font-size: var(--text-xl); font-weight: 600; color: var(--white);">La relève</div>
                     </div>
                     <p style="font-size: var(--text-lg); line-height: 1.8; color: rgba(255,255,255,0.95); margin-bottom: 0;">
-                        Laure Charnal reprend la pharmacie familiale, perpétuant l'héritage de son père. Elle modernise les services avec la livraison à domicile, le drive, et la téléconsultation, tout en conservant les valeurs d'écoute et de proximité qui ont fait la réputation de la pharmacie.
+                        Laure Charnal reprend la pharmacie familiale, perpétuant l'héritage de son père. Elle modernise les services avec la livraison à domicile et la téléconsultation, tout en conservant les valeurs d'écoute et de proximité qui ont fait la réputation de la pharmacie.
                     </p>
                 </div>
             </div>
@@ -107,8 +271,8 @@
         <div class="container">
             <div style="display: grid; grid-template-columns: 1fr; gap: var(--space-2xl); align-items: center;">
                 <div style="display: grid; grid-template-columns: 1fr 1.5fr; gap: var(--space-2xl); align-items: center;">
-                    <div class="fade-up" style="height: 480px; background: linear-gradient(135deg, var(--cream-dark) 0%, var(--beige) 100%); border-radius: var(--radius-2xl); display: flex; align-items: center; justify-content: center; color: var(--gray-light); font-size: var(--text-lg); border: 2px dashed var(--beige);">
-                        Photo de<br>Laure Charnal
+                    <div class="fade-up" style="height: 480px; border-radius: var(--radius-2xl); overflow: hidden;">
+                        <img src="images/Laure CNL.jpeg" alt="Laure Charnal, Pharmacienne" style="width: 100%; height: 100%; object-fit: cover;">
                     </div>
                     <div class="fade-up" style="animation-delay: 0.1s;">
                         <h2 style="font-size: var(--text-4xl); margin-bottom: var(--space-md);">
@@ -119,14 +283,14 @@
                             Issue d'une famille de pharmaciens, j'ai grandi en observant mon père exercer ce métier avec passion et dévouement. C'est naturellement que j'ai choisi de suivre ses pas et de reprendre la pharmacie familiale.
                         </p>
                         <p style="font-size: var(--text-lg); line-height: 1.8; color: var(--gray); margin-bottom: var(--space-md);">
-                            Mon objectif est de perpétuer l'esprit de proximité et d'écoute qui caractérise notre établissement depuis près de 40 ans, tout en l'adaptant aux besoins actuels de nos patients.
+                            Mon objectif est de perpétuer l'esprit de proximité et d'écoute qui caractérise notre établissement depuis plus de 40 ans, tout en l'adaptant aux besoins actuels de nos patients.
                         </p>
                         <p style="font-size: var(--text-lg); line-height: 1.8; color: var(--gray); margin-bottom: var(--space-md);">
                             Avec mon équipe de pharmaciens qualifiés, nous mettons notre expertise au service de votre santé et de votre bien-être.
                         </p>
                         <div style="padding: var(--space-lg); background-color: var(--white); border-radius: var(--radius-lg); border-left: 4px solid var(--sage); margin-top: var(--space-lg);">
                             <p style="font-size: var(--text-xl); font-style: italic; color: var(--charcoal); margin-bottom: 0;">
-                                « La santé de nos patients est notre priorité. Nous sommes là pour vous accompagner au quotidien. »
+                                « La santé de nos patients est notre priorité. Nous sommes là pour vous accompagner. »
                             </p>
                         </div>
                     </div>
@@ -181,14 +345,14 @@
                 <div class="footer-col footer-about">
                     <div class="footer-logo">
                         <div class="logo-icon">
-                            <img src="images /Pharmacie Charnal logo.png" alt="Logo Pharmacie Charnal" style="width: 100%; height: 100%; object-fit: contain;">
+                            <img src="images/pharmacie-charnal-logo.png" alt="Logo Pharmacie Charnal" style="width: 100%; height: 100%; object-fit: contain;">
                         </div>
                         <div>
                             <div class="footer-logo-name">Pharmacie Charnal</div>
                             <div class="footer-logo-tagline">Quéven</div>
                         </div>
                     </div>
-                    <p>Votre pharmacie familiale depuis près de 40 ans. Une tradition de soins personnalisés et attentifs.</p>
+                    <p>Votre pharmacie familiale depuis plus de 40 ans. Une tradition de soins personnalisés et attentifs.</p>
                     <div class="footer-social">
                         <h4>Suivez-nous</h4>
                         <div class="social-links">
@@ -210,25 +374,25 @@
                 <div class="footer-col">
                     <h4>Navigation</h4>
                     <ul>
-                        <li><a href="index-v2.html">Accueil</a></li>
-                        <li><a href="histoire-v2.html">Notre Histoire</a></li>
-                        <li><a href="services-v2.html">Services</a></li>
-                        <li><a href="blog-v2.html">Actualités</a></li>
-                        <li><a href="contact-v2.html">Contact</a></li>
+                        <li><a href="index.html">Accueil</a></li>
+                        <li><a href="histoire.html">Notre Histoire</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="blog.html">Au comptoir</a></li>
+                        <li><a href="contact.html">Contact</a></li>
                     </ul>
                 </div>
                 <div class="footer-col">
                     <h4>Contact</h4>
                     <ul>
-                        <li>10 Place de Toulouse</li>
+                        <li>32 Place de Toulouse</li>
                         <li>56530 Quéven</li>
-                        <li><a href="tel:0297397322">02 97 39 73 22</a></li>
+                        <li><a href="tel:0297050931">02 97 05 09 31</a></li>
                     </ul>
                 </div>
                 <div class="footer-col">
                     <h4>Horaires</h4>
                     <ul>
-                        <li>Lun-Ven: 8h30-12h30 / 14h-20h</li>
+                        <li>Lun-Ven: 9h-12h30 / 14h-19h15</li>
                         <li>Samedi: 9h-12h30</li>
                         <li>Dimanche: Fermé</li>
                     </ul>
@@ -241,5 +405,35 @@
     </footer>
 
     <script src="animations.js"></script>
+    <script>
+    // Menu mobile toggle
+    const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
+    const navLinks = document.querySelector('.nav-links');
+
+    if (mobileMenuToggle) {
+        mobileMenuToggle.addEventListener('click', () => {
+            const isExpanded = mobileMenuToggle.getAttribute('aria-expanded') === 'true';
+            mobileMenuToggle.setAttribute('aria-expanded', !isExpanded);
+            navLinks.classList.toggle('active');
+        });
+
+        // Fermer le menu quand on clique sur un lien
+        const links = navLinks.querySelectorAll('.nav-link');
+        links.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenuToggle.setAttribute('aria-expanded', 'false');
+                navLinks.classList.remove('active');
+            });
+        });
+
+        // Fermer le menu si on clique en dehors
+        document.addEventListener('click', (e) => {
+            if (!navLinks.contains(e.target) && !mobileMenuToggle.contains(e.target)) {
+                mobileMenuToggle.setAttribute('aria-expanded', 'false');
+                navLinks.classList.remove('active');
+            }
+        });
+    }
+    </script>
 </body>
 </html>

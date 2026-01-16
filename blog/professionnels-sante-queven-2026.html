@@ -1,0 +1,1006 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Meta description optimisée SEO -->
+    <meta name="description" content="Guide complet des médecins, laboratoires et professionnels de santé à Quéven. Carte interactive, adresses, téléphones. Par la Pharmacie Charnal.">
+    <meta name="keywords" content="médecin Quéven, docteur Quéven, laboratoire Quéven, cabinet médical Quéven, professionnels santé Quéven, médecin généraliste Quéven 56530">
+
+    <title>Guide Santé Quéven : Tous les Professionnels Médicaux | Pharmacie Charnal</title>
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://www.pharmaciecharnal.fr/blog/professionnels-sante-queven-2026.html">
+
+    <!-- Citation Meta Tags (LLM Optimization) -->
+    <meta name="citation_title" content="Guide Santé Quéven : Tous les Professionnels Médicaux">
+    <meta name="citation_author" content="Laure Charnal">
+    <meta name="citation_author_institution" content="Pharmacie Charnal, Quéven">
+    <meta name="citation_publication_date" content="2025-12-10">
+    <meta name="citation_publisher" content="Pharmacie Charnal">
+    <meta name="citation_language" content="fr">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://www.pharmaciecharnal.fr/blog/professionnels-sante-queven-2026.html">
+    <meta property="og:title" content="Guide Santé Quéven : Tous les Professionnels Médicaux">
+    <meta property="og:description" content="Découvrez tous les médecins, laboratoires et professionnels de santé à Quéven. Carte interactive, adresses et téléphones.">
+    <meta property="og:image" content="https://www.pharmaciecharnal.fr/images/pharmacie-charnal-logo.png">
+    <meta property="article:published_time" content="2025-12-10T09:00:00+01:00">
+    <meta property="article:author" content="Laure Charnal">
+    <meta property="article:section" content="Santé">
+    <meta property="article:tag" content="médecins Quéven">
+    <meta property="article:tag" content="professionnels santé">
+    <meta property="article:tag" content="guide local">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://www.pharmaciecharnal.fr/blog/professionnels-sante-queven-2026.html">
+    <meta name="twitter:title" content="Guide Santé Quéven : Tous les Professionnels Médicaux">
+    <meta name="twitter:description" content="Découvrez tous les médecins, laboratoires et professionnels de santé à Quéven. Carte interactive.">
+    <meta name="twitter:image" content="https://www.pharmaciecharnal.fr/images/pharmacie-charnal-logo.png">
+
+    <link rel="stylesheet" href="../style.css">
+
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+     integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+     crossorigin=""/>
+
+    <style>
+        .article-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: var(--space-2xl) var(--space-lg);
+        }
+
+        .article-header {
+            text-align: center;
+            margin-bottom: var(--space-2xl);
+            padding: var(--space-2xl) 0;
+        }
+
+        .article-meta {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: var(--space-sm);
+            font-size: var(--text-sm);
+            color: var(--gray);
+            margin-bottom: var(--space-lg);
+        }
+
+        .article-header h1 {
+            font-size: var(--text-4xl);
+            color: var(--charcoal);
+            margin-bottom: var(--space-md);
+            line-height: 1.2;
+        }
+
+        .article-intro {
+            font-size: var(--text-xl);
+            color: var(--gray);
+            line-height: 1.6;
+            margin: 0;
+        }
+
+        .article-body {
+            color: var(--charcoal);
+            line-height: 1.8;
+        }
+
+        .article-body h2 {
+            font-size: var(--text-3xl);
+            color: var(--charcoal);
+            margin-top: var(--space-2xl);
+            margin-bottom: var(--space-lg);
+            padding-bottom: var(--space-sm);
+            border-bottom: 3px solid var(--sage);
+        }
+
+        .article-body h3 {
+            font-size: var(--text-xl);
+            color: var(--teal);
+            margin-top: var(--space-xl);
+            margin-bottom: var(--space-md);
+        }
+
+        .article-body p {
+            margin-bottom: var(--space-lg);
+            font-size: var(--text-lg);
+        }
+
+        .article-body ul {
+            margin-bottom: var(--space-lg);
+            padding-left: var(--space-xl);
+        }
+
+        .article-body li {
+            margin-bottom: var(--space-sm);
+            font-size: var(--text-lg);
+        }
+
+        .article-body strong {
+            color: var(--teal);
+            font-weight: 600;
+        }
+
+        .pro-card {
+            background: var(--cream);
+            padding: var(--space-lg);
+            border-radius: var(--radius-lg);
+            margin-bottom: var(--space-md);
+            border-left: 4px solid var(--sage);
+        }
+
+        .pro-card h4 {
+            color: var(--teal);
+            font-size: var(--text-xl);
+            margin-bottom: var(--space-sm);
+        }
+
+        .pro-card p {
+            margin: var(--space-xs) 0;
+            font-size: var(--text-base);
+            color: var(--charcoal);
+        }
+
+        .pro-card .icon {
+            display: inline-block;
+            margin-right: var(--space-xs);
+        }
+
+        .map-container {
+            margin: var(--space-2xl) 0;
+            border-radius: var(--radius-xl);
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        #map {
+            width: 100%;
+            height: 500px;
+            border: 0;
+        }
+
+        .map-legend {
+            background: white;
+            padding: var(--space-md);
+            border-radius: var(--radius-md);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+            margin-top: var(--space-lg);
+        }
+
+        .map-legend h4 {
+            margin: 0 0 var(--space-sm) 0;
+            font-size: var(--text-base);
+            color: var(--charcoal);
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
+            margin-bottom: var(--space-xs);
+            font-size: var(--text-sm);
+        }
+
+        .legend-color {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            border: 2px solid white;
+            box-shadow: 0 0 3px rgba(0,0,0,0.3);
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, var(--sage-light), var(--sage));
+            color: var(--white);
+            padding: var(--space-xl);
+            border-radius: var(--radius-xl);
+            margin: var(--space-2xl) 0;
+            text-align: center;
+        }
+
+        .highlight-box h3 {
+            color: var(--white);
+            margin-bottom: var(--space-md);
+        }
+
+        .faq-item {
+            background: var(--cream);
+            padding: var(--space-lg);
+            border-radius: var(--radius-lg);
+            margin-bottom: var(--space-lg);
+            border-left: 4px solid var(--teal);
+        }
+
+        .faq-item h3 {
+            color: var(--teal);
+            font-size: var(--text-xl);
+            margin-top: 0;
+            margin-bottom: var(--space-md);
+        }
+
+        .faq-item p {
+            margin-bottom: 0;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--space-xs);
+            color: var(--teal);
+            text-decoration: none;
+            font-weight: 600;
+            margin-top: var(--space-2xl);
+            padding: var(--space-md) var(--space-lg);
+            background: var(--cream);
+            border-radius: var(--radius-lg);
+            transition: all 0.3s ease;
+        }
+
+        .back-link:hover {
+            background: var(--sage-light);
+            color: var(--white);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: var(--space-lg);
+            margin: var(--space-2xl) 0;
+        }
+
+        .stat-box {
+            background: var(--cream);
+            padding: var(--space-lg);
+            border-radius: var(--radius-lg);
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: var(--text-4xl);
+            font-weight: 700;
+            color: var(--sage);
+            display: block;
+            margin-bottom: var(--space-xs);
+        }
+
+        .stat-label {
+            font-size: var(--text-base);
+            color: var(--gray);
+        }
+    </style>
+
+    <!-- Schema.org MedicalWebPage Markup (LLM Optimization) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "MedicalWebPage",
+      "headline": "Guide Santé Quéven : Tous les Professionnels Médicaux",
+      "description": "Guide complet des médecins généralistes, spécialistes, laboratoires et professionnels de santé à Quéven (56530). Carte interactive, adresses et coordonnées.",
+      "url": "https://www.pharmaciecharnal.fr/blog/professionnels-sante-queven-2026.html",
+      "datePublished": "2025-12-10T09:00:00+01:00",
+      "dateModified": "2025-12-10T09:00:00+01:00",
+      "inLanguage": "fr-FR",
+      "author": {
+        "@type": "Person",
+        "name": "Laure Charnal",
+        "jobTitle": "Pharmacienne",
+        "affiliation": {
+          "@type": "Pharmacy",
+          "name": "Pharmacie Charnal",
+          "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "10 Place de Toulouse",
+            "addressLocality": "Quéven",
+            "postalCode": "56530",
+            "addressCountry": "FR"
+          }
+        }
+      },
+      "publisher": {
+        "@type": "Pharmacy",
+        "name": "Pharmacie Charnal",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://www.pharmaciecharnal.fr/images/pharmacie-charnal-logo.png"
+        }
+      },
+      "medicalAudience": [
+        {
+          "@type": "MedicalAudience",
+          "audienceType": "Patient",
+          "geographicArea": {
+            "@type": "City",
+            "name": "Quéven"
+          }
+        }
+      ],
+      "about": [
+        {
+          "@type": "MedicalBusiness",
+          "name": "Médecine générale Quéven"
+        },
+        {
+          "@type": "MedicalClinic",
+          "name": "Maison Médicale de Quéven"
+        }
+      ],
+      "reviewedBy": {
+        "@type": "Person",
+        "name": "Laure Charnal",
+        "jobTitle": "Pharmacienne diplômée"
+      },
+      "lastReviewed": "2025-12-10",
+      "mainEntity": {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Où trouver un médecin généraliste à Quéven ?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Quéven compte 9 médecins généralistes, principalement regroupés à la Maison Médicale de Quéven (14 Rue Anatole France) avec le Dr Monthorin, Dr Viel, Dr Passebon, Dr Denouel et Dr Lecoq. D'autres cabinets sont disponibles avec le Dr Lahire, Dr Le Bouquin, Dr Cristini, Dr Prigent et Dr Le Bras."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Y a-t-il un laboratoire d'analyses à Quéven ?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Oui, le Laboratoire BIOLOR (Ouest Biologie) est situé au 2 Place de la Ville de Toulouse, à seulement 50 mètres de la Pharmacie Charnal. Ouvert du lundi au samedi, prises de sang sans rendez-vous."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Quel médecin consulte sans rendez-vous à Quéven ?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "La plupart des médecins généralistes à Quéven travaillent sur rendez-vous. Pour une urgence, contactez la Maison Médicale de Quéven au 02 97 05 10 09 qui pourra vous orienter vers un médecin disponible."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Combien y a-t-il de professionnels de santé à Quéven ?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Quéven compte environ 50 professionnels de santé libéraux : 9 médecins généralistes, 7 dentistes, 15 infirmiers, 1 laboratoire d'analyses, ainsi que des kinésithérapeutes et autres spécialistes."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "La Pharmacie Charnal est-elle proche des médecins à Quéven ?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Oui, la Pharmacie Charnal est idéalement située Place de Toulouse, à 20m des cabinets du Dr Lahire et Dr Le Bouquin, 50m du Laboratoire BIOLOR, 300m de la Maison Médicale et à proximité immédiate de plusieurs cabinets médicaux du centre-ville."
+            }
+          }
+        ]
+      }
+    }
+    </script>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="../index.html" class="nav-logo-link">
+                <div class="nav-logo">
+                    <div class="logo-icon">
+                        <img src="../images/pharmacie-charnal-logo.png" alt="Logo Pharmacie Charnal" style="width: 100%; height: 100%; object-fit: contain;">
+                    </div>
+                    <div class="logo-text">
+                        <span class="logo-name">Pharmacie Charnal</span>
+                        <span class="logo-tagline">Quéven</span>
+                    </div>
+                </div>
+            </a>
+            <ul class="nav-links">
+                <li><a href="../index.html" class="nav-link">Accueil</a></li>
+                <li><a href="../histoire.html" class="nav-link">Notre Histoire</a></li>
+                <li><a href="../services.html" class="nav-link">Services</a></li>
+                <li><a href="../blog.html" class="nav-link active">Au comptoir</a></li>
+                <li><a href="../contact.html" class="nav-link nav-link-cta">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Article -->
+    <article class="article-content">
+        <header class="article-header">
+            <div class="article-meta">
+                <span class="article-date">📅 10 Décembre 2025</span>
+                <span>•</span>
+                <span>Par Laure Charnal, Pharmacienne</span>
+            </div>
+            <h1>Guide Santé Quéven : Tous les Professionnels Médicaux</h1>
+            <p class="article-intro">
+                Vous cherchez un médecin, un laboratoire ou un professionnel de santé à Quéven ? Découvrez notre guide complet avec carte interactive, adresses et coordonnées de tous les praticiens de votre ville.
+            </p>
+        </header>
+
+        <div class="article-body">
+
+            <div class="highlight-box">
+                <h3>🏥 Quéven : Une ville bien équipée en santé</h3>
+                <p style="color: var(--white); font-size: var(--text-lg); margin: 0;">
+                    Plus de 50 professionnels de santé à votre service dans notre commune. Ce guide vous aide à les trouver facilement !
+                </p>
+            </div>
+
+            <div class="stats-grid">
+                <div class="stat-box">
+                    <span class="stat-number">9</span>
+                    <span class="stat-label">Médecins généralistes</span>
+                </div>
+                <div class="stat-box">
+                    <span class="stat-number">1</span>
+                    <span class="stat-label">Laboratoire d'analyses</span>
+                </div>
+                <div class="stat-box">
+                    <span class="stat-number">4</span>
+                    <span class="stat-label">Chirurgiens-dentistes</span>
+                </div>
+                <div class="stat-box">
+                    <span class="stat-number">3</span>
+                    <span class="stat-label">Opticiens</span>
+                </div>
+                <div class="stat-box">
+                    <span class="stat-number">2</span>
+                    <span class="stat-label">Audioprothésistes</span>
+                </div>
+                <div class="stat-box">
+                    <span class="stat-number">1</span>
+                    <span class="stat-label">Sage-femme</span>
+                </div>
+                <div class="stat-box">
+                    <span class="stat-number">15</span>
+                    <span class="stat-label">Infirmiers libéraux</span>
+                </div>
+            </div>
+
+            <h2>📍 Carte interactive : La Place de Toulouse, hub santé de Quéven</h2>
+
+            <p>
+                La <strong>Place de Toulouse</strong> concentre plusieurs professionnels de santé à Quéven : la Pharmacie Charnal, le cabinet des Dr Lahire et Le Bouquin (à 20m), le Laboratoire BIOLOR (à 50m) et le cabinet dentaire SELARL Katchamak. Utilisez cette carte pour visualiser ce pôle santé central et localiser les autres cabinets médicaux de la ville.
+            </p>
+
+            <div class="map-container">
+                <div id="map"></div>
+            </div>
+
+            <div class="map-legend">
+                <h4>🗺️ Légende de la carte</h4>
+                <div class="legend-item">
+                    <div class="legend-color" style="background-color: #2D5F5D;"></div>
+                    <span>Pharmacie</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color" style="background-color: #E63946;"></div>
+                    <span>Médecin généraliste / Cabinet médical</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color" style="background-color: #457B9D;"></div>
+                    <span>Laboratoire</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color" style="background-color: #F77F00;"></div>
+                    <span>Cabinet dentaire</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color" style="background-color: #06A77D;"></div>
+                    <span>Opticien</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color" style="background-color: #9B59B6;"></div>
+                    <span>Audioprothésiste</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color" style="background-color: #E91E63;"></div>
+                    <span>Sage-femme</span>
+                </div>
+            </div>
+
+            <p style="font-size: 13px; color: var(--gray); text-align: center; margin-top: var(--space-sm);">
+                Carte interactive utilisant OpenStreetMap. Cliquez sur les marqueurs pour plus d'informations.
+            </p>
+
+            <h2>👨‍⚕️ Médecins généralistes à Quéven</h2>
+
+            <p>
+                Quéven compte 9 médecins généralistes expérimentés, principalement regroupés au sein de la Maison Médicale et dans divers cabinets du centre-ville.
+            </p>
+
+            <h3>🏥 Maison Médicale de Quéven</h3>
+
+            <div class="pro-card">
+                <h4>Maison Médicale de Quéven</h4>
+                <p><span class="icon">📍</span> 14 Rue Anatole France, 56530 Quéven</p>
+                <p><span class="icon">📞</span> <strong>02 97 05 10 09</strong></p>
+                <p><span class="icon">🕐</span> Lun-Ven : 8h-12h / 14h-19h</p>
+                <p><span class="icon">📅</span> Prise de RDV : <a href="https://www.doctolib.fr/medecin-generaliste/queven" target="_blank" rel="noopener" style="color: var(--teal); font-weight: 600;">Rechercher sur Doctolib</a> ou par téléphone</p>
+                <p style="margin-top: var(--space-sm); font-style: italic; color: var(--gray);">
+                    Principal pôle médical de Quéven, regroupant plusieurs médecins généralistes
+                </p>
+            </div>
+
+            <p><strong>Médecins exerçant à la Maison Médicale :</strong></p>
+
+            <div class="pro-card">
+                <h4>Dr Monthorin Guillaume</h4>
+                <p><span class="icon">📍</span> 14 Rue Anatole France, 56530 Quéven</p>
+                <p><span class="icon">📞</span> 02 97 05 10 09 (standard Maison Médicale)</p>
+                <p><span class="icon">🩺</span> Médecin généraliste</p>
+            </div>
+
+            <div class="pro-card">
+                <h4>Dr Claire Viel</h4>
+                <p><span class="icon">📍</span> 14 Rue Anatole France, 56530 Quéven</p>
+                <p><span class="icon">🩺</span> Médecin généraliste - Secteur 1</p>
+            </div>
+
+            <div class="pro-card">
+                <h4>Dr Aurélie Passebon</h4>
+                <p><span class="icon">📍</span> 14 Rue Anatole France, 56530 Quéven</p>
+                <p><span class="icon">🩺</span> Médecin généraliste - Secteur 1</p>
+            </div>
+
+            <div class="pro-card">
+                <h4>Dr Camille Denouel</h4>
+                <p><span class="icon">📍</span> 14 Rue Anatole France, 56530 Quéven</p>
+                <p><span class="icon">🕐</span> Lun-Mer : 8h-12h / 14h-19h</p>
+                <p><span class="icon">🩺</span> Médecin généraliste</p>
+            </div>
+
+            <div class="pro-card">
+                <h4>Dr Nicolas Lecoq</h4>
+                <p><span class="icon">📍</span> 14 Rue Anatole France, 56530 Quéven</p>
+                <p><span class="icon">📞</span> 02 97 05 10 09 (standard Maison Médicale)</p>
+                <p><span class="icon">🕐</span> Lun-Ven : 9h-18h45 / Sam : 9h-12h</p>
+                <p><span class="icon">🩺</span> Médecin généraliste</p>
+            </div>
+
+            <h3>🏢 Autres cabinets médicaux à Quéven</h3>
+
+            <div class="pro-card">
+                <h4>Dr Jean-Pierre Lahire</h4>
+                <p><span class="icon">📍</span> 4 Rue de la Gare, 56530 Quéven</p>
+                <p><span class="icon">📞</span> <strong>02 97 05 01 18</strong></p>
+                <p><span class="icon">📅</span> Prise de RDV : <a href="https://www.maiia.com/medecin-generaliste/56530-queven/lahire-jean-pierre" target="_blank" rel="noopener" style="color: var(--teal); font-weight: 600;">Maiia</a> ou par téléphone</p>
+                <p><span class="icon">🩺</span> Médecin généraliste</p>
+            </div>
+
+            <div class="pro-card">
+                <h4>Dr Jean-Pierre Le Bouquin</h4>
+                <p><span class="icon">📍</span> 4 Rue de la Gare, 56530 Quéven</p>
+                <p><span class="icon">📞</span> <strong>02 97 05 08 67</strong></p>
+                <p><span class="icon">🩺</span> Médecin généraliste</p>
+            </div>
+
+            <div class="pro-card">
+                <h4>Dr Sylvain Cristini</h4>
+                <p><span class="icon">📞</span> <strong>02 97 05 00 24</strong></p>
+                <p><span class="icon">🩺</span> Médecin généraliste - Visites médicales agréées</p>
+            </div>
+
+            <div class="pro-card">
+                <h4>Dr Erwan Prigent</h4>
+                <p><span class="icon">📍</span> 39 Rue Jean Jaurès, 56530 Quéven</p>
+                <p><span class="icon">📞</span> <strong>02 97 59 51 77</strong></p>
+                <p><span class="icon">📅</span> Prise de RDV : <a href="https://www.maiia.com/medecin-generaliste/56530-queven/prigent-erwan" target="_blank" rel="noopener" style="color: var(--teal); font-weight: 600;">Maiia</a> ou par téléphone</p>
+                <p><span class="icon">🩺</span> Médecin généraliste</p>
+            </div>
+
+            <div class="pro-card">
+                <h4>Dr Fabrice Le Bras</h4>
+                <p><span class="icon">📍</span> 39 Rue Jean Jaurès, 56530 Quéven</p>
+                <p><span class="icon">📞</span> <strong>02 97 59 51 77</strong></p>
+                <p><span class="icon">📅</span> Prise de RDV : <a href="https://www.maiia.com/medecin-generaliste/56530-queven/le-bras-fabrice" target="_blank" rel="noopener" style="color: var(--teal); font-weight: 600;">Maiia</a> ou par téléphone</p>
+                <p><span class="icon">🩺</span> Médecin généraliste</p>
+            </div>
+
+            <h2>🔬 Laboratoire d'analyses médicales</h2>
+
+            <p>
+                Le laboratoire BIOLOR est situé en plein centre-ville de Quéven, à seulement 50 mètres de la Pharmacie Charnal. Pratique pour vos prises de sang et analyses médicales !
+            </p>
+
+            <div class="pro-card" style="border-left-color: var(--teal); border-left-width: 6px;">
+                <h4>🔬 Laboratoire BIOLOR (Ouest Biologie)</h4>
+                <p><span class="icon">📍</span> <strong>2 Place de la Ville de Toulouse, 56530 Quéven</strong></p>
+                <p><span class="icon">📞</span> <strong>02 97 05 20 03</strong></p>
+                <p><span class="icon">🌐</span> <a href="https://www.ouest-biologie.com" target="_blank" rel="noopener" style="color: var(--teal);">www.ouest-biologie.com</a></p>
+                <p><span class="icon">📅</span> Prise de RDV : <a href="https://www.doctolib.fr/laboratoire/queven/laboratoire-d-analyses-medicales-biolor-site-queven" target="_blank" rel="noopener" style="color: var(--teal); font-weight: 600;">Doctolib</a></p>
+
+                <p style="margin-top: var(--space-md);"><strong>Horaires sans rendez-vous :</strong></p>
+                <p>• Lundi - Mardi : 7h30 - 13h00</p>
+                <p>• Mercredi - Vendredi : 7h30 - 12h15 / 14h00 - 18h00</p>
+                <p>• Samedi : 7h30 - 12h15</p>
+
+                <p style="margin-top: var(--space-md); padding: var(--space-md); background: var(--white); border-radius: var(--radius-md);">
+                    <strong style="color: var(--sage);">✨ À savoir :</strong> Le laboratoire BIOLOR est à proximité immédiate de la Pharmacie Charnal (50m) ! Vous pouvez faire vos analyses puis récupérer vos médicaments en quelques pas.
+                </p>
+            </div>
+
+            <h2>🦷 Chirurgiens-dentistes</h2>
+
+            <div class="pro-card" style="border-left-color: var(--teal); border-left-width: 6px;">
+                <h4>🦷 SELARL Katchamak</h4>
+                <p><span class="icon">📍</span> <strong>Place de la Ville de Toulouse, 56530 Quéven</strong></p>
+                <p><span class="icon">📞</span> <strong>02 97 05 27 40</strong></p>
+                <p><span class="icon">💳</span> Carte Vitale acceptée</p>
+                <p><span class="icon">🚌</span> Accès bus : Arrêt Ville Toulouse (lignes 55, 213, 52)</p>
+
+                <p style="margin-top: var(--space-md);"><strong>Chirurgiens-dentistes :</strong></p>
+                <p>• Dr Élodie Kernen</p>
+                <p>• Dr Julien Le Sourd</p>
+                <p>• Dr Alice Mares</p>
+                <p>• Dr Patrick Nagy</p>
+            </div>
+
+            <h2>👓 Opticiens</h2>
+
+            <p>
+                Quéven dispose de plusieurs opticiens pour vos lunettes de vue, lunettes de soleil et lentilles de contact.
+            </p>
+
+            <div class="pro-card" style="border-left-color: var(--teal); border-left-width: 6px;">
+                <h4>👓 Krys Opticien</h4>
+                <p><span class="icon">📍</span> <strong>16 Place de Toulouse, 56530 Quéven</strong></p>
+                <p><span class="icon">📞</span> <strong>02 97 05 05 79</strong></p>
+                <p><span class="icon">✉️</span> queven-placedetoulouse@krys.com</p>
+                <p><span class="icon">💳</span> Tiers payant Sécurité Sociale et mutuelles</p>
+                <p><span class="icon">🔍</span> Lunettes de vue, solaire, lentilles, examen de vue</p>
+            </div>
+
+            <div class="pro-card">
+                <h4>Le Collectif des Lunetiers</h4>
+                <p><span class="icon">📍</span> Centre Commercial E.Leclerc, 56530 Quéven</p>
+                <p><span class="icon">🕐</span> Lun : 14h-19h / Mar-Dim : nous consulter</p>
+                <p><span class="icon">🔍</span> Lunettes de vue, verres correcteurs, examen de la vue</p>
+            </div>
+
+            <div class="pro-card">
+                <h4>Clair Optique</h4>
+                <p><span class="icon">📍</span> 34 Rue Jean Jaurès, 56530 Quéven</p>
+                <p><span class="icon">🔍</span> Opticien lunetier</p>
+            </div>
+
+            <h2>🦻 Audioprothésistes</h2>
+
+            <p>
+                Pour vos appareils auditifs et tests d'audition, deux centres spécialisés sont disponibles à Quéven.
+            </p>
+
+            <div class="pro-card" style="border-left-color: var(--teal); border-left-width: 6px;">
+                <h4>🦻 Sonance Audition</h4>
+                <p><span class="icon">📍</span> <strong>2 bis Place de la Ville de Toulouse, 56530 Quéven</strong></p>
+                <p><span class="icon">👥</span> Thibaut Derré & Naïs Le Bourhis, audioprothésistes D.E.</p>
+                <p><span class="icon">🕐</span> Du lundi au samedi sur rendez-vous</p>
+                <p><span class="icon">📍</span> À côté du Laboratoire BIOLOR</p>
+                <p><span class="icon">🔍</span> Appareils auditifs, tests d'audition, suivi personnalisé</p>
+            </div>
+
+            <div class="pro-card">
+                <h4>Amplifon Audioprothésiste</h4>
+                <p><span class="icon">📍</span> 1 Rue de la Gare, 56530 Quéven</p>
+                <p><span class="icon">🔍</span> Appareils auditifs et solutions auditives</p>
+            </div>
+
+            <h2>🤰 Sage-femme</h2>
+
+            <p>
+                Pour le suivi de grossesse, la préparation à la naissance et la rééducation périnéale, une sage-femme exerce à Quéven.
+            </p>
+
+            <div class="pro-card" style="border-left-color: var(--teal); border-left-width: 6px;">
+                <h4>🤰 Alice Debuire - Sage-femme</h4>
+                <p><span class="icon">📍</span> <strong>7 Rue Jean Jaurès, 56530 Quéven</strong></p>
+                <p><span class="icon">📞</span> <strong>06 16 57 34 18</strong></p>
+                <p><span class="icon">💳</span> Conventionnée Secteur 1, Carte Vitale acceptée</p>
+                <p><span class="icon">📅</span> Prise de RDV : <a href="https://www.rdvsagefemme.com/a/alice-debuire" target="_blank" rel="noopener" style="color: var(--teal); font-weight: 600;">rdvsagefemme.com</a> ou <a href="https://www.maiia.com/sage-femme/56530-queven/debuire-alice" target="_blank" rel="noopener" style="color: var(--teal); font-weight: 600;">Maiia</a></p>
+                <p><span class="icon">🔍</span> Suivi grossesse, préparation à la naissance, rééducation périnéale, frottis</p>
+            </div>
+
+            <h2>💉 Infirmiers et soins à domicile</h2>
+
+            <p>
+                Quéven compte <strong>15 infirmiers libéraux</strong> proposant des soins à domicile (pansements, injections, prélèvements, etc.). Pour trouver un infirmier près de chez vous, nous vous recommandons de consulter :
+            </p>
+
+            <ul>
+                <li>L'annuaire de l'Ordre des Infirmiers</li>
+                <li>Les plateformes Doctolib ou Maiia</li>
+                <li>Votre médecin traitant pour une recommandation</li>
+            </ul>
+
+            <h2>🏥 Association des Professionnels de Santé</h2>
+
+            <div class="pro-card">
+                <h4>Association des Professionnels de Santé de Quéven</h4>
+                <p><span class="icon">📍</span> 39 Rue Jean Jaurès, 56530 Quéven</p>
+                <p style="margin-top: var(--space-sm); font-style: italic; color: var(--gray);">
+                    Regroupe les professionnels de santé de Quéven (médecins, kinésithérapeutes, ostéopathes, infirmiers)
+                </p>
+            </div>
+
+            <h2>💚 La Pharmacie Charnal : au cœur de votre parcours santé</h2>
+
+            <p>
+                Idéalement située <strong>Place de Toulouse</strong>, la Pharmacie Charnal est votre partenaire santé de proximité :
+            </p>
+
+            <ul>
+                <li>À <strong>20 mètres des cabinets du Dr Lahire et Dr Le Bouquin</strong> (médecins généralistes)</li>
+                <li>À <strong>50 mètres du Laboratoire BIOLOR</strong> (analyses médicales)</li>
+                <li>À <strong>50 mètres du cabinet dentaire SELARL Katchamak</strong></li>
+                <li>À <strong>300 mètres de la Maison Médicale</strong> (médecins généralistes)</li>
+                <li>En <strong>plein centre-ville</strong>, accessible à pied depuis tous les cabinets médicaux</li>
+            </ul>
+
+            <div class="highlight-box">
+                <h3>📞 Besoin de conseils santé ?</h3>
+                <p style="color: var(--white); margin: 0;">
+                    L'équipe de la Pharmacie Charnal est à votre écoute du lundi au samedi.<br>
+                    <strong>Nous contacter</strong>
+                </p>
+            </div>
+
+            <h2>💡 Nos services complémentaires</h2>
+
+            <p>
+                En plus de la délivrance d'ordonnances, la Pharmacie Charnal vous propose :
+            </p>
+
+            <ul>
+                <li><strong>Vaccinations</strong> : grippe, COVID-19, rappels (sur rendez-vous)</li>
+                <li><strong>Livraison à domicile</strong> : le jour même sur Quéven</li>
+                <li><strong>Produits naturels</strong> : phytothérapie, aromathérapie, homéopathie</li>
+                <li><strong>Conseils personnalisés</strong> : sur vos traitements et votre santé</li>
+            </ul>
+
+            <p>
+                👉 <a href="../services.html" style="color: var(--teal); font-weight: 600;">Découvrir tous nos services</a>
+            </p>
+
+            <h2>❓ Questions fréquentes</h2>
+
+            <div class="faq-item">
+                <h3>Où trouver un médecin généraliste à Quéven ?</h3>
+                <p>
+                    Quéven compte 9 médecins généralistes, principalement regroupés à la <strong>Maison Médicale de Quéven</strong> (14 Rue Anatole France) avec le Dr Monthorin, Dr Viel, Dr Passebon, Dr Denouel et Dr Lecoq. D'autres cabinets sont disponibles avec le Dr Lahire, Dr Le Bouquin, Dr Cristini, Dr Prigent et Dr Le Bras.
+                </p>
+            </div>
+
+            <div class="faq-item">
+                <h3>Y a-t-il un laboratoire d'analyses à Quéven ?</h3>
+                <p>
+                    Oui, le <strong>Laboratoire BIOLOR</strong> (Ouest Biologie) est situé au 2 Place de la Ville de Toulouse, à seulement 50 mètres de la Pharmacie Charnal. Ouvert du lundi au samedi, prises de sang sans rendez-vous le matin. Tél : <strong>02 97 05 20 03</strong>
+                </p>
+            </div>
+
+            <div class="faq-item">
+                <h3>Quel médecin consulte sans rendez-vous à Quéven ?</h3>
+                <p>
+                    La plupart des médecins généralistes à Quéven travaillent sur rendez-vous. Pour une urgence, contactez la <strong>Maison Médicale de Quéven au 02 97 05 10 09</strong> qui pourra vous orienter vers un médecin disponible. En dehors des horaires d'ouverture, composez le 15 (SAMU).
+                </p>
+            </div>
+
+            <div class="faq-item">
+                <h3>Combien y a-t-il de professionnels de santé à Quéven ?</h3>
+                <p>
+                    Quéven compte environ <strong>50 professionnels de santé libéraux</strong> : 9 médecins généralistes, 7 dentistes, 15 infirmiers, 1 laboratoire d'analyses, ainsi que des kinésithérapeutes et autres spécialistes. Une offre complète pour répondre à tous vos besoins de santé !
+                </p>
+            </div>
+
+            <div class="faq-item">
+                <h3>La Pharmacie Charnal est-elle proche des médecins à Quéven ?</h3>
+                <p>
+                    Oui, la Pharmacie Charnal est <strong>idéalement située Place de Toulouse</strong>, à 20m des cabinets du Dr Lahire et Dr Le Bouquin, 50m du Laboratoire BIOLOR, 300m de la Maison Médicale et à proximité immédiate de plusieurs cabinets médicaux du centre-ville. Vous pouvez facilement faire votre consultation médicale puis récupérer vos médicaments en quelques minutes à pied.
+                </p>
+            </div>
+
+            <p style="margin-top: var(--space-2xl); font-style: italic; color: var(--gray); padding: var(--space-lg); background: var(--cream); border-radius: var(--radius-lg);">
+                <strong>📝 Note :</strong> Ce guide est régulièrement mis à jour. Si vous constatez une erreur ou souhaitez ajouter un professionnel de santé, n'hésitez pas à nous contacter.
+            </p>
+
+            <div class="highlight-box" style="margin-top: var(--space-3xl);">
+                <h3>💚 Votre santé, notre priorité</h3>
+                <p style="color: var(--white); font-size: var(--text-lg); margin: 0;">
+                    La Pharmacie Charnal vous accompagne depuis près de 40 ans à Quéven.<br>
+                    Conseils, écoute et expertise au service de votre bien-être.
+                </p>
+            </div>
+
+            <a href="../blog.html" class="back-link">
+                <span>←</span>
+                <span>Retour au comptoir</span>
+            </a>
+        </div>
+    </article>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-col footer-about">
+                    <div class="footer-logo">
+                        <div class="logo-icon">
+                            <img src="../images/pharmacie-charnal-logo.png" alt="Logo Pharmacie Charnal" style="width: 100%; height: 100%; object-fit: contain;">
+                        </div>
+                        <div>
+                            <div class="footer-logo-name">Pharmacie Charnal</div>
+                            <div class="footer-logo-tagline">Quéven</div>
+                        </div>
+                    </div>
+                    <p>Votre pharmacie familiale depuis près de 40 ans. Une tradition de soins personnalisés et attentifs.</p>
+                    <div class="footer-social">
+                        <h4>Suivez-nous</h4>
+                        <div class="social-links">
+                            <a href="https://www.instagram.com/pharmaciecharnalqueven/" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Instagram">
+                                <svg width="30" height="30" viewBox="0 0 24 24" fill="none">
+                                    <rect x="2" y="2" width="20" height="20" rx="5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <circle cx="17.5" cy="6.5" r="0.5" fill="currentColor"/>
+                                </svg>
+                            </a>
+                            <a href="https://www.facebook.com/pharmaciecharnal/" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Facebook">
+                                <svg width="30" height="30" viewBox="0 0 24 24" fill="none">
+                                    <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h4>Navigation</h4>
+                    <ul>
+                        <li><a href="../index.html">Accueil</a></li>
+                        <li><a href="../histoire.html">Notre Histoire</a></li>
+                        <li><a href="../services.html">Services</a></li>
+                        <li><a href="../blog.html">Au comptoir</a></li>
+                        <li><a href="../contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Contact</h4>
+                    <ul>
+                        <li>10 Place de Toulouse</li>
+                        <li>56530 Quéven</li>
+                        <li><a href="tel:0297397322">02 97 39 73 22</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Horaires</h4>
+                    <ul>
+                        <li>Lun-Ven: 8h30-12h30 / 14h-20h</li>
+                        <li>Samedi: 9h-12h30</li>
+                        <li>Dimanche: Fermé</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Pharmacie Charnal - Tous droits réservés</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Leaflet JS -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+     integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
+     crossorigin=""></script>
+
+    <!-- PapaParse pour lire le CSV -->
+    <script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
+
+    <script>
+        // Initialiser la carte centrée sur Quéven
+        const map = L.map('map').setView([47.7878, -3.4186], 15);
+
+        // Ajouter les tuiles OpenStreetMap
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+            maxZoom: 19
+        }).addTo(map);
+
+        // Couleurs par catégorie
+        const categoryColors = {
+            'Pharmacie': '#2D5F5D',
+            'Médecin généraliste': '#E63946',
+            'Cabinet médical': '#E63946',
+            'Laboratoire': '#457B9D',
+            'Cabinet dentaire': '#F77F00',
+            'Opticien': '#06A77D',
+            'Audioprothésiste': '#9B59B6',
+            'Sage-femme': '#E91E63'
+        };
+
+        // Fonction pour créer une icône colorée
+        function createColorIcon(color) {
+            return L.divIcon({
+                className: 'custom-marker',
+                html: `<div style="
+                    background-color: ${color};
+                    width: 30px;
+                    height: 30px;
+                    border-radius: 50% 50% 50% 0;
+                    border: 3px solid white;
+                    transform: rotate(-45deg);
+                    box-shadow: 0 3px 6px rgba(0,0,0,0.3);
+                "></div>`,
+                iconSize: [30, 30],
+                iconAnchor: [15, 30],
+                popupAnchor: [0, -30]
+            });
+        }
+
+        // Charger et afficher les données du CSV
+        Papa.parse('../professionnels-sante-queven-carte.csv', {
+            download: true,
+            header: true,
+            complete: function(results) {
+                results.data.forEach(function(row) {
+                    if (row.Latitude && row.Longitude) {
+                        const lat = parseFloat(row.Latitude);
+                        const lng = parseFloat(row.Longitude);
+                        const color = categoryColors[row.Catégorie] || '#7C9885';
+
+                        // Créer le contenu du popup
+                        let popupContent = `
+                            <div style="font-family: var(--font-body); min-width: 200px;">
+                                <h3 style="color: ${color}; margin: 0 0 10px 0; font-size: 16px; font-weight: 600;">
+                                    ${row.Nom}
+                                </h3>
+                                <p style="margin: 5px 0; font-size: 13px; color: #666;">
+                                    <strong>📍</strong> ${row.Adresse}
+                                </p>
+                        `;
+
+                        if (row.Téléphone) {
+                            popupContent += `
+                                <p style="margin: 5px 0; font-size: 13px; color: #666;">
+                                    <strong>📞</strong> <a href="tel:${row.Téléphone.replace(/\s/g, '')}" style="color: ${color}; text-decoration: none;">${row.Téléphone}</a>
+                                </p>
+                            `;
+                        }
+
+                        if (row.Description) {
+                            popupContent += `
+                                <p style="margin: 5px 0; font-size: 12px; color: #888; font-style: italic;">
+                                    ${row.Description}
+                                </p>
+                            `;
+                        }
+
+                        popupContent += `
+                                <p style="margin: 10px 0 0 0; font-size: 11px;">
+                                    <a href="https://www.google.com/maps/dir/?api=1&destination=${lat},${lng}"
+                                       target="_blank"
+                                       style="color: ${color}; text-decoration: none; font-weight: 600;">
+                                        🧭 Obtenir l'itinéraire →
+                                    </a>
+                                </p>
+                            </div>
+                        `;
+
+                        // Créer le marqueur
+                        const marker = L.marker([lat, lng], {
+                            icon: createColorIcon(color)
+                        }).addTo(map);
+
+                        marker.bindPopup(popupContent);
+
+                        // Mettre en évidence la Pharmacie Charnal
+                        if (row.Catégorie === 'Pharmacie') {
+                            marker.openPopup();
+                        }
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>

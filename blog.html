@@ -3,12 +3,48 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Actualités et conseils santé de la Pharmacie Charnal à Quéven">
-    <title>Actualités & Conseils | Pharmacie Charnal - Quéven</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@400;600;700&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style-v2.css">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <meta name="description" content="Au comptoir de la Pharmacie Charnal à Quéven : conseils santé, prévention hiver, vaccinations, phytothérapie, dermatologie. Articles rédigés par nos pharmaciens.">
+    <title>Au comptoir | Pharmacie Charnal - Quéven</title>
+    <link rel="canonical" href="https://www.pharmaciecharnal.fr/blog.html">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.pharmaciecharnal.fr/blog.html">
+    <meta property="og:title" content="Au comptoir | Pharmacie Charnal - Quéven">
+    <meta property="og:description" content="Au comptoir de la Pharmacie Charnal à Quéven : conseils santé, prévention hiver, vaccinations, phytothérapie, dermatologie. Articles rédigés par nos pharmaciens.">
+    <meta property="og:image" content="https://www.pharmaciecharnal.fr/images/pharmacie-charnal-logo.png">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://www.pharmaciecharnal.fr/blog.html">
+    <meta name="twitter:title" content="Au comptoir | Pharmacie Charnal - Quéven">
+    <meta name="twitter:description" content="Au comptoir de la Pharmacie Charnal à Quéven : conseils santé, prévention hiver, vaccinations, phytothérapie, dermatologie. Articles rédigés par nos pharmaciens.">
+    <meta name="twitter:image" content="https://www.pharmaciecharnal.fr/images/pharmacie-charnal-logo.png">
+    <link rel="stylesheet" href="style.css?v=5">
+
+    <!-- Schema.org Markup -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Blog",
+      "name": "Blog Pharmacie Charnal",
+      "description": "Au comptoir de la Pharmacie Charnal à Quéven : conseils santé et informations",
+      "url": "https://www.pharmaciecharnal.fr/blog.html",
+      "publisher": {
+        "@type": "Pharmacy",
+        "name": "Pharmacie Charnal",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "32 Place de Toulouse",
+          "addressLocality": "Quéven",
+          "postalCode": "56530",
+          "addressCountry": "FR"
+        },
+        "telephone": "+33297050931"
+      }
+    }
+    </script>
     <style>
         .blog-card {
             background-color: var(--white);
@@ -29,6 +65,18 @@
             align-items: center;
             justify-content: center;
             font-size: 56px;
+            cursor: pointer;
+            overflow: hidden;
+        }
+        .blog-card a {
+            display: block;
+        }
+        .blog-card a:hover .blog-image-placeholder img {
+            transform: scale(1.05);
+            transition: transform 0.4s ease;
+        }
+        .blog-image-placeholder img {
+            transition: transform 0.4s ease;
         }
         .blog-content {
             padding: var(--space-xl);
@@ -56,12 +104,21 @@
         }
         .blog-link {
             display: inline-flex;
+            flex-direction: row;
             align-items: center;
+            flex-wrap: nowrap;
             gap: var(--space-xs);
             color: var(--teal);
             font-weight: 600;
             font-size: var(--text-base);
             transition: var(--transition);
+        }
+        .blog-link span {
+            white-space: nowrap;
+        }
+        .blog-link svg {
+            flex-shrink: 0;
+            display: block;
         }
         .blog-link:hover {
             gap: var(--space-sm);
@@ -72,10 +129,10 @@
     <!-- Navigation -->
     <nav class="navbar">
         <div class="nav-container">
-            <a href="index-v2.html" class="nav-logo-link">
+            <a href="index.html" class="nav-logo-link">
                 <div class="nav-logo">
                     <div class="logo-icon">
-                        <img src="images /Pharmacie Charnal logo.png" alt="Logo Pharmacie Charnal" style="width: 100%; height: 100%; object-fit: contain;">
+                        <img src="images/pharmacie-charnal-logo.png" alt="Logo Pharmacie Charnal" style="width: 100%; height: 100%; object-fit: contain;">
                     </div>
                     <div class="logo-text">
                         <span class="logo-name">Pharmacie Charnal</span>
@@ -83,12 +140,19 @@
                     </div>
                 </div>
             </a>
+            <!-- Bouton hamburger mobile -->
+            <button class="mobile-menu-toggle" aria-label="Menu" aria-expanded="false">
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+            </button>
+
             <ul class="nav-links">
-                <li><a href="index-v2.html" class="nav-link">Accueil</a></li>
-                <li><a href="histoire-v2.html" class="nav-link">Notre Histoire</a></li>
-                <li><a href="services-v2.html" class="nav-link">Services</a></li>
-                <li><a href="blog-v2.html" class="nav-link active">Actualités</a></li>
-                <li><a href="contact-v2.html" class="nav-link nav-link-cta">Contact</a></li>
+                <li><a href="index.html" class="nav-link">Accueil</a></li>
+                <li><a href="histoire.html" class="nav-link">Notre Histoire</a></li>
+                <li><a href="services.html" class="nav-link">Services</a></li>
+                <li><a href="blog.html" class="nav-link nav-link-blog active">Au comptoir</a></li>
+                <li><a href="contact.html" class="nav-link">Contact</a></li>
             </ul>
         </div>
     </nav>
@@ -101,13 +165,12 @@
         </div>
         <div class="container">
             <div class="section-header" style="text-align: center;">
-                <span class="section-badge fade-in">Actualités</span>
+                <span class="section-badge fade-in">Au comptoir</span>
                 <h1 class="section-title fade-in" style="font-size: var(--text-5xl); margin-top: var(--space-md);">
-                    Conseils santé &<br>
-                    <span class="gradient-text">actualités pharmacie</span>
+                    Conseils santé <span class="gradient-text">au comptoir</span>
                 </h1>
                 <p class="fade-in" style="font-size: var(--text-lg); color: var(--gray); max-width: 680px; margin: var(--space-lg) auto 0;">
-                    Retrouvez nos conseils, actualités et informations pour prendre soin de votre santé au quotidien.
+                    Retrouvez nos conseils et informations pour prendre soin de votre santé au quotidien.
                 </p>
             </div>
         </div>
@@ -118,9 +181,35 @@
         <div class="container">
             <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(380px, 1fr)); gap: var(--space-2xl);">
 
-                <!-- Article 1 -->
+                <!-- Article 1 - Détox après les fêtes -->
                 <article class="blog-card fade-up">
-                    <div class="blog-image-placeholder">🌡️</div>
+                    <a href="blog/detox-apres-fetes-mythe-realite-queven.html">
+                        <div class="blog-image-placeholder" style="background: url('images/Detox en Janvier.jpeg') center/cover; padding: 0; font-size: 0;">
+                            <img src="images/Detox en Janvier.jpeg" alt="Femme en pull beige tenant une tasse - Bien-être après les fêtes" style="width: 100%; height: 100%; object-fit: cover; display: block;">
+                        </div>
+                    </a>
+                    <div class="blog-content">
+                        <span class="blog-date">2 Janvier 2026</span>
+                        <h2 class="blog-title">Détox après les fêtes : mythe ou réalité ?</h2>
+                        <p class="blog-excerpt">
+                            Après les fêtes, les promesses de détox miracle fleurissent partout. Mais que dit vraiment la science ? Laure vous explique ce qui fonctionne réellement pour aider votre corps.
+                        </p>
+                        <a href="blog/detox-apres-fetes-mythe-realite-queven.html" class="blog-link">
+                            <span>Lire la suite</span>
+                            <svg width="30" height="30" viewBox="0 0 24 24" fill="none">
+                                <path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </a>
+                    </div>
+                </article>
+
+                <!-- Article 2 - Prévenir les maux de l'hiver -->
+                <article class="blog-card fade-up" style="animation-delay: 0.1s;">
+                    <a href="blog/prevenir-maux-hiver-queven.html">
+                        <div class="blog-image-placeholder" style="background: url('images/prevenir-maux-hiver.jpg') center/cover; padding: 0; font-size: 0;">
+                            <img src="images/prevenir-maux-hiver.jpg" alt="Femme souriante en tenue d'hiver avec bonnet et écharpe roses" style="width: 100%; height: 100%; object-fit: cover; display: block;">
+                        </div>
+                    </a>
                     <div class="blog-content">
                         <span class="blog-date">31 Décembre 2025</span>
                         <h2 class="blog-title">Prévenir les maux de l'hiver à Quéven</h2>
@@ -136,9 +225,13 @@
                     </div>
                 </article>
 
-                <!-- Article 2 -->
-                <article class="blog-card fade-up" style="animation-delay: 0.1s;">
-                    <div class="blog-image-placeholder">💉</div>
+                <!-- Article 3 - Vaccination adulte -->
+                <article class="blog-card fade-up" style="animation-delay: 0.2s;">
+                    <a href="blog/vaccination-adulte-guide-pratique.html">
+                        <div class="blog-image-placeholder" style="background: url('images/vaccination-adulte.jpg') center/cover; padding: 0; font-size: 0;">
+                            <img src="images/vaccination-adulte.jpg" alt="Homme souriant après vaccination adulte" style="width: 100%; height: 100%; object-fit: cover; display: block;">
+                        </div>
+                    </a>
                     <div class="blog-content">
                         <span class="blog-date">20 Décembre 2025</span>
                         <h2 class="blog-title">Vaccination adulte : le guide pratique</h2>
@@ -146,6 +239,28 @@
                             Rappels à 25, 45 et 65 ans, vaccin HPV, vaccination grossesse... Découvrez quand et pourquoi se faire vacciner à l'âge adulte.
                         </p>
                         <a href="blog/vaccination-adulte-guide-pratique.html" class="blog-link">
+                            <span>Lire la suite</span>
+                            <svg width="30" height="30" viewBox="0 0 24 24" fill="none">
+                                <path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </a>
+                    </div>
+                </article>
+
+                <!-- Article 4 - Guide Professionnels Santé Quéven -->
+                <article class="blog-card fade-up" style="animation-delay: 0.3s;">
+                    <a href="blog/professionnels-sante-queven-2026.html">
+                        <div class="blog-image-placeholder" style="background: url('images/les_professionels_de_sante_a_queven.jpeg') center/cover; padding: 0; font-size: 0;">
+                            <img src="images/les_professionels_de_sante_a_queven.jpeg" alt="Médecin avec stéthoscope - Guide des professionnels de santé à Quéven" style="width: 100%; height: 100%; object-fit: cover; display: block;">
+                        </div>
+                    </a>
+                    <div class="blog-content">
+                        <span class="blog-date">10 Décembre 2025</span>
+                        <h2 class="blog-title">Guide Santé Quéven : Tous les Professionnels Médicaux</h2>
+                        <p class="blog-excerpt">
+                            Médecins, laboratoires, dentistes... Découvrez tous les professionnels de santé de Quéven avec carte interactive, adresses et coordonnées.
+                        </p>
+                        <a href="blog/professionnels-sante-queven-2026.html" class="blog-link">
                             <span>Lire la suite</span>
                             <svg width="30" height="30" viewBox="0 0 24 24" fill="none">
                                 <path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -241,14 +356,14 @@
                 <div class="footer-col footer-about">
                     <div class="footer-logo">
                         <div class="logo-icon">
-                            <img src="images /Pharmacie Charnal logo.png" alt="Logo Pharmacie Charnal" style="width: 100%; height: 100%; object-fit: contain;">
+                            <img src="images/pharmacie-charnal-logo.png" alt="Logo Pharmacie Charnal" style="width: 100%; height: 100%; object-fit: contain;">
                         </div>
                         <div>
                             <div class="footer-logo-name">Pharmacie Charnal</div>
                             <div class="footer-logo-tagline">Quéven</div>
                         </div>
                     </div>
-                    <p>Votre pharmacie familiale depuis près de 40 ans. Une tradition de soins personnalisés et attentifs.</p>
+                    <p>Votre pharmacie familiale depuis plus de 40 ans. Une tradition de soins personnalisés et attentifs.</p>
                     <div class="footer-social">
                         <h4>Suivez-nous</h4>
                         <div class="social-links">
@@ -270,25 +385,25 @@
                 <div class="footer-col">
                     <h4>Navigation</h4>
                     <ul>
-                        <li><a href="index-v2.html">Accueil</a></li>
-                        <li><a href="histoire-v2.html">Notre Histoire</a></li>
-                        <li><a href="services-v2.html">Services</a></li>
-                        <li><a href="blog-v2.html">Actualités</a></li>
-                        <li><a href="contact-v2.html">Contact</a></li>
+                        <li><a href="index.html">Accueil</a></li>
+                        <li><a href="histoire.html">Notre Histoire</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="blog.html">Au comptoir</a></li>
+                        <li><a href="contact.html">Contact</a></li>
                     </ul>
                 </div>
                 <div class="footer-col">
                     <h4>Contact</h4>
                     <ul>
-                        <li>10 Place de Toulouse</li>
+                        <li>32 Place de Toulouse</li>
                         <li>56530 Quéven</li>
-                        <li><a href="tel:0297397322">02 97 39 73 22</a></li>
+                        <li><a href="tel:0297050931">02 97 05 09 31</a></li>
                     </ul>
                 </div>
                 <div class="footer-col">
                     <h4>Horaires</h4>
                     <ul>
-                        <li>Lun-Ven: 8h30-12h30 / 14h-20h</li>
+                        <li>Lun-Ven: 9h-12h30 / 14h-19h15</li>
                         <li>Samedi: 9h-12h30</li>
                         <li>Dimanche: Fermé</li>
                     </ul>
@@ -301,5 +416,35 @@
     </footer>
 
     <script src="animations.js"></script>
+    <script>
+        // Menu mobile toggle
+        const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
+        const navLinks = document.querySelector('.nav-links');
+
+        if (mobileMenuToggle) {
+            mobileMenuToggle.addEventListener('click', () => {
+                const isExpanded = mobileMenuToggle.getAttribute('aria-expanded') === 'true';
+                mobileMenuToggle.setAttribute('aria-expanded', !isExpanded);
+                navLinks.classList.toggle('active');
+            });
+
+            // Fermer le menu quand on clique sur un lien
+            const links = navLinks.querySelectorAll('.nav-link');
+            links.forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileMenuToggle.setAttribute('aria-expanded', 'false');
+                    navLinks.classList.remove('active');
+                });
+            });
+
+            // Fermer le menu si on clique en dehors
+            document.addEventListener('click', (e) => {
+                if (!navLinks.contains(e.target) && !mobileMenuToggle.contains(e.target)) {
+                    mobileMenuToggle.setAttribute('aria-expanded', 'false');
+                    navLinks.classList.remove('active');
+                }
+            });
+        }
+    </script>
 </body>
 </html>
