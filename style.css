@@ -1133,5 +1133,8 @@ a {
     .btn {
         width: 100%;
         justify-content: center;
+        padding: var(--space-sm) var(--space-lg);
+        font-size: var(--text-base);
+        min-height: 48px;
     }
 }
