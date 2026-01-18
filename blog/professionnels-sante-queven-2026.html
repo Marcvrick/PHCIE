@@ -978,6 +978,7 @@
             download: true,
             header: true,
             complete: function(results) {
+                console.log('CSV loaded successfully:', results.data.length, 'rows');
                 results.data.forEach(function(row) {
                     if (row.Latitude && row.Longitude) {
                         const lat = parseFloat(row.Latitude);
@@ -1035,6 +1036,10 @@
                         }
                     }
                 });
+            },
+            error: function(error) {
+                console.error('Error loading CSV:', error);
+                document.getElementById('map').innerHTML = '<div style="padding: 20px; text-align: center; color: #E63946;">Erreur lors du chargement de la carte. Veuillez rafraîchir la page.</div>';
             }
         });
     </script>
