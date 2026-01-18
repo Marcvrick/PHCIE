@@ -4,8 +4,11 @@
    ======================================== */
 
 /* === FONTS AUTO-HÉBERGÉES (RGPD) === */
+/* Commented out - font files not yet added to repository
+   Site will use system fallback fonts until font files are uploaded
 
 /* Crimson Pro - Display Font */
+/*
 @font-face {
     font-family: 'Crimson Pro';
     src: url('fonts/CrimsonPro-Regular.woff2') format('woff2');
@@ -31,6 +34,7 @@
 }
 
 /* DM Sans - Body Font */
+/*
 @font-face {
     font-family: 'DM Sans';
     src: url('fonts/DMSans-Regular.woff2') format('woff2');
@@ -62,6 +66,7 @@
     font-style: normal;
     font-display: swap;
 }
+*/
 
 /* === VARIABLES === */
 :root {
