@@ -301,20 +301,20 @@ a {
 }
 
 .nav-link-blog {
-    background: #E91E63;
+    background: #b4a6d7;
     color: var(--white);
     font-weight: 600;
 }
 
 .nav-link-blog:hover {
-    background: #C2185B;
+    background: #9b8bc4;
     color: var(--white);
     transform: translateY(-2px);
     box-shadow: var(--shadow-md);
 }
 
 .nav-link-blog.active {
-    background: #AD1457;
+    background: #8270b1;
     color: var(--white);
 }
 
