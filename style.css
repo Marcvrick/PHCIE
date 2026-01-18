@@ -71,8 +71,6 @@
     --sage-dark: #5A7563;
     --teal: #2D5F5D;
     --teal-light: #3D7876;
-    --lavender: #B4A7D6;
-    --lavender-light: #C9BFE3;
     --cream: #FAF8F5;
     --cream-dark: #F0EDE7;
     --beige: #E8E3DA;
@@ -208,14 +206,7 @@ a {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: var(--space-md);
-    position: relative;
-}
-
-@media (min-width: 768px) {
-    .nav-container {
-        gap: var(--space-xl);
-    }
+    gap: var(--space-xl);
 }
 
 .nav-logo-link {
@@ -310,20 +301,21 @@ a {
 }
 
 .nav-link-blog {
-    background: var(--lavender);
+    background: #E91E63;
     color: var(--white);
+    font-weight: 600;
 }
 
 .nav-link-blog:hover {
-    background: var(--lavender-light);
+    background: #C2185B;
     color: var(--white);
     transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(180, 167, 214, 0.3);
+    box-shadow: var(--shadow-md);
 }
 
 .nav-link-blog.active {
+    background: #AD1457;
     color: var(--white);
-    background: var(--lavender);
 }
 
 /* === MENU MOBILE === */
@@ -468,7 +460,7 @@ a {
 .hero-content {
     display: flex;
     flex-direction: column;
-    gap: var(--space-lg);
+    gap: var(--space-md);
 }
 
 .hero-badge {
@@ -507,6 +499,13 @@ a {
     display: flex;
     gap: var(--space-md);
     flex-wrap: wrap;
+}
+
+/* Réduction de 25% du bouton "Nos services" sur la homepage */
+.hero-buttons .btn {
+    padding: calc(var(--space-md) * 0.75) calc(var(--space-xl) * 0.75);
+    font-size: calc(var(--text-lg) * 0.75);
+    min-height: 42px;
 }
 
 .hero-image {
@@ -655,6 +654,15 @@ a {
 
 .banner-item {
     text-align: center;
+    display: block;
+    text-decoration: none;
+    color: inherit;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.banner-item:hover {
+    transform: translateY(-4px);
 }
 
 .banner-image {
@@ -1038,6 +1046,123 @@ a {
     height: 20px;
 }
 
+/* === BLOG ARTICLES GRID === */
+.blog-articles-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: var(--space-2xl);
+}
+
+@media (max-width: 767px) {
+    .blog-articles-grid {
+        grid-template-columns: 1fr;
+        gap: var(--space-xl);
+    }
+}
+
+/* === SERVICE DETAIL CARDS === */
+.service-detail-card {
+    padding: var(--space-2xl);
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: var(--space-lg);
+    align-items: start;
+    background-color: var(--white);
+    border-radius: var(--radius-xl);
+    border: 1px solid var(--beige);
+}
+
+@media (max-width: 767px) {
+    .service-detail-card {
+        grid-template-columns: 1fr;
+        padding: var(--space-lg);
+        gap: var(--space-md);
+        text-align: center;
+    }
+
+    .service-detail-card .service-icon {
+        margin: 0 auto;
+    }
+}
+
+/* === BRANDS PAGE === */
+.brands-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: var(--space-xl);
+}
+
+@media (max-width: 767px) {
+    .brands-grid {
+        grid-template-columns: 1fr;
+        gap: var(--space-lg);
+    }
+}
+
+.brand-card {
+    background: var(--white);
+    padding: var(--space-xl);
+    border-radius: var(--radius-xl);
+    border: 1px solid var(--beige);
+    text-align: center;
+    transition: var(--transition);
+}
+
+.brand-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lg);
+    border-color: var(--sage);
+}
+
+.brand-logo {
+    width: 120px;
+    height: 80px;
+    margin: 0 auto var(--space-lg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.brand-logo img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+}
+
+.brand-card h3 {
+    font-size: var(--text-xl);
+    font-weight: 600;
+    color: var(--charcoal);
+    margin-bottom: var(--space-md);
+}
+
+.brand-card p {
+    font-size: var(--text-base);
+    color: var(--gray);
+    line-height: 1.6;
+    margin-bottom: var(--space-md);
+}
+
+.brand-link {
+    display: inline-block;
+    color: var(--teal);
+    font-size: var(--text-sm);
+    font-weight: 600;
+    text-decoration: none;
+    transition: var(--transition);
+    padding: var(--space-xs) 0;
+}
+
+.brand-link:hover {
+    color: var(--sage);
+    transform: translateX(4px);
+}
+
+/* Scroll offset for anchor links */
+section[id] {
+    scroll-margin-top: 100px;
+}
+
 .footer-col h4 {
     color: var(--white);
     font-size: var(--text-lg);
@@ -1073,6 +1198,44 @@ a {
     opacity: 0.8;
     font-size: var(--text-sm);
     margin-bottom: 0;
+}
+
+.footer-legal {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: var(--space-xs);
+    margin-bottom: var(--space-md);
+}
+
+.footer-legal a {
+    color: var(--white);
+    text-decoration: none;
+    font-size: var(--text-sm);
+    opacity: 0.8;
+    transition: var(--transition);
+}
+
+.footer-legal a:hover {
+    opacity: 1;
+    text-decoration: underline;
+}
+
+.footer-legal .separator {
+    opacity: 0.5;
+    font-size: var(--text-sm);
+}
+
+@media (max-width: 767px) {
+    .footer-legal {
+        flex-direction: column;
+        gap: var(--space-sm);
+    }
+
+    .footer-legal .separator {
+        display: none;
+    }
 }
 
 /* === ANIMATIONS === */

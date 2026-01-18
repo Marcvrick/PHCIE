@@ -21,7 +21,7 @@
     <meta name="twitter:title" content="Contact | Pharmacie Charnal - Quéven">
     <meta name="twitter:description" content="Contactez la Pharmacie Charnal à Quéven : 02 97 05 09 31. Adresse: 32 Place de Toulouse. Horaires et livraison à domicile.">
     <meta name="twitter:image" content="https://www.pharmaciecharnal.fr/images/pharmacie-charnal-logo.png">
-    <link rel="stylesheet" href="style.css?v=5">
+    <link rel="stylesheet" href="style.css">
 
     <!-- Schema.org Markup -->
     <script type="application/ld+json">
@@ -296,41 +296,6 @@
         </div>
     </section>
 
-    <!-- Contact Info Details -->
-    <section style="padding: var(--space-3xl) 0; background-color: var(--cream);">
-        <div class="container" style="max-width: 900px;">
-            <div class="section-header" style="text-align: center;">
-                <h2 class="section-title fade-in">
-                    Comment nous<br>
-                    <span class="gradient-text">contacter ?</span>
-                </h2>
-            </div>
-
-            <div style="display: flex; flex-direction: column; gap: var(--space-lg);">
-                <div class="fade-up" style="padding: var(--space-xl); background: var(--white); border-radius: var(--radius-xl); border-left: 4px solid var(--sage);">
-                    <h3 style="font-size: var(--text-xl); margin-bottom: var(--space-md); color: var(--charcoal);">📞 Par téléphone</h3>
-                    <p style="font-size: var(--text-lg); color: var(--gray); line-height: 1.7; margin-bottom: var(--space-md);">
-                        Appelez-nous au <strong style="color: var(--teal);">02 97 05 09 31</strong> pendant nos horaires d'ouverture. Notre équipe se fera un plaisir de répondre à vos questions et de vous conseiller.
-                    </p>
-                </div>
-
-                <div class="fade-up" style="padding: var(--space-xl); background: var(--white); border-radius: var(--radius-xl); border-left: 4px solid var(--teal); animation-delay: 0.1s;">
-                    <h3 style="font-size: var(--text-xl); margin-bottom: var(--space-md); color: var(--charcoal);">🏪 En pharmacie</h3>
-                    <p style="font-size: var(--text-lg); color: var(--gray); line-height: 1.7; margin-bottom: var(--space-md);">
-                        Rendez-vous directement à la pharmacie au <strong>32 Place de Toulouse à Quéven</strong>. Nous sommes là pour vous accueillir et vous conseiller personnellement.
-                    </p>
-                </div>
-
-                <div class="fade-up" style="padding: var(--space-xl); background: var(--white); border-radius: var(--radius-xl); border-left: 4px solid var(--sage); animation-delay: 0.2s;">
-                    <h3 style="font-size: var(--text-xl); margin-bottom: var(--space-md); color: var(--charcoal);">📧 Par email</h3>
-                    <p style="font-size: var(--text-lg); color: var(--gray); line-height: 1.7; margin-bottom: 0;">
-                        Envoyez-nous un <a href="mailto:pharmacharnal@yahoo.fr" style="color: var(--teal); font-weight: 600; text-decoration: none;">email</a> et nous vous répondrons dans les plus brefs délais.
-                    </p>
-                </div>
-            </div>
-        </div>
-    </section>
-
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
@@ -392,41 +357,46 @@
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2025 Pharmacie Charnal - Tous droits réservés</p>
+                <div class="footer-legal">
+                    <a href="mentions-legales.html">Mentions légales</a>
+                    <span class="separator">•</span>
+                    <a href="donnees-personnelles.html">Données personnelles</a>
+                </div>
+                <p>&copy; 2026 Pharmacie Charnal - Tous droits réservés</p>
             </div>
         </div>
     </footer>
 
     <script src="animations.js"></script>
     <script>
-    // Menu mobile toggle
-    const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
-    const navLinks = document.querySelector('.nav-links');
+        // Menu mobile toggle
+        const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
+        const navLinks = document.querySelector('.nav-links');
 
-    if (mobileMenuToggle) {
-        mobileMenuToggle.addEventListener('click', () => {
-            const isExpanded = mobileMenuToggle.getAttribute('aria-expanded') === 'true';
-            mobileMenuToggle.setAttribute('aria-expanded', !isExpanded);
-            navLinks.classList.toggle('active');
-        });
-
-        // Fermer le menu quand on clique sur un lien
-        const links = navLinks.querySelectorAll('.nav-link');
-        links.forEach(link => {
-            link.addEventListener('click', () => {
-                mobileMenuToggle.setAttribute('aria-expanded', 'false');
-                navLinks.classList.remove('active');
+        if (mobileMenuToggle) {
+            mobileMenuToggle.addEventListener('click', () => {
+                const isExpanded = mobileMenuToggle.getAttribute('aria-expanded') === 'true';
+                mobileMenuToggle.setAttribute('aria-expanded', !isExpanded);
+                navLinks.classList.toggle('active');
             });
-        });
 
-        // Fermer le menu si on clique en dehors
-        document.addEventListener('click', (e) => {
-            if (!navLinks.contains(e.target) && !mobileMenuToggle.contains(e.target)) {
-                mobileMenuToggle.setAttribute('aria-expanded', 'false');
-                navLinks.classList.remove('active');
-            }
-        });
-    }
+            // Fermer le menu quand on clique sur un lien
+            const links = navLinks.querySelectorAll('.nav-link');
+            links.forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileMenuToggle.setAttribute('aria-expanded', 'false');
+                    navLinks.classList.remove('active');
+                });
+            });
+
+            // Fermer le menu si on clique en dehors
+            document.addEventListener('click', (e) => {
+                if (!navLinks.contains(e.target) && !mobileMenuToggle.contains(e.target)) {
+                    mobileMenuToggle.setAttribute('aria-expanded', 'false');
+                    navLinks.classList.remove('active');
+                }
+            });
+        }
     </script>
 </body>
 </html>

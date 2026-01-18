@@ -21,7 +21,7 @@
     <meta name="twitter:title" content="Nos Services | Pharmacie Charnal - Quéven">
     <meta name="twitter:description" content="Délivrance d'ordonnances, vaccinations, livraison à domicile, phytothérapie, téléconsultation et parapharmacie. Conseils personnalisés.">
     <meta name="twitter:image" content="https://www.pharmaciecharnal.fr/images/pharmacie-charnal-logo.png">
-    <link rel="stylesheet" href="style.css?v=5">
+    <link rel="stylesheet" href="style.css">
 
     <!-- Schema.org Markup -->
     <script type="application/ld+json">
@@ -255,7 +255,7 @@
             <div style="display: flex; flex-direction: column; gap: var(--space-2xl);">
 
                 <!-- Service 1 -->
-                <div id="ordonnances" class="service-card fade-up" style="padding: var(--space-2xl); display: grid; grid-template-columns: auto 1fr; gap: var(--space-lg); align-items: start; scroll-margin-top: 120px;">
+                <div id="ordonnances" class="service-detail-card fade-up" style="scroll-margin-top: 120px;">
                     <div class="service-icon" style="width: 80px; height: 80px; flex-shrink: 0;">
                         <svg viewBox="0 0 24 24" fill="none">
                             <rect x="3" y="3" width="7" height="7" rx="1" stroke="currentColor" stroke-width="2"/>
@@ -291,7 +291,7 @@
                 </div>
 
                 <!-- Service 2 -->
-                <div id="livraison" class="service-card fade-up" style="padding: var(--space-2xl); display: grid; grid-template-columns: auto 1fr; gap: var(--space-lg); align-items: start; animation-delay: 0.1s; scroll-margin-top: 120px;">
+                <div id="livraison" class="service-detail-card fade-up" style="animation-delay: 0.1s; scroll-margin-top: 120px;">
                     <div class="service-icon" style="width: 80px; height: 80px; flex-shrink: 0;">
                         <svg viewBox="0 0 24 24" fill="none">
                             <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z" stroke="currentColor" stroke-width="2"/>
@@ -325,7 +325,7 @@
                 </div>
 
                 <!-- Service 3 -->
-                <div id="vaccinations" class="service-card fade-up" style="padding: var(--space-2xl); display: grid; grid-template-columns: auto 1fr; gap: var(--space-lg); align-items: start; animation-delay: 0.2s; scroll-margin-top: 120px;">
+                <div id="vaccinations" class="service-detail-card fade-up" style="animation-delay: 0.2s; scroll-margin-top: 120px;">
                     <div class="service-icon" style="width: 80px; height: 80px; flex-shrink: 0;">
                         <svg viewBox="0 0 24 24" fill="none">
                             <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" stroke="currentColor" stroke-width="2"/>
@@ -359,7 +359,7 @@
                 </div>
 
                 <!-- Service 4 -->
-                <div id="produits-naturels" class="service-card fade-up" style="padding: var(--space-2xl); display: grid; grid-template-columns: auto 1fr; gap: var(--space-lg); align-items: start; animation-delay: 0.3s; scroll-margin-top: 120px;">
+                <div id="produits-naturels" class="service-detail-card fade-up" style="animation-delay: 0.3s; scroll-margin-top: 120px;">
                     <div class="service-icon" style="width: 80px; height: 80px; flex-shrink: 0;">
                         <svg viewBox="0 0 24 24" fill="none">
                             <path d="M20.24 12.24a6 6 0 0 0-8.49-8.49L5 10.5V19h8.5z" stroke="currentColor" stroke-width="2"/>
@@ -394,7 +394,7 @@
                 </div>
 
                 <!-- Service 5 -->
-                <div id="materiel-medical" class="service-card fade-up" style="padding: var(--space-2xl); display: grid; grid-template-columns: auto 1fr; gap: var(--space-lg); align-items: start; animation-delay: 0.4s; scroll-margin-top: 120px;">
+                <div id="materiel-medical" class="service-detail-card fade-up" style="animation-delay: 0.4s; scroll-margin-top: 120px;">
                     <div class="service-icon" style="width: 80px; height: 80px; flex-shrink: 0;">
                         <svg viewBox="0 0 24 24" fill="none">
                             <rect x="2" y="12" width="20" height="6" rx="1" stroke="currentColor" stroke-width="2"/>
@@ -427,7 +427,7 @@
                 </div>
 
                 <!-- Service 6 -->
-                <div id="parapharmacie" class="service-card fade-up" style="padding: var(--space-2xl); display: grid; grid-template-columns: auto 1fr; gap: var(--space-lg); align-items: start; animation-delay: 0.5s; scroll-margin-top: 120px;">
+                <div id="parapharmacie" class="service-detail-card fade-up" style="animation-delay: 0.5s; scroll-margin-top: 120px;">
                     <div class="service-icon" style="width: 80px; height: 80px; flex-shrink: 0;">
                         <svg viewBox="0 0 24 24" fill="none">
                             <rect x="8" y="4" width="8" height="16" rx="4" stroke="currentColor" stroke-width="2"/>
@@ -541,7 +541,12 @@
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2025 Pharmacie Charnal - Tous droits réservés</p>
+                <div class="footer-legal">
+                    <a href="mentions-legales.html">Mentions légales</a>
+                    <span class="separator">•</span>
+                    <a href="donnees-personnelles.html">Données personnelles</a>
+                </div>
+                <p>&copy; 2026 Pharmacie Charnal - Tous droits réservés</p>
             </div>
         </div>
     </footer>

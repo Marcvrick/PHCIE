@@ -21,7 +21,7 @@
     <meta name="twitter:title" content="Notre Histoire | Pharmacie Charnal - Quéven">
     <meta name="twitter:description" content="Découvrez 40 ans d'histoire de la Pharmacie Charnal à Quéven. Une tradition familiale de soins personnalisés, du père à Laure Charnal.">
     <meta name="twitter:image" content="https://www.pharmaciecharnal.fr/images/pharmacie-charnal-logo.png">
-    <link rel="stylesheet" href="style.css?v=5">
+    <link rel="stylesheet" href="style.css">
 
     <!-- Schema.org Markup -->
     <script type="application/ld+json">
@@ -399,41 +399,46 @@
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2025 Pharmacie Charnal - Tous droits réservés</p>
+                <div class="footer-legal">
+                    <a href="mentions-legales.html">Mentions légales</a>
+                    <span class="separator">•</span>
+                    <a href="donnees-personnelles.html">Données personnelles</a>
+                </div>
+                <p>&copy; 2026 Pharmacie Charnal - Tous droits réservés</p>
             </div>
         </div>
     </footer>
 
     <script src="animations.js"></script>
     <script>
-    // Menu mobile toggle
-    const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
-    const navLinks = document.querySelector('.nav-links');
+        // Menu mobile toggle
+        const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
+        const navLinks = document.querySelector('.nav-links');
 
-    if (mobileMenuToggle) {
-        mobileMenuToggle.addEventListener('click', () => {
-            const isExpanded = mobileMenuToggle.getAttribute('aria-expanded') === 'true';
-            mobileMenuToggle.setAttribute('aria-expanded', !isExpanded);
-            navLinks.classList.toggle('active');
-        });
-
-        // Fermer le menu quand on clique sur un lien
-        const links = navLinks.querySelectorAll('.nav-link');
-        links.forEach(link => {
-            link.addEventListener('click', () => {
-                mobileMenuToggle.setAttribute('aria-expanded', 'false');
-                navLinks.classList.remove('active');
+        if (mobileMenuToggle) {
+            mobileMenuToggle.addEventListener('click', () => {
+                const isExpanded = mobileMenuToggle.getAttribute('aria-expanded') === 'true';
+                mobileMenuToggle.setAttribute('aria-expanded', !isExpanded);
+                navLinks.classList.toggle('active');
             });
-        });
 
-        // Fermer le menu si on clique en dehors
-        document.addEventListener('click', (e) => {
-            if (!navLinks.contains(e.target) && !mobileMenuToggle.contains(e.target)) {
-                mobileMenuToggle.setAttribute('aria-expanded', 'false');
-                navLinks.classList.remove('active');
-            }
-        });
-    }
+            // Fermer le menu quand on clique sur un lien
+            const links = navLinks.querySelectorAll('.nav-link');
+            links.forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileMenuToggle.setAttribute('aria-expanded', 'false');
+                    navLinks.classList.remove('active');
+                });
+            });
+
+            // Fermer le menu si on clique en dehors
+            document.addEventListener('click', (e) => {
+                if (!navLinks.contains(e.target) && !mobileMenuToggle.contains(e.target)) {
+                    mobileMenuToggle.setAttribute('aria-expanded', 'false');
+                    navLinks.classList.remove('active');
+                }
+            });
+        }
     </script>
 </body>
 </html>
