@@ -3,6 +3,66 @@
    Modern, accessible, distinctive
    ======================================== */
 
+/* === FONTS AUTO-HÉBERGÉES (RGPD) === */
+
+/* Crimson Pro - Display Font */
+@font-face {
+    font-family: 'Crimson Pro';
+    src: url('fonts/CrimsonPro-Regular.woff2') format('woff2');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Crimson Pro';
+    src: url('fonts/CrimsonPro-SemiBold.woff2') format('woff2');
+    font-weight: 600;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Crimson Pro';
+    src: url('fonts/CrimsonPro-Bold.woff2') format('woff2');
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+}
+
+/* DM Sans - Body Font */
+@font-face {
+    font-family: 'DM Sans';
+    src: url('fonts/DMSans-Regular.woff2') format('woff2');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'DM Sans';
+    src: url('fonts/DMSans-Medium.woff2') format('woff2');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'DM Sans';
+    src: url('fonts/DMSans-SemiBold.woff2') format('woff2');
+    font-weight: 600;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'DM Sans';
+    src: url('fonts/DMSans-Bold.woff2') format('woff2');
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+}
+
 /* === VARIABLES === */
 :root {
     /* Colors - Organic Wellness Palette */
@@ -230,8 +290,14 @@ a {
 }
 
 .nav-link-cta:hover {
+    color: #F5E6D3;
     transform: translateY(-2px);
     box-shadow: var(--shadow-md);
+}
+
+.nav-link-cta.active {
+    color: var(--white);
+    background: var(--gradient);
 }
 
 /* === HERO SECTION === */
@@ -392,6 +458,14 @@ a {
     border: 2px dashed var(--beige);
 }
 
+.hero-image img {
+    width: 100%;
+    height: 480px;
+    object-fit: cover;
+    border-radius: var(--radius-2xl);
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15);
+}
+
 /* === BUTTONS === */
 .btn {
     display: inline-flex;
@@ -436,6 +510,68 @@ a {
 
 
 /* === QUICK INFO === */
+/* Product Banner */
+.product-banner {
+    padding: var(--space-xl) 0;
+    background-color: var(--white);
+}
+
+.banner-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: var(--space-md);
+    max-width: 1080px;
+    margin: 0 auto;
+}
+
+@media (max-width: 1023px) {
+    .banner-grid {
+        grid-template-columns: repeat(3, 1fr);
+        max-width: 600px;
+    }
+}
+
+@media (max-width: 639px) {
+    .banner-grid {
+        grid-template-columns: repeat(2, 1fr);
+        max-width: 400px;
+    }
+}
+
+.banner-item {
+    text-align: center;
+}
+
+.banner-image {
+    position: relative;
+    overflow: hidden;
+    aspect-ratio: 1;
+    background-color: var(--cream);
+    border-radius: var(--radius-md);
+    margin-bottom: var(--space-xs);
+    width: 100%;
+}
+
+.banner-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+}
+
+.banner-item:hover .banner-image img {
+    transform: scale(1.08);
+}
+
+.banner-label {
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: var(--charcoal);
+    margin: 0;
+    line-height: 1.3;
+}
+
+/* Old Quick Info - Kept for backward compatibility */
 .quick-info {
     padding: var(--space-3xl) 0;
     background-color: var(--white);
@@ -509,12 +645,13 @@ a {
 
 /* === SERVICES === */
 #services {
-    scroll-margin-top: 220px;
+    scroll-margin-top: 350px;
 }
 
 .services {
     padding: var(--space-3xl) 0;
     background-color: var(--cream);
+    scroll-margin-top: 120px;
 }
 
 .section-header {
