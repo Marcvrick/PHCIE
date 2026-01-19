@@ -286,7 +286,7 @@ a {
 .nav-link:hover,
 .nav-link.active {
     color: var(--teal);
-    background-color: var(--cream-dark);
+    background-color: var(--beige);
 }
 
 .nav-link-cta {
