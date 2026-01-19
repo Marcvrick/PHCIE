@@ -146,6 +146,27 @@ professionnels-sante-queven-carte.csv  # Données carte Leaflet
 - Instagram: `https://www.instagram.com/pharmaciecharnalqueven/`
 - Facebook: `https://www.facebook.com/pharmaciecharnal/`
 
+### Calls-to-Action (CTA) dans les Articles de Blog
+
+**RÈGLE CRITIQUE:** Les CTAs doivent TOUJOURS inviter à venir physiquement à la pharmacie, JAMAIS à contacter en ligne (téléphone, email, formulaire).
+
+**✅ Formulations autorisées :**
+- "Passez nous voir à la pharmacie"
+- "Venez nous rencontrer en pharmacie"
+- "N'hésitez pas à venir en pharmacie"
+- "Passez nous voir pour un conseil personnalisé"
+
+**❌ Formulations interdites :**
+- "Consultez-nous" (trop vague, peut impliquer téléphone/email)
+- "Contactez-nous" (idem)
+- "Prenez rendez-vous" (implique un appel téléphonique)
+- "Appelez-nous"
+- "Envoyez-nous un message"
+
+**Pourquoi :** Éviter la surcharge de demandes par téléphone/email qui ralentissent l'équipe officinale. Privilégier le conseil en personne, au comptoir, qui est la vraie valeur ajoutée de la pharmacie.
+
+**Exception :** Les liens vers `marques.html#complements` pour découvrir les produits sont autorisés (achat, pas conseil).
+
 ---
 
 ## 🔧 Fonctionnalités Techniques
