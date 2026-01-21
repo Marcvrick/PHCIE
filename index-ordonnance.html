@@ -1,0 +1,733 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <meta name="description" content="Pharmacie Charnal à Quéven : votre pharmacie familiale depuis plus de 40 ans. Délivrance d'ordonnances, vaccinations, livraison à domicile et produits naturels. Tél: 02 97 05 09 31">
+    <title>Pharmacie Charnal - Quéven | Votre pharmacie de confiance</title>
+
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Styles spécifiques pour la section ordonnance */
+        .ordonnance-section {
+            padding: 80px 0;
+            background: linear-gradient(135deg, var(--cream) 0%, var(--white) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .ordonnance-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -10%;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(124, 152, 133, 0.08) 0%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        .ordonnance-container {
+            background: var(--white);
+            border-radius: 24px;
+            padding: 60px 40px;
+            box-shadow: 0 8px 40px rgba(0, 0, 0, 0.08);
+            border: 1px solid rgba(124, 152, 133, 0.1);
+        }
+
+        .ordonnance-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .ordonnance-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--white);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: var(--text-sm);
+            color: var(--sage);
+            font-weight: 500;
+            margin-bottom: 16px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+
+        .ordonnance-badge svg {
+            width: 20px;
+            height: 20px;
+        }
+
+        .ordonnance-title {
+            font-family: var(--font-display);
+            font-size: var(--text-4xl);
+            color: var(--charcoal);
+            margin-bottom: 16px;
+            line-height: 1.2;
+        }
+
+        .ordonnance-subtitle {
+            font-size: var(--text-lg);
+            color: var(--gray);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .ordonnance-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 40px;
+            max-width: 1100px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        @media (min-width: 900px) {
+            .ordonnance-steps {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            /* Flèches entre les étapes sur desktop */
+            .step-card:not(:last-child)::after {
+                content: '';
+                position: absolute;
+                right: -32px;
+                top: 140px;
+                width: 22px;
+                height: 2px;
+                background: var(--sage-light);
+                z-index: 1;
+            }
+
+            .step-card:not(:last-child)::before {
+                content: '';
+                position: absolute;
+                right: -37px;
+                top: 137px;
+                transform: rotate(45deg);
+                width: 7px;
+                height: 7px;
+                border-right: 2px solid var(--sage-light);
+                border-top: 2px solid var(--sage-light);
+                z-index: 1;
+            }
+        }
+
+        .step-card {
+            background: var(--white);
+            padding: 40px 30px;
+            border-radius: 16px;
+            text-align: center;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+        }
+
+        .step-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+        }
+
+        .step-number {
+            position: absolute;
+            top: 20px;
+            left: 30px;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--sage) 0%, var(--teal) 100%);
+            color: var(--white);
+            font-family: var(--font-display);
+            font-size: var(--text-xl);
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .step-icon {
+            width: 120px;
+            height: 120px;
+            margin: 20px auto 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .step-icon svg {
+            width: 100%;
+            height: 100%;
+        }
+
+        .step-title {
+            font-family: var(--font-display);
+            font-size: var(--text-xl);
+            color: var(--charcoal);
+            margin-bottom: 12px;
+            font-weight: 600;
+        }
+
+        .step-description {
+            font-size: var(--text-base);
+            color: var(--gray);
+            line-height: 1.6;
+        }
+
+        .ordonnance-cta {
+            text-align: center;
+            margin-top: 60px;
+        }
+
+        .ordonnance-cta-text {
+            font-size: var(--text-lg);
+            color: var(--charcoal);
+            margin-bottom: 20px;
+            font-weight: 500;
+        }
+
+        .ordonnance-cta-button {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--sage) 0%, var(--teal) 100%);
+            color: var(--white);
+            padding: 16px 40px;
+            border-radius: 30px;
+            font-size: var(--text-base);
+            font-weight: 600;
+            text-decoration: none;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 4px 15px rgba(124, 152, 133, 0.3);
+        }
+
+        .ordonnance-cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(124, 152, 133, 0.4);
+        }
+
+        .time-savings {
+            margin-top: 40px;
+            text-align: center;
+            padding: 20px;
+            background: rgba(124, 152, 133, 0.05);
+            border-radius: 12px;
+            border-left: 4px solid var(--sage);
+        }
+
+        .time-savings-icon {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--sage);
+            font-size: var(--text-lg);
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .time-savings-icon svg {
+            width: 24px;
+            height: 24px;
+        }
+
+        .time-savings-text {
+            font-size: var(--text-base);
+            color: var(--gray);
+        }
+
+        @media (max-width: 768px) {
+            .ordonnance-section {
+                padding: 60px 0;
+            }
+
+            .ordonnance-container {
+                padding: 40px 20px;
+                border-radius: 16px;
+            }
+
+            .ordonnance-title {
+                font-size: var(--text-3xl);
+            }
+
+            .ordonnance-steps {
+                gap: 30px;
+            }
+
+            .step-card {
+                padding: 30px 20px;
+            }
+
+            .step-icon {
+                width: 100px;
+                height: 100px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo-link">
+                <div class="nav-logo">
+                    <div class="logo-icon">
+                        <img src="images/pharmacie-charnal-logo.png" alt="Logo Pharmacie Charnal" style="width: 100%; height: 100%; object-fit: contain;">
+                    </div>
+                    <div class="logo-text">
+                        <span class="logo-name">Pharmacie Charnal</span>
+                        <span class="logo-tagline">Quéven</span>
+                    </div>
+                </div>
+            </a>
+            <!-- Bouton hamburger mobile -->
+            <button class="mobile-menu-toggle" aria-label="Menu" aria-expanded="false">
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+            </button>
+
+            <ul class="nav-links">
+                <li><a href="index.html" class="nav-link active">Accueil</a></li>
+                <li><a href="histoire.html" class="nav-link">Notre Histoire</a></li>
+                <li><a href="services.html" class="nav-link">Services</a></li>
+                <li><a href="blog.html" class="nav-link nav-link-blog">Au comptoir</a></li>
+                <li><a href="contact.html" class="nav-link">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-background">
+            <div class="hero-shape hero-shape-1"></div>
+            <div class="hero-shape hero-shape-2"></div>
+        </div>
+        <div class="container hero-container">
+            <div class="hero-content">
+                <div class="hero-badge fade-in">
+                    <svg width="30" height="30" viewBox="0 0 24 24" fill="none">
+                        <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/>
+                        <path d="M12 6v6l4 2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                    <span>Plus de 40 ans à votre service</span>
+                </div>
+                <h1 class="hero-title fade-in">
+                    Votre santé,<br>
+                    <span class="gradient-text">notre priorité</span>
+                </h1>
+                <p class="hero-description fade-in">
+                    Une pharmacie familiale au cœur de Quéven, où tradition et modernité se rencontrent pour vous offrir des soins personnalisés et attentifs.
+                </p>
+            </div>
+            <div class="hero-image fade-in">
+                <img src="images/Pcie_CNL_Queven.jpg" alt="Illustration de la Pharmacie Charnal à Quéven" loading="eager">
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Ordonnance -->
+    <section class="ordonnance-section">
+        <div class="container">
+            <div class="ordonnance-container">
+            <div class="ordonnance-header">
+                <div class="ordonnance-badge fade-in">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                        <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    Service rapide
+                </div>
+                <h2 class="ordonnance-title fade-in">
+                    Envoyez votre ordonnance<br>
+                    <span class="gradient-text">en 3 étapes simples</span>
+                </h2>
+                <p class="ordonnance-subtitle fade-in">
+                    Gagnez du temps : nous préparons votre commande
+                </p>
+            </div>
+
+            <div class="ordonnance-steps">
+                <!-- Étape 1 -->
+                <div class="step-card fade-up">
+                    <div class="step-number">1</div>
+                    <div class="step-icon">
+                        <svg viewBox="0 0 140 140" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <!-- Ordonnance papier en arrière-plan -->
+                            <rect x="25" y="20" width="70" height="90" rx="3" fill="white" stroke="#7C9885" stroke-width="2"/>
+                            <!-- En-tête ordonnance -->
+                            <rect x="30" y="25" width="60" height="8" rx="2" fill="#2D5F5D" opacity="0.2"/>
+                            <line x1="30" y1="40" x2="85" y2="40" stroke="#2D5F5D" stroke-width="2" opacity="0.4"/>
+                            <!-- Lignes de texte ordonnance -->
+                            <line x1="30" y1="50" x2="85" y2="50" stroke="#7C9885" stroke-width="1.5" opacity="0.3"/>
+                            <line x1="30" y1="58" x2="75" y2="58" stroke="#7C9885" stroke-width="1.5" opacity="0.3"/>
+                            <line x1="30" y1="66" x2="80" y2="66" stroke="#7C9885" stroke-width="1.5" opacity="0.3"/>
+                            <line x1="30" y1="74" x2="70" y2="74" stroke="#7C9885" stroke-width="1.5" opacity="0.3"/>
+                            <line x1="30" y1="82" x2="85" y2="82" stroke="#7C9885" stroke-width="1.5" opacity="0.3"/>
+                            <line x1="30" y1="90" x2="65" y2="90" stroke="#7C9885" stroke-width="1.5" opacity="0.3"/>
+                            <!-- Croix rouge pharmacie sur ordonnance -->
+                            <g transform="translate(55, 100)">
+                                <rect x="-4" y="-10" width="8" height="20" rx="1" fill="#D63031" opacity="0.3"/>
+                                <rect x="-10" y="-4" width="20" height="8" rx="1" fill="#D63031" opacity="0.3"/>
+                            </g>
+
+                            <!-- Smartphone qui prend la photo (devant, en bas à droite) -->
+                            <g transform="translate(60, 50)">
+                                <!-- Corps du smartphone -->
+                                <rect x="20" y="30" width="40" height="65" rx="6" fill="#2D5F5D" opacity="0.9"/>
+                                <rect x="25" y="35" width="30" height="50" rx="2" fill="#4A7C8E" opacity="0.2"/>
+                                <!-- Écran avec prévisualisation -->
+                                <rect x="27" y="38" width="26" height="44" rx="1" fill="white" opacity="0.3"/>
+                                <!-- Module caméra en haut -->
+                                <circle cx="40" cy="38" r="3" fill="#7C9885" opacity="0.5"/>
+                                <rect x="33" y="36" width="8" height="3" rx="1" fill="#7C9885" opacity="0.3"/>
+
+                                <!-- Icône appareil photo au centre (lentille) -->
+                                <circle cx="40" cy="62" r="8" fill="#7C9885" opacity="0.8"/>
+                                <circle cx="40" cy="62" r="5" fill="white" opacity="0.5"/>
+                                <circle cx="40" cy="62" r="3" fill="#2D5F5D"/>
+
+                                <!-- Bouton home -->
+                                <circle cx="40" cy="90" r="3" fill="#7C9885" opacity="0.4"/>
+                            </g>
+
+                            <!-- Effet flash/capture (rayons) -->
+                            <g opacity="0.3">
+                                <line x1="70" y1="70" x2="65" y2="65" stroke="#FFD700" stroke-width="2" stroke-linecap="round"/>
+                                <line x1="75" y1="75" x2="68" y2="68" stroke="#FFD700" stroke-width="2" stroke-linecap="round"/>
+                                <line x1="80" y1="85" x2="72" y2="77" stroke="#FFD700" stroke-width="2" stroke-linecap="round"/>
+                            </g>
+                        </svg>
+                    </div>
+                    <h3 class="step-title">Une photo</h3>
+                    <p class="step-description">
+                        Photographiez votre ordonnance avec votre smartphone. Assurez-vous que le document soit bien lisible.
+                    </p>
+                </div>
+
+                <!-- Étape 2 -->
+                <div class="step-card fade-up" style="animation-delay: 0.1s">
+                    <div class="step-number">2</div>
+                    <div class="step-icon">
+                        <svg viewBox="0 0 140 140" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <!-- Mailbox (boîte aux lettres de destination) -->
+                            <g transform="translate(85, 55)">
+                                <!-- Base de la mailbox -->
+                                <rect x="-20" y="30" width="40" height="35" rx="3" fill="#2D5F5D" opacity="0.2"/>
+                                <!-- Corps principal mailbox -->
+                                <path d="M -25 35 Q -25 25 -15 25 L 15 25 Q 25 25 25 35 L 25 60 Q 25 65 20 65 L -20 65 Q -25 65 -25 60 Z" fill="#2D5F5D" opacity="0.8"/>
+                                <!-- Fente pour le courrier -->
+                                <rect x="-15" y="40" width="30" height="3" rx="1.5" fill="white" opacity="0.5"/>
+                                <!-- Drapeau levé de la mailbox -->
+                                <rect x="20" y="32" width="15" height="8" rx="2" fill="#D63031"/>
+                                <rect x="22" y="40" width="3" height="15" fill="#2D5F5D" opacity="0.5"/>
+                                <!-- Croix verte pharmacie sur la mailbox -->
+                                <g transform="translate(0, 50)">
+                                    <rect x="-6" y="-1.5" width="12" height="3" rx="1" fill="#7C9885"/>
+                                    <rect x="-1.5" y="-6" width="3" height="12" rx="1" fill="#7C9885"/>
+                                </g>
+                            </g>
+
+                            <!-- Email/Lettre qui vole (style Gmail) -->
+                            <g transform="translate(35, 35)">
+                                <!-- Enveloppe Gmail style -->
+                                <path d="M 5 20 L 5 50 Q 5 53 8 53 L 52 53 Q 55 53 55 50 L 55 20 Z" fill="white" stroke="#4A7C8E" stroke-width="2.5"/>
+                                <!-- Rabat de l'enveloppe (triangle simple) -->
+                                <path d="M 5 20 L 30 38 L 55 20" fill="#7C9885" opacity="0.8" stroke="#4A7C8E" stroke-width="2.5" stroke-linejoin="round"/>
+                            </g>
+                        </svg>
+                    </div>
+                    <h3 class="step-title">Un email</h3>
+                    <p class="step-description">
+                        Envoyez votre photo par email. Nous recevons votre ordonnance et préparons immédiatement votre commande.
+                    </p>
+                </div>
+
+                <!-- Étape 3 -->
+                <div class="step-card fade-up" style="animation-delay: 0.2s">
+                    <div class="step-number">3</div>
+                    <div class="step-icon">
+                        <svg viewBox="0 0 140 140" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <!-- Sac pharmacie kraft -->
+                            <g transform="translate(70, 70)">
+                                <!-- Corps du sac -->
+                                <path d="M -35 -25 L -30 30 Q -30 35 -25 35 L 25 35 Q 30 35 30 30 L 35 -25 Z" fill="#E8E3DA" stroke="#7C9885" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+
+                                <!-- Plis du sac (effet 3D) -->
+                                <line x1="-20" y1="-25" x2="-17" y2="35" stroke="#7C9885" stroke-width="1.5" opacity="0.3"/>
+                                <line x1="20" y1="-25" x2="17" y2="35" stroke="#7C9885" stroke-width="1.5" opacity="0.3"/>
+
+                                <!-- Base renforcée du sac -->
+                                <rect x="-30" y="30" width="60" height="5" rx="2" fill="#7C9885" opacity="0.2"/>
+
+                                <!-- Poignées cordées du sac -->
+                                <path d="M -18 -25 Q -18 -38 -8 -38 Q 2 -38 2 -25" fill="none" stroke="#7C9885" stroke-width="3" stroke-linecap="round"/>
+                                <path d="M 2 -25 Q 2 -38 12 -38 Q 22 -38 22 -25" fill="none" stroke="#7C9885" stroke-width="3" stroke-linecap="round"/>
+
+                                <!-- Grande croix verte pharmacie sur le sac -->
+                                <g transform="translate(0, 5)">
+                                    <rect x="-15" y="-4" width="30" height="8" rx="2" fill="#2D5F5D"/>
+                                    <rect x="-4" y="-15" width="8" height="30" rx="2" fill="#2D5F5D"/>
+                                </g>
+
+                                <!-- Étiquette avec nom -->
+                                <rect x="-20" y="-15" width="40" height="10" rx="2" fill="white" opacity="0.8"/>
+                                <line x1="-15" y1="-12" x2="15" y2="-12" stroke="#2D5F5D" stroke-width="1.5" opacity="0.4"/>
+                                <line x1="-15" y1="-8" x2="10" y2="-8" stroke="#2D5F5D" stroke-width="1.5" opacity="0.3"/>
+                            </g>
+
+                            <!-- Médicaments qui dépassent du sac -->
+                            <g transform="translate(70, 35)">
+                                <!-- Boîte de médicament 1 -->
+                                <rect x="-18" y="-15" width="14" height="20" rx="1" fill="white" stroke="#7C9885" stroke-width="2"/>
+                                <rect x="-16" y="-12" width="10" height="3" rx="0.5" fill="#2D5F5D" opacity="0.3"/>
+                                <rect x="-16" y="-7" width="7" height="2" rx="0.5" fill="#7C9885" opacity="0.3"/>
+
+                                <!-- Boîte de médicament 2 -->
+                                <rect x="6" y="-12" width="14" height="18" rx="1" fill="white" stroke="#4A7C8E" stroke-width="2"/>
+                                <rect x="8" y="-9" width="10" height="3" rx="0.5" fill="#4A7C8E" opacity="0.3"/>
+                                <rect x="8" y="-4" width="7" height="2" rx="0.5" fill="#7C9885" opacity="0.3"/>
+                            </g>
+
+                            <!-- Badge "Prête" avec checkmark -->
+                            <g transform="translate(110, 45)">
+                                <circle r="16" fill="#7C9885"/>
+                                <path d="M -6 0 L -2 5 L 7 -5" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+                            </g>
+                        </svg>
+                    </div>
+                    <h3 class="step-title">Votre sac est prêt</h3>
+                    <p class="step-description">
+                        Votre commande est prête dans son sac. Passez la récupérer à la pharmacie à votre convenance.
+                    </p>
+                </div>
+            </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Services -->
+    <section id="services" class="services">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-badge fade-in">Nos services</span>
+                <h2 class="section-title fade-in">
+                    Des solutions complètes pour<br>
+                    <span class="gradient-text">votre bien-être</span>
+                </h2>
+            </div>
+            <div class="services-grid">
+                <a href="services.html#ordonnances" class="service-card fade-up">
+                    <div class="service-icon">
+                        <svg viewBox="0 0 24 24" fill="none">
+                            <rect x="3" y="3" width="7" height="7" rx="1" stroke="currentColor" stroke-width="2"/>
+                            <rect x="14" y="3" width="7" height="7" rx="1" stroke="currentColor" stroke-width="2"/>
+                            <rect x="14" y="14" width="7" height="7" rx="1" stroke="currentColor" stroke-width="2"/>
+                            <rect x="3" y="14" width="7" height="7" rx="1" stroke="currentColor" stroke-width="2"/>
+                        </svg>
+                    </div>
+                    <h3>Délivrance d'ordonnances</h3>
+                    <p>Conseils personnalisés et suivi pharmaceutique attentif</p>
+                </a>
+                <a href="services.html#parapharmacie" class="service-card fade-up" style="animation-delay: 0.1s">
+                    <div class="service-icon">
+                        <svg viewBox="0 0 24 24" fill="none">
+                            <rect x="8" y="4" width="8" height="16" rx="4" stroke="currentColor" stroke-width="2"/>
+                            <path d="M10 8h4M10 12h4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                            <ellipse cx="12" cy="3" rx="3" ry="2" stroke="currentColor" stroke-width="2"/>
+                        </svg>
+                    </div>
+                    <h3>Parapharmacie</h3>
+                    <p>Dermatologie, cosmétiques et soins personnalisés</p>
+                </a>
+                <a href="services.html#vaccinations" class="service-card fade-up" style="animation-delay: 0.2s">
+                    <div class="service-icon">
+                        <svg viewBox="0 0 24 24" fill="none">
+                            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" stroke="currentColor" stroke-width="2"/>
+                            <polyline points="22 4 12 14.01 9 11.01" stroke="currentColor" stroke-width="2"/>
+                        </svg>
+                    </div>
+                    <h3>Vaccinations</h3>
+                    <p>Service de vaccination sur rendez-vous par nos pharmaciens</p>
+                </a>
+                <a href="services.html#produits-naturels" class="service-card fade-up" style="animation-delay: 0.3s">
+                    <div class="service-icon">
+                        <svg viewBox="0 0 24 24" fill="none">
+                            <path d="M20.24 12.24a6 6 0 0 0-8.49-8.49L5 10.5V19h8.5z" stroke="currentColor" stroke-width="2"/>
+                            <line x1="16" y1="8" x2="2" y2="22" stroke="currentColor" stroke-width="2"/>
+                            <line x1="17.5" y1="15" x2="9" y2="15" stroke="currentColor" stroke-width="2"/>
+                        </svg>
+                    </div>
+                    <h3>Produits naturels</h3>
+                    <p>Phytothérapie, aromathérapie et compléments alimentaires</p>
+                </a>
+                <a href="services.html#materiel-medical" class="service-card fade-up" style="animation-delay: 0.4s">
+                    <div class="service-icon">
+                        <svg viewBox="0 0 24 24" fill="none">
+                            <rect x="2" y="12" width="20" height="6" rx="1" stroke="currentColor" stroke-width="2"/>
+                            <line x1="2" y1="12" x2="2" y2="9" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                            <line x1="22" y1="12" x2="22" y2="9" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                            <line x1="2" y1="18" x2="2" y2="21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                            <line x1="22" y1="18" x2="22" y2="21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                    </div>
+                    <h3>Matériel médical</h3>
+                    <p>Location de béquilles, lits médicalisés et équipements d'assistance</p>
+                </a>
+                <a href="services.html#livraison" class="service-card fade-up" style="animation-delay: 0.5s">
+                    <div class="service-icon">
+                        <svg viewBox="0 0 24 24" fill="none">
+                            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" stroke="currentColor" stroke-width="2"/>
+                            <circle cx="9" cy="7" r="4" stroke="currentColor" stroke-width="2"/>
+                            <path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75" stroke="currentColor" stroke-width="2"/>
+                        </svg>
+                    </div>
+                    <h3>Livraison à domicile</h3>
+                    <p>Livraison à domicile le jour même</p>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Us -->
+    <section class="why-us">
+        <div class="why-us-background">
+            <div class="organic-shape organic-shape-1"></div>
+            <div class="organic-shape organic-shape-2"></div>
+        </div>
+        <div class="container">
+            <div class="section-header">
+                <span class="section-badge fade-in">Pourquoi nous choisir</span>
+                <h2 class="section-title fade-in">
+                    Une pharmacie familiale<br>
+                    <span class="gradient-text">à votre écoute</span>
+                </h2>
+            </div>
+            <div class="why-grid">
+                <div class="why-card fade-up">
+                    <div class="why-number">01</div>
+                    <h3>Plus de 40 ans d'expérience</h3>
+                    <p>Une pharmacie familiale ancrée dans le cœur de Quéven depuis 1982</p>
+                </div>
+                <div class="why-card fade-up" style="animation-delay: 0.1s">
+                    <div class="why-number">02</div>
+                    <h3>Équipe dévouée</h3>
+                    <p>Des pharmaciens qualifiés et à l'écoute, disponibles pour vous conseiller personnellement</p>
+                </div>
+                <div class="why-card fade-up" style="animation-delay: 0.2s">
+                    <div class="why-number">03</div>
+                    <h3>Accessible à tous</h3>
+                    <p>Parking adapté, entrée PMR et services facilitant l'accès aux soins pour chacun</p>
+                </div>
+                <div class="why-card fade-up" style="animation-delay: 0.3s">
+                    <div class="why-number">04</div>
+                    <h3>Approche naturelle</h3>
+                    <p>Large sélection de produits bio, naturels et phytothérapie pour une santé au naturel</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-col footer-about">
+                    <div class="footer-logo">
+                        <div class="logo-icon">
+                            <img src="images/pharmacie-charnal-logo.png" alt="Logo Pharmacie Charnal" style="width: 100%; height: 100%; object-fit: contain;">
+                        </div>
+                        <div>
+                            <div class="footer-logo-name">Pharmacie Charnal</div>
+                            <div class="footer-logo-tagline">Quéven</div>
+                        </div>
+                    </div>
+                    <p>Votre pharmacie familiale depuis plus de 40 ans. Une tradition de soins personnalisés et attentifs.</p>
+                    <div class="footer-social">
+                        <h4>Suivez-nous</h4>
+                        <div class="social-links">
+                            <a href="https://www.instagram.com/pharmaciecharnalqueven/" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Instagram">
+                                <svg width="30" height="30" viewBox="0 0 24 24" fill="none">
+                                    <rect x="2" y="2" width="20" height="20" rx="5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <circle cx="17.5" cy="6.5" r="0.5" fill="currentColor"/>
+                                </svg>
+                            </a>
+                            <a href="https://www.facebook.com/pharmaciecharnal/" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Facebook">
+                                <svg width="30" height="30" viewBox="0 0 24 24" fill="none">
+                                    <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h4>Navigation</h4>
+                    <ul>
+                        <li><a href="index.html">Accueil</a></li>
+                        <li><a href="histoire.html">Notre Histoire</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="blog.html">Au comptoir</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Contact</h4>
+                    <ul>
+                        <li>32 Place de Toulouse</li>
+                        <li>56530 Quéven</li>
+                        <li><a href="tel:0297050931">02 97 05 09 31</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Horaires</h4>
+                    <ul>
+                        <li>Lun-Ven: 9h-12h30 / 14h-19h15</li>
+                        <li>Samedi: 9h-12h30</li>
+                        <li>Dimanche: Fermé</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div class="footer-legal">
+                    <a href="mentions-legales.html">Mentions légales</a>
+                    <span class="separator">•</span>
+                    <a href="donnees-personnelles.html">Données personnelles</a>
+                </div>
+                <p>&copy; 2026 Pharmacie Charnal - Tous droits réservés</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="animations.js"></script>
+    <script>
+        // Menu mobile toggle
+        const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
+        const navLinks = document.querySelector('.nav-links');
+
+        if (mobileMenuToggle) {
+            mobileMenuToggle.addEventListener('click', () => {
+                const isExpanded = mobileMenuToggle.getAttribute('aria-expanded') === 'true';
+                mobileMenuToggle.setAttribute('aria-expanded', !isExpanded);
+                navLinks.classList.toggle('active');
+            });
+
+            // Fermer le menu quand on clique sur un lien
+            const links = navLinks.querySelectorAll('.nav-link');
+            links.forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileMenuToggle.setAttribute('aria-expanded', 'false');
+                    navLinks.classList.remove('active');
+                });
+            });
+
+            // Fermer le menu si on clique en dehors
+            document.addEventListener('click', (e) => {
+                if (!navLinks.contains(e.target) && !mobileMenuToggle.contains(e.target)) {
+                    mobileMenuToggle.setAttribute('aria-expanded', 'false');
+                    navLinks.classList.remove('active');
+                }
+            });
+        }
+    </script>
+</body>
+</html>
