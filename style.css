@@ -438,7 +438,7 @@ a {
     height: 600px;
     background: var(--sage);
     top: -200px;
-    right: -100px;
+    left: -200px;
 }
 
 .hero-shape-2 {
