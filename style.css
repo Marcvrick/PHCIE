@@ -1309,4 +1309,12 @@ section[id] {
         font-size: var(--text-base);
         min-height: 48px;
     }
+
+    /* Réduction de l'image hero de 60% sur mobile */
+    .hero-image img {
+        max-width: 40%;
+        height: auto;
+        margin: 0 auto;
+        display: block;
+    }
 }
