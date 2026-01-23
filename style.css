@@ -323,6 +323,15 @@ a {
     color: var(--white);
 }
 
+.nav-link-recruit {
+    color: var(--teal) !important;
+    font-weight: 700 !important;
+}
+
+.nav-link-recruit:hover {
+    background-color: rgba(45, 95, 93, 0.1) !important;
+}
+
 /* === MENU MOBILE === */
 .mobile-menu-toggle {
     display: flex;
