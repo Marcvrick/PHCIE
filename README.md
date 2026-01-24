@@ -237,6 +237,29 @@ git push origin main
 - [ ] Tester sur mobile/tablette
 - [ ] Tester en local avant push
 
+### Nouvel article de blog
+
+- [ ] Ajouter le bouton "Article précédent" en bas de l'article (voir modèle ci-dessous)
+- [ ] Mettre à jour le bouton dans l'article précédent pour pointer vers le nouveau (si applicable)
+- [ ] Ajouter l'article dans blog.html (liste des articles)
+- [ ] Mettre à jour sitemap.xml et feed.json
+
+**Modèle bouton "Article précédent"** (à placer après les références, avant `</div></article>`) :
+```html
+<!-- Navigation article précédent -->
+<nav style="margin-top: var(--space-3xl); padding-top: var(--space-xl); border-top: 1px solid var(--beige);">
+    <a href="NOM-ARTICLE-PRECEDENT.html" style="display: flex; align-items: center; gap: var(--space-md); padding: var(--space-lg); background: linear-gradient(135deg, var(--cream) 0%, #f9f5ed 100%); border-radius: var(--radius-lg); text-decoration: none; transition: all 0.3s ease;" onmouseover="this.style.transform='translateX(-4px)'; this.style.boxShadow='0 4px 12px rgba(0,0,0,0.1)';" onmouseout="this.style.transform='translateX(0)'; this.style.boxShadow='none';">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--sage)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink: 0;">
+            <path d="M19 12H5M12 19l-7-7 7-7"/>
+        </svg>
+        <div>
+            <span style="display: block; font-size: var(--text-sm); color: var(--gray); margin-bottom: var(--space-xs);">Article précédent</span>
+            <span style="display: block; font-size: var(--text-lg); color: var(--charcoal); font-weight: 600;">TITRE DE L'ARTICLE PRÉCÉDENT</span>
+        </div>
+    </a>
+</nav>
+```
+
 ### Suivi mensuel AI Search (manuel)
 
 **Process simple (15 min/mois)**:
