@@ -15,6 +15,7 @@ website-pharmacie-charnal/
 ├── marques.html            # Nos Marques (ancres: #cosmetiques, #complements, #premiers-soins)
 ├── blog.html               # Au Comptoir (liste des articles)
 ├── contact.html            # Contact
+├── recrutement-preparatrice.html  # Offre d'emploi préparatrice
 ├── mentions-legales.html   # Mentions légales
 ├── donnees-personnelles.html  # Données personnelles
 ├── style.css               # Styles principaux
@@ -113,28 +114,20 @@ website-pharmacie-charnal/
 ### Configuration actuelle
 
 - **Repository**: `https://github.com/Marcvrick/Pharmacie-Charnal`
-- **Branche de travail**: `pharmacie-charnal`
-- **Branche de production**: `main` (déploiement automatique)
+- **Branche unique**: `main` (travail + déploiement automatique)
 - **Custom Domain**: `www.pharmaciecharnal.com` (fichier CNAME)
 - **GitHub Pages**: Activé sur branche `main`
 
 ### Workflow Git
 
 ```bash
-# Développement sur branche pharmacie-charnal
-git checkout pharmacie-charnal
+# Workflow simplifié - une seule branche
 git add [fichiers]
 git commit -m "Message descriptif"
-git push origin pharmacie-charnal
-
-# Déploiement en production
-git checkout main
-git merge pharmacie-charnal
 git push origin main
-git checkout pharmacie-charnal  # Retour sur branche de travail
 ```
 
-**Important**: Toujours travailler sur `pharmacie-charnal`, déployer sur `main` uniquement quand prêt.
+**Note**: Le site se déploie automatiquement à chaque push sur `main`.
 
 ---
 
