@@ -243,7 +243,7 @@ git push origin main
 - `.pharmacist-grid`, `.pharmacist-image` - Section Laure Charnal
 - `.banner-grid`, `.banner-item` - Grille catégories produits
 
-**Note:** Les règles utilisent `!important` pour surcharger les styles inline.
+**Note:** Les règles utilisent `!important` pour surcharger les styles inline (notamment `.service-icon` sur la page services.html qui a des styles inline `80px`).
 
 ### Carte Interactive Leaflet.js
 **Fichier**: `blog/professionnels-sante-queven-2026.html`
