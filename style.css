@@ -665,8 +665,9 @@ a {
 
 @media (max-width: 639px) {
     .banner-grid {
-        grid-template-columns: repeat(2, 1fr);
-        max-width: 400px;
+        grid-template-columns: repeat(3, 1fr);
+        max-width: 100%;
+        gap: var(--space-sm);
     }
 }
 
@@ -1461,16 +1462,7 @@ section[id] {
         font-size: calc(var(--text-xl) * 0.85) !important;
     }
 
-    /* Réduction des photos catégories produits de 40% sur mobile (homepage) */
-    .banner-grid {
-        gap: calc(var(--space-md) * 0.6);
-    }
-
-    .banner-item {
-        max-width: 60%;
-        margin: 0 auto;
-    }
-
+    /* Réduction des photos catégories produits sur mobile (homepage) */
     .banner-label {
         font-size: calc(0.75rem * 0.85);
     }
