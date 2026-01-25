@@ -1460,4 +1460,18 @@ section[id] {
     .contact-link {
         font-size: calc(var(--text-xl) * 0.85) !important;
     }
+
+    /* Réduction des photos catégories produits de 40% sur mobile (homepage) */
+    .banner-grid {
+        gap: calc(var(--space-md) * 0.6);
+    }
+
+    .banner-item {
+        max-width: 60%;
+        margin: 0 auto;
+    }
+
+    .banner-label {
+        font-size: calc(0.75rem * 0.85);
+    }
 }
