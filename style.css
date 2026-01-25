@@ -1344,6 +1344,18 @@ section[id] {
     }
 
     /* Réduction des cartes services de 40% sur mobile */
+    .services {
+        padding: calc(var(--space-3xl) * 0.5) 0 !important;
+    }
+
+    .services-grid {
+        margin-bottom: var(--space-md) !important;
+    }
+
+    .why-us {
+        padding: calc(var(--space-3xl) * 0.5) 0 !important;
+    }
+
     .service-card {
         padding: calc(var(--space-xl) * 0.6);
     }
