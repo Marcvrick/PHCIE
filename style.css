@@ -1426,4 +1426,38 @@ section[id] {
     .pharmacist-quote p {
         font-size: calc(var(--text-xl) * 0.85) !important;
     }
+
+    /* Réduction des cartes Contact de 40% sur mobile */
+    .contact-grid {
+        gap: var(--space-lg) !important;
+        margin-bottom: var(--space-xl) !important;
+    }
+
+    .contact-card {
+        padding: calc(var(--space-xl) * 0.6) !important;
+    }
+
+    .contact-icon {
+        width: calc(64px * 0.6) !important;
+        height: calc(64px * 0.6) !important;
+        margin-bottom: calc(var(--space-lg) * 0.6) !important;
+    }
+
+    .contact-icon svg {
+        width: calc(32px * 0.6) !important;
+        height: calc(32px * 0.6) !important;
+    }
+
+    .contact-title {
+        font-size: calc(var(--text-xl) * 0.85) !important;
+        margin-bottom: calc(var(--space-sm) * 0.6) !important;
+    }
+
+    .contact-text {
+        font-size: calc(var(--text-lg) * 0.9) !important;
+    }
+
+    .contact-link {
+        font-size: calc(var(--text-xl) * 0.85) !important;
+    }
 }
