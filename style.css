@@ -1366,4 +1366,64 @@ section[id] {
     .why-card p {
         font-size: calc(var(--text-base) * 0.9);
     }
+
+    /* Réduction des cartes Timeline de 40% sur mobile (page Histoire) */
+    .timeline-card {
+        padding: calc(var(--space-xl) * 0.6) !important;
+    }
+
+    .timeline-header {
+        gap: calc(var(--space-md) * 0.6) !important;
+        margin-bottom: calc(var(--space-md) * 0.6) !important;
+        flex-wrap: wrap;
+    }
+
+    .timeline-year {
+        font-size: calc(var(--text-3xl) * 0.6) !important;
+    }
+
+    .timeline-title {
+        font-size: calc(var(--text-xl) * 0.85) !important;
+    }
+
+    .timeline-text {
+        font-size: calc(var(--text-lg) * 0.9) !important;
+    }
+
+    .timeline-container {
+        gap: calc(var(--space-xl) * 0.6) !important;
+    }
+
+    /* Réduction section Laure Charnal de 40% sur mobile */
+    .pharmacist-grid {
+        grid-template-columns: 1fr !important;
+        gap: var(--space-lg) !important;
+    }
+
+    .pharmacist-image {
+        height: calc(480px * 0.5) !important;
+    }
+
+    .pharmacist-name {
+        font-size: calc(var(--text-4xl) * 0.75) !important;
+        margin-bottom: calc(var(--space-md) * 0.6) !important;
+    }
+
+    .pharmacist-role {
+        font-size: calc(var(--text-xl) * 0.85) !important;
+    }
+
+    .pharmacist-text {
+        font-size: calc(var(--text-lg) * 0.9) !important;
+        margin-bottom: calc(var(--space-md) * 0.6) !important;
+    }
+
+    .pharmacist-quote {
+        padding: calc(var(--space-lg) * 0.6) !important;
+        margin-top: calc(var(--space-lg) * 0.6) !important;
+    }
+
+    .pharmacist-quote p {
+        font-size: calc(var(--text-xl) * 0.85) !important;
+    }
 }
