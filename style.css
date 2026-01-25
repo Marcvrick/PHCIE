@@ -1326,4 +1326,44 @@ section[id] {
         margin: 0 auto;
         display: block;
     }
+
+    /* Réduction des cartes services de 40% sur mobile */
+    .service-card {
+        padding: calc(var(--space-xl) * 0.6);
+    }
+
+    .service-icon {
+        width: calc(64px * 0.6);
+        height: calc(64px * 0.6);
+        padding: calc(16px * 0.6);
+        margin-bottom: calc(var(--space-md) * 0.6);
+    }
+
+    .service-card h3 {
+        font-size: calc(var(--text-xl) * 0.85);
+        margin-bottom: calc(var(--space-sm) * 0.6);
+    }
+
+    .service-card p {
+        font-size: calc(var(--text-base) * 0.9);
+    }
+
+    /* Réduction des cartes "Pourquoi nous choisir" de 40% sur mobile */
+    .why-card {
+        padding: calc(var(--space-xl) * 0.6);
+    }
+
+    .why-number {
+        font-size: calc(var(--text-3xl) * 0.6);
+        margin-bottom: calc(var(--space-sm) * 0.6);
+    }
+
+    .why-card h3 {
+        font-size: calc(var(--text-xl) * 0.85);
+        margin-bottom: calc(var(--space-sm) * 0.6);
+    }
+
+    .why-card p {
+        font-size: calc(var(--text-base) * 0.9);
+    }
 }
