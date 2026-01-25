@@ -226,11 +226,18 @@ git push origin main
 | `.timeline-year` | `var(--text-3xl)` | `calc(var(--text-3xl) * 0.6)` | 40% |
 | `.pharmacist-image` height | `480px` | `240px` | 50% |
 | `.banner-grid` (produits) | 6 colonnes | 3 colonnes | 2 rangées |
+| `.hero` padding | `var(--space-3xl)` | `calc(var(--space-3xl) * 0.5)` | 50% |
+| `.hero-image` | Visible | `display: none` | Masquée |
+| `.services` padding | `var(--space-3xl)` | `calc(var(--space-3xl) * 0.5)` | 50% |
+| `.services-grid` margin | `var(--space-2xl)` | `var(--space-md)` | Réduit |
+| `.why-us` padding | `var(--space-3xl)` | `calc(var(--space-3xl) * 0.5)` | 50% |
 
 **Classes CSS utilisées (toutes les pages):**
+- `.hero`, `.hero-image` - Section hero (image masquée sur mobile)
 - `.section-header`, `.section-badge`, `.section-title` - Titres de section
+- `.services`, `.services-grid` - Section services
 - `.service-card`, `.service-icon` - Cartes services (homepage)
-- `.why-card`, `.why-number` - Section "Pourquoi nous choisir"
+- `.why-us`, `.why-card`, `.why-number` - Section "Pourquoi nous choisir"
 - `.contact-card`, `.contact-icon` - Page contact
 - `.timeline-card`, `.timeline-year` - Timeline (page histoire)
 - `.pharmacist-grid`, `.pharmacist-image` - Section Laure Charnal
