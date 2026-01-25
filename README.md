@@ -245,6 +245,20 @@ git push origin main
 
 **Note:** Les règles utilisent `!important` pour surcharger les styles inline (notamment `.service-icon` sur la page services.html qui a des styles inline `80px`).
 
+#### Page Recrutement (styles internes)
+
+La page `recrutement-preparatrice.html` a ses propres règles mobile dans un `<style>` interne :
+
+| Élément | Desktop | Mobile | Réduction |
+|---------|---------|--------|-----------|
+| `.job-title` | `var(--text-4xl)` | `calc(var(--text-3xl) * 0.75)` | ~25% |
+| `.job-subtitle` | `var(--text-xl)` | `calc(var(--text-xl) * 0.85)` | 15% |
+| `.job-meta-item` | `var(--text-base)` | `calc(var(--text-base) * 0.9)` | 10% |
+| `.job-section-title` | `var(--text-2xl)` | `calc(var(--text-2xl) * 0.75)` | 25% |
+| `.benefit-icon` | `48px` | `calc(48px * 0.7)` | 30% |
+| `.benefits-grid` | auto-fit | `1fr` (1 colonne) | Simplifié |
+| `.job-cta h2` | `var(--text-3xl)` | `calc(var(--text-3xl) * 0.75)` | 25% |
+
 ### Carte Interactive Leaflet.js
 **Fichier**: `blog/professionnels-sante-queven-2026.html`
 
