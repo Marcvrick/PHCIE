@@ -207,6 +207,37 @@ git push origin main
 - Présent sur toutes les pages
 - ARIA attributes (accessibilité)
 
+### Responsive Mobile (max-width: 767px)
+
+**Réduction globale de ~40% des éléments sur mobile pour une meilleure lisibilité.**
+
+| Élément | Desktop | Mobile | Réduction |
+|---------|---------|--------|-----------|
+| `.section-title` | `var(--text-3xl)` | `calc(var(--text-3xl) * 0.75)` | 25% |
+| `.section-badge` | `var(--text-sm)` | `calc(var(--text-sm) * 0.85)` | 15% |
+| `.section-header` margin | `var(--space-3xl)` | `calc(var(--space-3xl) * 0.6)` | 40% |
+| `.service-card` padding | `var(--space-xl)` | `calc(var(--space-xl) * 0.6)` | 40% |
+| `.service-icon` | `64px` | `~38px` | 40% |
+| `.why-card` padding | `var(--space-xl)` | `calc(var(--space-xl) * 0.6)` | 40% |
+| `.why-number` | `var(--text-3xl)` | `calc(var(--text-3xl) * 0.6)` | 40% |
+| `.contact-card` padding | `var(--space-xl)` | `calc(var(--space-xl) * 0.6)` | 40% |
+| `.contact-icon` | `64px` | `~38px` | 40% |
+| `.timeline-card` padding | `var(--space-xl)` | `calc(var(--space-xl) * 0.6)` | 40% |
+| `.timeline-year` | `var(--text-3xl)` | `calc(var(--text-3xl) * 0.6)` | 40% |
+| `.pharmacist-image` height | `480px` | `240px` | 50% |
+| `.banner-grid` (produits) | 6 colonnes | 3 colonnes | 2 rangées |
+
+**Classes CSS utilisées (toutes les pages):**
+- `.section-header`, `.section-badge`, `.section-title` - Titres de section
+- `.service-card`, `.service-icon` - Cartes services (homepage)
+- `.why-card`, `.why-number` - Section "Pourquoi nous choisir"
+- `.contact-card`, `.contact-icon` - Page contact
+- `.timeline-card`, `.timeline-year` - Timeline (page histoire)
+- `.pharmacist-grid`, `.pharmacist-image` - Section Laure Charnal
+- `.banner-grid`, `.banner-item` - Grille catégories produits
+
+**Note:** Les règles utilisent `!important` pour surcharger les styles inline.
+
 ### Carte Interactive Leaflet.js
 **Fichier**: `blog/professionnels-sante-queven-2026.html`
 
