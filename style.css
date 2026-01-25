@@ -1361,10 +1361,10 @@ section[id] {
     }
 
     .service-icon {
-        width: calc(64px * 0.6);
-        height: calc(64px * 0.6);
-        padding: calc(16px * 0.6);
-        margin-bottom: calc(var(--space-md) * 0.6);
+        width: calc(64px * 0.6) !important;
+        height: calc(64px * 0.6) !important;
+        padding: calc(16px * 0.6) !important;
+        margin-bottom: calc(var(--space-md) * 0.6) !important;
     }
 
     .service-card h3 {
