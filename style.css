@@ -1456,9 +1456,13 @@ section[id] {
     }
 
     /* Réduction des cartes Contact de 40% sur mobile */
+    .contact-section {
+        padding: calc(var(--space-3xl) * 0.4) 0 !important;
+    }
+
     .contact-grid {
-        gap: var(--space-lg) !important;
-        margin-bottom: var(--space-xl) !important;
+        gap: var(--space-md) !important;
+        margin-bottom: var(--space-md) !important;
     }
 
     .contact-card {
