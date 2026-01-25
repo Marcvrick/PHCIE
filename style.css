@@ -1214,6 +1214,7 @@ section[id] {
 }
 
 .footer-bottom p {
+    color: var(--white);
     opacity: 0.8;
     font-size: var(--text-sm);
     margin-bottom: 0;
@@ -1496,5 +1497,86 @@ section[id] {
     /* Réduction des photos catégories produits sur mobile (homepage) */
     .banner-label {
         font-size: calc(0.75rem * 0.85);
+    }
+
+    /* === ARTICLES DE BLOG - ADAPTATION MOBILE === */
+    .article-content {
+        padding: var(--space-xl) var(--space-md) !important;
+    }
+
+    .article-content h1,
+    .article-header h1 {
+        font-size: var(--text-3xl) !important;
+    }
+
+    .article-header p {
+        font-size: var(--text-lg) !important;
+    }
+
+    .article-header {
+        margin-bottom: var(--space-lg) !important;
+    }
+
+    .article-meta {
+        flex-wrap: wrap;
+        gap: var(--space-xs) !important;
+        font-size: var(--text-sm) !important;
+    }
+
+    .article-body h2 {
+        font-size: var(--text-xl) !important;
+        margin-top: var(--space-xl) !important;
+        margin-bottom: var(--space-md) !important;
+    }
+
+    .article-body h3 {
+        font-size: var(--text-base) !important;
+        margin-top: var(--space-lg) !important;
+        margin-bottom: var(--space-sm) !important;
+    }
+
+    .article-body p,
+    .article-body ul,
+    .article-body ol {
+        font-size: var(--text-base) !important;
+    }
+
+    .highlight-box {
+        padding: var(--space-md) !important;
+        margin: var(--space-lg) 0 !important;
+    }
+
+    .faq-item {
+        padding: var(--space-md) !important;
+    }
+
+    .faq-question {
+        font-size: var(--text-lg) !important;
+    }
+
+    .faq-answer {
+        font-size: var(--text-base) !important;
+    }
+
+    .cta-box {
+        padding: var(--space-lg) !important;
+        margin: var(--space-xl) 0 !important;
+    }
+
+    .cta-box h3 {
+        font-size: var(--text-xl) !important;
+    }
+
+    .cta-box p {
+        font-size: var(--text-base) !important;
+    }
+
+    .summary-box {
+        padding: var(--space-md) !important;
+        margin: var(--space-lg) 0 var(--space-xl) 0 !important;
+    }
+
+    .summary-box ul {
+        padding-left: var(--space-md) !important;
     }
 }
