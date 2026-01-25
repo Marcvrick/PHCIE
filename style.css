@@ -1340,15 +1340,7 @@ section[id] {
     }
 
     .hero-image {
-        margin-top: 0 !important;
-        margin-bottom: 0 !important;
-    }
-
-    .hero-image img {
-        max-width: 40%;
-        height: auto;
-        margin: 0 auto;
-        display: block;
+        display: none !important;
     }
 
     /* Réduction des cartes services de 40% sur mobile */
