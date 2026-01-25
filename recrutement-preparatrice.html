@@ -408,21 +408,47 @@
         /* Responsive */
         @media (max-width: 767px) {
             .job-title {
-                font-size: var(--text-3xl);
+                font-size: calc(var(--text-3xl) * 0.75);
+            }
+
+            .job-subtitle {
+                font-size: calc(var(--text-xl) * 0.85);
+                margin-bottom: var(--space-md);
             }
 
             .job-meta {
                 flex-direction: column;
                 align-items: center;
-                gap: var(--space-md);
+                gap: var(--space-sm);
+                margin-top: var(--space-md);
+            }
+
+            .job-meta-item {
+                font-size: calc(var(--text-base) * 0.9);
+            }
+
+            .job-section-title {
+                font-size: calc(var(--text-2xl) * 0.75);
             }
 
             .job-section-content {
-                padding: var(--space-lg);
+                padding: var(--space-md);
             }
 
             .benefits-grid {
                 grid-template-columns: 1fr;
+                gap: var(--space-md);
+            }
+
+            .benefit-item {
+                padding: calc(var(--space-md) * 0.7);
+                gap: var(--space-sm);
+            }
+
+            .benefit-icon {
+                width: calc(48px * 0.7);
+                height: calc(48px * 0.7);
+                padding: 8px;
             }
 
             .cta-method {
@@ -433,6 +459,14 @@
             .job-cta-methods {
                 flex-direction: column;
                 align-items: center;
+            }
+
+            .job-cta h2 {
+                font-size: calc(var(--text-3xl) * 0.75);
+            }
+
+            .job-cta p {
+                font-size: calc(var(--text-lg) * 0.9);
             }
         }
     </style>
