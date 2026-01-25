@@ -1309,7 +1309,17 @@ section[id] {
     }
 
     .section-title {
-        font-size: var(--text-3xl);
+        font-size: calc(var(--text-3xl) * 0.75);
+    }
+
+    .section-badge {
+        padding: calc(var(--space-xs) * 0.7) calc(var(--space-lg) * 0.7);
+        font-size: calc(var(--text-sm) * 0.85);
+        margin-bottom: calc(var(--space-md) * 0.6);
+    }
+
+    .section-header {
+        margin-bottom: calc(var(--space-3xl) * 0.6);
     }
 
     .btn {
