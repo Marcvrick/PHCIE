@@ -6,7 +6,7 @@ User-agent: *
 Allow: /
 
 # Sitemap XML - Aide à l'indexation complète du site
-Sitemap: https://www.pharmaciecharnal.fr/sitemap.xml
+Sitemap: https://www.pharmaciecharnal.com/sitemap.xml
 
 # Optimisation pour les principaux moteurs de recherche
 # Google
