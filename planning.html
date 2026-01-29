@@ -1922,78 +1922,78 @@
             const container = document.getElementById('recoverySlots');
             const slots = [];
             const startDate = new Date(dateDebut);
+            const employeePlanning = STAFF[employee];
 
-            for (let i = 1; i <= 14; i++) {
+            // Check next 30 days for available slots
+            for (let i = 1; i <= 30; i++) {
                 const checkDate = new Date(startDate);
                 checkDate.setDate(startDate.getDate() + i);
                 const jour = getJourFromDate(checkDate);
                 if (!jour) continue;
 
                 const semaine = getSemaineType(checkDate);
-                const planning = STAFF[employee][semaine][jour];
+                const dateStr = checkDate.toISOString().split('T')[0];
+                const planning = employeePlanning?.[semaine]?.[jour];
 
-                if (!planning?.am && !planning?.pm) {
-                    const dateStr = checkDate.toISOString().split('T')[0];
+                // Check morning - if employee not scheduled for AM
+                const worksAM = planning?.am;
+                if (!worksAM) {
                     const amEffectif = getEffectifJour(jour, semaine, 'am');
-
-                    if (amEffectif.minEffectif <= SEUILS.critique) {
-                        slots.push({ date: dateStr, jour, periode: 'matin', heures: 3.5, effectif: amEffectif.minEffectif, priority: 'priority' });
-                    } else if (amEffectif.minEffectif <= SEUILS.limite) {
-                        slots.push({ date: dateStr, jour, periode: 'matin', heures: 3.5, effectif: amEffectif.minEffectif, priority: 'recommended' });
+                    // Show if effectif <= 4 (at or below optimal)
+                    if (amEffectif.minEffectif <= 3) {
+                        slots.push({ date: dateStr, jour, periode: 'matin (9h-12h30)', heures: 3.5, effectif: amEffectif.minEffectif, priority: 'priority' });
+                    } else if (amEffectif.minEffectif <= 4) {
+                        slots.push({ date: dateStr, jour, periode: 'matin (9h-12h30)', heures: 3.5, effectif: amEffectif.minEffectif, priority: 'recommended' });
                     }
+                }
 
-                    if (jour !== 'samedi') {
-                        // Heures coeur (14h-17h30) : seuils normaux
+                // Check afternoon - if employee not scheduled for PM (except Saturday)
+                if (jour !== 'samedi') {
+                    const worksPM = planning?.pm;
+                    if (!worksPM) {
+                        // Check core hours (14h-17h30)
                         const TRANCHES_PM_COEUR = ['14h', '15h15', '16h', '16h30'];
                         let minCoeur = Infinity;
                         for (const tr of TRANCHES_PM_COEUR) {
                             const { count } = getEffectifATranche(jour, semaine, tr);
                             if (count < minCoeur) minCoeur = count;
                         }
-                        if (minCoeur <= SEUILS.critique) {
-                            slots.push({ date: dateStr, jour, periode: 'apres-midi (coeur)', heures: 3.5, effectif: minCoeur, priority: 'priority' });
-                        } else if (minCoeur <= SEUILS.limite) {
-                            slots.push({ date: dateStr, jour, periode: 'apres-midi (coeur)', heures: 3.5, effectif: minCoeur, priority: 'recommended' });
-                        }
-
-                        // Fin de journee (17h30+) : seuil a 2 minimum
-                        const TRANCHES_PM_FIN = ['17h30', '18h', '18h30'];
-                        let minFin = Infinity;
-                        for (const tr of TRANCHES_PM_FIN) {
-                            const { count } = getEffectifATranche(jour, semaine, tr);
-                            if (count < minFin) minFin = count;
-                        }
-                        if (minFin < 2) {
-                            slots.push({ date: dateStr, jour, periode: 'fin de journee (17h30+)', heures: 1.75, effectif: minFin, priority: 'priority' });
+                        if (minCoeur <= 3) {
+                            slots.push({ date: dateStr, jour, periode: 'apres-midi (14h-19h)', heures: 5, effectif: minCoeur, priority: 'priority' });
+                        } else if (minCoeur <= 4) {
+                            slots.push({ date: dateStr, jour, periode: 'apres-midi (14h-19h)', heures: 5, effectif: minCoeur, priority: 'recommended' });
                         }
                     }
                 }
             }
 
+            // Sort by date then by priority
             slots.sort((a, b) => {
-                const priorityOrder = { priority: 0, recommended: 1, normal: 2 };
+                const dateCompare = a.date.localeCompare(b.date);
+                if (dateCompare !== 0) return dateCompare;
+                const priorityOrder = { priority: 0, recommended: 1 };
                 return priorityOrder[a.priority] - priorityOrder[b.priority];
             });
 
             let html = '';
             if (slots.length === 0) {
-                html = '<p style="color: var(--gray);">Aucun creneau de recuperation disponible.</p>';
+                html = '<p style="color: var(--gray);">Aucun creneau de recuperation disponible dans les 30 prochains jours.</p>';
             } else {
                 const prioritySlots = slots.filter(s => s.priority === 'priority');
                 const recommendedSlots = slots.filter(s => s.priority === 'recommended');
 
                 if (prioritySlots.length > 0) {
-                    html += '<p style="margin-bottom: 0.5rem; font-weight: 600; color: var(--red);">PRIORITAIRE :</p>';
+                    html += '<p style="margin-bottom: 0.5rem; font-weight: 600; color: var(--red);">PRIORITAIRE (effectif critique) :</p>';
                     prioritySlots.forEach(slot => { html += renderSlot(slot); });
                 }
                 if (recommendedSlots.length > 0) {
-                    html += '<p style="margin: 1rem 0 0.5rem; font-weight: 600; color: var(--orange);">RECOMMANDE :</p>';
+                    html += '<p style="margin: 1rem 0 0.5rem; font-weight: 600; color: var(--orange);">RECOMMANDE (renfort utile) :</p>';
                     recommendedSlots.forEach(slot => { html += renderSlot(slot); });
                 }
             }
 
             container.innerHTML = html;
-            document.querySelectorAll('.recovery-slot').forEach(el => {
+            document.querySelectorAll('#recoverySlots .recovery-slot').forEach(el => {
                 el.addEventListener('click', () => toggleRecoverySlot(el));
             });
         }
