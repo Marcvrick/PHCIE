@@ -2759,8 +2759,9 @@ Connectez-vous a l'application Planning pour traiter cette demande.
         async function initVacancesSolde() {
             const doc = await db.collection('config').doc('vacances_solde').get();
             if (!doc.exists) {
+                // Initialiser avec 0 jours - sera calcule selon les contrats
                 const init = {};
-                VACANCES_EMPLOYEES.forEach(name => { init[name] = { annuel: VACANCES_ANNUEL, pris: 0 }; });
+                VACANCES_EMPLOYEES.forEach(name => { init[name] = { annuel: 0, pris: 0 }; });
                 await db.collection('config').doc('vacances_solde').set(init);
                 vacancesSoldeCache = init;
             } else {
@@ -2769,7 +2770,7 @@ Connectez-vous a l'application Planning pour traiter cette demande.
                 let updated = false;
                 VACANCES_EMPLOYEES.forEach(name => {
                     if (!vacancesSoldeCache[name]) {
-                        vacancesSoldeCache[name] = { annuel: VACANCES_ANNUEL, pris: 0 };
+                        vacancesSoldeCache[name] = { annuel: 0, pris: 0 };
                         updated = true;
                     }
                 });
@@ -3588,6 +3589,9 @@ Connectez-vous a l'application Planning pour traiter cette demande.
             // Initialize vacances solde and contracts if needed
             await initVacancesSolde();
             await initContracts();
+
+            // Synchroniser les soldes vacances avec les contrats (calcul 2.5j/mois)
+            await syncVacationsWithContracts();
         }
 
         function showApp() {
