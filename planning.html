@@ -674,6 +674,138 @@
             font-size: 0.8rem;
         }
 
+        /* Contract management styles */
+        .contracts-grid {
+            display: grid;
+            gap: 1rem;
+        }
+
+        .contract-card {
+            border: 1px solid #E5E7EB;
+            border-radius: 8px;
+            padding: 1rem;
+            display: grid;
+            grid-template-columns: 120px 1fr;
+            gap: 1rem;
+            align-items: start;
+        }
+
+        .contract-card.ending-soon {
+            border-color: var(--orange);
+            background: var(--orange-light);
+        }
+
+        .contract-card.ended {
+            border-color: var(--red);
+            background: var(--red-light);
+            opacity: 0.7;
+        }
+
+        .contract-name {
+            font-weight: 600;
+            color: var(--teal-dark);
+            font-size: 1.1rem;
+        }
+
+        .contract-badge {
+            display: inline-block;
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            margin-left: 0.5rem;
+        }
+
+        .contract-badge.cdi { background: var(--green-light); color: var(--green); }
+        .contract-badge.cdd { background: var(--orange-light); color: var(--orange); }
+        .contract-badge.periode_essai { background: var(--blue-light); color: var(--blue); }
+
+        .contract-details {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 0.75rem;
+        }
+
+        .contract-field {
+            display: flex;
+            flex-direction: column;
+            gap: 0.25rem;
+        }
+
+        .contract-field label {
+            font-size: 0.75rem;
+            color: var(--gray);
+            font-weight: 500;
+        }
+
+        .contract-field input, .contract-field select {
+            padding: 0.4rem 0.5rem;
+            border: 1px solid #E5E7EB;
+            border-radius: 4px;
+            font-size: 0.85rem;
+        }
+
+        .contract-field input:focus, .contract-field select:focus {
+            outline: none;
+            border-color: var(--sage);
+        }
+
+        .contract-vacances-calc {
+            background: var(--gray-light);
+            padding: 0.5rem 0.75rem;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            margin-top: 0.5rem;
+        }
+
+        .contract-vacances-calc strong {
+            color: var(--teal-dark);
+        }
+
+        .contract-alert {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 0.75rem;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            margin-top: 0.5rem;
+        }
+
+        .contract-alert.warning {
+            background: var(--orange-light);
+            color: var(--orange);
+        }
+
+        .contract-alert.danger {
+            background: var(--red-light);
+            color: var(--red);
+        }
+
+        .contract-save-btn {
+            padding: 0.4rem 1rem;
+            border: none;
+            background: var(--sage);
+            color: white;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.85rem;
+            margin-top: 0.5rem;
+        }
+
+        .contract-save-btn:hover {
+            background: var(--sage-dark);
+        }
+
+        .seniority-bonus {
+            color: var(--green);
+            font-weight: 600;
+        }
+
+        .calendar-event.stephanie { background: #E9D5FF; color: #7C3AED; }
+        .calendar-event.titia { background: #FECACA; color: #DC2626; }
+        .calendar-event.leila { background: #A7F3D0; color: #047857; }
+
         @media (max-width: 768px) {
             .nav-container { flex-direction: column; align-items: stretch; }
             .nav-links { justify-content: center; }
@@ -950,7 +1082,16 @@
             </div>
 
             <div class="card">
-                <h2 class="card-title">Solde vacances (Chloe, Claire, Sandrine)</h2>
+                <h2 class="card-title">Gestion des contrats et anciennete</h2>
+                <p style="color: var(--gray); font-size: 0.9rem; margin-bottom: 1rem;">
+                    Definissez le type de contrat, les dates de debut/fin et l'anciennete de chaque employe.
+                    Les vacances sont calculees automatiquement (2.5 jours ouvrables/mois + 2 jours apres 6 ans d'anciennete).
+                </p>
+                <div class="contracts-grid" id="contractsManager"></div>
+            </div>
+
+            <div class="card">
+                <h2 class="card-title">Solde vacances (tous les employes)</h2>
                 <div class="vacances-manager-card" id="managerVacancesBalance"></div>
             </div>
 
@@ -1035,6 +1176,7 @@
         let selectedRecoverySlots = [];
         let demandesCache = [];
         let vacancesSoldeCache = {};
+        let contractsCache = {};
 
         // ========== DONNEES DU PLANNING ==========
         const STAFF = {
@@ -1603,10 +1745,41 @@
             updateRecupSummary(heuresDues);
         }
 
+        // Recupere les creneaux de recuperation deja approuves pour un employe
+        function getUsedRecoverySlots(employee) {
+            const demandes = getDemandes();
+            const usedSlots = [];
+
+            demandes.forEach(d => {
+                // Verifier que c'est pour le meme employe et que c'est approuve (ou en attente)
+                if (d.employee === employee && (d.status === 'approuvee' || d.status === 'attente')) {
+                    // Recuperer les slots de recuperation de cette demande
+                    if (d.recoverySlots && d.recoverySlots.length > 0) {
+                        d.recoverySlots.forEach(slot => {
+                            usedSlots.push({
+                                date: slot.date,
+                                periode: slot.periode
+                            });
+                        });
+                    }
+                }
+            });
+
+            return usedSlots;
+        }
+
+        // Verifie si un creneau est deja utilise
+        function isSlotUsed(date, periode, usedSlots) {
+            return usedSlots.some(s => s.date === date && s.periode === periode);
+        }
+
         function getAvailableRecoverySlots(employee) {
             const slots = [];
             const startDate = new Date();
             const employeePlanning = STAFF[employee];
+
+            // Recuperer les creneaux deja utilises
+            const usedSlots = getUsedRecoverySlots(employee);
 
             for (let i = 1; i <= 30; i++) {
                 const checkDate = new Date(startDate);
@@ -1621,12 +1794,16 @@
                 // Check morning - if employee not scheduled for AM
                 const worksAM = planning?.am;
                 if (!worksAM) {
-                    const amEffectif = getEffectifJour(jour, semaine, 'am');
-                    // Show if effectif <= 4 (at or below optimal)
-                    if (amEffectif.minEffectif <= 3) {
-                        slots.push({ date: dateStr, jour, periode: 'matin (9h-12h30)', heures: 3.5, effectif: amEffectif.minEffectif, priority: 'priority' });
-                    } else if (amEffectif.minEffectif <= 4) {
-                        slots.push({ date: dateStr, jour, periode: 'matin (9h-12h30)', heures: 3.5, effectif: amEffectif.minEffectif, priority: 'recommended' });
+                    const periodeAM = 'matin (9h-12h30)';
+                    // Verifier si ce creneau n'est pas deja utilise
+                    if (!isSlotUsed(dateStr, periodeAM, usedSlots)) {
+                        const amEffectif = getEffectifJour(jour, semaine, 'am');
+                        // Show if effectif <= 4 (at or below optimal)
+                        if (amEffectif.minEffectif <= 3) {
+                            slots.push({ date: dateStr, jour, periode: periodeAM, heures: 3.5, effectif: amEffectif.minEffectif, priority: 'priority' });
+                        } else if (amEffectif.minEffectif <= 4) {
+                            slots.push({ date: dateStr, jour, periode: periodeAM, heures: 3.5, effectif: amEffectif.minEffectif, priority: 'recommended' });
+                        }
                     }
                 }
 
@@ -1634,17 +1811,21 @@
                 if (jour !== 'samedi') {
                     const worksPM = planning?.pm;
                     if (!worksPM) {
-                        // Check core hours (14h-17h30)
-                        const TRANCHES_PM_COEUR = ['14h', '15h15', '16h', '16h30'];
-                        let minCoeur = Infinity;
-                        for (const tr of TRANCHES_PM_COEUR) {
-                            const { count } = getEffectifATranche(jour, semaine, tr);
-                            if (count < minCoeur) minCoeur = count;
-                        }
-                        if (minCoeur <= 3) {
-                            slots.push({ date: dateStr, jour, periode: 'apres-midi (14h-19h)', heures: 5, effectif: minCoeur, priority: 'priority' });
-                        } else if (minCoeur <= 4) {
-                            slots.push({ date: dateStr, jour, periode: 'apres-midi (14h-19h)', heures: 5, effectif: minCoeur, priority: 'recommended' });
+                        const periodePM = 'apres-midi (14h-19h)';
+                        // Verifier si ce creneau n'est pas deja utilise
+                        if (!isSlotUsed(dateStr, periodePM, usedSlots)) {
+                            // Check core hours (14h-17h30)
+                            const TRANCHES_PM_COEUR = ['14h', '15h15', '16h', '16h30'];
+                            let minCoeur = Infinity;
+                            for (const tr of TRANCHES_PM_COEUR) {
+                                const { count } = getEffectifATranche(jour, semaine, tr);
+                                if (count < minCoeur) minCoeur = count;
+                            }
+                            if (minCoeur <= 3) {
+                                slots.push({ date: dateStr, jour, periode: periodePM, heures: 5, effectif: minCoeur, priority: 'priority' });
+                            } else if (minCoeur <= 4) {
+                                slots.push({ date: dateStr, jour, periode: periodePM, heures: 5, effectif: minCoeur, priority: 'recommended' });
+                            }
                         }
                     }
                 }
@@ -1924,6 +2105,9 @@
             const startDate = new Date(dateDebut);
             const employeePlanning = STAFF[employee];
 
+            // Recuperer les creneaux deja utilises
+            const usedSlots = getUsedRecoverySlots(employee);
+
             // Check next 30 days for available slots
             for (let i = 1; i <= 30; i++) {
                 const checkDate = new Date(startDate);
@@ -1938,12 +2122,16 @@
                 // Check morning - if employee not scheduled for AM
                 const worksAM = planning?.am;
                 if (!worksAM) {
-                    const amEffectif = getEffectifJour(jour, semaine, 'am');
-                    // Show if effectif <= 4 (at or below optimal)
-                    if (amEffectif.minEffectif <= 3) {
-                        slots.push({ date: dateStr, jour, periode: 'matin (9h-12h30)', heures: 3.5, effectif: amEffectif.minEffectif, priority: 'priority' });
-                    } else if (amEffectif.minEffectif <= 4) {
-                        slots.push({ date: dateStr, jour, periode: 'matin (9h-12h30)', heures: 3.5, effectif: amEffectif.minEffectif, priority: 'recommended' });
+                    const periodeAM = 'matin (9h-12h30)';
+                    // Verifier si ce creneau n'est pas deja utilise
+                    if (!isSlotUsed(dateStr, periodeAM, usedSlots)) {
+                        const amEffectif = getEffectifJour(jour, semaine, 'am');
+                        // Show if effectif <= 4 (at or below optimal)
+                        if (amEffectif.minEffectif <= 3) {
+                            slots.push({ date: dateStr, jour, periode: periodeAM, heures: 3.5, effectif: amEffectif.minEffectif, priority: 'priority' });
+                        } else if (amEffectif.minEffectif <= 4) {
+                            slots.push({ date: dateStr, jour, periode: periodeAM, heures: 3.5, effectif: amEffectif.minEffectif, priority: 'recommended' });
+                        }
                     }
                 }
 
@@ -1951,17 +2139,21 @@
                 if (jour !== 'samedi') {
                     const worksPM = planning?.pm;
                     if (!worksPM) {
-                        // Check core hours (14h-17h30)
-                        const TRANCHES_PM_COEUR = ['14h', '15h15', '16h', '16h30'];
-                        let minCoeur = Infinity;
-                        for (const tr of TRANCHES_PM_COEUR) {
-                            const { count } = getEffectifATranche(jour, semaine, tr);
-                            if (count < minCoeur) minCoeur = count;
-                        }
-                        if (minCoeur <= 3) {
-                            slots.push({ date: dateStr, jour, periode: 'apres-midi (14h-19h)', heures: 5, effectif: minCoeur, priority: 'priority' });
-                        } else if (minCoeur <= 4) {
-                            slots.push({ date: dateStr, jour, periode: 'apres-midi (14h-19h)', heures: 5, effectif: minCoeur, priority: 'recommended' });
+                        const periodePM = 'apres-midi (14h-19h)';
+                        // Verifier si ce creneau n'est pas deja utilise
+                        if (!isSlotUsed(dateStr, periodePM, usedSlots)) {
+                            // Check core hours (14h-17h30)
+                            const TRANCHES_PM_COEUR = ['14h', '15h15', '16h', '16h30'];
+                            let minCoeur = Infinity;
+                            for (const tr of TRANCHES_PM_COEUR) {
+                                const { count } = getEffectifATranche(jour, semaine, tr);
+                                if (count < minCoeur) minCoeur = count;
+                            }
+                            if (minCoeur <= 3) {
+                                slots.push({ date: dateStr, jour, periode: periodePM, heures: 5, effectif: minCoeur, priority: 'priority' });
+                            } else if (minCoeur <= 4) {
+                                slots.push({ date: dateStr, jour, periode: periodePM, heures: 5, effectif: minCoeur, priority: 'recommended' });
+                            }
                         }
                     }
                 }
@@ -2288,6 +2480,7 @@ Connectez-vous a l'application Planning pour traiter cette demande.
         function renderManager() {
             renderStatsDashboard();
             renderDemandesAttente();
+            renderContractsManager();
             renderManagerVacancesBalance();
             renderHoursBalance('managerHoursBalance');
             renderTensionsCalendar();
@@ -2503,8 +2696,9 @@ Connectez-vous a l'application Planning pour traiter cette demande.
         }
 
         // ========== VACANCES ==========
-        const VACANCES_EMPLOYEES = ['Chloe', 'Claire', 'Sandrine'];
-        const VACANCES_ANNUEL = 25;
+        // Tous les employes ont acces aux vacances
+        const VACANCES_EMPLOYEES = ['Stephanie', 'Claire', 'Sandrine', 'Titia', 'Leila', 'Chloe'];
+        const VACANCES_ANNUEL = 25; // Max legal par an (30 jours ouvrables = 25 jours ouvres)
 
         // Jours feries francais 2026-2028
         const JOURS_FERIES = {
@@ -2571,6 +2765,17 @@ Connectez-vous a l'application Planning pour traiter cette demande.
                 vacancesSoldeCache = init;
             } else {
                 vacancesSoldeCache = doc.data();
+                // Ajouter les nouveaux employes s'ils ne sont pas encore dans le solde
+                let updated = false;
+                VACANCES_EMPLOYEES.forEach(name => {
+                    if (!vacancesSoldeCache[name]) {
+                        vacancesSoldeCache[name] = { annuel: VACANCES_ANNUEL, pris: 0 };
+                        updated = true;
+                    }
+                });
+                if (updated) {
+                    await db.collection('config').doc('vacances_solde').set(vacancesSoldeCache);
+                }
             }
         }
 
@@ -2695,6 +2900,71 @@ Connectez-vous a l'application Planning pour traiter cette demande.
             calcEl.innerHTML = html;
         }
 
+        // Verifie le chevauchement des vacances (max 2 personnes en meme temps)
+        function checkVacancesOverlap(employee, requestedDates) {
+            const demandes = getDemandes();
+            const MAX_SIMULTANEOUS = 2; // Maximum de personnes en vacances en meme temps
+
+            // Recuperer toutes les vacances approuvees ou en attente (sauf de l'employe actuel)
+            const otherVacations = demandes.filter(d =>
+                d.type === 'vacances' &&
+                d.employee !== employee &&
+                (d.status === 'approuvee' || d.status === 'attente') &&
+                d.dates && d.dates.length > 0
+            );
+
+            // Pour chaque jour demande, compter combien d'autres personnes sont en vacances
+            const conflicts = [];
+            let maxOverlap = 0;
+
+            for (const dateStr of requestedDates) {
+                const employeesOnVacation = [];
+
+                for (const vacation of otherVacations) {
+                    if (vacation.dates.includes(dateStr)) {
+                        employeesOnVacation.push(vacation.employee);
+                    }
+                }
+
+                // Si avec cette demande on depasse le max (2 personnes), c'est un conflit
+                // employeesOnVacation = autres personnes deja en vacances
+                // +1 pour l'employe actuel = total
+                const totalOnVacation = employeesOnVacation.length + 1;
+                if (totalOnVacation > MAX_SIMULTANEOUS) {
+                    conflicts.push({
+                        date: dateStr,
+                        employees: employeesOnVacation,
+                        total: totalOnVacation
+                    });
+                }
+                if (employeesOnVacation.length > maxOverlap) {
+                    maxOverlap = employeesOnVacation.length;
+                }
+            }
+
+            if (conflicts.length > 0) {
+                // Grouper les conflits par employes
+                const conflictDates = conflicts.slice(0, 5).map(c =>
+                    `${formatDateShort(c.date)} : ${c.employees.join(', ')} deja en vacances`
+                ).join('\n');
+
+                return {
+                    blocked: true,
+                    message: `${conflicts.length} jour(s) en conflit :\n${conflictDates}${conflicts.length > 5 ? '\n...' : ''}`
+                };
+            }
+
+            // Warning si 1 autre personne en vacances (mais pas bloque)
+            if (maxOverlap === 1) {
+                return {
+                    blocked: false,
+                    warning: 'Chevauchement avec une autre personne sur certains jours (autorise).'
+                };
+            }
+
+            return { blocked: false, warning: null };
+        }
+
         function analyserVacancesImpact() {
             const user = document.getElementById('currentUser').value;
             const dateDebut = document.getElementById('vacancesDateDebut').value;
@@ -2723,7 +2993,14 @@ Connectez-vous a l'application Planning pour traiter cette demande.
                 return;
             }
 
-            currentVacancesImpact = { employee: user, dateDebut, dateFin, dates, joursOuvrables: count, motif };
+            // Verifier le chevauchement avec les autres vacances (max 2 personnes en meme temps)
+            const overlapCheck = checkVacancesOverlap(user, dates);
+            if (overlapCheck.blocked) {
+                alert(`Demande impossible !\n\n${overlapCheck.message}\n\nRegles : Maximum 2 personnes en vacances simultanement.`);
+                return;
+            }
+
+            currentVacancesImpact = { employee: user, dateDebut, dateFin, dates, joursOuvrables: count, motif, overlapWarning: overlapCheck.warning };
 
             // Resume
             document.getElementById('vacancesImpactResume').innerHTML = `
@@ -2772,6 +3049,11 @@ Connectez-vous a l'application Planning pour traiter cette demande.
                 html += `<div class="impact-critical"><strong>ATTENTION :</strong> Effectif CRITIQUE sur certains creneaux.</div>`;
             } else if (hasWarning) {
                 html += `<div class="impact-warning"><strong>ATTENTION :</strong> Effectif LIMITE sur certains creneaux.</div>`;
+            }
+
+            // Afficher le warning de chevauchement s'il y en a un
+            if (currentVacancesImpact.overlapWarning) {
+                html += `<div class="impact-warning" style="margin-top: 0.5rem;"><strong>INFO :</strong> ${currentVacancesImpact.overlapWarning}</div>`;
             }
 
             effectifContainer.innerHTML = html;
@@ -2961,6 +3243,253 @@ Connectez-vous a l'application Planning pour traiter cette demande.
             await saveVacancesSolde(solde);
         }
 
+        // ========== GESTION DES CONTRATS ==========
+
+        function getContracts() {
+            return contractsCache || {};
+        }
+
+        async function saveContracts(contracts) {
+            try {
+                await db.collection('config').doc('staff_contracts').set(contracts);
+            } catch (e) {
+                console.error('Erreur save contracts:', e);
+            }
+        }
+
+        async function initContracts() {
+            const doc = await db.collection('config').doc('staff_contracts').get();
+            if (!doc.exists) {
+                // Initialiser avec des valeurs par defaut (CDI, date debut = aujourd'hui)
+                const init = {};
+                VACANCES_EMPLOYEES.forEach(name => {
+                    init[name] = {
+                        contractType: 'CDI',
+                        startDate: '2020-01-01', // Date par defaut a ajuster
+                        endDate: null,
+                        hireDate: '2020-01-01' // Date d'embauche pour anciennete
+                    };
+                });
+                await db.collection('config').doc('staff_contracts').set(init);
+                contractsCache = init;
+            } else {
+                contractsCache = doc.data();
+            }
+        }
+
+        // Calcule les jours de vacances acquis selon la loi francaise
+        // Periode de reference: 1er juin N-1 au 31 mai N
+        // 2.5 jours ouvrables (= ~2.08 jours ouvres) par mois travaille
+        // +2 jours apres 6 ans d'anciennete (convention pharmacie)
+        function calculateVacationDays(contract) {
+            if (!contract || !contract.startDate) return { acquired: 0, bonus: 0, total: 0, details: '' };
+
+            const today = new Date();
+            const startDate = new Date(contract.startDate);
+            const hireDate = contract.hireDate ? new Date(contract.hireDate) : startDate;
+            const endDate = contract.endDate ? new Date(contract.endDate) : null;
+
+            // Periode de reference (1er juin N-1 au 31 mai N)
+            let refStart, refEnd;
+            if (today.getMonth() >= 5) { // Juin ou apres
+                refStart = new Date(today.getFullYear(), 5, 1); // 1er juin de cette annee
+                refEnd = new Date(today.getFullYear() + 1, 4, 31); // 31 mai de l'annee suivante
+            } else {
+                refStart = new Date(today.getFullYear() - 1, 5, 1); // 1er juin de l'annee derniere
+                refEnd = new Date(today.getFullYear(), 4, 31); // 31 mai de cette annee
+            }
+
+            // Date de debut effectif pour le calcul (max entre debut contrat et debut periode ref)
+            const effectiveStart = startDate > refStart ? startDate : refStart;
+
+            // Date de fin effectif (min entre aujourd'hui, fin contrat, et fin periode ref)
+            let effectiveEnd = today < refEnd ? today : refEnd;
+            if (endDate && endDate < effectiveEnd) {
+                effectiveEnd = endDate;
+            }
+
+            // Si le contrat n'a pas encore commence ou est deja fini
+            if (effectiveStart > effectiveEnd) {
+                return { acquired: 0, bonus: 0, total: 0, details: 'Contrat non actif sur cette periode' };
+            }
+
+            // Calcul du nombre de mois travailles
+            const monthsWorked = monthsDiff(effectiveStart, effectiveEnd);
+
+            // 2.5 jours ouvrables par mois = environ 2.08 jours ouvres
+            // On utilise 2.08 car l'app compte en jours ouvres (25j/an)
+            const acquiredDays = Math.min(Math.round(monthsWorked * 2.08), 25);
+
+            // Bonus anciennete: +2 jours apres 6 ans (convention pharmacie)
+            const yearsOfService = yearsDiff(hireDate, today);
+            const seniorityBonus = yearsOfService >= 6 ? 2 : 0;
+
+            const total = acquiredDays + seniorityBonus;
+
+            let details = `${monthsWorked.toFixed(1)} mois travailles = ${acquiredDays}j`;
+            if (seniorityBonus > 0) {
+                details += ` + ${seniorityBonus}j (anciennete ${yearsOfService} ans)`;
+            }
+
+            return { acquired: acquiredDays, bonus: seniorityBonus, total, details, monthsWorked, yearsOfService };
+        }
+
+        function monthsDiff(startDate, endDate) {
+            const months = (endDate.getFullYear() - startDate.getFullYear()) * 12
+                         + (endDate.getMonth() - startDate.getMonth())
+                         + (endDate.getDate() >= startDate.getDate() ? 0 : -1);
+            // Ajouter les jours partiels du mois
+            const daysInMonth = new Date(endDate.getFullYear(), endDate.getMonth() + 1, 0).getDate();
+            const partialMonth = endDate.getDate() / daysInMonth;
+            return Math.max(0, months + partialMonth);
+        }
+
+        function yearsDiff(startDate, endDate) {
+            const years = endDate.getFullYear() - startDate.getFullYear();
+            const monthDiff = endDate.getMonth() - startDate.getMonth();
+            const dayDiff = endDate.getDate() - startDate.getDate();
+            if (monthDiff < 0 || (monthDiff === 0 && dayDiff < 0)) {
+                return years - 1;
+            }
+            return years;
+        }
+
+        function getContractEndAlert(contract) {
+            if (!contract.endDate || contract.contractType === 'CDI') return null;
+
+            const endDate = new Date(contract.endDate);
+            const today = new Date();
+            const daysUntilEnd = Math.ceil((endDate - today) / (1000 * 60 * 60 * 24));
+
+            if (daysUntilEnd < 0) {
+                return { type: 'danger', message: `Contrat termine depuis ${Math.abs(daysUntilEnd)} jours` };
+            } else if (daysUntilEnd <= 7) {
+                return { type: 'danger', message: `Fin de contrat dans ${daysUntilEnd} jour${daysUntilEnd > 1 ? 's' : ''}` };
+            } else if (daysUntilEnd <= 30) {
+                return { type: 'warning', message: `Fin de contrat dans ${daysUntilEnd} jours` };
+            }
+            return null;
+        }
+
+        function renderContractsManager() {
+            const container = document.getElementById('contractsManager');
+            const contracts = getContracts();
+            let html = '';
+
+            VACANCES_EMPLOYEES.forEach(name => {
+                const contract = contracts[name] || { contractType: 'CDI', startDate: '', endDate: null, hireDate: '' };
+                const vacCalc = calculateVacationDays(contract);
+                const alert = getContractEndAlert(contract);
+
+                const cardClass = alert ? (alert.type === 'danger' ? 'ended' : 'ending-soon') : '';
+                const badgeClass = contract.contractType.toLowerCase().replace(' ', '_');
+                const typeLabel = contract.contractType === 'CDI' ? 'CDI' :
+                                 contract.contractType === 'CDD' ? 'CDD' : 'Periode d\'essai';
+
+                html += `
+                    <div class="contract-card ${cardClass}">
+                        <div>
+                            <div class="contract-name">
+                                ${name}
+                                <span class="contract-badge ${badgeClass}">${typeLabel}</span>
+                            </div>
+                        </div>
+                        <div class="contract-details">
+                            <div class="contract-field">
+                                <label>Type de contrat</label>
+                                <select id="contract-type-${name}" onchange="toggleEndDateField('${name}')">
+                                    <option value="CDI" ${contract.contractType === 'CDI' ? 'selected' : ''}>CDI</option>
+                                    <option value="CDD" ${contract.contractType === 'CDD' ? 'selected' : ''}>CDD</option>
+                                    <option value="periode_essai" ${contract.contractType === 'periode_essai' ? 'selected' : ''}>Periode d'essai</option>
+                                </select>
+                            </div>
+                            <div class="contract-field">
+                                <label>Date d'embauche (anciennete)</label>
+                                <input type="date" id="contract-hire-${name}" value="${contract.hireDate || ''}">
+                            </div>
+                            <div class="contract-field">
+                                <label>Debut contrat actuel</label>
+                                <input type="date" id="contract-start-${name}" value="${contract.startDate || ''}">
+                            </div>
+                            <div class="contract-field" id="contract-end-field-${name}" style="${contract.contractType === 'CDI' ? 'display: none;' : ''}">
+                                <label>Fin de contrat</label>
+                                <input type="date" id="contract-end-${name}" value="${contract.endDate || ''}">
+                            </div>
+                            <div class="contract-field">
+                                <button class="contract-save-btn" onclick="saveContract('${name}')">Enregistrer</button>
+                            </div>
+                        </div>
+                        <div class="contract-vacances-calc">
+                            <strong>Vacances calculees :</strong> ${vacCalc.total} jours
+                            ${vacCalc.bonus > 0 ? `<span class="seniority-bonus">(+${vacCalc.bonus}j anciennete)</span>` : ''}
+                            <br><small style="color: var(--gray);">${vacCalc.details}</small>
+                        </div>
+                        ${alert ? `<div class="contract-alert ${alert.type}">⚠️ ${alert.message}</div>` : ''}
+                    </div>
+                `;
+            });
+
+            container.innerHTML = html;
+        }
+
+        function toggleEndDateField(name) {
+            const typeSelect = document.getElementById(`contract-type-${name}`);
+            const endField = document.getElementById(`contract-end-field-${name}`);
+            if (typeSelect.value === 'CDI') {
+                endField.style.display = 'none';
+            } else {
+                endField.style.display = 'block';
+            }
+        }
+
+        async function saveContract(name) {
+            const contractType = document.getElementById(`contract-type-${name}`).value;
+            const hireDate = document.getElementById(`contract-hire-${name}`).value;
+            const startDate = document.getElementById(`contract-start-${name}`).value;
+            const endDate = document.getElementById(`contract-end-${name}`).value || null;
+
+            const contracts = getContracts();
+            contracts[name] = {
+                contractType,
+                hireDate,
+                startDate,
+                endDate: contractType === 'CDI' ? null : endDate
+            };
+
+            await saveContracts(contracts);
+
+            // Mettre a jour automatiquement le solde de vacances
+            const vacCalc = calculateVacationDays(contracts[name]);
+            const solde = getVacancesSolde();
+            if (solde[name]) {
+                solde[name].annuel = vacCalc.total;
+                await saveVacancesSolde(solde);
+            }
+
+            alert(`Contrat de ${name} enregistre. Vacances recalculees: ${vacCalc.total} jours.`);
+        }
+
+        // Synchroniser le calcul des vacances avec les contrats
+        async function syncVacationsWithContracts() {
+            const contracts = getContracts();
+            const solde = getVacancesSolde();
+            let updated = false;
+
+            VACANCES_EMPLOYEES.forEach(name => {
+                if (contracts[name]) {
+                    const vacCalc = calculateVacationDays(contracts[name]);
+                    if (solde[name] && solde[name].annuel !== vacCalc.total) {
+                        solde[name].annuel = vacCalc.total;
+                        updated = true;
+                    }
+                }
+            });
+
+            if (updated) {
+                await saveVacancesSolde(solde);
+            }
+        }
+
         // ========== NAVIGATION ==========
         function showView(viewName) {
             if (viewName === 'manager' && !isManagerAuthenticated) {
@@ -3042,8 +3571,23 @@ Connectez-vous a l'application Planning pour traiter cette demande.
                 }
             });
 
-            // Initialize vacances solde if needed
+            // Real-time listener for contracts
+            db.collection('config').doc('staff_contracts').onSnapshot((doc) => {
+                if (doc.exists) {
+                    contractsCache = doc.data();
+                    if (isStaffAuthenticated && isManagerAuthenticated) {
+                        const currentView = document.querySelector('.view.active');
+                        if (currentView && currentView.id === 'view-manager') {
+                            renderContractsManager();
+                            renderManagerVacancesBalance();
+                        }
+                    }
+                }
+            });
+
+            // Initialize vacances solde and contracts if needed
             await initVacancesSolde();
+            await initContracts();
         }
 
         function showApp() {
