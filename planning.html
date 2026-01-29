@@ -1959,21 +1959,23 @@
             const demande = {
                 type: 'recuperation',
                 employee: employee,
-                recoverySlots: selectedStandaloneSlots,
+                recoverySlots: [...selectedStandaloneSlots],
                 heuresRecuperees: heuresRecup,
                 heuresDuesAvant: heuresDues,
                 commentaire: `Demande de recuperation de ${formatHeures(heuresRecup)} pour rembourser ${formatHeures(heuresDues)} d'heures dues.`
             };
 
-            await addDemande(demande);
+            const savedDemande = await addDemande(demande);
+            lastSubmittedDemande = savedDemande;
             selectedStandaloneSlots = [];
 
-            // Send email notification
-            const gmailLink = generateRecoveryGmailLink(demande);
-            window.open(gmailLink, '_blank');
+            // Reset the standalone recovery UI
+            document.getElementById('standaloneRecoverySection').classList.add('hidden');
+            document.getElementById('standaloneRecoverySummary').classList.add('hidden');
+            document.getElementById('submitStandaloneRecovery').classList.add('hidden');
 
-            alert('Demande de recuperation envoyee !');
-            showView('mes-demandes');
+            // Show confirmation modal (same as other demandes)
+            document.getElementById('confirmModal').classList.remove('hidden');
         }
 
         function generateRecoveryGmailLink(demande) {
@@ -2053,9 +2055,14 @@ Connectez-vous a l'application Planning pour traiter cette demande.
 
         function notifyViaGmail() {
             if (lastSubmittedDemande) {
-                const link = lastSubmittedDemande.type === 'vacances'
-                    ? generateVacancesGmailLink(lastSubmittedDemande)
-                    : generateGmailLink(lastSubmittedDemande);
+                let link;
+                if (lastSubmittedDemande.type === 'vacances') {
+                    link = generateVacancesGmailLink(lastSubmittedDemande);
+                } else if (lastSubmittedDemande.type === 'recuperation') {
+                    link = generateRecoveryGmailLink(lastSubmittedDemande);
+                } else {
+                    link = generateGmailLink(lastSubmittedDemande);
+                }
                 window.open(link, '_blank');
             }
             closeConfirmModal();
