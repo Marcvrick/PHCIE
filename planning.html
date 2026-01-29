@@ -745,6 +745,22 @@
             <div class="card">
                 <h2 class="card-title">Solde d'heures</h2>
                 <div id="hoursBalance"></div>
+
+                <!-- Section recuperation standalone -->
+                <div id="standaloneRecoverySection" class="hidden" style="margin-top: 1.5rem; padding-top: 1.5rem; border-top: 2px solid var(--sage-light);">
+                    <h3 style="color: var(--teal-dark); margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem;">
+                        Recuperer mes heures dues
+                        <span id="userHoursDueBadge" style="background: var(--orange); color: white; padding: 0.25rem 0.5rem; border-radius: 12px; font-size: 0.85rem;"></span>
+                    </h3>
+                    <p style="color: var(--gray); margin-bottom: 1rem; font-size: 0.9rem;">
+                        Selectionnez des creneaux pour rembourser vos heures dues :
+                    </p>
+                    <div id="standaloneRecoverySlots" class="recovery-slots"></div>
+                    <div id="standaloneRecoverySummary" class="hours-summary hidden" style="margin-top: 1rem;"></div>
+                    <button type="button" class="btn btn-primary hidden" id="submitStandaloneRecovery" style="margin-top: 1rem;">
+                        Soumettre ma demande de recuperation
+                    </button>
+                </div>
             </div>
         </div>
 
@@ -1013,6 +1029,7 @@
         let lastSubmittedDemande = null;
         let currentImpact = null;
         let selectedRecoverySlots = [];
+        let selectedStandaloneSlots = [];
         let demandesCache = [];
         let vacancesSoldeCache = {};
 
@@ -1255,7 +1272,8 @@
                 'conge': 'Conge',
                 'echange': 'Echange horaires',
                 'autre': 'Autre',
-                'vacances': 'Vacances'
+                'vacances': 'Vacances',
+                'recuperation': 'Recuperation heures dues'
             };
             return labels[type] || type;
         }
@@ -1314,15 +1332,20 @@
             });
 
             demandes.forEach(d => {
-                if (d.status === 'approuvee' && d.type !== 'vacances' && balances[d.employee]) {
-                    // Heures dues (absences)
-                    balances[d.employee].dues += d.heuresConcernees || 0;
+                if (d.status === 'approuvee' && balances[d.employee]) {
+                    if (d.type === 'recuperation') {
+                        // Standalone recovery: add to recuperees
+                        balances[d.employee].recuperees += d.heuresRecuperees || 0;
+                    } else if (d.type !== 'vacances') {
+                        // Regular absence: add dues and any attached recovery
+                        balances[d.employee].dues += d.heuresConcernees || 0;
 
-                    // Heures recuperees
-                    if (d.recoverySlots) {
-                        d.recoverySlots.forEach(slot => {
-                            balances[d.employee].recuperees += slot.heures || 0;
-                        });
+                        // Heures recuperees (attached to absence)
+                        if (d.recoverySlots) {
+                            d.recoverySlots.forEach(slot => {
+                                balances[d.employee].recuperees += slot.heures || 0;
+                            });
+                        }
                     }
                 }
             });
@@ -1354,6 +1377,27 @@
             }
 
             container.innerHTML = html || '<p style="color: var(--gray);">Aucune donnee</p>';
+
+            // Show standalone recovery section if current user has negative balance
+            if (containerId === 'hoursBalance') {
+                const standaloneSection = document.getElementById('standaloneRecoverySection');
+                const userBalance = balances[currentUser];
+
+                if (userBalance && STAFF[currentUser]) {
+                    const heuresDues = userBalance.dues - userBalance.recuperees;
+
+                    if (heuresDues > 0) {
+                        document.getElementById('userHoursDueBadge').textContent = formatHeures(heuresDues);
+                        selectedStandaloneSlots = [];
+                        renderStandaloneRecoverySlots(currentUser, heuresDues);
+                        standaloneSection.classList.remove('hidden');
+                    } else {
+                        standaloneSection.classList.add('hidden');
+                    }
+                } else {
+                    standaloneSection.classList.add('hidden');
+                }
+            }
         }
 
         // ========== STATISTIQUES MANAGER ==========
@@ -1767,6 +1811,187 @@
             document.getElementById('submitDemande').disabled = !engagementChecked;
         }
 
+        // ========== RECUPERATION STANDALONE ==========
+        function renderStandaloneRecoverySlots(employee, heuresDues) {
+            const container = document.getElementById('standaloneRecoverySlots');
+            const slots = [];
+            const startDate = new Date();
+
+            // Check next 30 days for available slots
+            for (let i = 1; i <= 30; i++) {
+                const checkDate = new Date(startDate);
+                checkDate.setDate(startDate.getDate() + i);
+                const jour = getJourFromDate(checkDate);
+                if (!jour) continue;
+
+                const semaine = getSemaineType(checkDate);
+                const planning = STAFF[employee]?.[semaine]?.[jour];
+
+                // Only check days where employee is not scheduled
+                if (!planning?.am && !planning?.pm) {
+                    const dateStr = checkDate.toISOString().split('T')[0];
+                    const amEffectif = getEffectifJour(jour, semaine, 'am');
+
+                    if (amEffectif.minEffectif <= SEUILS.critique) {
+                        slots.push({ date: dateStr, jour, periode: 'matin', heures: 3.5, effectif: amEffectif.minEffectif, priority: 'priority' });
+                    } else if (amEffectif.minEffectif <= SEUILS.limite) {
+                        slots.push({ date: dateStr, jour, periode: 'matin', heures: 3.5, effectif: amEffectif.minEffectif, priority: 'recommended' });
+                    }
+
+                    if (jour !== 'samedi') {
+                        // Heures coeur (14h-17h30)
+                        const TRANCHES_PM_COEUR = ['14h', '15h15', '16h', '16h30'];
+                        let minCoeur = Infinity;
+                        for (const tr of TRANCHES_PM_COEUR) {
+                            const { count } = getEffectifATranche(jour, semaine, tr);
+                            if (count < minCoeur) minCoeur = count;
+                        }
+                        if (minCoeur <= SEUILS.critique) {
+                            slots.push({ date: dateStr, jour, periode: 'apres-midi (coeur)', heures: 3.5, effectif: minCoeur, priority: 'priority' });
+                        } else if (minCoeur <= SEUILS.limite) {
+                            slots.push({ date: dateStr, jour, periode: 'apres-midi (coeur)', heures: 3.5, effectif: minCoeur, priority: 'recommended' });
+                        }
+
+                        // Fin de journee (17h30+)
+                        const TRANCHES_PM_FIN = ['17h30', '18h', '18h30'];
+                        let minFin = Infinity;
+                        for (const tr of TRANCHES_PM_FIN) {
+                            const { count } = getEffectifATranche(jour, semaine, tr);
+                            if (count < minFin) minFin = count;
+                        }
+                        if (minFin < 2) {
+                            slots.push({ date: dateStr, jour, periode: 'fin de journee (17h30+)', heures: 1.75, effectif: minFin, priority: 'priority' });
+                        }
+                    }
+                }
+            }
+
+            slots.sort((a, b) => {
+                const priorityOrder = { priority: 0, recommended: 1, normal: 2 };
+                return priorityOrder[a.priority] - priorityOrder[b.priority];
+            });
+
+            let html = '';
+            if (slots.length === 0) {
+                html = '<p style="color: var(--gray);">Aucun creneau de recuperation disponible dans les 30 prochains jours.</p>';
+            } else {
+                const prioritySlots = slots.filter(s => s.priority === 'priority');
+                const recommendedSlots = slots.filter(s => s.priority === 'recommended');
+
+                if (prioritySlots.length > 0) {
+                    html += '<p style="margin-bottom: 0.5rem; font-weight: 600; color: var(--red);">PRIORITAIRE :</p>';
+                    prioritySlots.forEach(slot => { html += renderStandaloneSlot(slot); });
+                }
+                if (recommendedSlots.length > 0) {
+                    html += '<p style="margin: 1rem 0 0.5rem; font-weight: 600; color: var(--orange);">RECOMMANDE :</p>';
+                    recommendedSlots.forEach(slot => { html += renderStandaloneSlot(slot); });
+                }
+            }
+
+            container.innerHTML = html;
+            document.querySelectorAll('#standaloneRecoverySlots .recovery-slot').forEach(el => {
+                el.addEventListener('click', () => toggleStandaloneSlot(el, heuresDues));
+            });
+        }
+
+        function renderStandaloneSlot(slot) {
+            const badgeText = slot.priority === 'priority' ? 'PRIORITAIRE' : slot.priority === 'recommended' ? 'RECOMMANDE' : '';
+            return `
+                <div class="recovery-slot ${slot.priority}" data-date="${slot.date}" data-periode="${slot.periode}" data-heures="${slot.heures}">
+                    ${badgeText ? `<span class="slot-badge">${badgeText}</span>` : ''}
+                    <div><strong>${formatDate(slot.date)} - ${slot.periode}</strong></div>
+                    <div class="slot-info">${formatHeures(slot.heures)} - Effectif actuel : ${slot.effectif} pers.</div>
+                </div>
+            `;
+        }
+
+        function toggleStandaloneSlot(el, heuresDues) {
+            const date = el.dataset.date;
+            const periode = el.dataset.periode;
+            const heures = parseFloat(el.dataset.heures);
+            const idx = selectedStandaloneSlots.findIndex(s => s.date === date && s.periode === periode);
+
+            if (idx !== -1) {
+                selectedStandaloneSlots.splice(idx, 1);
+                el.classList.remove('selected');
+            } else {
+                selectedStandaloneSlots.push({ date, periode, heures });
+                el.classList.add('selected');
+            }
+            updateStandaloneSummary(heuresDues);
+        }
+
+        function updateStandaloneSummary(heuresDues) {
+            const totalRecup = selectedStandaloneSlots.reduce((sum, s) => sum + s.heures, 0);
+            const reste = heuresDues - totalRecup;
+
+            const summaryEl = document.getElementById('standaloneRecoverySummary');
+            const submitBtn = document.getElementById('submitStandaloneRecovery');
+
+            summaryEl.innerHTML = `
+                <div class="hours-item"><strong>Heures dues :</strong> ${formatHeures(heuresDues)}</div>
+                <div class="hours-item"><strong>Selectionne :</strong> ${formatHeures(totalRecup)}</div>
+                <div class="hours-item" style="color: ${reste > 0 ? 'var(--orange)' : 'var(--green)'};">
+                    <strong>${reste > 0 ? 'Reste a recuperer : ' + formatHeures(reste) : 'Heures couvertes'}</strong>
+                </div>
+            `;
+
+            if (selectedStandaloneSlots.length > 0) {
+                summaryEl.classList.remove('hidden');
+                submitBtn.classList.remove('hidden');
+            } else {
+                summaryEl.classList.add('hidden');
+                submitBtn.classList.add('hidden');
+            }
+        }
+
+        async function submitStandaloneRecovery() {
+            const employee = currentUser;
+            if (!employee || selectedStandaloneSlots.length === 0) return;
+
+            const balances = calculateHoursBalance();
+            const balance = balances[employee];
+            if (!balance) return;
+
+            const heuresDues = balance.dues - balance.recuperees;
+            const heuresRecup = selectedStandaloneSlots.reduce((sum, s) => sum + s.heures, 0);
+
+            const demande = {
+                type: 'recuperation',
+                employee: employee,
+                recoverySlots: selectedStandaloneSlots,
+                heuresRecuperees: heuresRecup,
+                heuresDuesAvant: heuresDues,
+                commentaire: `Demande de recuperation de ${formatHeures(heuresRecup)} pour rembourser ${formatHeures(heuresDues)} d'heures dues.`
+            };
+
+            await addDemande(demande);
+            selectedStandaloneSlots = [];
+
+            // Send email notification
+            const gmailLink = generateRecoveryGmailLink(demande);
+            window.open(gmailLink, '_blank');
+
+            alert('Demande de recuperation envoyee !');
+            showView('mes-demandes');
+        }
+
+        function generateRecoveryGmailLink(demande) {
+            const slotsText = demande.recoverySlots.map(s =>
+                `- ${formatDate(s.date)} ${s.periode} (${formatHeures(s.heures)})`
+            ).join('\n');
+
+            const subject = encodeURIComponent(`[Planning] Demande de recuperation de ${demande.employee}`);
+            const body = encodeURIComponent(
+                `${demande.employee} souhaite recuperer ses heures dues.\n\n` +
+                `Heures dues actuelles : ${formatHeures(demande.heuresDuesAvant)}\n` +
+                `Heures a recuperer : ${formatHeures(demande.heuresRecuperees)}\n\n` +
+                `Creneaux selectionnes :\n${slotsText}\n\n` +
+                `--\nEnvoye depuis l'app Planning Pharmacie Charnal`
+            );
+            return `https://mail.google.com/mail/?view=cm&fs=1&to=${CONFIG.managerEmail}&su=${subject}&body=${body}`;
+        }
+
         // ========== SOUMISSION ==========
         function submitDemande() {
             if (!currentImpact) return;
@@ -1932,6 +2157,34 @@ Connectez-vous a l'application Planning pour traiter cette demande.
                     default: statusClass = 'status-attente'; statusLabel = d.status.toUpperCase();
                 }
 
+                let detailsHtml = '';
+                if (d.type === 'recuperation') {
+                    // Standalone recovery request
+                    detailsHtml = `
+                        <p><strong>Type :</strong> ${getTypeLabel(d.type)}</p>
+                        <p><strong>Heures a recuperer :</strong> ${formatHeures(d.heuresRecuperees)}</p>
+                        <p><strong>Creneaux :</strong></p>
+                        <ul style="margin-left: 1rem;">
+                            ${d.recoverySlots.map(s => `<li>${formatDate(s.date)} ${s.periode} (${formatHeures(s.heures)})</li>`).join('')}
+                        </ul>
+                    `;
+                } else {
+                    // Regular demande
+                    detailsHtml = `
+                        <p><strong>Type :</strong> ${getTypeLabel(d.type)}</p>
+                        <p><strong>Date :</strong> ${formatDate(d.dateDebut || d.date)}${d.dateFin && d.dateFin !== d.dateDebut ? ' au ' + formatDate(d.dateFin) : ''}</p>
+                        <p><strong>Heures :</strong> ${formatHeures(d.heuresConcernees)}</p>
+                        ${d.type === 'echange' ? `<p><strong>Echange avec :</strong> ${d.echangeAvec}</p>` : ''}
+                        ${d.motif ? `<p><strong>Motif :</strong> ${d.motif}</p>` : ''}
+                        ${d.recoverySlots?.length > 0 ? `
+                            <p><strong>Recuperation :</strong></p>
+                            <ul style="margin-left: 1rem;">
+                                ${d.recoverySlots.map(s => `<li>${formatDate(s.date)} ${s.periode} (${formatHeures(s.heures)})</li>`).join('')}
+                            </ul>
+                        ` : ''}
+                    `;
+                }
+
                 html += `
                     <div class="demande-card">
                         <div class="demande-header">
@@ -1939,17 +2192,7 @@ Connectez-vous a l'application Planning pour traiter cette demande.
                             <span class="demande-status ${statusClass}">${statusLabel}</span>
                         </div>
                         <div class="demande-details">
-                            <p><strong>Type :</strong> ${getTypeLabel(d.type)}</p>
-                            <p><strong>Date :</strong> ${formatDate(d.dateDebut || d.date)}${d.dateFin && d.dateFin !== d.dateDebut ? ' au ' + formatDate(d.dateFin) : ''}</p>
-                            <p><strong>Heures :</strong> ${formatHeures(d.heuresConcernees)}</p>
-                            ${d.type === 'echange' ? `<p><strong>Echange avec :</strong> ${d.echangeAvec}</p>` : ''}
-                            ${d.motif ? `<p><strong>Motif :</strong> ${d.motif}</p>` : ''}
-                            ${d.recoverySlots?.length > 0 ? `
-                                <p><strong>Recuperation :</strong></p>
-                                <ul style="margin-left: 1rem;">
-                                    ${d.recoverySlots.map(s => `<li>${formatDate(s.date)} ${s.periode} (${formatHeures(s.heures)})</li>`).join('')}
-                                </ul>
-                            ` : ''}
+                            ${detailsHtml}
                             ${d.commentaire ? `<p style="margin-top: 0.5rem; font-style: italic;"><strong>Commentaire :</strong> ${d.commentaire}</p>` : ''}
                         </div>
                     </div>
@@ -1981,6 +2224,35 @@ Connectez-vous a l'application Planning pour traiter cette demande.
 
             let html = '';
             demandes.forEach(d => {
+                let detailsHtml = '';
+                if (d.type === 'recuperation') {
+                    // Standalone recovery request
+                    detailsHtml = `
+                        <p><strong>Type :</strong> ${getTypeLabel(d.type)}</p>
+                        <p><strong>Heures dues actuelles :</strong> ${formatHeures(d.heuresDuesAvant)}</p>
+                        <p><strong>Heures a recuperer :</strong> ${formatHeures(d.heuresRecuperees)}</p>
+                        <p><strong>Creneaux proposes :</strong></p>
+                        <ul style="margin-left: 1rem; font-size: 0.85rem;">
+                            ${d.recoverySlots.map(s => `<li>${formatDateShort(s.date)} ${s.periode} (${formatHeures(s.heures)})</li>`).join('')}
+                        </ul>
+                    `;
+                } else {
+                    // Regular absence request
+                    detailsHtml = `
+                        <p><strong>Type :</strong> ${getTypeLabel(d.type)}</p>
+                        <p><strong>Date :</strong> ${formatDate(d.dateDebut || d.date)}${d.dateFin && d.dateFin !== d.dateDebut ? ' au ' + formatDate(d.dateFin) : ''}</p>
+                        <p><strong>Heures :</strong> ${formatHeures(d.heuresConcernees)}</p>
+                        ${d.type === 'echange' ? `<p><strong>Echange avec :</strong> ${d.echangeAvec}</p>` : ''}
+                        ${d.motif ? `<p><strong>Motif :</strong> ${d.motif}</p>` : ''}
+                        ${d.recoverySlots?.length > 0 ? `
+                            <p><strong>Recuperation proposee :</strong></p>
+                            <ul style="margin-left: 1rem; font-size: 0.85rem;">
+                                ${d.recoverySlots.map(s => `<li>${formatDateShort(s.date)} ${s.periode} (${formatHeures(s.heures)})</li>`).join('')}
+                            </ul>
+                        ` : ''}
+                    `;
+                }
+
                 html += `
                     <div class="demande-card" data-id="${d.id}">
                         <div class="demande-header">
@@ -1988,17 +2260,7 @@ Connectez-vous a l'application Planning pour traiter cette demande.
                             <span class="demande-status status-attente">EN ATTENTE</span>
                         </div>
                         <div class="demande-details">
-                            <p><strong>Type :</strong> ${getTypeLabel(d.type)}</p>
-                            <p><strong>Date :</strong> ${formatDate(d.dateDebut || d.date)}${d.dateFin && d.dateFin !== d.dateDebut ? ' au ' + formatDate(d.dateFin) : ''}</p>
-                            <p><strong>Heures :</strong> ${formatHeures(d.heuresConcernees)}</p>
-                            ${d.type === 'echange' ? `<p><strong>Echange avec :</strong> ${d.echangeAvec}</p>` : ''}
-                            ${d.motif ? `<p><strong>Motif :</strong> ${d.motif}</p>` : ''}
-                            ${d.recoverySlots?.length > 0 ? `
-                                <p><strong>Recuperation proposee :</strong></p>
-                                <ul style="margin-left: 1rem; font-size: 0.85rem;">
-                                    ${d.recoverySlots.map(s => `<li>${formatDateShort(s.date)} ${s.periode} (${formatHeures(s.heures)})</li>`).join('')}
-                                </ul>
-                            ` : ''}
+                            ${detailsHtml}
                         </div>
                         <div class="manager-actions">
                             <button class="btn btn-success" onclick="approveDemande(${d.id})">Approuver</button>
@@ -2779,6 +3041,9 @@ Connectez-vous a l'application Planning pour traiter cette demande.
                 currentImpact = null;
                 selectedRecoverySlots = [];
             });
+
+            // Standalone recovery submit
+            document.getElementById('submitStandaloneRecovery').addEventListener('click', submitStandaloneRecovery);
 
             // Vacances form
             document.getElementById('vacancesDateDebut').addEventListener('change', updateVacancesCalc);
