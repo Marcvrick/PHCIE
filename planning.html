@@ -1,0 +1,2845 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Planning Pharmacie Charnal</title>
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
+    <style>
+        :root {
+            --sage: #7C9885;
+            --sage-light: #9DB3A4;
+            --sage-dark: #5F7A68;
+            --teal: #2D5F5D;
+            --teal-dark: #1E4644;
+            --cream: #F5F1E8;
+            --white: #FFFFFF;
+            --black: #1A1A1A;
+            --red: #DC2626;
+            --red-light: #FEE2E2;
+            --orange: #F59E0B;
+            --orange-light: #FEF3C7;
+            --green: #10B981;
+            --green-light: #D1FAE5;
+            --gray: #6B7280;
+            --gray-light: #F3F4F6;
+            --blue: #3B82F6;
+            --blue-light: #DBEAFE;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: var(--cream);
+            color: var(--black);
+            min-height: 100vh;
+        }
+
+        nav {
+            background: var(--teal);
+            padding: 1rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .nav-brand { color: var(--white); font-size: 1.25rem; font-weight: 600; }
+        .nav-links { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+
+        .nav-btn {
+            background: transparent;
+            border: 2px solid rgba(255,255,255,0.3);
+            color: var(--white);
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: all 0.2s;
+        }
+
+        .nav-btn:hover, .nav-btn.active {
+            background: var(--white);
+            color: var(--teal);
+            border-color: var(--white);
+        }
+
+        .nav-btn .badge {
+            background: var(--orange);
+            color: white;
+            border-radius: 10px;
+            padding: 0.1rem 0.4rem;
+            font-size: 0.7rem;
+            margin-left: 0.3rem;
+        }
+
+        .nav-user { display: flex; align-items: center; gap: 0.75rem; }
+        .nav-user select { padding: 0.5rem; border-radius: 6px; border: none; font-size: 0.9rem; }
+
+        main { max-width: 1400px; margin: 0 auto; padding: 1.5rem; }
+        .view { display: none; }
+        .view.active { display: block; }
+
+        .card {
+            background: var(--white);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+
+        .card-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--teal-dark);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .week-toggle { display: flex; gap: 0.5rem; margin-bottom: 1.5rem; }
+
+        .week-btn {
+            flex: 1;
+            padding: 0.75rem 1.5rem;
+            border: 2px solid var(--sage);
+            background: var(--white);
+            color: var(--sage-dark);
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.2s;
+        }
+
+        .week-btn.active { background: var(--sage); color: var(--white); }
+
+        .planning-grid { overflow-x: auto; }
+
+        .planning-table { width: 100%; border-collapse: collapse; font-size: 0.85rem; }
+
+        .planning-table th, .planning-table td {
+            border: 1px solid #E5E7EB;
+            padding: 0.5rem;
+            text-align: center;
+            vertical-align: top;
+        }
+
+        .planning-table th { background: var(--teal); color: var(--white); font-weight: 500; }
+        .planning-table th.day-header { min-width: 140px; }
+
+        .planning-table td.employee-name {
+            background: var(--sage-light);
+            color: var(--teal-dark);
+            font-weight: 600;
+            text-align: left;
+            min-width: 100px;
+        }
+
+        .slot-present { background: var(--green-light); color: var(--green); }
+        .slot-repos { background: var(--gray-light); color: var(--gray); }
+
+        .effectif-row td { font-weight: 600; font-size: 0.8rem; }
+        .effectif-ok { background: var(--green) !important; color: var(--white) !important; }
+        .effectif-limite { background: var(--orange) !important; color: var(--white) !important; }
+        .effectif-critique { background: var(--red) !important; color: var(--white) !important; }
+
+        .form-group { margin-bottom: 1rem; }
+        .form-label { display: block; font-weight: 500; margin-bottom: 0.5rem; color: var(--teal-dark); }
+
+        .form-input, .form-select, .form-textarea {
+            width: 100%;
+            padding: 0.75rem;
+            border: 2px solid #E5E7EB;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.2s;
+        }
+
+        .form-input:focus, .form-select:focus, .form-textarea:focus {
+            outline: none;
+            border-color: var(--sage);
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+
+        .btn {
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            border: none;
+            transition: all 0.2s;
+        }
+
+        .btn-primary { background: var(--sage); color: var(--white); }
+        .btn-primary:hover { background: var(--sage-dark); }
+        .btn-primary:disabled { background: var(--gray-light); color: var(--gray); cursor: not-allowed; }
+        .btn-danger { background: var(--red); color: var(--white); }
+        .btn-success { background: var(--green); color: var(--white); }
+        .btn-secondary { background: var(--gray-light); color: var(--gray); }
+        .btn-gmail { background: #EA4335; color: var(--white); }
+        .btn-blue { background: var(--blue); color: var(--white); }
+
+        .impact-box {
+            border: 2px solid var(--sage);
+            border-radius: 12px;
+            overflow: hidden;
+            margin-top: 1.5rem;
+        }
+
+        .impact-header { background: var(--sage); color: var(--white); padding: 1rem; font-weight: 600; }
+        .impact-section { padding: 1rem; border-bottom: 1px solid #E5E7EB; }
+        .impact-section:last-child { border-bottom: none; }
+        .impact-section-title { font-weight: 600; margin-bottom: 0.75rem; display: flex; align-items: center; gap: 0.5rem; }
+
+        .impact-warning {
+            background: var(--orange-light);
+            border-left: 4px solid var(--orange);
+            padding: 0.75rem;
+            margin: 0.5rem 0;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .impact-critical {
+            background: var(--red-light);
+            border-left: 4px solid var(--red);
+            padding: 0.75rem;
+            margin: 0.5rem 0;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .staff-list { display: grid; gap: 0.5rem; }
+
+        .staff-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem;
+            background: var(--gray-light);
+            border-radius: 6px;
+        }
+
+        .staff-item.absent { background: var(--red-light); color: var(--red); }
+        .staff-item.present { background: var(--green-light); color: var(--green); }
+
+        .recovery-slots { display: grid; gap: 0.75rem; }
+
+        .recovery-slot {
+            border: 2px solid #E5E7EB;
+            border-radius: 8px;
+            padding: 1rem;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .recovery-slot:hover { border-color: var(--sage); }
+        .recovery-slot.selected { border-color: var(--sage); background: var(--green-light); }
+        .recovery-slot.priority { border-color: var(--red); }
+        .recovery-slot.priority .slot-badge { background: var(--red); }
+        .recovery-slot.recommended { border-color: var(--orange); }
+        .recovery-slot.recommended .slot-badge { background: var(--orange); }
+
+        .slot-badge {
+            display: inline-block;
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--white);
+            margin-bottom: 0.5rem;
+        }
+
+        .slot-info { font-size: 0.9rem; color: var(--gray); }
+
+        .engagement-box { background: var(--cream); padding: 1rem; border-radius: 8px; margin: 1rem 0; }
+
+        .engagement-checkbox { display: flex; align-items: flex-start; gap: 0.75rem; }
+        .engagement-checkbox input { width: 20px; height: 20px; margin-top: 0.25rem; }
+
+        .demande-card {
+            border: 1px solid #E5E7EB;
+            border-radius: 8px;
+            padding: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .demande-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 0.75rem;
+        }
+
+        .demande-id { font-weight: 600; color: var(--teal-dark); }
+
+        .demande-status {
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .status-attente { background: var(--orange-light); color: var(--orange); }
+        .status-approuvee { background: var(--green-light); color: var(--green); }
+        .status-refusee { background: var(--red-light); color: var(--red); }
+        .status-echange { background: var(--blue-light); color: var(--blue); }
+
+        .demande-details { font-size: 0.9rem; color: var(--gray); }
+        .demande-details p { margin-bottom: 0.25rem; }
+
+        .manager-actions {
+            display: flex;
+            gap: 0.5rem;
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid #E5E7EB;
+            flex-wrap: wrap;
+        }
+
+        .manager-comment { width: 100%; margin-top: 0.5rem; }
+
+        .tensions-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .tension-day {
+            padding: 0.5rem;
+            border-radius: 8px;
+            text-align: center;
+            font-size: 0.8rem;
+        }
+
+        .tension-day.ok { background: var(--green-light); }
+        .tension-day.limite { background: var(--orange-light); }
+        .tension-day.critique { background: var(--red-light); }
+
+        .export-section { display: flex; gap: 1rem; align-items: center; flex-wrap: wrap; }
+
+        .hidden { display: none !important; }
+
+        /* Login screen */
+        .login-screen {
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: linear-gradient(135deg, var(--teal) 0%, var(--sage-dark) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 2000;
+        }
+
+        .login-box {
+            background: var(--white);
+            padding: 3rem 2rem;
+            border-radius: 16px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            text-align: center;
+            max-width: 360px;
+            width: 90%;
+        }
+
+        .login-box h1 {
+            color: var(--teal-dark);
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .login-box p {
+            color: var(--gray);
+            margin-bottom: 1.5rem;
+            font-size: 0.9rem;
+        }
+
+        .login-box input {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid #E5E7EB;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            text-align: center;
+            letter-spacing: 0.2em;
+            margin-bottom: 1rem;
+        }
+
+        .login-box input:focus {
+            outline: none;
+            border-color: var(--sage);
+        }
+
+        .login-box button {
+            width: 100%;
+            padding: 1rem;
+            background: var(--sage);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .login-box button:hover { background: var(--sage-dark); }
+
+        .login-error {
+            color: var(--red);
+            font-size: 0.9rem;
+            margin-top: 1rem;
+        }
+
+        .loading-overlay {
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: var(--cream);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 3000;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .loading-spinner {
+            width: 40px;
+            height: 40px;
+            border: 4px solid var(--gray-light);
+            border-top-color: var(--teal);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        .hours-summary {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            padding: 0.75rem;
+            background: var(--gray-light);
+            border-radius: 8px;
+            margin-top: 0.5rem;
+        }
+
+        .hours-item { font-size: 0.9rem; }
+        .hours-item strong { color: var(--teal-dark); }
+
+        .modal-overlay {
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0,0,0,0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+        }
+
+        .modal {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 12px;
+            max-width: 400px;
+            width: 90%;
+            text-align: center;
+        }
+
+        .modal h3 { margin-bottom: 1rem; color: var(--teal-dark); }
+        .modal .form-input { margin-bottom: 1rem; }
+        .modal-error { color: var(--red); font-size: 0.9rem; margin-bottom: 1rem; }
+
+        /* Stats cards */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .stat-card {
+            background: var(--white);
+            border-radius: 12px;
+            padding: 1.5rem;
+            text-align: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+
+        .stat-value {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--teal);
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            color: var(--gray);
+            margin-top: 0.25rem;
+        }
+
+        .stat-card.warning .stat-value { color: var(--orange); }
+        .stat-card.danger .stat-value { color: var(--red); }
+        .stat-card.success .stat-value { color: var(--green); }
+
+        /* Hours balance */
+        .balance-card {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem;
+            border: 1px solid #E5E7EB;
+            border-radius: 8px;
+            margin-bottom: 0.5rem;
+        }
+
+        .balance-name { font-weight: 600; color: var(--teal-dark); }
+
+        .balance-hours {
+            font-weight: 600;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+        }
+
+        .balance-positive { background: var(--green-light); color: var(--green); }
+        .balance-negative { background: var(--red-light); color: var(--red); }
+        .balance-neutral { background: var(--gray-light); color: var(--gray); }
+
+        /* Vacances */
+        .vacances-balance-bar {
+            height: 12px;
+            background: var(--gray-light);
+            border-radius: 6px;
+            overflow: hidden;
+            margin-top: 0.5rem;
+        }
+
+        .vacances-balance-fill {
+            height: 100%;
+            background: var(--sage);
+            border-radius: 6px;
+            transition: width 0.3s;
+        }
+
+        .vacances-balance-fill.warning { background: var(--orange); }
+        .vacances-balance-fill.danger { background: var(--red); }
+
+        .vacances-stats {
+            display: flex;
+            gap: 2rem;
+            margin-top: 0.75rem;
+            flex-wrap: wrap;
+        }
+
+        .vacances-stat { text-align: center; }
+        .vacances-stat-value { font-size: 1.5rem; font-weight: 700; color: var(--teal); }
+        .vacances-stat-label { font-size: 0.8rem; color: var(--gray); }
+
+        .vacances-calc {
+            background: var(--blue-light);
+            border-radius: 8px;
+            padding: 0.75rem 1rem;
+            margin: 0.75rem 0;
+            font-size: 0.9rem;
+            color: var(--blue);
+            font-weight: 500;
+        }
+
+        .calendar-nav {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+        }
+
+        .calendar-nav button {
+            background: var(--sage);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            padding: 0.5rem 1rem;
+            cursor: pointer;
+            font-size: 0.9rem;
+        }
+
+        .calendar-nav button:hover { background: var(--sage-dark); }
+        .calendar-nav span { font-weight: 600; font-size: 1.1rem; color: var(--teal-dark); }
+
+        .calendar-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 2px;
+        }
+
+        .calendar-header {
+            background: var(--teal);
+            color: white;
+            padding: 0.5rem;
+            text-align: center;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .calendar-day {
+            min-height: 60px;
+            border: 1px solid #E5E7EB;
+            padding: 0.25rem;
+            font-size: 0.75rem;
+            position: relative;
+        }
+
+        .calendar-day.other-month { background: var(--gray-light); opacity: 0.5; }
+        .calendar-day.today { border: 2px solid var(--teal); }
+        .calendar-day.ferie { background: #FEF3C7; }
+
+        .calendar-day-num { font-weight: 600; font-size: 0.8rem; margin-bottom: 2px; }
+
+        .calendar-event {
+            display: block;
+            padding: 1px 3px;
+            border-radius: 3px;
+            font-size: 0.65rem;
+            margin-bottom: 1px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .calendar-event.chloe { background: #DBEAFE; color: #1D4ED8; }
+        .calendar-event.claire { background: #D1FAE5; color: #065F46; }
+        .calendar-event.sandrine { background: #FDE68A; color: #92400E; }
+
+        .calendar-ferie-label {
+            font-size: 0.6rem;
+            color: var(--orange);
+            font-style: italic;
+        }
+
+        .vacances-manager-card {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+
+        .vacances-employee-card {
+            border: 1px solid #E5E7EB;
+            border-radius: 8px;
+            padding: 1rem;
+        }
+
+        .vacances-employee-card h4 { color: var(--teal-dark); margin-bottom: 0.5rem; }
+
+        .vacances-adjust {
+            display: flex;
+            gap: 0.5rem;
+            margin-top: 0.5rem;
+            align-items: center;
+        }
+
+        .vacances-adjust input {
+            width: 60px;
+            padding: 0.25rem;
+            border: 1px solid #E5E7EB;
+            border-radius: 4px;
+            text-align: center;
+        }
+
+        .vacances-adjust button {
+            padding: 0.25rem 0.5rem;
+            border: none;
+            background: var(--sage);
+            color: white;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.8rem;
+        }
+
+        @media (max-width: 768px) {
+            .nav-container { flex-direction: column; align-items: stretch; }
+            .nav-links { justify-content: center; }
+            .planning-table { font-size: 0.75rem; }
+            .planning-table th, .planning-table td { padding: 0.25rem; }
+            .form-row { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Loading overlay -->
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="loading-spinner"></div>
+        <p style="color: var(--gray);">Connexion a Firebase...</p>
+    </div>
+
+    <!-- Login screen -->
+    <div class="login-screen hidden" id="loginScreen">
+        <div class="login-box">
+            <h1>Planning Pharmacie</h1>
+            <p>Entrez le mot de passe equipe</p>
+            <input type="password" id="staffPassword" placeholder="Mot de passe" autocomplete="off">
+            <button id="loginBtn">Entrer</button>
+            <p class="login-error hidden" id="loginError">Mot de passe incorrect</p>
+        </div>
+    </div>
+
+    <nav class="hidden" id="mainNav">
+        <div class="nav-container">
+            <div class="nav-brand">Pharmacie Charnal - Planning</div>
+            <div class="nav-links">
+                <button class="nav-btn active" data-view="planning">Planning</button>
+                <button class="nav-btn" data-view="demande">Demande Absence</button>
+                <button class="nav-btn" data-view="mes-demandes">Mes demandes<span id="exchangeBadge" class="badge hidden">0</span></button>
+                <button class="nav-btn hidden" data-view="vacances" id="vacancesNavBtn">Vacances<span id="vacancesBadge" class="badge" style="background: var(--sage);">0j</span></button>
+                <button class="nav-btn" data-view="manager">Manager</button>
+            </div>
+            <div class="nav-user">
+                <select id="currentUser">
+                    <option value="Stephanie">Stephanie</option>
+                    <option value="Claire">Claire</option>
+                    <option value="Sandrine">Sandrine</option>
+                    <option value="Titia">Titia</option>
+                    <option value="Leila">Leila</option>
+                    <option value="Chloe">Chloe</option>
+                </select>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <!-- VUE PLANNING -->
+        <div id="view-planning" class="view active">
+            <div class="card">
+                <h2 class="card-title">Planning bi-hebdomadaire</h2>
+                <div class="week-toggle">
+                    <button class="week-btn active" data-week="paire">Semaine Paire</button>
+                    <button class="week-btn" data-week="impaire">Semaine Impaire</button>
+                </div>
+                <div class="planning-grid">
+                    <table class="planning-table" id="planningTable"></table>
+                </div>
+            </div>
+
+            <!-- Compteur d'heures -->
+            <div class="card">
+                <h2 class="card-title">Solde d'heures</h2>
+                <div id="hoursBalance"></div>
+            </div>
+        </div>
+
+        <!-- VUE DEMANDE -->
+        <div id="view-demande" class="view">
+            <div class="card">
+                <h2 class="card-title">Nouvelle demande</h2>
+                <form id="demandeForm">
+                    <div class="form-group">
+                        <label class="form-label">Type de demande</label>
+                        <select class="form-select" id="demandeType" required>
+                            <option value="">-- Selectionnez --</option>
+                            <option value="depart_anticipe">Depart anticipe</option>
+                            <option value="maladie">Maladie</option>
+                            <option value="conge">Conge</option>
+                            <option value="echange">Echange horaires</option>
+                            <option value="autre">Autre</option>
+                        </select>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">Date debut</label>
+                            <input type="date" class="form-input" id="demandeDate" required>
+                        </div>
+                        <div class="form-group hidden" id="dateFinGroup">
+                            <label class="form-label">Date fin</label>
+                            <input type="date" class="form-input" id="demandeDateFin">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group" id="periodeGroup">
+                            <label class="form-label">Periode</label>
+                            <select class="form-select" id="demandePeriode">
+                                <option value="journee">Journee complete</option>
+                                <option value="matin">Matin uniquement</option>
+                                <option value="apresmidi">Apres-midi uniquement</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-row" id="horaireRow">
+                        <div class="form-group hidden" id="heureGroup">
+                            <label class="form-label">Heure de depart (si depart anticipe)</label>
+                            <select class="form-select" id="demandeHeure">
+                                <option value="">-- Journee complete --</option>
+                                <option value="14h">14h</option>
+                                <option value="15h">15h</option>
+                                <option value="16h">16h</option>
+                                <option value="17h">17h</option>
+                                <option value="17h30">17h30</option>
+                                <option value="18h">18h</option>
+                            </select>
+                        </div>
+                        <div class="form-group hidden" id="echangeGroup">
+                            <label class="form-label">Echanger avec</label>
+                            <select class="form-select" id="echangeAvec">
+                                <option value="">-- Choisir un collegue --</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Motif (optionnel)</label>
+                        <textarea class="form-textarea" id="demandeMotif" rows="2" placeholder="Precisez si necessaire..."></textarea>
+                    </div>
+                    <button type="button" class="btn btn-primary" id="analyserImpact">Analyser l'impact</button>
+                </form>
+            </div>
+
+            <div class="impact-box hidden" id="impactAnalysis">
+                <div class="impact-header">RESUME DE VOTRE DEMANDE</div>
+                <div class="impact-section" id="impactResume"></div>
+                <div class="impact-section" id="impactEffectif">
+                    <div class="impact-section-title">IMPACT SUR L'EQUIPE</div>
+                </div>
+                <div class="impact-section" id="impactRecovery">
+                    <div class="impact-section-title">RECUPERATION PROPOSEE</div>
+                    <p style="margin-bottom: 1rem; color: var(--gray);">
+                        Pour compenser vos heures, voici les creneaux ou l'equipe a besoin de renfort :
+                    </p>
+                    <div class="recovery-slots" id="recoverySlots"></div>
+                    <div class="hours-summary" id="hoursSummary"></div>
+                </div>
+                <div class="impact-section">
+                    <div class="engagement-box">
+                        <label class="engagement-checkbox">
+                            <input type="checkbox" id="engagementCheck">
+                            <span>Je m'engage a recuperer sur les creneaux selectionnes</span>
+                        </label>
+                    </div>
+                    <div style="display: flex; gap: 1rem; margin-top: 1rem; flex-wrap: wrap;">
+                        <button class="btn btn-primary" id="submitDemande" disabled>Soumettre la demande</button>
+                        <button class="btn btn-secondary" id="cancelDemande">Annuler</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- VUE MES DEMANDES -->
+        <div id="view-mes-demandes" class="view">
+            <!-- Echanges en attente de reponse -->
+            <div class="card" id="echangesEnAttente">
+                <h2 class="card-title">Demandes d'echange recues</h2>
+                <div id="echangesList"></div>
+            </div>
+
+            <div class="card">
+                <h2 class="card-title">Mes demandes</h2>
+                <div id="mesDemandes"></div>
+            </div>
+        </div>
+
+        <!-- VUE VACANCES -->
+        <div id="view-vacances" class="view">
+            <!-- Solde -->
+            <div class="card">
+                <h2 class="card-title">Mon solde de vacances</h2>
+                <div id="vacancesBalance"></div>
+            </div>
+
+            <!-- Formulaire -->
+            <div class="card">
+                <h2 class="card-title">Demander des vacances</h2>
+                <form id="vacancesForm">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">Date debut</label>
+                            <input type="date" class="form-input" id="vacancesDateDebut" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Date fin</label>
+                            <input type="date" class="form-input" id="vacancesDateFin" required>
+                        </div>
+                    </div>
+                    <div class="vacances-calc hidden" id="vacancesCalc"></div>
+                    <div class="form-group">
+                        <label class="form-label">Motif (optionnel)</label>
+                        <textarea class="form-textarea" id="vacancesMotif" rows="2" placeholder="Precisez si necessaire..."></textarea>
+                    </div>
+                    <button type="button" class="btn btn-primary" id="analyserVacances">Analyser l'impact</button>
+                </form>
+            </div>
+
+            <!-- Impact vacances -->
+            <div class="impact-box hidden" id="vacancesImpact">
+                <div class="impact-header">IMPACT DE VOS VACANCES</div>
+                <div class="impact-section" id="vacancesImpactResume"></div>
+                <div class="impact-section" id="vacancesImpactEffectif">
+                    <div class="impact-section-title">IMPACT SUR L'EQUIPE</div>
+                </div>
+                <div class="impact-section">
+                    <div style="display: flex; gap: 1rem; margin-top: 1rem; flex-wrap: wrap;">
+                        <button class="btn btn-primary" id="submitVacances">Soumettre la demande</button>
+                        <button class="btn btn-secondary" id="cancelVacances">Annuler</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Calendrier equipe -->
+            <div class="card">
+                <h2 class="card-title">Calendrier des vacances</h2>
+                <div class="calendar-nav">
+                    <button id="calPrev">&larr; Mois precedent</button>
+                    <span id="calMonth"></span>
+                    <button id="calNext">Mois suivant &rarr;</button>
+                </div>
+                <div id="vacancesCalendar"></div>
+            </div>
+
+            <!-- Historique -->
+            <div class="card">
+                <h2 class="card-title">Historique de mes vacances</h2>
+                <div id="vacancesHistorique"></div>
+            </div>
+        </div>
+
+        <!-- VUE MANAGER -->
+        <div id="view-manager" class="view">
+            <!-- Stats Dashboard -->
+            <div class="stats-grid" id="statsDashboard"></div>
+
+            <div class="card">
+                <h2 class="card-title">Demandes en attente</h2>
+                <div id="demandesAttente"></div>
+            </div>
+
+            <div class="card">
+                <h2 class="card-title">Solde vacances (Chloe, Claire, Sandrine)</h2>
+                <div class="vacances-manager-card" id="managerVacancesBalance"></div>
+            </div>
+
+            <div class="card">
+                <h2 class="card-title">Solde d'heures par employe</h2>
+                <div id="managerHoursBalance"></div>
+            </div>
+
+            <div class="card">
+                <h2 class="card-title">Tensions d'effectif (4 prochaines semaines)</h2>
+                <div id="tensionsCalendar"></div>
+            </div>
+
+            <div class="card">
+                <h2 class="card-title">Export / Backup</h2>
+                <div class="export-section">
+                    <button class="btn btn-primary" id="exportBtn">Exporter JSON</button>
+                    <input type="file" id="importFile" accept=".json" style="display: none;">
+                    <button class="btn btn-secondary" id="importBtn">Importer</button>
+                    <span id="lastExport" style="color: var(--gray); font-size: 0.9rem;"></span>
+                </div>
+            </div>
+
+            <div class="card">
+                <h2 class="card-title">Historique complet</h2>
+                <div id="historiqueComplet"></div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Password Modal -->
+    <div id="passwordModal" class="modal-overlay hidden">
+        <div class="modal">
+            <h3>Acces Manager</h3>
+            <p style="margin-bottom: 1rem; color: var(--gray);">Entrez le mot de passe pour acceder a l'espace manager.</p>
+            <input type="password" class="form-input" id="managerPassword" placeholder="Mot de passe">
+            <div id="passwordError" class="modal-error hidden">Mot de passe incorrect</div>
+            <div style="display: flex; gap: 0.5rem;">
+                <button class="btn btn-primary" id="validatePassword">Valider</button>
+                <button class="btn btn-secondary" id="cancelPassword">Annuler</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Confirmation Modal -->
+    <div id="confirmModal" class="modal-overlay hidden">
+        <div class="modal">
+            <h3 style="color: var(--green);">Demande soumise !</h3>
+            <p style="margin: 1rem 0; color: var(--gray);">Votre demande a ete enregistree. Voulez-vous notifier le manager par email ?</p>
+            <div style="display: flex; gap: 0.5rem; justify-content: center; flex-wrap: wrap;">
+                <button class="btn btn-gmail" id="notifyGmail">Notifier via Gmail</button>
+                <button class="btn btn-secondary" id="closeConfirm">Fermer</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // ========== FIREBASE CONFIGURATION ==========
+        const firebaseConfig = {
+            apiKey: "AIzaSyAokWRKofzO_BG_fwbzpkfRgutZ26AFYIA",
+            authDomain: "planning-pharmacie.firebaseapp.com",
+            projectId: "planning-pharmacie",
+            storageBucket: "planning-pharmacie.firebasestorage.app",
+            messagingSenderId: "955474618579",
+            appId: "1:955474618579:web:0ba4600b7da46c18adcc26"
+        };
+
+        firebase.initializeApp(firebaseConfig);
+        const db = firebase.firestore();
+
+        // ========== CONFIGURATION ==========
+        const CONFIG = {
+            staffPassword: 'REDACTED_TEAM_PWD',
+            managerPassword: 'REDACTED_TEAM_PWD',
+            managerEmail: 'laure.charnal@gmail.com'
+        };
+
+        let isStaffAuthenticated = false;
+        let isManagerAuthenticated = false;
+        let lastSubmittedDemande = null;
+        let currentImpact = null;
+        let selectedRecoverySlots = [];
+        let demandesCache = [];
+        let vacancesSoldeCache = {};
+
+        // ========== DONNEES DU PLANNING ==========
+        const STAFF = {
+            "Laure": {
+                paire: {
+                    lundi: { am: "9h-12h30", pm: "14h-19h15" },
+                    mardi: { am: "9h-12h30", pm: "14h-19h15" },
+                    mercredi: { am: "9h-12h30", pm: "14h-19h15" },
+                    jeudi: { am: "9h-12h30", pm: "14h-19h15" },
+                    vendredi: { am: "9h-12h30", pm: "14h-19h15" },
+                    samedi: { am: "9h-12h30", pm: null }
+                },
+                impaire: {
+                    lundi: { am: "9h-12h30", pm: "14h-19h15" },
+                    mardi: { am: "9h-12h30", pm: "14h-19h15" },
+                    mercredi: { am: "9h-12h30", pm: "14h-19h15" },
+                    jeudi: { am: "9h-12h30", pm: "14h-19h15" },
+                    vendredi: { am: "9h-12h30", pm: "14h-19h15" },
+                    samedi: { am: "9h-12h30", pm: null }
+                }
+            },
+            "Stephanie": {
+                paire: {
+                    lundi: { am: "9h-12h30", pm: "14h-18h" },
+                    mardi: { am: "9h-12h30", pm: "14h-18h" },
+                    mercredi: { am: null, pm: null },
+                    jeudi: { am: "9h-12h30", pm: "14h-18h" },
+                    vendredi: { am: null, pm: null },
+                    samedi: { am: null, pm: null }
+                },
+                impaire: {
+                    lundi: { am: "9h-12h30", pm: "14h-18h" },
+                    mardi: { am: "9h-12h30", pm: "14h-18h" },
+                    mercredi: { am: null, pm: null },
+                    jeudi: { am: "9h-12h30", pm: "14h-18h" },
+                    vendredi: { am: null, pm: null },
+                    samedi: { am: null, pm: null }
+                }
+            },
+            "Claire": {
+                paire: {
+                    lundi: { am: "9h-12h30", pm: "14h-19h15" },
+                    mardi: { am: "9h-12h30", pm: "14h-19h15" },
+                    mercredi: { am: null, pm: null },
+                    jeudi: { am: "9h-12h30", pm: "14h-19h15" },
+                    vendredi: { am: "9h-12h30", pm: "14h-19h15" },
+                    samedi: { am: null, pm: null }
+                },
+                impaire: {
+                    lundi: { am: "9h-12h30", pm: "14h-19h" },
+                    mardi: { am: "9h-12h30", pm: "14h-19h" },
+                    mercredi: { am: null, pm: null },
+                    jeudi: { am: "9h-12h30", pm: "14h-16h30" },
+                    vendredi: { am: "9h-12h30", pm: "14h-19h" },
+                    samedi: { am: "9h-12h30", pm: null }
+                }
+            },
+            "Sandrine": {
+                paire: {
+                    lundi: { am: "9h-12h30", pm: "14h-17h30" },
+                    mardi: { am: "9h-12h30", pm: "14h-17h30" },
+                    mercredi: { am: "9h-12h30", pm: "14h-17h30" },
+                    jeudi: { am: "9h-12h", pm: null },
+                    vendredi: { am: "9h-12h", pm: "14h-17h15" },
+                    samedi: { am: "9h-12h30", pm: null }
+                },
+                impaire: {
+                    lundi: { am: "9h-12h30", pm: "14h-17h30" },
+                    mardi: { am: "9h-12h30", pm: "14h-17h30" },
+                    mercredi: { am: "9h-12h30", pm: "14h-17h30" },
+                    jeudi: { am: "9h-12h30", pm: "14h-17h30" },
+                    vendredi: { am: "9h-12h30", pm: "14h-17h30" },
+                    samedi: { am: null, pm: null }
+                }
+            },
+            "Titia": {
+                paire: {
+                    lundi: { am: "9h-12h30", pm: "14h-19h15" },
+                    mardi: { am: "9h-12h30", pm: "14h-19h15" },
+                    mercredi: { am: "9h-12h30", pm: "14h-19h15" },
+                    jeudi: { am: "9h-12h30", pm: "14h-19h15" },
+                    vendredi: { am: null, pm: null },
+                    samedi: { am: null, pm: null }
+                },
+                impaire: {
+                    lundi: { am: null, pm: null },
+                    mardi: { am: null, pm: "14h-19h15" },
+                    mercredi: { am: "9h-12h30", pm: "14h-19h15" },
+                    jeudi: { am: "9h-12h30", pm: "14h-19h15" },
+                    vendredi: { am: "9h-12h30", pm: "14h-19h15" },
+                    samedi: { am: "9h-12h30", pm: null }
+                }
+            },
+            "Leila": {
+                paire: {
+                    lundi: { am: null, pm: null },
+                    mardi: { am: null, pm: "14h-19h15" },
+                    mercredi: { am: "9h-12h30", pm: "14h-19h15" },
+                    jeudi: { am: "9h-12h30", pm: "14h-19h15" },
+                    vendredi: { am: "9h-12h30", pm: "14h-19h15" },
+                    samedi: { am: "9h-12h30", pm: null }
+                },
+                impaire: {
+                    lundi: { am: "9h-12h30", pm: "14h-19h15" },
+                    mardi: { am: "9h-12h30", pm: "14h-19h15" },
+                    mercredi: { am: "9h-12h30", pm: "14h-19h15" },
+                    jeudi: { am: "9h-12h30", pm: "14h-19h15" },
+                    vendredi: { am: null, pm: null },
+                    samedi: { am: null, pm: null }
+                }
+            }
+        };
+
+        const JOURS = ['lundi', 'mardi', 'mercredi', 'jeudi', 'vendredi', 'samedi'];
+        const JOURS_DISPLAY = ['Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi'];
+        const SEUILS = { optimal: 4, limite: 3, critique: 3 };
+        const TRANCHES_AM = ['9h', '10h30', '12h'];
+        const TRANCHES_PM = ['14h', '15h15', '16h', '16h30', '17h30', '18h', '18h30'];
+
+        // ========== FONCTIONS UTILITAIRES ==========
+        function parseHeure(str) {
+            if (!str) return null;
+            const match = str.match(/(\d+)h?(\d*)/);
+            if (!match) return null;
+            return parseInt(match[1]) + (match[2] ? parseInt(match[2]) / 60 : 0);
+        }
+
+        function parseCreneauHoraire(creneau) {
+            if (!creneau) return null;
+            const parts = creneau.split('-');
+            if (parts.length !== 2) return null;
+            return { debut: parseHeure(parts[0]), fin: parseHeure(parts[1]) };
+        }
+
+        function estPresentATranche(creneau, trancheStr) {
+            const horaires = parseCreneauHoraire(creneau);
+            if (!horaires) return false;
+            const tranche = parseHeure(trancheStr);
+            return tranche >= horaires.debut && tranche < horaires.fin;
+        }
+
+        function getEffectifATranche(jour, semaine, tranche, absences = []) {
+            let count = 0;
+            const employees = [];
+            for (const [nom, data] of Object.entries(STAFF)) {
+                if (absences.includes(nom)) continue;
+                const planning = data[semaine][jour];
+                if (!planning) continue;
+                const trancheHeure = parseHeure(tranche);
+                const periode = trancheHeure < 13 ? 'am' : 'pm';
+                const creneau = planning[periode];
+                if (estPresentATranche(creneau, tranche)) {
+                    count++;
+                    employees.push(nom);
+                }
+            }
+            return { count, employees };
+        }
+
+        function getEffectifJour(jour, semaine, periode = 'all', absences = []) {
+            const tranches = periode === 'am' ? TRANCHES_AM : periode === 'pm' ? TRANCHES_PM : [...TRANCHES_AM, ...TRANCHES_PM];
+            let minEffectif = Infinity;
+            let criticalTranches = [];
+            for (const tranche of tranches) {
+                const { count } = getEffectifATranche(jour, semaine, tranche, absences);
+                if (count < minEffectif) {
+                    minEffectif = count;
+                    criticalTranches = [tranche];
+                } else if (count === minEffectif) {
+                    criticalTranches.push(tranche);
+                }
+            }
+            return { minEffectif, criticalTranches };
+        }
+
+        function getEffectifClass(count) {
+            if (count >= SEUILS.optimal) return 'effectif-ok';
+            if (count > SEUILS.critique) return 'effectif-limite';
+            return 'effectif-critique';
+        }
+
+        function getSemaineType(date) {
+            const d = new Date(date);
+            const weekNumber = getWeekNumber(d);
+            return weekNumber % 2 === 0 ? 'paire' : 'impaire';
+        }
+
+        function getWeekNumber(d) {
+            d = new Date(Date.UTC(d.getFullYear(), d.getMonth(), d.getDate()));
+            d.setUTCDate(d.getUTCDate() + 4 - (d.getUTCDay() || 7));
+            const yearStart = new Date(Date.UTC(d.getUTCFullYear(), 0, 1));
+            return Math.ceil((((d - yearStart) / 86400000) + 1) / 7);
+        }
+
+        function getJourFromDate(date) {
+            const d = new Date(date);
+            const dayIndex = d.getDay();
+            if (dayIndex === 0) return null;
+            return JOURS[dayIndex - 1];
+        }
+
+        function calculerHeures(employee, jour, semaine, periode) {
+            const planning = STAFF[employee][semaine][jour];
+            if (!planning) return 0;
+            let total = 0;
+            if (periode === 'journee' || periode === 'matin') {
+                const am = parseCreneauHoraire(planning.am);
+                if (am) total += am.fin - am.debut;
+            }
+            if (periode === 'journee' || periode === 'apresmidi') {
+                const pm = parseCreneauHoraire(planning.pm);
+                if (pm) total += pm.fin - pm.debut;
+            }
+            return total;
+        }
+
+        function formatHeures(heures) {
+            const h = Math.floor(heures);
+            const m = Math.round((heures - h) * 60);
+            if (m === 0) return `${h}h`;
+            return `${h}h${m.toString().padStart(2, '0')}`;
+        }
+
+        function formatDate(dateStr) {
+            const d = new Date(dateStr);
+            return d.toLocaleDateString('fr-FR', { weekday: 'long', day: 'numeric', month: 'long' });
+        }
+
+        function formatDateShort(dateStr) {
+            const d = new Date(dateStr);
+            return d.toLocaleDateString('fr-FR', { day: 'numeric', month: 'short' });
+        }
+
+        function getTypeLabel(type) {
+            const labels = {
+                'depart_anticipe': 'Depart anticipe',
+                'maladie': 'Maladie',
+                'conge': 'Conge',
+                'echange': 'Echange horaires',
+                'autre': 'Autre',
+                'vacances': 'Vacances'
+            };
+            return labels[type] || type;
+        }
+
+        function getDatesBetween(start, end) {
+            const dates = [];
+            const current = new Date(start);
+            const endDate = new Date(end);
+            while (current <= endDate) {
+                dates.push(current.toISOString().split('T')[0]);
+                current.setDate(current.getDate() + 1);
+            }
+            return dates;
+        }
+
+        // ========== STOCKAGE FIREBASE ==========
+        function getDemandes() {
+            return demandesCache;
+        }
+
+        function saveDemandes(demandes) {
+            // Not used with Firebase - kept for compatibility
+        }
+
+        async function addDemande(demande) {
+            demande.id = Date.now();
+            demande.status = demande.type === 'echange' ? 'echange_attente' : 'attente';
+            demande.dateCreation = new Date().toISOString();
+            try {
+                await db.collection('demandes').doc(String(demande.id)).set(demande);
+            } catch (e) {
+                console.error('Erreur ajout demande:', e);
+            }
+            return demande;
+        }
+
+        async function updateDemandeStatus(id, status, commentaire = '') {
+            try {
+                await db.collection('demandes').doc(String(id)).update({
+                    status: status,
+                    commentaire: commentaire,
+                    dateTraitement: new Date().toISOString()
+                });
+            } catch (e) {
+                console.error('Erreur update demande:', e);
+            }
+        }
+
+        // ========== COMPTEUR D'HEURES ==========
+        function calculateHoursBalance() {
+            const demandes = getDemandes();
+            const balances = {};
+
+            Object.keys(STAFF).filter(name => name !== 'Laure').forEach(name => {
+                balances[name] = { dues: 0, recuperees: 0 };
+            });
+
+            demandes.forEach(d => {
+                if (d.status === 'approuvee' && d.type !== 'vacances' && balances[d.employee]) {
+                    // Heures dues (absences)
+                    balances[d.employee].dues += d.heuresConcernees || 0;
+
+                    // Heures recuperees
+                    if (d.recoverySlots) {
+                        d.recoverySlots.forEach(slot => {
+                            balances[d.employee].recuperees += slot.heures || 0;
+                        });
+                    }
+                }
+            });
+
+            return balances;
+        }
+
+        function renderHoursBalance(containerId = 'hoursBalance') {
+            const container = document.getElementById(containerId);
+            const balances = calculateHoursBalance();
+
+            let html = '';
+            for (const [name, balance] of Object.entries(balances)) {
+                const solde = balance.recuperees - balance.dues;
+                const balanceClass = solde > 0 ? 'balance-positive' : solde < 0 ? 'balance-negative' : 'balance-neutral';
+                const sign = solde > 0 ? '+' : '';
+
+                html += `
+                    <div class="balance-card">
+                        <span class="balance-name">${name}</span>
+                        <div>
+                            <span style="color: var(--gray); font-size: 0.85rem; margin-right: 1rem;">
+                                Dues: ${formatHeures(balance.dues)} | Recup: ${formatHeures(balance.recuperees)}
+                            </span>
+                            <span class="balance-hours ${balanceClass}">${sign}${formatHeures(Math.abs(solde))}</span>
+                        </div>
+                    </div>
+                `;
+            }
+
+            container.innerHTML = html || '<p style="color: var(--gray);">Aucune donnee</p>';
+        }
+
+        // ========== STATISTIQUES MANAGER ==========
+        function calculateStats() {
+            const demandes = getDemandes();
+            const now = new Date();
+            const thirtyDaysAgo = new Date(now - 30 * 24 * 60 * 60 * 1000);
+
+            // Demandes des 30 derniers jours
+            const recentDemandes = demandes.filter(d => new Date(d.dateCreation) >= thirtyDaysAgo);
+
+            // Taux d'approbation
+            const approvedCount = demandes.filter(d => d.status === 'approuvee').length;
+            const totalProcessed = demandes.filter(d => d.status === 'approuvee' || d.status === 'refusee').length;
+            const approvalRate = totalProcessed > 0 ? Math.round((approvedCount / totalProcessed) * 100) : 0;
+
+            // Heures d'absence totales (approuvees)
+            const totalAbsenceHours = demandes
+                .filter(d => d.status === 'approuvee')
+                .reduce((sum, d) => sum + (d.heuresConcernees || 0), 0);
+
+            // Demandes en attente
+            const pendingCount = demandes.filter(d => d.status === 'attente').length;
+
+            // Jours les plus demandes
+            const dayCount = {};
+            demandes.forEach(d => {
+                if (d.jour) {
+                    dayCount[d.jour] = (dayCount[d.jour] || 0) + 1;
+                }
+            });
+            const mostRequestedDay = Object.entries(dayCount).sort((a, b) => b[1] - a[1])[0];
+
+            return {
+                totalDemandes: demandes.length,
+                recentDemandes: recentDemandes.length,
+                approvalRate,
+                totalAbsenceHours,
+                pendingCount,
+                mostRequestedDay: mostRequestedDay ? mostRequestedDay[0] : '-'
+            };
+        }
+
+        function renderStatsDashboard() {
+            const stats = calculateStats();
+            const container = document.getElementById('statsDashboard');
+
+            container.innerHTML = `
+                <div class="stat-card">
+                    <div class="stat-value">${stats.pendingCount}</div>
+                    <div class="stat-label">Demandes en attente</div>
+                </div>
+                <div class="stat-card ${stats.approvalRate < 50 ? 'warning' : 'success'}">
+                    <div class="stat-value">${stats.approvalRate}%</div>
+                    <div class="stat-label">Taux d'approbation</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">${formatHeures(stats.totalAbsenceHours)}</div>
+                    <div class="stat-label">Heures d'absence (total)</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">${stats.recentDemandes}</div>
+                    <div class="stat-label">Demandes (30 jours)</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value" style="font-size: 1.5rem; text-transform: capitalize;">${stats.mostRequestedDay}</div>
+                    <div class="stat-label">Jour le plus demande</div>
+                </div>
+            `;
+        }
+
+        // ========== RENDU PLANNING ==========
+        function renderPlanning(semaine) {
+            const table = document.getElementById('planningTable');
+            let html = '<thead><tr><th>Employe</th>';
+            for (const jour of JOURS_DISPLAY) {
+                html += `<th class="day-header">${jour}<br><small>AM / PM</small></th>`;
+            }
+            html += '</tr></thead><tbody>';
+
+            for (const [nom, data] of Object.entries(STAFF)) {
+                html += `<tr><td class="employee-name">${nom}</td>`;
+                for (const jour of JOURS) {
+                    const planning = data[semaine][jour];
+                    const am = planning?.am || 'Repos';
+                    const pm = planning?.pm || 'Repos';
+                    const amClass = am === 'Repos' || !am ? 'slot-repos' : 'slot-present';
+                    const pmClass = pm === 'Repos' || !pm ? 'slot-repos' : 'slot-present';
+                    html += `<td>
+                        <div class="${amClass}">${am || 'Repos'}</div>
+                        <div class="${pmClass}">${pm || '-'}</div>
+                    </td>`;
+                }
+                html += '</tr>';
+            }
+
+            html += '<tr class="effectif-row"><td class="employee-name">Effectif min</td>';
+            for (const jour of JOURS) {
+                const amEffectif = getEffectifJour(jour, semaine, 'am');
+                const pmEffectif = jour !== 'samedi' ? getEffectifJour(jour, semaine, 'pm') : { minEffectif: '-' };
+                const amClass = getEffectifClass(amEffectif.minEffectif);
+                const pmClass = jour !== 'samedi' ? getEffectifClass(pmEffectif.minEffectif) : '';
+                html += `<td>
+                    <div class="${amClass}">${amEffectif.minEffectif} pers.</div>
+                    <div class="${pmClass}">${jour !== 'samedi' ? pmEffectif.minEffectif + ' pers.' : 'Ferme'}</div>
+                </td>`;
+            }
+            html += '</tr></tbody>';
+            table.innerHTML = html;
+        }
+
+        // ========== GESTION DU FORMULAIRE ==========
+        function handleTypeChange() {
+            const type = document.getElementById('demandeType').value;
+            const dateFinGroup = document.getElementById('dateFinGroup');
+            const heureGroup = document.getElementById('heureGroup');
+            const echangeGroup = document.getElementById('echangeGroup');
+            const periodeGroup = document.getElementById('periodeGroup');
+
+            // Reset
+            dateFinGroup.classList.add('hidden');
+            heureGroup.classList.add('hidden');
+            echangeGroup.classList.add('hidden');
+            periodeGroup.classList.remove('hidden');
+
+            if (type === 'conge' || type === 'maladie') {
+                dateFinGroup.classList.remove('hidden');
+            } else if (type === 'depart_anticipe') {
+                heureGroup.classList.remove('hidden');
+            } else if (type === 'echange') {
+                echangeGroup.classList.remove('hidden');
+                populateEchangeSelect();
+            }
+        }
+
+        function populateEchangeSelect() {
+            const currentUser = document.getElementById('currentUser').value;
+            const select = document.getElementById('echangeAvec');
+            select.innerHTML = '<option value="">-- Choisir un collegue --</option>';
+
+            Object.keys(STAFF).forEach(name => {
+                if (name !== currentUser) {
+                    select.innerHTML += `<option value="${name}">${name}</option>`;
+                }
+            });
+        }
+
+        // ========== ANALYSE D'IMPACT ==========
+        function analyserImpact() {
+            const employee = document.getElementById('currentUser').value;
+            const type = document.getElementById('demandeType').value;
+            const dateDebut = document.getElementById('demandeDate').value;
+            const dateFin = document.getElementById('demandeDateFin').value;
+            const heure = document.getElementById('demandeHeure').value;
+            const periode = document.getElementById('demandePeriode').value;
+            const motif = document.getElementById('demandeMotif').value;
+            const echangeAvec = document.getElementById('echangeAvec').value;
+
+            if (!type || !dateDebut) {
+                alert('Veuillez remplir le type et la date');
+                return;
+            }
+
+            if (type === 'echange' && !echangeAvec) {
+                alert('Veuillez selectionner un collegue pour l\'echange');
+                return;
+            }
+
+            // Calculer les dates concernees
+            const dates = (type === 'conge' || type === 'maladie') && dateFin
+                ? getDatesBetween(dateDebut, dateFin)
+                : [dateDebut];
+
+            // Calculer les heures totales
+            let heuresConcernees = 0;
+            const joursDetails = [];
+
+            for (const date of dates) {
+                const jour = getJourFromDate(date);
+                if (!jour) continue; // Skip dimanche
+
+                const semaine = getSemaineType(date);
+                const planning = STAFF[employee][semaine][jour];
+
+                if (!planning?.am && !planning?.pm) continue; // Skip repos
+
+                let heuresJour = 0;
+                if (type === 'depart_anticipe' && heure) {
+                    const pmHoraires = parseCreneauHoraire(planning.pm);
+                    if (pmHoraires) {
+                        const heureDepart = parseHeure(heure);
+                        heuresJour = pmHoraires.fin - heureDepart;
+                    }
+                } else {
+                    heuresJour = calculerHeures(employee, jour, semaine, periode);
+                }
+
+                heuresConcernees += heuresJour;
+                joursDetails.push({ date, jour, semaine, heures: heuresJour });
+            }
+
+            if (heuresConcernees === 0) {
+                alert('Aucune heure de travail concernee pour les dates selectionnees');
+                return;
+            }
+
+            currentImpact = {
+                employee,
+                type,
+                dateDebut,
+                dateFin: dateFin || dateDebut,
+                dates,
+                joursDetails,
+                periode,
+                heure,
+                motif,
+                heuresConcernees,
+                echangeAvec
+            };
+
+            // Afficher le resume
+            let resumeHtml = `
+                <p><strong>Employe :</strong> ${employee}</p>
+                <p><strong>Demande :</strong> ${getTypeLabel(type)}</p>
+                <p><strong>Periode :</strong> ${formatDate(dateDebut)}${dateFin && dateFin !== dateDebut ? ' au ' + formatDate(dateFin) : ''}</p>
+                <p><strong>Heures concernees :</strong> ${formatHeures(heuresConcernees)} (${dates.length} jour${dates.length > 1 ? 's' : ''})</p>
+            `;
+
+            if (type === 'echange') {
+                resumeHtml += `<p><strong>Echange avec :</strong> ${echangeAvec}</p>`;
+            }
+
+            document.getElementById('impactResume').innerHTML = resumeHtml;
+
+            // Analyser l'effectif
+            renderImpactEffectif(joursDetails, employee, periode, heure);
+
+            // Proposer recuperation (sauf pour echange)
+            const recoverySection = document.getElementById('impactRecovery');
+            if (type === 'echange') {
+                recoverySection.classList.add('hidden');
+                document.getElementById('engagementCheck').checked = true;
+                document.getElementById('submitDemande').disabled = false;
+            } else {
+                recoverySection.classList.remove('hidden');
+                renderRecoverySlots(employee, heuresConcernees, dateDebut);
+                selectedRecoverySlots = [];
+                updateHoursSummary();
+            }
+
+            document.getElementById('impactAnalysis').classList.remove('hidden');
+        }
+
+        function renderImpactEffectif(joursDetails, absentEmployee, periode, heureDepart) {
+            const container = document.getElementById('impactEffectif');
+            let html = '<div class="impact-section-title">IMPACT SUR L\'EQUIPE</div>';
+
+            let hasWarning = false;
+            let hasCritical = false;
+
+            for (const detail of joursDetails.slice(0, 3)) { // Limiter a 3 jours pour l'affichage
+                const tranches = periode === 'matin' ? TRANCHES_AM : TRANCHES_PM;
+
+                html += `<div style="margin: 0.5rem 0; padding: 0.5rem; background: var(--gray-light); border-radius: 6px;">`;
+                html += `<strong>${formatDateShort(detail.date)} (${detail.jour})</strong> - `;
+
+                for (const tranche of tranches.slice(0, 4)) {
+                    const { count } = getEffectifATranche(detail.jour, detail.semaine, tranche, [absentEmployee]);
+                    const className = getEffectifClass(count);
+                    if (count <= SEUILS.critique) hasCritical = true;
+                    else if (count <= SEUILS.limite) hasWarning = true;
+                    html += `<span class="${className}" style="display: inline-block; padding: 0.125rem 0.4rem; border-radius: 4px; margin: 0.1rem; font-size: 0.75rem;">${tranche}: ${count}pers</span>`;
+                }
+                html += '</div>';
+            }
+
+            if (joursDetails.length > 3) {
+                html += `<p style="color: var(--gray); font-size: 0.85rem;">... et ${joursDetails.length - 3} autres jours</p>`;
+            }
+
+            if (hasCritical) {
+                html += `<div class="impact-critical"><strong>ATTENTION :</strong> Effectif CRITIQUE sur certains creneaux.</div>`;
+            } else if (hasWarning) {
+                html += `<div class="impact-warning"><strong>ATTENTION :</strong> Effectif LIMITE sur certains creneaux.</div>`;
+            }
+
+            container.innerHTML = html;
+        }
+
+        function renderRecoverySlots(employee, heuresARecuperer, dateDebut) {
+            const container = document.getElementById('recoverySlots');
+            const slots = [];
+            const startDate = new Date(dateDebut);
+
+            for (let i = 1; i <= 14; i++) {
+                const checkDate = new Date(startDate);
+                checkDate.setDate(startDate.getDate() + i);
+                const jour = getJourFromDate(checkDate);
+                if (!jour) continue;
+
+                const semaine = getSemaineType(checkDate);
+                const planning = STAFF[employee][semaine][jour];
+
+                if (!planning?.am && !planning?.pm) {
+                    const dateStr = checkDate.toISOString().split('T')[0];
+                    const amEffectif = getEffectifJour(jour, semaine, 'am');
+
+                    if (amEffectif.minEffectif <= SEUILS.critique) {
+                        slots.push({ date: dateStr, jour, periode: 'matin', heures: 3.5, effectif: amEffectif.minEffectif, priority: 'priority' });
+                    } else if (amEffectif.minEffectif <= SEUILS.limite) {
+                        slots.push({ date: dateStr, jour, periode: 'matin', heures: 3.5, effectif: amEffectif.minEffectif, priority: 'recommended' });
+                    }
+
+                    if (jour !== 'samedi') {
+                        // Heures coeur (14h-17h30) : seuils normaux
+                        const TRANCHES_PM_COEUR = ['14h', '15h15', '16h', '16h30'];
+                        let minCoeur = Infinity;
+                        for (const tr of TRANCHES_PM_COEUR) {
+                            const { count } = getEffectifATranche(jour, semaine, tr);
+                            if (count < minCoeur) minCoeur = count;
+                        }
+                        if (minCoeur <= SEUILS.critique) {
+                            slots.push({ date: dateStr, jour, periode: 'apres-midi (coeur)', heures: 3.5, effectif: minCoeur, priority: 'priority' });
+                        } else if (minCoeur <= SEUILS.limite) {
+                            slots.push({ date: dateStr, jour, periode: 'apres-midi (coeur)', heures: 3.5, effectif: minCoeur, priority: 'recommended' });
+                        }
+
+                        // Fin de journee (17h30+) : seuil a 2 minimum
+                        const TRANCHES_PM_FIN = ['17h30', '18h', '18h30'];
+                        let minFin = Infinity;
+                        for (const tr of TRANCHES_PM_FIN) {
+                            const { count } = getEffectifATranche(jour, semaine, tr);
+                            if (count < minFin) minFin = count;
+                        }
+                        if (minFin < 2) {
+                            slots.push({ date: dateStr, jour, periode: 'fin de journee (17h30+)', heures: 1.75, effectif: minFin, priority: 'priority' });
+                        }
+                    }
+                }
+            }
+
+            slots.sort((a, b) => {
+                const priorityOrder = { priority: 0, recommended: 1, normal: 2 };
+                return priorityOrder[a.priority] - priorityOrder[b.priority];
+            });
+
+            let html = '';
+            if (slots.length === 0) {
+                html = '<p style="color: var(--gray);">Aucun creneau de recuperation disponible.</p>';
+            } else {
+                const prioritySlots = slots.filter(s => s.priority === 'priority');
+                const recommendedSlots = slots.filter(s => s.priority === 'recommended');
+
+                if (prioritySlots.length > 0) {
+                    html += '<p style="margin-bottom: 0.5rem; font-weight: 600; color: var(--red);">PRIORITAIRE :</p>';
+                    prioritySlots.forEach(slot => { html += renderSlot(slot); });
+                }
+                if (recommendedSlots.length > 0) {
+                    html += '<p style="margin: 1rem 0 0.5rem; font-weight: 600; color: var(--orange);">RECOMMANDE :</p>';
+                    recommendedSlots.forEach(slot => { html += renderSlot(slot); });
+                }
+            }
+
+            container.innerHTML = html;
+            document.querySelectorAll('.recovery-slot').forEach(el => {
+                el.addEventListener('click', () => toggleRecoverySlot(el));
+            });
+        }
+
+        function renderSlot(slot) {
+            const badgeText = slot.priority === 'priority' ? 'PRIORITAIRE' : slot.priority === 'recommended' ? 'RECOMMANDE' : '';
+            return `
+                <div class="recovery-slot ${slot.priority}" data-date="${slot.date}" data-periode="${slot.periode}" data-heures="${slot.heures}">
+                    ${badgeText ? `<span class="slot-badge">${badgeText}</span>` : ''}
+                    <div><strong>${formatDate(slot.date)} - ${slot.periode}</strong></div>
+                    <div class="slot-info">${formatHeures(slot.heures)} - Effectif actuel : ${slot.effectif} pers.</div>
+                </div>
+            `;
+        }
+
+        function toggleRecoverySlot(el) {
+            const date = el.dataset.date;
+            const periode = el.dataset.periode;
+            const heures = parseFloat(el.dataset.heures);
+            const idx = selectedRecoverySlots.findIndex(s => s.date === date && s.periode === periode);
+
+            if (idx !== -1) {
+                selectedRecoverySlots.splice(idx, 1);
+                el.classList.remove('selected');
+            } else {
+                selectedRecoverySlots.push({ date, periode, heures });
+                el.classList.add('selected');
+            }
+            updateHoursSummary();
+        }
+
+        function updateHoursSummary() {
+            const totalRecup = selectedRecoverySlots.reduce((sum, s) => sum + s.heures, 0);
+            const heuresARecuperer = currentImpact?.heuresConcernees || 0;
+            const reste = heuresARecuperer - totalRecup;
+
+            document.getElementById('hoursSummary').innerHTML = `
+                <div class="hours-item"><strong>A recuperer :</strong> ${formatHeures(heuresARecuperer)}</div>
+                <div class="hours-item"><strong>Selectionne :</strong> ${formatHeures(totalRecup)}</div>
+                <div class="hours-item" style="color: ${reste > 0 ? 'var(--orange)' : 'var(--green)'};">
+                    <strong>${reste > 0 ? 'Solde du : ' + formatHeures(reste) : 'Heures couvertes'}</strong>
+                </div>
+            `;
+
+            const engagementChecked = document.getElementById('engagementCheck').checked;
+            document.getElementById('submitDemande').disabled = !engagementChecked;
+        }
+
+        // ========== SOUMISSION ==========
+        function submitDemande() {
+            if (!currentImpact) return;
+
+            const demande = {
+                ...currentImpact,
+                date: currentImpact.dateDebut,
+                jour: currentImpact.joursDetails[0]?.jour,
+                semaine: currentImpact.joursDetails[0]?.semaine,
+                recoverySlots: selectedRecoverySlots
+            };
+
+            const savedDemande = addDemande(demande);
+            lastSubmittedDemande = savedDemande;
+
+            document.getElementById('demandeForm').reset();
+            document.getElementById('impactAnalysis').classList.add('hidden');
+            document.getElementById('engagementCheck').checked = false;
+            currentImpact = null;
+            selectedRecoverySlots = [];
+
+            if (demande.type === 'echange') {
+                alert('Demande d\'echange envoyee a ' + demande.echangeAvec + ' !');
+                showView('mes-demandes');
+            } else {
+                document.getElementById('confirmModal').classList.remove('hidden');
+            }
+        }
+
+        function generateGmailLink(demande) {
+            const subject = encodeURIComponent(`[Planning] Nouvelle demande de ${demande.employee}`);
+            const recoveryText = demande.recoverySlots?.length > 0
+                ? demande.recoverySlots.map(s => `- ${formatDate(s.date)} ${s.periode} (${formatHeures(s.heures)})`).join('\n')
+                : 'Aucune';
+
+            const body = encodeURIComponent(
+`Bonjour,
+
+Une nouvelle demande de planning a ete soumise.
+
+DETAILS
+-------
+Employe : ${demande.employee}
+Type : ${getTypeLabel(demande.type)}
+Date : ${formatDate(demande.dateDebut)}${demande.dateFin !== demande.dateDebut ? ' au ' + formatDate(demande.dateFin) : ''}
+Heures : ${formatHeures(demande.heuresConcernees)}
+${demande.motif ? `Motif : ${demande.motif}` : ''}
+
+RECUPERATION
+------------
+${recoveryText}
+
+---
+Connectez-vous a l'application Planning pour traiter cette demande.
+`);
+
+            return `https://mail.google.com/mail/?view=cm&fs=1&to=${CONFIG.managerEmail}&su=${subject}&body=${body}`;
+        }
+
+        function notifyViaGmail() {
+            if (lastSubmittedDemande) {
+                const link = lastSubmittedDemande.type === 'vacances'
+                    ? generateVacancesGmailLink(lastSubmittedDemande)
+                    : generateGmailLink(lastSubmittedDemande);
+                window.open(link, '_blank');
+            }
+            closeConfirmModal();
+        }
+
+        function closeConfirmModal() {
+            document.getElementById('confirmModal').classList.add('hidden');
+            lastSubmittedDemande = null;
+            showView('mes-demandes');
+        }
+
+        // ========== ECHANGES ==========
+        function renderEchanges() {
+            const currentUser = document.getElementById('currentUser').value;
+            const demandes = getDemandes();
+            const echangesRecus = demandes.filter(d =>
+                d.type === 'echange' &&
+                d.echangeAvec === currentUser &&
+                d.status === 'echange_attente'
+            );
+
+            const container = document.getElementById('echangesList');
+            const card = document.getElementById('echangesEnAttente');
+
+            if (echangesRecus.length === 0) {
+                card.classList.add('hidden');
+                return;
+            }
+
+            card.classList.remove('hidden');
+            let html = '';
+
+            echangesRecus.forEach(d => {
+                html += `
+                    <div class="demande-card">
+                        <div class="demande-header">
+                            <span class="demande-id">${d.employee} vous propose un echange</span>
+                            <span class="demande-status status-echange">EN ATTENTE</span>
+                        </div>
+                        <div class="demande-details">
+                            <p><strong>Date :</strong> ${formatDate(d.dateDebut)}</p>
+                            <p><strong>Heures :</strong> ${formatHeures(d.heuresConcernees)}</p>
+                            ${d.motif ? `<p><strong>Motif :</strong> ${d.motif}</p>` : ''}
+                        </div>
+                        <div class="manager-actions">
+                            <button class="btn btn-success" onclick="acceptEchange(${d.id})">Accepter</button>
+                            <button class="btn btn-danger" onclick="refuseEchange(${d.id})">Refuser</button>
+                        </div>
+                    </div>
+                `;
+            });
+
+            container.innerHTML = html;
+
+            // Update badge
+            const badge = document.getElementById('exchangeBadge');
+            if (echangesRecus.length > 0) {
+                badge.textContent = echangesRecus.length;
+                badge.classList.remove('hidden');
+            } else {
+                badge.classList.add('hidden');
+            }
+        }
+
+        async function acceptEchange(id) {
+            await updateDemandeStatus(id, 'attente'); // Passe en attente de validation manager
+            alert('Echange accepte ! La demande est transmise au manager pour validation.');
+        }
+
+        async function refuseEchange(id) {
+            await updateDemandeStatus(id, 'echange_refuse');
+            alert('Echange refuse.');
+        }
+
+        // ========== RENDU MES DEMANDES ==========
+        function renderMesDemandes() {
+            renderEchanges();
+
+            const container = document.getElementById('mesDemandes');
+            const employee = document.getElementById('currentUser').value;
+            const demandes = getDemandes().filter(d => d.employee === employee);
+
+            if (demandes.length === 0) {
+                container.innerHTML = '<p style="color: var(--gray);">Aucune demande pour le moment.</p>';
+                return;
+            }
+
+            let html = '';
+            demandes.sort((a, b) => b.id - a.id);
+
+            demandes.forEach(d => {
+                let statusClass, statusLabel;
+                switch(d.status) {
+                    case 'attente': statusClass = 'status-attente'; statusLabel = 'EN ATTENTE'; break;
+                    case 'approuvee': statusClass = 'status-approuvee'; statusLabel = 'APPROUVEE'; break;
+                    case 'refusee': statusClass = 'status-refusee'; statusLabel = 'REFUSEE'; break;
+                    case 'echange_attente': statusClass = 'status-echange'; statusLabel = 'ECHANGE EN ATTENTE'; break;
+                    case 'echange_refuse': statusClass = 'status-refusee'; statusLabel = 'ECHANGE REFUSE'; break;
+                    default: statusClass = 'status-attente'; statusLabel = d.status.toUpperCase();
+                }
+
+                html += `
+                    <div class="demande-card">
+                        <div class="demande-header">
+                            <span class="demande-id">${d.employee} - Demande #${d.id}</span>
+                            <span class="demande-status ${statusClass}">${statusLabel}</span>
+                        </div>
+                        <div class="demande-details">
+                            <p><strong>Type :</strong> ${getTypeLabel(d.type)}</p>
+                            <p><strong>Date :</strong> ${formatDate(d.dateDebut || d.date)}${d.dateFin && d.dateFin !== d.dateDebut ? ' au ' + formatDate(d.dateFin) : ''}</p>
+                            <p><strong>Heures :</strong> ${formatHeures(d.heuresConcernees)}</p>
+                            ${d.type === 'echange' ? `<p><strong>Echange avec :</strong> ${d.echangeAvec}</p>` : ''}
+                            ${d.motif ? `<p><strong>Motif :</strong> ${d.motif}</p>` : ''}
+                            ${d.recoverySlots?.length > 0 ? `
+                                <p><strong>Recuperation :</strong></p>
+                                <ul style="margin-left: 1rem;">
+                                    ${d.recoverySlots.map(s => `<li>${formatDate(s.date)} ${s.periode} (${formatHeures(s.heures)})</li>`).join('')}
+                                </ul>
+                            ` : ''}
+                            ${d.commentaire ? `<p style="margin-top: 0.5rem; font-style: italic;"><strong>Commentaire :</strong> ${d.commentaire}</p>` : ''}
+                        </div>
+                    </div>
+                `;
+            });
+
+            container.innerHTML = html;
+        }
+
+        // ========== RENDU MANAGER ==========
+        function renderManager() {
+            renderStatsDashboard();
+            renderDemandesAttente();
+            renderManagerVacancesBalance();
+            renderHoursBalance('managerHoursBalance');
+            renderTensionsCalendar();
+            renderHistoriqueComplet();
+            updateLastExport();
+        }
+
+        function renderDemandesAttente() {
+            const container = document.getElementById('demandesAttente');
+            const demandes = getDemandes().filter(d => d.status === 'attente');
+
+            if (demandes.length === 0) {
+                container.innerHTML = '<p style="color: var(--gray);">Aucune demande en attente.</p>';
+                return;
+            }
+
+            let html = '';
+            demandes.forEach(d => {
+                html += `
+                    <div class="demande-card" data-id="${d.id}">
+                        <div class="demande-header">
+                            <span class="demande-id">${d.employee} - #${d.id}</span>
+                            <span class="demande-status status-attente">EN ATTENTE</span>
+                        </div>
+                        <div class="demande-details">
+                            <p><strong>Type :</strong> ${getTypeLabel(d.type)}</p>
+                            <p><strong>Date :</strong> ${formatDate(d.dateDebut || d.date)}${d.dateFin && d.dateFin !== d.dateDebut ? ' au ' + formatDate(d.dateFin) : ''}</p>
+                            <p><strong>Heures :</strong> ${formatHeures(d.heuresConcernees)}</p>
+                            ${d.type === 'echange' ? `<p><strong>Echange avec :</strong> ${d.echangeAvec}</p>` : ''}
+                            ${d.motif ? `<p><strong>Motif :</strong> ${d.motif}</p>` : ''}
+                            ${d.recoverySlots?.length > 0 ? `
+                                <p><strong>Recuperation proposee :</strong></p>
+                                <ul style="margin-left: 1rem; font-size: 0.85rem;">
+                                    ${d.recoverySlots.map(s => `<li>${formatDateShort(s.date)} ${s.periode} (${formatHeures(s.heures)})</li>`).join('')}
+                                </ul>
+                            ` : ''}
+                        </div>
+                        <div class="manager-actions">
+                            <button class="btn btn-success" onclick="approveDemande(${d.id})">Approuver</button>
+                            <button class="btn btn-danger" onclick="showRefuseForm(${d.id})">Refuser</button>
+                        </div>
+                        <div class="manager-comment hidden" id="refuse-form-${d.id}">
+                            <textarea class="form-textarea" id="refuse-comment-${d.id}" placeholder="Motif du refus..." rows="2"></textarea>
+                            <button class="btn btn-danger" style="margin-top: 0.5rem;" onclick="refuseDemande(${d.id})">Confirmer</button>
+                        </div>
+                    </div>
+                `;
+            });
+
+            container.innerHTML = html;
+        }
+
+        async function approveDemande(id) {
+            const demandes = getDemandes();
+            const d = demandes.find(x => x.id === id);
+            await updateDemandeStatus(id, 'approuvee');
+            // Deduct vacation days if it's a vacances request
+            if (d && d.type === 'vacances') {
+                const solde = getVacancesSolde();
+                if (solde[d.employee]) {
+                    solde[d.employee].pris += d.joursOuvrables || 0;
+                    await saveVacancesSolde(solde);
+                }
+            }
+        }
+
+        function showRefuseForm(id) {
+            document.getElementById(`refuse-form-${id}`).classList.remove('hidden');
+        }
+
+        async function refuseDemande(id) {
+            const comment = document.getElementById(`refuse-comment-${id}`).value;
+            await updateDemandeStatus(id, 'refusee', comment);
+        }
+
+        function renderTensionsCalendar() {
+            const container = document.getElementById('tensionsCalendar');
+            let html = '<div style="display: grid; grid-template-columns: repeat(7, 1fr); gap: 0.25rem; text-align: center; margin-bottom: 0.5rem;">';
+            ['Lun', 'Mar', 'Mer', 'Jeu', 'Ven', 'Sam', 'Dim'].forEach(day => {
+                html += `<div style="font-weight: 600; padding: 0.5rem;">${day}</div>`;
+            });
+            html += '</div><div class="tensions-grid">';
+
+            const today = new Date();
+            const startOfWeek = new Date(today);
+            startOfWeek.setDate(today.getDate() - today.getDay() + 1);
+
+            for (let week = 0; week < 4; week++) {
+                for (let day = 0; day < 7; day++) {
+                    const checkDate = new Date(startOfWeek);
+                    checkDate.setDate(startOfWeek.getDate() + (week * 7) + day);
+                    const jour = getJourFromDate(checkDate);
+                    const dayNum = checkDate.getDate();
+
+                    if (!jour) {
+                        html += `<div class="tension-day" style="background: var(--gray-light);">${dayNum}<br><small>Ferme</small></div>`;
+                    } else {
+                        const semaine = getSemaineType(checkDate);
+                        const effectif = getEffectifJour(jour, semaine);
+                        let className = 'ok';
+                        if (effectif.minEffectif <= SEUILS.critique) className = 'critique';
+                        else if (effectif.minEffectif <= SEUILS.limite) className = 'limite';
+                        html += `<div class="tension-day ${className}">${dayNum}<br><small>${effectif.minEffectif}p</small></div>`;
+                    }
+                }
+            }
+
+            html += '</div>';
+            html += '<div style="margin-top: 1rem; font-size: 0.8rem; display: flex; gap: 1rem;">';
+            html += '<span><span style="display: inline-block; width: 12px; height: 12px; background: var(--green-light); border-radius: 2px;"></span> OK (4+)</span>';
+            html += '<span><span style="display: inline-block; width: 12px; height: 12px; background: var(--orange-light); border-radius: 2px;"></span> Limite (3)</span>';
+            html += '<span><span style="display: inline-block; width: 12px; height: 12px; background: var(--red-light); border-radius: 2px;"></span> Critique (≤2)</span>';
+            html += '</div>';
+            container.innerHTML = html;
+        }
+
+        function renderHistoriqueComplet() {
+            const container = document.getElementById('historiqueComplet');
+            const demandes = getDemandes();
+
+            if (demandes.length === 0) {
+                container.innerHTML = '<p style="color: var(--gray);">Aucune demande.</p>';
+                return;
+            }
+
+            let html = '<table style="width: 100%; border-collapse: collapse; font-size: 0.85rem;">';
+            html += '<thead><tr style="background: var(--gray-light);">';
+            html += '<th style="padding: 0.5rem; text-align: left;">Employe</th>';
+            html += '<th style="padding: 0.5rem; text-align: left;">Type</th>';
+            html += '<th style="padding: 0.5rem; text-align: left;">Date</th>';
+            html += '<th style="padding: 0.5rem; text-align: left;">Heures</th>';
+            html += '<th style="padding: 0.5rem; text-align: left;">Statut</th>';
+            html += '</tr></thead><tbody>';
+
+            demandes.sort((a, b) => b.id - a.id);
+            demandes.forEach(d => {
+                const statusClass = d.status === 'attente' ? 'status-attente' : d.status === 'approuvee' ? 'status-approuvee' : 'status-refusee';
+                html += `<tr style="border-bottom: 1px solid #E5E7EB;">`;
+                html += `<td style="padding: 0.5rem;">${d.employee}</td>`;
+                html += `<td style="padding: 0.5rem;">${getTypeLabel(d.type)}</td>`;
+                html += `<td style="padding: 0.5rem;">${formatDateShort(d.dateDebut || d.date)}</td>`;
+                html += `<td style="padding: 0.5rem;">${formatHeures(d.heuresConcernees)}</td>`;
+                html += `<td style="padding: 0.5rem;"><span class="demande-status ${statusClass}">${d.status.toUpperCase()}</span></td>`;
+                html += `</tr>`;
+            });
+
+            html += '</tbody></table>';
+            container.innerHTML = html;
+        }
+
+        // ========== EXPORT / IMPORT ==========
+        function exportData() {
+            const data = {
+                demandes: getDemandes(),
+                vacancesSolde: getVacancesSolde(),
+                exportDate: new Date().toISOString()
+            };
+            const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `planning-export-${new Date().toISOString().split('T')[0]}.json`;
+            a.click();
+        }
+
+        async function importData(file) {
+            const reader = new FileReader();
+            reader.onload = async (e) => {
+                try {
+                    const data = JSON.parse(e.target.result);
+                    if (data.demandes) {
+                        // Import demandes to Firestore
+                        const batch = db.batch();
+                        data.demandes.forEach(d => {
+                            const ref = db.collection('demandes').doc(String(d.id));
+                            batch.set(ref, d);
+                        });
+                        await batch.commit();
+                    }
+                    if (data.vacancesSolde) {
+                        await saveVacancesSolde(data.vacancesSolde);
+                    }
+                    alert('Import reussi !');
+                    renderManager();
+                } catch (err) {
+                    alert('Erreur: ' + err.message);
+                }
+            };
+            reader.readAsText(file);
+        }
+
+        function updateLastExport() {
+            // No longer tracking last export with Firebase
+        }
+
+        // ========== VACANCES ==========
+        const VACANCES_EMPLOYEES = ['Chloe', 'Claire', 'Sandrine'];
+        const VACANCES_ANNUEL = 25;
+
+        // Jours feries francais 2026-2028
+        const JOURS_FERIES = {
+            // 2026
+            '2026-01-01': 'Nouvel An',
+            '2026-04-06': 'Lundi de Paques',
+            '2026-05-01': 'Fete du Travail',
+            '2026-05-08': 'Victoire 1945',
+            '2026-05-14': 'Ascension',
+            '2026-05-25': 'Lundi de Pentecote',
+            '2026-07-14': 'Fete Nationale',
+            '2026-08-15': 'Assomption',
+            '2026-11-01': 'Toussaint',
+            '2026-11-11': 'Armistice',
+            '2026-12-25': 'Noel',
+            // 2027
+            '2027-01-01': 'Nouvel An',
+            '2027-03-29': 'Lundi de Paques',
+            '2027-05-01': 'Fete du Travail',
+            '2027-05-08': 'Victoire 1945',
+            '2027-05-06': 'Ascension',
+            '2027-05-17': 'Lundi de Pentecote',
+            '2027-07-14': 'Fete Nationale',
+            '2027-08-15': 'Assomption',
+            '2027-11-01': 'Toussaint',
+            '2027-11-11': 'Armistice',
+            '2027-12-25': 'Noel',
+            // 2028
+            '2028-01-01': 'Nouvel An',
+            '2028-04-17': 'Lundi de Paques',
+            '2028-05-01': 'Fete du Travail',
+            '2028-05-08': 'Victoire 1945',
+            '2028-05-25': 'Ascension',
+            '2028-06-05': 'Lundi de Pentecote',
+            '2028-07-14': 'Fete Nationale',
+            '2028-08-15': 'Assomption',
+            '2028-11-01': 'Toussaint',
+            '2028-11-11': 'Armistice',
+            '2028-12-25': 'Noel'
+        };
+
+        let calendarMonth = new Date().getMonth();
+        let calendarYear = new Date().getFullYear();
+        let currentVacancesImpact = null;
+
+        function getVacancesSolde() {
+            return vacancesSoldeCache;
+        }
+
+        async function saveVacancesSolde(solde) {
+            try {
+                await db.collection('config').doc('vacances_solde').set(solde);
+            } catch (e) {
+                console.error('Erreur save vacances solde:', e);
+            }
+        }
+
+        async function initVacancesSolde() {
+            const doc = await db.collection('config').doc('vacances_solde').get();
+            if (!doc.exists) {
+                const init = {};
+                VACANCES_EMPLOYEES.forEach(name => { init[name] = { annuel: VACANCES_ANNUEL, pris: 0 }; });
+                await db.collection('config').doc('vacances_solde').set(init);
+                vacancesSoldeCache = init;
+            } else {
+                vacancesSoldeCache = doc.data();
+            }
+        }
+
+        function isJourFerie(dateStr) {
+            return JOURS_FERIES.hasOwnProperty(dateStr);
+        }
+
+        function isJourOuvrable(dateStr) {
+            const d = new Date(dateStr);
+            const day = d.getDay();
+            if (day === 0 || day === 6) return false; // weekend
+            if (isJourFerie(dateStr)) return false;
+            return true;
+        }
+
+        function countJoursOuvrables(dateDebut, dateFin) {
+            const dates = getDatesBetween(dateDebut, dateFin);
+            let count = 0;
+            const joursList = [];
+            for (const d of dates) {
+                if (isJourOuvrable(d)) {
+                    count++;
+                    joursList.push(d);
+                }
+            }
+            return { count, dates: joursList };
+        }
+
+        function isVacancesEmployee(name) {
+            return VACANCES_EMPLOYEES.includes(name);
+        }
+
+        function updateVacancesNavVisibility() {
+            const user = document.getElementById('currentUser').value;
+            const btn = document.getElementById('vacancesNavBtn');
+            if (isVacancesEmployee(user)) {
+                btn.classList.remove('hidden');
+                const solde = getVacancesSolde();
+                const s = solde[user];
+                if (s) {
+                    document.getElementById('vacancesBadge').textContent = (s.annuel - s.pris) + 'j';
+                }
+            } else {
+                btn.classList.add('hidden');
+            }
+        }
+
+        function renderVacancesBalance() {
+            const user = document.getElementById('currentUser').value;
+            const solde = getVacancesSolde();
+            const s = solde[user];
+            if (!s) return;
+
+            const restant = s.annuel - s.pris;
+            const pct = Math.round((s.pris / s.annuel) * 100);
+            const fillClass = pct > 80 ? 'danger' : pct > 60 ? 'warning' : '';
+
+            document.getElementById('vacancesBalance').innerHTML = `
+                <div class="vacances-stats">
+                    <div class="vacances-stat">
+                        <div class="vacances-stat-value">${s.annuel}</div>
+                        <div class="vacances-stat-label">Jours annuels</div>
+                    </div>
+                    <div class="vacances-stat">
+                        <div class="vacances-stat-value" style="color: var(--orange);">${s.pris}</div>
+                        <div class="vacances-stat-label">Jours pris</div>
+                    </div>
+                    <div class="vacances-stat">
+                        <div class="vacances-stat-value" style="color: ${restant <= 5 ? 'var(--red)' : 'var(--green)'};">${restant}</div>
+                        <div class="vacances-stat-label">Jours restants</div>
+                    </div>
+                </div>
+                <div class="vacances-balance-bar">
+                    <div class="vacances-balance-fill ${fillClass}" style="width: ${pct}%;"></div>
+                </div>
+            `;
+        }
+
+        function updateVacancesCalc() {
+            const dateDebut = document.getElementById('vacancesDateDebut').value;
+            const dateFin = document.getElementById('vacancesDateFin').value;
+            const calcEl = document.getElementById('vacancesCalc');
+
+            if (!dateDebut || !dateFin) {
+                calcEl.classList.add('hidden');
+                return;
+            }
+
+            if (dateFin < dateDebut) {
+                calcEl.classList.remove('hidden');
+                calcEl.innerHTML = 'La date de fin doit etre apres la date de debut.';
+                calcEl.style.background = 'var(--red-light)';
+                calcEl.style.color = 'var(--red)';
+                return;
+            }
+
+            const { count, dates } = countJoursOuvrables(dateDebut, dateFin);
+            const user = document.getElementById('currentUser').value;
+            const solde = getVacancesSolde();
+            const restant = solde[user].annuel - solde[user].pris;
+
+            // Count feries in range
+            const allDates = getDatesBetween(dateDebut, dateFin);
+            const feries = allDates.filter(d => isJourFerie(d) && new Date(d).getDay() !== 0 && new Date(d).getDay() !== 6);
+
+            calcEl.classList.remove('hidden');
+            calcEl.style.background = '';
+            calcEl.style.color = '';
+
+            let html = `<strong>${count} jour${count > 1 ? 's' : ''} ouvrable${count > 1 ? 's' : ''}</strong> demande${count > 1 ? 's' : ''}`;
+            if (feries.length > 0) {
+                html += ` (${feries.length} jour${feries.length > 1 ? 's' : ''} ferie${feries.length > 1 ? 's' : ''} exclus : ${feries.map(f => JOURS_FERIES[f]).join(', ')})`;
+            }
+            html += ` — Solde restant apres : ${restant - count} jours`;
+
+            if (count > restant) {
+                calcEl.style.background = 'var(--red-light)';
+                calcEl.style.color = 'var(--red)';
+                html += ' <strong>(solde insuffisant !)</strong>';
+            }
+
+            calcEl.innerHTML = html;
+        }
+
+        function analyserVacancesImpact() {
+            const user = document.getElementById('currentUser').value;
+            const dateDebut = document.getElementById('vacancesDateDebut').value;
+            const dateFin = document.getElementById('vacancesDateFin').value;
+            const motif = document.getElementById('vacancesMotif').value;
+
+            if (!dateDebut || !dateFin) {
+                alert('Veuillez remplir les dates de debut et de fin.');
+                return;
+            }
+            if (dateFin < dateDebut) {
+                alert('La date de fin doit etre apres la date de debut.');
+                return;
+            }
+
+            const { count, dates } = countJoursOuvrables(dateDebut, dateFin);
+            if (count === 0) {
+                alert('Aucun jour ouvrable dans la periode selectionnee.');
+                return;
+            }
+
+            const solde = getVacancesSolde();
+            const restant = solde[user].annuel - solde[user].pris;
+            if (count > restant) {
+                alert(`Solde insuffisant ! Vous demandez ${count} jours mais il ne vous reste que ${restant} jours.`);
+                return;
+            }
+
+            currentVacancesImpact = { employee: user, dateDebut, dateFin, dates, joursOuvrables: count, motif };
+
+            // Resume
+            document.getElementById('vacancesImpactResume').innerHTML = `
+                <p><strong>Employe :</strong> ${user}</p>
+                <p><strong>Periode :</strong> ${formatDate(dateDebut)} au ${formatDate(dateFin)}</p>
+                <p><strong>Jours ouvrables :</strong> ${count}</p>
+                <p><strong>Solde apres validation :</strong> ${restant - count} jours</p>
+                ${motif ? `<p><strong>Motif :</strong> ${motif}</p>` : ''}
+            `;
+
+            // Impact effectif - check each working day
+            const effectifContainer = document.getElementById('vacancesImpactEffectif');
+            let html = '<div class="impact-section-title">IMPACT SUR L\'EQUIPE</div>';
+            let hasWarning = false;
+            let hasCritical = false;
+
+            // Only show if the employee is in STAFF (Claire/Sandrine are, Chloe is not currently)
+            if (STAFF[user]) {
+                for (const dateStr of dates.slice(0, 5)) {
+                    const jour = getJourFromDate(dateStr);
+                    if (!jour) continue;
+                    const semaine = getSemaineType(dateStr);
+                    const tranches = [...TRANCHES_AM, ...TRANCHES_PM.slice(0, 4)];
+
+                    html += `<div style="margin: 0.5rem 0; padding: 0.5rem; background: var(--gray-light); border-radius: 6px;">`;
+                    html += `<strong>${formatDateShort(dateStr)} (${jour})</strong> - `;
+
+                    for (const tranche of tranches.slice(0, 4)) {
+                        const { count: c } = getEffectifATranche(jour, semaine, tranche, [user]);
+                        const className = getEffectifClass(c);
+                        if (c <= SEUILS.critique) hasCritical = true;
+                        else if (c <= SEUILS.limite) hasWarning = true;
+                        html += `<span class="${className}" style="display: inline-block; padding: 0.125rem 0.4rem; border-radius: 4px; margin: 0.1rem; font-size: 0.75rem;">${tranche}: ${c}pers</span>`;
+                    }
+                    html += '</div>';
+                }
+
+                if (dates.length > 5) {
+                    html += `<p style="color: var(--gray); font-size: 0.85rem;">... et ${dates.length - 5} autres jours</p>`;
+                }
+            } else {
+                html += `<p style="color: var(--gray);">${user} n'est pas actuellement dans le planning actif. Pas d'impact a analyser.</p>`;
+            }
+
+            if (hasCritical) {
+                html += `<div class="impact-critical"><strong>ATTENTION :</strong> Effectif CRITIQUE sur certains creneaux.</div>`;
+            } else if (hasWarning) {
+                html += `<div class="impact-warning"><strong>ATTENTION :</strong> Effectif LIMITE sur certains creneaux.</div>`;
+            }
+
+            effectifContainer.innerHTML = html;
+            document.getElementById('vacancesImpact').classList.remove('hidden');
+        }
+
+        function submitVacances() {
+            if (!currentVacancesImpact) return;
+            const demande = {
+                employee: currentVacancesImpact.employee,
+                type: 'vacances',
+                dateDebut: currentVacancesImpact.dateDebut,
+                dateFin: currentVacancesImpact.dateFin,
+                dates: currentVacancesImpact.dates,
+                joursOuvrables: currentVacancesImpact.joursOuvrables,
+                heuresConcernees: currentVacancesImpact.joursOuvrables, // for display in history (days not hours)
+                motif: currentVacancesImpact.motif
+            };
+
+            const saved = addDemande(demande);
+            lastSubmittedDemande = saved;
+
+            document.getElementById('vacancesForm').reset();
+            document.getElementById('vacancesImpact').classList.add('hidden');
+            document.getElementById('vacancesCalc').classList.add('hidden');
+            currentVacancesImpact = null;
+
+            document.getElementById('confirmModal').classList.remove('hidden');
+        }
+
+        function generateVacancesGmailLink(demande) {
+            const subject = encodeURIComponent(`[Planning] Demande de vacances de ${demande.employee}`);
+            const body = encodeURIComponent(
+`Bonjour,
+
+Une demande de vacances a ete soumise.
+
+DETAILS
+-------
+Employe : ${demande.employee}
+Type : Vacances
+Du : ${formatDate(demande.dateDebut)}
+Au : ${formatDate(demande.dateFin)}
+Jours ouvrables : ${demande.joursOuvrables}
+${demande.motif ? `Motif : ${demande.motif}` : ''}
+
+---
+Connectez-vous a l'application Planning pour traiter cette demande.
+`);
+            return `https://mail.google.com/mail/?view=cm&fs=1&to=${CONFIG.managerEmail}&su=${subject}&body=${body}`;
+        }
+
+        // Calendar rendering
+        function renderVacancesCalendar() {
+            const container = document.getElementById('vacancesCalendar');
+            document.getElementById('calMonth').textContent = new Date(calendarYear, calendarMonth).toLocaleDateString('fr-FR', { month: 'long', year: 'numeric' });
+
+            const firstDay = new Date(calendarYear, calendarMonth, 1);
+            const lastDay = new Date(calendarYear, calendarMonth + 1, 0);
+            let startDay = firstDay.getDay();
+            if (startDay === 0) startDay = 7;
+            startDay--; // Monday = 0
+
+            // Get all approved vacances
+            const demandes = getDemandes().filter(d => d.type === 'vacances' && (d.status === 'approuvee' || d.status === 'attente'));
+
+            let html = '<div class="calendar-grid">';
+            ['Lun', 'Mar', 'Mer', 'Jeu', 'Ven', 'Sam', 'Dim'].forEach(d => {
+                html += `<div class="calendar-header">${d}</div>`;
+            });
+
+            const today = new Date().toISOString().split('T')[0];
+
+            // Fill previous month
+            for (let i = 0; i < startDay; i++) {
+                const d = new Date(calendarYear, calendarMonth, -(startDay - i - 1));
+                html += `<div class="calendar-day other-month"><div class="calendar-day-num">${d.getDate()}</div></div>`;
+            }
+
+            // Current month
+            for (let day = 1; day <= lastDay.getDate(); day++) {
+                const dateStr = `${calendarYear}-${String(calendarMonth + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
+                const isToday = dateStr === today;
+                const isFerie = isJourFerie(dateStr);
+                const classes = ['calendar-day'];
+                if (isToday) classes.push('today');
+                if (isFerie) classes.push('ferie');
+
+                html += `<div class="${classes.join(' ')}">`;
+                html += `<div class="calendar-day-num">${day}</div>`;
+                if (isFerie) {
+                    html += `<div class="calendar-ferie-label">${JOURS_FERIES[dateStr]}</div>`;
+                }
+
+                // Show vacances events
+                demandes.forEach(d => {
+                    if (d.dates && d.dates.includes(dateStr)) {
+                        const cssClass = d.employee.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+                        const statusIcon = d.status === 'attente' ? '?' : '';
+                        html += `<div class="calendar-event ${cssClass}">${d.employee}${statusIcon}</div>`;
+                    }
+                });
+
+                html += '</div>';
+            }
+
+            // Fill remaining
+            const totalCells = startDay + lastDay.getDate();
+            const remaining = (7 - totalCells % 7) % 7;
+            for (let i = 1; i <= remaining; i++) {
+                html += `<div class="calendar-day other-month"><div class="calendar-day-num">${i}</div></div>`;
+            }
+
+            html += '</div>';
+            container.innerHTML = html;
+        }
+
+        function renderVacancesHistorique() {
+            const container = document.getElementById('vacancesHistorique');
+            const user = document.getElementById('currentUser').value;
+            const demandes = getDemandes().filter(d => d.type === 'vacances' && d.employee === user).sort((a, b) => b.id - a.id);
+
+            if (demandes.length === 0) {
+                container.innerHTML = '<p style="color: var(--gray);">Aucune demande de vacances.</p>';
+                return;
+            }
+
+            let html = '<table style="width: 100%; border-collapse: collapse; font-size: 0.85rem;">';
+            html += '<thead><tr style="background: var(--gray-light);"><th style="padding: 0.5rem; text-align: left;">Du</th><th style="padding: 0.5rem; text-align: left;">Au</th><th style="padding: 0.5rem; text-align: left;">Jours</th><th style="padding: 0.5rem; text-align: left;">Statut</th></tr></thead><tbody>';
+
+            demandes.forEach(d => {
+                const statusClass = d.status === 'attente' ? 'status-attente' : d.status === 'approuvee' ? 'status-approuvee' : 'status-refusee';
+                const statusLabel = d.status === 'attente' ? 'EN ATTENTE' : d.status === 'approuvee' ? 'APPROUVEE' : 'REFUSEE';
+                html += `<tr style="border-bottom: 1px solid #E5E7EB;">`;
+                html += `<td style="padding: 0.5rem;">${formatDateShort(d.dateDebut)}</td>`;
+                html += `<td style="padding: 0.5rem;">${formatDateShort(d.dateFin)}</td>`;
+                html += `<td style="padding: 0.5rem;">${d.joursOuvrables}</td>`;
+                html += `<td style="padding: 0.5rem;"><span class="demande-status ${statusClass}">${statusLabel}</span></td>`;
+                html += `</tr>`;
+            });
+
+            html += '</tbody></table>';
+            container.innerHTML = html;
+        }
+
+        function renderVacancesView() {
+            renderVacancesBalance();
+            renderVacancesCalendar();
+            renderVacancesHistorique();
+        }
+
+        // Manager: vacances balance view + adjust
+        function renderManagerVacancesBalance() {
+            const container = document.getElementById('managerVacancesBalance');
+            const solde = getVacancesSolde();
+            let html = '';
+
+            VACANCES_EMPLOYEES.forEach(name => {
+                const s = solde[name];
+                const restant = s.annuel - s.pris;
+                html += `
+                    <div class="vacances-employee-card">
+                        <h4>${name}</h4>
+                        <p>Annuel : <strong>${s.annuel}</strong> | Pris : <strong>${s.pris}</strong> | Restant : <strong style="color: ${restant <= 5 ? 'var(--red)' : 'var(--green)'};">${restant}</strong></p>
+                        <div class="vacances-balance-bar">
+                            <div class="vacances-balance-fill ${s.pris / s.annuel > 0.8 ? 'danger' : s.pris / s.annuel > 0.6 ? 'warning' : ''}" style="width: ${Math.round((s.pris / s.annuel) * 100)}%;"></div>
+                        </div>
+                        <div class="vacances-adjust">
+                            <label style="font-size: 0.8rem;">Ajuster annuel :</label>
+                            <input type="number" id="adjust-annuel-${name}" value="${s.annuel}" min="0" max="50">
+                            <label style="font-size: 0.8rem;">Pris :</label>
+                            <input type="number" id="adjust-pris-${name}" value="${s.pris}" min="0" max="50">
+                            <button onclick="adjustVacances('${name}')">OK</button>
+                        </div>
+                    </div>
+                `;
+            });
+
+            container.innerHTML = html;
+        }
+
+        async function adjustVacances(name) {
+            const annuel = parseInt(document.getElementById(`adjust-annuel-${name}`).value) || 0;
+            const pris = parseInt(document.getElementById(`adjust-pris-${name}`).value) || 0;
+            const solde = getVacancesSolde();
+            solde[name] = { annuel, pris };
+            await saveVacancesSolde(solde);
+        }
+
+        // ========== NAVIGATION ==========
+        function showView(viewName) {
+            if (viewName === 'manager' && !isManagerAuthenticated) {
+                showPasswordModal();
+                return;
+            }
+
+            document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+            document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+            document.getElementById(`view-${viewName}`).classList.add('active');
+            document.querySelector(`.nav-btn[data-view="${viewName}"]`).classList.add('active');
+
+            if (viewName === 'planning') {
+                renderHoursBalance();
+            } else if (viewName === 'mes-demandes') {
+                renderMesDemandes();
+            } else if (viewName === 'vacances') {
+                renderVacancesView();
+            } else if (viewName === 'manager') {
+                renderManager();
+            }
+        }
+
+        function showPasswordModal() {
+            document.getElementById('passwordModal').classList.remove('hidden');
+            document.getElementById('managerPassword').value = '';
+            document.getElementById('passwordError').classList.add('hidden');
+            document.getElementById('managerPassword').focus();
+        }
+
+        function hidePasswordModal() {
+            document.getElementById('passwordModal').classList.add('hidden');
+        }
+
+        function validatePassword() {
+            const password = document.getElementById('managerPassword').value;
+            if (password === CONFIG.managerPassword) {
+                isManagerAuthenticated = true;
+                hidePasswordModal();
+                showView('manager');
+            } else {
+                document.getElementById('passwordError').classList.remove('hidden');
+                document.getElementById('managerPassword').value = '';
+                document.getElementById('managerPassword').focus();
+            }
+        }
+
+        // ========== INITIALISATION ==========
+        async function initializeApp() {
+            // Set up real-time listeners
+            db.collection('demandes').onSnapshot((snapshot) => {
+                demandesCache = [];
+                snapshot.forEach(doc => {
+                    demandesCache.push(doc.data());
+                });
+                // Re-render if app is visible
+                if (isStaffAuthenticated) {
+                    const currentView = document.querySelector('.view.active');
+                    if (currentView) {
+                        const viewName = currentView.id.replace('view-', '');
+                        if (viewName === 'mes-demandes') renderMesDemandes();
+                        if (viewName === 'planning') renderHoursBalance();
+                        if (viewName === 'manager' && isManagerAuthenticated) renderManager();
+                    }
+                    updateExchangeBadge();
+                }
+            });
+
+            db.collection('config').doc('vacances_solde').onSnapshot((doc) => {
+                if (doc.exists) {
+                    vacancesSoldeCache = doc.data();
+                    if (isStaffAuthenticated) {
+                        updateVacancesNavVisibility();
+                        const currentView = document.querySelector('.view.active');
+                        if (currentView && currentView.id === 'view-vacances') {
+                            renderVacancesView();
+                        }
+                    }
+                }
+            });
+
+            // Initialize vacances solde if needed
+            await initVacancesSolde();
+        }
+
+        function showApp() {
+            document.getElementById('loadingOverlay').classList.add('hidden');
+            document.getElementById('loginScreen').classList.add('hidden');
+            document.getElementById('mainNav').classList.remove('hidden');
+            document.querySelector('main').classList.remove('hidden');
+
+            // Initial render
+            renderPlanning('paire');
+            renderHoursBalance();
+            updateVacancesNavVisibility();
+        }
+
+        function handleLogin() {
+            const password = document.getElementById('staffPassword').value;
+            if (password === CONFIG.staffPassword) {
+                isStaffAuthenticated = true;
+                showApp();
+            } else {
+                document.getElementById('loginError').classList.remove('hidden');
+                document.getElementById('staffPassword').value = '';
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', async () => {
+            // Hide main content initially
+            document.querySelector('main').classList.add('hidden');
+
+            // Initialize Firebase and load data
+            try {
+                await initializeApp();
+                // Show login screen
+                document.getElementById('loadingOverlay').classList.add('hidden');
+                document.getElementById('loginScreen').classList.remove('hidden');
+            } catch (e) {
+                console.error('Erreur initialisation:', e);
+                document.getElementById('loadingOverlay').innerHTML = '<p style="color: var(--red);">Erreur de connexion. Rechargez la page.</p>';
+            }
+
+            // Login handlers
+            document.getElementById('loginBtn').addEventListener('click', handleLogin);
+            document.getElementById('staffPassword').addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') handleLogin();
+            });
+
+            // Navigation
+            document.querySelectorAll('.nav-btn').forEach(btn => {
+                btn.addEventListener('click', () => showView(btn.dataset.view));
+            });
+
+            // Week toggle
+            document.querySelectorAll('.week-btn').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    document.querySelectorAll('.week-btn').forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+                    renderPlanning(btn.dataset.week);
+                });
+            });
+
+            // Type change
+            document.getElementById('demandeType').addEventListener('change', handleTypeChange);
+
+            // Analyse impact
+            document.getElementById('analyserImpact').addEventListener('click', analyserImpact);
+
+            // Engagement checkbox
+            document.getElementById('engagementCheck').addEventListener('change', updateHoursSummary);
+
+            // Submit demande
+            document.getElementById('submitDemande').addEventListener('click', submitDemande);
+
+            // Cancel demande
+            document.getElementById('cancelDemande').addEventListener('click', () => {
+                document.getElementById('impactAnalysis').classList.add('hidden');
+                document.getElementById('demandeForm').reset();
+                currentImpact = null;
+                selectedRecoverySlots = [];
+            });
+
+            // Vacances form
+            document.getElementById('vacancesDateDebut').addEventListener('change', updateVacancesCalc);
+            document.getElementById('vacancesDateFin').addEventListener('change', updateVacancesCalc);
+            document.getElementById('analyserVacances').addEventListener('click', analyserVacancesImpact);
+            document.getElementById('submitVacances').addEventListener('click', submitVacances);
+            document.getElementById('cancelVacances').addEventListener('click', () => {
+                document.getElementById('vacancesImpact').classList.add('hidden');
+                document.getElementById('vacancesForm').reset();
+                document.getElementById('vacancesCalc').classList.add('hidden');
+                currentVacancesImpact = null;
+            });
+
+            // Calendar navigation (block past months)
+            document.getElementById('calPrev').addEventListener('click', () => {
+                const now = new Date();
+                const prevMonth = calendarMonth - 1 < 0 ? 11 : calendarMonth - 1;
+                const prevYear = calendarMonth - 1 < 0 ? calendarYear - 1 : calendarYear;
+                if (prevYear < now.getFullYear() || (prevYear === now.getFullYear() && prevMonth < now.getMonth())) return;
+                calendarMonth = prevMonth;
+                calendarYear = prevYear;
+                renderVacancesCalendar();
+            });
+            document.getElementById('calNext').addEventListener('click', () => {
+                calendarMonth++;
+                if (calendarMonth > 11) { calendarMonth = 0; calendarYear++; }
+                renderVacancesCalendar();
+            });
+
+            // User change
+            document.getElementById('currentUser').addEventListener('change', () => {
+                populateEchangeSelect();
+                updateVacancesNavVisibility();
+                const currentView = document.querySelector('.view.active').id.replace('view-', '');
+                if (currentView === 'mes-demandes') renderMesDemandes();
+                if (currentView === 'planning') renderHoursBalance();
+                if (currentView === 'vacances') renderVacancesView();
+            });
+
+            // Export/Import
+            document.getElementById('exportBtn').addEventListener('click', exportData);
+            document.getElementById('importBtn').addEventListener('click', () => document.getElementById('importFile').click());
+            document.getElementById('importFile').addEventListener('change', (e) => {
+                if (e.target.files[0]) importData(e.target.files[0]);
+            });
+
+            // Password modal
+            document.getElementById('validatePassword').addEventListener('click', validatePassword);
+            document.getElementById('cancelPassword').addEventListener('click', hidePasswordModal);
+            document.getElementById('managerPassword').addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') validatePassword();
+            });
+
+            // Confirm modal
+            document.getElementById('notifyGmail').addEventListener('click', notifyViaGmail);
+            document.getElementById('closeConfirm').addEventListener('click', closeConfirmModal);
+
+            // Set min dates
+            const today = new Date().toISOString().split('T')[0];
+            document.getElementById('demandeDate').min = today;
+            document.getElementById('demandeDateFin').min = today;
+            document.getElementById('vacancesDateDebut').min = today;
+            document.getElementById('vacancesDateFin').min = today;
+        });
+    </script>
+</body>
+</html>
