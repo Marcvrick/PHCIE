@@ -221,6 +221,14 @@
                 padding: var(--space-sm);
             }
 
+            /* Hide Type (2nd) and Adresse (5th) columns on mobile */
+            .gardes-table th:nth-child(2),
+            .gardes-table td:nth-child(2),
+            .gardes-table th:nth-child(5),
+            .gardes-table td:nth-child(5) {
+                display: none;
+            }
+
             .gardes-legend {
                 flex-direction: column;
                 gap: var(--space-sm);
