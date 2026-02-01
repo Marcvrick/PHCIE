@@ -167,6 +167,11 @@
             border: 0;
         }
 
+        .custom-marker {
+            background: transparent !important;
+            border: none !important;
+        }
+
         .map-legend {
             background: white;
             padding: var(--space-md);
@@ -1161,11 +1166,6 @@
                         }).addTo(map);
 
                         marker.bindPopup(popupContent);
-
-                        // Mettre en évidence la Pharmacie Charnal
-                        if (row.Catégorie === 'Pharmacie') {
-                            marker.openPopup();
-                        }
                     }
                 });
             },
