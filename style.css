@@ -420,7 +420,7 @@ a {
         visibility: visible;
         transform: none;
         box-shadow: none;
-        background: var(--cream-dark);
+        background: transparent;
         border-radius: 0;
         padding: 0;
     }
@@ -432,6 +432,11 @@ a {
     .nav-dropdown-menu .nav-link {
         padding-left: var(--space-xl);
         font-size: var(--text-sm);
+        background: transparent;
+    }
+
+    .nav-dropdown-menu .nav-link:hover {
+        background: transparent;
     }
 }
 
