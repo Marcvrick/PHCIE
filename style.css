@@ -436,10 +436,10 @@ a {
     }
 
     .nav-dropdown-menu .nav-link {
-        padding-left: 0;
+        padding-left: var(--space-md);
         font-size: var(--text-sm);
         background: transparent;
-        text-align: center;
+        text-align: left;
         color: var(--gray-light);
     }
 
@@ -525,7 +525,7 @@ a {
 
     .nav-link {
         width: 100%;
-        text-align: center;
+        text-align: left;
         padding: var(--space-sm) var(--space-md);
         font-size: var(--text-base);
         display: block;
