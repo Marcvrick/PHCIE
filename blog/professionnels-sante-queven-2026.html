@@ -6,7 +6,6 @@
 
     <!-- Meta description optimisée SEO -->
     <meta name="description" content="Guide complet des médecins, laboratoires et professionnels de santé à Quéven. Carte interactive, adresses, téléphones. Par la Pharmacie Charnal.">
-    <meta name="keywords" content="médecin Quéven, docteur Quéven, laboratoire Quéven, cabinet médical Quéven, professionnels santé Quéven, médecin généraliste Quéven 56530">
 
     <title>Guide Santé Quéven : Tous les Professionnels Médicaux | Pharmacie Charnal</title>
 
@@ -40,6 +39,12 @@
     <meta name="twitter:title" content="Guide Santé Quéven : Tous les Professionnels Médicaux">
     <meta name="twitter:description" content="Découvrez tous les médecins, laboratoires et professionnels de santé à Quéven. Carte interactive.">
     <meta name="twitter:image" content="https://www.pharmaciecharnal.fr/images/pharmacie-charnal-logo.png">
+
+    <!-- Preconnect pour les ressources externes -->
+    <link rel="preconnect" href="https://unpkg.com" crossorigin>
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+    <link rel="dns-prefetch" href="https://unpkg.com">
+    <link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
 
     <link rel="stylesheet" href="../style.css">
 
@@ -271,6 +276,46 @@
             font-size: var(--text-base);
             color: var(--gray);
         }
+
+        /* Table of Contents */
+        .toc {
+            background: var(--cream);
+            padding: var(--space-lg);
+            border-radius: var(--radius-lg);
+            margin: var(--space-xl) 0;
+        }
+
+        .toc h4 {
+            color: var(--teal);
+            margin: 0 0 var(--space-md) 0;
+            font-size: var(--text-lg);
+        }
+
+        .toc-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: var(--space-xs);
+        }
+
+        .toc-list li {
+            margin: 0;
+        }
+
+        .toc-list a {
+            color: var(--charcoal);
+            text-decoration: none;
+            font-size: var(--text-base);
+            display: block;
+            padding: var(--space-xs) 0;
+            transition: color 0.2s ease;
+        }
+
+        .toc-list a:hover {
+            color: var(--teal);
+        }
     </style>
 
     <!-- Schema.org MedicalWebPage Markup (LLM Optimization) -->
@@ -381,6 +426,83 @@
       }
     }
     </script>
+
+    <!-- Schema.org BreadcrumbList -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Accueil",
+          "item": "https://www.pharmaciecharnal.fr/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Au comptoir",
+          "item": "https://www.pharmaciecharnal.fr/blog.html"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Guide Santé Quéven",
+          "item": "https://www.pharmaciecharnal.fr/blog/professionnels-sante-queven-2026.html"
+        }
+      ]
+    }
+    </script>
+
+    <!-- Schema.org LocalBusiness/Pharmacy -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Pharmacy",
+      "@id": "https://www.pharmaciecharnal.fr/#pharmacy",
+      "name": "Pharmacie Charnal",
+      "image": "https://www.pharmaciecharnal.fr/images/pharmacie-charnal-logo.png",
+      "url": "https://www.pharmaciecharnal.fr",
+      "telephone": "02 97 05 09 31",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "32 Place de Toulouse",
+        "addressLocality": "Quéven",
+        "postalCode": "56530",
+        "addressCountry": "FR"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 47.7878,
+        "longitude": -3.4186
+      },
+      "openingHoursSpecification": [
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+          "opens": "08:30",
+          "closes": "12:30"
+        },
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+          "opens": "14:00",
+          "closes": "20:00"
+        },
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": "Saturday",
+          "opens": "09:00",
+          "closes": "12:30"
+        }
+      ],
+      "sameAs": [
+        "https://www.instagram.com/pharmaciecharnalqueven/",
+        "https://www.facebook.com/pharmaciecharnal/"
+      ]
+    }
+    </script>
 </head>
 <body>
     <!-- Navigation -->
@@ -478,7 +600,25 @@
                 </div>
             </div>
 
-            <h2>📍 Carte interactive : La Place de Toulouse, hub santé de Quéven</h2>
+            <!-- Sommaire -->
+            <nav class="toc" aria-label="Sommaire">
+                <h4>Sommaire</h4>
+                <ul class="toc-list">
+                    <li><a href="#carte">Carte interactive</a></li>
+                    <li><a href="#medecins">Médecins généralistes</a></li>
+                    <li><a href="#laboratoire">Laboratoire d'analyses</a></li>
+                    <li><a href="#dentistes">Chirurgiens-dentistes</a></li>
+                    <li><a href="#opticiens">Opticiens</a></li>
+                    <li><a href="#audioprothesistes">Audioprothésistes</a></li>
+                    <li><a href="#sage-femme">Sage-femme</a></li>
+                    <li><a href="#infirmiers">Infirmiers</a></li>
+                    <li><a href="#pharmacie">La Pharmacie Charnal</a></li>
+                    <li><a href="#services">Nos services</a></li>
+                    <li><a href="#faq">Questions fréquentes</a></li>
+                </ul>
+            </nav>
+
+            <h2 id="carte">Carte interactive : La Place de Toulouse, hub santé de Quéven</h2>
 
             <p>
                 La <strong>Place de Toulouse</strong> concentre plusieurs professionnels de santé à Quéven : la Pharmacie Charnal, le cabinet des Dr Lahire et Le Bouquin (à 20m), le Laboratoire BIOLOR (à 50m) et le cabinet dentaire SELARL Katchamak. Utilisez cette carte pour visualiser ce pôle santé central et localiser les autres cabinets médicaux de la ville.
@@ -524,7 +664,7 @@
                 Carte interactive utilisant OpenStreetMap. Cliquez sur les marqueurs pour plus d'informations.
             </p>
 
-            <h2>👨‍⚕️ Médecins généralistes à Quéven</h2>
+            <h2 id="medecins">Médecins généralistes à Quéven</h2>
 
             <p>
                 Quéven compte 9 médecins généralistes expérimentés, principalement regroupés au sein de la Maison Médicale et dans divers cabinets du centre-ville.
@@ -618,7 +758,7 @@
                 <p><span class="icon">🩺</span> Médecin généraliste</p>
             </div>
 
-            <h2>🔬 Laboratoire d'analyses médicales</h2>
+            <h2 id="laboratoire">Laboratoire d'analyses médicales</h2>
 
             <p>
                 Le laboratoire BIOLOR est situé en plein centre-ville de Quéven, à seulement 50 mètres de la Pharmacie Charnal. Pratique pour vos prises de sang et analyses médicales !
@@ -641,7 +781,7 @@
                 </p>
             </div>
 
-            <h2>🦷 Chirurgiens-dentistes</h2>
+            <h2 id="dentistes">Chirurgiens-dentistes</h2>
 
             <div class="pro-card" style="border-left-color: var(--teal); border-left-width: 6px;">
                 <h4>🦷 SELARL Katchamak</h4>
@@ -657,7 +797,7 @@
                 <p>• Dr Patrick Nagy</p>
             </div>
 
-            <h2>👓 Opticiens</h2>
+            <h2 id="opticiens">Opticiens</h2>
 
             <p>
                 Quéven dispose de plusieurs opticiens pour vos lunettes de vue, lunettes de soleil et lentilles de contact.
@@ -685,7 +825,7 @@
                 <p><span class="icon">🔍</span> Opticien lunetier</p>
             </div>
 
-            <h2>🦻 Audioprothésistes</h2>
+            <h2 id="audioprothesistes">Audioprothésistes</h2>
 
             <p>
                 Pour vos appareils auditifs et tests d'audition, deux centres spécialisés sont disponibles à Quéven.
@@ -706,7 +846,7 @@
                 <p><span class="icon">🔍</span> Appareils auditifs et solutions auditives</p>
             </div>
 
-            <h2>🤰 Sage-femme</h2>
+            <h2 id="sage-femme">Sage-femme</h2>
 
             <p>
                 Pour le suivi de grossesse, la préparation à la naissance et la rééducation périnéale, une sage-femme exerce à Quéven.
@@ -721,7 +861,7 @@
                 <p><span class="icon">🔍</span> Suivi grossesse, préparation à la naissance, rééducation périnéale, frottis</p>
             </div>
 
-            <h2>💉 Infirmiers et soins à domicile</h2>
+            <h2 id="infirmiers">Infirmiers et soins à domicile</h2>
 
             <p>
                 Quéven compte <strong>15 infirmiers libéraux</strong> proposant des soins à domicile (pansements, injections, prélèvements, etc.). Pour trouver un infirmier près de chez vous, nous vous recommandons de consulter :
@@ -733,7 +873,7 @@
                 <li>Votre médecin traitant pour une recommandation</li>
             </ul>
 
-            <h2>🏥 Association des Professionnels de Santé</h2>
+            <h2 id="association">Association des Professionnels de Santé</h2>
 
             <div class="pro-card">
                 <h4>Association des Professionnels de Santé de Quéven</h4>
@@ -743,7 +883,7 @@
                 </p>
             </div>
 
-            <h2>💚 La Pharmacie Charnal : au cœur de votre parcours santé</h2>
+            <h2 id="pharmacie">La Pharmacie Charnal : au coeur de votre parcours santé</h2>
 
             <p>
                 Idéalement située <strong>Place de Toulouse</strong>, la Pharmacie Charnal est votre partenaire santé de proximité :
@@ -765,7 +905,7 @@
                 </p>
             </div>
 
-            <h2>💡 Nos services complémentaires</h2>
+            <h2 id="services">Nos services complémentaires</h2>
 
             <p>
                 En plus de la délivrance d'ordonnances, la Pharmacie Charnal vous propose :
@@ -782,7 +922,7 @@
                 👉 <a href="../services.html" style="color: var(--teal); font-weight: 600;">Découvrir tous nos services</a>
             </p>
 
-            <h2>❓ Questions fréquentes</h2>
+            <h2 id="faq">Questions fréquentes</h2>
 
             <div class="faq-item">
                 <h3>Où trouver un médecin généraliste à Quéven ?</h3>
@@ -910,11 +1050,10 @@
     </footer>
 
     <!-- Leaflet JS -->
-    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
-     crossorigin=""></script>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin="" defer></script>
 
     <!-- PapaParse pour lire le CSV -->
-    <script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js" defer></script>
 
     <script>
         // Menu mobile toggle
