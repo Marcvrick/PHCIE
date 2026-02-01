@@ -1,225 +1,195 @@
 # PLANNING BLOG PHARMACIE CHARNAL
 
 Planning éditorial 2025-2026 - Pharmacie Charnal à Quéven
+**Dernière mise à jour** : 26 Janvier 2026
 
 ---
 
 ## ✅ ARTICLES PUBLIÉS
 
-### Décembre 2025
-- **31/12/2025** - Prévenir les maux de l'hiver à Quéven
-  Mots-clés : rhume, grippe, immunité, vitamine D, Quéven
-  Longueur : 1 300 mots | Optimisé E-E-A-T
+| Date | Article | Mots-clés | Notes |
+|------|---------|-----------|-------|
+| 12/01/2026 | Détox après les fêtes : mythe ou réalité ? | détox, janvier, digestion, foie | Démystification E-E-A-T |
+| 31/12/2025 | Prévenir les maux de l'hiver à Quéven | rhume, grippe, immunité, vitamine D | Référence E-E-A-T |
+| 20/12/2025 | Vaccination adulte : le guide pratique | vaccination, rappels, HPV, adulte | Guide complet |
+| 10/12/2025 | Guide Santé Quéven : Professionnels Médicaux | médecins, Quéven, carte interactive | Leaflet.js, SEO local |
 
 ---
 
-## 📅 ARTICLES PLANIFIÉS 2026
+## 🟡 ARTICLES PRÊTS (non publiés)
 
-### JANVIER
-
-**Semaine 2 (10 janvier)**
-- **Détox après les fêtes : mythe ou réalité ?**
-- Mots-clés : détox janvier, digestion, foie
-- Longueur : 1 200 mots
-- E-E-A-T : démystifier régimes drastiques
-
-**Semaine 4 (24 janvier)**
-- **Peau sèche en hiver breton**
-- Mots-clés : peau sèche, vent breton, hydratation
-- Longueur : 1 000-1 200 mots
-- E-E-A-T : climat local, dermocosmétique
-
-### FÉVRIER
-
-**Semaine 2 (14 février)**
-- **Santé cardiovasculaire**
-- Mots-clés : cholestérol, tension, cœur
-- Longueur : 1 200 mots
-- E-E-A-T : mesure tension pharmacie
-
-**Semaine 4 (28 février)**
-- **Allergies : se préparer au printemps**
-- Mots-clés : pollen, allergie, rhinite
-- Longueur : 1 200-1 400 mots
-- E-E-A-T : calendrier pollinique breton
-
-### MARS
-
-**Semaine 2 (8 mars)**
-- **Santé de la femme**
-- Mots-clés : contraception, ménopause, suivi
-- Longueur : 1 000-1 200 mots
-
-**Semaine 4 (21 mars - Printemps)**
-- **Retrouver son énergie au printemps**
-- Mots-clés : fatigue, vitamine, magnésium
-- Longueur : 1 100-1 300 mots
+| Fichier | Sujet | À publier |
+|---------|-------|-----------|
+| humidite-douleurs-articulaires-queven.html | Humidité et douleurs articulaires | **Jeudi 29 jan** |
+| proteger-peau-seche-hiver-breton-queven.html | Peau sèche en hiver breton | Semaine du 10 fév |
 
 ---
 
-## 💡 BANQUE D'IDÉES
+## 📅 PLANNING 6 MOIS (Janvier → Juillet 2026)
 
-### Par Saison
+### JANVIER 2026
 
-**PRINTEMPS** (Avril-Mai-Juin)
-- Jambes lourdes et circulation
-- Protection solaire
-- Trousse de vacances
-- Tiques en Bretagne
-- Sport et allergies
+| Semaine | Date cible | Article | Mots-clés | Statut |
+|---------|------------|---------|-----------|--------|
+| S2 | 12 jan | Détox après les fêtes | détox, digestion, foie | ✅ PUBLIÉ |
+| S5 | **Jeu 29 jan** | Humidité et douleurs articulaires | arthrose, humidité, rhumatismes, Bretagne | 🟡 PRÊT → À PUBLIER |
 
-**ÉTÉ** (Juillet-Août)
-- Voyager avec médicaments
-- Canicule et hydratation
-- Méduses plages bretonnes
-- Coups de soleil
-- Intoxications alimentaires
+### FÉVRIER 2026
 
-**AUTOMNE** (Septembre-Octobre-Novembre)
+| Semaine | Date cible | Article | Mots-clés | Statut |
+|---------|------------|---------|-----------|--------|
+| S2 | 10 fév | Peau sèche en hiver breton | peau sèche, vent breton, hydratation | 🟡 PRÊT |
+| S4 | 24 fév | Allergies : se préparer au printemps | pollen, allergie, rhinite, calendrier pollinique | 📝 À RÉDIGER |
+
+### MARS 2026
+
+| Semaine | Date cible | Article | Mots-clés | Statut |
+|---------|------------|---------|-----------|--------|
+| S2 | 10 mars | Santé cardiovasculaire : les bons réflexes | cholestérol, tension, cœur, dépistage | 📝 À RÉDIGER |
+| S4 | 24 mars | Fatigue de printemps : retrouver son énergie | fatigue, vitamines, magnésium, changement saison | 📝 À RÉDIGER |
+
+### AVRIL 2026
+
+| Semaine | Date cible | Article | Mots-clés | Statut |
+|---------|------------|---------|-----------|--------|
+| S2 | 7 avril | Tiques en Bretagne : prévention et réaction | tiques, maladie de Lyme, Bretagne, randonnée | 📝 À RÉDIGER |
+| S4 | 21 avril | Jambes lourdes : comprendre et soulager | circulation, jambes lourdes, veinotoniques | 📝 À RÉDIGER |
+
+### MAI 2026
+
+| Semaine | Date cible | Article | Mots-clés | Statut |
+|---------|------------|---------|-----------|--------|
+| S2 | 5 mai | Protection solaire : guide complet | solaires, UV, SPF, peau, été | 📝 À RÉDIGER |
+| S4 | 19 mai | Trousse de vacances : l'essentiel à emporter | vacances, trousse, médicaments voyage | 📝 À RÉDIGER |
+
+### JUIN 2026
+
+| Semaine | Date cible | Article | Mots-clés | Statut |
+|---------|------------|---------|-----------|--------|
+| S2 | 2 juin | Sport et allergies : bien gérer les deux | sport, allergies, pollen, performance | 📝 À RÉDIGER |
+| S4 | 16 juin | Hydratation été : au-delà de l'eau | hydratation, canicule, minéraux, été | 📝 À RÉDIGER |
+
+### JUILLET 2026
+
+| Semaine | Date cible | Article | Mots-clés | Statut |
+|---------|------------|---------|-----------|--------|
+| S2 | 30 juin | Coups de soleil : prévenir et traiter | coups soleil, brûlures, après-soleil | 📝 À RÉDIGER |
+| S4 | 14 juillet | Méduses plages bretonnes : que faire ? | méduses, piqûres, plage, Bretagne | 📝 À RÉDIGER |
+
+---
+
+## 💡 BANQUE D'IDÉES (pour la suite)
+
+### AOÛT-SEPTEMBRE 2026
+- Voyager avec ses médicaments
+- Intoxications alimentaires été
 - Rentrée et poux
-- Vaccination grippe (PRIORITAIRE)
+- Vaccination grippe (PRIORITAIRE automne)
 - Immunité avant hiver
-- Sommeil automnal
-- Douleurs articulaires
 
-**HIVER** (Décembre-Janvier-Février)
-- Gastro-entérite
-- Gerçures et engelures
-- Digestion fêtes
+### AUTOMNE-HIVER 2026
+- Sommeil : retrouver un bon rythme
 - Dépression saisonnière
-- Bronchite et toux
+- Gastro-entérite : prévention et traitement
+- Gerçures et engelures
+- Bronchite et toux grasse
 
-### Par Thème
+### PAR THÈME (non planifié)
 
-**SANTÉ QUOTIDIENNE**
-- Sommeil et insomnie
+**Santé quotidienne :**
 - Stress et anxiété
 - Maux de dos
 - Troubles digestifs
 - Migraines
 - Cystites
 
-**MALADIES CHRONIQUES**
-- Diabète
-- Hypertension
-- Cholestérol
-- Arthrose
-- Asthme
+**Maladies chroniques :**
+- Diabète au quotidien
+- Hypertension : suivi à la pharmacie
+- Arthrose : vivre avec
 
-**SPÉCIALITÉS PHARMACIE**
-- Aromathérapie
-- Homéopathie
+**Spécialités pharmacie :**
+- Aromathérapie : les essentiels
+- Homéopathie : pour qui, pourquoi ?
 - Phytothérapie bretonne
-- Compléments alimentaires
+- Probiotiques : guide pratique
 
-### Par Public
-
-**SENIORS 65+**
-- Bien vieillir Quéven
-- Polymédication
-- Prévention chutes
-- Vaccination
-
-**PARENTS & ENFANTS**
-- Fièvre enfant
-- Poussées dentaires
-- Rhumes crèche
-- Vaccination pédiatrique
-
-**FEMMES**
-- Contraception
-- Grossesse et médicaments
-- Ménopause
-- Cystite
-
-**SPORTIFS**
-- Nutrition
-- Récupération
-- Prévention blessures
-- Compléments
-
-**LOCAL BRETAGNE**
-- Services Quéven
-- Pharmacies garde
-- Climat breton
-- Événements santé
+**Par public :**
+- Seniors : bien vieillir à Quéven
+- Parents : fièvre chez l'enfant
+- Femmes : ménopause, accompagnement
+- Sportifs : nutrition et récupération
 
 ---
 
 ## 📋 RÈGLES ÉDITORIALES
 
 ### FRÉQUENCE
-- Minimum : 2 articles/mois
-- Idéal : 1 article/15 jours
-- Maximum : 1 article/semaine
+- **Objectif** : 2 articles/mois (1 tous les 15 jours)
+- **Minimum** : 1 article/mois
+- **Maximum** : 1 article/semaine (si actualité)
 
 ### JOURS PUBLICATION
-✅ Mardi ou Mercredi
-❌ Lundi, Vendredi PM, Week-end
+- ✅ **Mardi ou Mercredi** (meilleur engagement)
+- ❌ Lundi, Vendredi PM, Week-end
 
 ### LONGUEUR
 - Minimum SEO : 1 000 mots
 - Standard : 1 200-1 400 mots
 - Maximum : 1 600 mots
 
-### CHECKLIST
-- [ ] Guide GUIDE-REDACTION-BLOG.md consulté
-- [ ] Ton sincère et rassurant
-- [ ] E-E-A-T respecté (Experience, Expertise, Authority, Trust)
-- [ ] Personnalisation "Laure" appropriée
-- [ ] Pas de répétition "Pharmacie Charnal"
-- [ ] Mots-clés locaux (Quéven, Bretagne)
-- [ ] FAQ 4-5 questions
-- [ ] Liens internes vers services existants
+### CHECKLIST AVANT PUBLICATION
+- [ ] Ton sincère et rassurant (voix de Laure)
+- [ ] E-E-A-T respecté
+- [ ] Mots-clés locaux (Quéven, Bretagne, Morbihan)
+- [ ] FAQ Schema.org (3-5 questions)
+- [ ] Questions en H2 (optimisation IA)
+- [ ] CTA = "Passez nous voir" (jamais appeler/email)
+- [ ] Liens internes vers services
+- [ ] Image avec alt text
+- [ ] Mobile responsive vérifié
 
 ---
 
-## 🔄 PROCESSUS
+## 🔄 PROCESSUS PUBLICATION
 
-### 1. PLANIFICATION (1 semaine avant)
-- Choisir sujet dans planning
-- Rechercher mots-clés SEO
-- Lister questions patients
+### 1. CRÉATION (J-7)
+- Choisir sujet dans le planning
+- Rechercher sources (études, recommandations)
+- Rédiger avec Claude (prompt dédié)
 
-### 2. RECHERCHE (2-3 jours)
-- Études scientifiques récentes
-- Recommandations officielles
-- Statistiques France/Bretagne
-- Sources fiables
+### 2. VALIDATION (J-3)
+- Relecture ton/style
+- Vérification dosages/recommandations
+- Ajout FAQ Schema.org
 
-### 3. RÉDACTION (1 jour)
-- Structure selon guide
-- E-E-A-T appliqué
-- 1 200-1 400 mots
-- FAQ complète
-- Liens services
+### 3. PUBLICATION (Jour J)
+- Créer HTML dans `/blog/`
+- Ajouter à `blog.html`
+- Mettre à jour ce planning
 
-### 4. RELECTURE
-- Ton vérifié (rassurant)
-- Dosages exacts
-- Orthographe/grammaire
-- Liens testés
+### 4. DISTRIBUTION (J+1)
+- Post Instagram (repurposing)
+- Post Google My Business
+- Story Instagram
 
-### 5. PUBLICATION
-- Créer HTML dans /blog/
-- Mettre à jour blog-v2.html
-- Documenter SEO dans README
-- Partager réseaux sociaux
-
-### 6. SUIVI (1 semaine après)
+### 5. SUIVI (J+7)
 - Vérifier indexation Google
-- Noter positions mots-clés
-- Ajuster si besoin
+- Noter engagement Instagram
+- Ajuster stratégie si besoin
 
 ---
 
 ## 📊 SUIVI PERFORMANCE
 
-| Article | Date | Vues | Top Keywords | Notes |
-|---------|------|------|--------------|-------|
-| Prévenir maux hiver | 31/12/25 | - | rhume/grippe/Quéven | Référence E-E-A-T |
+| Article | Date | Vues | Indexé Google | Notes |
+|---------|------|------|---------------|-------|
+| Détox après les fêtes | 12/01/26 | - | À vérifier | - |
+| Prévenir maux hiver | 31/12/25 | - | À vérifier | Référence E-E-A-T |
+| Vaccination adulte | 20/12/25 | - | À vérifier | - |
+| Professionnels Quéven | 10/12/25 | - | À vérifier | Carte Leaflet |
 
 ---
 
-**Dernière mise à jour** : 31 Décembre 2025
-**Prochain article** : 10 Janvier 2026
+**Prochain article à publier** : Humidité et douleurs articulaires (jeudi 29 janvier 2026)
+**Prochain article à rédiger** : Allergies : se préparer au printemps (pour 24 février)
