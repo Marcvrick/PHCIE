@@ -15,7 +15,7 @@ website-pharmacie-charnal/
 ├── marques.html            # Nos Marques (ancres: #cosmetiques, #complements, #premiers-soins)
 ├── blog.html               # Au Comptoir (liste des articles)
 ├── contact.html            # Contact
-├── recrutement-preparatrice.html  # Offre d'emploi préparatrice
+├── recrutement-preparatrice-pharmacie-queven.html  # Offre d'emploi préparatrice
 ├── mentions-legales.html   # Mentions légales
 ├── donnees-personnelles.html  # Données personnelles
 ├── style.css               # Styles principaux
@@ -247,7 +247,7 @@ git push origin main
 
 #### Page Recrutement (styles internes)
 
-La page `recrutement-preparatrice.html` a ses propres règles mobile dans un `<style>` interne :
+La page `recrutement-preparatrice-pharmacie-queven.html` a ses propres règles mobile dans un `<style>` interne :
 
 | Élément | Desktop | Mobile | Réduction |
 |---------|---------|--------|-----------|
