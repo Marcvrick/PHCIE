@@ -277,8 +277,8 @@ a {
 /* Tablette - réduction du menu pour éviter le wrap */
 @media (min-width: 768px) and (max-width: 1100px) {
     .nav-link {
-        padding: var(--space-xs) var(--space-sm);
-        font-size: var(--text-sm);
+        padding: 0.4rem 0.6rem;
+        font-size: var(--text-xs);
         white-space: nowrap;
     }
 }
