@@ -266,11 +266,13 @@ a {
     display: none;
     list-style: none;
     gap: var(--space-sm);
+    align-items: center;
 }
 
 @media (min-width: 768px) {
     .nav-links {
         display: flex;
+        align-items: center;
     }
 }
 
@@ -344,10 +346,12 @@ a {
 /* === DROPDOWN MENU === */
 .nav-dropdown {
     position: relative;
+    display: flex;
+    align-items: center;
 }
 
 .nav-dropdown-toggle {
-    display: flex;
+    display: inline-flex;
     align-items: center;
     gap: 0.3rem;
     cursor: pointer;
