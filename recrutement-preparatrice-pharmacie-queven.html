@@ -1,0 +1,882 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <meta name="description" content="Emploi préparateur en pharmacie à Quéven, près de Lorient (Morbihan). La Pharmacie Charnal recrute en CDI. Équipe soudée, e-learning, parking gratuit.">
+    <title>Recrutement Préparatrice en Pharmacie | Quéven (Lorient) | Pharmacie Charnal</title>
+    <meta name="robots" content="index, follow">
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Schema.org JobPosting -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "JobPosting",
+      "title": "Préparatrice en Pharmacie",
+      "description": "Nous recherchons une préparatrice en pharmacie pour rejoindre notre équipe à Quéven, à 10 minutes de Lorient. CDI temps plein ou temps partiel évolutif. Formation e-learning, responsabilisation, équipe à taille humaine.",
+      "datePosted": "2026-01-23",
+      "employmentType": ["FULL_TIME", "PART_TIME"],
+      "jobBenefits": "Parking gratuit, formation e-learning interne, responsabilisation sur actions merchandising, équipe à taille humaine, horaires équilibrés, accès bus T4 depuis Lorient",
+      "qualifications": "BP Préparateur en Pharmacie ou DEUST. Débutants acceptés.",
+      "educationalRequirements": "BP Préparateur en Pharmacie ou équivalent",
+      "experienceRequirements": "Débutants motivés bienvenus, expérience en officine appréciée",
+      "hiringOrganization": {
+        "@type": "Pharmacy",
+        "name": "Pharmacie Charnal",
+        "sameAs": "https://www.pharmaciecharnal.fr",
+        "logo": "https://www.pharmaciecharnal.fr/images/pharmacie-charnal-logo.png"
+      },
+      "jobLocation": {
+        "@type": "Place",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "32 Place de Toulouse",
+          "addressLocality": "Quéven",
+          "addressRegion": "Morbihan",
+          "postalCode": "56530",
+          "addressCountry": "FR"
+        }
+      },
+      "applicantLocationRequirements": {
+        "@type": "Country",
+        "name": "France"
+      }
+    }
+    </script>
+
+    <style>
+        /* Style lien recrutement dans nav */
+        .nav-link-recruit {
+            color: var(--teal) !important;
+            font-weight: 600;
+        }
+
+        .nav-link-recruit:hover {
+            background-color: rgba(45, 95, 93, 0.1) !important;
+        }
+
+        /* Styles spécifiques à la page recrutement */
+        .job-hero {
+            padding: var(--space-3xl) 0;
+            background: linear-gradient(135deg, var(--cream) 0%, var(--white) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .job-hero::before {
+            content: '';
+            position: absolute;
+            top: -100px;
+            right: -100px;
+            width: 400px;
+            height: 400px;
+            background: var(--sage);
+            border-radius: 50%;
+            opacity: 0.08;
+            filter: blur(60px);
+        }
+
+        .job-hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .job-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--space-xs);
+            padding: var(--space-xs) var(--space-md);
+            background: var(--gradient);
+            color: var(--white);
+            border-radius: var(--radius-full);
+            font-size: var(--text-sm);
+            font-weight: 600;
+            margin-bottom: var(--space-lg);
+        }
+
+        .job-title {
+            font-size: var(--text-4xl);
+            font-weight: 700;
+            margin-bottom: var(--space-md);
+            line-height: 1.2;
+        }
+
+        .job-subtitle {
+            font-size: var(--text-xl);
+            color: var(--gray);
+            max-width: 600px;
+            margin: 0 auto var(--space-lg);
+        }
+
+        .job-meta {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: var(--space-lg);
+            margin-top: var(--space-xl);
+        }
+
+        .job-meta-item {
+            display: flex;
+            align-items: center;
+            gap: var(--space-xs);
+            color: var(--gray);
+            font-size: var(--text-base);
+        }
+
+        .job-meta-item svg {
+            width: 20px;
+            height: 20px;
+            color: var(--sage);
+        }
+
+        /* Sections de contenu */
+        .job-content {
+            padding: var(--space-3xl) 0;
+        }
+
+        .job-section {
+            max-width: 800px;
+            margin: 0 auto var(--space-3xl);
+        }
+
+        .job-section:last-child {
+            margin-bottom: 0;
+        }
+
+        .job-section-title {
+            font-size: var(--text-2xl);
+            margin-bottom: var(--space-lg);
+            color: var(--charcoal);
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
+        }
+
+        .job-section-title svg {
+            width: 28px;
+            height: 28px;
+            color: var(--sage);
+        }
+
+        .job-section-content {
+            background: var(--white);
+            padding: var(--space-xl);
+            border-radius: var(--radius-xl);
+            border: 1px solid var(--beige);
+        }
+
+        .job-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .job-list li {
+            position: relative;
+            padding-left: var(--space-lg);
+            margin-bottom: var(--space-md);
+            line-height: 1.7;
+            color: var(--gray);
+        }
+
+        .job-list li:last-child {
+            margin-bottom: 0;
+        }
+
+        .job-list li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 10px;
+            width: 8px;
+            height: 8px;
+            background: var(--sage);
+            border-radius: 50%;
+        }
+
+        /* Avantages avec icônes */
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: var(--space-lg);
+        }
+
+        .benefit-item {
+            display: flex;
+            align-items: flex-start;
+            gap: var(--space-md);
+            padding: var(--space-md);
+            background: var(--cream);
+            border-radius: var(--radius-lg);
+        }
+
+        .benefit-icon {
+            width: 48px;
+            height: 48px;
+            background: var(--gradient);
+            border-radius: var(--radius-md);
+            padding: 12px;
+            flex-shrink: 0;
+        }
+
+        .benefit-icon svg {
+            width: 100%;
+            height: 100%;
+            color: var(--white);
+        }
+
+        .benefit-text h4 {
+            font-size: var(--text-base);
+            font-weight: 600;
+            color: var(--charcoal);
+            margin-bottom: var(--space-xs);
+        }
+
+        .benefit-text p {
+            font-size: var(--text-sm);
+            color: var(--gray);
+            margin: 0;
+            line-height: 1.5;
+        }
+
+        /* Section CTA */
+        .job-cta {
+            background: linear-gradient(135deg, var(--teal) 0%, var(--sage-dark) 100%);
+            padding: var(--space-3xl) 0;
+            text-align: center;
+            color: var(--white);
+        }
+
+        .job-cta-content {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .job-cta h2 {
+            color: var(--white);
+            font-size: var(--text-3xl);
+            margin-bottom: var(--space-md);
+        }
+
+        .job-cta p {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: var(--text-lg);
+            margin-bottom: var(--space-xl);
+        }
+
+        .job-cta-methods {
+            display: flex;
+            flex-direction: row;
+            gap: var(--space-lg);
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .cta-method {
+            background: rgba(255, 255, 255, 0.15);
+            padding: var(--space-lg) var(--space-xl);
+            border-radius: var(--radius-xl);
+            flex: 1;
+            min-width: 280px;
+            max-width: 350px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        .cta-method h3 {
+            color: var(--white);
+            font-size: var(--text-lg);
+            margin-bottom: var(--space-sm);
+        }
+
+        .cta-method p {
+            margin-bottom: var(--space-sm);
+            font-size: var(--text-base);
+        }
+
+        .cta-method a {
+            color: var(--white);
+            text-decoration: underline;
+            font-weight: 600;
+        }
+
+        .cta-method a:hover {
+            opacity: 0.9;
+        }
+
+        /* Pharmacie intro */
+        .pharmacy-intro {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: var(--space-xl);
+            align-items: center;
+        }
+
+        @media (min-width: 768px) {
+            .pharmacy-intro {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        .pharmacy-intro-image {
+            border-radius: var(--radius-xl);
+            overflow: hidden;
+        }
+
+        .pharmacy-intro-image img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+        }
+
+        .pharmacy-intro-text p {
+            color: var(--gray);
+            line-height: 1.8;
+        }
+
+        .pharmacy-intro-text p:last-child {
+            margin-bottom: 0;
+        }
+
+        /* Témoignage */
+        .testimonial-card {
+            background: var(--cream);
+            border-radius: var(--radius-xl);
+            padding: var(--space-xl);
+            position: relative;
+        }
+
+        .testimonial-quote {
+            font-size: var(--text-lg);
+            line-height: 1.8;
+            color: var(--gray);
+            font-style: italic;
+            margin-bottom: var(--space-lg);
+        }
+
+        .testimonial-quote::before {
+            content: '"';
+            font-size: 4rem;
+            color: var(--sage);
+            opacity: 0.3;
+            position: absolute;
+            top: var(--space-md);
+            left: var(--space-lg);
+            line-height: 1;
+            font-family: Georgia, serif;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: var(--space-md);
+        }
+
+        .testimonial-avatar {
+            width: 56px;
+            height: 56px;
+            background: var(--gradient);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-weight: 600;
+            font-size: var(--text-lg);
+        }
+
+        .testimonial-info h4 {
+            font-size: var(--text-base);
+            font-weight: 600;
+            color: var(--charcoal);
+            margin-bottom: 2px;
+        }
+
+        .testimonial-info p {
+            font-size: var(--text-sm);
+            color: var(--gray);
+            margin: 0;
+        }
+
+        /* Responsive */
+        @media (max-width: 767px) {
+            .job-title {
+                font-size: calc(var(--text-3xl) * 0.75);
+            }
+
+            .job-subtitle {
+                font-size: calc(var(--text-xl) * 0.85);
+                margin-bottom: var(--space-md);
+            }
+
+            .job-meta {
+                flex-direction: column;
+                align-items: center;
+                gap: var(--space-sm);
+                margin-top: var(--space-md);
+            }
+
+            .job-meta-item {
+                font-size: calc(var(--text-base) * 0.9);
+            }
+
+            .job-section-title {
+                font-size: calc(var(--text-2xl) * 0.75);
+            }
+
+            .job-section-content {
+                padding: var(--space-md);
+            }
+
+            .benefits-grid {
+                grid-template-columns: 1fr;
+                gap: var(--space-md);
+            }
+
+            .benefit-item {
+                padding: calc(var(--space-md) * 0.7);
+                gap: var(--space-sm);
+            }
+
+            .benefit-icon {
+                width: calc(48px * 0.7);
+                height: calc(48px * 0.7);
+                padding: 8px;
+            }
+
+            .cta-method {
+                padding: var(--space-md);
+                max-width: 100%;
+            }
+
+            .job-cta-methods {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .job-cta h2 {
+                font-size: calc(var(--text-3xl) * 0.75);
+            }
+
+            .job-cta p {
+                font-size: calc(var(--text-lg) * 0.9);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo-link">
+                <div class="nav-logo">
+                    <div class="logo-icon">
+                        <img src="images/pharmacie-charnal-logo.png" alt="Logo Pharmacie Charnal" style="width: 100%; height: 100%; object-fit: contain;">
+                    </div>
+                    <div class="logo-text">
+                        <span class="logo-name">Pharmacie Charnal</span>
+                        <span class="logo-tagline">Quéven</span>
+                    </div>
+                </div>
+            </a>
+            <button class="mobile-menu-toggle" aria-label="Menu" aria-expanded="false">
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+            </button>
+
+            <ul class="nav-links">
+                <li><a href="index.html" class="nav-link">Accueil</a></li>
+                <li><a href="histoire.html" class="nav-link">Notre Histoire</a></li>
+                <li><a href="services.html" class="nav-link">Services</a></li>
+                <li><a href="blog.html" class="nav-link nav-link-blog">Au comptoir</a></li>
+                <li><a href="contact.html" class="nav-link">Contact</a></li>
+                <li><a href="recrutement-preparatrice-pharmacie-queven.html" class="nav-link nav-link-recruit">Recrutement</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="job-hero">
+        <div class="container">
+            <div class="job-hero-content fade-in">
+                <span class="job-badge">
+                    <svg viewBox="0 0 24 24" fill="none" width="16" height="16">
+                        <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        <circle cx="12" cy="7" r="4" stroke="currentColor" stroke-width="2"/>
+                    </svg>
+                    Nous recrutons
+                </span>
+                <h1 class="job-title">
+                    Préparatrice en Pharmacie
+                </h1>
+                <p class="job-subtitle">
+                    Rejoignez une équipe soudée et passionnée au service des patients de Quéven et du bassin lorientais.
+                </p>
+                <div class="job-meta">
+                    <div class="job-meta-item">
+                        <svg viewBox="0 0 24 24" fill="none">
+                            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" stroke="currentColor" stroke-width="2"/>
+                            <circle cx="12" cy="10" r="3" stroke="currentColor" stroke-width="2"/>
+                        </svg>
+                        Quéven (56) - 10 min de Lorient
+                    </div>
+                    <div class="job-meta-item">
+                        <svg viewBox="0 0 24 24" fill="none">
+                            <rect x="3" y="4" width="18" height="18" rx="2" stroke="currentColor" stroke-width="2"/>
+                            <path d="M16 2v4M8 2v4M3 10h18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                        CDD / CDI — Temps plein ou partiel évolutif
+                    </div>
+                    <div class="job-meta-item">
+                        <svg viewBox="0 0 24 24" fill="none">
+                            <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/>
+                            <path d="M12 6v6l4 2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                        Dès que possible
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contenu principal -->
+    <section class="job-content">
+        <div class="container">
+
+            <!-- Présentation de la pharmacie -->
+            <div class="job-section fade-up">
+                <h2 class="job-section-title">
+                    <svg viewBox="0 0 24 24" fill="none">
+                        <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z" stroke="currentColor" stroke-width="2"/>
+                        <path d="M9 22V12h6v10" stroke="currentColor" stroke-width="2"/>
+                    </svg>
+                    Notre pharmacie
+                </h2>
+                <div class="job-section-content">
+                    <div class="pharmacy-intro">
+                        <div class="pharmacy-intro-image">
+                            <img src="images/pharmacie-charnal-facade.jpeg" alt="Façade de la Pharmacie Charnal à Quéven">
+                        </div>
+                        <div class="pharmacy-intro-text">
+                            <p>
+                                La Pharmacie Charnal est une pharmacie de quartier implantée au cœur de Quéven depuis plus de 40 ans. Située sur la Place de Toulouse, à seulement 10 minutes de Lorient, nous accompagnons nos patients avec professionnalisme et bienveillance.
+                            </p>
+                            <p>
+                                Notre équipe à taille humaine privilégie la qualité du conseil et la relation de confiance avec chaque patient. Nous proposons une large gamme de services : délivrance d'ordonnances, vaccinations, conseil en parapharmacie et produits naturels.
+                            </p>
+                            <p style="margin-top: var(--space-md);">
+                                <a href="histoire.html#laure-charnal" style="color: var(--teal); font-weight: 500;">Découvrez notre histoire et rencontrez Laure &rarr;</a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Le poste -->
+            <div class="job-section fade-up">
+                <h2 class="job-section-title">
+                    <svg viewBox="0 0 24 24" fill="none">
+                        <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z" stroke="currentColor" stroke-width="2"/>
+                        <path d="M14 2v6h6M16 13H8M16 17H8M10 9H8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                    Le poste
+                </h2>
+                <div class="job-section-content">
+                    <p style="margin-bottom: var(--space-lg); color: var(--gray);">
+                        En tant que préparatrice en pharmacie, vous serez un maillon essentiel de notre équipe. Vos missions principales :
+                    </p>
+                    <ul class="job-list">
+                        <li>Accueillir et conseiller les patients au comptoir avec écoute et professionnalisme</li>
+                        <li>Délivrer les médicaments sur ordonnance et vérifier les interactions</li>
+                        <li>Conseiller sur les produits de parapharmacie, d'hygiène et de soins</li>
+                        <li>Gérer les stocks, les commandes et le rangement des produits</li>
+                        <li>Participer à la mise en avant des produits et des promotions</li>
+                        <li>Contribuer à la bonne ambiance et au travail d'équipe</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Profil recherché -->
+            <div class="job-section fade-up">
+                <h2 class="job-section-title">
+                    <svg viewBox="0 0 24 24" fill="none">
+                        <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2" stroke="currentColor" stroke-width="2"/>
+                        <circle cx="12" cy="7" r="4" stroke="currentColor" stroke-width="2"/>
+                    </svg>
+                    Profil recherché
+                </h2>
+                <div class="job-section-content">
+                    <ul class="job-list">
+                        <li><strong>Diplôme requis :</strong> BP Préparateur en Pharmacie ou équivalent</li>
+                        <li><strong>Expérience :</strong> Une première expérience en officine est appréciée, mais les débutants motivés sont les bienvenus</li>
+                        <li><strong>Qualités humaines :</strong> Sens de l'écoute, empathie et goût du contact patient</li>
+                        <li><strong>Rigueur :</strong> Organisation, fiabilité et attention aux détails</li>
+                        <li><strong>Esprit d'équipe :</strong> Capacité à travailler dans une équipe soudée et bienveillante</li>
+                        <li><strong>Curiosité :</strong> Envie d'apprendre et de se former continuellement</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Ce que nous offrons -->
+            <div class="job-section fade-up">
+                <h2 class="job-section-title">
+                    <svg viewBox="0 0 24 24" fill="none">
+                        <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+                    </svg>
+                    Ce que nous offrons
+                </h2>
+                <div class="job-section-content">
+                    <div class="benefits-grid">
+                        <div class="benefit-item">
+                            <div class="benefit-icon">
+                                <svg viewBox="0 0 24 24" fill="none">
+                                    <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2" stroke="currentColor" stroke-width="2"/>
+                                    <circle cx="9" cy="7" r="4" stroke="currentColor" stroke-width="2"/>
+                                    <path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75" stroke="currentColor" stroke-width="2"/>
+                                </svg>
+                            </div>
+                            <div class="benefit-text">
+                                <h4>Équipe à taille humaine</h4>
+                                <p>Ambiance de travail chaleureuse et bienveillante</p>
+                            </div>
+                        </div>
+                        <div class="benefit-item">
+                            <div class="benefit-icon">
+                                <svg viewBox="0 0 24 24" fill="none">
+                                    <path d="M4 19.5A2.5 2.5 0 016.5 17H20" stroke="currentColor" stroke-width="2"/>
+                                    <path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z" stroke="currentColor" stroke-width="2"/>
+                                </svg>
+                            </div>
+                            <div class="benefit-text">
+                                <h4>Formation e-learning</h4>
+                                <p>Programme complet de formation interne pour développer vos compétences</p>
+                            </div>
+                        </div>
+                        <div class="benefit-item">
+                            <div class="benefit-icon">
+                                <svg viewBox="0 0 24 24" fill="none">
+                                    <path d="M16 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2" stroke="currentColor" stroke-width="2"/>
+                                    <circle cx="8.5" cy="7" r="4" stroke="currentColor" stroke-width="2"/>
+                                    <path d="M20 8v6M23 11h-6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                                </svg>
+                            </div>
+                            <div class="benefit-text">
+                                <h4>Responsabilisation</h4>
+                                <p>Actions ciblées en merchandising et gestion de rayons selon vos appétences</p>
+                            </div>
+                        </div>
+                        <div class="benefit-item">
+                            <div class="benefit-icon">
+                                <svg viewBox="0 0 24 24" fill="none">
+                                    <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/>
+                                    <path d="M12 6v6l4 2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                                </svg>
+                            </div>
+                            <div class="benefit-text">
+                                <h4>Horaires équilibrés</h4>
+                                <p>Planning stable permettant un bon équilibre vie pro/perso</p>
+                            </div>
+                        </div>
+                        <div class="benefit-item">
+                            <div class="benefit-icon">
+                                <svg viewBox="0 0 24 24" fill="none">
+                                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" stroke="currentColor" stroke-width="2"/>
+                                    <circle cx="12" cy="10" r="3" stroke="currentColor" stroke-width="2"/>
+                                </svg>
+                            </div>
+                            <div class="benefit-text">
+                                <h4>Accès facile</h4>
+                                <p>Parking gratuit, bus T4 direct depuis Lorient (15 min)</p>
+                            </div>
+                        </div>
+                        <div class="benefit-item">
+                            <div class="benefit-icon">
+                                <svg viewBox="0 0 24 24" fill="none">
+                                    <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/>
+                                    <path d="M12 6v12M8 10h8M8 14h8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                                </svg>
+                            </div>
+                            <div class="benefit-text">
+                                <h4>Rémunération modulable</h4>
+                                <p>Selon l'engagement souhaité et > Coefficient 260</p>
+                            </div>
+                        </div>
+                        <div class="benefit-item">
+                            <div class="benefit-icon">
+                                <svg viewBox="0 0 24 24" fill="none">
+                                    <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </div>
+                            <div class="benefit-text">
+                                <h4>De l'action</h4>
+                                <p>Des journées variées où l'on ne s'ennuie jamais!</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Témoignage -->
+            <div class="job-section fade-up">
+                <h2 class="job-section-title">
+                    <svg viewBox="0 0 24 24" fill="none">
+                        <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    Parole d'équipe
+                </h2>
+                <div class="job-section-content">
+                    <div class="testimonial-card">
+                        <p class="testimonial-quote">
+                            Je travaille à la Pharmacie Charnal depuis 6 ans et je m'y épanouis pleinement au quotidien. La clientèle est chaleureuse et Laure nous donne la liberté de nous développer dans les nombreuses facettes du métier. Un vrai plaisir.
+                        </p>
+                        <div class="testimonial-author">
+                            <div class="testimonial-avatar">C</div>
+                            <div class="testimonial-info">
+                                <h4>Chloé</h4>
+                                <p>Préparatrice en pharmacie depuis 15 ans</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- CTA Candidature -->
+    <section class="job-cta">
+        <div class="container">
+            <div class="job-cta-content fade-up">
+                <h2>Envie de nous rejoindre ?</h2>
+                <p>
+                    Nous serions ravis de vous rencontrer et d'échanger sur ce poste.<br>
+                    <strong>Nous nous engageons à répondre à toutes les candidatures sous 48h.</strong>
+                </p>
+                <div class="job-cta-methods">
+                    <div class="cta-method">
+                        <h3>Passez nous voir</h3>
+                        <p>Déposez votre CV directement à la pharmacie</p>
+                        <p><strong>32 Place de Toulouse, 56530 Quéven</strong></p>
+                    </div>
+                    <div class="cta-method">
+                        <h3>Envoyez votre CV</h3>
+                        <p><a href="mailto:pharmacie.charnal@gmail.com" style="color: white; text-decoration: underline;">par email</a></p>
+                    </div>
+                </div>
+                <p style="margin-top: var(--space-xl); font-size: var(--text-base); opacity: 0.9;">
+                    Notre processus : Réponse sous 48h &rarr; Entretien téléphonique &rarr; Rencontre à la pharmacie &rarr; Décision rapide
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-col footer-about">
+                    <div class="footer-logo">
+                        <div class="logo-icon">
+                            <img src="images/pharmacie-charnal-logo.png" alt="Logo Pharmacie Charnal" style="width: 100%; height: 100%; object-fit: contain;">
+                        </div>
+                        <div>
+                            <div class="footer-logo-name">Pharmacie Charnal</div>
+                            <div class="footer-logo-tagline">Quéven</div>
+                        </div>
+                    </div>
+                    <p>Votre pharmacie familiale depuis plus de 40 ans. Une tradition de soins personnalisés et attentifs.</p>
+                    <div class="footer-social">
+                        <h4>Suivez-nous</h4>
+                        <div class="social-links">
+                            <a href="https://www.instagram.com/pharmaciecharnalqueven/" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Instagram">
+                                <svg width="30" height="30" viewBox="0 0 24 24" fill="none">
+                                    <rect x="2" y="2" width="20" height="20" rx="5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <circle cx="17.5" cy="6.5" r="0.5" fill="currentColor"/>
+                                </svg>
+                            </a>
+                            <a href="https://www.facebook.com/pharmaciecharnal/" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Facebook">
+                                <svg width="30" height="30" viewBox="0 0 24 24" fill="none">
+                                    <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h4>Navigation</h4>
+                    <ul>
+                        <li><a href="index.html">Accueil</a></li>
+                        <li><a href="histoire.html">Notre Histoire</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="blog.html">Au comptoir</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Contact</h4>
+                    <ul>
+                        <li>32 Place de Toulouse</li>
+                        <li>56530 Quéven</li>
+                        <li><a href="tel:0297050931">02 97 05 09 31</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Horaires</h4>
+                    <ul>
+                        <li>Lun-Ven: 9h-12h30 / 14h-19h15</li>
+                        <li>Samedi: 9h-12h30</li>
+                        <li>Dimanche: Fermé</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div class="footer-legal">
+                    <a href="mentions-legales.html">Mentions légales</a>
+                    <span class="separator">•</span>
+                    <a href="donnees-personnelles.html">Données personnelles</a>
+                </div>
+                <p>&copy; 2026 Pharmacie Charnal - Tous droits réservés</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="animations.js"></script>
+    <script>
+        // Menu mobile toggle
+        const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
+        const navLinks = document.querySelector('.nav-links');
+
+        if (mobileMenuToggle) {
+            mobileMenuToggle.addEventListener('click', () => {
+                const isExpanded = mobileMenuToggle.getAttribute('aria-expanded') === 'true';
+                mobileMenuToggle.setAttribute('aria-expanded', !isExpanded);
+                navLinks.classList.toggle('active');
+            });
+
+            const links = navLinks.querySelectorAll('.nav-link');
+            links.forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileMenuToggle.setAttribute('aria-expanded', 'false');
+                    navLinks.classList.remove('active');
+                });
+            });
+
+            document.addEventListener('click', (e) => {
+                if (!navLinks.contains(e.target) && !mobileMenuToggle.contains(e.target)) {
+                    mobileMenuToggle.setAttribute('aria-expanded', 'false');
+                    navLinks.classList.remove('active');
+                }
+            });
+        }
+    </script>
+</body>
+</html>
