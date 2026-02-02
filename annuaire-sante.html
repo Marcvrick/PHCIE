@@ -201,6 +201,7 @@
             display: grid;
             grid-template-columns: repeat(4, 1fr);
             gap: var(--space-md);
+            align-items: stretch;
         }
 
         @media (max-width: 1200px) {
@@ -231,6 +232,7 @@
             flex-direction: column;
             align-items: center;
             text-align: center;
+            height: 100%;
         }
 
         .urgence-card:hover {
@@ -277,6 +279,9 @@
             color: var(--gray);
             margin-bottom: var(--space-sm);
             line-height: 1.4;
+            flex-grow: 1;
+            display: flex;
+            align-items: center;
         }
 
         .urgence-number {
@@ -307,6 +312,7 @@
             display: grid;
             grid-template-columns: repeat(4, 1fr);
             gap: var(--space-md);
+            align-items: stretch;
         }
 
         @media (max-width: 1200px) {
@@ -333,6 +339,9 @@
             padding: var(--space-md);
             border: 1px solid var(--beige);
             transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+            height: 100%;
         }
 
         .resource-card:hover {
@@ -360,12 +369,14 @@
             color: var(--gray);
             margin-bottom: var(--space-sm);
             line-height: 1.5;
+            flex-grow: 1;
         }
 
         .resource-contact {
             display: flex;
             flex-wrap: wrap;
             gap: var(--space-xs);
+            margin-top: auto;
         }
 
         .resource-phone, .resource-link {
