@@ -42,16 +42,20 @@
             padding: var(--space-2xl) 0;
         }
 
-        /* === TODAY'S GUARD CARD === */
+        /* === TODAY'S GUARD SECTION === */
+        .today-guard-section {
+            background: linear-gradient(135deg, var(--sage) 0%, var(--teal) 100%);
+            padding: var(--space-2xl) 0;
+        }
+
         .today-guard-card {
             background: var(--white);
-            border: 1px solid var(--beige);
             border-radius: var(--radius-lg);
             padding: var(--space-xl);
             max-width: 500px;
-            margin: 0 auto var(--space-xl);
+            margin: 0 auto;
             text-align: center;
-            box-shadow: var(--shadow-md);
+            box-shadow: var(--shadow-lg);
         }
 
         .today-guard-date {
@@ -147,7 +151,10 @@
 
         /* Responsive */
         @media (max-width: 768px) {
-            .today-guard-card,
+            .today-guard-section {
+                padding: var(--space-xl) var(--space-md);
+            }
+
             .info-3237,
             .horaires-info {
                 margin-left: var(--space-md);
@@ -209,17 +216,21 @@
         </div>
     </section>
 
-    <!-- Main Content -->
-    <section class="gardes-section">
+    <!-- Today's Guard -->
+    <section class="today-guard-section">
         <div class="container">
-            <!-- Today's Guard -->
             <div class="today-guard-card" id="todayGuardCard">
                 <div class="today-guard-date" id="todayDate">Chargement...</div>
                 <div class="today-guard-pharmacie" id="todayPharmacie">-</div>
                 <div class="today-guard-ville" id="todayVille">-</div>
                 <div class="today-guard-type" id="todayType">-</div>
             </div>
+        </div>
+    </section>
 
+    <!-- Info Section -->
+    <section class="gardes-section">
+        <div class="container">
             <!-- 3237 Info -->
             <div class="info-3237">
                 <p>Pour confirmer ou les autres jours</p>
