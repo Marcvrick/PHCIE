@@ -16,6 +16,7 @@ website-pharmacie-charnal/
 ├── blog.html               # Au Comptoir (liste des articles)
 ├── contact.html            # Contact
 ├── recrutement-preparatrice-pharmacie-queven.html  # Offre d'emploi préparatrice
+├── pharmacie-de-garde-queven-hennebont-lorient.html  # Page pharmacie de garde
 ├── mentions-legales.html   # Mentions légales
 ├── donnees-personnelles.html  # Données personnelles
 ├── style.css               # Styles principaux
@@ -258,6 +259,38 @@ La page `recrutement-preparatrice-pharmacie-queven.html` a ses propres règles m
 | `.benefit-icon` | `48px` | `calc(48px * 0.7)` | 30% |
 | `.benefits-grid` | auto-fit | `1fr` (1 colonne) | Simplifié |
 | `.job-cta h2` | `var(--text-3xl)` | `calc(var(--text-3xl) * 0.75)` | 25% |
+
+### Page Pharmacie de Garde
+
+**Fichier**: `pharmacie-de-garde-queven-hennebont-lorient.html`
+
+**État actuel**: Affiche uniquement le numéro **3237** pour trouver la pharmacie de garde.
+
+**Fonctionnalité masquée (prête à être activée)**:
+- Carte affichant la pharmacie de garde du jour
+- Données des gardes de février à juin 2026 intégrées dans le JavaScript
+- Logique pour afficher garde de jour/nuit selon l'heure
+
+**Pour réactiver la carte pharmacie du jour**:
+
+1. Dans le HTML, remettre la section "Today's Guard" :
+```html
+<section class="today-guard-section">
+    <div class="container">
+        <div class="today-guard-card" id="todayGuardCard">
+            <div class="today-guard-date" id="todayDate">Chargement...</div>
+            <div class="today-guard-pharmacie" id="todayPharmacie">-</div>
+            <div class="today-guard-ville" id="todayVille">-</div>
+        </div>
+    </div>
+</section>
+```
+
+2. Le JavaScript `renderTodayGuard()` est déjà présent et fonctionnel.
+
+3. Mettre à jour les données `gardesData` avec les nouveaux mois si nécessaire.
+
+---
 
 ### Carte Interactive Leaflet.js
 **Fichier**: `blog/professionnels-sante-queven-2026.html`
