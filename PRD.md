@@ -13,13 +13,13 @@
 Créer une présence digitale moderne et accessible pour la Pharmacie Charnal, renforçant sa position de pharmacie de proximité à Quéven tout en optimisant sa visibilité sur les moteurs de recherche classiques et les assistants IA.
 
 ### Objectifs Business
-| Objectif | KPI | Cible |
-|----------|-----|-------|
-| Visibilité locale | Position Google "pharmacie Quéven" | Top 3 |
-| Trafic organique | Visites mensuelles | 500+ |
-| Engagement blog | Pages vues articles | 100+/article |
-| Recrutement | Candidatures via site | 2-5/an |
-| AI Search | Citations ChatGPT/Perplexity | Présence régulière |
+| Objectif          | KPI                                | Cible              |
+| ----------------- | ---------------------------------- | ------------------ |
+| Visibilité locale | Position Google "pharmacie Quéven" | Top 1              |
+| Trafic organique  | Visites mensuelles                 | 500+               |
+| Engagement blog   | Pages vues articles                | 100+/article       |
+| Recrutement       | Candidatures via site              | 2-5/an             |
+| AI Search         | Citations ChatGPT/Perplexity       | Présence régulière |
 
 ### Objectifs Utilisateur
 - Trouver rapidement les horaires et coordonnées
