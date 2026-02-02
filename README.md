@@ -346,6 +346,13 @@ La page `recrutement-preparatrice-pharmacie-queven.html` a ses propres règles m
    - Calendrier éditorial
    - Idées d'articles
 
+4. **PRD.md** (`PRD.md`)
+   - Vision et objectifs business
+   - Personas utilisateurs
+   - Roadmap (phases et priorités)
+   - Métriques de succès
+   - ⚠️ **À mettre à jour** lors de changements majeurs (nouvelles fonctionnalités, évolution roadmap)
+
 ---
 
 ## 🎯 Prochaines Étapes Suggérées
@@ -389,6 +396,6 @@ Les deux fichiers sont complémentaires et doivent rester à jour.
 
 ---
 
-**Dernière mise à jour**: Janvier 2026
+**Dernière mise à jour**: Février 2026
 **Version du site**: Production (main branch)
 **Statut**: ✅ En ligne sur www.pharmaciecharnal.com
