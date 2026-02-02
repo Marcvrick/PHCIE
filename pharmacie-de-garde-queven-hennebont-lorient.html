@@ -18,6 +18,64 @@
 
     <link rel="stylesheet" href="style.css">
 
+    <!-- FAQ Schema for SEO -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+            {
+                "@type": "Question",
+                "name": "Comment trouver la pharmacie de garde près de chez moi ?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Le moyen le plus simple est d'appeler le 3237 (0,35€/min). Ce service officiel vous indique la pharmacie de garde la plus proche, 24h/24 et 7j/7. Vous pouvez aussi consulter l'affichage sur la porte de votre pharmacie habituelle."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Quels sont les horaires des pharmacies de garde ?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Garde de jour (dimanche et jours fériés) : de 9h00 à 19h00. Garde de nuit : de 19h00 à 9h00, accès sur sonnette ou interphone."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Faut-il une ordonnance pour aller à la pharmacie de garde ?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Pour les médicaments sans ordonnance, non. Pour les médicaments sur ordonnance, oui, sauf urgence vitale où le pharmacien peut délivrer la quantité minimale nécessaire."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Y a-t-il un supplément à payer en pharmacie de garde ?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Garde de jour : pas de supplément. Garde de nuit : un honoraire de garde de 8€ s'applique, pris en charge à 70% par l'Assurance Maladie avec ordonnance."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Quelles communes sont couvertes par ce secteur de garde ?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Le secteur couvre : Quéven, Hennebont, Guidel, Lanester, Gestel, Caudan, Cléguer, Inzinzac-Lochrist, Languidic, Pont-Scorff, Plouay, Ploemeur, Riantec, Locmiquélic, Port-Louis, Kervignac, Merlevenez, Plouhinec, Branderion."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Que faire en cas d'urgence médicale grave ?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "En cas d'urgence vitale, appelez le 15 (SAMU) ou le 112 (urgences européennes). La pharmacie de garde est destinée aux besoins urgents de médicaments, pas aux urgences médicales."
+                }
+            }
+        ]
+    }
+    </script>
+
     <style>
         /* === GARDES PAGE STYLES === */
         .gardes-hero {
@@ -149,6 +207,72 @@
             line-height: 1.6;
         }
 
+        /* === FAQ === */
+        .faq-section {
+            background: var(--cream);
+            padding: var(--space-2xl) 0;
+        }
+
+        .faq-section h2 {
+            text-align: center;
+            font-size: var(--text-2xl);
+            color: var(--charcoal);
+            margin-bottom: var(--space-xl);
+        }
+
+        .faq-list {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            background: var(--white);
+            border: 1px solid var(--beige);
+            border-radius: var(--radius-lg);
+            margin-bottom: var(--space-md);
+            overflow: hidden;
+        }
+
+        .faq-item summary {
+            padding: var(--space-lg);
+            font-weight: 600;
+            color: var(--charcoal);
+            cursor: pointer;
+            list-style: none;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .faq-item summary::-webkit-details-marker {
+            display: none;
+        }
+
+        .faq-item summary::after {
+            content: "+";
+            font-size: var(--text-xl);
+            color: var(--sage);
+            font-weight: 400;
+        }
+
+        .faq-item[open] summary::after {
+            content: "−";
+        }
+
+        .faq-item .faq-answer {
+            padding: 0 var(--space-lg) var(--space-lg);
+            color: var(--gray);
+            line-height: 1.7;
+        }
+
+        .faq-item .faq-answer p {
+            margin-bottom: var(--space-sm);
+        }
+
+        .faq-item .faq-answer p:last-child {
+            margin-bottom: 0;
+        }
+
         /* Responsive */
         @media (max-width: 768px) {
             .today-guard-section {
@@ -163,6 +287,11 @@
 
             .today-guard-pharmacie {
                 font-size: var(--text-xl);
+            }
+
+            .faq-list {
+                margin-left: var(--space-md);
+                margin-right: var(--space-md);
             }
         }
     </style>
@@ -245,6 +374,61 @@
                     <strong>Jour</strong> (dimanche et fériés) : 9h - 19h<br>
                     <strong>Nuit</strong> : 19h - 9h (sonnette)
                 </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="faq-section">
+        <div class="container">
+            <h2>Questions fréquentes</h2>
+            <div class="faq-list">
+                <details class="faq-item">
+                    <summary>Comment trouver la pharmacie de garde près de chez moi ?</summary>
+                    <div class="faq-answer">
+                        <p>Le moyen le plus simple est d'appeler le <strong>3237</strong> (0,35€/min). Ce service officiel vous indique la pharmacie de garde la plus proche, 24h/24 et 7j/7.</p>
+                        <p>Vous pouvez aussi consulter l'affichage sur la porte de votre pharmacie habituelle ou contacter le commissariat/gendarmerie.</p>
+                    </div>
+                </details>
+
+                <details class="faq-item">
+                    <summary>Quels sont les horaires des pharmacies de garde ?</summary>
+                    <div class="faq-answer">
+                        <p><strong>Garde de jour</strong> (dimanche et jours fériés) : de 9h00 à 19h00. La pharmacie est ouverte normalement.</p>
+                        <p><strong>Garde de nuit</strong> : de 19h00 à 9h00. L'accès se fait sur sonnette ou interphone. Seuls les médicaments urgents sont délivrés.</p>
+                    </div>
+                </details>
+
+                <details class="faq-item">
+                    <summary>Faut-il une ordonnance pour aller à la pharmacie de garde ?</summary>
+                    <div class="faq-answer">
+                        <p>Pour les médicaments sans ordonnance (paracétamol, etc.), non. Pour les médicaments sur ordonnance, oui, sauf urgence vitale.</p>
+                        <p>En cas d'urgence la nuit, le pharmacien peut délivrer la quantité minimale nécessaire pour vous dépanner jusqu'à l'ouverture de votre médecin.</p>
+                    </div>
+                </details>
+
+                <details class="faq-item">
+                    <summary>Y a-t-il un supplément à payer en pharmacie de garde ?</summary>
+                    <div class="faq-answer">
+                        <p><strong>Garde de jour</strong> (dimanche/férié, 9h-19h) : pas de supplément.</p>
+                        <p><strong>Garde de nuit</strong> (19h-9h) : un honoraire de garde de <strong>8€</strong> s'applique. Il est pris en charge à 70% par l'Assurance Maladie si vous avez une ordonnance.</p>
+                    </div>
+                </details>
+
+                <details class="faq-item">
+                    <summary>Quelles communes sont couvertes par ce secteur de garde ?</summary>
+                    <div class="faq-answer">
+                        <p>Le secteur N°561021 "Communes des Deux Vallées Scorff Blavet" couvre : Quéven, Hennebont, Guidel, Lanester, Gestel, Caudan, Cléguer, Inzinzac-Lochrist, Languidic, Pont-Scorff, Plouay, Ploemeur, Riantec, Locmiquélic, Port-Louis, Kervignac, Merlevenez, Plouhinec, Branderion.</p>
+                    </div>
+                </details>
+
+                <details class="faq-item">
+                    <summary>Que faire en cas d'urgence médicale grave ?</summary>
+                    <div class="faq-answer">
+                        <p>En cas d'urgence vitale, appelez le <strong>15</strong> (SAMU) ou le <strong>112</strong> (urgences européennes).</p>
+                        <p>La pharmacie de garde est destinée aux besoins urgents de médicaments, pas aux urgences médicales. Pour une consultation médicale urgente le week-end, contactez SOS Médecins ou les urgences hospitalières.</p>
+                    </div>
+                </details>
             </div>
         </div>
     </section>
