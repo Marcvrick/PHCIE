@@ -45,7 +45,7 @@
                 "name": "Comment trouver la pharmacie de garde près de chez moi?",
                 "acceptedAnswer": {
                     "@type": "Answer",
-                    "text": "Le moyen le plus simple est d'appeler le 3237 (0,35€/min). Ce service officiel vous indique la pharmacie de garde la plus proche, 24h/24 et 7j/7. Vous pouvez aussi consulter l'affichage sur la porte de votre pharmacie habituelle."
+                    "text": "Le moyen le plus simple est d'appeler le 3237 (0,35€/min). Ce service officiel vous indique la pharmacie de garde la plus proche, 24h/24 et 7j/7."
                 }
             },
             {
@@ -337,7 +337,6 @@
                 <div class="today-guard-date" id="todayDate">Chargement...</div>
                 <div class="today-guard-pharmacie" id="todayPharmacie">-</div>
                 <div class="today-guard-ville" id="todayVille">-</div>
-                <div class="today-guard-type" id="todayType">-</div>
             </div>
         </div>
     </section>
@@ -382,7 +381,6 @@
                     <summary>Comment trouver la pharmacie de garde près de chez moi?</summary>
                     <div class="faq-answer">
                         <p>Le moyen le plus simple est d'appeler le <strong>3237</strong> (0,35€/min). Ce service officiel vous indique la pharmacie de garde la plus proche, 24h/24 et 7j/7.</p>
-                        <p>Vous pouvez aussi consulter l'affichage sur la porte de votre pharmacie habituelle ou contacter le commissariat/gendarmerie.</p>
                     </div>
                 </details>
 
@@ -724,7 +722,6 @@
             if (!data) {
                 document.getElementById('todayPharmacie').textContent = 'Appelez le 3237';
                 document.getElementById('todayVille').textContent = '';
-                document.getElementById('todayType').textContent = '';
                 return;
             }
 
@@ -734,7 +731,6 @@
             if (todayGuards.length === 0) {
                 document.getElementById('todayPharmacie').textContent = 'Appelez le 3237';
                 document.getElementById('todayVille').textContent = 'pour connaître la pharmacie de garde';
-                document.getElementById('todayType').textContent = '';
                 return;
             }
 
@@ -748,7 +744,6 @@
 
             document.getElementById('todayPharmacie').textContent = `Pharmacie ${currentGuard.pharmacie}`;
             document.getElementById('todayVille').textContent = currentGuard.ville;
-            document.getElementById('todayType').textContent = currentGuard.type === 'Férié' ? 'Garde jour férié' : `Garde de ${currentGuard.type.toLowerCase()}`;
         }
 
         // === INITIALIZE ===
