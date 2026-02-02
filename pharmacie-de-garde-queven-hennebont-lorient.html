@@ -22,298 +22,140 @@
         /* === GARDES PAGE STYLES === */
         .gardes-hero {
             background: linear-gradient(135deg, var(--sage-light) 0%, var(--sage) 100%);
-            padding: var(--space-2xl) 0;
+            padding: var(--space-xl) 0;
             color: var(--white);
             text-align: center;
         }
 
         .gardes-hero h1 {
-            font-size: var(--text-4xl);
+            font-size: var(--text-3xl);
             font-weight: 700;
-            margin-bottom: var(--space-md);
+            margin-bottom: var(--space-sm);
         }
 
         .gardes-hero .subtitle {
-            font-size: var(--text-lg);
+            font-size: var(--text-base);
             opacity: 0.95;
         }
 
         .gardes-section {
-            padding: var(--space-3xl) 0;
-        }
-
-        /* === TODAY'S GUARD - HERO SECTION === */
-        .today-guard-section {
-            background: linear-gradient(135deg, #1E3A5F 0%, #2D5F5D 100%);
             padding: var(--space-2xl) 0;
         }
 
+        /* === TODAY'S GUARD CARD === */
         .today-guard-card {
             background: var(--white);
-            border-radius: var(--radius-xl);
+            border: 1px solid var(--beige);
+            border-radius: var(--radius-lg);
             padding: var(--space-xl);
-            max-width: 600px;
-            margin: 0 auto;
+            max-width: 500px;
+            margin: 0 auto var(--space-xl);
             text-align: center;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-        }
-
-        .today-guard-label {
-            display: inline-block;
-            background: var(--sage);
-            color: var(--white);
-            padding: 0.5rem 1.5rem;
-            border-radius: 9999px;
-            font-size: var(--text-sm);
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            margin-bottom: var(--space-lg);
+            box-shadow: var(--shadow-md);
         }
 
         .today-guard-date {
-            font-size: var(--text-xl);
+            font-size: var(--text-sm);
             color: var(--gray);
             margin-bottom: var(--space-md);
+            text-transform: capitalize;
         }
 
         .today-guard-pharmacie {
-            font-size: var(--text-3xl);
+            font-size: var(--text-2xl);
             font-weight: 700;
             color: var(--charcoal);
-            margin-bottom: var(--space-sm);
+            margin-bottom: var(--space-xs);
         }
 
         .today-guard-ville {
-            font-size: var(--text-xl);
+            font-size: var(--text-lg);
             color: var(--sage-dark);
             font-weight: 500;
-            margin-bottom: var(--space-lg);
+            margin-bottom: var(--space-md);
         }
 
         .today-guard-type {
-            display: flex;
-            justify-content: center;
-            gap: var(--space-md);
-            flex-wrap: wrap;
+            display: inline-block;
+            background: var(--sage);
+            color: var(--white);
+            padding: 0.25rem 1rem;
+            border-radius: 9999px;
+            font-size: var(--text-sm);
+            font-weight: 500;
         }
 
-        .today-guard-type .type-badge {
-            padding: 0.5rem 1.5rem;
-            font-size: var(--text-base);
-        }
-
-        /* === 3237 CALLOUT === */
-        .callout-3237 {
-            background: linear-gradient(135deg, #FEF3C7 0%, #FDE68A 100%);
-            border: 2px solid #F59E0B;
-            border-radius: var(--radius-xl);
-            padding: var(--space-xl);
-            margin: var(--space-2xl) 0;
+        /* === 3237 INFO === */
+        .info-3237 {
+            background: var(--cream);
+            border-radius: var(--radius-lg);
+            padding: var(--space-lg);
+            max-width: 500px;
+            margin: 0 auto var(--space-xl);
             text-align: center;
+            border: 1px solid var(--beige);
         }
 
-        .callout-3237 h2 {
-            color: #92400E;
-            font-size: var(--text-xl);
+        .info-3237 p {
+            color: var(--gray);
+            font-size: var(--text-sm);
             margin-bottom: var(--space-sm);
         }
 
-        .callout-3237 .number-3237 {
-            font-size: 4rem;
-            font-weight: 800;
-            color: #B45309;
-            letter-spacing: 0.1em;
-            margin: var(--space-md) 0;
+        .info-3237 .number-3237 {
+            font-size: var(--text-2xl);
+            font-weight: 700;
+            color: var(--teal);
         }
 
-        .callout-3237 .number-3237 a {
+        .info-3237 .number-3237 a {
             color: inherit;
             text-decoration: none;
         }
 
-        .callout-3237 .number-3237 a:hover {
+        .info-3237 .number-3237 a:hover {
             text-decoration: underline;
         }
 
-        .callout-3237 p {
-            color: #78350F;
-            font-size: var(--text-base);
+        .info-3237 .note {
+            font-size: var(--text-xs);
+            color: var(--gray-light);
+            margin-top: var(--space-sm);
         }
 
-        /* === INFO BOX === */
-        .gardes-info-box {
-            background: linear-gradient(135deg, var(--cream-dark) 0%, var(--white) 100%);
-            border-radius: var(--radius-xl);
-            padding: var(--space-xl);
-            margin-bottom: var(--space-2xl);
+        /* === HORAIRES INFO === */
+        .horaires-info {
+            max-width: 500px;
+            margin: 0 auto;
+            padding: var(--space-lg);
+            background: var(--white);
+            border-radius: var(--radius-lg);
             border: 1px solid var(--beige);
         }
 
-        .gardes-info-box h3 {
-            color: var(--sage-dark);
-            font-size: var(--text-lg);
+        .horaires-info h3 {
+            font-size: var(--text-base);
+            color: var(--charcoal);
             margin-bottom: var(--space-sm);
-            display: flex;
-            align-items: center;
-            gap: var(--space-sm);
         }
 
-        .gardes-info-box p {
-            color: var(--gray);
-            line-height: 1.7;
-        }
-
-        /* === TABLE (simplified, no addresses) === */
-        .gardes-table-wrapper {
-            overflow-x: auto;
-            border-radius: var(--radius-xl);
-            box-shadow: var(--shadow-lg);
-            background: var(--white);
-        }
-
-        .gardes-table {
-            width: 100%;
-            border-collapse: collapse;
-            font-size: var(--text-sm);
-        }
-
-        .gardes-table th {
-            background: var(--sage);
-            color: var(--white);
-            padding: var(--space-md);
-            text-align: left;
-            font-weight: 600;
-            position: sticky;
-            top: 0;
-        }
-
-        .gardes-table td {
-            padding: var(--space-md);
-            border-bottom: 1px solid var(--beige);
-            vertical-align: middle;
-        }
-
-        .gardes-table tr:hover {
-            background-color: var(--cream);
-        }
-
-        .gardes-table tr:last-child td {
-            border-bottom: none;
-        }
-
-        /* Type badges */
-        .type-badge {
-            display: inline-block;
-            padding: 0.25rem 0.75rem;
-            border-radius: 9999px;
-            font-size: var(--text-xs);
-            font-weight: 600;
-            text-transform: uppercase;
-        }
-
-        .type-jour {
-            background: #FEF3C7;
-            color: #92400E;
-        }
-
-        .type-nuit {
-            background: #1E3A5F;
-            color: #93C5FD;
-        }
-
-        .type-ferie {
-            background: #FEE2E2;
-            color: #991B1B;
-        }
-
-        /* Today highlight */
-        .gardes-table tr.is-today {
-            background: linear-gradient(90deg, rgba(124, 152, 133, 0.2) 0%, rgba(124, 152, 133, 0.05) 100%);
-            border-left: 4px solid var(--sage);
-        }
-
-        .gardes-table tr.is-today td:first-child {
-            font-weight: 700;
-            color: var(--sage-dark);
-        }
-
-        /* Past days */
-        .gardes-table tr.is-past {
-            opacity: 0.4;
-        }
-
-        /* Weekend highlight */
-        .gardes-table tr.is-weekend {
-            background-color: rgba(245, 241, 232, 0.5);
-        }
-
-        /* Pharmacie name */
-        .pharmacie-name {
-            font-weight: 600;
-            color: var(--charcoal);
-        }
-
-        .pharmacie-ville {
-            color: var(--sage-dark);
-            font-weight: 500;
-        }
-
-        /* Legend */
-        .gardes-legend {
-            display: flex;
-            gap: var(--space-lg);
-            flex-wrap: wrap;
-            margin-top: var(--space-xl);
-            padding: var(--space-lg);
-            background: var(--cream);
-            border-radius: var(--radius-lg);
-        }
-
-        .legend-item {
-            display: flex;
-            align-items: center;
-            gap: var(--space-sm);
+        .horaires-info p {
             font-size: var(--text-sm);
             color: var(--gray);
-        }
-
-        /* Section title */
-        .section-title {
-            font-size: var(--text-2xl);
-            color: var(--charcoal);
-            margin-bottom: var(--space-lg);
-            text-align: center;
-        }
-
-        .section-subtitle {
-            text-align: center;
-            color: var(--gray);
-            margin-bottom: var(--space-xl);
+            line-height: 1.6;
         }
 
         /* Responsive */
         @media (max-width: 768px) {
-            .today-guard-card {
-                margin: 0 var(--space-md);
-                padding: var(--space-lg);
+            .today-guard-card,
+            .info-3237,
+            .horaires-info {
+                margin-left: var(--space-md);
+                margin-right: var(--space-md);
             }
 
             .today-guard-pharmacie {
-                font-size: var(--text-2xl);
-            }
-
-            .callout-3237 .number-3237 {
-                font-size: 3rem;
-            }
-
-            .gardes-table {
-                font-size: var(--text-xs);
-            }
-
-            .gardes-table th,
-            .gardes-table td {
-                padding: var(--space-sm);
+                font-size: var(--text-xl);
             }
         }
     </style>
@@ -367,83 +209,31 @@
         </div>
     </section>
 
-    <!-- TODAY'S GUARD - Main highlight -->
-    <section class="today-guard-section">
-        <div class="container">
-            <div class="today-guard-card" id="todayGuardCard">
-                <div class="today-guard-label">Pharmacie de garde</div>
-                <div class="today-guard-date" id="todayDate">Chargement...</div>
-                <div class="today-guard-pharmacie" id="todayPharmacie">-</div>
-                <div class="today-guard-ville" id="todayVille">-</div>
-                <div class="today-guard-type" id="todayTypes"></div>
-            </div>
-        </div>
-    </section>
-
-    <!-- 3237 CALLOUT -->
-    <section class="gardes-section" style="padding-bottom: 0;">
-        <div class="container">
-            <div class="callout-3237">
-                <h2>Pour connaître la pharmacie de garde</h2>
-                <div class="number-3237"><a href="tel:3237">3237</a></div>
-                <p>Service officiel 24h/24 • 0,35€/min + prix d'un appel local</p>
-            </div>
-        </div>
-    </section>
-
     <!-- Main Content -->
     <section class="gardes-section">
         <div class="container">
-            <!-- Info Box -->
-            <div class="gardes-info-box">
-                <h3>
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <circle cx="12" cy="12" r="10"></circle>
-                        <line x1="12" y1="16" x2="12" y2="12"></line>
-                        <line x1="12" y1="8" x2="12.01" y2="8"></line>
-                    </svg>
-                    Secteur N°561021 - Communes des Deux Vallées Scorff Blavet
-                </h3>
+            <!-- Today's Guard -->
+            <div class="today-guard-card" id="todayGuardCard">
+                <div class="today-guard-date" id="todayDate">Chargement...</div>
+                <div class="today-guard-pharmacie" id="todayPharmacie">-</div>
+                <div class="today-guard-ville" id="todayVille">-</div>
+                <div class="today-guard-type" id="todayType">-</div>
+            </div>
+
+            <!-- 3237 Info -->
+            <div class="info-3237">
+                <p>Pour confirmer ou les autres jours</p>
+                <div class="number-3237"><a href="tel:3237">3237</a></div>
+                <p class="note">0,35€/min + prix appel</p>
+            </div>
+
+            <!-- Horaires -->
+            <div class="horaires-info">
+                <h3>Horaires des gardes</h3>
                 <p>
-                    <strong>Garde de jour (dimanche et jours fériés) :</strong> 9h00 - 19h00<br>
-                    <strong>Garde de nuit :</strong> 19h00 - 9h00 (accès sur sonnette ou interphone)
+                    <strong>Jour</strong> (dimanche et fériés) : 9h - 19h<br>
+                    <strong>Nuit</strong> : 19h - 9h (sonnette)
                 </p>
-            </div>
-
-            <h2 class="section-title" id="currentMonthTitle">Planning du mois</h2>
-            <p class="section-subtitle">Aperçu des prochaines gardes du secteur</p>
-
-            <!-- Table (without addresses) -->
-            <div class="gardes-table-wrapper">
-                <table class="gardes-table" id="gardesTable">
-                    <thead>
-                        <tr>
-                            <th>Jour</th>
-                            <th>Type</th>
-                            <th>Pharmacie</th>
-                            <th>Ville</th>
-                        </tr>
-                    </thead>
-                    <tbody id="gardesTableBody">
-                        <!-- Filled by JavaScript -->
-                    </tbody>
-                </table>
-            </div>
-
-            <!-- Legend -->
-            <div class="gardes-legend">
-                <div class="legend-item">
-                    <span class="type-badge type-jour">Jour</span>
-                    <span>Garde de journée (9h-19h)</span>
-                </div>
-                <div class="legend-item">
-                    <span class="type-badge type-nuit">Nuit</span>
-                    <span>Garde de nuit (19h-9h)</span>
-                </div>
-                <div class="legend-item">
-                    <span class="type-badge type-ferie">Férié</span>
-                    <span>Jour férié</span>
-                </div>
             </div>
         </div>
     </section>
@@ -720,12 +510,6 @@
             return `${year}-${month}`;
         }
 
-        function getMonthName(monthKey) {
-            const [year, month] = monthKey.split('-');
-            const date = new Date(parseInt(year), parseInt(month) - 1, 1);
-            return date.toLocaleDateString('fr-FR', { month: 'long', year: 'numeric' });
-        }
-
         function getDayNumber(jourString) {
             const match = jourString.match(/\d+/);
             return match ? parseInt(match[0]) : 0;
@@ -740,22 +524,9 @@
                    now.getDate() === dayNum;
         }
 
-        function isPast(monthKey, jourString) {
-            const now = new Date();
-            now.setHours(0, 0, 0, 0);
-            const [year, month] = monthKey.split('-');
-            const dayNum = getDayNumber(jourString);
-            const rowDate = new Date(parseInt(year), parseInt(month) - 1, dayNum);
-            return rowDate < now;
-        }
-
-        function isWeekend(jourString) {
-            return jourString.startsWith('Samedi') || jourString.startsWith('Dimanche');
-        }
-
         function formatTodayDate() {
             const now = new Date();
-            const options = { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' };
+            const options = { weekday: 'long', day: 'numeric', month: 'long' };
             return now.toLocaleDateString('fr-FR', options);
         }
 
@@ -771,7 +542,7 @@
             if (!data) {
                 document.getElementById('todayPharmacie').textContent = 'Appelez le 3237';
                 document.getElementById('todayVille').textContent = '';
-                document.getElementById('todayTypes').innerHTML = '';
+                document.getElementById('todayType').textContent = '';
                 return;
             }
 
@@ -781,71 +552,26 @@
             if (todayGuards.length === 0) {
                 document.getElementById('todayPharmacie').textContent = 'Appelez le 3237';
                 document.getElementById('todayVille').textContent = 'pour connaître la pharmacie de garde';
-                document.getElementById('todayTypes').innerHTML = '';
+                document.getElementById('todayType').textContent = '';
                 return;
             }
 
             // Determine which guard to show based on time
             let currentGuard;
             if (currentHour >= 9 && currentHour < 19) {
-                // Day time: show day guard if available, otherwise night
                 currentGuard = todayGuards.find(g => g.type === 'Jour' || g.type === 'Férié') || todayGuards[0];
             } else {
-                // Night time: show night guard
                 currentGuard = todayGuards.find(g => g.type === 'Nuit') || todayGuards[0];
             }
 
             document.getElementById('todayPharmacie').textContent = `Pharmacie ${currentGuard.pharmacie}`;
             document.getElementById('todayVille').textContent = currentGuard.ville;
-
-            // Show all types for today
-            const typesHtml = todayGuards.map(g => {
-                const typeClass = g.type === 'Jour' ? 'type-jour' :
-                                  g.type === 'Nuit' ? 'type-nuit' : 'type-ferie';
-                return `<span class="type-badge ${typeClass}">${g.type}</span>`;
-            }).join('');
-            document.getElementById('todayTypes').innerHTML = typesHtml;
-        }
-
-        // === RENDER TABLE (without addresses) ===
-        function renderTable(monthKey) {
-            const data = gardesData[monthKey];
-            const tbody = document.getElementById('gardesTableBody');
-            const titleEl = document.getElementById('currentMonthTitle');
-
-            if (!data) {
-                tbody.innerHTML = '<tr><td colspan="4" style="text-align: center; padding: 2rem;">Aucune donnée disponible pour ce mois</td></tr>';
-                titleEl.textContent = `Planning - ${getMonthName(monthKey)}`;
-                return;
-            }
-
-            titleEl.textContent = `Planning - ${getMonthName(monthKey)}`;
-
-            tbody.innerHTML = data.map(row => {
-                const classes = [];
-                if (isToday(monthKey, row.jour)) classes.push('is-today');
-                else if (isPast(monthKey, row.jour)) classes.push('is-past');
-                if (isWeekend(row.jour)) classes.push('is-weekend');
-
-                const typeClass = row.type === 'Jour' ? 'type-jour' :
-                                  row.type === 'Nuit' ? 'type-nuit' : 'type-ferie';
-
-                return `
-                    <tr class="${classes.join(' ')}">
-                        <td><strong>${row.jour}</strong></td>
-                        <td><span class="type-badge ${typeClass}">${row.type}</span></td>
-                        <td class="pharmacie-name">Pharmacie ${row.pharmacie}</td>
-                        <td class="pharmacie-ville">${row.ville}</td>
-                    </tr>
-                `;
-            }).join('');
+            document.getElementById('todayType').textContent = currentGuard.type === 'Férié' ? 'Garde jour férié' : `Garde de ${currentGuard.type.toLowerCase()}`;
         }
 
         // === INITIALIZE ===
         document.addEventListener('DOMContentLoaded', () => {
             renderTodayGuard();
-            const currentMonth = getCurrentMonthKey();
-            renderTable(currentMonth);
         });
 
         // Mobile menu toggle
