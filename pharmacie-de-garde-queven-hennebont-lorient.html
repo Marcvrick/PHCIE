@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
-    <meta name="description" content="Trouvez la pharmacie de garde ouverte ce soir, cette nuit ou dimanche près de Quéven, Hennebont, Guidel, Lanester. Planning complet des gardes 2026 du secteur.">
+    <meta name="description" content="Trouvez la pharmacie de garde ouverte ce soir, cette nuit ou dimanche près de Quéven, Hennebont, Guidel, Lanester. Appelez le 3237 pour connaître la pharmacie de garde.">
     <title>Pharmacie de garde Quéven, Hennebont, Lorient | Nuit & Dimanche 2026</title>
     <link rel="canonical" href="https://www.pharmaciecharnal.fr/pharmacie-de-garde-queven-hennebont-lorient.html">
 
@@ -22,7 +22,7 @@
         /* === GARDES PAGE STYLES === */
         .gardes-hero {
             background: linear-gradient(135deg, var(--sage-light) 0%, var(--sage) 100%);
-            padding: var(--space-3xl) 0;
+            padding: var(--space-2xl) 0;
             color: var(--white);
             text-align: center;
         }
@@ -33,17 +33,115 @@
             margin-bottom: var(--space-md);
         }
 
-        .gardes-hero .current-month {
-            font-size: var(--text-2xl);
+        .gardes-hero .subtitle {
+            font-size: var(--text-lg);
             opacity: 0.95;
-            font-weight: 500;
-            color: #fff;
         }
 
         .gardes-section {
             padding: var(--space-3xl) 0;
         }
 
+        /* === TODAY'S GUARD - HERO SECTION === */
+        .today-guard-section {
+            background: linear-gradient(135deg, #1E3A5F 0%, #2D5F5D 100%);
+            padding: var(--space-2xl) 0;
+        }
+
+        .today-guard-card {
+            background: var(--white);
+            border-radius: var(--radius-xl);
+            padding: var(--space-xl);
+            max-width: 600px;
+            margin: 0 auto;
+            text-align: center;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+
+        .today-guard-label {
+            display: inline-block;
+            background: var(--sage);
+            color: var(--white);
+            padding: 0.5rem 1.5rem;
+            border-radius: 9999px;
+            font-size: var(--text-sm);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: var(--space-lg);
+        }
+
+        .today-guard-date {
+            font-size: var(--text-xl);
+            color: var(--gray);
+            margin-bottom: var(--space-md);
+        }
+
+        .today-guard-pharmacie {
+            font-size: var(--text-3xl);
+            font-weight: 700;
+            color: var(--charcoal);
+            margin-bottom: var(--space-sm);
+        }
+
+        .today-guard-ville {
+            font-size: var(--text-xl);
+            color: var(--sage-dark);
+            font-weight: 500;
+            margin-bottom: var(--space-lg);
+        }
+
+        .today-guard-type {
+            display: flex;
+            justify-content: center;
+            gap: var(--space-md);
+            flex-wrap: wrap;
+        }
+
+        .today-guard-type .type-badge {
+            padding: 0.5rem 1.5rem;
+            font-size: var(--text-base);
+        }
+
+        /* === 3237 CALLOUT === */
+        .callout-3237 {
+            background: linear-gradient(135deg, #FEF3C7 0%, #FDE68A 100%);
+            border: 2px solid #F59E0B;
+            border-radius: var(--radius-xl);
+            padding: var(--space-xl);
+            margin: var(--space-2xl) 0;
+            text-align: center;
+        }
+
+        .callout-3237 h2 {
+            color: #92400E;
+            font-size: var(--text-xl);
+            margin-bottom: var(--space-sm);
+        }
+
+        .callout-3237 .number-3237 {
+            font-size: 4rem;
+            font-weight: 800;
+            color: #B45309;
+            letter-spacing: 0.1em;
+            margin: var(--space-md) 0;
+        }
+
+        .callout-3237 .number-3237 a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        .callout-3237 .number-3237 a:hover {
+            text-decoration: underline;
+        }
+
+        .callout-3237 p {
+            color: #78350F;
+            font-size: var(--text-base);
+        }
+
+        /* === INFO BOX === */
         .gardes-info-box {
             background: linear-gradient(135deg, var(--cream-dark) 0%, var(--white) 100%);
             border-radius: var(--radius-xl);
@@ -66,6 +164,7 @@
             line-height: 1.7;
         }
 
+        /* === TABLE (simplified, no addresses) === */
         .gardes-table-wrapper {
             overflow-x: auto;
             border-radius: var(--radius-xl);
@@ -130,7 +229,7 @@
 
         /* Today highlight */
         .gardes-table tr.is-today {
-            background: linear-gradient(90deg, rgba(124, 152, 133, 0.15) 0%, rgba(124, 152, 133, 0.05) 100%);
+            background: linear-gradient(90deg, rgba(124, 152, 133, 0.2) 0%, rgba(124, 152, 133, 0.05) 100%);
             border-left: 4px solid var(--sage);
         }
 
@@ -141,7 +240,7 @@
 
         /* Past days */
         .gardes-table tr.is-past {
-            opacity: 0.5;
+            opacity: 0.4;
         }
 
         /* Weekend highlight */
@@ -158,11 +257,6 @@
         .pharmacie-ville {
             color: var(--sage-dark);
             font-weight: 500;
-        }
-
-        .pharmacie-adresse {
-            color: var(--gray);
-            font-size: var(--text-xs);
         }
 
         /* Legend */
@@ -184,64 +278,52 @@
             color: var(--gray);
         }
 
-        /* Emergency callout */
-        .emergency-callout {
-            background: linear-gradient(135deg, #1E3A5F 0%, #2D5F5D 100%);
-            color: var(--white);
-            padding: var(--space-xl);
-            border-radius: var(--radius-xl);
-            margin-top: var(--space-2xl);
+        /* Section title */
+        .section-title {
+            font-size: var(--text-2xl);
+            color: var(--charcoal);
+            margin-bottom: var(--space-lg);
             text-align: center;
         }
 
-        .emergency-callout h3 {
-            font-size: var(--text-xl);
-            margin-bottom: var(--space-sm);
-        }
-
-        .emergency-callout p {
-            opacity: 0.9;
-            margin-bottom: var(--space-md);
-        }
-
-        .emergency-number {
-            font-size: var(--text-3xl);
-            font-weight: 700;
-            color: #FEF3C7;
+        .section-subtitle {
+            text-align: center;
+            color: var(--gray);
+            margin-bottom: var(--space-xl);
         }
 
         /* Responsive */
         @media (max-width: 768px) {
-            .gardes-hero h1 {
+            .today-guard-card {
+                margin: 0 var(--space-md);
+                padding: var(--space-lg);
+            }
+
+            .today-guard-pharmacie {
                 font-size: var(--text-2xl);
+            }
+
+            .callout-3237 .number-3237 {
+                font-size: 3rem;
+            }
+
+            .gardes-table {
+                font-size: var(--text-xs);
             }
 
             .gardes-table th,
             .gardes-table td {
                 padding: var(--space-sm);
             }
-
-            /* Hide Type (2nd) and Adresse (5th) columns on mobile */
-            .gardes-table th:nth-child(2),
-            .gardes-table td:nth-child(2),
-            .gardes-table th:nth-child(5),
-            .gardes-table td:nth-child(5) {
-                display: none;
-            }
-
-            .gardes-legend {
-                flex-direction: column;
-                gap: var(--space-sm);
-            }
         }
     </style>
 </head>
 <body>
-    <!-- Navigation -->
+    <!-- Header -->
     <nav class="navbar">
         <div class="nav-container">
-            <a href="index.html" class="nav-logo-link">
-                <div class="nav-logo">
+            <a href="index.html" class="nav-logo">
+                <div class="nav-logo-content">
                     <div class="logo-icon">
                         <img src="images/pharmacie-charnal-logo.png" alt="Logo Pharmacie Charnal" style="width: 100%; height: 100%; object-fit: contain;">
                     </div>
@@ -280,8 +362,32 @@
     <!-- Hero -->
     <section class="gardes-hero">
         <div class="container">
-            <h1>Pharmacies de garde</h1>
-            <p class="current-month" id="currentMonthTitle">Chargement...</p>
+            <h1>Pharmacie de garde</h1>
+            <p class="subtitle">Secteur Quéven, Hennebont, Guidel, Lanester</p>
+        </div>
+    </section>
+
+    <!-- TODAY'S GUARD - Main highlight -->
+    <section class="today-guard-section">
+        <div class="container">
+            <div class="today-guard-card" id="todayGuardCard">
+                <div class="today-guard-label">Pharmacie de garde</div>
+                <div class="today-guard-date" id="todayDate">Chargement...</div>
+                <div class="today-guard-pharmacie" id="todayPharmacie">-</div>
+                <div class="today-guard-ville" id="todayVille">-</div>
+                <div class="today-guard-type" id="todayTypes"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3237 CALLOUT -->
+    <section class="gardes-section" style="padding-bottom: 0;">
+        <div class="container">
+            <div class="callout-3237">
+                <h2>Pour connaître la pharmacie de garde</h2>
+                <div class="number-3237"><a href="tel:3237">3237</a></div>
+                <p>Service officiel 24h/24 • 0,35€/min + prix d'un appel local</p>
+            </div>
         </div>
     </section>
 
@@ -304,7 +410,10 @@
                 </p>
             </div>
 
-            <!-- Table -->
+            <h2 class="section-title" id="currentMonthTitle">Planning du mois</h2>
+            <p class="section-subtitle">Aperçu des prochaines gardes du secteur</p>
+
+            <!-- Table (without addresses) -->
             <div class="gardes-table-wrapper">
                 <table class="gardes-table" id="gardesTable">
                     <thead>
@@ -313,7 +422,6 @@
                             <th>Type</th>
                             <th>Pharmacie</th>
                             <th>Ville</th>
-                            <th>Adresse</th>
                         </tr>
                     </thead>
                     <tbody id="gardesTableBody">
@@ -336,14 +444,6 @@
                     <span class="type-badge type-ferie">Férié</span>
                     <span>Jour férié</span>
                 </div>
-            </div>
-
-            <!-- Emergency Callout -->
-            <div class="emergency-callout">
-                <h3 style="color: #fff;">En cas d'urgence</h3>
-                <p style="color: #fff;">Pour connaître la pharmacie de garde la plus proche, appelez le :</p>
-                <div class="emergency-number">3237</div>
-                <p style="font-size: 0.875rem; margin-top: 0.5rem; color: #fff;">(0,35€/min + prix d'un appel local)</p>
             </div>
         </div>
     </section>
@@ -421,7 +521,7 @@
 
     <script src="animations.js"></script>
     <script>
-        // === DONNÉES DES GARDES 2026 ===
+        // === DONNÉES DES GARDES 2026 (sans adresses pour la sécurité) ===
         const gardesData = {
             "2026-02": [
                 
@@ -609,280 +709,10 @@
                 
                 
                 
-            ],
-            "2026-07": [
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-            ],
-            "2026-08": [
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-            ],
-            "2026-09": [
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-            ],
-            "2026-10": [
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-            ],
-            "2026-11": [
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-            ],
-            "2026-12": [
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-            ],
-            "2027-01": [
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
             ]
         };
 
-        // === LOGIQUE D'AFFICHAGE ===
-        const monthNames = [
-            'Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin',
-            'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'
-        ];
-
+        // === HELPER FUNCTIONS ===
         function getCurrentMonthKey() {
             const now = new Date();
             const year = now.getFullYear();
@@ -892,7 +722,8 @@
 
         function getMonthName(monthKey) {
             const [year, month] = monthKey.split('-');
-            return `${monthNames[parseInt(month) - 1]} ${year}`;
+            const date = new Date(parseInt(year), parseInt(month) - 1, 1);
+            return date.toLocaleDateString('fr-FR', { month: 'long', year: 'numeric' });
         }
 
         function getDayNumber(jourString) {
@@ -922,18 +753,73 @@
             return jourString.startsWith('Samedi') || jourString.startsWith('Dimanche');
         }
 
+        function formatTodayDate() {
+            const now = new Date();
+            const options = { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' };
+            return now.toLocaleDateString('fr-FR', options);
+        }
+
+        // === RENDER TODAY'S GUARD ===
+        function renderTodayGuard() {
+            const currentMonth = getCurrentMonthKey();
+            const data = gardesData[currentMonth];
+            const now = new Date();
+            const currentHour = now.getHours();
+
+            document.getElementById('todayDate').textContent = formatTodayDate();
+
+            if (!data) {
+                document.getElementById('todayPharmacie').textContent = 'Appelez le 3237';
+                document.getElementById('todayVille').textContent = '';
+                document.getElementById('todayTypes').innerHTML = '';
+                return;
+            }
+
+            // Find today's guards
+            const todayGuards = data.filter(row => isToday(currentMonth, row.jour));
+
+            if (todayGuards.length === 0) {
+                document.getElementById('todayPharmacie').textContent = 'Appelez le 3237';
+                document.getElementById('todayVille').textContent = 'pour connaître la pharmacie de garde';
+                document.getElementById('todayTypes').innerHTML = '';
+                return;
+            }
+
+            // Determine which guard to show based on time
+            let currentGuard;
+            if (currentHour >= 9 && currentHour < 19) {
+                // Day time: show day guard if available, otherwise night
+                currentGuard = todayGuards.find(g => g.type === 'Jour' || g.type === 'Férié') || todayGuards[0];
+            } else {
+                // Night time: show night guard
+                currentGuard = todayGuards.find(g => g.type === 'Nuit') || todayGuards[0];
+            }
+
+            document.getElementById('todayPharmacie').textContent = `Pharmacie ${currentGuard.pharmacie}`;
+            document.getElementById('todayVille').textContent = currentGuard.ville;
+
+            // Show all types for today
+            const typesHtml = todayGuards.map(g => {
+                const typeClass = g.type === 'Jour' ? 'type-jour' :
+                                  g.type === 'Nuit' ? 'type-nuit' : 'type-ferie';
+                return `<span class="type-badge ${typeClass}">${g.type}</span>`;
+            }).join('');
+            document.getElementById('todayTypes').innerHTML = typesHtml;
+        }
+
+        // === RENDER TABLE (without addresses) ===
         function renderTable(monthKey) {
             const data = gardesData[monthKey];
             const tbody = document.getElementById('gardesTableBody');
             const titleEl = document.getElementById('currentMonthTitle');
 
             if (!data) {
-                tbody.innerHTML = '<tr><td colspan="5" style="text-align: center; padding: 2rem;">Aucune donnée disponible pour ce mois</td></tr>';
-                titleEl.textContent = getMonthName(monthKey);
+                tbody.innerHTML = '<tr><td colspan="4" style="text-align: center; padding: 2rem;">Aucune donnée disponible pour ce mois</td></tr>';
+                titleEl.textContent = `Planning - ${getMonthName(monthKey)}`;
                 return;
             }
 
-            titleEl.textContent = getMonthName(monthKey);
+            titleEl.textContent = `Planning - ${getMonthName(monthKey)}`;
 
             tbody.innerHTML = data.map(row => {
                 const classes = [];
@@ -950,14 +836,14 @@
                         <td><span class="type-badge ${typeClass}">${row.type}</span></td>
                         <td class="pharmacie-name">Pharmacie ${row.pharmacie}</td>
                         <td class="pharmacie-ville">${row.ville}</td>
-                        <td class="pharmacie-adresse">${row.adresse}</td>
                     </tr>
                 `;
             }).join('');
         }
 
-        // Initialize on page load
+        // === INITIALIZE ===
         document.addEventListener('DOMContentLoaded', () => {
+            renderTodayGuard();
             const currentMonth = getCurrentMonthKey();
             renderTable(currentMonth);
         });
