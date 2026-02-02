@@ -1696,3 +1696,49 @@ section[id] {
         padding-left: var(--space-md) !important;
     }
 }
+
+/* ========================================
+   BREADCRUMB / FIL D'ARIANE
+   ======================================== */
+
+.breadcrumb {
+    background: var(--cream);
+    padding: var(--space-sm) 0;
+    border-bottom: 1px solid var(--beige);
+}
+
+.breadcrumb-list {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--space-xs);
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    font-size: var(--text-sm);
+}
+
+.breadcrumb-list li {
+    display: flex;
+    align-items: center;
+    gap: var(--space-xs);
+}
+
+.breadcrumb-list li:not(:last-child)::after {
+    content: "›";
+    color: var(--gray-light);
+    margin-left: var(--space-xs);
+}
+
+.breadcrumb-list a {
+    color: var(--sage);
+    text-decoration: none;
+}
+
+.breadcrumb-list a:hover {
+    text-decoration: underline;
+}
+
+.breadcrumb-list li:last-child span {
+    color: var(--gray);
+}
