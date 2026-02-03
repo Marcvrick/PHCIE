@@ -483,6 +483,8 @@
                 margin: var(--space-md);
                 margin-top: calc(-1 * var(--space-lg));
                 padding: var(--space-lg);
+                box-sizing: border-box;
+                max-width: calc(100% - 2 * var(--space-md));
             }
 
             .search-box {
@@ -490,7 +492,9 @@
             }
 
             .search-input {
-                min-width: 100%;
+                min-width: 0;
+                width: 100%;
+                box-sizing: border-box;
             }
 
             .quick-nav {
