@@ -345,6 +345,43 @@
 
         .export-section { display: flex; gap: 1rem; align-items: center; flex-wrap: wrap; }
 
+        /* Reset section */
+        .reset-card { border: 2px solid var(--red); background: linear-gradient(135deg, #fff 0%, #fff5f5 100%); }
+        .reset-warning {
+            background: #fff3cd;
+            border: 1px solid #ffc107;
+            border-radius: 8px;
+            padding: 1rem;
+            margin-bottom: 1.5rem;
+            color: #856404;
+            font-size: 0.9rem;
+        }
+        .reset-actions { display: flex; flex-direction: column; gap: 1rem; }
+        .reset-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+        .reset-tooltip {
+            color: var(--gray);
+            font-size: 0.85rem;
+            flex: 1;
+            min-width: 200px;
+        }
+        .btn-danger {
+            background: var(--red);
+            color: white;
+            border: none;
+            padding: 0.6rem 1.2rem;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.2s;
+            min-width: 220px;
+        }
+        .btn-danger:hover { background: #c0392b; transform: translateY(-1px); }
+
         .hidden { display: none !important; }
 
         /* Login screen */
@@ -1126,6 +1163,29 @@
             <div class="card">
                 <h2 class="card-title">Historique complet</h2>
                 <div id="historiqueComplet"></div>
+            </div>
+
+            <div class="card reset-card">
+                <h2 class="card-title">⚠️ Zone de réinitialisation</h2>
+                <div class="reset-section">
+                    <div class="reset-warning">
+                        <strong>Attention :</strong> Ces actions sont irréversibles. Les données supprimées ne pourront pas être récupérées.
+                    </div>
+                    <div class="reset-actions">
+                        <div class="reset-item">
+                            <button class="btn btn-danger" id="resetDemandesBtn">Effacer toutes les demandes</button>
+                            <span class="reset-tooltip">Supprime toutes les demandes (absences, échanges, récupérations, vacances) de tous les employés. Utile pour repartir à zéro après des tests.</span>
+                        </div>
+                        <div class="reset-item">
+                            <button class="btn btn-danger" id="resetVacancesSoldeBtn">Réinitialiser les soldes vacances</button>
+                            <span class="reset-tooltip">Remet à zéro le compteur de jours de vacances pris et acquis pour tous les employés.</span>
+                        </div>
+                        <div class="reset-item">
+                            <button class="btn btn-danger" id="resetAllBtn">Tout réinitialiser</button>
+                            <span class="reset-tooltip">Efface toutes les demandes ET réinitialise les soldes de vacances. Remet l'application dans son état initial.</span>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </main>
@@ -2703,6 +2763,87 @@ Connectez-vous a l'application Planning pour traiter cette demande.
             // No longer tracking last export with Firebase
         }
 
+        // ========== RESET FUNCTIONS ==========
+        async function resetDemandes() {
+            const confirmation = prompt('⚠️ ATTENTION: Cette action va supprimer TOUTES les demandes.\n\nTapez "EFFACER" pour confirmer:');
+            if (confirmation !== 'EFFACER') {
+                alert('Action annulée.');
+                return;
+            }
+
+            try {
+                // Supprimer toutes les demandes de Firebase
+                const snapshot = await db.collection('demandes').get();
+                const batch = db.batch();
+                snapshot.docs.forEach(doc => batch.delete(doc.ref));
+                await batch.commit();
+
+                // Vider le cache local
+                demandesCache = [];
+
+                alert('✅ Toutes les demandes ont été supprimées.');
+                renderManager();
+                renderMesDemandes();
+            } catch (err) {
+                alert('Erreur: ' + err.message);
+            }
+        }
+
+        async function resetVacancesSolde() {
+            const confirmation = prompt('⚠️ ATTENTION: Cette action va remettre à zéro les soldes de vacances de tous les employés.\n\nTapez "RESET" pour confirmer:');
+            if (confirmation !== 'RESET') {
+                alert('Action annulée.');
+                return;
+            }
+
+            try {
+                const resetSolde = {};
+                VACANCES_EMPLOYEES.forEach(name => {
+                    resetSolde[name] = { annuel: 0, pris: 0 };
+                });
+                await db.collection('config').doc('vacances_solde').set(resetSolde);
+                vacancesSoldeCache = resetSolde;
+
+                alert('✅ Les soldes de vacances ont été réinitialisés.');
+                renderManager();
+                renderVacances();
+            } catch (err) {
+                alert('Erreur: ' + err.message);
+            }
+        }
+
+        async function resetAll() {
+            const confirmation = prompt('⚠️ ATTENTION MAXIMALE ⚠️\n\nCette action va:\n- Supprimer TOUTES les demandes\n- Réinitialiser TOUS les soldes de vacances\n\nCette action est IRRÉVERSIBLE.\n\nTapez "TOUT EFFACER" pour confirmer:');
+            if (confirmation !== 'TOUT EFFACER') {
+                alert('Action annulée.');
+                return;
+            }
+
+            try {
+                // Reset demandes
+                const snapshot = await db.collection('demandes').get();
+                const batch = db.batch();
+                snapshot.docs.forEach(doc => batch.delete(doc.ref));
+                await batch.commit();
+                demandesCache = [];
+
+                // Reset vacances solde
+                const resetSolde = {};
+                VACANCES_EMPLOYEES.forEach(name => {
+                    resetSolde[name] = { annuel: 0, pris: 0 };
+                });
+                await db.collection('config').doc('vacances_solde').set(resetSolde);
+                vacancesSoldeCache = resetSolde;
+
+                alert('✅ Réinitialisation complète effectuée.');
+                renderManager();
+                renderMesDemandes();
+                renderVacances();
+            } catch (err) {
+                alert('Erreur: ' + err.message);
+            }
+        }
+
         // ========== VACANCES ==========
         // Tous les employes ont acces aux vacances
         const VACANCES_EMPLOYEES = ['Stephanie', 'Claire', 'Sandrine', 'Titia', 'Melanie', 'Chloe'];
@@ -3734,6 +3875,11 @@ Connectez-vous a l'application Planning pour traiter cette demande.
             document.getElementById('importFile').addEventListener('change', (e) => {
                 if (e.target.files[0]) importData(e.target.files[0]);
             });
+
+            // Reset buttons
+            document.getElementById('resetDemandesBtn').addEventListener('click', resetDemandes);
+            document.getElementById('resetVacancesSoldeBtn').addEventListener('click', resetVacancesSolde);
+            document.getElementById('resetAllBtn').addEventListener('click', resetAll);
 
             // Password modal
             document.getElementById('validatePassword').addEventListener('click', validatePassword);
