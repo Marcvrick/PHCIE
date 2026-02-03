@@ -873,7 +873,7 @@
             <div class="card">
                 <h2 class="card-title">Planning bi-hebdomadaire</h2>
                 <div class="week-toggle">
-                    <button class="week-btn active" data-week="paire">Semaine Paire</button>
+                    <button class="week-btn" data-week="paire">Semaine Paire</button>
                     <button class="week-btn" data-week="impaire">Semaine Impaire</button>
                 </div>
                 <div class="planning-grid">
@@ -3608,8 +3608,13 @@ Connectez-vous a l'application Planning pour traiter cette demande.
             document.getElementById('mainNav').classList.remove('hidden');
             document.querySelector('main').classList.remove('hidden');
 
-            // Initial render
-            renderPlanning('paire');
+            // Initial render - affiche la semaine actuelle (paire ou impaire)
+            const currentWeekType = getSemaineType(new Date());
+            renderPlanning(currentWeekType);
+            // Met à jour le bouton actif
+            document.querySelectorAll('.week-btn').forEach(btn => {
+                btn.classList.toggle('active', btn.dataset.week === currentWeekType);
+            });
             renderHoursBalance();
             updateVacancesNavVisibility();
             updateRecuperationOptionVisibility();
