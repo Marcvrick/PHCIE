@@ -155,8 +155,9 @@ git push origin main
 ### SEO Classique
 
 ✅ **Toutes les pages** disposent de:
-- Meta descriptions optimisées (150-160 caractères)
-- Schema.org markup (Pharmacy, Blog, FAQPage)
+- Meta descriptions optimisées (150-160 caractères) avec "proche Lorient" sur pages stratégiques
+- Schema.org markup (Pharmacy, Blog, FAQPage, ItemList)
+- FAQ Schema sur `services.html` (5 Q&A) et `pharmacie-de-garde` (7 Q&A)
 - Open Graph (Facebook) et Twitter Cards
 - URLs canoniques
 - Structure H1 → H2 → H3 propre
