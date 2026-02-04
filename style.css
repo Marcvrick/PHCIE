@@ -1324,53 +1324,49 @@ section[id] {
 }
 
 .footer-bottom {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: var(--space-md);
     padding-top: var(--space-xl);
     border-top: 1px solid rgba(255, 255, 255, 0.15);
-    text-align: center;
 }
 
-.footer-bottom p {
+.footer-copyright {
     color: var(--white);
-    opacity: 0.8;
+    opacity: 0.7;
     font-size: var(--text-sm);
-    margin-bottom: 0;
+    margin: 0;
 }
 
 .footer-legal {
     display: flex;
     align-items: center;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: var(--space-xs);
-    margin-bottom: var(--space-md);
+    gap: var(--space-lg);
 }
 
 .footer-legal a {
     color: var(--white);
     text-decoration: none;
     font-size: var(--text-sm);
-    opacity: 0.8;
+    opacity: 0.7;
     transition: var(--transition);
 }
 
 .footer-legal a:hover {
     opacity: 1;
-    text-decoration: underline;
-}
-
-.footer-legal .separator {
-    opacity: 0.5;
-    font-size: var(--text-sm);
 }
 
 @media (max-width: 767px) {
-    .footer-legal {
+    .footer-bottom {
         flex-direction: column;
+        text-align: center;
         gap: var(--space-sm);
     }
 
-    .footer-legal .separator {
-        display: none;
+    .footer-legal {
+        gap: var(--space-md);
     }
 }
 
