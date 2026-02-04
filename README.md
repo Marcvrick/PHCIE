@@ -12,7 +12,6 @@ website-pharmacie-charnal/
 ├── index.html              # Accueil
 ├── histoire.html           # Notre Histoire
 ├── services.html           # Services
-├── marques.html            # Nos Marques (ancres: #cosmetiques, #complements, #premiers-soins)
 ├── blog.html               # Au Comptoir (liste des articles)
 ├── contact.html            # Contact
 ├── recrutement-preparatrice-pharmacie-queven.html  # Offre d'emploi préparatrice
@@ -27,6 +26,11 @@ website-pharmacie-charnal/
 ├── feed.json               # JSON Feed pour AI Search
 ├── CNAME                   # Custom domain (www.pharmaciecharnal.com)
 ├── professionnels-sante-queven-carte.csv  # Données carte Leaflet
+├── Nos-marques/            # Section marques
+│   ├── nosmarques.html     # Page catalogue marques (ancres: #cosmetiques, #complements, #premiers-soins)
+│   ├── vichy-page.html     # Page dédiée Vichy
+│   ├── logos/              # Logos des marques (Avene, Bioderma, Vichy, etc.)
+│   └── *.md                # Articles marques (briefs pour futures pages)
 ├── blog/                   # Articles de blog
 │   ├── GUIDE-REDACTION-BLOG.md            # Guide rédactionnel Laure
 │   ├── PLANNING-BLOG-PHARMACIE.md         # Planning éditorial
@@ -90,6 +94,53 @@ website-pharmacie-charnal/
 **Bouton "Au Comptoir":**
 - Couleur distinctive: `#b4a6d7` (lavande)
 - Se distingue du reste de la navigation
+
+### Footer
+
+**Design unifié sur toutes les pages** - Copyright à gauche, liens légaux à droite.
+
+```
+┌─────────────────────────────────────────────────────────────────┐
+│ © 2026 Pharmacie Charnal. Tous droits réservés.    Mentions légales    Politique de confidentialité │
+└─────────────────────────────────────────────────────────────────┘
+```
+
+**Structure HTML:**
+```html
+<div class="footer-bottom">
+    <p class="footer-copyright">&copy; 2026 Pharmacie Charnal. Tous droits réservés.</p>
+    <div class="footer-legal">
+        <a href="mentions-legales.html">Mentions légales</a>
+        <a href="donnees-personnelles.html">Politique de confidentialité</a>
+    </div>
+</div>
+```
+
+**CSS (style.css):**
+```css
+.footer-bottom {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: var(--space-md);
+    padding-top: var(--space-xl);
+    border-top: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.footer-copyright {
+    color: var(--white);
+    opacity: 0.7;
+    font-size: var(--text-sm);
+}
+
+.footer-legal {
+    display: flex;
+    gap: var(--space-lg);
+}
+```
+
+**Note pour sous-dossiers (Nos-marques/, blog/):** Utiliser `../mentions-legales.html` et `../donnees-personnelles.html` pour les chemins relatifs.
 
 ---
 
