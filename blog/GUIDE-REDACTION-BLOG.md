@@ -785,6 +785,39 @@ Pour un article de 1000 mots :
 - [ ] Authoritativeness : rôle professionnel clair
 - [ ] Trustworthiness : limites et précautions mentionnées
 
+### Navigation Entre Articles (OBLIGATOIRE)
+
+- [ ] **Article précédent** : Ajouter un lien vers l'article publié juste avant (sauf si c'est le premier article)
+- [ ] **Article suivant** : Mettre à jour l'article précédent pour qu'il pointe vers le nouvel article
+- [ ] Les liens doivent être en bas de l'article, avant le footer
+
+**Structure HTML à ajouter en fin d'article :**
+```html
+<!-- Article Navigation -->
+<nav style="display: flex; justify-content: space-between; gap: var(--space-lg); margin-top: var(--space-2xl); padding-top: var(--space-xl); border-top: 1px solid var(--beige);">
+    <!-- Article précédent (à gauche) -->
+    <a href="[article-precedent].html" style="display: flex; align-items: center; gap: var(--space-md); padding: var(--space-lg); background: linear-gradient(135deg, var(--cream-dark) 0%, var(--beige) 100%); border-radius: var(--radius-lg); text-decoration: none;">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--sage)" stroke-width="2">
+            <path d="M19 12H5M12 19l-7-7 7-7"/>
+        </svg>
+        <div>
+            <span style="display: block; font-size: var(--text-sm); color: var(--gray);">Article précédent</span>
+            <span style="display: block; font-size: var(--text-lg); color: var(--charcoal); font-weight: 600;">[Titre article précédent]</span>
+        </div>
+    </a>
+    <!-- Article suivant (à droite) - si applicable -->
+    <a href="[article-suivant].html" style="display: flex; align-items: center; gap: var(--space-md); padding: var(--space-lg); background: linear-gradient(135deg, var(--cream-dark) 0%, var(--beige) 100%); border-radius: var(--radius-lg); text-decoration: none;">
+        <div>
+            <span style="display: block; font-size: var(--text-sm); color: var(--gray);">Article suivant</span>
+            <span style="display: block; font-size: var(--text-lg); color: var(--charcoal); font-weight: 600;">[Titre article suivant]</span>
+        </div>
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--sage)" stroke-width="2">
+            <path d="M5 12h14M12 5l7 7-7 7"/>
+        </svg>
+    </a>
+</nav>
+```
+
 ---
 
 ## 📁 Fichiers et Nommage
