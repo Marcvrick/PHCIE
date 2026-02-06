@@ -1,4 +1,5 @@
 # Robots.txt - Pharmacie Charnal
+# Dernière mise à jour: 6 février 2026
 # Ce fichier indique aux robots d'indexation comment explorer le site
 
 # Autoriser tous les robots à indexer tout le contenu
@@ -8,7 +9,10 @@ Allow: /
 # Sitemap XML - Aide à l'indexation complète du site
 Sitemap: https://www.pharmaciecharnal.com/sitemap.xml
 
-# Optimisation pour les principaux moteurs de recherche
+# ==========================================
+# MOTEURS DE RECHERCHE CLASSIQUES
+# ==========================================
+
 # Google
 User-agent: Googlebot
 Allow: /
@@ -17,6 +21,22 @@ Allow: /
 User-agent: Bingbot
 Allow: /
 
+# Yahoo (via Bing)
+User-agent: Slurp
+Allow: /
+
+# DuckDuckGo
+User-agent: DuckDuckBot
+Allow: /
+
+# Yandex
+User-agent: YandexBot
+Allow: /
+
+# ==========================================
+# AI SEARCH & LLM CRAWLERS
+# ==========================================
+
 # ChatGPT (OpenAI)
 User-agent: GPTBot
 Allow: /
@@ -24,18 +44,56 @@ Allow: /
 # Claude (Anthropic)
 User-agent: ClaudeBot
 Allow: /
+User-agent: Claude-Web
+Allow: /
 
 # Perplexity
 User-agent: PerplexityBot
 Allow: /
 
-# Google Extended (Bard/Gemini AI training)
+# Google Gemini / Bard
 User-agent: Google-Extended
+Allow: /
+
+# Meta AI (Facebook/Instagram)
+User-agent: FacebookBot
+Allow: /
+User-agent: meta-externalagent
+Allow: /
+
+# Cohere
+User-agent: cohere-ai
 Allow: /
 
 # Common Crawl (utilisé par de nombreux LLMs)
 User-agent: CCBot
 Allow: /
+
+# Amazon / Alexa
+User-agent: Amazonbot
+Allow: /
+
+# Apple (Siri, Spotlight)
+User-agent: Applebot
+Allow: /
+
+# Microsoft Copilot
+User-agent: bingbot
+Allow: /
+
+# ==========================================
+# RÉSEAUX SOCIAUX (pour aperçus)
+# ==========================================
+
+User-agent: Twitterbot
+Allow: /
+
+User-agent: LinkedInBot
+Allow: /
+
+# ==========================================
+# PARAMÈTRES
+# ==========================================
 
 # Politesse - Délai entre les requêtes (en secondes)
 Crawl-delay: 1
