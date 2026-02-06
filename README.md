@@ -69,7 +69,8 @@ Le site migre progressivement d'un design "Wellness Minimal" vers un nouveau des
 - ⏳ `mentions-legales.html`
 - ⏳ `donnees-personnelles.html`
 - ⏳ `index-ordonnance.html`
-- ⏳ Pages individuelles marques (`Nos-marques/*-page.html`)
+
+**Pages marques (`Nos-marques/*-page.html`)** : Utilisent style.css avec overrides inline
 
 ---
 
@@ -486,9 +487,10 @@ La page `recrutement-preparatrice-pharmacie-queven.html` a ses propres règles m
 
 ### Nouvel article de blog
 
-- [ ] Ajouter le bouton "Article précédent" en bas de l'article (voir modèle ci-dessous)
-- [ ] Mettre à jour le bouton dans l'article précédent pour pointer vers le nouveau (si applicable)
-- [ ] Ajouter l'article dans blog.html (liste des articles)
+- [ ] Ajouter la navigation "Article précédent/suivant" en bas de l'article (voir modèle ci-dessous)
+- [ ] Mettre à jour l'article précédent pour ajouter le lien "Article suivant" vers le nouveau
+- [ ] Ajouter l'article dans blog.html (liste des articles) — **en première position** (le script homepage récupère le premier)
+- [ ] Vérifier que l'image a un nom ASCII-safe (pas d'accents, espaces → tirets)
 - [ ] Mettre à jour sitemap.xml et feed.json
 
 **Modèle bouton "Article précédent"** (à placer après les références, avant `</div></article>`) :
@@ -594,6 +596,34 @@ La page `recrutement-preparatrice-pharmacie-queven.html` a ses propres règles m
 - CLAUDE-Pharma: "Les CTAs doivent TOUJOURS inviter à venir en pharmacie physiquement"
 
 Les deux fichiers sont complémentaires et doivent rester à jour.
+
+---
+
+---
+
+## 📝 Changelog Récent
+
+### 6 Février 2026
+
+**Pages de marques (`Nos-marques/*-page.html`):**
+- Bouton "Découvrez une autre marque" : transformé en pill button (teal, centré) au lieu d'une carte
+
+**nosmarques.html:**
+- Logos des marques maintenant cliquables (lien vers la page de marque)
+
+**style-v2.css:**
+- Fix menu mobile dropdown : les liens "Annuaire Santé" etc. fonctionnent maintenant correctement sur mobile
+- Ajout `display: flex` sur `.nav-dropdown` mobile
+- Masquage du `::before` pseudo-element sur mobile (bloquait les touches)
+- Ajout `touch-action: manipulation` pour réponse tactile plus rapide
+
+**histoire.html:**
+- Section "Nos Valeurs" : 2 colonnes sur mobile au lieu de 1 (4 cartes empilées)
+
+**Blog:**
+- Article "Humidité et douleurs articulaires" ajouté à blog.html avec image corrigée
+- Navigation inter-articles ajoutée (Article précédent/suivant)
+- `GUIDE-REDACTION-BLOG.md` : checklist obligatoire pour navigation entre articles
 
 ---
 

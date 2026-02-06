@@ -232,4 +232,4 @@ Accent:
 
 ---
 
-*Dernière mise à jour: 2 février 2026*
+*Dernière mise à jour: 6 février 2026*
