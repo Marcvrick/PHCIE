@@ -476,6 +476,7 @@ p {
         box-shadow: none;
         background: transparent;
         border-radius: 0;
+        border: none;
         padding: 0;
         min-width: 100%;
         display: flex;
