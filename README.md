@@ -18,7 +18,8 @@ website-pharmacie-charnal/
 ├── pharmacie-de-garde-queven-hennebont-lorient.html  # Page pharmacie de garde
 ├── mentions-legales.html   # Mentions légales
 ├── donnees-personnelles.html  # Données personnelles
-├── style.css               # Styles principaux
+├── style.css               # Styles legacy (anciennes pages)
+├── style-v2.css            # Design System HIMS v2 (nouvelles pages)
 ├── animations.js           # Animations scroll
 ├── favicon.svg             # Favicon
 ├── robots.txt              # Directives crawlers
@@ -29,7 +30,8 @@ website-pharmacie-charnal/
 ├── Nos-marques/            # Section marques
 │   ├── nosmarques.html     # Page catalogue marques (ancres: #cosmetiques, #complements, #premiers-soins)
 │   ├── vichy-page.html     # Page dédiée Vichy
-│   ├── logos/              # Logos des marques (Avene, Bioderma, Vichy, etc.)
+│   ├── biogaran-page.html  # Page dédiée Biogaran
+│   ├── logos/              # Logos des marques (Avene, Bioderma, Vichy, Biogaran, etc.)
 │   └── *.md                # Articles marques (briefs pour futures pages)
 ├── blog/                   # Articles de blog
 │   ├── GUIDE-REDACTION-BLOG.md            # Guide rédactionnel Laure
@@ -48,40 +50,112 @@ website-pharmacie-charnal/
 
 ## 🎨 Design & Identité Visuelle
 
-**Design "Wellness Minimal Raffiné"** - moderne, apaisant et accessible
+### ⚠️ Migration en cours vers style-v2.css (HIMS-inspired)
 
-### Palette de Couleurs
+Le site migre progressivement d'un design "Wellness Minimal" vers un nouveau design system inspiré de HIMS avec des pastels doux et une typographie plus moderne.
+
+**Pages migrées vers style-v2.css :**
+- ✅ `Nos-marques/nosmarques.html` (+ réduction 80% du contenu)
+- ✅ `annuaire-sante.html`
+- ✅ `pharmacie-de-garde-queven-hennebont-lorient.html`
+- ✅ `services.html`
+- ✅ `histoire.html`
+- ✅ `contact.html`
+- ✅ `blog.html`
+- ✅ `recrutement-preparatrice-pharmacie-queven.html`
+
+**Pages encore sur style.css (à migrer) :**
+- ⏳ `index.html`
+- ⏳ `mentions-legales.html`
+- ⏳ `donnees-personnelles.html`
+- ⏳ `index-ordonnance.html`
+- ⏳ Pages individuelles marques (`Nos-marques/*-page.html`)
+
+---
+
+### Palette de Couleurs - style-v2.css (HIMS)
 
 ```css
 :root {
     /* Couleurs principales */
-    --sage: #7C9885;          /* Vert naturel principal */
-    --sage-light: #9DB3A4;    /* Vert clair */
-    --sage-dark: #5F7A68;     /* Vert foncé */
-    --teal: #2D5F5D;          /* Teal professionnel */
-    --blue: #4A7C8E;          /* Bleu confiance */
-    --cream: #F5F1E8;         /* Crème chaleureux */
-    --cream-dark: #E8DCC8;    /* Crème foncé */
-    --beige: #D9C9B0;         /* Beige naturel */
+    --teal-pro: #2D5F5D;       /* Couleur primaire */
+    --sage-natural: #7C9885;   /* Vert naturel */
+    --sage-light: #9DB3A4;
+    --sage-dark: #5F7A68;
+
+    /* Pastels HIMS */
+    --pastel-sage: #E8F0EA;
+    --pastel-mint: #DFF5ED;
+    --pastel-teal: #D4E8E7;
+    --pastel-peach: #FBE8DC;
+    --pastel-lavender: #EDE8F5;
+
+    /* Neutres */
+    --cream: #F5F1E8;
+    --cream-warm: #FAF7F2;
+    --beige: #D9C9B0;
+    --beige-dark: #C4B49A;
     --white: #FFFFFF;
-    --charcoal: #2C3E50;      /* Texte principal */
+    --charcoal: #1F2121;       /* Footer sombre */
+    --gray-600: #6B7280;       /* Texte secondaire */
 
     /* Accent Blog "Au Comptoir" */
-    --accent: #b4a6d7;        /* Lavande */
-    --accent-hover: #9b8bc4;
-    --accent-active: #8270b1;
+    --accent: #b4a6d7;         /* Lavande */
 }
 ```
 
+### Palette Legacy - style.css
+
+```css
+:root {
+    --sage: #7C9885;
+    --teal: #2D5F5D;
+    --cream: #F5F1E8;
+    --gray: #6B7280;
+    /* ... voir style.css pour la liste complète */
+}
+```
+
+### Mapping Variables (migration)
+
+| style.css (old) | style-v2.css (new) |
+|-----------------|-------------------|
+| `--teal` | `--teal-pro` |
+| `--sage` | `--sage-natural` |
+| `--gray` | `--gray-600` |
+| `--gradient` | `linear-gradient(135deg, var(--teal-pro) 0%, var(--sage-natural) 100%)` |
+| `--space-xs` | `--space-8` |
+| `--space-sm` | `--space-12` |
+| `--space-md` | `--space-16` |
+| `--space-lg` | `--space-24` |
+| `--space-xl` | `--space-32` |
+| `--space-2xl` | `--space-48` |
+| `--space-3xl` | `--space-80` |
+
+---
+
 ### Typographie
 
-- **Headings**: Georgia, "Crimson Pro" (fallback), serif
-- **Body**: -apple-system, "DM Sans" (fallback), sans-serif
+**style-v2.css (Google Fonts) :**
+- **Display**: Fraunces (serif élégant)
+- **Body**: DM Sans (sans-serif lisible)
+
+```html
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap" rel="stylesheet">
+```
+
+**style.css (fallback système) :**
+- **Headings**: Georgia, "Crimson Pro", serif
+- **Body**: -apple-system, "DM Sans", sans-serif
 - **Taille de base**: 18px (accessibilité seniors)
 
-**Note**: Les font files (.woff2) ne sont pas encore ajoutés. Le site utilise les polices système en fallback.
-
 ### Navigation & UX
+
+**Dropdown Services (toutes pages migrées) :**
+1. Notre Histoire
+2. **Nos Marques** ← Nouveau lien ajouté
+3. Pharmacie de garde
+4. Annuaire Santé
 
 **Ordre des Services (Homepage):**
 1. Délivrance d'ordonnances
@@ -94,6 +168,42 @@ website-pharmacie-charnal/
 **Bouton "Au Comptoir":**
 - Couleur distinctive: `#b4a6d7` (lavande)
 - Se distingue du reste de la navigation
+
+**Navbar style-v2.css :**
+- Pas de soulignement au hover des liens
+- Dropdown avec "invisible bridge" (pas de gap entre le toggle et le menu)
+
+### Pages de Marques - Personnalisation des Couleurs
+
+Chaque page de marque (`Nos-marques/*-page.html`) peut avoir sa propre palette de couleurs basée sur l'identité visuelle de la marque. **Le header et le footer restent identiques sur toutes les pages** pour maintenir la cohérence du site Pharmacie Charnal.
+
+**Éléments personnalisables par marque :**
+- Fond de page (hero, sections)
+- Couleurs des titres et accents
+- Dégradés des cartes produits
+- Bulles et effets visuels
+- Ombres (teinte)
+
+**Éléments fixes (ne pas modifier) :**
+- Header/Navigation (couleurs Charnal)
+- Footer (gradient `#2D5F5D` → `#5A7563`)
+- Structure des sections
+
+**Palette des marques :**
+
+| Marque | Couleur principale | Couleur sombre | Pastels |
+|--------|-------------------|----------------|---------|
+| **Vichy** | `#2D5F5D` (teal) | `#1E4745` | `#D4E8E7`, `#DFF5ED` |
+| **Biogaran** | `#0066CC` (bleu) | `#004C99` | `#E3F2FD`, `#E8F4FC`, `#F0F7FF` |
+
+**Pour ajouter une nouvelle marque :**
+1. Copier le template `TEMPLATE-marque.html`
+2. Remplacer les variables CSS `:root` avec les couleurs de la marque
+3. Adapter les dégradés du hero et des sections
+4. Conserver le header et footer d'origine
+5. Ajouter le logo dans `logos/`
+
+**Ressources couleurs :** Consulter `/Users/mc/Documents/MarcOS/Pharma/GESTION/1-RESSOURCES/Fiche par Marque/` pour les informations sur les marques.
 
 ### Footer
 
@@ -442,8 +552,14 @@ La page `recrutement-preparatrice-pharmacie-queven.html` a ses propres règles m
 
 ## 🎯 Prochaines Étapes Suggérées
 
+**Migration style-v2.css (en cours) :**
+- [ ] `index.html` - Page d'accueil
+- [ ] `mentions-legales.html`
+- [ ] `donnees-personnelles.html`
+- [ ] `index-ordonnance.html`
+- [ ] Pages marques individuelles (`Nos-marques/*-page.html`)
+
 **Court terme:**
-- [ ] Télécharger font files .woff2 (Crimson Pro + DM Sans)
 - [ ] Vérifier cohérence domain (.com vs .fr dans canonical URLs)
 - [ ] Créer nouveaux articles blog (calendrier éditorial)
 
@@ -481,6 +597,6 @@ Les deux fichiers sont complémentaires et doivent rester à jour.
 
 ---
 
-**Dernière mise à jour**: Février 2026
-**Version du site**: Production (main branch)
+**Dernière mise à jour**: 6 Février 2026
+**Version du site**: Production (main branch) - Migration style-v2.css en cours
 **Statut**: ✅ En ligne sur www.pharmaciecharnal.com

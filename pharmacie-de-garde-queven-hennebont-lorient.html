@@ -24,7 +24,13 @@
     <meta property="og:description" content="Trouvez la pharmacie de garde ouverte ce soir, cette nuit ou dimanche près de Quéven, Hennebont, Lorient, Guidel, Lanester.">
     <meta property="og:image" content="https://www.pharmaciecharnal.fr/images/pharmacie-charnal-logo.png">
 
-    <link rel="stylesheet" href="style.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap" rel="stylesheet">
+
+    <!-- Shared Design System -->
+    <link rel="stylesheet" href="style-v2.css">
 
     <!-- FAQ Schema for SEO -->
     <script type="application/ld+json">
@@ -93,125 +99,146 @@
     </script>
 
     <style>
-        /* === GARDES PAGE STYLES === */
+        /* === PHARMACIE DE GARDE - HIMS-STYLE OVERRIDES === */
+
+        /* Hero Section */
         .gardes-hero {
-            background: linear-gradient(135deg, var(--sage-light) 0%, var(--sage) 100%);
-            padding: var(--space-xl) 0;
-            color: var(--white);
+            background: linear-gradient(135deg, var(--pastel-sage) 0%, var(--pastel-mint) 100%);
+            padding: var(--space-96) 0 var(--space-64);
+            color: var(--charcoal);
             text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .gardes-hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 80%;
+            height: 200%;
+            background: radial-gradient(ellipse at center, rgba(45, 95, 93, 0.08) 0%, transparent 70%);
+            pointer-events: none;
         }
 
         .gardes-hero h1 {
-            font-size: var(--text-3xl);
-            font-weight: 700;
-            margin-bottom: var(--space-sm);
+            font-family: var(--font-display);
+            font-size: clamp(2.5rem, 6vw, var(--text-5xl));
+            font-weight: 500;
+            color: var(--charcoal);
+            margin-bottom: var(--space-16);
+            position: relative;
         }
 
         .gardes-hero .subtitle {
-            font-size: var(--text-base);
-            color: var(--white);
+            font-size: var(--text-lg);
+            color: var(--gray-600);
+            position: relative;
         }
 
-        .gardes-section {
-            padding: var(--space-2xl) 0;
-        }
-
-        /* === TODAY'S GUARD SECTION === */
+        /* Today Guard Section */
         .today-guard-section {
-            background: linear-gradient(135deg, var(--sage) 0%, var(--teal) 100%);
-            padding: var(--space-2xl) 0;
+            background: linear-gradient(135deg, var(--teal-pro) 0%, var(--sage-dark) 100%);
+            padding: var(--space-80) 0;
         }
 
         .today-guard-card {
             background: var(--white);
-            border-radius: var(--radius-lg);
-            padding: var(--space-xl);
+            border-radius: var(--radius-xl);
+            padding: var(--space-48);
             max-width: 500px;
             margin: 0 auto;
             text-align: center;
-            box-shadow: var(--shadow-lg);
+            box-shadow: var(--shadow-xl);
         }
 
         .today-guard-date {
             font-size: var(--text-sm);
-            color: var(--gray);
-            margin-bottom: var(--space-md);
+            color: var(--gray-500);
+            margin-bottom: var(--space-16);
             text-transform: capitalize;
         }
 
         .today-guard-pharmacie {
+            font-family: var(--font-display);
             font-size: var(--text-2xl);
-            font-weight: 700;
+            font-weight: 500;
             color: var(--charcoal);
-            margin-bottom: var(--space-xs);
+            margin-bottom: var(--space-8);
         }
 
         .today-guard-ville {
             font-size: var(--text-lg);
-            color: var(--sage-dark);
+            color: var(--teal-pro);
             font-weight: 500;
-            margin-bottom: var(--space-md);
+            margin-bottom: var(--space-16);
         }
 
         .today-guard-type {
             display: inline-block;
-            background: var(--sage);
+            background: var(--teal-pro);
             color: var(--white);
-            padding: 0.25rem 1rem;
-            border-radius: 9999px;
+            padding: var(--space-8) var(--space-24);
+            border-radius: var(--radius-full);
             font-size: var(--text-sm);
-            font-weight: 500;
+            font-weight: 600;
         }
 
-        /* === 3237 INFO === */
+        /* 3237 Info Box */
         .info-3237 {
-            background: var(--cream);
-            border-radius: var(--radius-lg);
-            padding: var(--space-lg);
-            max-width: 500px;
-            margin: 0 auto var(--space-xl);
+            background: var(--white);
+            border-radius: var(--radius-xl);
+            padding: var(--space-48);
+            max-width: 600px;
+            margin: 0 auto;
             text-align: center;
-            border: 1px solid var(--beige);
+            border: 1px solid var(--beige-dark);
+            box-shadow: var(--shadow-lg);
         }
 
         .info-3237 p {
-            color: var(--gray);
-            font-size: var(--text-sm);
-            margin-bottom: var(--space-sm);
+            color: var(--gray-600);
+            font-size: var(--text-lg);
+            margin-bottom: var(--space-16);
         }
 
         .info-3237 .number-3237 {
-            font-size: var(--text-2xl);
-            font-weight: 700;
-            color: var(--teal);
+            font-family: var(--font-display);
+            font-size: var(--text-5xl);
+            font-weight: 500;
+            color: var(--teal-pro);
         }
 
         .info-3237 .number-3237 a {
             color: inherit;
             text-decoration: none;
+            transition: color var(--duration-normal) var(--ease-standard);
         }
 
         .info-3237 .number-3237 a:hover {
-            text-decoration: underline;
+            color: var(--teal-light);
         }
 
         .info-3237 .note {
-            font-size: var(--text-xs);
-            color: var(--gray-light);
-            margin-top: var(--space-sm);
+            font-size: var(--text-base);
+            color: var(--gray-500);
+            margin-top: var(--space-16);
         }
 
-        /* === FAQ === */
+        /* FAQ Section */
         .faq-section {
             background: var(--cream);
-            padding: var(--space-2xl) 0;
+            padding: var(--space-96) 0;
         }
 
         .faq-section h2 {
+            font-family: var(--font-display);
             text-align: center;
-            font-size: var(--text-2xl);
+            font-size: clamp(1.875rem, 4vw, var(--text-4xl));
+            font-weight: 500;
             color: var(--charcoal);
-            margin-bottom: var(--space-xl);
+            margin-bottom: var(--space-64);
         }
 
         .faq-list {
@@ -221,21 +248,33 @@
 
         .faq-item {
             background: var(--white);
-            border: 1px solid var(--beige);
+            border: 1px solid var(--beige-dark);
             border-radius: var(--radius-lg);
-            margin-bottom: var(--space-md);
+            margin-bottom: var(--space-16);
             overflow: hidden;
+            transition: all var(--duration-normal) var(--ease-standard);
+        }
+
+        .faq-item:hover {
+            box-shadow: var(--shadow-md);
         }
 
         .faq-item summary {
-            padding: var(--space-lg);
+            padding: var(--space-24);
+            font-family: var(--font-body);
             font-weight: 600;
+            font-size: var(--text-base);
             color: var(--charcoal);
             cursor: pointer;
             list-style: none;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            transition: color var(--duration-normal) var(--ease-standard);
+        }
+
+        .faq-item summary:hover {
+            color: var(--teal-pro);
         }
 
         .faq-item summary::-webkit-details-marker {
@@ -245,8 +284,9 @@
         .faq-item summary::after {
             content: "+";
             font-size: var(--text-xl);
-            color: var(--sage);
+            color: var(--teal-pro);
             font-weight: 400;
+            transition: transform var(--duration-normal) var(--ease-standard);
         }
 
         .faq-item[open] summary::after {
@@ -254,37 +294,63 @@
         }
 
         .faq-item .faq-answer {
-            padding: 0 var(--space-lg) var(--space-lg);
-            color: var(--gray);
+            padding: 0 var(--space-24) var(--space-24);
+            color: var(--gray-600);
             line-height: 1.7;
         }
 
         .faq-item .faq-answer p {
-            margin-bottom: var(--space-sm);
+            margin-bottom: var(--space-12);
         }
 
         .faq-item .faq-answer p:last-child {
             margin-bottom: 0;
         }
 
+        .faq-item .faq-answer strong {
+            color: var(--charcoal);
+        }
+
         /* Responsive */
         @media (max-width: 768px) {
+            .gardes-hero {
+                padding: var(--space-64) 0 var(--space-48);
+            }
+
             .today-guard-section {
-                padding: var(--space-xl) var(--space-md);
+                padding: var(--space-48) var(--space-16);
             }
 
             .info-3237 {
-                margin-left: var(--space-md);
-                margin-right: var(--space-md);
+                margin: 0 var(--space-16);
+                padding: var(--space-32);
+            }
+
+            .today-guard-card {
+                padding: var(--space-32);
             }
 
             .today-guard-pharmacie {
                 font-size: var(--text-xl);
             }
 
+            .faq-section {
+                padding: var(--space-64) 0;
+            }
+
             .faq-list {
-                margin-left: var(--space-md);
-                margin-right: var(--space-md);
+                margin-left: var(--space-16);
+                margin-right: var(--space-16);
+            }
+
+            .faq-item summary {
+                padding: var(--space-16);
+                font-size: var(--text-sm);
+            }
+
+            .faq-item .faq-answer {
+                padding: 0 var(--space-16) var(--space-16);
+                font-size: var(--text-sm);
             }
         }
     </style>
@@ -293,8 +359,8 @@
     <!-- Header -->
     <nav class="navbar">
         <div class="nav-container">
-            <a href="index.html" class="nav-logo">
-                <div class="nav-logo-content">
+            <a href="index.html" class="nav-logo-link">
+                <div class="nav-logo">
                     <div class="logo-icon">
                         <img src="images/pharmacie-charnal-logo.png" alt="Logo Pharmacie Charnal" style="width: 100%; height: 100%; object-fit: contain;">
                     </div>
@@ -316,6 +382,7 @@
                     <a href="services.html" class="nav-link nav-dropdown-toggle">Services</a>
                     <ul class="nav-dropdown-menu">
                         <li><a href="histoire.html" class="nav-link">Notre Histoire</a></li>
+                        <li><a href="Nos-marques/nosmarques.html" class="nav-link">Nos Marques</a></li>
                         <li><a href="pharmacie-de-garde-queven-hennebont-lorient.html" class="nav-link active">Pharmacie de garde</a></li>
                         <li><a href="annuaire-sante.html" class="nav-link">Annuaire Santé</a></li>
                     </ul>

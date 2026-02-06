@@ -38,13 +38,24 @@
             --gray-stone: #D4CFC7;
 
             /* Text */
-            --charcoal: #2C2C2C;
+            --charcoal: #1F2121;
             --gray: #6B6B6B;
             --gray-light: #A8A8A8;
+
+            /* Text sizes */
+            --text-xs: 0.75rem;
+            --text-sm: 0.875rem;
+            --text-base: 1rem;
+            --text-lg: 1.125rem;
+            --text-xl: 1.25rem;
 
             /* Accents */
             --mint: #B8E6D5;
             --vichy-blue: #0066B3;
+
+            /* Fonts */
+            --font-display: 'Cormorant Garamond', Georgia, serif;
+            --font-body: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
 
             /* Spacing - 8pt Grid (Hims) */
             --space-4: 4px;
@@ -75,6 +86,7 @@
 
             /* Transitions */
             --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+            --ease-standard: cubic-bezier(0.16, 1, 0.3, 1);
             --duration-fast: 150ms;
             --duration-normal: 300ms;
             --duration-slow: 500ms;
@@ -233,16 +245,112 @@
             }
         }
 
-        .nav-links a {
-            font-size: 0.9375rem;
-            font-weight: 500;
-            color: var(--charcoal);
-            text-decoration: none;
-            transition: color var(--duration-fast) var(--ease-out);
+        .nav-links {
+            display: flex;
+            gap: var(--space-8);
+            align-items: center;
+            list-style: none;
         }
 
-        .nav-links a:hover {
+        .nav-link {
+            padding: var(--space-8) var(--space-16);
+            border-radius: var(--radius-full);
+            font-size: 0.9375rem;
+            font-weight: 500;
+            color: var(--gray);
+            text-decoration: none;
+            transition: all var(--duration-fast) var(--ease-out);
+        }
+
+        .nav-link:hover {
             color: var(--teal-pro);
+            background-color: var(--pastel-teal);
+        }
+
+        .nav-dropdown {
+            position: relative;
+        }
+
+        .nav-dropdown-toggle::after {
+            content: '';
+            border: solid var(--gray);
+            border-width: 0 2px 2px 0;
+            display: inline-block;
+            padding: 2px;
+            transform: rotate(45deg);
+            margin-left: 6px;
+            margin-top: -2px;
+            transition: transform var(--duration-fast) var(--ease-out);
+        }
+
+        .nav-dropdown:hover .nav-dropdown-toggle::after {
+            transform: rotate(-135deg);
+            margin-top: 2px;
+        }
+
+        .nav-dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: var(--white);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-lg);
+            min-width: 180px;
+            padding: var(--space-8) 0;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(10px);
+            transition: all var(--duration-fast) var(--ease-out);
+            list-style: none;
+            z-index: 1000;
+        }
+
+        .nav-dropdown:hover .nav-dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .nav-dropdown-menu .nav-link {
+            display: block;
+            padding: var(--space-8) var(--space-16);
+            border-radius: 0;
+        }
+
+        .nav-dropdown-menu .nav-link:hover {
+            background: var(--cream);
+        }
+
+        @media (max-width: 767px) {
+            .nav-links {
+                display: none;
+            }
+            .nav-links.active {
+            display: flex !important;
+            flex-direction: column;
+            position: fixed;
+            top: 72px;
+            left: 0;
+            right: 0;
+            background: var(--white);
+            padding: var(--space-16);
+            border-bottom: 1px solid var(--beige);
+            box-shadow: var(--shadow-md);
+            z-index: 999;
+        }
+
+        .nav-links.active li {
+            width: 100%;
+        }
+
+        .nav-links.active .nav-link {
+            padding: var(--space-12) var(--space-16);
+            font-size: 1rem;
+        }
+
+        .mobile-menu-toggle {
+                display: flex !important;
+            }
         }
 
         .header-cta {
@@ -272,10 +380,10 @@
         ═══════════════════════════════════════════════════════════════ */
         .hero {
             position: relative;
-            min-height: 100vh;
+            min-height: calc(100vh - 120px);
             display: flex;
             align-items: center;
-            padding-top: 72px;
+            padding-top: var(--space-48);
             background: linear-gradient(165deg, var(--pastel-teal) 0%, var(--cream) 50%, var(--pastel-mint) 100%);
             overflow: hidden;
         }
@@ -488,13 +596,7 @@
         }
 
         .hero-product-placeholder::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 30%;
-            background: linear-gradient(180deg, var(--vichy-blue) 0%, #0077cc 100%);
+            display: none;
         }
 
         .product-brand {
@@ -591,30 +693,40 @@
 
         .intro-visual {
             position: relative;
-            aspect-ratio: 1;
-            max-width: 500px;
+            width: 320px;
+            height: 320px;
             margin: 0 auto;
         }
 
         .intro-circle {
             position: absolute;
             border-radius: 50%;
-            border: 1px solid var(--beige);
         }
 
         .intro-circle-1 {
-            inset: 0;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border: 1px solid rgba(45, 95, 93, 0.15);
             animation: pulse 4s ease-in-out infinite;
         }
 
         .intro-circle-2 {
-            inset: 15%;
+            top: 12%;
+            left: 12%;
+            right: 12%;
+            bottom: 12%;
+            border: 1px solid rgba(45, 95, 93, 0.25);
             animation: pulse 4s ease-in-out 0.5s infinite;
         }
 
         .intro-circle-3 {
-            inset: 30%;
-            background: var(--pastel-teal);
+            top: 24%;
+            left: 24%;
+            right: 24%;
+            bottom: 24%;
+            border: 1px solid rgba(45, 95, 93, 0.2);
             animation: pulse 4s ease-in-out 1s infinite;
         }
 
@@ -831,18 +943,31 @@
 
         .benefits-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: var(--space-32);
+            grid-template-columns: repeat(2, 1fr);
+            gap: var(--space-16);
+        }
+
+        @media (min-width: 768px) {
+            .benefits-grid {
+                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+                gap: var(--space-32);
+            }
         }
 
         .benefit-card {
             position: relative;
-            padding: var(--space-32);
+            padding: var(--space-24);
             background: var(--cream);
             border-radius: var(--radius-lg);
             border: 1px solid var(--beige);
             transition: all var(--duration-normal) var(--ease-out);
             overflow: hidden;
+        }
+
+        @media (min-width: 768px) {
+            .benefit-card {
+                padding: var(--space-32);
+            }
         }
 
         .benefit-card::before {
@@ -870,12 +995,19 @@
 
         .benefit-number {
             font-family: 'Cormorant Garamond', serif;
-            font-size: 3rem;
+            font-size: 2rem;
             font-weight: 600;
             color: var(--sage-soft);
             line-height: 1;
-            margin-bottom: var(--space-16);
+            margin-bottom: var(--space-8);
             transition: color var(--duration-normal) var(--ease-out);
+        }
+
+        @media (min-width: 768px) {
+            .benefit-number {
+                font-size: 3rem;
+                margin-bottom: var(--space-16);
+            }
         }
 
         .benefit-card:hover .benefit-number {
@@ -943,16 +1075,29 @@
 
         .product-cards {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: var(--space-32);
+            grid-template-columns: repeat(2, 1fr);
+            gap: var(--space-16);
+        }
+
+        @media (min-width: 768px) {
+            .product-cards {
+                grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+                gap: var(--space-32);
+            }
         }
 
         .product-card {
             background: var(--white);
-            border-radius: var(--radius-xl);
+            border-radius: var(--radius-lg);
             overflow: hidden;
             box-shadow: var(--shadow-sm);
             transition: all var(--duration-normal) var(--ease-out);
+        }
+
+        @media (min-width: 768px) {
+            .product-card {
+                border-radius: var(--radius-xl);
+            }
         }
 
         .product-card:hover {
@@ -962,8 +1107,14 @@
 
         .product-image {
             position: relative;
-            height: 220px;
+            height: 120px;
             overflow: hidden;
+        }
+
+        @media (min-width: 768px) {
+            .product-image {
+                height: 220px;
+            }
         }
 
         .product-image-bg {
@@ -984,10 +1135,10 @@
 
         .product-badge {
             position: absolute;
-            top: var(--space-16);
-            left: var(--space-16);
-            padding: var(--space-8) var(--space-12);
-            font-size: 0.75rem;
+            top: var(--space-8);
+            left: var(--space-8);
+            padding: var(--space-4) var(--space-8);
+            font-size: 0.625rem;
             font-weight: 600;
             text-transform: uppercase;
             letter-spacing: 0.05em;
@@ -997,30 +1148,74 @@
             border-radius: var(--radius-sm);
         }
 
+        @media (min-width: 768px) {
+            .product-badge {
+                top: var(--space-16);
+                left: var(--space-16);
+                padding: var(--space-8) var(--space-12);
+                font-size: 0.75rem;
+            }
+        }
+
         .product-content {
-            padding: var(--space-24);
+            padding: var(--space-12);
+        }
+
+        @media (min-width: 768px) {
+            .product-content {
+                padding: var(--space-24);
+            }
         }
 
         .product-content h3 {
-            font-size: 1.375rem;
-            margin-bottom: var(--space-8);
+            font-size: 1rem;
+            margin-bottom: var(--space-4);
+        }
+
+        @media (min-width: 768px) {
+            .product-content h3 {
+                font-size: 1.375rem;
+                margin-bottom: var(--space-8);
+            }
         }
 
         .product-subtitle {
-            font-size: 0.875rem;
+            font-size: 0.75rem;
             color: var(--sage-natural);
             font-weight: 500;
-            margin-bottom: var(--space-16);
+            margin-bottom: var(--space-8);
+        }
+
+        @media (min-width: 768px) {
+            .product-subtitle {
+                font-size: 0.875rem;
+                margin-bottom: var(--space-16);
+            }
         }
 
         .product-content p {
             font-size: 0.9375rem;
             margin-bottom: var(--space-16);
+            display: none;
+        }
+
+        @media (min-width: 768px) {
+            .product-content p {
+                display: block;
+            }
         }
 
         .product-list {
             list-style: none;
-            margin-bottom: var(--space-24);
+            margin-bottom: var(--space-12);
+            display: none;
+        }
+
+        @media (min-width: 768px) {
+            .product-list {
+                display: block;
+                margin-bottom: var(--space-24);
+            }
         }
 
         .product-list li {
@@ -1044,11 +1239,17 @@
             display: inline-flex;
             align-items: center;
             gap: var(--space-8);
-            font-size: 0.9375rem;
+            font-size: 0.8125rem;
             font-weight: 600;
             color: var(--teal-pro);
             text-decoration: none;
             transition: gap var(--duration-fast) var(--ease-out);
+        }
+
+        @media (min-width: 768px) {
+            .product-link {
+                font-size: 0.9375rem;
+            }
         }
 
         .product-link:hover {
@@ -1233,98 +1434,164 @@
         }
 
         /* ═══════════════════════════════════════════════════════════════
-           FOOTER
+           FOOTER (HIMS-style from index-redesign)
         ═══════════════════════════════════════════════════════════════ */
         .footer {
-            background: var(--charcoal);
-            color: var(--gray-light);
-            padding: var(--space-64) 0 var(--space-32);
+            background: #1F2121;
+            color: var(--white);
+            padding: var(--space-80) 0 var(--space-32);
         }
 
         .footer-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: var(--space-48);
+            grid-template-columns: 1fr 1fr;
+            grid-template-areas:
+                "brand brand"
+                "contact horaires";
+            gap: var(--space-32);
             margin-bottom: var(--space-48);
         }
 
+        @media (min-width: 768px) {
+            .footer-grid {
+                grid-template-columns: 1.5fr 1fr 1fr 1fr;
+                grid-template-areas: none;
+                gap: var(--space-48);
+            }
+        }
+
         .footer-brand {
-            grid-column: 1 / -1;
+            grid-area: brand;
+        }
+
+        .footer-nav {
+            grid-area: nav;
+            display: none;
         }
 
         @media (min-width: 768px) {
-            .footer-brand {
-                grid-column: auto;
+            .footer-nav {
+                display: block;
             }
+        }
+
+        .footer-contact {
+            grid-area: contact;
+        }
+
+        .footer-horaires {
+            grid-area: horaires;
+        }
+
+        .footer-brand p {
+            font-size: var(--text-base);
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.7;
+            margin-top: var(--space-16);
+            max-width: 280px;
         }
 
         .footer-logo {
             display: flex;
             align-items: center;
             gap: var(--space-12);
-            margin-bottom: var(--space-16);
         }
 
-        .footer-logo-icon {
-            width: 40px;
-            height: 40px;
-            color: var(--white);
+        .footer-logo-img {
+            width: 48px;
+            height: 48px;
+            object-fit: contain;
+            flex-shrink: 0;
         }
 
         .footer-logo-text {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 1.25rem;
+            font-family: var(--font-display);
+            font-size: var(--text-xl);
             font-weight: 600;
             color: var(--white);
         }
 
-        .footer-brand p {
-            font-size: 0.9375rem;
-            line-height: 1.7;
-            max-width: 280px;
-        }
-
-        .footer-title {
-            font-family: 'DM Sans', sans-serif;
-            font-size: 0.8125rem;
+        .footer-col h4 {
+            font-size: var(--text-sm);
             font-weight: 600;
             text-transform: uppercase;
-            letter-spacing: 0.1em;
+            letter-spacing: 0.08em;
             color: var(--white);
             margin-bottom: var(--space-24);
         }
 
-        .footer-links {
+        .footer-col ul {
             list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-12);
         }
 
-        .footer-links li {
-            margin-bottom: var(--space-12);
+        .footer-col li {
+            font-size: var(--text-base);
+            color: rgba(255, 255, 255, 0.6);
         }
 
-        .footer-links a {
-            font-size: 0.9375rem;
-            color: var(--gray-light);
+        .footer-col a {
+            font-size: var(--text-base);
+            color: rgba(255, 255, 255, 0.8);
             text-decoration: none;
-            transition: color var(--duration-fast) var(--ease-out);
+            transition: color var(--duration-fast) var(--ease-standard);
         }
 
-        .footer-links a:hover {
+        .footer-col a:hover {
             color: var(--white);
         }
 
-        .footer-bottom {
+        .footer-social {
             display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between;
-            align-items: center;
             gap: var(--space-16);
+            margin-top: var(--space-24);
+        }
+
+        .footer-social a {
+            width: 44px;
+            height: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: var(--radius-base);
+            color: var(--white);
+            transition: all var(--duration-fast) var(--ease-standard);
+        }
+
+        .footer-social a:hover {
+            background: var(--white);
+            color: var(--charcoal);
+            border-color: var(--white);
+        }
+
+        .footer-social svg {
+            width: 20px;
+            height: 20px;
+        }
+
+        .footer-bottom {
             padding-top: var(--space-32);
             border-top: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-16);
+            align-items: center;
+            text-align: center;
+        }
+
+        @media (min-width: 768px) {
+            .footer-bottom {
+                flex-direction: row;
+                justify-content: space-between;
+            }
         }
 
         .footer-copyright {
-            font-size: 0.875rem;
+            font-size: var(--text-sm);
+            color: rgba(255, 255, 255, 0.5);
         }
 
         .footer-legal {
@@ -1333,14 +1600,83 @@
         }
 
         .footer-legal a {
-            font-size: 0.875rem;
-            color: var(--gray-light);
+            font-size: var(--text-sm);
+            color: rgba(255, 255, 255, 0.5);
             text-decoration: none;
-            transition: color var(--duration-fast) var(--ease-out);
+            transition: color var(--duration-fast) var(--ease-standard);
         }
 
         .footer-legal a:hover {
             color: var(--white);
+        }
+
+        /* Footer mobile compact */
+        @media (max-width: 767px) {
+            .footer {
+                padding: var(--space-48) 0 var(--space-24);
+            }
+
+            .footer-grid {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                grid-template-areas:
+                    "brand brand"
+                    "contact horaires";
+                gap: var(--space-32);
+            }
+
+            .footer-brand {
+                grid-area: brand;
+            }
+
+            .footer-brand p {
+                font-size: var(--text-sm);
+                margin-top: var(--space-12);
+            }
+
+            .footer-social {
+                margin-top: var(--space-16);
+            }
+
+            .footer-social a {
+                width: 40px;
+                height: 40px;
+            }
+
+            .footer-col.footer-nav {
+                display: none;
+            }
+
+            .footer-col.footer-contact {
+                grid-area: contact;
+            }
+
+            .footer-col.footer-horaires {
+                grid-area: horaires;
+            }
+
+            .footer-col h4 {
+                font-size: var(--text-xs);
+                margin-bottom: var(--space-12);
+            }
+
+            .footer-col ul {
+                gap: var(--space-8);
+            }
+
+            .footer-col li,
+            .footer-col a {
+                font-size: var(--text-sm);
+            }
+
+            .footer-bottom {
+                padding-top: var(--space-24);
+                text-align: center;
+            }
+
+            .footer-legal {
+                gap: var(--space-16);
+            }
         }
 
         /* ═══════════════════════════════════════════════════════════════
@@ -1396,35 +1732,57 @@
     </style>
 </head>
 <body>
-    <!-- Header -->
-    <header class="header">
-        <div class="header-inner">
-            <a href="/" class="logo">
-                <svg class="logo-icon" viewBox="0 0 40 40" fill="none">
-                    <circle cx="12" cy="12" r="6" fill="#2D5F5D"/>
-                    <circle cx="28" cy="12" r="6" fill="#50A686"/>
-                    <circle cx="12" cy="28" r="6" fill="#7C9885"/>
-                    <circle cx="28" cy="28" r="6" fill="#9DB3A4"/>
-                    <circle cx="20" cy="20" r="5" fill="#4A7C8E"/>
-                </svg>
-                <span class="logo-text">Pharmacie Charnal</span>
+    <!-- Navigation -->
+    <nav class="navbar" style="position: fixed; top: 0; left: 0; right: 0; z-index: 1000; background-color: rgba(250, 248, 245, 0.95); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-bottom: 1px solid var(--beige); padding: var(--space-16) 0;">
+        <div class="nav-container" style="max-width: 1200px; margin: 0 auto; padding: 0 var(--space-24); display: flex; align-items: center; justify-content: space-between; gap: var(--space-32);">
+            <a href="../index.html" class="nav-logo-link" style="display: flex; align-items: center; gap: var(--space-12); text-decoration: none;">
+                <div class="nav-logo" style="display: flex; align-items: center; gap: var(--space-12);">
+                    <div class="logo-icon" style="width: 48px; height: 48px;">
+                        <img src="../images/pharmacie-charnal-logo.png" alt="Logo Pharmacie Charnal" style="width: 100%; height: 100%; object-fit: contain;">
+                    </div>
+                    <div class="logo-text" style="display: flex; flex-direction: column;">
+                        <span class="logo-name" style="font-family: var(--font-display); font-size: 1.125rem; font-weight: 600; color: var(--charcoal);">Pharmacie Charnal</span>
+                        <span class="logo-tagline" style="font-size: 0.875rem; color: var(--gray-light);">Quéven</span>
+                    </div>
+                </div>
             </a>
-            <nav>
-                <ul class="nav-links">
-                    <li><a href="#">Nos conseils</a></li>
-                    <li><a href="#">Nos marques</a></li>
-                    <li><a href="#">Services</a></li>
-                    <li><a href="#">Contact</a></li>
-                </ul>
-            </nav>
-            <a href="#contact" class="header-cta">
-                Nous trouver
-                <svg viewBox="0 0 20 20" fill="currentColor">
-                    <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"/>
-                </svg>
-            </a>
+            <button class="mobile-menu-toggle" aria-label="Menu" aria-expanded="false" style="display: none; flex-direction: column; justify-content: center; gap: 5px; width: 40px; height: 40px; background: transparent; border: none; cursor: pointer; padding: 8px;">
+                <span class="hamburger-line" style="width: 24px; height: 2px; background: var(--charcoal); border-radius: 2px;"></span>
+                <span class="hamburger-line" style="width: 24px; height: 2px; background: var(--charcoal); border-radius: 2px;"></span>
+                <span class="hamburger-line" style="width: 24px; height: 2px; background: var(--charcoal); border-radius: 2px;"></span>
+            </button>
+
+            <ul class="nav-links">
+                <li><a href="../index.html" class="nav-link">Accueil</a></li>
+                <li class="nav-dropdown">
+                    <a href="../services.html" class="nav-link nav-dropdown-toggle">Services</a>
+                    <ul class="nav-dropdown-menu">
+                        <li><a href="../histoire.html" class="nav-link">Notre Histoire</a></li>
+                        <li><a href="nosmarques.html" class="nav-link">Nos Marques</a></li>
+                        <li><a href="../pharmacie-de-garde-queven-hennebont-lorient.html" class="nav-link">Pharmacie de garde</a></li>
+                        <li><a href="../annuaire-sante.html" class="nav-link">Annuaire Santé</a></li>
+                    </ul>
+                </li>
+                <li><a href="../blog.html" class="nav-link nav-link-blog" style="background: #b4a6d7; color: white; border-radius: 9999px;">Au comptoir</a></li>
+                <li><a href="../contact.html" class="nav-link">Contact</a></li>
+            </ul>
         </div>
-    </header>
+    </nav>
+
+    <!-- Breadcrumb -->
+    <div class="breadcrumb" style="background: var(--cream); padding: var(--space-12) 0; border-bottom: 1px solid var(--beige); margin-top: 72px;">
+        <div class="container">
+            <nav aria-label="Fil d'Ariane">
+                <ol style="display: flex; align-items: center; gap: var(--space-8); list-style: none; font-size: 0.875rem; color: var(--gray);">
+                    <li><a href="../index.html" style="color: var(--sage-natural); text-decoration: none;">Accueil</a></li>
+                    <li style="color: var(--gray-light);">›</li>
+                    <li><a href="nosmarques.html" style="color: var(--sage-natural); text-decoration: none;">Nos Marques</a></li>
+                    <li style="color: var(--gray-light);">›</li>
+                    <li style="color: var(--charcoal); font-weight: 500;">Vichy</li>
+                </ol>
+            </nav>
+        </div>
+    </div>
 
     <!-- Hero -->
     <section class="hero">
@@ -1475,16 +1833,15 @@
                                 <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"/>
                             </svg>
                         </a>
-                        <a href="#contact" class="btn btn-secondary">Conseil personnalisé</a>
+                        <a href="#contact" class="btn btn-secondary">Notre coup de cœur</a>
                     </div>
                 </div>
                 <div class="hero-visual">
                     <div class="hero-image-wrapper">
                         <div class="hero-image-bg"></div>
                         <div class="hero-image-container">
-                            <div class="hero-product-placeholder">
-                                <span class="product-brand">VICHY</span>
-                                <span class="product-name">Mineral 89</span>
+                            <div class="hero-product-placeholder" style="padding: var(--space-32); padding-top: var(--space-64); background: var(--white); justify-content: flex-start;">
+                                <img src="logos/Vichy fc.png" alt="Logo Vichy" style="max-width: 85%; max-height: 70%; object-fit: contain; margin-top: var(--space-48);">
                             </div>
                         </div>
                     </div>
@@ -1498,7 +1855,6 @@
         <div class="container">
             <div class="intro-grid">
                 <div class="intro-visual reveal">
-                    <img src="vichy-history.jpg" alt="Les thermes de Vichy - Histoire de la marque" class="intro-history-image" style="display: block; width: 100%; max-width: 400px; margin: 0 auto var(--space-32); border-radius: var(--radius-xl); box-shadow: var(--shadow-lg); object-fit: cover;">
                     <div class="intro-circle intro-circle-1"></div>
                     <div class="intro-circle intro-circle-2"></div>
                     <div class="intro-circle intro-circle-3"></div>
@@ -1642,15 +1998,15 @@
             </div>
 
             <div class="products-tabs reveal reveal-delay-2">
-                <button class="tab-btn active">Toutes</button>
-                <button class="tab-btn">Hydratation</button>
-                <button class="tab-btn">Anti-âge</button>
-                <button class="tab-btn">Imperfections</button>
-                <button class="tab-btn">Capillaire</button>
+                <button class="tab-btn active" data-category="all">Toutes</button>
+                <button class="tab-btn" data-category="hydratation">Hydratation</button>
+                <button class="tab-btn" data-category="anti-age">Anti-âge</button>
+                <button class="tab-btn" data-category="imperfections">Imperfections</button>
+                <button class="tab-btn" data-category="capillaire">Capillaire</button>
             </div>
 
             <div class="product-cards">
-                <article class="product-card reveal reveal-delay-1">
+                <article class="product-card reveal reveal-delay-1" data-category="hydratation">
                     <div class="product-image">
                         <div class="product-image-bg mineral"></div>
                         <span class="product-badge">Best-seller</span>
@@ -1664,16 +2020,10 @@
                             <li>Mineral 89 Yeux</li>
                             <li>Mineral 89 Crème</li>
                         </ul>
-                        <a href="#" class="product-link">
-                            En savoir plus
-                            <svg viewBox="0 0 20 20" fill="currentColor">
-                                <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"/>
-                            </svg>
-                        </a>
                     </div>
                 </article>
 
-                <article class="product-card reveal reveal-delay-2">
+                <article class="product-card reveal reveal-delay-2" data-category="anti-age">
                     <div class="product-image">
                         <div class="product-image-bg liftactiv"></div>
                     </div>
@@ -1686,16 +2036,10 @@
                             <li>Liftactiv Supreme</li>
                             <li>Liftactiv Nuit</li>
                         </ul>
-                        <a href="#" class="product-link">
-                            En savoir plus
-                            <svg viewBox="0 0 20 20" fill="currentColor">
-                                <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"/>
-                            </svg>
-                        </a>
                     </div>
                 </article>
 
-                <article class="product-card reveal reveal-delay-3">
+                <article class="product-card reveal reveal-delay-3" data-category="imperfections">
                     <div class="product-image">
                         <div class="product-image-bg normaderm"></div>
                     </div>
@@ -1707,16 +2051,10 @@
                             <li>Normaderm Phytosolution</li>
                             <li>Gel Nettoyant Purifiant</li>
                         </ul>
-                        <a href="#" class="product-link">
-                            En savoir plus
-                            <svg viewBox="0 0 20 20" fill="currentColor">
-                                <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"/>
-                            </svg>
-                        </a>
                     </div>
                 </article>
 
-                <article class="product-card reveal reveal-delay-4">
+                <article class="product-card reveal reveal-delay-4" data-category="anti-age">
                     <div class="product-image">
                         <div class="product-image-bg neovadiol"></div>
                     </div>
@@ -1728,16 +2066,10 @@
                             <li>Neovadiol Crème Jour</li>
                             <li>Neovadiol Nuit</li>
                         </ul>
-                        <a href="#" class="product-link">
-                            En savoir plus
-                            <svg viewBox="0 0 20 20" fill="currentColor">
-                                <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"/>
-                            </svg>
-                        </a>
                     </div>
                 </article>
 
-                <article class="product-card reveal reveal-delay-5">
+                <article class="product-card reveal reveal-delay-5" data-category="capillaire">
                     <div class="product-image">
                         <div class="product-image-bg dercos"></div>
                     </div>
@@ -1749,12 +2081,6 @@
                             <li>Dercos Aminexil</li>
                             <li>Dercos Anti-Pelliculaire</li>
                         </ul>
-                        <a href="#" class="product-link">
-                            En savoir plus
-                            <svg viewBox="0 0 20 20" fill="currentColor">
-                                <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"/>
-                            </svg>
-                        </a>
                     </div>
                 </article>
             </div>
@@ -1766,78 +2092,28 @@
         <div class="container">
             <div class="advice-content">
                 <div class="advice-text">
-                    <h2 class="reveal">Notre conseil</h2>
+                    <h2 class="reveal">Le bon conseil</h2>
                     <p class="reveal reveal-delay-1">
                         Vichy offre une solution pour chaque préoccupation cutanée, du simple besoin
                         d'hydratation aux problématiques plus spécifiques comme l'acné ou les signes de l'âge.
                     </p>
-
-                    <div class="advice-highlight reveal reveal-delay-2">
-                        <div class="advice-highlight-icon">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
-                            </svg>
-                        </div>
-                        <div class="advice-highlight-text">
-                            <strong>Le brumisateur d'eau thermale</strong> est un incontournable
-                            pour apaiser la peau après l'exposition au soleil ou au vent marin breton.
-                        </div>
-                    </div>
-
-                    <div class="advice-cta reveal reveal-delay-3">
-                        <a href="#" class="btn btn-white">
-                            Prendre rendez-vous
-                            <svg viewBox="0 0 20 20" fill="currentColor">
-                                <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"/>
-                            </svg>
-                        </a>
-                        <a href="tel:+33297050000" class="btn btn-outline-white">
-                            <svg viewBox="0 0 20 20" fill="currentColor" style="width: 18px; height: 18px;">
-                                <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"/>
-                            </svg>
-                            Nous appeler
-                        </a>
-                    </div>
                 </div>
 
-                <div class="advice-card reveal reveal-delay-2">
-                    <h4>Pharmacie Charnal</h4>
-                    <div class="pharmacy-info">
-                        <div class="pharmacy-info-item">
-                            <div class="pharmacy-info-icon">
-                                <svg viewBox="0 0 20 20" fill="currentColor">
-                                    <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"/>
-                                </svg>
-                            </div>
-                            <div class="pharmacy-info-text">
-                                <div class="pharmacy-info-label">Adresse</div>
-                                <div class="pharmacy-info-value">32 Place de Toulouse<br>56530 Quéven</div>
-                            </div>
-                        </div>
-                        <div class="pharmacy-info-item">
-                            <div class="pharmacy-info-icon">
-                                <svg viewBox="0 0 20 20" fill="currentColor">
-                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd"/>
-                                </svg>
-                            </div>
-                            <div class="pharmacy-info-text">
-                                <div class="pharmacy-info-label">Horaires</div>
-                                <div class="pharmacy-info-value">Lun-Sam : 9h-19h30</div>
-                            </div>
-                        </div>
-                        <div class="pharmacy-info-item">
-                            <div class="pharmacy-info-icon">
-                                <svg viewBox="0 0 20 20" fill="currentColor">
-                                    <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"/>
-                                </svg>
-                            </div>
-                            <div class="pharmacy-info-text">
-                                <div class="pharmacy-info-label">Téléphone</div>
-                                <div class="pharmacy-info-value">02 97 05 00 00</div>
-                            </div>
-                        </div>
+                <div class="advice-highlight reveal reveal-delay-2">
+                    <h3 style="color: var(--white); font-size: 1.5rem; margin-bottom: var(--space-16);">Notre produit coup de coeur</h3>
+                    <div class="advice-highlight-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+                        </svg>
                     </div>
+                    <div class="advice-highlight-text">
+                        <strong>Le brumisateur d'eau thermale</strong> est un incontournable
+                        pour apaiser la peau après l'exposition au soleil ou au vent marin breton.
+                    </div>
+                                <div class="advice-cta reveal reveal-delay-3" style="text-align: center; margin-top: var(--space-48);">
+                    <a href="nosmarques.html" class="btn btn-secondary">Découvrez une autre marque!</a>
                 </div>
+            </div>
             </div>
         </div>
     </section>
@@ -1848,55 +2124,57 @@
             <div class="footer-grid">
                 <div class="footer-brand">
                     <div class="footer-logo">
-                        <svg class="footer-logo-icon" viewBox="0 0 40 40" fill="none">
-                            <circle cx="12" cy="12" r="6" fill="#7C9885"/>
-                            <circle cx="28" cy="12" r="6" fill="#9DB3A4"/>
-                            <circle cx="12" cy="28" r="6" fill="#5D9B98"/>
-                            <circle cx="28" cy="28" r="6" fill="#B8E6D5"/>
-                            <circle cx="20" cy="20" r="5" fill="#FFFFFF"/>
-                        </svg>
+                        <img src="../images/pharmacie-charnal-logo.png" alt="Logo Pharmacie Charnal" class="footer-logo-img">
                         <span class="footer-logo-text">Pharmacie Charnal</span>
                     </div>
-                    <p>
-                        Votre pharmacie de proximité à Quéven,
-                        à votre écoute pour vos besoins de santé et de bien-être.
-                    </p>
+                    <p>Votre pharmacie familiale depuis plus de 40 ans. Une tradition de soins personnalisés et attentifs à Quéven.</p>
+                    <div class="footer-social">
+                        <a href="https://www.instagram.com/pharmaciecharnalqueven/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="2" y="2" width="20" height="20" rx="5"/>
+                                <circle cx="12" cy="12" r="4"/>
+                                <circle cx="17.5" cy="6.5" r="1.5" fill="currentColor"/>
+                            </svg>
+                        </a>
+                        <a href="https://www.facebook.com/pharmaciecharnal/" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/>
+                            </svg>
+                        </a>
+                    </div>
                 </div>
-                <div>
-                    <h5 class="footer-title">Conseils</h5>
-                    <ul class="footer-links">
-                        <li><a href="#">Soins du visage</a></li>
-                        <li><a href="#">Soins du corps</a></li>
-                        <li><a href="#">Solaires</a></li>
-                        <li><a href="#">Capillaire</a></li>
+                <div class="footer-col footer-nav">
+                    <h4>Navigation</h4>
+                    <ul>
+                        <li><a href="../index.html">Accueil</a></li>
+                        <li><a href="../services.html">Services</a></li>
+                        <li><a href="../histoire.html">Notre Histoire</a></li>
+                        <li><a href="../blog.html">Au Comptoir</a></li>
+                        <li><a href="../contact.html">Contact</a></li>
                     </ul>
                 </div>
-                <div>
-                    <h5 class="footer-title">Nos marques</h5>
-                    <ul class="footer-links">
-                        <li><a href="#">Vichy</a></li>
-                        <li><a href="#">La Roche-Posay</a></li>
-                        <li><a href="#">Bioderma</a></li>
-                        <li><a href="#">Avène</a></li>
+                <div class="footer-col footer-contact">
+                    <h4>Contact</h4>
+                    <ul>
+                        <li>32 Place de Toulouse</li>
+                        <li>56530 Quéven</li>
+                        <li><a href="tel:0297050931">02 97 05 09 31</a></li>
                     </ul>
                 </div>
-                <div>
-                    <h5 class="footer-title">Services</h5>
-                    <ul class="footer-links">
-                        <li><a href="#">Vaccination</a></li>
-                        <li><a href="#">Tests Covid</a></li>
-                        <li><a href="#">Conseil en nutrition</a></li>
-                        <li><a href="#">Matériel médical</a></li>
+                <div class="footer-col footer-horaires">
+                    <h4>Horaires</h4>
+                    <ul>
+                        <li>Lun-Ven: 9h-12h30 / 14h-19h15</li>
+                        <li>Samedi: 9h-12h30</li>
+                        <li>Dimanche: Fermé</li>
                     </ul>
                 </div>
             </div>
             <div class="footer-bottom">
-                <p class="footer-copyright">
-                    &copy; 2026 Pharmacie Charnal. Tous droits réservés.
-                </p>
+                <p class="footer-copyright">© 2026 Pharmacie Charnal. Tous droits réservés.</p>
                 <div class="footer-legal">
-                    <a href="#">Mentions légales</a>
-                    <a href="#">Politique de confidentialité</a>
+                    <a href="../mentions-legales.html">Mentions légales</a>
+                    <a href="../donnees-personnelles.html">Confidentialité</a>
                 </div>
             </div>
         </div>
@@ -1962,13 +2240,60 @@
 
         // Tab functionality for products
         const tabBtns = document.querySelectorAll('.tab-btn');
+        const productCards = document.querySelectorAll('.product-card');
+
         tabBtns.forEach(btn => {
             btn.addEventListener('click', () => {
+                // Update active state
                 tabBtns.forEach(b => b.classList.remove('active'));
                 btn.classList.add('active');
-                // In a real implementation, filter products here
+
+                const category = btn.dataset.category;
+
+                // Filter cards
+                productCards.forEach(card => {
+                    if (category === 'all' || card.dataset.category === category) {
+                        card.style.display = 'block';
+                        setTimeout(() => {
+                            card.style.opacity = '1';
+                            card.style.transform = 'translateY(0)';
+                        }, 50);
+                    } else {
+                        card.style.opacity = '0';
+                        card.style.transform = 'translateY(20px)';
+                        setTimeout(() => {
+                            card.style.display = 'none';
+                        }, 300);
+                    }
+                });
             });
         });
+        // Mobile menu toggle
+        const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
+        const navLinks = document.querySelector('.nav-links');
+
+        if (mobileMenuToggle) {
+            mobileMenuToggle.addEventListener('click', () => {
+                const isExpanded = mobileMenuToggle.getAttribute('aria-expanded') === 'true';
+                mobileMenuToggle.setAttribute('aria-expanded', !isExpanded);
+                navLinks.classList.toggle('active');
+            });
+
+            const links = navLinks.querySelectorAll('.nav-link');
+            links.forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileMenuToggle.setAttribute('aria-expanded', 'false');
+                    navLinks.classList.remove('active');
+                });
+            });
+
+            document.addEventListener('click', (e) => {
+                if (!navLinks.contains(e.target) && !mobileMenuToggle.contains(e.target)) {
+                    mobileMenuToggle.setAttribute('aria-expanded', 'false');
+                    navLinks.classList.remove('active');
+                }
+            });
+        }
     </script>
 </body>
 </html>

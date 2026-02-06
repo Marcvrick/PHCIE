@@ -15,7 +15,14 @@
     <meta name="description" content="Emploi préparateur en pharmacie à Quéven, près de Lorient (Morbihan). La Pharmacie Charnal recrute en CDI. Équipe soudée, e-learning, parking gratuit.">
     <title>Recrutement Préparatrice/teur en pharmacie | Quéven (Lorient) | Pharmacie Charnal</title>
     <meta name="robots" content="index, follow">
-    <link rel="stylesheet" href="style.css">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap" rel="stylesheet">
+
+    <!-- Shared Design System -->
+    <link rel="stylesheet" href="style-v2.css">
 
     <!-- Schema.org JobPosting -->
     <script type="application/ld+json">
@@ -55,9 +62,11 @@
     </script>
 
     <style>
+        /* === RECRUTEMENT PAGE - HIMS-STYLE OVERRIDES === */
+
         /* Style lien recrutement dans nav */
         .nav-link-recruit {
-            color: var(--teal) !important;
+            color: var(--teal-pro) !important;
             font-weight: 600;
         }
 
@@ -67,8 +76,8 @@
 
         /* Styles spécifiques à la page recrutement */
         .job-hero {
-            padding: var(--space-3xl) 0;
-            background: linear-gradient(135deg, var(--cream) 0%, var(--white) 100%);
+            padding: var(--space-80) 0;
+            background: linear-gradient(180deg, var(--pastel-sage) 0%, var(--pastel-mint) 50%, var(--cream) 100%);
             position: relative;
             overflow: hidden;
         }
@@ -80,7 +89,7 @@
             right: -100px;
             width: 400px;
             height: 400px;
-            background: var(--sage);
+            background: var(--sage-natural);
             border-radius: 50%;
             opacity: 0.08;
             filter: blur(60px);
@@ -95,60 +104,60 @@
         .job-badge {
             display: inline-flex;
             align-items: center;
-            gap: var(--space-xs);
-            padding: var(--space-xs) var(--space-md);
-            background: var(--gradient);
+            gap: var(--space-8);
+            padding: var(--space-8) var(--space-16);
+            background: linear-gradient(135deg, var(--teal-pro) 0%, var(--sage-natural) 100%);
             color: var(--white);
             border-radius: var(--radius-full);
             font-size: var(--text-sm);
             font-weight: 600;
-            margin-bottom: var(--space-lg);
+            margin-bottom: var(--space-24);
         }
 
         .job-title {
             font-size: var(--text-4xl);
             font-weight: 700;
-            margin-bottom: var(--space-md);
+            margin-bottom: var(--space-16);
             line-height: 1.2;
         }
 
         .job-subtitle {
             font-size: var(--text-xl);
-            color: var(--gray);
+            color: var(--gray-600);
             max-width: 600px;
-            margin: 0 auto var(--space-lg);
+            margin: 0 auto var(--space-24);
         }
 
         .job-meta {
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
-            gap: var(--space-lg);
-            margin-top: var(--space-xl);
+            gap: var(--space-24);
+            margin-top: var(--space-32);
         }
 
         .job-meta-item {
             display: flex;
             align-items: center;
-            gap: var(--space-xs);
-            color: var(--gray);
+            gap: var(--space-8);
+            color: var(--gray-600);
             font-size: var(--text-base);
         }
 
         .job-meta-item svg {
             width: 20px;
             height: 20px;
-            color: var(--sage);
+            color: var(--sage-natural);
         }
 
         /* Sections de contenu */
         .job-content {
-            padding: var(--space-3xl) 0;
+            padding: var(--space-80) 0;
         }
 
         .job-section {
             max-width: 800px;
-            margin: 0 auto var(--space-3xl);
+            margin: 0 auto var(--space-80);
         }
 
         .job-section:last-child {
@@ -157,22 +166,22 @@
 
         .job-section-title {
             font-size: var(--text-2xl);
-            margin-bottom: var(--space-lg);
+            margin-bottom: var(--space-24);
             color: var(--charcoal);
             display: flex;
             align-items: center;
-            gap: var(--space-sm);
+            gap: var(--space-12);
         }
 
         .job-section-title svg {
             width: 28px;
             height: 28px;
-            color: var(--sage);
+            color: var(--sage-natural);
         }
 
         .job-section-content {
             background: var(--white);
-            padding: var(--space-xl);
+            padding: var(--space-32);
             border-radius: var(--radius-xl);
             border: 1px solid var(--beige);
         }
@@ -185,10 +194,10 @@
 
         .job-list li {
             position: relative;
-            padding-left: var(--space-lg);
-            margin-bottom: var(--space-md);
+            padding-left: var(--space-24);
+            margin-bottom: var(--space-16);
             line-height: 1.7;
-            color: var(--gray);
+            color: var(--gray-600);
         }
 
         .job-list li:last-child {
@@ -202,7 +211,7 @@
             top: 10px;
             width: 8px;
             height: 8px;
-            background: var(--sage);
+            background: var(--sage-natural);
             border-radius: 50%;
         }
 
@@ -210,14 +219,14 @@
         .benefits-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: var(--space-lg);
+            gap: var(--space-24);
         }
 
         .benefit-item {
             display: flex;
             align-items: flex-start;
-            gap: var(--space-md);
-            padding: var(--space-md);
+            gap: var(--space-16);
+            padding: var(--space-16);
             background: var(--cream);
             border-radius: var(--radius-lg);
         }
@@ -225,8 +234,8 @@
         .benefit-icon {
             width: 48px;
             height: 48px;
-            background: var(--gradient);
-            border-radius: var(--radius-md);
+            background: linear-gradient(135deg, var(--teal-pro) 0%, var(--sage-natural) 100%);
+            border-radius: var(--radius-base);
             padding: 12px;
             flex-shrink: 0;
         }
@@ -241,20 +250,20 @@
             font-size: var(--text-base);
             font-weight: 600;
             color: var(--charcoal);
-            margin-bottom: var(--space-xs);
+            margin-bottom: var(--space-8);
         }
 
         .benefit-text p {
             font-size: var(--text-sm);
-            color: var(--gray);
+            color: var(--gray-600);
             margin: 0;
             line-height: 1.5;
         }
 
         /* Section CTA */
         .job-cta {
-            background: linear-gradient(135deg, var(--teal) 0%, var(--sage-dark) 100%);
-            padding: var(--space-3xl) 0;
+            background: linear-gradient(135deg, var(--teal-pro) 0%, var(--sage-dark) 100%);
+            padding: var(--space-80) 0;
             text-align: center;
             color: var(--white);
         }
@@ -267,26 +276,26 @@
         .job-cta h2 {
             color: var(--white);
             font-size: var(--text-3xl);
-            margin-bottom: var(--space-md);
+            margin-bottom: var(--space-16);
         }
 
         .job-cta p {
             color: rgba(255, 255, 255, 0.9);
             font-size: var(--text-lg);
-            margin-bottom: var(--space-xl);
+            margin-bottom: var(--space-32);
         }
 
         .job-cta-methods {
             display: flex;
             flex-direction: row;
-            gap: var(--space-lg);
+            gap: var(--space-24);
             justify-content: center;
             flex-wrap: wrap;
         }
 
         .cta-method {
             background: rgba(255, 255, 255, 0.15);
-            padding: var(--space-lg) var(--space-xl);
+            padding: var(--space-24) var(--space-32);
             border-radius: var(--radius-xl);
             flex: 1;
             min-width: 280px;
@@ -301,11 +310,11 @@
         .cta-method h3 {
             color: var(--white);
             font-size: var(--text-lg);
-            margin-bottom: var(--space-sm);
+            margin-bottom: var(--space-12);
         }
 
         .cta-method p {
-            margin-bottom: var(--space-sm);
+            margin-bottom: var(--space-12);
             font-size: var(--text-base);
         }
 
@@ -323,7 +332,7 @@
         .pharmacy-intro {
             display: grid;
             grid-template-columns: 1fr;
-            gap: var(--space-xl);
+            gap: var(--space-32);
             align-items: center;
         }
 
@@ -345,7 +354,7 @@
         }
 
         .pharmacy-intro-text p {
-            color: var(--gray);
+            color: var(--gray-600);
             line-height: 1.8;
         }
 
@@ -357,26 +366,26 @@
         .testimonial-card {
             background: var(--cream);
             border-radius: var(--radius-xl);
-            padding: var(--space-xl);
+            padding: var(--space-32);
             position: relative;
         }
 
         .testimonial-quote {
             font-size: var(--text-lg);
             line-height: 1.8;
-            color: var(--gray);
+            color: var(--gray-600);
             font-style: italic;
-            margin-bottom: var(--space-lg);
+            margin-bottom: var(--space-24);
         }
 
         .testimonial-quote::before {
             content: '"';
             font-size: 4rem;
-            color: var(--sage);
+            color: var(--sage-natural);
             opacity: 0.3;
             position: absolute;
-            top: var(--space-md);
-            left: var(--space-lg);
+            top: var(--space-16);
+            left: var(--space-24);
             line-height: 1;
             font-family: Georgia, serif;
         }
@@ -384,13 +393,13 @@
         .testimonial-author {
             display: flex;
             align-items: center;
-            gap: var(--space-md);
+            gap: var(--space-16);
         }
 
         .testimonial-avatar {
             width: 56px;
             height: 56px;
-            background: var(--gradient);
+            background: linear-gradient(135deg, var(--teal-pro) 0%, var(--sage-natural) 100%);
             border-radius: 50%;
             display: flex;
             align-items: center;
@@ -409,30 +418,42 @@
 
         .testimonial-info p {
             font-size: var(--text-sm);
-            color: var(--gray);
+            color: var(--gray-600);
             margin: 0;
         }
 
         /* Responsive */
         @media (max-width: 767px) {
+            .job-hero {
+                padding: var(--space-64) 0;
+            }
+
             .job-title {
                 font-size: calc(var(--text-3xl) * 0.75);
             }
 
             .job-subtitle {
                 font-size: calc(var(--text-xl) * 0.85);
-                margin-bottom: var(--space-md);
+                margin-bottom: var(--space-16);
             }
 
             .job-meta {
                 flex-direction: column;
                 align-items: center;
-                gap: var(--space-sm);
-                margin-top: var(--space-md);
+                gap: var(--space-12);
+                margin-top: var(--space-16);
             }
 
             .job-meta-item {
                 font-size: calc(var(--text-base) * 0.9);
+            }
+
+            .job-content {
+                padding: var(--space-48) 0;
+            }
+
+            .job-section {
+                margin-bottom: var(--space-48);
             }
 
             .job-section-title {
@@ -440,17 +461,17 @@
             }
 
             .job-section-content {
-                padding: var(--space-md);
+                padding: var(--space-16);
             }
 
             .benefits-grid {
                 grid-template-columns: 1fr;
-                gap: var(--space-md);
+                gap: var(--space-16);
             }
 
             .benefit-item {
-                padding: calc(var(--space-md) * 0.7);
-                gap: var(--space-sm);
+                padding: calc(var(--space-16) * 0.7);
+                gap: var(--space-12);
             }
 
             .benefit-icon {
@@ -460,8 +481,12 @@
             }
 
             .cta-method {
-                padding: var(--space-md);
+                padding: var(--space-16);
                 max-width: 100%;
+            }
+
+            .job-cta {
+                padding: var(--space-48) 0;
             }
 
             .job-cta-methods {
@@ -506,6 +531,7 @@
                     <a href="services.html" class="nav-link nav-dropdown-toggle">Services</a>
                     <ul class="nav-dropdown-menu">
                         <li><a href="histoire.html" class="nav-link">Notre Histoire</a></li>
+                        <li><a href="Nos-marques/nosmarques.html" class="nav-link">Nos Marques</a></li>
                         <li><a href="pharmacie-de-garde-queven-hennebont-lorient.html" class="nav-link">Pharmacie de garde</a></li>
                         <li><a href="annuaire-sante.html" class="nav-link">Annuaire Santé</a></li>
                     </ul>
@@ -610,8 +636,8 @@
                             <p>
                                 Notre équipe à taille humaine privilégie la qualité du conseil et la relation de confiance avec chaque patient. Nous proposons une large gamme de services : délivrance d'ordonnances, vaccinations, conseil en parapharmacie et produits naturels.
                             </p>
-                            <p style="margin-top: var(--space-md);">
-                                <a href="histoire.html#laure-charnal" style="color: var(--teal); font-weight: 500;">Découvrez notre histoire et rencontrez Laure &rarr;</a>
+                            <p style="margin-top: var(--space-16);">
+                                <a href="histoire.html#laure-charnal" style="color: var(--teal-pro); font-weight: 500;">Découvrez notre histoire et rencontrez Laure &rarr;</a>
                             </p>
                         </div>
                     </div>
@@ -628,7 +654,7 @@
                     Le poste
                 </h2>
                 <div class="job-section-content">
-                    <p style="margin-bottom: var(--space-lg); color: var(--gray);">
+                    <p style="margin-bottom: var(--space-24); color: var(--gray-600);">
                         En tant que préparatrice en pharmacie, vous serez un maillon essentiel de notre équipe. Vos missions principales :
                     </p>
                     <ul class="job-list">
@@ -809,7 +835,7 @@
                         <p><a href="mailto:pharmacie.charnal@gmail.com" style="color: white; text-decoration: underline;">par email</a></p>
                     </div>
                 </div>
-                <p style="margin-top: var(--space-xl); font-size: var(--text-base); opacity: 0.9;">
+                <p style="margin-top: var(--space-32); font-size: var(--text-base); opacity: 0.9;">
                     Notre processus : Réponse sous 48h &rarr; Entretien téléphonique &rarr; Rencontre à la pharmacie &rarr; Décision rapide
                 </p>
             </div>
