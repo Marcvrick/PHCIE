@@ -23,7 +23,13 @@
     <meta property="og:description" content="Au comptoir de la Pharmacie Charnal : conseils santé de la Pharmacie Charnal à Quéven : prévention hiver, vaccinations, phytothérapie, dermatologie. Articles rédigés par nos pharmaciens.">
     <meta property="og:image" content="https://www.pharmaciecharnal.fr/images/pharmacie-charnal-logo.png">
 
-    <link rel="stylesheet" href="style.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap" rel="stylesheet">
+
+    <!-- Shared Design System -->
+    <link rel="stylesheet" href="style-v2.css">
 
     <!-- Schema.org Markup -->
     <script type="application/ld+json">
@@ -48,21 +54,50 @@
     }
     </script>
     <style>
+        /* === BLOG PAGE - HIMS-STYLE OVERRIDES === */
+
+        /* Hero overrides only */
+        .hero {
+            background: linear-gradient(180deg, var(--pastel-sage) 0%, var(--pastel-mint) 50%, var(--cream) 100%);
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, var(--teal-pro) 0%, var(--sage-natural) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Blog articles grid - from original style.css */
+        .blog-articles-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 48px;
+        }
+
+        @media (max-width: 767px) {
+            .blog-articles-grid {
+                grid-template-columns: 1fr;
+                gap: 32px;
+            }
+        }
+
+        /* Blog cards - original styles preserved */
         .blog-card {
             background-color: var(--white);
             border: 1px solid var(--beige);
             border-radius: var(--radius-xl);
             overflow: hidden;
-            transition: var(--transition);
+            transition: all 0.3s ease;
         }
         .blog-card:hover {
             transform: translateY(-8px);
             box-shadow: var(--shadow-lg);
-            border-color: var(--sage);
+            border-color: var(--sage-natural);
         }
         .blog-image-placeholder {
             height: 280px;
-            background: linear-gradient(135deg, var(--cream-dark) 0%, var(--beige) 100%);
+            background: linear-gradient(135deg, var(--cream-warm) 0%, var(--beige) 100%);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -81,39 +116,39 @@
             transition: transform 0.4s ease;
         }
         .blog-content {
-            padding: var(--space-xl);
+            padding: 24px;
         }
         .blog-date {
             display: inline-block;
-            padding: var(--space-xs) var(--space-md);
+            padding: 6px 12px;
             background-color: var(--cream);
             color: var(--sage-dark);
             border-radius: var(--radius-full);
             font-size: var(--text-sm);
             font-weight: 600;
-            margin-bottom: var(--space-md);
+            margin-bottom: 12px;
         }
         .blog-title {
             font-size: var(--text-2xl);
             color: var(--charcoal);
-            margin-bottom: var(--space-sm);
+            margin-bottom: 8px;
         }
         .blog-excerpt {
             font-size: var(--text-lg);
-            color: var(--gray);
+            color: var(--gray-600);
             line-height: 1.7;
-            margin-bottom: var(--space-md);
+            margin-bottom: 12px;
         }
         .blog-link {
             display: inline-flex;
             flex-direction: row;
             align-items: center;
             flex-wrap: nowrap;
-            gap: var(--space-xs);
-            color: var(--teal);
+            gap: 6px;
+            color: var(--teal-pro);
             font-weight: 600;
             font-size: var(--text-base);
-            transition: var(--transition);
+            transition: all 0.3s ease;
         }
         .blog-link span {
             white-space: nowrap;
@@ -123,7 +158,7 @@
             display: block;
         }
         .blog-link:hover {
-            gap: var(--space-sm);
+            gap: 10px;
         }
     </style>
 </head>
@@ -155,6 +190,7 @@
                     <a href="services.html" class="nav-link nav-dropdown-toggle">Services</a>
                     <ul class="nav-dropdown-menu">
                         <li><a href="histoire.html" class="nav-link">Notre Histoire</a></li>
+                        <li><a href="Nos-marques/nosmarques.html" class="nav-link">Nos Marques</a></li>
                         <li><a href="pharmacie-de-garde-queven-hennebont-lorient.html" class="nav-link">Pharmacie de garde</a></li>
                         <li><a href="annuaire-sante.html" class="nav-link">Annuaire Santé</a></li>
                     </ul>
@@ -195,10 +231,10 @@
         <div class="container">
             <div class="section-header" style="text-align: center;">
                 <span class="section-badge fade-in" style="background: #b4a6d7;">Au comptoir</span>
-                <h1 class="section-title fade-in" style="font-size: var(--text-5xl); margin-top: var(--space-md);">
+                <h1 class="section-title fade-in" style="font-size: var(--text-5xl); margin-top: var(--space-16);">
                     Conseils santé <span class="gradient-text">au comptoir</span>
                 </h1>
-                <p class="fade-in" style="font-size: var(--text-lg); color: var(--gray); max-width: 680px; margin: var(--space-lg) auto 0;">
+                <p class="fade-in" style="font-size: var(--text-lg); color: var(--gray-600); max-width: 680px; margin: var(--space-24) auto 0;">
                     Retrouvez nos conseils et informations pour prendre soin de votre santé au quotidien.
                 </p>
             </div>
@@ -206,7 +242,7 @@
     </section>
 
     <!-- Articles -->
-    <section style="padding: var(--space-3xl) 0; background-color: var(--white);">
+    <section style="padding: var(--space-80) 0; background-color: var(--white);">
         <div class="container">
             <div class="blog-articles-grid">
 

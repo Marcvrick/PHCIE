@@ -15,7 +15,6 @@
     <meta name="description" content="Découvrez nos marques de confiance : cosmétiques, compléments alimentaires et produits de parapharmacie à la Pharmacie Charnal de Quéven.">
     <title>Nos Marques | Pharmacie Charnal - Quéven</title>
     <link rel="canonical" href="https://www.pharmaciecharnal.com/Nos-marques/nosmarques.html">
-    <link rel="stylesheet" href="../style.css">
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
@@ -40,19 +39,13 @@
             "@type": "ListItem",
             "position": 1,
             "name": "Cosmétiques & Hygiène",
-            "description": "Bioderma, La Roche-Posay, Avène, Nuxe, Vichy, Ducray, Mustela, Klorane"
+            "description": "Bioderma, La Roche-Posay, Avène, Nuxe, Vichy, Caudalie, Klorane"
           },
           {
             "@type": "ListItem",
             "position": 2,
-            "name": "Compléments Alimentaires",
-            "description": "PiLeJe, Arkopharma, Boiron, Aragan, Nat&Form, Bion 3, Biogaran"
-          },
-          {
-            "@type": "ListItem",
-            "position": 3,
-            "name": "Premiers Soins & Matériel Médical",
-            "description": "Pansements, antiseptiques, matériel médical, orthopédie, location"
+            "name": "Santé Animale",
+            "description": "Biocanina"
           }
         ]
       },
@@ -70,6 +63,352 @@
       }
     }
     </script>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap" rel="stylesheet">
+
+    <!-- Shared Design System -->
+    <link rel="stylesheet" href="../style-v2.css">
+
+    <style>
+        /* ========================================
+           NOS MARQUES - PAGE-SPECIFIC STYLES
+           Extends style-v2.css
+           ======================================== */
+
+        /* Override navbar to be sticky instead of fixed for this page */
+        .navbar {
+            position: sticky;
+            top: 0;
+        }
+
+        /* === 80% SCALE - Reduce all content except navbar by 20% === */
+
+        /* Hero adjustments for brands page (centered, no image) - SCALED 80% */
+        .hero {
+            padding: calc(var(--space-80) * 0.8) 0 calc(var(--space-64) * 0.8);
+        }
+
+        .hero-title {
+            font-size: clamp(2rem, 4.8vw, 2.4rem); /* 80% of original */
+        }
+
+        .hero-description {
+            font-size: calc(var(--text-lg) * 0.85);
+        }
+
+        .hero-badge {
+            font-size: calc(var(--text-sm) * 0.85);
+            padding: calc(var(--space-8) * 0.8) calc(var(--space-16) * 0.8);
+        }
+
+        .hero-content {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero-badge {
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .hero-description {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* === CATEGORY FILTER - SCALED 80% === */
+        .category-nav {
+            padding: calc(var(--space-32) * 0.8) 0;
+            background: var(--white);
+            border-bottom: 1px solid var(--beige-dark);
+            position: sticky;
+            top: 72px;
+            z-index: 100;
+        }
+
+        .category-pills {
+            display: flex;
+            gap: calc(var(--space-12) * 0.8);
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .category-pill {
+            padding: calc(var(--space-12) * 0.8) calc(var(--space-24) * 0.8);
+            background: var(--cream);
+            border: 1px solid var(--beige-dark);
+            border-radius: var(--radius-full);
+            font-size: calc(var(--text-base) * 0.85);
+            font-weight: 500;
+            color: var(--gray-600);
+            cursor: pointer;
+            transition: all var(--duration-normal) var(--ease-standard);
+        }
+
+        .category-pill:hover {
+            background: var(--pastel-mint);
+            border-color: var(--sage-light);
+            color: var(--teal-pro);
+        }
+
+        .category-pill.active {
+            background: var(--teal-pro);
+            border-color: var(--teal-pro);
+            color: var(--white);
+        }
+
+        /* === BRANDS SECTION - SCALED 80% === */
+        .brands-section {
+            padding: calc(var(--space-80) * 0.8) 0;
+        }
+
+        .brands-section:nth-child(even) {
+            background: var(--white);
+        }
+
+        /* Section label override for mint background */
+        .section-label {
+            background: var(--pastel-mint);
+            color: var(--teal-pro);
+            font-size: calc(var(--text-xs) * 0.85);
+            padding: calc(var(--space-8) * 0.8) calc(var(--space-16) * 0.8);
+        }
+
+        .section-title {
+            font-size: clamp(1.5rem, 3.2vw, 1.8rem); /* 80% of original */
+        }
+
+        .section-description {
+            font-size: calc(var(--text-lg) * 0.85);
+        }
+
+        .section-header {
+            margin-bottom: calc(var(--space-64) * 0.8);
+        }
+
+        /* === BRANDS GRID - SCALED 80% === */
+        .brands-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(224px, 1fr)); /* 280 * 0.8 */
+            gap: calc(var(--space-32) * 0.8);
+        }
+
+        @media (min-width: 1024px) {
+            .brands-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        /* === BRAND CARD - SCALED 80% === */
+        .brand-card {
+            position: relative;
+            background: var(--white);
+            border-radius: calc(var(--radius-xl) * 0.8);
+            overflow: hidden;
+            transition: all var(--duration-slow) var(--ease-standard);
+            border: 1px solid var(--beige-dark);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .brand-card:hover {
+            transform: translateY(-6px); /* 8 * 0.8 */
+            box-shadow: var(--shadow-xl);
+            border-color: var(--sage-light);
+        }
+
+        .brand-card-image {
+            position: relative;
+            height: 160px; /* 200 * 0.8 */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: calc(var(--space-32) * 0.8);
+            overflow: hidden;
+        }
+
+        /* Pastel backgrounds alternating */
+        .brand-card:nth-child(6n+1) .brand-card-image { background: var(--pastel-mint); }
+        .brand-card:nth-child(6n+2) .brand-card-image { background: var(--pastel-peach); }
+        .brand-card:nth-child(6n+3) .brand-card-image { background: var(--pastel-lavender); }
+        .brand-card:nth-child(6n+4) .brand-card-image { background: var(--pastel-sage); }
+        .brand-card:nth-child(6n+5) .brand-card-image { background: var(--beige); }
+        .brand-card:nth-child(6n+6) .brand-card-image { background: var(--pastel-teal); }
+
+        .brand-card-image::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.4) 0%, transparent 60%);
+            pointer-events: none;
+        }
+
+        .brand-logo {
+            max-width: 128px; /* 160 * 0.8 */
+            max-height: 80px; /* 100 * 0.8 */
+            object-fit: contain;
+            transition: transform var(--duration-slow) var(--ease-standard);
+            filter: drop-shadow(0 3px 10px rgba(0,0,0,0.08));
+        }
+
+        .brand-card:hover .brand-logo {
+            transform: scale(1.08);
+        }
+
+        .brand-card-content {
+            padding: calc(var(--space-24) * 0.8);
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .brand-name {
+            font-family: var(--font-display);
+            font-size: calc(var(--text-xl) * 0.85);
+            font-weight: 500;
+            margin-bottom: calc(var(--space-8) * 0.8);
+            color: var(--charcoal);
+        }
+
+        .brand-category {
+            font-size: calc(var(--text-xs) * 0.85);
+            font-weight: 600;
+            color: var(--sage-natural);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: calc(var(--space-12) * 0.8);
+        }
+
+        .brand-description {
+            font-size: calc(var(--text-base) * 0.85);
+            color: var(--gray-600);
+            line-height: 1.6;
+            margin-bottom: calc(var(--space-16) * 0.8);
+            flex-grow: 1;
+        }
+
+        .brand-link {
+            display: inline-flex;
+            align-items: center;
+            gap: calc(var(--space-8) * 0.8);
+            font-size: calc(var(--text-base) * 0.85);
+            font-weight: 600;
+            color: var(--teal-pro);
+            padding: calc(var(--space-12) * 0.8) 0;
+            transition: all var(--duration-normal) var(--ease-standard);
+        }
+
+        .brand-link svg {
+            width: 14px; /* 18 * 0.8 */
+            height: 14px;
+            transition: transform var(--duration-normal) var(--ease-standard);
+        }
+
+        .brand-link:hover {
+            color: var(--teal-light);
+        }
+
+        .brand-link:hover svg {
+            transform: translateX(3px);
+        }
+
+        /* === FEATURED BRAND (Large Card) - SCALED 80% === */
+        .brand-card.featured {
+            grid-column: span 2;
+        }
+
+        @media (max-width: 767px) {
+            .brand-card.featured {
+                grid-column: span 1;
+            }
+        }
+
+        .brand-card.featured .brand-card-image {
+            height: 208px; /* 260 * 0.8 */
+        }
+
+        .brand-card.featured .brand-logo {
+            max-width: 176px; /* 220 * 0.8 */
+            max-height: 112px; /* 140 * 0.8 */
+        }
+
+        /* Staggered animations for grid items */
+        .brands-grid .brand-card {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.6s var(--ease-standard);
+        }
+
+        .brands-grid .brand-card.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .brands-grid .brand-card:nth-child(1) { transition-delay: 0.05s; }
+        .brands-grid .brand-card:nth-child(2) { transition-delay: 0.1s; }
+        .brands-grid .brand-card:nth-child(3) { transition-delay: 0.15s; }
+        .brands-grid .brand-card:nth-child(4) { transition-delay: 0.2s; }
+        .brands-grid .brand-card:nth-child(5) { transition-delay: 0.25s; }
+        .brands-grid .brand-card:nth-child(6) { transition-delay: 0.3s; }
+        .brands-grid .brand-card:nth-child(7) { transition-delay: 0.35s; }
+        .brands-grid .brand-card:nth-child(8) { transition-delay: 0.4s; }
+        .brands-grid .brand-card:nth-child(9) { transition-delay: 0.45s; }
+
+        /* === MOBILE STYLES - SCALED 80% === */
+        @media (max-width: 767px) {
+            .hero {
+                padding: calc(var(--space-48) * 0.8) 0 calc(var(--space-32) * 0.8);
+            }
+
+            .brands-section {
+                padding: calc(var(--space-48) * 0.8) 0;
+            }
+
+            .section-header {
+                margin-bottom: calc(var(--space-32) * 0.8);
+            }
+
+            .brands-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: calc(var(--space-16) * 0.8);
+            }
+
+            .brand-card-image {
+                height: 128px; /* 160 * 0.8 */
+                padding: calc(var(--space-24) * 0.8);
+            }
+
+            .brand-logo {
+                max-width: 96px; /* 120 * 0.8 */
+                max-height: 64px; /* 80 * 0.8 */
+            }
+
+            .brand-card-content {
+                padding: calc(var(--space-16) * 0.8);
+            }
+
+            .category-nav {
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+                top: 72px;
+            }
+
+            .category-pills {
+                flex-wrap: nowrap;
+                justify-content: flex-start;
+                padding: 0 calc(var(--space-24) * 0.8);
+            }
+
+            .category-pill {
+                white-space: nowrap;
+                flex-shrink: 0;
+            }
+        }
+    </style>
 </head>
 <body>
     <!-- Navigation -->
@@ -78,7 +417,7 @@
             <a href="../index.html" class="nav-logo-link">
                 <div class="nav-logo">
                     <div class="logo-icon">
-                        <img src="../images/pharmacie-charnal-logo.png" alt="Logo Pharmacie Charnal" style="width: 100%; height: 100%; object-fit: contain;">
+                        <img src="../images/pharmacie-charnal-logo.png" alt="Logo Pharmacie Charnal">
                     </div>
                     <div class="logo-text">
                         <span class="logo-name">Pharmacie Charnal</span>
@@ -98,7 +437,9 @@
                     <a href="../services.html" class="nav-link nav-dropdown-toggle">Services</a>
                     <ul class="nav-dropdown-menu">
                         <li><a href="../histoire.html" class="nav-link">Notre Histoire</a></li>
+                        <li><a href="nosmarques.html" class="nav-link active">Nos Marques</a></li>
                         <li><a href="../pharmacie-de-garde-queven-hennebont-lorient.html" class="nav-link">Pharmacie de garde</a></li>
+                        <li><a href="../annuaire-sante.html" class="nav-link">Annuaire Santé</a></li>
                     </ul>
                 </li>
                 <li><a href="../blog.html" class="nav-link nav-link-blog">Au comptoir</a></li>
@@ -113,132 +454,394 @@
     </nav>
 
     <!-- Hero Section -->
-    <section class="hero" style="padding: var(--space-xl) 0 var(--space-md) 0;">
+    <section class="hero">
         <div class="container">
-            <div class="section-header" style="text-align: center;">
-                <span class="section-badge fade-in">Nos marques</span>
-                <h1 class="section-title fade-in">
-                    Des produits de qualité<br>
-                    <span class="gradient-text">pour votre bien-être</span>
+            <div class="hero-content">
+                <span class="hero-badge">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/>
+                    </svg>
+                    Marques de confiance
+                </span>
+                <h1 class="hero-title">
+                    Des marques <span class="highlight">sélectionnées</span><br>
+                    pour votre bien-être
                 </h1>
-                <p style="font-size: var(--text-lg); color: var(--sage); max-width: 700px; margin: var(--space-lg) auto 0;">
-                    Nous sélectionnons avec soin les meilleures marques pour vous accompagner au quotidien dans votre santé et votre bien-être.
+                <p class="hero-description">
+                    Nous choisissons avec soin les meilleures marques dermatologiques et cosmétiques pour vous accompagner au quotidien dans votre santé et votre beauté.
                 </p>
             </div>
         </div>
     </section>
 
-    <!-- Cosmétiques et Hygiène -->
-    <section id="cosmetiques" class="services" style="padding: var(--space-3xl) 0; background: var(--cream);">
+    <!-- Category Navigation -->
+    <nav class="category-nav">
         <div class="container">
-            <div class="section-header">
-                <h2 class="section-title fade-in">
-                    <span class="gradient-text">Cosmétiques & Hygiène</span>
-                </h2>
-                <p style="font-size: var(--text-lg); color: var(--sage); max-width: 700px; margin: var(--space-md) auto var(--space-2xl);">
-                    Une sélection de marques dermatologiques et cosmétiques de confiance pour toute la famille.
-                </p>
-            </div>
-
-            <div class="services-grid">
-                <div class="service-card fade-up">
-                    <h3>Dermatologie & Soins Visage</h3>
-                    <p><a href="https://www.bioderma.fr" target="_blank" rel="noopener noreferrer">Bioderma</a>, <a href="https://www.laroche-posay.fr" target="_blank" rel="noopener noreferrer">La Roche-Posay</a>, <a href="https://www.eau-thermale-avene.fr" target="_blank" rel="noopener noreferrer">Avène</a>, <a href="https://fr.nuxe.com" target="_blank" rel="noopener noreferrer">Nuxe</a>, <a href="https://www.vichy.fr" target="_blank" rel="noopener noreferrer">Vichy</a>, <a href="https://www.ducray.com/fr-fr" target="_blank" rel="noopener noreferrer">Ducray</a></p>
-                </div>
-                <div class="service-card fade-up" style="animation-delay: 0.1s">
-                    <h3>Bébé & Maman</h3>
-                    <p><a href="https://www.mustela.fr" target="_blank" rel="noopener noreferrer">Mustela</a>, <a href="https://www.klorane.com/fr-fr" target="_blank" rel="noopener noreferrer">Klorane Bébé</a></p>
-                </div>
-                <div class="service-card fade-up" style="animation-delay: 0.2s">
-                    <h3>Soins Solaires</h3>
-                    <p><a href="https://www.laroche-posay.fr/gamme/anthelios" target="_blank" rel="noopener noreferrer">La Roche-Posay Anthelios</a>, <a href="https://www.eau-thermale-avene.fr" target="_blank" rel="noopener noreferrer">Avène</a>, <a href="https://www.bioderma.fr" target="_blank" rel="noopener noreferrer">Bioderma</a>, <a href="https://fr.nuxe.com/soins-solaires" target="_blank" rel="noopener noreferrer">NUXE</a></p>
-                </div>
-                <div class="service-card fade-up" style="animation-delay: 0.3s">
-                    <h3>Soins Capillaires</h3>
-                    <p><a href="https://www.klorane.com/fr-fr" target="_blank" rel="noopener noreferrer">Klorane</a>, <a href="https://www.ducray.com/fr-fr" target="_blank" rel="noopener noreferrer">Ducray</a>, <a href="https://www.vichy.fr" target="_blank" rel="noopener noreferrer">Vichy</a></p>
-                </div>
+            <div class="category-pills">
+                <button class="category-pill active" data-category="all">Toutes les marques</button>
+                <button class="category-pill" data-category="dermatologie">Dermatologie</button>
+                <button class="category-pill" data-category="cosmetique">Cosmétique</button>
+                <button class="category-pill" data-category="capillaire">Soins Capillaires</button>
+                <button class="category-pill" data-category="bebe">Bébé & Maman</button>
+                <button class="category-pill" data-category="homeopathie">Homéopathie</button>
+                <button class="category-pill" data-category="animaux">Santé Animale</button>
+                <button class="category-pill" data-category="complements">Compléments</button>
             </div>
         </div>
-    </section>
+    </nav>
 
-    <!-- Compléments Alimentaires -->
-    <section id="complements" class="services" style="padding: var(--space-3xl) 0;">
+    <!-- Brands Section -->
+    <section class="brands-section" id="toutes-marques">
         <div class="container">
-            <div class="section-header">
-                <h2 class="section-title fade-in">
-                    <span class="gradient-text">Compléments Alimentaires</span>
-                </h2>
-                <p style="font-size: var(--text-lg); color: var(--sage); max-width: 700px; margin: var(--space-md) auto var(--space-2xl);">
-                    Des compléments naturels pour renforcer votre vitalité et votre bien-être au quotidien.
+            <div class="section-header animate-on-scroll">
+                <span class="section-label">Notre sélection</span>
+                <h2 class="section-title">Marques partenaires</h2>
+                <p class="section-description">
+                    Chaque marque est sélectionnée pour son excellence, son efficacité prouvée et son engagement qualité.
                 </p>
             </div>
 
-            <div class="services-grid">
-                <div class="service-card fade-up">
-                    <h3>Vitamines & Minéraux</h3>
-                    <p><a href="https://www.bion3.fr" target="_blank" rel="noopener noreferrer">Bion 3</a>, <a href="https://www.biogaran.fr" target="_blank" rel="noopener noreferrer">Biogaran</a></p>
-                </div>
-                <div class="service-card fade-up" style="animation-delay: 0.1s">
-                    <h3>Phytothérapie & Micronutrition</h3>
-                    <p><a href="https://www.pileje.fr" target="_blank" rel="noopener noreferrer">PiLeJe</a>, <a href="https://www.arkopharma.com/fr-FR" target="_blank" rel="noopener noreferrer">Arkopharma</a>, <a href="https://www.boiron.fr" target="_blank" rel="noopener noreferrer">Boiron</a>, <a href="https://www.aragan.fr" target="_blank" rel="noopener noreferrer">Aragan</a>, <a href="https://www.nat-form.com" target="_blank" rel="noopener noreferrer">Nat&Form</a></p>
-                </div>
-                <div class="service-card fade-up" style="animation-delay: 0.2s">
-                    <h3>Digestion & Probiotiques</h3>
-                    <p><a href="https://www.pileje.fr" target="_blank" rel="noopener noreferrer">PiLeJe</a></p>
-                </div>
-            </div>
-        </div>
-    </section>
+            <div class="brands-grid">
+                <!-- Bioderma -->
+                <article class="brand-card" data-category="dermatologie">
+                    <div class="brand-card-image">
+                        <img src="logos/Bioderma.png" alt="Logo Bioderma" class="brand-logo">
+                    </div>
+                    <div class="brand-card-content">
+                        <span class="brand-category">Dermatologie</span>
+                        <h3 class="brand-name">Bioderma</h3>
+                        <p class="brand-description">
+                            Laboratoire dermatologique français expert des soins pour peaux sensibles depuis 1977. Créateur de la célèbre eau micellaire Sensibio H2O.
+                        </p>
+                        <a href="bioderma-page.html" class="brand-link">
+                            Découvrir la marque
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M5 12h14M12 5l7 7-7 7"/>
+                            </svg>
+                        </a>
+                    </div>
+                </article>
 
-    <!-- Premiers Soins & Matériel Médical -->
-    <section id="premiers-soins" class="services" style="padding: var(--space-3xl) 0; background: var(--cream);">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title fade-in">
-                    <span class="gradient-text">Premiers Soins & Matériel Médical</span>
-                </h2>
-                <p style="font-size: var(--text-lg); color: var(--sage); max-width: 700px; margin: var(--space-md) auto var(--space-2xl);">
-                    Tout le nécessaire pour vos soins quotidiens et votre matériel médical.
-                </p>
-            </div>
+                <!-- La Roche-Posay -->
+                <article class="brand-card" data-category="dermatologie">
+                    <div class="brand-card-image">
+                        <img src="logos/La-roche-posay.png" alt="Logo La Roche-Posay" class="brand-logo">
+                    </div>
+                    <div class="brand-card-content">
+                        <span class="brand-category">Dermatologie</span>
+                        <h3 class="brand-name">La Roche-Posay</h3>
+                        <p class="brand-description">
+                            Marque recommandée par plus de 90 000 dermatologues. Spécialiste des peaux sensibles avec son eau thermale apaisante.
+                        </p>
+                        <a href="la-roche-posay-page.html" class="brand-link">
+                            Découvrir la marque
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M5 12h14M12 5l7 7-7 7"/>
+                            </svg>
+                        </a>
+                    </div>
+                </article>
 
-            <div class="services-grid">
-                <div class="service-card fade-up">
-                    <h3>Pansements & Bandages</h3>
-                    <p>Pansements, compresses stériles, bandages</p>
-                </div>
-                <div class="service-card fade-up" style="animation-delay: 0.1s">
-                    <h3>Antiseptiques & Désinfection</h3>
-                    <p>Solutions antiseptiques, désinfectants</p>
-                </div>
-                <div class="service-card fade-up" style="animation-delay: 0.2s">
-                    <h3>Matériel Médical</h3>
-                    <p>Thermomètres, tensiomètres, glycémie</p>
-                </div>
-                <div class="service-card fade-up" style="animation-delay: 0.3s">
-                    <h3>Orthopédie</h3>
-                    <p>Orthèses, attelles, genouillères, chevillières, semelles</p>
-                </div>
-                <div class="service-card fade-up" style="animation-delay: 0.4s">
-                    <h3>Location de Matériel</h3>
-                    <p>Béquilles, cannes, fauteuils roulants, lits médicalisés</p>
-                </div>
-            </div>
-        </div>
-    </section>
+                <!-- Avène -->
+                <article class="brand-card" data-category="dermatologie">
+                    <div class="brand-card-image">
+                        <img src="logos/Avene.jpeg" alt="Logo Avène" class="brand-logo">
+                    </div>
+                    <div class="brand-card-content">
+                        <span class="brand-category">Dermatologie</span>
+                        <h3 class="brand-name">Avène</h3>
+                        <p class="brand-description">
+                            L'eau thermale d'Avène, source unique aux propriétés apaisantes reconnues depuis plus de 270 ans pour les peaux sensibles et atopiques.
+                        </p>
+                        <a href="avene-page.html" class="brand-link">
+                            Découvrir la marque
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M5 12h14M12 5l7 7-7 7"/>
+                            </svg>
+                        </a>
+                    </div>
+                </article>
 
-    <!-- CTA Section -->
-    <section class="why-us" style="padding: var(--space-3xl) 0;">
-        <div class="container" style="text-align: center;">
-            <h2 class="section-title fade-in" style="margin-bottom: var(--space-lg);">
-                Besoin de conseils sur nos produits ?
-            </h2>
-            <p style="font-size: var(--text-lg); color: var(--sage); max-width: 600px; margin: 0 auto var(--space-xl);">
-                Notre équipe de pharmaciens est à votre disposition pour vous conseiller et vous orienter vers les produits les plus adaptés à vos besoins.
-            </p>
-            <a href="../contact.html" class="btn btn-primary" style="display: inline-block;">
-                <span>Nous contacter</span>
-            </a>
+                <!-- Vichy -->
+                <article class="brand-card" data-category="dermatologie">
+                    <div class="brand-card-image">
+                        <img src="logos/Vichy.png" alt="Logo Vichy" class="brand-logo">
+                    </div>
+                    <div class="brand-card-content">
+                        <span class="brand-category">Dermatologie</span>
+                        <h3 class="brand-name">Vichy</h3>
+                        <p class="brand-description">
+                            Pionnier de la dermo-cosmétique depuis 1931, Vichy combine l'eau volcanique minéralisante aux actifs dermatologiques les plus efficaces.
+                        </p>
+                        <a href="vichy-page.html" class="brand-link">
+                            Découvrir la marque
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M5 12h14M12 5l7 7-7 7"/>
+                            </svg>
+                        </a>
+                    </div>
+                </article>
+
+                <!-- Nuxe -->
+                <article class="brand-card" data-category="cosmetique">
+                    <div class="brand-card-image">
+                        <img src="logos/Nuxe.jpeg" alt="Logo Nuxe" class="brand-logo">
+                    </div>
+                    <div class="brand-card-content">
+                        <span class="brand-category">Cosmétique Naturelle</span>
+                        <h3 class="brand-name">Nuxe</h3>
+                        <p class="brand-description">
+                            La nature sublimée par la science. Créateur de l'iconique Huile Prodigieuse, Nuxe propose des soins sensoriels aux actifs végétaux.
+                        </p>
+                        <a href="nuxe-page.html" class="brand-link">
+                            Découvrir la marque
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M5 12h14M12 5l7 7-7 7"/>
+                            </svg>
+                        </a>
+                    </div>
+                </article>
+
+                <!-- Caudalie -->
+                <article class="brand-card" data-category="cosmetique">
+                    <div class="brand-card-image">
+                        <img src="logos/Caudalie.png" alt="Logo Caudalie" class="brand-logo">
+                    </div>
+                    <div class="brand-card-content">
+                        <span class="brand-category">Cosmétique Naturelle</span>
+                        <h3 class="brand-name">Caudalie</h3>
+                        <p class="brand-description">
+                            Née au coeur des vignobles bordelais, Caudalie révèle les pouvoirs antioxydants de la vigne pour des soins naturels et efficaces.
+                        </p>
+                        <a href="caudalie-page.html" class="brand-link">
+                            Découvrir la marque
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M5 12h14M12 5l7 7-7 7"/>
+                            </svg>
+                        </a>
+                    </div>
+                </article>
+
+                <!-- Klorane -->
+                <article class="brand-card" data-category="capillaire">
+                    <div class="brand-card-image">
+                        <img src="logos/Klorane.png" alt="Logo Klorane" class="brand-logo">
+                    </div>
+                    <div class="brand-card-content">
+                        <span class="brand-category">Soins Capillaires</span>
+                        <h3 class="brand-name">Klorane</h3>
+                        <p class="brand-description">
+                            Expert des soins capillaires botaniques depuis 1965. Klorane révèle les vertus des plantes pour des cheveux sublimés naturellement.
+                        </p>
+                        <a href="klorane-page.html" class="brand-link">
+                            Découvrir la marque
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M5 12h14M12 5l7 7-7 7"/>
+                            </svg>
+                        </a>
+                    </div>
+                </article>
+
+                <!-- Biocanina -->
+                <article class="brand-card" data-category="animaux">
+                    <div class="brand-card-image">
+                        <img src="logos/Biocanina.png" alt="Logo Biocanina" class="brand-logo">
+                    </div>
+                    <div class="brand-card-content">
+                        <span class="brand-category">Santé Animale</span>
+                        <h3 class="brand-name">Biocanina</h3>
+                        <p class="brand-description">
+                            Spécialiste de la santé animale en pharmacie. Antiparasitaires, soins et compléments pour le bien-être de vos compagnons à quatre pattes.
+                        </p>
+                        <a href="biocanina-page.html" class="brand-link">
+                            Découvrir la marque
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M5 12h14M12 5l7 7-7 7"/>
+                            </svg>
+                        </a>
+                    </div>
+                </article>
+
+                <!-- Biogaran -->
+                <article class="brand-card" data-category="complements">
+                    <div class="brand-card-image">
+                        <img src="logos/biogaran_logo.jpg" alt="Logo Biogaran" class="brand-logo">
+                    </div>
+                    <div class="brand-card-content">
+                        <span class="brand-category">Compléments Alimentaires</span>
+                        <h3 class="brand-name">Biogaran</h3>
+                        <p class="brand-description">
+                            Leader français des génériques depuis 1996. Vitamines D, C, magnésium et fer de qualité pharmaceutique à prix accessible.
+                        </p>
+                        <a href="biogaran-page.html" class="brand-link">
+                            Découvrir la marque
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M5 12h14M12 5l7 7-7 7"/>
+                            </svg>
+                        </a>
+                    </div>
+                </article>
+
+                <!-- Nat&Form -->
+                <article class="brand-card" data-category="complements">
+                    <div class="brand-card-image">
+                        <img src="logos/NatForm.avif" alt="Logo Nat&Form" class="brand-logo">
+                    </div>
+                    <div class="brand-card-content">
+                        <span class="brand-category">Phytothérapie Écoresponsable</span>
+                        <h3 class="brand-name">Nat&Form</h3>
+                        <p class="brand-description">
+                            Leader français de la phytothérapie écoresponsable. 900+ références fabriquées en Bretagne avec 99% d'emballages écologiques.
+                        </p>
+                        <a href="natform-page.html" class="brand-link">
+                            Découvrir la marque
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M5 12h14M12 5l7 7-7 7"/>
+                            </svg>
+                        </a>
+                    </div>
+                </article>
+
+                <!-- PiLeJe -->
+                <article class="brand-card" data-category="complements">
+                    <div class="brand-card-image">
+                        <img src="logos/Pileje-Logo.jpg" alt="Logo PiLeJe" class="brand-logo">
+                    </div>
+                    <div class="brand-card-content">
+                        <span class="brand-category">Micronutrition & Probiotiques</span>
+                        <h3 class="brand-name">PiLeJe</h3>
+                        <p class="brand-description">
+                            Pionnier de la micronutrition et leader des probiotiques en pharmacie avec 39% de parts de marché. Lactibiane, Formag, Chronobiane.
+                        </p>
+                        <a href="pileje-page.html" class="brand-link">
+                            Découvrir la marque
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M5 12h14M12 5l7 7-7 7"/>
+                            </svg>
+                        </a>
+                    </div>
+                </article>
+
+                <!-- Boiron -->
+                <article class="brand-card" data-category="homeopathie">
+                    <div class="brand-card-image">
+                        <img src="logos/boiron-logo-png-transparent.png" alt="Logo Boiron" class="brand-logo">
+                    </div>
+                    <div class="brand-card-content">
+                        <span class="brand-category">Homéopathie</span>
+                        <h3 class="brand-name">Boiron</h3>
+                        <p class="brand-description">
+                            Leader mondial de l'homéopathie depuis 1932. Tubes, doses, Oscillococcinum et spécialités homéopathiques pour toute la famille.
+                        </p>
+                        <a href="boiron-page.html" class="brand-link">
+                            Découvrir la marque
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M5 12h14M12 5l7 7-7 7"/>
+                            </svg>
+                        </a>
+                    </div>
+                </article>
+
+                <!-- Ducray -->
+                <article class="brand-card" data-category="capillaire">
+                    <div class="brand-card-image">
+                        <img src="logos/DUCRAY_logo.JKTCuPpuaLsiExCkadBsBgHaB7" alt="Logo Ducray" class="brand-logo">
+                    </div>
+                    <div class="brand-card-content">
+                        <span class="brand-category">Soins Capillaires</span>
+                        <h3 class="brand-name">Ducray</h3>
+                        <p class="brand-description">
+                            Expert capillaire dermatologique depuis 1930. Chute de cheveux, pellicules, psoriasis : des solutions efficaces recommandées par les dermatologues.
+                        </p>
+                        <a href="ducray-page.html" class="brand-link">
+                            Découvrir la marque
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M5 12h14M12 5l7 7-7 7"/>
+                            </svg>
+                        </a>
+                    </div>
+                </article>
+
+                <!-- Mustela -->
+                <article class="brand-card" data-category="bebe">
+                    <div class="brand-card-image">
+                        <img src="logos/Mustella.93ejXIozyf171udveJDY7QHaEK" alt="Logo Mustela" class="brand-logo">
+                    </div>
+                    <div class="brand-card-content">
+                        <span class="brand-category">Bébé & Maman</span>
+                        <h3 class="brand-name">Mustela</h3>
+                        <p class="brand-description">
+                            Expert des soins bébé depuis 1950. Formules sûres à 92% d'ingrédients naturels pour la peau fragile des tout-petits et leurs mamans.
+                        </p>
+                        <a href="mustela-page.html" class="brand-link">
+                            Découvrir la marque
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M5 12h14M12 5l7 7-7 7"/>
+                            </svg>
+                        </a>
+                    </div>
+                </article>
+
+                <!-- Aragan -->
+                <article class="brand-card" data-category="complements">
+                    <div class="brand-card-image">
+                        <img src="logos/aragan_logo.jpg" alt="Logo Aragan" class="brand-logo">
+                    </div>
+                    <div class="brand-card-content">
+                        <span class="brand-category">Micronutrition</span>
+                        <h3 class="brand-name">Aragan</h3>
+                        <p class="brand-description">
+                            La micronutrition fraîche et innovante. Conservation au frais pour préserver l'intégrité des actifs. Probiotiques vivants et oméga-3 purs.
+                        </p>
+                        <a href="aragan-page.html" class="brand-link">
+                            Découvrir la marque
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M5 12h14M12 5l7 7-7 7"/>
+                            </svg>
+                        </a>
+                    </div>
+                </article>
+
+                <!-- Arkopharma -->
+                <article class="brand-card" data-category="complements">
+                    <div class="brand-card-image">
+                        <img src="logos/logo-arkopharma-2.png" alt="Logo Arkopharma" class="brand-logo">
+                    </div>
+                    <div class="brand-card-content">
+                        <span class="brand-category">Phytothérapie</span>
+                        <h3 class="brand-name">Arkopharma</h3>
+                        <p class="brand-description">
+                            Le pionnier français de la phytothérapie depuis 1980. Arkogélules, plantes médicinales et compléments naturels de qualité pharmaceutique.
+                        </p>
+                        <a href="arkopharma-page.html" class="brand-link">
+                            Découvrir la marque
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M5 12h14M12 5l7 7-7 7"/>
+                            </svg>
+                        </a>
+                    </div>
+                </article>
+
+                <!-- Bion 3 -->
+                <article class="brand-card" data-category="complements">
+                    <div class="brand-card-image">
+                        <img src="logos/Bion3_logo.png" alt="Logo Bion 3" class="brand-logo">
+                    </div>
+                    <div class="brand-card-content">
+                        <span class="brand-category">Vitalité & Immunité</span>
+                        <h3 class="brand-name">Bion 3</h3>
+                        <p class="brand-description">
+                            Probiotiques et vitamines pour vos défenses. Formule Tri-Bion brevetée par Merck combinant 3 probiotiques, 12 vitamines et 7 minéraux.
+                        </p>
+                        <a href="bion3-page.html" class="brand-link">
+                            Découvrir la marque
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M5 12h14M12 5l7 7-7 7"/>
+                            </svg>
+                        </a>
+                    </div>
+                </article>
+            </div>
         </div>
     </section>
 
@@ -261,15 +864,15 @@
                         <h4>Suivez-nous</h4>
                         <div class="social-links">
                             <a href="https://www.instagram.com/pharmaciecharnalqueven/" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Instagram">
-                                <svg width="30" height="30" viewBox="0 0 24 24" fill="none">
-                                    <rect x="2" y="2" width="20" height="20" rx="5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                    <circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                    <circle cx="17.5" cy="6.5" r="0.5" fill="currentColor"/>
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <rect x="2" y="2" width="20" height="20" rx="5"/>
+                                    <circle cx="12" cy="12" r="4"/>
+                                    <circle cx="17.5" cy="6.5" r="1" fill="currentColor"/>
                                 </svg>
                             </a>
                             <a href="https://www.facebook.com/pharmaciecharnal/" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Facebook">
-                                <svg width="30" height="30" viewBox="0 0 24 24" fill="none">
-                                    <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/>
                                 </svg>
                             </a>
                         </div>
@@ -312,9 +915,15 @@
         </div>
     </footer>
 
-    <script src="../animations.js"></script>
+    <!-- Scroll to Top Button -->
+    <button class="scroll-top" aria-label="Retour en haut">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 19V5M5 12l7-7 7 7"/>
+        </svg>
+    </button>
+
     <script>
-        // Menu mobile toggle
+        // Mobile Menu Toggle
         const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
         const navLinks = document.querySelector('.nav-links');
 
@@ -325,14 +934,6 @@
                 navLinks.classList.toggle('active');
             });
 
-            const links = navLinks.querySelectorAll('.nav-link');
-            links.forEach(link => {
-                link.addEventListener('click', () => {
-                    mobileMenuToggle.setAttribute('aria-expanded', 'false');
-                    navLinks.classList.remove('active');
-                });
-            });
-
             document.addEventListener('click', (e) => {
                 if (!navLinks.contains(e.target) && !mobileMenuToggle.contains(e.target)) {
                     mobileMenuToggle.setAttribute('aria-expanded', 'false');
@@ -340,6 +941,87 @@
                 }
             });
         }
+
+        // Category Filter
+        const categoryPills = document.querySelectorAll('.category-pill');
+        const brandCards = document.querySelectorAll('.brand-card');
+
+        categoryPills.forEach(pill => {
+            pill.addEventListener('click', () => {
+                // Update active state
+                categoryPills.forEach(p => p.classList.remove('active'));
+                pill.classList.add('active');
+
+                const category = pill.dataset.category;
+
+                // Filter cards
+                brandCards.forEach(card => {
+                    if (category === 'all' || card.dataset.category === category) {
+                        card.style.display = 'flex';
+                        setTimeout(() => {
+                            card.style.opacity = '1';
+                            card.style.transform = 'translateY(0)';
+                        }, 50);
+                    } else {
+                        card.style.opacity = '0';
+                        card.style.transform = 'translateY(20px)';
+                        setTimeout(() => {
+                            card.style.display = 'none';
+                        }, 300);
+                    }
+                });
+            });
+        });
+
+        // Scroll Animations
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all animated elements
+        document.querySelectorAll('.animate-on-scroll, .brand-card').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Scroll to Top Button
+        const scrollTopBtn = document.querySelector('.scroll-top');
+
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 500) {
+                scrollTopBtn.classList.add('visible');
+            } else {
+                scrollTopBtn.classList.remove('visible');
+            }
+        });
+
+        scrollTopBtn.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        // Initialize cards as visible after page load
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                document.querySelectorAll('.brand-card').forEach((card, index) => {
+                    setTimeout(() => {
+                        card.style.transition = 'all 0.6s cubic-bezier(0.16, 1, 0.3, 1)';
+                        card.classList.add('visible');
+                    }, index * 80);
+                });
+            }, 300);
+        });
     </script>
 </body>
 </html>

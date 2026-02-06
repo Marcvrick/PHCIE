@@ -1098,7 +1098,7 @@ a {
 
 /* === FOOTER === */
 .footer {
-    background: linear-gradient(135deg, var(--teal) 0%, var(--sage-dark) 100%);
+    background: var(--charcoal);
     color: var(--white);
     padding: var(--space-3xl) 0 var(--space-xl);
 }
