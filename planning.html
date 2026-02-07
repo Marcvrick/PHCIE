@@ -1,14 +1,6 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-2Q64V6B0QE"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-2Q64V6B0QE');
-    </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Planning Pharmacie Charnal</title>
@@ -344,43 +336,6 @@
         .tension-day.critique { background: var(--red-light); }
 
         .export-section { display: flex; gap: 1rem; align-items: center; flex-wrap: wrap; }
-
-        /* Reset section */
-        .reset-card { border: 2px solid var(--red); background: linear-gradient(135deg, #fff 0%, #fff5f5 100%); }
-        .reset-warning {
-            background: #fff3cd;
-            border: 1px solid #ffc107;
-            border-radius: 8px;
-            padding: 1rem;
-            margin-bottom: 1.5rem;
-            color: #856404;
-            font-size: 0.9rem;
-        }
-        .reset-actions { display: flex; flex-direction: column; gap: 1rem; }
-        .reset-item {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            flex-wrap: wrap;
-        }
-        .reset-tooltip {
-            color: var(--gray);
-            font-size: 0.85rem;
-            flex: 1;
-            min-width: 200px;
-        }
-        .btn-danger {
-            background: var(--red);
-            color: white;
-            border: none;
-            padding: 0.6rem 1.2rem;
-            border-radius: 6px;
-            cursor: pointer;
-            font-weight: 600;
-            transition: all 0.2s;
-            min-width: 220px;
-        }
-        .btn-danger:hover { background: #c0392b; transform: translateY(-1px); }
 
         .hidden { display: none !important; }
 
@@ -910,7 +865,7 @@
             <div class="card">
                 <h2 class="card-title">Planning bi-hebdomadaire</h2>
                 <div class="week-toggle">
-                    <button class="week-btn" data-week="paire">Semaine Paire</button>
+                    <button class="week-btn active" data-week="paire">Semaine Paire</button>
                     <button class="week-btn" data-week="impaire">Semaine Impaire</button>
                 </div>
                 <div class="planning-grid">
@@ -1127,6 +1082,15 @@
             </div>
 
             <div class="card">
+                <h2 class="card-title">Gestion des contrats et anciennete</h2>
+                <p style="color: var(--gray); font-size: 0.9rem; margin-bottom: 1rem;">
+                    Definissez le type de contrat, les dates de debut/fin et l'anciennete de chaque employe.
+                    Les vacances sont calculees automatiquement (2.5 jours ouvrables/mois + 2 jours apres 6 ans d'anciennete).
+                </p>
+                <div class="contracts-grid" id="contractsManager"></div>
+            </div>
+
+            <div class="card">
                 <h2 class="card-title">Solde vacances (tous les employes)</h2>
                 <div class="vacances-manager-card" id="managerVacancesBalance"></div>
             </div>
@@ -1154,38 +1118,6 @@
             <div class="card">
                 <h2 class="card-title">Historique complet</h2>
                 <div id="historiqueComplet"></div>
-            </div>
-
-            <div class="card">
-                <h2 class="card-title">Gestion des contrats et anciennete</h2>
-                <p style="color: var(--gray); font-size: 0.9rem; margin-bottom: 1rem;">
-                    Definissez le type de contrat, les dates de debut/fin et l'anciennete de chaque employe.
-                    Les vacances sont calculees automatiquement (2.5 jours ouvrables/mois + 2 jours apres 6 ans d'anciennete).
-                </p>
-                <div class="contracts-grid" id="contractsManager"></div>
-            </div>
-
-            <div class="card reset-card">
-                <h2 class="card-title">⚠️ Zone de réinitialisation</h2>
-                <div class="reset-section">
-                    <div class="reset-warning">
-                        <strong>Attention :</strong> Ces actions sont irréversibles. Les données supprimées ne pourront pas être récupérées.
-                    </div>
-                    <div class="reset-actions">
-                        <div class="reset-item">
-                            <button class="btn btn-danger" id="resetDemandesBtn">Effacer toutes les demandes</button>
-                            <span class="reset-tooltip">Supprime toutes les demandes (absences, échanges, récupérations, vacances) de tous les employés. Utile pour repartir à zéro après des tests.</span>
-                        </div>
-                        <div class="reset-item">
-                            <button class="btn btn-danger" id="resetVacancesSoldeBtn">Réinitialiser les soldes vacances</button>
-                            <span class="reset-tooltip">Remet à zéro le compteur de jours de vacances pris et acquis pour tous les employés.</span>
-                        </div>
-                        <div class="reset-item">
-                            <button class="btn btn-danger" id="resetAllBtn">Tout réinitialiser</button>
-                            <span class="reset-tooltip">Efface toutes les demandes ET réinitialise les soldes de vacances. Remet l'application dans son état initial.</span>
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
     </main>
@@ -2763,90 +2695,9 @@ Connectez-vous a l'application Planning pour traiter cette demande.
             // No longer tracking last export with Firebase
         }
 
-        // ========== RESET FUNCTIONS ==========
-        async function resetDemandes() {
-            const confirmation = prompt('⚠️ ATTENTION: Cette action va supprimer TOUTES les demandes.\n\nTapez "EFFACER" pour confirmer:');
-            if (confirmation !== 'EFFACER') {
-                alert('Action annulée.');
-                return;
-            }
-
-            try {
-                // Supprimer toutes les demandes de Firebase
-                const snapshot = await db.collection('demandes').get();
-                const batch = db.batch();
-                snapshot.docs.forEach(doc => batch.delete(doc.ref));
-                await batch.commit();
-
-                // Vider le cache local
-                demandesCache = [];
-
-                alert('✅ Toutes les demandes ont été supprimées.');
-                renderManager();
-                renderMesDemandes();
-            } catch (err) {
-                alert('Erreur: ' + err.message);
-            }
-        }
-
-        async function resetVacancesSolde() {
-            const confirmation = prompt('⚠️ ATTENTION: Cette action va remettre à zéro les soldes de vacances de tous les employés.\n\nTapez "RESET" pour confirmer:');
-            if (confirmation !== 'RESET') {
-                alert('Action annulée.');
-                return;
-            }
-
-            try {
-                const resetSolde = {};
-                VACANCES_EMPLOYEES.forEach(name => {
-                    resetSolde[name] = { annuel: 0, pris: 0 };
-                });
-                await db.collection('config').doc('vacances_solde').set(resetSolde);
-                vacancesSoldeCache = resetSolde;
-
-                alert('✅ Les soldes de vacances ont été réinitialisés.');
-                renderManager();
-                renderVacances();
-            } catch (err) {
-                alert('Erreur: ' + err.message);
-            }
-        }
-
-        async function resetAll() {
-            const confirmation = prompt('⚠️ ATTENTION MAXIMALE ⚠️\n\nCette action va:\n- Supprimer TOUTES les demandes\n- Réinitialiser TOUS les soldes de vacances\n\nCette action est IRRÉVERSIBLE.\n\nTapez "TOUT EFFACER" pour confirmer:');
-            if (confirmation !== 'TOUT EFFACER') {
-                alert('Action annulée.');
-                return;
-            }
-
-            try {
-                // Reset demandes
-                const snapshot = await db.collection('demandes').get();
-                const batch = db.batch();
-                snapshot.docs.forEach(doc => batch.delete(doc.ref));
-                await batch.commit();
-                demandesCache = [];
-
-                // Reset vacances solde
-                const resetSolde = {};
-                VACANCES_EMPLOYEES.forEach(name => {
-                    resetSolde[name] = { annuel: 0, pris: 0 };
-                });
-                await db.collection('config').doc('vacances_solde').set(resetSolde);
-                vacancesSoldeCache = resetSolde;
-
-                alert('✅ Réinitialisation complète effectuée.');
-                renderManager();
-                renderMesDemandes();
-                renderVacances();
-            } catch (err) {
-                alert('Erreur: ' + err.message);
-            }
-        }
-
         // ========== VACANCES ==========
         // Tous les employes ont acces aux vacances
-        const VACANCES_EMPLOYEES = ['Stephanie', 'Claire', 'Sandrine', 'Titia', 'Melanie', 'Chloe'];
+        const VACANCES_EMPLOYEES = ['Stephanie', 'Claire', 'Sandrine', 'Titia', 'Emilie', 'Chloe'];
         const VACANCES_ANNUEL = 25; // Max legal par an (30 jours ouvrables = 25 jours ouvres)
 
         // Jours feries francais 2026-2028
@@ -2910,16 +2761,20 @@ Connectez-vous a l'application Planning pour traiter cette demande.
             if (!doc.exists) {
                 // Initialiser avec 0 jours - sera calcule selon les contrats
                 const init = {};
-                VACANCES_EMPLOYEES.forEach(name => { init[name] = { annuel: 0, pris: 0 }; });
+                VACANCES_EMPLOYEES.forEach(name => { init[name] = { annuel: 0, pris: 0, report: 0 }; });
                 await db.collection('config').doc('vacances_solde').set(init);
                 vacancesSoldeCache = init;
             } else {
                 vacancesSoldeCache = doc.data();
                 // Ajouter les nouveaux employes s'ils ne sont pas encore dans le solde
+                // Et ajouter le champ report s'il n'existe pas
                 let updated = false;
                 VACANCES_EMPLOYEES.forEach(name => {
                     if (!vacancesSoldeCache[name]) {
-                        vacancesSoldeCache[name] = { annuel: 0, pris: 0 };
+                        vacancesSoldeCache[name] = { annuel: 0, pris: 0, report: 0 };
+                        updated = true;
+                    } else if (vacancesSoldeCache[name].report === undefined) {
+                        vacancesSoldeCache[name].report = 0;
                         updated = true;
                     }
                 });
@@ -2966,7 +2821,8 @@ Connectez-vous a l'application Planning pour traiter cette demande.
                 const solde = getVacancesSolde();
                 const s = solde[user];
                 if (s) {
-                    document.getElementById('vacancesBadge').textContent = (s.annuel - s.pris) + 'j';
+                    const report = s.report || 0;
+                    document.getElementById('vacancesBadge').textContent = (s.annuel + report - s.pris) + 'j';
                 }
             } else {
                 btn.classList.add('hidden');
@@ -2979,23 +2835,25 @@ Connectez-vous a l'application Planning pour traiter cette demande.
             const s = solde[user];
             if (!s) return;
 
-            const restant = s.annuel - s.pris;
-            const pct = Math.round((s.pris / s.annuel) * 100);
+            const report = s.report || 0;
+            const total = s.annuel + report;
+            const restant = total - s.pris;
+            const pct = total > 0 ? Math.round((s.pris / total) * 100) : 0;
             const fillClass = pct > 80 ? 'danger' : pct > 60 ? 'warning' : '';
 
             document.getElementById('vacancesBalance').innerHTML = `
                 <div class="vacances-stats">
                     <div class="vacances-stat">
-                        <div class="vacances-stat-value">${s.annuel}</div>
-                        <div class="vacances-stat-label">Jours annuels</div>
+                        <div class="vacances-stat-value">${s.annuel}${report > 0 ? `<span style="font-size: 0.7em; color: var(--blue);">+${report}</span>` : ''}</div>
+                        <div class="vacances-stat-label">Annuel${report > 0 ? ' + Report' : ''}</div>
                     </div>
                     <div class="vacances-stat">
                         <div class="vacances-stat-value" style="color: var(--orange);">${s.pris}</div>
-                        <div class="vacances-stat-label">Jours pris</div>
+                        <div class="vacances-stat-label">Pris</div>
                     </div>
                     <div class="vacances-stat">
                         <div class="vacances-stat-value" style="color: ${restant <= 5 ? 'var(--red)' : 'var(--green)'};">${restant}</div>
-                        <div class="vacances-stat-label">Jours restants</div>
+                        <div class="vacances-stat-label">Restant</div>
                     </div>
                 </div>
                 <div class="vacances-balance-bar">
@@ -3025,7 +2883,8 @@ Connectez-vous a l'application Planning pour traiter cette demande.
             const { count, dates } = countJoursOuvrables(dateDebut, dateFin);
             const user = document.getElementById('currentUser').value;
             const solde = getVacancesSolde();
-            const restant = solde[user].annuel - solde[user].pris;
+            const report = solde[user].report || 0;
+            const restant = solde[user].annuel + report - solde[user].pris;
 
             // Count feries in range
             const allDates = getDatesBetween(dateDebut, dateFin);
@@ -3137,7 +2996,8 @@ Connectez-vous a l'application Planning pour traiter cette demande.
             }
 
             const solde = getVacancesSolde();
-            const restant = solde[user].annuel - solde[user].pris;
+            const report = solde[user].report || 0;
+            const restant = solde[user].annuel + report - solde[user].pris;
             if (count > restant) {
                 alert(`Solde insuffisant ! Vous demandez ${count} jours mais il ne vous reste que ${restant} jours.`);
                 return;
@@ -3363,19 +3223,23 @@ Connectez-vous a l'application Planning pour traiter cette demande.
 
             VACANCES_EMPLOYEES.forEach(name => {
                 const s = solde[name];
-                const restant = s.annuel - s.pris;
+                const report = s.report || 0;
+                const total = s.annuel + report;
+                const restant = total - s.pris;
+                const percentUsed = total > 0 ? (s.pris / total) * 100 : 0;
                 html += `
                     <div class="vacances-employee-card">
                         <h4>${name}</h4>
-                        <p>Annuel : <strong>${s.annuel}</strong> | Pris : <strong>${s.pris}</strong> | Restant : <strong style="color: ${restant <= 5 ? 'var(--red)' : 'var(--green)'};">${restant}</strong></p>
+                        <p>Acquis : <strong>${s.annuel}</strong> | Report : <strong style="color: ${report > 0 ? 'var(--blue)' : 'inherit'};">${report > 0 ? '+' : ''}${report}</strong> | Total : <strong>${total}</strong></p>
+                        <p>Pris : <strong>${s.pris}</strong> | <strong style="color: ${restant <= 5 ? 'var(--red)' : 'var(--green)'};">Restant : ${restant}</strong></p>
                         <div class="vacances-balance-bar">
-                            <div class="vacances-balance-fill ${s.pris / s.annuel > 0.8 ? 'danger' : s.pris / s.annuel > 0.6 ? 'warning' : ''}" style="width: ${Math.round((s.pris / s.annuel) * 100)}%;"></div>
+                            <div class="vacances-balance-fill ${percentUsed > 80 ? 'danger' : percentUsed > 60 ? 'warning' : ''}" style="width: ${Math.round(percentUsed)}%;"></div>
                         </div>
                         <div class="vacances-adjust">
-                            <label style="font-size: 0.8rem;">Ajuster annuel :</label>
-                            <input type="number" id="adjust-annuel-${name}" value="${s.annuel}" min="0" max="50">
+                            <label style="font-size: 0.8rem;">Report (annees prec.) :</label>
+                            <input type="number" id="adjust-report-${name}" value="${report}" min="-50" max="100">
                             <label style="font-size: 0.8rem;">Pris :</label>
-                            <input type="number" id="adjust-pris-${name}" value="${s.pris}" min="0" max="50">
+                            <input type="number" id="adjust-pris-${name}" value="${s.pris}" min="0" max="100">
                             <button onclick="adjustVacances('${name}')">OK</button>
                         </div>
                     </div>
@@ -3386,10 +3250,12 @@ Connectez-vous a l'application Planning pour traiter cette demande.
         }
 
         async function adjustVacances(name) {
-            const annuel = parseInt(document.getElementById(`adjust-annuel-${name}`).value) || 0;
+            const report = parseInt(document.getElementById(`adjust-report-${name}`).value) || 0;
             const pris = parseInt(document.getElementById(`adjust-pris-${name}`).value) || 0;
             const solde = getVacancesSolde();
-            solde[name] = { annuel, pris };
+            // Garder l'annuel calcule automatiquement, modifier seulement report et pris
+            solde[name].report = report;
+            solde[name].pris = pris;
             await saveVacancesSolde(solde);
         }
 
@@ -3620,6 +3486,9 @@ Connectez-vous a l'application Planning pour traiter cette demande.
         }
 
         // Synchroniser le calcul des vacances avec les contrats
+        // annuel = calcul automatique (2.5j/mois)
+        // report = jours reportes des annees precedentes (ajuste manuellement)
+        // Total disponible = annuel + report - pris
         async function syncVacationsWithContracts() {
             const contracts = getContracts();
             const solde = getVacancesSolde();
@@ -3630,6 +3499,11 @@ Connectez-vous a l'application Planning pour traiter cette demande.
                     const vacCalc = calculateVacationDays(contracts[name]);
                     if (solde[name] && solde[name].annuel !== vacCalc.total) {
                         solde[name].annuel = vacCalc.total;
+                        updated = true;
+                    }
+                    // S'assurer que report existe
+                    if (solde[name] && solde[name].report === undefined) {
+                        solde[name].report = 0;
                         updated = true;
                     }
                 }
@@ -3749,13 +3623,8 @@ Connectez-vous a l'application Planning pour traiter cette demande.
             document.getElementById('mainNav').classList.remove('hidden');
             document.querySelector('main').classList.remove('hidden');
 
-            // Initial render - affiche la semaine actuelle (paire ou impaire)
-            const currentWeekType = getSemaineType(new Date());
-            renderPlanning(currentWeekType);
-            // Met à jour le bouton actif
-            document.querySelectorAll('.week-btn').forEach(btn => {
-                btn.classList.toggle('active', btn.dataset.week === currentWeekType);
-            });
+            // Initial render
+            renderPlanning('paire');
             renderHoursBalance();
             updateVacancesNavVisibility();
             updateRecuperationOptionVisibility();
@@ -3875,11 +3744,6 @@ Connectez-vous a l'application Planning pour traiter cette demande.
             document.getElementById('importFile').addEventListener('change', (e) => {
                 if (e.target.files[0]) importData(e.target.files[0]);
             });
-
-            // Reset buttons
-            document.getElementById('resetDemandesBtn').addEventListener('click', resetDemandes);
-            document.getElementById('resetVacancesSoldeBtn').addEventListener('click', resetVacancesSolde);
-            document.getElementById('resetAllBtn').addEventListener('click', resetAll);
 
             // Password modal
             document.getElementById('validatePassword').addEventListener('click', validatePassword);
