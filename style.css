@@ -1359,6 +1359,10 @@ section[id] {
 }
 
 @media (max-width: 767px) {
+    .footer-content .footer-col:nth-child(2) {
+        display: none; /* Hide Navigation on mobile */
+    }
+
     .footer-bottom {
         flex-direction: column;
         text-align: center;
