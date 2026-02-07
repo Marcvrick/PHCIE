@@ -637,8 +637,20 @@
 
         .vacances-manager-card {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            grid-template-columns: repeat(4, 1fr);
             gap: 1rem;
+        }
+
+        @media (max-width: 900px) {
+            .vacances-manager-card {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 500px) {
+            .vacances-manager-card {
+                grid-template-columns: 1fr;
+            }
         }
 
         .vacances-employee-card {
@@ -1077,17 +1089,13 @@
             <div class="stats-grid" id="statsDashboard"></div>
 
             <div class="card">
-                <h2 class="card-title">Demandes en attente</h2>
-                <div id="demandesAttente"></div>
+                <h2 class="card-title">Tensions d'effectif (4 prochaines semaines)</h2>
+                <div id="tensionsCalendar"></div>
             </div>
 
             <div class="card">
-                <h2 class="card-title">Gestion des contrats et anciennete</h2>
-                <p style="color: var(--gray); font-size: 0.9rem; margin-bottom: 1rem;">
-                    Definissez le type de contrat, les dates de debut/fin et l'anciennete de chaque employe.
-                    Les vacances sont calculees automatiquement (2.5 jours ouvrables/mois + 2 jours apres 6 ans d'anciennete).
-                </p>
-                <div class="contracts-grid" id="contractsManager"></div>
+                <h2 class="card-title">Demandes en attente</h2>
+                <div id="demandesAttente"></div>
             </div>
 
             <div class="card">
@@ -1098,11 +1106,6 @@
             <div class="card">
                 <h2 class="card-title">Solde d'heures par employe</h2>
                 <div id="managerHoursBalance"></div>
-            </div>
-
-            <div class="card">
-                <h2 class="card-title">Tensions d'effectif (4 prochaines semaines)</h2>
-                <div id="tensionsCalendar"></div>
             </div>
 
             <div class="card">
@@ -1118,6 +1121,15 @@
             <div class="card">
                 <h2 class="card-title">Historique complet</h2>
                 <div id="historiqueComplet"></div>
+            </div>
+
+            <div class="card">
+                <h2 class="card-title">Gestion des contrats et anciennete</h2>
+                <p style="color: var(--gray); font-size: 0.9rem; margin-bottom: 1rem;">
+                    Definissez le type de contrat, les dates de debut/fin et l'anciennete de chaque employe.
+                    Les vacances sont calculees automatiquement (2.5 jours ouvrables/mois + 2 jours apres 6 ans d'anciennete).
+                </p>
+                <div class="contracts-grid" id="contractsManager"></div>
             </div>
         </div>
     </main>
