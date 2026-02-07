@@ -65,6 +65,8 @@ Créer une présence digitale moderne et accessible pour la Pharmacie Charnal, r
 | Nos Marques | nosmarques.html | ✅ Live | Catalogue marques |
 | Blog | blog.html | ✅ Live | Liste des articles |
 | Recrutement | recrutement-*.html | ✅ Live | Offre préparatrice |
+| Quiz Dermocosmétique | Quizzes/quiz-soin-peau.html | ✅ Live | Quiz 5 questions → produit recommandé |
+| Quiz Coming Soon | Quizzes/quiz-coming-soon.html | ✅ Live | Page d'attente pour quiz à venir |
 | Mentions légales | mentions-legales.html | ✅ Live | Conformité |
 | Données personnelles | donnees-personnelles.html | ✅ Live | RGPD |
 
@@ -172,9 +174,14 @@ Accent:
 
 ### Phase 2: Contenu (En cours)
 - [x] 6 articles blog publiés
+- [x] Quiz dermocosmétique (quiz-soin-peau.html)
+- [x] Page quiz "coming soon" pour catégories à venir
 - [ ] Photos réelles pharmacie/équipe
 - [ ] Télécharger fonts .woff2
 - [ ] 6 articles supplémentaires (calendrier éditorial)
+- [ ] Quiz produits naturels
+- [ ] Quiz compléments alimentaires
+- [ ] Quiz automédication
 
 ### Phase 3: Visibilité (Planifié)
 - [ ] Google Search Console
@@ -232,4 +239,4 @@ Accent:
 
 ---
 
-*Dernière mise à jour: 6 février 2026*
+*Dernière mise à jour: 7 février 2026*
