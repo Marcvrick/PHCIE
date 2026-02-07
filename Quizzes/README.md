@@ -235,6 +235,32 @@ Exemples :
 
 ---
 
+## Page "Coming Soon" pour les quiz non disponibles
+
+**Fichier :** `quiz-coming-soon.html`
+
+**Objectif :** Rediriger les visiteurs qui cliquent sur une catégorie de quiz pas encore créée (Produits naturels, Compléments alimentaires, Automédication).
+
+**Structure :**
+- Navbar HIMS complète (logo, menu mobile, dropdowns)
+- Badge "En cours de création"
+- Liste des 4 catégories de quiz avec leur statut :
+  - Dermocosmétique : **Disponible** (cliquable → quiz-soin-peau.html)
+  - Produits naturels : **Bientôt**
+  - Compléments alimentaires : **Bientôt**
+  - Automédication : **Bientôt**
+- Boutons CTA (vers quiz dermo + retour accueil)
+- Encart conseil invitant à passer en pharmacie
+- Footer cohérent avec le site
+
+**Design :** Utilise le même design system HIMS que `quiz-soin-peau.html` (variables CSS, Fraunces/DM Sans, pastels, etc.)
+
+**Quand mettre à jour :**
+- Quand un nouveau quiz est créé, changer son statut de "Bientôt" à "Disponible" et ajouter le lien
+- Quand tous les quiz sont créés, cette page peut être supprimée ou redirigée
+
+---
+
 ## Carte produit — format resultat
 
 Chaque resultat de quiz affiche une carte produit avec :
