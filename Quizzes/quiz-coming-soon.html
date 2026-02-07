@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-2Q64V6B0QE"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-2Q64V6B0QE');
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz en préparation | Pharmacie Charnal Quéven</title>
+    <meta name="description" content="Nos quiz personnalisés arrivent bientôt ! Nous préparons de nouveaux outils pour vous aider à trouver les produits adaptés à vos besoins.">
+    <link rel="icon" type="image/x-icon" href="../favicon.ico">
+    <link rel="icon" type="image/png" sizes="32x32" href="../favicon-32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --pastel-sage: #E8F0EA;
+            --pastel-mint: #D4E8E0;
+            --pastel-teal: #D0E5E4;
+            --pastel-cream: #FBF9F6;
+            --pastel-peach: #FEF0E6;
+            --pastel-lavender: #EDE8F5;
+            --teal-pro: #2D5F5D;
+            --sage-natural: #7C9885;
+            --white: #FFFFFF;
+            --cream: #FFFEF9;
+            --beige: #F5F3EF;
+            --gray-500: #6B7280;
+            --gray-600: #4B5563;
+            --charcoal: #1F2121;
+            --space-8: 8px;
+            --space-12: 12px;
+            --space-16: 16px;
+            --space-24: 24px;
+            --space-32: 32px;
+            --space-48: 48px;
+            --space-64: 64px;
+            --font-display: 'Fraunces', Georgia, serif;
+            --font-body: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+            --text-sm: 0.875rem;
+            --text-base: 1rem;
+            --text-lg: 1.125rem;
+            --text-xl: 1.25rem;
+            --text-2xl: 1.5rem;
+            --text-3xl: 1.875rem;
+            --radius-lg: 12px;
+            --radius-xl: 16px;
+            --radius-2xl: 20px;
+            --radius-full: 9999px;
+            --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.08);
+            --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.10);
+            --ease-standard: cubic-bezier(0.16, 1, 0.3, 1);
+            --duration-normal: 250ms;
+        }
+
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: var(--font-body);
+            font-size: var(--text-base);
+            line-height: 1.6;
+            color: var(--charcoal);
+            background-color: var(--cream);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: var(--space-24);
+        }
+
+        .container {
+            max-width: 500px;
+            width: 100%;
+            text-align: center;
+        }
+
+        .icon-wrap {
+            width: 120px;
+            height: 120px;
+            margin: 0 auto var(--space-32);
+            background: var(--pastel-teal);
+            border-radius: var(--radius-2xl);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .icon-wrap svg {
+            width: 60px;
+            height: 60px;
+            color: var(--teal-pro);
+        }
+
+        h1 {
+            font-family: var(--font-display);
+            font-size: var(--text-3xl);
+            font-weight: 500;
+            color: var(--charcoal);
+            margin-bottom: var(--space-16);
+            line-height: 1.2;
+        }
+
+        .subtitle {
+            font-size: var(--text-lg);
+            color: var(--gray-600);
+            margin-bottom: var(--space-32);
+            line-height: 1.6;
+        }
+
+        .card {
+            background: var(--white);
+            border-radius: var(--radius-xl);
+            padding: var(--space-32);
+            box-shadow: var(--shadow-md);
+            margin-bottom: var(--space-32);
+        }
+
+        .card-title {
+            font-family: var(--font-display);
+            font-size: var(--text-xl);
+            font-weight: 500;
+            color: var(--teal-pro);
+            margin-bottom: var(--space-16);
+        }
+
+        .quiz-list {
+            list-style: none;
+            text-align: left;
+        }
+
+        .quiz-list li {
+            display: flex;
+            align-items: center;
+            gap: var(--space-12);
+            padding: var(--space-12) 0;
+            border-bottom: 1px solid var(--beige);
+            font-size: var(--text-base);
+        }
+
+        .quiz-list li:last-child {
+            border-bottom: none;
+        }
+
+        .quiz-list .status {
+            font-size: var(--text-sm);
+            padding: var(--space-8) var(--space-12);
+            border-radius: var(--radius-full);
+            font-weight: 500;
+        }
+
+        .status.ready {
+            background: var(--pastel-mint);
+            color: var(--teal-pro);
+        }
+
+        .status.soon {
+            background: var(--pastel-peach);
+            color: #B45309;
+        }
+
+        .quiz-list .name {
+            flex: 1;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: var(--space-8);
+            font-family: var(--font-body);
+            font-size: var(--text-base);
+            font-weight: 600;
+            padding: var(--space-16) var(--space-32);
+            border-radius: var(--radius-lg);
+            border: none;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all var(--duration-normal) var(--ease-standard);
+        }
+
+        .btn-primary {
+            background: var(--teal-pro);
+            color: var(--white);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .btn-secondary {
+            background: var(--white);
+            color: var(--teal-pro);
+            border: 2px solid var(--teal-pro);
+            margin-left: var(--space-12);
+        }
+
+        .btn-secondary:hover {
+            background: var(--pastel-teal);
+        }
+
+        .buttons {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: var(--space-12);
+        }
+
+        .footer-note {
+            margin-top: var(--space-48);
+            font-size: var(--text-sm);
+            color: var(--gray-500);
+        }
+
+        .footer-note a {
+            color: var(--teal-pro);
+            text-decoration: none;
+        }
+
+        .footer-note a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 480px) {
+            h1 { font-size: var(--text-2xl); }
+            .subtitle { font-size: var(--text-base); }
+            .buttons { flex-direction: column; }
+            .btn { width: 100%; }
+            .btn-secondary { margin-left: 0; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="icon-wrap">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M12 8v4l3 3"/>
+                <circle cx="12" cy="12" r="10"/>
+            </svg>
+        </div>
+
+        <h1>Quiz en préparation</h1>
+        <p class="subtitle">
+            Nous travaillons sur de nouveaux quiz personnalisés pour vous aider à trouver les produits parfaits pour vos besoins.
+        </p>
+
+        <div class="card">
+            <h2 class="card-title">Nos quiz</h2>
+            <ul class="quiz-list">
+                <li>
+                    <span class="name">Dermocosmétique</span>
+                    <span class="status ready">Disponible</span>
+                </li>
+                <li>
+                    <span class="name">Produits naturels</span>
+                    <span class="status soon">Bientôt</span>
+                </li>
+                <li>
+                    <span class="name">Compléments alimentaires</span>
+                    <span class="status soon">Bientôt</span>
+                </li>
+                <li>
+                    <span class="name">Automédication</span>
+                    <span class="status soon">Bientôt</span>
+                </li>
+            </ul>
+        </div>
+
+        <div class="buttons">
+            <a href="quiz-soin-peau.html" class="btn btn-primary">
+                Faire le quiz Dermocosmétique
+            </a>
+            <a href="../index.html" class="btn btn-secondary">
+                Retour à l'accueil
+            </a>
+        </div>
+
+        <p class="footer-note">
+            En attendant, n'hésitez pas à <a href="../contact.html">passer nous voir en pharmacie</a> pour un conseil personnalisé.
+        </p>
+    </div>
+</body>
+</html>
