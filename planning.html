@@ -817,6 +817,9 @@
         .calendar-event.stephanie { background: #E9D5FF; color: #7C3AED; }
         .calendar-event.titia { background: #FECACA; color: #DC2626; }
         .calendar-event.leila { background: #A7F3D0; color: #047857; }
+        .calendar-event.mathilde { background: #FED7AA; color: #C2410C; }
+        .calendar-event.emilie { background: #C7D2FE; color: #4338CA; }
+        .calendar-event.pascal { background: #FBCFE8; color: #BE185D; }
 
         @media (max-width: 768px) {
             .nav-container { flex-direction: column; align-items: stretch; }
@@ -866,6 +869,9 @@
                     <option value="Titia">Titia</option>
                     <option value="Melanie">Melanie</option>
                     <option value="Chloe">Chloe</option>
+                    <option value="Mathilde">Mathilde</option>
+                    <option value="Pascal">Pascal</option>
+                    <option value="Emilie">Emilie</option>
                 </select>
             </div>
         </div>
@@ -2709,7 +2715,7 @@ Connectez-vous a l'application Planning pour traiter cette demande.
 
         // ========== VACANCES ==========
         // Tous les employes ont acces aux vacances
-        const VACANCES_EMPLOYEES = ['Stephanie', 'Claire', 'Sandrine', 'Titia', 'Emilie', 'Chloe'];
+        const VACANCES_EMPLOYEES = ['Stephanie', 'Claire', 'Sandrine', 'Titia', 'Emilie', 'Chloe', 'Mathilde', 'Pascal'];
         const VACANCES_ANNUEL = 25; // Max legal par an (30 jours ouvrables = 25 jours ouvres)
 
         // Jours feries francais 2026-2028
@@ -3288,14 +3294,14 @@ Connectez-vous a l'application Planning pour traiter cette demande.
         async function initContracts() {
             const doc = await db.collection('config').doc('staff_contracts').get();
             if (!doc.exists) {
-                // Initialiser avec des valeurs par defaut (CDI, date debut = aujourd'hui)
+                // Initialiser avec des valeurs par defaut
                 const init = {};
                 VACANCES_EMPLOYEES.forEach(name => {
                     init[name] = {
                         contractType: 'CDI',
-                        startDate: '2020-01-01', // Date par defaut a ajuster
                         endDate: null,
-                        hireDate: '2020-01-01' // Date d'embauche pour anciennete
+                        hireDate: '', // A renseigner
+                        daysTaken: 0
                     };
                 });
                 await db.collection('config').doc('staff_contracts').set(init);
@@ -3307,45 +3313,46 @@ Connectez-vous a l'application Planning pour traiter cette demande.
 
         // Calcule les jours de vacances acquis selon la loi francaise
         // Periode de reference: 1er juin N-1 au 31 mai N
-        // 2.5 jours ouvrables (= ~2.08 jours ouvres) par mois travaille
+        // 2.5 jours ouvrables par mois = ~2.08 jours ouvres (25j/an max)
         // +2 jours apres 6 ans d'anciennete (convention pharmacie)
         function calculateVacationDays(contract) {
-            if (!contract || !contract.startDate) return { acquired: 0, bonus: 0, total: 0, details: '' };
+            if (!contract || !contract.hireDate) return { acquired: 0, bonus: 0, total: 0, details: 'Date d\'embauche requise' };
 
             const today = new Date();
-            const startDate = new Date(contract.startDate);
-            const hireDate = contract.hireDate ? new Date(contract.hireDate) : startDate;
+            const hireDate = new Date(contract.hireDate);
             const endDate = contract.endDate ? new Date(contract.endDate) : null;
 
-            // Periode de reference (1er juin N-1 au 31 mai N)
-            let refStart, refEnd;
+            // Periode de reference actuelle (1er juin N-1 au 31 mai N)
+            let refStart;
             if (today.getMonth() >= 5) { // Juin ou apres
                 refStart = new Date(today.getFullYear(), 5, 1); // 1er juin de cette annee
-                refEnd = new Date(today.getFullYear() + 1, 4, 31); // 31 mai de l'annee suivante
             } else {
                 refStart = new Date(today.getFullYear() - 1, 5, 1); // 1er juin de l'annee derniere
-                refEnd = new Date(today.getFullYear(), 4, 31); // 31 mai de cette annee
             }
 
-            // Date de debut effectif pour le calcul (max entre debut contrat et debut periode ref)
-            const effectiveStart = startDate > refStart ? startDate : refStart;
+            // Date de debut effectif pour le calcul
+            const effectiveStart = hireDate > refStart ? hireDate : refStart;
 
-            // Date de fin effectif (min entre aujourd'hui, fin contrat, et fin periode ref)
-            let effectiveEnd = today < refEnd ? today : refEnd;
+            // Date de fin effectif (aujourd'hui ou fin de contrat si CDD termine)
+            let effectiveEnd = today;
             if (endDate && endDate < effectiveEnd) {
                 effectiveEnd = endDate;
             }
 
-            // Si le contrat n'a pas encore commence ou est deja fini
-            if (effectiveStart > effectiveEnd) {
-                return { acquired: 0, bonus: 0, total: 0, details: 'Contrat non actif sur cette periode' };
+            // Si l'employe n'a pas encore commence
+            if (hireDate > today) {
+                return { acquired: 0, bonus: 0, total: 0, details: 'Contrat non commence' };
             }
 
-            // Calcul du nombre de mois travailles
+            // Si CDD termine avant la periode de reference
+            if (endDate && endDate < refStart) {
+                return { acquired: 0, bonus: 0, total: 0, details: 'Contrat termine' };
+            }
+
+            // Calcul du nombre de mois travailles depuis le 1er juin (ou date embauche si apres)
             const monthsWorked = monthsDiff(effectiveStart, effectiveEnd);
 
-            // 2.5 jours ouvrables par mois = environ 2.08 jours ouvres
-            // On utilise 2.08 car l'app compte en jours ouvres (25j/an)
+            // 2.08 jours ouvres par mois (25j/an)
             const acquiredDays = Math.min(Math.round(monthsWorked * 2.08), 25);
 
             // Bonus anciennete: +2 jours apres 6 ans (convention pharmacie)
@@ -3354,9 +3361,9 @@ Connectez-vous a l'application Planning pour traiter cette demande.
 
             const total = acquiredDays + seniorityBonus;
 
-            let details = `${monthsWorked.toFixed(1)} mois travailles = ${acquiredDays}j`;
+            let details = `${monthsWorked.toFixed(1)} mois depuis 1er juin = ${acquiredDays}j`;
             if (seniorityBonus > 0) {
-                details += ` + ${seniorityBonus}j (anciennete ${yearsOfService} ans)`;
+                details += ` + ${seniorityBonus}j (${yearsOfService} ans anciennete)`;
             }
 
             return { acquired: acquiredDays, bonus: seniorityBonus, total, details, monthsWorked, yearsOfService };
@@ -3405,9 +3412,11 @@ Connectez-vous a l'application Planning pour traiter cette demande.
             let html = '';
 
             VACANCES_EMPLOYEES.forEach(name => {
-                const contract = contracts[name] || { contractType: 'CDI', startDate: '', endDate: null, hireDate: '' };
+                const contract = contracts[name] || { contractType: 'CDI', endDate: null, hireDate: '', daysTaken: 0 };
                 const vacCalc = calculateVacationDays(contract);
                 const alert = getContractEndAlert(contract);
+                const daysTaken = contract.daysTaken || 0;
+                const remaining = Math.max(0, vacCalc.total - daysTaken);
 
                 const cardClass = alert ? (alert.type === 'danger' ? 'ended' : 'ending-soon') : '';
                 const badgeClass = contract.contractType.toLowerCase().replace(' ', '_');
@@ -3432,24 +3441,25 @@ Connectez-vous a l'application Planning pour traiter cette demande.
                                 </select>
                             </div>
                             <div class="contract-field">
-                                <label>Date d'embauche (anciennete)</label>
+                                <label>Date d'embauche</label>
                                 <input type="date" id="contract-hire-${name}" value="${contract.hireDate || ''}">
-                            </div>
-                            <div class="contract-field">
-                                <label>Debut contrat actuel</label>
-                                <input type="date" id="contract-start-${name}" value="${contract.startDate || ''}">
                             </div>
                             <div class="contract-field" id="contract-end-field-${name}" style="${contract.contractType === 'CDI' ? 'display: none;' : ''}">
                                 <label>Fin de contrat</label>
                                 <input type="date" id="contract-end-${name}" value="${contract.endDate || ''}">
                             </div>
                             <div class="contract-field">
+                                <label>Jours pris depuis le 1er juin</label>
+                                <input type="number" id="contract-taken-${name}" value="${daysTaken}" min="0" max="30" style="width: 80px;">
+                            </div>
+                            <div class="contract-field">
                                 <button class="contract-save-btn" onclick="saveContract('${name}')">Enregistrer</button>
                             </div>
                         </div>
                         <div class="contract-vacances-calc">
-                            <strong>Vacances calculees :</strong> ${vacCalc.total} jours
+                            <strong>Droits acquis :</strong> ${vacCalc.total} jours
                             ${vacCalc.bonus > 0 ? `<span class="seniority-bonus">(+${vacCalc.bonus}j anciennete)</span>` : ''}
+                            <br><strong>Pris :</strong> ${daysTaken}j | <strong>Restant :</strong> ${remaining}j
                             <br><small style="color: var(--gray);">${vacCalc.details}</small>
                         </div>
                         ${alert ? `<div class="contract-alert ${alert.type}">⚠️ ${alert.message}</div>` : ''}
@@ -3473,33 +3483,36 @@ Connectez-vous a l'application Planning pour traiter cette demande.
         async function saveContract(name) {
             const contractType = document.getElementById(`contract-type-${name}`).value;
             const hireDate = document.getElementById(`contract-hire-${name}`).value;
-            const startDate = document.getElementById(`contract-start-${name}`).value;
             const endDate = document.getElementById(`contract-end-${name}`).value || null;
+            const daysTaken = parseInt(document.getElementById(`contract-taken-${name}`).value) || 0;
 
             const contracts = getContracts();
             contracts[name] = {
                 contractType,
                 hireDate,
-                startDate,
-                endDate: contractType === 'CDI' ? null : endDate
+                endDate: contractType === 'CDI' ? null : endDate,
+                daysTaken
             };
 
             await saveContracts(contracts);
 
             // Mettre a jour automatiquement le solde de vacances
             const vacCalc = calculateVacationDays(contracts[name]);
+            const remaining = Math.max(0, vacCalc.total - daysTaken);
             const solde = getVacancesSolde();
             if (solde[name]) {
                 solde[name].annuel = vacCalc.total;
+                solde[name].pris = daysTaken;
                 await saveVacancesSolde(solde);
             }
 
-            alert(`Contrat de ${name} enregistre. Vacances recalculees: ${vacCalc.total} jours.`);
+            alert(`Contrat de ${name} enregistre.\nDroits: ${vacCalc.total}j | Pris: ${daysTaken}j | Restant: ${remaining}j`);
         }
 
         // Synchroniser le calcul des vacances avec les contrats
-        // annuel = calcul automatique (2.5j/mois)
+        // annuel = calcul automatique (2.08j/mois ouvre)
         // report = jours reportes des annees precedentes (ajuste manuellement)
+        // pris = jours pris depuis le 1er juin (saisi dans contrats)
         // Total disponible = annuel + report - pris
         async function syncVacationsWithContracts() {
             const contracts = getContracts();
@@ -3509,14 +3522,22 @@ Connectez-vous a l'application Planning pour traiter cette demande.
             VACANCES_EMPLOYEES.forEach(name => {
                 if (contracts[name]) {
                     const vacCalc = calculateVacationDays(contracts[name]);
-                    if (solde[name] && solde[name].annuel !== vacCalc.total) {
-                        solde[name].annuel = vacCalc.total;
-                        updated = true;
-                    }
-                    // S'assurer que report existe
-                    if (solde[name] && solde[name].report === undefined) {
-                        solde[name].report = 0;
-                        updated = true;
+                    const daysTaken = contracts[name].daysTaken || 0;
+
+                    if (solde[name]) {
+                        if (solde[name].annuel !== vacCalc.total) {
+                            solde[name].annuel = vacCalc.total;
+                            updated = true;
+                        }
+                        if (solde[name].pris !== daysTaken) {
+                            solde[name].pris = daysTaken;
+                            updated = true;
+                        }
+                        // S'assurer que report existe
+                        if (solde[name].report === undefined) {
+                            solde[name].report = 0;
+                            updated = true;
+                        }
                     }
                 }
             });
