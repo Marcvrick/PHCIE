@@ -1305,6 +1305,24 @@
                     vendredi: { am: null, pm: null },
                     samedi: { am: null, pm: null }
                 }
+            },
+            "Mathilde": {
+                paire: {
+                    lundi: { am: "9h-12h30", pm: "14h-19h15" },
+                    mardi: { am: "9h-12h30", pm: null },
+                    mercredi: { am: null, pm: null },
+                    jeudi: { am: "9h-12h", pm: "14h-18h" },
+                    vendredi: { am: "9h-12h30", pm: "14h-19h15" },
+                    samedi: { am: null, pm: null }
+                },
+                impaire: {
+                    lundi: { am: "9h-12h30", pm: "14h-19h15" },
+                    mardi: { am: "9h-12h30", pm: null },
+                    mercredi: { am: null, pm: null },
+                    jeudi: { am: "9h-12h", pm: "14h-18h" },
+                    vendredi: { am: "9h-12h30", pm: "14h-19h15" },
+                    samedi: { am: null, pm: null }
+                }
             }
         };
 
@@ -2715,7 +2733,7 @@ Connectez-vous a l'application Planning pour traiter cette demande.
 
         // ========== VACANCES ==========
         // Tous les employes ont acces aux vacances
-        const VACANCES_EMPLOYEES = ['Stephanie', 'Claire', 'Sandrine', 'Titia', 'Emilie', 'Chloe', 'Mathilde', 'Pascal'];
+        const VACANCES_EMPLOYEES = ['Stephanie', 'Claire', 'Sandrine', 'Titia', 'Melanie', 'Emilie', 'Chloe', 'Mathilde', 'Pascal'];
         const VACANCES_ANNUEL = 25; // Max legal par an (30 jours ouvrables = 25 jours ouvres)
 
         // Jours feries francais 2026-2028
