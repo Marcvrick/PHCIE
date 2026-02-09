@@ -1104,14 +1104,10 @@
 
         <!-- VUE VACANCES -->
         <div id="view-vacances" class="view">
-            <!-- Solde equipe (tabs) -->
+            <!-- Solde personnel -->
             <div class="card">
-                <div class="solde-tabs">
-                    <button class="solde-tab active" data-solde-tab="vacances" onclick="switchSoldeTab('vacances')">Solde vacances</button>
-                    <button class="solde-tab" data-solde-tab="heures" onclick="switchSoldeTab('heures')">Solde d'heures</button>
-                </div>
-                <div id="soldeTabVacances"></div>
-                <div id="soldeTabHeures" style="display:none;"></div>
+                <h2 class="card-title">Mon solde de vacances</h2>
+                <div id="vacancesBalance"></div>
             </div>
 
             <!-- Formulaire -->
@@ -1186,8 +1182,16 @@
             </div>
 
             <div class="card">
-                <h2 class="card-title">Solde vacances (tous les employes)</h2>
-                <div class="vacances-manager-card" id="managerVacancesBalance"></div>
+                <div class="solde-tabs">
+                    <button class="solde-tab active" data-solde-tab="vacances" onclick="switchSoldeTab('vacances')">Solde vacances</button>
+                    <button class="solde-tab" data-solde-tab="heures" onclick="switchSoldeTab('heures')">Solde d'heures</button>
+                </div>
+                <div id="soldeTabVacances">
+                    <div class="vacances-manager-card" id="managerVacancesBalance"></div>
+                </div>
+                <div id="soldeTabHeures" style="display:none;">
+                    <div id="managerHoursBalance"></div>
+                </div>
             </div>
 
             <div class="card">
@@ -1199,11 +1203,6 @@
                     </select>
                 </div>
                 <div id="managerMonthlyHours"></div>
-            </div>
-
-            <div class="card">
-                <h2 class="card-title">Solde d'heures par employe</h2>
-                <div id="managerHoursBalance"></div>
             </div>
 
             <div class="card">
@@ -3259,59 +3258,36 @@ Connectez-vous a l'application Planning pour traiter cette demande.
         }
 
         function renderVacancesBalance() {
+            const user = document.getElementById('currentUser').value;
             const solde = getVacancesSolde();
-            const currentUser = document.getElementById('currentUser').value;
+            const s = solde[user];
+            if (!s) return;
 
-            // Tab 1: Solde vacances equipe
-            let vacHtml = '<div style="overflow-x: auto;"><table class="solde-table"><thead><tr>';
-            vacHtml += '<th>Employe</th><th>Acquis</th><th>Report</th><th>Pris</th><th>Restant</th>';
-            vacHtml += '</tr></thead><tbody>';
+            const report = s.report || 0;
+            const total = s.annuel + report;
+            const restant = total - s.pris;
+            const pct = total > 0 ? Math.round((s.pris / total) * 100) : 0;
+            const fillClass = pct > 80 ? 'danger' : pct > 60 ? 'warning' : '';
 
-            VACANCES_EMPLOYEES.forEach(name => {
-                const s = solde[name];
-                if (!s) return;
-                const report = s.report || 0;
-                const total = s.annuel + report;
-                const restant = total - s.pris;
-                const isCurrentUser = name === currentUser;
-                const rowStyle = isCurrentUser ? ' style="background: #f0f9f4;"' : '';
-                const restantClass = restant <= 0 ? 'solde-tag-red' : restant <= 5 ? 'solde-tag-orange' : 'solde-tag-green';
-
-                vacHtml += `<tr${rowStyle}>`;
-                vacHtml += `<td class="solde-name">${name}${isCurrentUser ? ' *' : ''}</td>`;
-                vacHtml += `<td>${s.annuel}</td>`;
-                vacHtml += `<td>${report > 0 ? '<span style="color: var(--blue);">+' + report + '</span>' : report}</td>`;
-                vacHtml += `<td>${s.pris}</td>`;
-                vacHtml += `<td><span class="solde-tag ${restantClass}">${restant}j</span></td>`;
-                vacHtml += '</tr>';
-            });
-
-            vacHtml += '</tbody></table></div>';
-            document.getElementById('soldeTabVacances').innerHTML = vacHtml;
-
-            // Tab 2: Solde d'heures equipe
-            const balances = calculateHoursBalance();
-            let heuresHtml = '<div style="overflow-x: auto;"><table class="solde-table"><thead><tr>';
-            heuresHtml += '<th>Employe</th><th>Dues</th><th>Recuperees</th><th>Solde</th>';
-            heuresHtml += '</tr></thead><tbody>';
-
-            for (const [name, balance] of Object.entries(balances)) {
-                const soldeH = balance.recuperees - balance.dues;
-                const isCurrentUser = name === currentUser;
-                const rowStyle = isCurrentUser ? ' style="background: #f0f9f4;"' : '';
-                const soldeClass = soldeH > 0 ? 'solde-tag-green' : soldeH < 0 ? 'solde-tag-red' : 'solde-tag-neutral';
-                const sign = soldeH > 0 ? '+' : '';
-
-                heuresHtml += `<tr${rowStyle}>`;
-                heuresHtml += `<td class="solde-name">${name}${isCurrentUser ? ' *' : ''}</td>`;
-                heuresHtml += `<td>${formatHeures(balance.dues)}</td>`;
-                heuresHtml += `<td>${formatHeures(balance.recuperees)}</td>`;
-                heuresHtml += `<td><span class="solde-tag ${soldeClass}">${sign}${formatHeures(Math.abs(soldeH))}</span></td>`;
-                heuresHtml += '</tr>';
-            }
-
-            heuresHtml += '</tbody></table></div>';
-            document.getElementById('soldeTabHeures').innerHTML = heuresHtml;
+            document.getElementById('vacancesBalance').innerHTML = `
+                <div class="vacances-stats">
+                    <div class="vacances-stat">
+                        <div class="vacances-stat-value">${s.annuel}${report > 0 ? `<span style="font-size: 0.7em; color: var(--blue);">+${report}</span>` : ''}</div>
+                        <div class="vacances-stat-label">Annuel${report > 0 ? ' + Report' : ''}</div>
+                    </div>
+                    <div class="vacances-stat">
+                        <div class="vacances-stat-value" style="color: var(--orange);">${s.pris}</div>
+                        <div class="vacances-stat-label">Pris</div>
+                    </div>
+                    <div class="vacances-stat">
+                        <div class="vacances-stat-value" style="color: ${restant <= 5 ? 'var(--red)' : 'var(--green)'};">${restant}</div>
+                        <div class="vacances-stat-label">Restant</div>
+                    </div>
+                </div>
+                <div class="vacances-balance-bar">
+                    <div class="vacances-balance-fill ${fillClass}" style="width: ${pct}%;"></div>
+                </div>
+            `;
         }
 
         function updateVacancesCalc() {
