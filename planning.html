@@ -3728,6 +3728,49 @@ Connectez-vous a l'application Planning pour traiter cette demande.
                     contractsCache['Stephanie'].hireDate = '2026-01-01';
                     await db.collection('config').doc('staff_contracts').update({ 'Stephanie.hireDate': '2026-01-01' });
                 }
+                // Correction: Titia CDD du 13/01/2026 au 11/04/2026
+                if (contractsCache['Titia']) {
+                    let titiaUpdate = {};
+                    if (contractsCache['Titia'].hireDate !== '2026-01-13') {
+                        contractsCache['Titia'].hireDate = '2026-01-13';
+                        titiaUpdate['Titia.hireDate'] = '2026-01-13';
+                    }
+                    if (contractsCache['Titia'].endDate !== '2026-04-11') {
+                        contractsCache['Titia'].endDate = '2026-04-11';
+                        titiaUpdate['Titia.endDate'] = '2026-04-11';
+                    }
+                    if (contractsCache['Titia'].contractType !== 'CDD') {
+                        contractsCache['Titia'].contractType = 'CDD';
+                        titiaUpdate['Titia.contractType'] = 'CDD';
+                    }
+                    if (Object.keys(titiaUpdate).length > 0) {
+                        await db.collection('config').doc('staff_contracts').update(titiaUpdate);
+                    }
+                }
+                // Correction: Melanie embauchee le 03/02/2026
+                if (contractsCache['Melanie'] && contractsCache['Melanie'].hireDate !== '2026-02-03') {
+                    contractsCache['Melanie'].hireDate = '2026-02-03';
+                    await db.collection('config').doc('staff_contracts').update({ 'Melanie.hireDate': '2026-02-03' });
+                }
+                // Correction: Mathilde CDD du 05/01/2026 au 30/06/2026
+                if (contractsCache['Mathilde']) {
+                    let mathildeUpdate = {};
+                    if (contractsCache['Mathilde'].hireDate !== '2026-01-05') {
+                        contractsCache['Mathilde'].hireDate = '2026-01-05';
+                        mathildeUpdate['Mathilde.hireDate'] = '2026-01-05';
+                    }
+                    if (contractsCache['Mathilde'].endDate !== '2026-06-30') {
+                        contractsCache['Mathilde'].endDate = '2026-06-30';
+                        mathildeUpdate['Mathilde.endDate'] = '2026-06-30';
+                    }
+                    if (contractsCache['Mathilde'].contractType !== 'CDD') {
+                        contractsCache['Mathilde'].contractType = 'CDD';
+                        mathildeUpdate['Mathilde.contractType'] = 'CDD';
+                    }
+                    if (Object.keys(mathildeUpdate).length > 0) {
+                        await db.collection('config').doc('staff_contracts').update(mathildeUpdate);
+                    }
+                }
             }
         }
 
