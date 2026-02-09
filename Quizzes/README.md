@@ -246,9 +246,9 @@ Exemples :
 - Badge "En cours de création"
 - Liste des 4 catégories de quiz avec leur statut :
   - Dermocosmétique : **Disponible** (cliquable → quiz-soin-peau.html)
+  - Automédication : **Disponible** (cliquable → quiz-automedication.html)
   - Produits naturels : **Bientôt**
   - Compléments alimentaires : **Bientôt**
-  - Automédication : **Bientôt**
 - Boutons CTA (vers quiz dermo + retour accueil)
 - Encart conseil invitant à passer en pharmacie
 - Footer cohérent avec le site
@@ -258,6 +258,67 @@ Exemples :
 **Quand mettre à jour :**
 - Quand un nouveau quiz est créé, changer son statut de "Bientôt" à "Disponible" et ajouter le lien
 - Quand tous les quiz sont créés, cette page peut être supprimée ou redirigée
+
+---
+
+## Quiz Automédication — Spécificités
+
+**Fichier :** `quiz-automedication.html`
+
+Le quiz automédication diffère des quiz cosmétiques par sa logique de recommandation basée sur l'âge et le symptôme.
+
+### Structure des questions
+
+| # | Question | Ce qu'elle détermine |
+|---|----------|---------------------|
+| Q1 | Âge du patient | Adulte (≥6 ans) vs Enfant (<6 ans) |
+| Q2 | Type de symptôme | Catégorie produit (6 catégories) |
+| Q3 | Sévérité/contexte | Produit spécifique + compléments |
+
+### Catégories de symptômes
+
+| Catégorie | Produits Adulte | Produits Enfant |
+|-----------|-----------------|-----------------|
+| Douleur/Fièvre | Paracétamol, Ibuprofène | Doliprane sirop, Advil sirop |
+| Allergie | Cétirizine | → Consultation (ordonnance obligatoire) |
+| Mal de gorge | Lysopaïne, Strepsils, Maxilase | Alpha-amylase Sirop, Maxilase Sirop, Homéogène 9 |
+| Digestif | Smecta, Macrogol, Spasfon | Smecta enfant, Macrogol enfant |
+| Toux | Bronchokod, Toplexil | Sirops enfant (≥30 mois avec précaution) |
+| Brûlures/Plaies | Biafine, Flamigel, Biseptine | Mêmes produits (adaptés enfants) |
+
+### Logique Enfant (<6 ans)
+
+**Règles strictes :**
+- Jamais de comprimés, pastilles ou gélules
+- Uniquement sirops, solutions buvables, formes adaptées
+- Certaines catégories redirigent vers consultation (allergie)
+- Avertissements spécifiques (ex: sirops toux ≥30 mois)
+
+**Flags techniques :**
+- `productChild` : produit enfant Biogaran
+- `productChildUpsa` : produit enfant UPSA
+- `productChildSanofi` : produit enfant Sanofi
+- `childConsult: true` : redirection vers avis médical
+- `childWarning` : message d'avertissement âge
+
+### Système Dual-Brand
+
+Le quiz propose systématiquement deux options :
+1. **Biogaran Conseil** — générique économique
+2. **Marque originale** — UPSA, Sanofi, ou autre
+
+Affichage côte à côte avec comparaison :
+- Même principe actif
+- Prix différent
+- Choix du patient
+
+### Produits complémentaires
+
+Chaque recommandation peut inclure des compléments :
+- `complements` : pour adultes
+- `complementsChild` : pour enfants (formes adaptées)
+
+Exemples : Paracétamol en complément du mal de gorge, spray nasal avec allergie.
 
 ---
 

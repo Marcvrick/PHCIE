@@ -1,0 +1,3179 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guide Automédication | Pharmacie Charnal Quéven</title>
+    <meta name="description" content="Trouvez le bon médicament sans ordonnance pour vos maux du quotidien. Conseil personnalisé par votre Pharmacie Charnal à Quéven.">
+
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-2Q64V6B0QE"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-2Q64V6B0QE');
+    </script>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            /* Pastels */
+            --pastel-sage: #E8F0EA;
+            --pastel-mint: #D4E8E0;
+            --pastel-teal: #D0E5E4;
+            --pastel-cream: #FBF9F6;
+            --pastel-peach: #FEF0E6;
+            --pastel-lavender: #EDE8F5;
+            --pastel-blue: #E3EEF5;
+            --pastel-yellow: #FFF8E7;
+            --pastel-coral: #FFE8E5;
+
+            /* Primary */
+            --teal-pro: #2D5F5D;
+            --sage-natural: #7C9885;
+            --sage-dark: #5A7563;
+            --bleu-confiance: #4A7C8E;
+            --warning-orange: #E67E22;
+            --alert-red: #C0392B;
+
+            /* Neutrals */
+            --white: #FFFFFF;
+            --cream: #FFFEF9;
+            --beige: #F5F3EF;
+            --gray-100: #F7F7F7;
+            --gray-200: #E5E7EB;
+            --gray-300: #D1D5DB;
+            --gray-500: #6B7280;
+            --gray-600: #4B5563;
+            --charcoal: #1F2121;
+
+            /* Spacing */
+            --space-4: 4px;
+            --space-8: 8px;
+            --space-12: 12px;
+            --space-16: 16px;
+            --space-24: 24px;
+            --space-32: 32px;
+            --space-48: 48px;
+            --space-64: 64px;
+            --space-96: 96px;
+
+            /* Typography */
+            --font-display: 'Fraunces', Georgia, serif;
+            --font-body: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+            --text-xs: 0.75rem;
+            --text-sm: 0.875rem;
+            --text-base: 1rem;
+            --text-lg: 1.125rem;
+            --text-xl: 1.25rem;
+            --text-2xl: 1.5rem;
+            --text-3xl: 1.875rem;
+
+            /* Radius */
+            --radius-sm: 6px;
+            --radius-base: 8px;
+            --radius-lg: 12px;
+            --radius-xl: 16px;
+            --radius-2xl: 20px;
+            --radius-full: 9999px;
+
+            /* Shadows */
+            --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.04);
+            --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.06);
+            --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.08);
+            --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.10);
+
+            /* Transitions */
+            --ease-standard: cubic-bezier(0.16, 1, 0.3, 1);
+            --duration-fast: 150ms;
+            --duration-normal: 250ms;
+            --duration-slow: 400ms;
+        }
+
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+
+        body {
+            font-family: var(--font-body);
+            font-size: var(--text-base);
+            line-height: 1.6;
+            color: var(--charcoal);
+            background-color: var(--cream);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding-top: 72px;
+        }
+
+        a { color: inherit; text-decoration: none; cursor: pointer; }
+
+        /* === NAVBAR === */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(255, 255, 254, 0.92);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+        }
+
+        .nav-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 72px;
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 var(--space-24);
+        }
+
+        .nav-logo-link {
+            display: flex;
+            align-items: center;
+            gap: var(--space-12);
+            z-index: 10;
+        }
+
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: var(--space-12);
+        }
+
+        .logo-icon {
+            width: 44px;
+            height: 44px;
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+        }
+
+        .logo-icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .logo-text {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .logo-name {
+            font-family: var(--font-display);
+            font-size: var(--text-lg);
+            font-weight: 600;
+            color: var(--teal-pro);
+            letter-spacing: -0.01em;
+        }
+
+        .logo-tagline {
+            font-size: var(--text-xs);
+            color: var(--gray-500);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .nav-links {
+            display: none;
+            list-style: none;
+            gap: var(--space-32);
+            align-items: center;
+            margin: 0;
+            padding: 0;
+        }
+
+        .nav-links li { list-style: none; }
+
+        @media (min-width: 768px) {
+            .nav-links { display: flex; }
+        }
+
+        .nav-link {
+            font-size: var(--text-base);
+            font-weight: 500;
+            color: var(--gray-600);
+            padding: var(--space-8) var(--space-16);
+            border-radius: var(--radius-full);
+            transition: all var(--duration-fast) var(--ease-standard);
+            display: block;
+        }
+
+        .nav-link:hover {
+            color: var(--teal-pro);
+            background-color: var(--pastel-mint);
+        }
+
+        .nav-link-blog {
+            background: #b4a6d7;
+            color: white !important;
+        }
+
+        .nav-link-blog:hover { background: #a090c7; }
+
+        .nav-dropdown { position: relative; }
+
+        .nav-dropdown-toggle {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.3rem;
+            cursor: pointer;
+        }
+
+        .nav-dropdown-toggle::after {
+            content: '';
+            border: solid var(--gray-500);
+            border-width: 0 2px 2px 0;
+            display: inline-block;
+            padding: 2px;
+            transform: rotate(45deg);
+            transition: transform var(--duration-normal) var(--ease-standard);
+            margin-top: -2px;
+            margin-left: 4px;
+        }
+
+        .nav-dropdown:hover .nav-dropdown-toggle::after {
+            transform: rotate(-135deg);
+            margin-top: 2px;
+        }
+
+        .nav-dropdown-menu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--white);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-lg);
+            border: 1px solid var(--gray-200);
+            padding: var(--space-16) 0 var(--space-8);
+            min-width: 200px;
+            list-style: none;
+            z-index: 100;
+        }
+
+        .nav-dropdown-menu::before {
+            content: '';
+            position: absolute;
+            top: -16px;
+            left: 0;
+            right: 0;
+            height: 16px;
+        }
+
+        .nav-dropdown:hover .nav-dropdown-menu { display: block; }
+        .nav-dropdown-menu li { list-style: none; }
+
+        .nav-dropdown-menu .nav-link {
+            display: block;
+            padding: var(--space-8) var(--space-16);
+            font-size: var(--text-sm);
+            white-space: nowrap;
+            border-radius: 0;
+        }
+
+        .nav-dropdown-menu .nav-link:hover { background: var(--pastel-sage); }
+
+        .mobile-menu-toggle {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: 5px;
+            width: 44px;
+            height: 44px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: var(--space-8);
+        }
+
+        @media (min-width: 768px) {
+            .mobile-menu-toggle { display: none; }
+        }
+
+        .hamburger-line {
+            width: 24px;
+            height: 2px;
+            background: var(--charcoal);
+            border-radius: 2px;
+            transition: all var(--duration-normal) var(--ease-standard);
+        }
+
+        .mobile-menu-toggle[aria-expanded="true"] .hamburger-line:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+        .mobile-menu-toggle[aria-expanded="true"] .hamburger-line:nth-child(2) { opacity: 0; }
+        .mobile-menu-toggle[aria-expanded="true"] .hamburger-line:nth-child(3) {
+            transform: rotate(-45deg) translate(5px, -5px);
+        }
+
+        @media (max-width: 767px) {
+            .nav-links {
+                position: fixed;
+                top: 72px;
+                right: 0;
+                background: var(--white);
+                width: 100%;
+                max-width: 280px;
+                flex-direction: column;
+                padding: var(--space-32);
+                gap: var(--space-24);
+                box-shadow: var(--shadow-lg);
+                transform: translateX(100%);
+                transition: transform 0.3s ease-in-out;
+            }
+
+            .nav-links.active {
+                display: flex;
+                transform: translateX(0);
+            }
+
+            .nav-links li { width: 100%; }
+
+            .nav-link {
+                width: 100%;
+                text-align: left;
+                padding: var(--space-12) var(--space-16);
+                font-size: var(--text-lg);
+            }
+
+            .nav-dropdown {
+                flex-direction: column;
+                width: 100%;
+            }
+
+            .nav-dropdown-menu {
+                position: static;
+                transform: none;
+                box-shadow: none;
+                background: transparent;
+                border: none;
+                padding: 0;
+                min-width: 100%;
+                display: flex;
+                flex-direction: column;
+                gap: var(--space-8);
+                padding-left: var(--space-16);
+                border-left: 2px solid var(--pastel-mint);
+                margin-top: var(--space-8);
+            }
+
+            .nav-dropdown-toggle::after { display: none; }
+
+            .nav-dropdown-menu .nav-link {
+                padding: var(--space-8) var(--space-16);
+                font-size: var(--text-base);
+                color: var(--gray-500);
+            }
+        }
+
+        /* === PROGRESS BAR === */
+        .progress-container {
+            width: 100%;
+            max-width: 640px;
+            padding: var(--space-24) var(--space-24) 0;
+        }
+
+        .progress-bar-wrapper {
+            display: flex;
+            align-items: center;
+            gap: var(--space-12);
+        }
+
+        .progress-track {
+            flex: 1;
+            height: 4px;
+            background: var(--gray-200);
+            border-radius: var(--radius-full);
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: var(--teal-pro);
+            border-radius: var(--radius-full);
+            transition: width 0.5s var(--ease-standard);
+            width: 0%;
+        }
+
+        .progress-label {
+            font-size: var(--text-xs);
+            font-weight: 500;
+            color: var(--gray-500);
+            white-space: nowrap;
+        }
+
+        /* === QUIZ CONTAINER === */
+        .quiz-container {
+            width: 100%;
+            max-width: 640px;
+            padding: 0 var(--space-24);
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* === STEPS === */
+        .step {
+            display: none;
+            flex-direction: column;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .step.active {
+            display: flex;
+            animation: fadeInUp 0.6s var(--ease-standard) forwards;
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* === INTRO === */
+        .intro {
+            text-align: center;
+            padding: var(--space-64) 0 var(--space-48);
+        }
+
+        .intro-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--space-8);
+            padding: var(--space-8) var(--space-16);
+            background: var(--white);
+            border-radius: var(--radius-full);
+            font-size: var(--text-sm);
+            font-weight: 500;
+            color: var(--teal-pro);
+            box-shadow: var(--shadow-sm);
+            margin-bottom: var(--space-32);
+        }
+
+        .intro h1 {
+            font-family: var(--font-display);
+            font-size: clamp(2rem, 5vw, var(--text-3xl));
+            font-weight: 500;
+            line-height: 1.15;
+            color: var(--charcoal);
+            letter-spacing: -0.02em;
+            margin-bottom: var(--space-16);
+        }
+
+        .intro h1 .highlight {
+            color: var(--teal-pro);
+            font-style: italic;
+        }
+
+        .intro p {
+            font-size: var(--text-lg);
+            line-height: 1.7;
+            color: var(--gray-600);
+            max-width: 440px;
+            margin: 0 auto var(--space-48);
+        }
+
+        .intro-features {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-12);
+            text-align: left;
+            margin-bottom: var(--space-48);
+        }
+
+        .intro-feature {
+            display: flex;
+            align-items: center;
+            gap: var(--space-16);
+            padding: var(--space-16) var(--space-24);
+            background: var(--white);
+            border: 1px solid var(--gray-200);
+            border-radius: var(--radius-lg);
+            transition: all var(--duration-normal) var(--ease-standard);
+        }
+
+        .intro-feature:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .feat-icon {
+            width: 40px;
+            height: 40px;
+            min-width: 40px;
+            border-radius: var(--radius-base);
+            background: var(--pastel-mint);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: var(--text-lg);
+        }
+
+        .feat-label {
+            font-weight: 600;
+            font-size: var(--text-base);
+            color: var(--charcoal);
+        }
+
+        .feat-desc {
+            font-size: var(--text-sm);
+            color: var(--gray-500);
+            margin-top: 2px;
+        }
+
+        /* === BUTTONS === */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: var(--space-8);
+            font-family: var(--font-body);
+            font-size: var(--text-base);
+            font-weight: 600;
+            line-height: 1;
+            padding: var(--space-16) var(--space-32);
+            border-radius: var(--radius-base);
+            border: none;
+            cursor: pointer;
+            transition: all var(--duration-normal) var(--ease-standard);
+            width: 100%;
+        }
+
+        .btn-primary {
+            background: var(--teal-pro);
+            color: var(--white);
+        }
+
+        .btn-primary:hover {
+            transform: scale(1.02);
+            box-shadow: 0 8px 24px rgba(45, 95, 93, 0.25);
+            background: #245250;
+        }
+
+        .btn-primary:active { transform: scale(0.98); }
+
+        .btn-primary:disabled {
+            opacity: 0.35;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--charcoal);
+            border: 2px solid var(--gray-300);
+        }
+
+        .btn-secondary:hover {
+            background: var(--gray-100);
+            border-color: var(--gray-500);
+        }
+
+        .btn-start {
+            font-size: var(--text-lg);
+            padding: var(--space-16) var(--space-48);
+        }
+
+        .btn-group {
+            display: flex;
+            gap: var(--space-12);
+            margin-top: var(--space-32);
+        }
+
+        .btn-group .btn-secondary {
+            width: auto;
+            min-width: 52px;
+            padding: var(--space-16);
+        }
+
+        .btn-group .btn-primary { flex: 1; }
+
+        /* Back navigation */
+        .back-nav {
+            margin-top: var(--space-32);
+            padding-top: var(--space-16);
+        }
+
+        .btn-back {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--space-8);
+            font-family: var(--font-body);
+            font-size: var(--text-sm);
+            font-weight: 500;
+            color: var(--gray-500);
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: var(--space-8) var(--space-16);
+            border-radius: var(--radius-full);
+            transition: all var(--duration-fast) var(--ease-standard);
+        }
+
+        .btn-back:hover {
+            color: var(--charcoal);
+            background: var(--gray-100);
+        }
+
+        /* === QUESTION === */
+        .question-header {
+            padding: var(--space-48) 0 var(--space-24);
+        }
+
+        .question-number {
+            font-size: var(--text-xs);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--sage-natural);
+            margin-bottom: var(--space-8);
+        }
+
+        .question-title {
+            font-family: var(--font-display);
+            font-size: clamp(1.35rem, 3.5vw, var(--text-2xl));
+            font-weight: 500;
+            line-height: 1.2;
+            color: var(--charcoal);
+            letter-spacing: -0.01em;
+        }
+
+        .question-subtitle {
+            font-size: var(--text-sm);
+            color: var(--gray-500);
+            margin-top: var(--space-8);
+        }
+
+        /* === OPTIONS === */
+        .options {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-12);
+        }
+
+        .option {
+            display: flex;
+            align-items: center;
+            gap: var(--space-16);
+            padding: var(--space-16) var(--space-24);
+            background: var(--white);
+            border: 2px solid var(--gray-200);
+            border-radius: var(--radius-lg);
+            cursor: pointer;
+            transition: all var(--duration-normal) var(--ease-standard);
+            user-select: none;
+        }
+
+        .option:hover {
+            border-color: var(--gray-300);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .option.selected {
+            border-color: var(--teal-pro);
+            background: var(--pastel-teal);
+            box-shadow: none;
+        }
+
+        .option-icon {
+            width: 44px;
+            height: 44px;
+            min-width: 44px;
+            border-radius: var(--radius-base);
+            background: var(--beige);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: var(--text-xl);
+            transition: all var(--duration-normal) var(--ease-standard);
+        }
+
+        .option.selected .option-icon { background: var(--teal-pro); }
+
+        .option-content { flex: 1; }
+
+        .option-label {
+            font-weight: 600;
+            font-size: var(--text-sm);
+            color: var(--charcoal);
+            line-height: 1.3;
+        }
+
+        .option-desc {
+            font-size: var(--text-xs);
+            color: var(--gray-500);
+            margin-top: 2px;
+            line-height: 1.4;
+        }
+
+        .option-check {
+            width: 20px;
+            height: 20px;
+            min-width: 20px;
+            border-radius: 50%;
+            border: 2px solid var(--gray-300);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all var(--duration-normal) var(--ease-standard);
+        }
+
+        .option.selected .option-check {
+            border-color: var(--teal-pro);
+            background: var(--teal-pro);
+        }
+
+        .option.selected .option-check::after {
+            content: '';
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--white);
+        }
+
+        /* === INTERLUDE === */
+        .interlude {
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: var(--space-96) var(--space-24);
+        }
+
+        .interlude.active {
+            display: flex;
+            animation: fadeInUp 0.6s var(--ease-standard) forwards;
+        }
+
+        .interlude-icon {
+            font-size: 2.5rem;
+            margin-bottom: var(--space-16);
+            animation: pulse 1.5s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.08); }
+        }
+
+        .interlude-text {
+            font-family: var(--font-display);
+            font-size: var(--text-xl);
+            font-weight: 500;
+            color: var(--charcoal);
+        }
+
+        .interlude-sub {
+            font-size: var(--text-sm);
+            color: var(--gray-500);
+            margin-top: var(--space-8);
+        }
+
+        .loading-dots::after {
+            content: '';
+            animation: dots 1.5s steps(4, end) infinite;
+        }
+
+        @keyframes dots {
+            0% { content: ''; }
+            25% { content: '.'; }
+            50% { content: '..'; }
+            75% { content: '...'; }
+        }
+
+        /* === RESULT === */
+        .result-container {
+            padding-top: var(--space-48);
+            padding-bottom: var(--space-64);
+        }
+
+        .result-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--space-8);
+            padding: var(--space-8) var(--space-16);
+            background: var(--teal-pro);
+            color: var(--white);
+            font-size: var(--text-xs);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            border-radius: var(--radius-full);
+            margin-bottom: var(--space-24);
+        }
+
+        .child-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--space-8);
+            padding: var(--space-8) var(--space-16);
+            background: var(--pastel-peach);
+            color: #B45309;
+            font-size: var(--text-sm);
+            font-weight: 600;
+            border-radius: var(--radius-full);
+            margin-bottom: var(--space-16);
+            margin-top: calc(-1 * var(--space-16));
+        }
+
+        .child-warning-box {
+            background: #FEF3C7;
+            border: 1px solid #F59E0B;
+            border-radius: var(--radius-base);
+            padding: var(--space-16);
+            margin: var(--space-16) 0 var(--space-24);
+            font-size: var(--text-sm);
+            color: #92400E;
+            line-height: 1.5;
+        }
+
+        .result-title {
+            font-family: var(--font-display);
+            font-size: clamp(1.5rem, 4vw, var(--text-3xl));
+            font-weight: 500;
+            line-height: 1.15;
+            color: var(--charcoal);
+            letter-spacing: -0.02em;
+            margin-bottom: var(--space-12);
+        }
+
+        .result-title .highlight {
+            color: var(--teal-pro);
+            font-style: italic;
+        }
+
+        .result-subtitle {
+            font-size: var(--text-base);
+            line-height: 1.7;
+            color: var(--gray-600);
+            margin-bottom: var(--space-32);
+        }
+
+        /* Product Card */
+        .product-card {
+            background: var(--white);
+            border: 1px solid var(--gray-200);
+            border-radius: var(--radius-xl);
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+        }
+
+        .product-card-top {
+            padding: var(--space-48) var(--space-32);
+            text-align: center;
+            position: relative;
+        }
+
+        .product-card-top.douleur { background: var(--pastel-coral); }
+        .product-card-top.allergie { background: var(--pastel-lavender); }
+        .product-card-top.gorge { background: var(--pastel-peach); }
+        .product-card-top.digestif { background: var(--pastel-mint); }
+        .product-card-top.toux { background: var(--pastel-blue); }
+        .product-card-top.brulure { background: var(--pastel-yellow); }
+        .product-card-top.sommeil { background: var(--pastel-lavender); }
+        .product-card-top.vitalite { background: var(--pastel-yellow); }
+
+        .product-image-placeholder {
+            width: 120px;
+            height: 160px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3.5rem;
+        }
+
+        .product-brand-tag {
+            position: absolute;
+            top: var(--space-16);
+            right: var(--space-16);
+            font-size: var(--text-xs);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            color: var(--teal-pro);
+            background: rgba(255,255,255,0.9);
+            padding: var(--space-4) var(--space-12);
+            border-radius: var(--radius-full);
+        }
+
+        .product-card-body {
+            padding: var(--space-32);
+        }
+
+        .product-name {
+            font-family: var(--font-display);
+            font-size: var(--text-2xl);
+            font-weight: 500;
+            letter-spacing: -0.01em;
+            margin-bottom: var(--space-4);
+        }
+
+        .product-brand {
+            font-size: var(--text-sm);
+            font-weight: 500;
+            color: var(--teal-pro);
+            margin-bottom: var(--space-16);
+        }
+
+        .product-description {
+            font-size: var(--text-sm);
+            color: var(--gray-600);
+            line-height: 1.7;
+            margin-bottom: var(--space-24);
+        }
+
+        .product-posology {
+            background: var(--pastel-cream);
+            border-radius: var(--radius-lg);
+            padding: var(--space-16) var(--space-24);
+            margin-bottom: var(--space-24);
+        }
+
+        .product-posology h4 {
+            font-size: var(--text-sm);
+            font-weight: 600;
+            color: var(--charcoal);
+            margin-bottom: var(--space-8);
+        }
+
+        .product-posology ul {
+            list-style: none;
+            font-size: var(--text-sm);
+            color: var(--gray-600);
+        }
+
+        .product-posology li {
+            padding: var(--space-4) 0;
+            padding-left: var(--space-16);
+            position: relative;
+        }
+
+        .product-posology li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 10px;
+            width: 6px;
+            height: 6px;
+            background: var(--sage-natural);
+            border-radius: 50%;
+        }
+
+        .product-warning {
+            background: var(--pastel-coral);
+            border-left: 3px solid var(--alert-red);
+            border-radius: var(--radius-base);
+            padding: var(--space-16);
+            margin-bottom: var(--space-24);
+        }
+
+        .product-warning h4 {
+            font-size: var(--text-sm);
+            font-weight: 600;
+            color: var(--alert-red);
+            margin-bottom: var(--space-8);
+        }
+
+        .product-warning p {
+            font-size: var(--text-xs);
+            color: var(--gray-600);
+            line-height: 1.6;
+        }
+
+        .product-duration {
+            display: flex;
+            align-items: center;
+            gap: var(--space-12);
+            padding: var(--space-16);
+            background: var(--pastel-sage);
+            border-radius: var(--radius-base);
+            margin-bottom: var(--space-24);
+        }
+
+        .product-duration-icon {
+            font-size: var(--text-xl);
+        }
+
+        .product-duration-text {
+            font-size: var(--text-sm);
+            color: var(--charcoal);
+        }
+
+        .product-duration-text strong {
+            display: block;
+            color: var(--teal-pro);
+        }
+
+        .stock-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--space-8);
+            margin-top: var(--space-16);
+            padding: var(--space-8) var(--space-16);
+            background: var(--pastel-mint);
+            border-radius: var(--radius-full);
+            font-size: var(--text-xs);
+            font-weight: 500;
+            color: var(--teal-pro);
+        }
+
+        .stock-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--sage-natural);
+        }
+
+        /* Complementary Products */
+        .complementary-section {
+            margin-top: var(--space-32);
+        }
+
+        .complementary-title {
+            font-family: var(--font-display);
+            font-size: var(--text-lg);
+            font-weight: 500;
+            color: var(--charcoal);
+            margin-bottom: var(--space-16);
+            display: flex;
+            align-items: center;
+            gap: var(--space-8);
+        }
+
+        .complementary-card {
+            background: var(--white);
+            border: 1px solid var(--gray-200);
+            border-radius: var(--radius-lg);
+            padding: var(--space-24);
+            margin-bottom: var(--space-16);
+            transition: all var(--duration-normal) var(--ease-standard);
+        }
+
+        .complementary-card:hover {
+            border-color: var(--sage-natural);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .complementary-header {
+            display: flex;
+            align-items: center;
+            gap: var(--space-16);
+            margin-bottom: var(--space-12);
+        }
+
+        .complementary-icon {
+            width: 48px;
+            height: 48px;
+            min-width: 48px;
+            border-radius: var(--radius-base);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: var(--text-xl);
+        }
+
+        .complementary-icon.digestif { background: var(--pastel-mint); }
+        .complementary-icon.douleur { background: var(--pastel-coral); }
+        .complementary-icon.gorge { background: var(--pastel-peach); }
+        .complementary-icon.brulure { background: var(--pastel-yellow); }
+        .complementary-icon.allergie { background: var(--pastel-lavender); }
+        .complementary-icon.toux { background: var(--pastel-blue); }
+        .complementary-icon.sommeil { background: var(--pastel-lavender); }
+        .complementary-icon.vitalite { background: var(--pastel-yellow); }
+
+        .complementary-info {
+            flex: 1;
+        }
+
+        .complementary-name {
+            font-weight: 600;
+            font-size: var(--text-base);
+            color: var(--charcoal);
+            margin-bottom: 2px;
+        }
+
+        .complementary-tagline {
+            font-size: var(--text-sm);
+            color: var(--teal-pro);
+        }
+
+        .complementary-badge {
+            background: var(--pastel-sage);
+            color: var(--sage-dark);
+            font-size: var(--text-xs);
+            font-weight: 600;
+            padding: var(--space-4) var(--space-12);
+            border-radius: var(--radius-full);
+            white-space: nowrap;
+        }
+
+        .complementary-why {
+            font-size: var(--text-sm);
+            color: var(--gray-600);
+            line-height: 1.6;
+            padding: var(--space-12) var(--space-16);
+            background: var(--pastel-cream);
+            border-radius: var(--radius-base);
+            margin-top: var(--space-12);
+        }
+
+        .complementary-posology {
+            font-size: var(--text-xs);
+            color: var(--gray-500);
+            margin-top: var(--space-8);
+        }
+
+        /* Alert Box */
+        .alert-box {
+            background: var(--pastel-coral);
+            border: 2px solid var(--alert-red);
+            border-radius: var(--radius-xl);
+            padding: var(--space-32);
+            text-align: center;
+            margin-bottom: var(--space-32);
+        }
+
+        .alert-box-icon {
+            font-size: 3rem;
+            margin-bottom: var(--space-16);
+        }
+
+        .alert-box h3 {
+            font-family: var(--font-display);
+            font-size: var(--text-xl);
+            font-weight: 500;
+            color: var(--alert-red);
+            margin-bottom: var(--space-12);
+        }
+
+        .alert-box p {
+            font-size: var(--text-sm);
+            color: var(--gray-600);
+            line-height: 1.7;
+        }
+
+        /* Brand Recommendation Note */
+        .brand-recommendation-note {
+            display: flex;
+            align-items: flex-start;
+            gap: var(--space-12);
+            padding: var(--space-16) var(--space-24);
+            background: var(--pastel-coral);
+            border-radius: var(--radius-lg);
+            margin-bottom: var(--space-24);
+            border-left: 4px solid var(--warning-orange);
+        }
+
+        .brand-recommendation-note.success {
+            background: var(--pastel-mint);
+            border-left-color: var(--sage-natural);
+        }
+
+        .brand-note-icon {
+            font-size: var(--text-xl);
+            flex-shrink: 0;
+        }
+
+        .brand-note-text {
+            font-size: var(--text-sm);
+            color: var(--charcoal);
+            line-height: 1.5;
+        }
+
+        /* Disclaimer */
+        .disclaimer {
+            margin-top: var(--space-48);
+            padding: var(--space-24);
+            background: var(--beige);
+            border-radius: var(--radius-lg);
+            font-size: var(--text-xs);
+            color: var(--gray-500);
+            line-height: 1.6;
+            text-align: center;
+        }
+
+        .disclaimer strong { color: var(--charcoal); }
+
+        /* Restart */
+        .restart-section {
+            text-align: center;
+            margin-top: var(--space-32);
+            padding-bottom: var(--space-48);
+        }
+
+        .restart-link {
+            font-size: var(--text-sm);
+            color: var(--gray-500);
+            font-weight: 500;
+            cursor: pointer;
+            border: none;
+            background: none;
+            font-family: var(--font-body);
+            transition: color var(--duration-fast) var(--ease-standard);
+        }
+
+        .restart-link:hover { color: var(--teal-pro); }
+
+        /* === FOOTER === */
+        .footer {
+            background: var(--charcoal);
+            color: var(--white);
+            padding: var(--space-64) 0 var(--space-32);
+            width: 100%;
+            margin-top: auto;
+        }
+
+        .footer .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 var(--space-24);
+        }
+
+        .footer-bottom {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            gap: var(--space-16);
+        }
+
+        .footer-copyright {
+            font-size: var(--text-sm);
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .footer-legal {
+            display: flex;
+            gap: var(--space-24);
+        }
+
+        .footer-legal a {
+            font-size: var(--text-sm);
+            color: rgba(255, 255, 255, 0.7);
+            transition: color var(--duration-normal) var(--ease-standard);
+        }
+
+        .footer-legal a:hover { color: var(--white); }
+
+        @media (max-width: 767px) {
+            .footer { padding: var(--space-48) 0 var(--space-32); }
+            .footer-bottom {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+
+        /* === DUAL-BRAND DISPLAY === */
+        .dual-brand-intro {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: var(--space-16);
+            margin-bottom: var(--space-32);
+            flex-wrap: wrap;
+        }
+
+        .brand-pill {
+            padding: var(--space-8) var(--space-24);
+            border-radius: var(--radius-full);
+            font-weight: 600;
+            font-size: var(--text-sm);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .brand-pill.upsa {
+            background: linear-gradient(135deg, #FF6B35, #F7931E);
+            color: white;
+        }
+
+        .brand-pill.biogaran {
+            background: linear-gradient(135deg, #00A651, #39B54A);
+            color: white;
+        }
+
+        .brand-separator {
+            font-size: var(--text-sm);
+            color: var(--gray-500);
+            font-weight: 500;
+        }
+
+        .dual-brand-container {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: var(--space-32);
+        }
+
+        @media (min-width: 900px) {
+            .dual-brand-container {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        .brand-section {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .brand-label {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--space-8);
+            font-weight: 600;
+            font-size: var(--text-sm);
+            padding: var(--space-8) var(--space-16);
+            border-radius: var(--radius-full);
+            margin-bottom: var(--space-12);
+            width: fit-content;
+        }
+
+        .brand-label.upsa {
+            background: var(--pastel-peach);
+            color: #D84315;
+        }
+
+        .brand-label.biogaran {
+            background: var(--pastel-mint);
+            color: #2E7D32;
+        }
+
+        .brand-section .product-card {
+            flex: 1;
+        }
+
+        /* Product card top colors by brand */
+        .brand-section:first-child .product-card-top {
+            background: linear-gradient(135deg, #FFF3E0, #FFE0B2);
+        }
+
+        .brand-section:last-child .product-card-top {
+            background: linear-gradient(135deg, #E8F5E9, #C8E6C9);
+        }
+
+        /* Smaller product cards in dual mode */
+        .dual-brand-container .product-card-top {
+            padding: var(--space-24);
+        }
+
+        .dual-brand-container .product-image-placeholder {
+            width: 80px;
+            height: 100px;
+            font-size: 2.5rem;
+        }
+
+        .dual-brand-container .product-card-body {
+            padding: var(--space-24);
+        }
+
+        .dual-brand-container .product-posology h4,
+        .dual-brand-container .product-warning h4 {
+            font-size: var(--text-xs);
+        }
+
+        .dual-brand-container .product-posology ul {
+            font-size: var(--text-xs);
+        }
+
+        .dual-brand-container .product-warning p {
+            font-size: var(--text-xs);
+        }
+
+        /* bgClass for sommeil/vitalite */
+        .sommeil { background: var(--pastel-lavender); }
+        .vitalite { background: var(--pastel-yellow); }
+
+        /* === RESPONSIVE === */
+        @media (max-width: 640px) {
+            .intro h1 { font-size: 1.75rem; }
+            .intro { padding: var(--space-48) 0 var(--space-32); }
+            .question-header { padding: var(--space-32) 0 var(--space-16); }
+            .product-card-top { padding: var(--space-32) var(--space-24); }
+            .product-image-placeholder { width: 100px; height: 120px; font-size: 2.5rem; }
+            .product-card-body { padding: var(--space-24); }
+
+            .dual-brand-intro {
+                gap: var(--space-8);
+            }
+
+            .brand-pill {
+                padding: var(--space-4) var(--space-16);
+                font-size: var(--text-xs);
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="../index.html" class="nav-logo-link">
+                <div class="nav-logo">
+                    <div class="logo-icon">
+                        <img src="../images/pharmacie-charnal-logo.png" alt="Logo Pharmacie Charnal">
+                    </div>
+                    <div class="logo-text">
+                        <span class="logo-name">Pharmacie Charnal</span>
+                        <span class="logo-tagline">Quéven</span>
+                    </div>
+                </div>
+            </a>
+            <button class="mobile-menu-toggle" aria-label="Menu" aria-expanded="false">
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+            </button>
+
+            <ul class="nav-links">
+                <li><a href="../index.html" class="nav-link">Accueil</a></li>
+                <li class="nav-dropdown">
+                    <a href="../services.html" class="nav-link nav-dropdown-toggle">Services</a>
+                    <ul class="nav-dropdown-menu">
+                        <li><a href="../histoire.html" class="nav-link">Notre Histoire</a></li>
+                        <li><a href="../Nos-marques/nosmarques.html" class="nav-link">Nos Marques</a></li>
+                        <li><a href="../pharmacie-de-garde-queven-hennebont-lorient.html" class="nav-link">Pharmacie de garde</a></li>
+                        <li><a href="../annuaire-sante.html" class="nav-link">Annuaire Santé</a></li>
+                    </ul>
+                </li>
+                <li><a href="../blog.html" class="nav-link nav-link-blog">Au comptoir</a></li>
+                <li class="nav-dropdown">
+                    <a href="../contact.html" class="nav-link nav-dropdown-toggle">Contact</a>
+                    <ul class="nav-dropdown-menu">
+                        <li><a href="../recrutement-preparatrice-pharmacie-queven.html" class="nav-link">Recrutement</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- PROGRESS -->
+    <div class="progress-container" id="progressContainer" style="display:none;">
+        <div class="progress-bar-wrapper">
+            <div class="progress-track">
+                <div class="progress-fill" id="progressFill"></div>
+            </div>
+            <div class="progress-label" id="progressLabel">1/4</div>
+        </div>
+    </div>
+
+    <!-- QUIZ -->
+    <div class="quiz-container">
+
+        <!-- INTRO -->
+        <div class="step active" id="step-intro">
+            <div class="intro">
+                <div class="intro-badge">&#x1F48A; Guide Automédication</div>
+                <h1>Quel médicament pour <span class="highlight">vos symptômes</span> ?</h1>
+                <p>Trouvez le bon traitement sans ordonnance, avec les conseils de votre pharmacien.</p>
+
+                <div class="intro-features">
+                    <div class="intro-feature">
+                        <div class="feat-icon">&#x1F3AF;</div>
+                        <div>
+                            <div class="feat-label">Recommandation ciblée</div>
+                            <div class="feat-desc">Produit adapté à vos symptômes et votre profil</div>
+                        </div>
+                    </div>
+                    <div class="intro-feature">
+                        <div class="feat-icon">&#x26A0;&#xFE0F;</div>
+                        <div>
+                            <div class="feat-label">Signaux d'alerte</div>
+                            <div class="feat-desc">On vous dit quand consulter un médecin</div>
+                        </div>
+                    </div>
+                    <div class="intro-feature">
+                        <div class="feat-icon">&#x1F4CB;</div>
+                        <div>
+                            <div class="feat-label">Conseils de prise</div>
+                            <div class="feat-desc">Posologie, durée, précautions</div>
+                        </div>
+                    </div>
+                </div>
+
+                <button class="btn btn-primary btn-start" onclick="startQuiz()">
+                    Commencer &#x2192;
+                </button>
+            </div>
+        </div>
+
+        <!-- Q1: Symptôme principal -->
+        <div class="step" id="step-1">
+            <div class="question-header">
+                <div class="question-number">Question 1 / 5</div>
+                <div class="question-title">Quel est votre problème principal ?</div>
+                <div class="question-subtitle">Choisissez la catégorie qui correspond le mieux.</div>
+            </div>
+            <div class="options">
+                <div class="option" onclick="selectSymptom(this, 'douleur')" data-symptom="douleur">
+                    <div class="option-icon">&#x1F915;</div>
+                    <div class="option-content">
+                        <div class="option-label">Douleur ou fièvre</div>
+                        <div class="option-desc">Maux de tête, douleurs musculaires, fièvre, règles douloureuses</div>
+                    </div>
+                    <div class="option-check"></div>
+                </div>
+                <div class="option" onclick="selectSymptom(this, 'allergie')" data-symptom="allergie">
+                    <div class="option-icon">&#x1F927;</div>
+                    <div class="option-content">
+                        <div class="option-label">Allergie</div>
+                        <div class="option-desc">Nez qui coule, éternuements, yeux qui piquent, urticaire</div>
+                    </div>
+                    <div class="option-check"></div>
+                </div>
+                <div class="option" onclick="selectSymptom(this, 'gorge')" data-symptom="gorge">
+                    <div class="option-icon">&#x1F637;</div>
+                    <div class="option-content">
+                        <div class="option-label">Mal de gorge</div>
+                        <div class="option-desc">Gorge irritée, difficultés à avaler, sensation de brûlure</div>
+                    </div>
+                    <div class="option-check"></div>
+                </div>
+                <div class="option" onclick="selectSymptom(this, 'digestif')" data-symptom="digestif">
+                    <div class="option-icon">&#x1F922;</div>
+                    <div class="option-content">
+                        <div class="option-label">Troubles digestifs</div>
+                        <div class="option-desc">Constipation, diarrhée, nausées, spasmes, brûlures d'estomac</div>
+                    </div>
+                    <div class="option-check"></div>
+                </div>
+                <div class="option" onclick="selectSymptom(this, 'toux')" data-symptom="toux">
+                    <div class="option-icon">&#x1F912;</div>
+                    <div class="option-content">
+                        <div class="option-label">Toux</div>
+                        <div class="option-desc">Toux sèche irritante ou toux grasse avec sécrétions</div>
+                    </div>
+                    <div class="option-check"></div>
+                </div>
+                <div class="option" onclick="selectSymptom(this, 'brulure')" data-symptom="brulure">
+                    <div class="option-icon">&#x2600;&#xFE0F;</div>
+                    <div class="option-content">
+                        <div class="option-label">Brûlure ou plaie légère</div>
+                        <div class="option-desc">Coup de soleil, petite brûlure, écorchure</div>
+                    </div>
+                    <div class="option-check"></div>
+                </div>
+            </div>
+            <div class="back-nav">
+                <button class="btn-back" onclick="goBack()">&#x2190; Retour</button>
+            </div>
+        </div>
+
+        <!-- Q1b: Pour qui ? (enfant ou adulte) -->
+        <div class="step" id="step-age">
+            <div class="question-header">
+                <div class="question-number">Question 1b / 5</div>
+                <div class="question-title">Pour qui est ce traitement ?</div>
+                <div class="question-subtitle">Les formes et dosages sont différents selon l'âge.</div>
+            </div>
+            <div class="options">
+                <div class="option" onclick="selectAge(this, false)" data-age="adulte">
+                    <div class="option-icon">&#x1F9D1;</div>
+                    <div class="option-content">
+                        <div class="option-label">Adulte, adolescent ou enfant 6 ans et plus</div>
+                        <div class="option-desc">Comprimés, gélules, pastilles adaptés</div>
+                    </div>
+                    <div class="option-check"></div>
+                </div>
+                <div class="option" onclick="selectAge(this, true)" data-age="enfant">
+                    <div class="option-icon">&#x1F476;</div>
+                    <div class="option-content">
+                        <div class="option-label">Enfant de moins de 6 ans</div>
+                        <div class="option-desc">Sirops, solutions buvables, formes adaptées</div>
+                    </div>
+                    <div class="option-check"></div>
+                </div>
+            </div>
+            <div class="back-nav">
+                <button class="btn-back" onclick="goBack()">&#x2190; Retour</button>
+            </div>
+        </div>
+
+        <!-- Q2: Précisions (dynamique selon symptôme) -->
+        <div class="step" id="step-2">
+            <div class="question-header">
+                <div class="question-number">Question 2 / 5</div>
+                <div class="question-title" id="q2Title">Précisez votre symptôme</div>
+                <div class="question-subtitle" id="q2Subtitle">Pour mieux vous conseiller.</div>
+            </div>
+            <div class="options" id="q2Options"></div>
+            <div class="back-nav">
+                <button class="btn-back" onclick="goBack()">&#x2190; Retour</button>
+            </div>
+        </div>
+
+        <!-- Q2.5: Choix marque (conditionnel) -->
+        <div class="step" id="step-brand">
+            <div class="question-header">
+                <div class="question-number">Question 2b / 5</div>
+                <div class="question-title" id="qBrandTitle">Une précision importante</div>
+                <div class="question-subtitle" id="qBrandSubtitle">Cette information nous aide à choisir le produit le plus adapté.</div>
+            </div>
+            <div class="options" id="qBrandOptions"></div>
+            <div class="back-nav">
+                <button class="btn-back" onclick="goBack()">&#x2190; Retour</button>
+            </div>
+        </div>
+
+        <!-- Q3: Durée des symptômes -->
+        <div class="step" id="step-3">
+            <div class="question-header">
+                <div class="question-number">Question 3 / 5</div>
+                <div class="question-title">Depuis combien de temps avez-vous ces symptômes ?</div>
+                <div class="question-subtitle">La durée nous aide à évaluer si l'automédication est adaptée.</div>
+            </div>
+            <div class="options">
+                <div class="option" onclick="selectDuration(this, 'recent')" data-duration="recent">
+                    <div class="option-icon">&#x23F0;</div>
+                    <div class="option-content">
+                        <div class="option-label">Depuis moins de 48h</div>
+                        <div class="option-desc">Les symptômes viennent d'apparaître</div>
+                    </div>
+                    <div class="option-check"></div>
+                </div>
+                <div class="option" onclick="selectDuration(this, 'quelquesjours')" data-duration="quelquesjours">
+                    <div class="option-icon">&#x1F4C5;</div>
+                    <div class="option-content">
+                        <div class="option-label">Entre 2 et 5 jours</div>
+                        <div class="option-desc">Ça dure depuis quelques jours</div>
+                    </div>
+                    <div class="option-check"></div>
+                </div>
+                <div class="option" onclick="selectDuration(this, 'prolonge')" data-duration="prolonge">
+                    <div class="option-icon">&#x1F4C6;</div>
+                    <div class="option-content">
+                        <div class="option-label">Plus d'une semaine</div>
+                        <div class="option-desc">Symptômes persistants ou récurrents</div>
+                    </div>
+                    <div class="option-check"></div>
+                </div>
+            </div>
+            <div class="back-nav">
+                <button class="btn-back" onclick="goBack()">&#x2190; Retour</button>
+            </div>
+        </div>
+
+        <!-- Q4: Signaux d'alerte -->
+        <div class="step" id="step-4">
+            <div class="question-header">
+                <div class="question-number">Question 4 / 5</div>
+                <div class="question-title">Avez-vous l'un de ces signaux d'alerte ?</div>
+                <div class="question-subtitle">Ces symptômes nécessitent un avis médical.</div>
+            </div>
+            <div class="options" id="q4Options"></div>
+            <div class="back-nav">
+                <button class="btn-back" onclick="goBack()">&#x2190; Retour</button>
+            </div>
+        </div>
+
+        <!-- INTERLUDE -->
+        <div class="interlude" id="interlude">
+            <div class="interlude-icon">&#x1F48A;</div>
+            <div class="interlude-text">Analyse de vos symptômes<span class="loading-dots"></span></div>
+            <div class="interlude-sub">Nous préparons une recommandation personnalisée.</div>
+        </div>
+
+        <!-- RESULT -->
+        <div class="step" id="step-result">
+            <div class="result-container" id="resultContainer"></div>
+        </div>
+
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-bottom">
+                <p class="footer-copyright">© 2026 Pharmacie Charnal. Tous droits réservés.</p>
+                <div class="footer-legal">
+                    <a href="../mentions-legales.html">Mentions légales</a>
+                    <a href="../donnees-personnelles.html">Confidentialité</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+    // State
+    let currentStep = 0;
+    const totalQuestions = 5; // Added age question
+    let selectedSymptom = null;
+    let selectedDetail = null;
+    let selectedDuration = null;
+    let brandChoice = null; // 'upsa', 'biogaran', 'sanofi' or null (both)
+    let hasBrandQuestion = false; // tracks if we showed the brand question
+    let hasAlert = false;
+    let isForChild = null; // true = enfant (<12 ans), false = adulte
+
+    // Products database
+    const products = {
+        // DOULEUR
+        paracetamol: {
+            name: 'Paracétamol 1000 mg',
+            brand: 'BIOGARAN CONSEIL',
+            tagline: 'Antalgique et antipyrétique',
+            emoji: '&#x1F48A;',
+            bgClass: 'douleur',
+            description: 'Le paracétamol est l\'antalgique de référence pour les douleurs légères à modérées et la fièvre. Il agit en environ 30 minutes et son effet dure 4 à 6 heures.',
+            shortDesc: 'Antalgique de référence pour calmer la douleur et faire baisser la fièvre.',
+            posology: [
+                '1 comprimé par prise (max 3g/jour)',
+                'Espacer les prises de 4h minimum',
+                'Prendre avec un grand verre d\'eau'
+            ],
+            duration: '5 jours max pour la douleur, 3 jours max pour la fièvre',
+            warnings: 'Ne pas dépasser 3g/jour. Attention : de nombreux médicaments contiennent du paracétamol (Doliprane, Efferalgan, médicaments anti-rhume). Vérifiez toujours la composition.',
+            alertConsult: 'Si la douleur persiste au-delà de 5 jours ou la fièvre au-delà de 3 jours, consultez un médecin.',
+            why: 'Soulage la douleur et la fièvre associées à l\'inflammation de la gorge.'
+        },
+        ibuprofene: {
+            name: 'Ibuprofène 400 mg',
+            brand: 'BIOGARAN CONSEIL',
+            tagline: 'Anti-inflammatoire',
+            emoji: '&#x1F4AA;',
+            bgClass: 'douleur',
+            description: 'L\'ibuprofène est un anti-inflammatoire efficace contre les douleurs avec composante inflammatoire : règles douloureuses, douleurs dentaires, maux de tête. À prendre pendant un repas.',
+            shortDesc: 'Anti-inflammatoire pour les douleurs musculaires avec composante inflammatoire.',
+            posology: [
+                '1 comprimé par prise',
+                'Espacer de 6h minimum',
+                'Maximum 3 comprimés/jour',
+                'TOUJOURS prendre pendant un repas'
+            ],
+            duration: '5 jours max pour la douleur, 3 jours max pour la fièvre',
+            warnings: 'Contre-indiqué si antécédent d\'ulcère gastrique, grossesse (surtout après 6 mois), prise d\'anticoagulants ou d\'aspirine.',
+            alertConsult: 'Arrêtez le traitement et consultez en cas de douleurs d\'estomac, selles noires ou vomissements.',
+            why: 'Action anti-inflammatoire complémentaire pour les douleurs avec tension musculaire.'
+        },
+        // ALLERGIE
+        cetirizine: {
+            name: 'Cétirizine 10 mg',
+            brand: 'BIOGARAN CONSEIL',
+            tagline: 'Antihistaminique 2ème génération',
+            emoji: '&#x1F33C;',
+            bgClass: 'allergie',
+            description: 'La cétirizine soulage les symptômes allergiques : rhinite, conjonctivite, urticaire. Effet rapide (1h) et prolongé (24h). Moins de somnolence que les anciens antihistaminiques.',
+            posology: [
+                'Adulte : 1 comprimé 1x/jour',
+                'Enfant 6-12 ans : ½ comprimé 2x/jour',
+                'Prendre de préférence le soir'
+            ],
+            duration: '7 jours pour la rhinite, 3 jours pour l\'urticaire',
+            warnings: 'Peut provoquer une somnolence. Éviter l\'alcool. Contre-indiqué en cas d\'insuffisance rénale sévère.',
+            alertConsult: 'Consultez si les symptômes persistent au-delà de 7 jours ou s\'aggravent.'
+        },
+        // GORGE
+        pastillegorge: {
+            name: 'Pastilles Amylmétacrésol',
+            brand: 'BIOGARAN CONSEIL',
+            tagline: 'Antiseptique local miel-citron',
+            emoji: '&#x1F36F;',
+            bgClass: 'gorge',
+            description: 'Ces pastilles associent deux antiseptiques pour désinfecter localement la gorge. Le goût miel-citron apaise et la dissolution lente prolonge l\'action.',
+            shortDesc: 'Pastilles antiseptiques miel-citron pour apaiser la gorge.',
+            posology: [
+                '1 pastille toutes les 2-3h',
+                'Maximum 6 pastilles par jour',
+                'Laisser fondre lentement en bouche'
+            ],
+            duration: '5 jours maximum',
+            warnings: 'À partir de 6 ans. Ne pas utiliser en cas de fièvre ou de symptômes grippaux importants.',
+            alertConsult: 'Consultez si fièvre > 38,5°C, douleur intense, ganglions enflés ou symptômes > 5 jours.',
+            why: 'Action antiseptique prolongée entre les pulvérisations du collutoire, apaise l\'irritation.'
+        },
+        collutoire: {
+            name: 'Collutoire Spray',
+            brand: 'BIOGARAN CONSEIL',
+            tagline: 'Antiseptique + anesthésiant local',
+            emoji: '&#x1F4A8;',
+            bgClass: 'gorge',
+            description: 'Ce spray combine un antiseptique à la lidocaïne pour un effet anesthésiant rapide. Soulagement quasi-immédiat de la douleur à la déglutition.',
+            posology: [
+                '1 à 2 pulvérisations 3x/jour',
+                'Diriger vers le fond de la gorge',
+                'Ne pas manger/boire 30 min après'
+            ],
+            duration: '5 jours maximum',
+            warnings: 'À partir de 12 ans. La lidocaïne anesthésie la gorge : attention aux fausses routes.',
+            alertConsult: 'Consultez si fièvre, ganglions enflés ou difficultés respiratoires.'
+        },
+        // DIGESTIF
+        macrogol: {
+            name: 'Macrogol 10 g',
+            brand: 'BIOGARAN CONSEIL',
+            tagline: 'Laxatif osmotique doux',
+            emoji: '&#x1F4A7;',
+            bgClass: 'digestif',
+            description: 'Le macrogol attire l\'eau dans l\'intestin et ramollit les selles en douceur. Ce n\'est pas un laxatif irritant. Effet en 24-48h.',
+            posology: [
+                '1 à 2 sachets le matin',
+                'Dissoudre dans un grand verre d\'eau',
+                'Boire beaucoup dans la journée'
+            ],
+            duration: 'Quelques jours, adapter selon le résultat',
+            warnings: 'Bien s\'hydrater. Si constipation chronique, rechercher la cause (alimentation, médicaments...).',
+            alertConsult: 'Consultez si douleurs abdominales importantes, sang dans les selles, ou constipation persistante.'
+        },
+        loperamide: {
+            name: 'Lopéramide 2 mg',
+            brand: 'BIOGARAN CONSEIL',
+            tagline: 'Anti-diarrhéique',
+            emoji: '&#x1F6BD;',
+            bgClass: 'digestif',
+            description: 'Le lopéramide ralentit le transit intestinal. Efficace contre les diarrhées aiguës. Ne traite pas la cause mais soulage les symptômes.',
+            posology: [
+                'Début : 2 gélules',
+                'Puis 1 gélule après chaque selle liquide',
+                'Maximum 6 gélules/jour'
+            ],
+            duration: '2 jours maximum sans avis médical',
+            warnings: 'Ne pas utiliser si fièvre > 38,5°C, sang ou glaires dans les selles, ou diarrhée sous antibiotiques.',
+            alertConsult: 'Consultez immédiatement si déshydratation (soif intense, langue sèche, vertiges), fièvre ou sang dans les selles.'
+        },
+        metopimazine: {
+            name: 'Métopimazine 7,5 mg',
+            brand: 'BIOGARAN CONSEIL',
+            tagline: 'Anti-nauséeux orodispersible',
+            emoji: '&#x1F922;',
+            bgClass: 'digestif',
+            description: 'Comprimé qui fond sur la langue, idéal en cas de nausées ou vomissements. Agit sur le centre du vomissement. Efficace aussi contre le mal des transports.',
+            posology: [
+                'Laisser fondre sur la langue',
+                '15 min avant les repas',
+                'Adulte : max 4 cp/jour',
+                'Enfant 6-12 ans : max 2 cp/jour'
+            ],
+            duration: '2-3 jours maximum',
+            warnings: 'Peut provoquer une somnolence. À partir de 6 ans.',
+            alertConsult: 'Consultez si vomissements persistants, douleurs abdominales intenses ou fièvre.'
+        },
+        phloroglucinol: {
+            name: 'Phloroglucinol 80 mg',
+            brand: 'BIOGARAN CONSEIL',
+            tagline: 'Antispasmodique',
+            emoji: '&#x1F4AB;',
+            bgClass: 'digestif',
+            description: 'Le phloroglucinol relaxe les muscles lisses et soulage les spasmes douloureux : intestinaux, biliaires, urinaires, et règles douloureuses.',
+            shortDesc: 'Antispasmodique qui relaxe les muscles lisses et calme les crampes.',
+            posology: [
+                '2 comprimés au moment de la crise',
+                'Renouveler si besoin (min 2h entre prises)',
+                'Maximum 6 comprimés/jour'
+            ],
+            duration: 'Selon les crises, quelques jours',
+            warnings: 'Comprimé orodispersible : dissoudre dans l\'eau ou laisser fondre sous la langue.',
+            alertConsult: 'Consultez si spasmes fréquents ou douleurs abdominales persistantes.',
+            why: 'Soulage les crampes utérines en complément de l\'anti-inflammatoire.'
+        },
+        omeprazole: {
+            name: 'Oméprazole 20 mg',
+            brand: 'BIOGARAN CONSEIL',
+            tagline: 'Anti-acide (IPP)',
+            emoji: '&#x1F525;',
+            bgClass: 'digestif',
+            description: 'L\'oméprazole réduit la production d\'acide gastrique. Soulage les brûlures d\'estomac et remontées acides. Effet progressif (2-3 jours pour un soulagement complet).',
+            posology: [
+                '1 gélule par jour',
+                'Le matin à jeun (ou le soir si symptômes nocturnes)',
+                'Avaler entier sans croquer'
+            ],
+            duration: '14 jours maximum en automédication',
+            warnings: 'À partir de 18 ans. Si les symptômes persistent après 14 jours, consultez.',
+            alertConsult: 'Consultez si difficultés à avaler, vomissements de sang, perte de poids inexpliquée ou symptômes > 2 semaines.'
+        },
+        // TOUX
+        oxomémazine: {
+            name: 'Oxomémazine Sirop',
+            brand: 'BIOGARAN CONSEIL',
+            tagline: 'Antitussif pour toux sèche',
+            emoji: '&#x1F634;',
+            bgClass: 'toux',
+            description: 'L\'oxomémazine calme la toux sèche irritante, surtout nocturne. Action rapide sur le centre de la toux. Provoque une somnolence (avantage la nuit).',
+            posology: [
+                'Adulte : 10 mL 4x/jour',
+                'Enfant 6-10 ans : 10 mL 2-3x/jour',
+                'Espacer les prises de 4h minimum',
+                'Privilégier les prises du soir'
+            ],
+            duration: '5 jours maximum',
+            warnings: 'Provoque une somnolence. Éviter l\'alcool. Photosensibilisant (éviter le soleil). À partir de 30 mois (2 ans et demi).',
+            alertConsult: 'Consultez si toux persistante > 5 jours, fièvre, difficultés respiratoires ou crachats colorés.'
+        },
+        carbocisteine: {
+            name: 'Carbocistéine Sirop 5%',
+            brand: 'BIOGARAN CONSEIL',
+            tagline: 'Fluidifiant bronchique pour toux grasse',
+            emoji: '&#x1F4A8;',
+            bgClass: 'toux',
+            description: 'La carbocistéine fluidifie les sécrétions bronchiques et facilite leur expulsion. Pour les toux productives avec mucus épais.',
+            posology: [
+                'Adulte : 15 mL (1 cuillère à soupe) 3x/jour',
+                'Prendre en dehors des repas',
+                'JAMAIS le soir (risque de toux nocturne)'
+            ],
+            duration: '5 jours maximum sans avis médical',
+            warnings: 'Ne pas associer à un antitussif (on ne bloque pas une toux qu\'on fluidifie). À partir de 30 mois (sirop enfant 2%).',
+            alertConsult: 'Consultez si fièvre, crachats colorés (verts/jaunes), essoufflement ou toux > 5 jours.'
+        },
+        // BRÛLURE
+        trolamine: {
+            name: 'Trolamine 0,67% Émulsion',
+            brand: 'BIOGARAN CONSEIL',
+            tagline: 'Soin des brûlures superficielles',
+            emoji: '&#x2600;&#xFE0F;',
+            bgClass: 'brulure',
+            description: 'La trolamine apaise les brûlures superficielles et favorise la cicatrisation. Idéale pour les coups de soleil et petites brûlures domestiques.',
+            shortDesc: 'Émulsion apaisante qui favorise la cicatrisation des brûlures légères.',
+            posology: [
+                'Appliquer en couche épaisse',
+                'Masser légèrement',
+                'Renouveler 2 à 4 fois par jour'
+            ],
+            duration: 'Jusqu\'à cicatrisation',
+            warnings: 'Uniquement pour les brûlures limitées et peu profondes. Pas sur les yeux, muqueuses ou plis cutanés.',
+            alertConsult: 'Consultez si brûlure étendue, présence de cloques, brûlure du visage/mains/organes génitaux, ou signes d\'infection.',
+            why: 'Favorise la cicatrisation après désinfection de la plaie.'
+        },
+        chlorhexidine: {
+            name: 'Chlorhexidine Spray',
+            brand: 'BIOGARAN CONSEIL',
+            tagline: 'Antiseptique cutané',
+            emoji: '&#x1FA79;',
+            bgClass: 'brulure',
+            description: 'Solution antiseptique pour désinfecter les plaies superficielles. Application facile en spray, sans douleur.',
+            shortDesc: 'Spray antiseptique pour désinfecter avant d\'appliquer la crème cicatrisante.',
+            posology: [
+                'Nettoyer d\'abord la plaie à l\'eau',
+                'Appliquer le spray',
+                '2 applications par jour'
+            ],
+            duration: 'Jusqu\'à cicatrisation, quelques jours',
+            warnings: 'Ne pas utiliser sur les yeux, les muqueuses ou dans l\'oreille si tympan perforé. Ne pas associer plusieurs antiseptiques.',
+            alertConsult: 'Consultez si plaie profonde, sale, signes d\'infection (rougeur qui s\'étend, pus, fièvre) ou morsure.',
+            why: 'Désinfecte la zone brûlée avant application de la crème cicatrisante.'
+        },
+        // COMPLÉMENTS
+        levure: {
+            name: 'Levure Saccharomyces boulardii',
+            brand: 'BIOGARAN CONSEIL',
+            tagline: 'Probiotique intestinal',
+            emoji: '&#x1F9AB;',
+            bgClass: 'digestif',
+            shortDesc: 'Rééquilibre la flore intestinale et prévient les diarrhées.',
+            posology: '1 gélule/jour pendant un repas',
+            why: 'Restaure la flore intestinale perturbée et renforce les défenses digestives.'
+        },
+        alginate: {
+            name: 'Alginate de Sodium/Bicarbonate',
+            brand: 'BIOGARAN CONSEIL',
+            tagline: 'Pansement gastrique',
+            emoji: '&#x1F9F4;',
+            bgClass: 'digestif',
+            shortDesc: 'Forme un gel protecteur qui soulage immédiatement les remontées acides.',
+            posology: '1 sachet après les repas (+ au coucher si besoin)',
+            why: 'Soulagement rapide en attendant l\'effet complet de l\'oméprazole (2-3 jours).'
+        },
+        bainbouche: {
+            name: 'Chlorhexidine Bain de Bouche',
+            brand: 'BIOGARAN CONSEIL',
+            tagline: 'Antiseptique bucco-dentaire',
+            emoji: '&#x1F9F4;',
+            bgClass: 'gorge',
+            shortDesc: 'Désinfecte la bouche et la gorge en complément des pastilles.',
+            posology: 'Bain de bouche pur, 1 minute, 2-3x/jour après brossage',
+            why: 'Renforce l\'action antiseptique locale, surtout si inflammation gingivale associée.'
+        },
+        racecadotril: {
+            name: 'Racécadotril 100 mg',
+            brand: 'BIOGARAN CONSEIL',
+            tagline: 'Antisécrétoire intestinal',
+            emoji: '&#x1F4A7;',
+            bgClass: 'digestif',
+            shortDesc: 'Réduit les sécrétions intestinales sans bloquer le transit.',
+            posology: '1 gélule 3x/jour avant les repas pendant 3 jours max',
+            why: 'Alternative ou complément au lopéramide, avec moins de ballonnements.'
+        },
+
+        // ===== PRODUITS UPSA =====
+
+        // DOULEUR & FIÈVRE UPSA
+        efferalgan1000: {
+            name: 'Efferalgan 1000 mg',
+            brand: 'UPSA',
+            tagline: 'Paracétamol effervescent',
+            emoji: '&#x1F48A;',
+            bgClass: 'douleur',
+            description: 'L\'Efferalgan effervescent agit rapidement grâce à sa dissolution. Le paracétamol soulage les douleurs légères à modérées et fait baisser la fièvre en environ 30 minutes.',
+            shortDesc: 'Paracétamol effervescent à action rapide contre douleur et fièvre.',
+            posology: [
+                '1 comprimé par prise (max 3g/jour)',
+                'Espacer les prises de 4h minimum',
+                'Dissoudre dans un grand verre d\'eau'
+            ],
+            duration: '5 jours max pour la douleur, 3 jours max pour la fièvre',
+            warnings: 'Ne pas dépasser 3g/jour. Attention au cumul avec autres médicaments contenant du paracétamol (Fervex, Actifed...). Contient du sodium.',
+            alertConsult: 'Si la douleur persiste au-delà de 5 jours ou la fièvre au-delà de 3 jours, consultez un médecin.',
+            why: 'Action rapide grâce à la forme effervescente, soulage douleur et fièvre.'
+        },
+        dafalgan1000: {
+            name: 'Dafalgan 1000 mg',
+            brand: 'UPSA',
+            tagline: 'Paracétamol comprimé pelliculé',
+            emoji: '&#x1F48A;',
+            bgClass: 'douleur',
+            description: 'Le Dafalgan en comprimé à avaler est idéal pour les personnes suivant un régime sans sel. Même efficacité que l\'effervescent, format discret et pratique.',
+            shortDesc: 'Paracétamol sans sodium, format discret à avaler.',
+            posology: [
+                '1 comprimé par prise (max 3g/jour)',
+                'Espacer les prises de 4h minimum',
+                'Avaler avec un grand verre d\'eau'
+            ],
+            duration: '5 jours max pour la douleur, 3 jours max pour la fièvre',
+            warnings: 'Ne pas dépasser 3g/jour. Vérifier l\'absence d\'autre paracétamol dans vos traitements.',
+            alertConsult: 'Si la douleur persiste au-delà de 5 jours ou la fièvre au-delà de 3 jours, consultez un médecin.',
+            why: 'Format sans sodium, idéal pour régimes pauvres en sel.'
+        },
+        aspirineupsa: {
+            name: 'Aspirine UPSA Vitamine C',
+            brand: 'UPSA',
+            tagline: 'Antalgique + Vitamine C',
+            emoji: '&#x1F34B;',
+            bgClass: 'douleur',
+            description: 'L\'aspirine associée à la vitamine C est efficace contre les douleurs légères et les états grippaux avec fatigue. Action anti-inflammatoire et antipyrétique.',
+            shortDesc: 'Aspirine avec vitamine C pour douleurs et fatigue passagère.',
+            posology: [
+                'Adulte : 2 comprimés par prise',
+                'Espacer de 4h minimum',
+                'Maximum 9 comprimés/jour'
+            ],
+            duration: '5 jours max pour la douleur, 3 jours max pour la fièvre',
+            warnings: 'Contre-indiqué : grossesse T3, ulcère gastrique, anticoagulants, allergie aspirine/AINS. Prendre pendant les repas.',
+            alertConsult: 'Arrêtez et consultez si douleurs d\'estomac, selles noires ou saignements.',
+            why: 'Action anti-inflammatoire avec vitamine C pour les états de fatigue.'
+        },
+
+        // ORL & VOIES RESPIRATOIRES UPSA
+        fervex: {
+            name: 'Fervex État Grippal',
+            brand: 'UPSA',
+            tagline: 'Paracétamol + Antihistaminique + Vitamine C',
+            emoji: '&#x1F912;',
+            bgClass: 'gorge',
+            description: 'Fervex traite plusieurs symptômes d\'un coup : fièvre, maux de tête, écoulement nasal grâce à l\'antihistaminique. Format boisson chaude réconfortant.',
+            shortDesc: 'Traitement complet de l\'état grippal en boisson chaude.',
+            posology: [
+                '1 sachet dans un grand verre d\'eau chaude',
+                'Toutes les 4h minimum',
+                'Maximum 3 sachets/jour'
+            ],
+            duration: '5 jours maximum',
+            warnings: 'Provoque une somnolence : ne pas conduire. Contient du paracétamol (attention au cumul). Contre-indiqué : grossesse, allaitement, glaucome, rétention urinaire.',
+            alertConsult: 'Consultez si fièvre > 3 jours ou symptômes persistants > 5 jours.',
+            why: 'Traitement multi-symptômes pour les états grippaux et rhumes.'
+        },
+        mucomyst: {
+            name: 'Mucomyst 200 mg',
+            brand: 'UPSA',
+            tagline: 'Mucolytique - Fluidifiant bronchique',
+            emoji: '&#x1F4A8;',
+            bgClass: 'toux',
+            description: 'L\'acétylcystéine du Mucomyst fluidifie les sécrétions bronchiques épaisses pour faciliter leur expulsion. Pour les toux grasses avec encombrement.',
+            shortDesc: 'Fluidifie les sécrétions pour faciliter l\'expectoration.',
+            posology: [
+                '1 sachet 3 fois/jour',
+                'Dissoudre dans ½ verre d\'eau',
+                'Prendre avant les repas, JAMAIS le soir'
+            ],
+            duration: '5 jours maximum',
+            warnings: 'Ne JAMAIS associer à un antitussif (risque d\'encombrement). Prudence chez l\'asthmatique. À partir de 7 ans.',
+            alertConsult: 'Consultez si fièvre, crachats colorés ou toux > 5 jours.',
+            why: 'Rompt les ponts disulfure du mucus pour le liquéfier.'
+        },
+        oxomemazineupsa: {
+            name: 'Oxomémazine UPSA',
+            brand: 'UPSA',
+            tagline: 'Sirop antitussif pour toux sèche',
+            emoji: '&#x1F634;',
+            bgClass: 'toux',
+            description: 'L\'oxomémazine calme efficacement la toux sèche irritante, particulièrement la nuit. Action sur le centre de la toux avec effet sédatif bénéfique pour le sommeil.',
+            shortDesc: 'Calme la toux sèche irritante, surtout nocturne.',
+            posology: [
+                'Adulte : 10 mL 4x/jour',
+                'Enfant 6-10 ans : 10 mL 2-3x/jour',
+                'Privilégier les prises du soir'
+            ],
+            duration: 'Quelques jours seulement',
+            warnings: 'Provoque une somnolence importante : éviter conduite et alcool. Pas pour toux grasse. À partir de 2 ans. Photosensibilisant.',
+            alertConsult: 'Consultez si toux > 5 jours, fièvre ou difficultés respiratoires.',
+            why: 'Action centrale sur le réflexe de toux + effet sédatif pour la nuit.'
+        },
+        phytovex: {
+            name: 'Phytovex Maux de Gorge Spray',
+            brand: 'UPSA',
+            tagline: 'Dispositif médical naturel',
+            emoji: '&#x1F33F;',
+            bgClass: 'gorge',
+            description: 'Spray à base de glycérol végétal, miel et extraits de plantes. Forme un film protecteur sur la muqueuse, soulagement dès la première pulvérisation.',
+            shortDesc: 'Spray naturel qui forme un film protecteur apaisant.',
+            posology: [
+                'Phase initiale : 4 pulvérisations toutes les 20-30 min (2h)',
+                'Entretien : 4 pulvérisations 3-4x/jour'
+            ],
+            duration: '5 jours maximum',
+            warnings: 'À partir de 12 ans. Éviter si asthme sévère. Dispositif médical (pas un médicament).',
+            alertConsult: 'Consultez si fièvre, douleur intense ou symptômes > 5 jours.',
+            why: 'Action locale rapide, origine naturelle, sans médicament.'
+        },
+
+        // DIGESTIF UPSA
+        smecta: {
+            name: 'Smecta 3 g',
+            brand: 'UPSA',
+            tagline: 'Pansement digestif - Diosmectite',
+            emoji: '&#x1F6BD;',
+            bgClass: 'digestif',
+            description: 'La diosmectite (argile naturelle) tapisse la muqueuse intestinale, la protège et adsorbe les toxines. Action douce sans bloquer brutalement le transit.',
+            shortDesc: 'Pansement intestinal naturel qui protège la muqueuse.',
+            posology: [
+                'Adulte : 3 sachets/jour (jusqu\'à 6 en début de diarrhée)',
+                'Diluer dans ½ verre d\'eau',
+                'Espacer de 2h avec autres médicaments'
+            ],
+            duration: '7 jours maximum',
+            warnings: 'CONTRE-INDIQUÉ avant 2 ans et pendant grossesse/allaitement. Peut diminuer l\'absorption d\'autres médicaments : espacer de 2h.',
+            alertConsult: 'Consultez si diarrhée > 7 jours, déshydratation ou sang dans les selles.',
+            why: 'Tapisse l\'intestin et adsorbe les toxines sans bloquer le transit.'
+        },
+        smecta_enfant: {
+            name: 'Smecta Enfant',
+            brand: 'UPSA',
+            tagline: 'Pansement digestif pédiatrique',
+            emoji: '&#x1F6BD;',
+            bgClass: 'digestif',
+            description: 'Diosmectite adaptée aux enfants dès 2 ans. Protège la muqueuse intestinale et adsorbe les toxines en douceur.',
+            shortDesc: 'Pansement intestinal naturel pour les enfants.',
+            posology: [
+                'Enfant 2-6 ans : 2 sachets/jour',
+                'Diluer dans un biberon ou ½ verre d\'eau',
+                'Espacer de 2h avec autres médicaments'
+            ],
+            duration: '7 jours maximum',
+            warnings: 'À partir de 2 ans uniquement. Peut diminuer l\'absorption d\'autres médicaments.',
+            alertConsult: 'Consultez si diarrhée > 3 jours, fièvre, déshydratation ou sang dans les selles.',
+            forChild: true,
+            ageMin: 24 // mois
+        },
+        macrogol_enfant: {
+            name: 'Macrogol 4 g Enfant',
+            brand: 'BIOGARAN CONSEIL',
+            tagline: 'Laxatif osmotique pédiatrique',
+            emoji: '&#x1F4A9;',
+            bgClass: 'digestif',
+            description: 'Macrogol en sachets adaptés aux enfants. Attire l\'eau dans l\'intestin et ramollit les selles en douceur.',
+            shortDesc: 'Laxatif doux pour la constipation de l\'enfant.',
+            posology: [
+                'Enfant 2-6 ans : 1 à 2 sachets/jour',
+                'Diluer dans un verre d\'eau ou de jus',
+                'Adapter selon le résultat'
+            ],
+            duration: '2 semaines maximum sans avis médical',
+            warnings: 'Bien hydrater l\'enfant. Ne pas utiliser en cas de douleurs abdominales inexpliquées.',
+            alertConsult: 'Consultez si constipation persistante > 2 semaines ou douleurs abdominales.',
+            forChild: true,
+            ageMin: 24 // mois
+        },
+
+        // SOMMEIL UPSA
+        donormyl: {
+            name: 'Donormyl 15 mg',
+            brand: 'UPSA',
+            tagline: 'Antihistaminique sédatif',
+            emoji: '&#x1F634;',
+            bgClass: 'sommeil',
+            description: 'La doxylamine aide à l\'endormissement en cas d\'insomnie occasionnelle. Effet sédatif puissant, réservé aux insomnies ponctuelles de quelques jours.',
+            shortDesc: 'Aide à l\'endormissement pour insomnie passagère.',
+            posology: [
+                '½ à 1 comprimé 15-30 min avant coucher',
+                'Maximum 2 comprimés si insuffisant',
+                'Prévoir 8h de sommeil minimum'
+            ],
+            duration: '2 à 5 jours MAXIMUM',
+            warnings: 'Somnolence résiduelle le lendemain : attention conduite. Risque de chutes chez personnes âgées. Contre-indiqué : glaucome, rétention urinaire, apnée du sommeil.',
+            alertConsult: 'Consultez si insomnie persiste > 5 jours. Insomnie chronique nécessite avis médical.',
+            why: 'Pour les insomnies occasionnelles liées au stress ou décalage horaire.'
+        },
+
+        // VITALITÉ UPSA
+        vitamineC_upsa: {
+            name: 'UPSA Vitamine C 1000 mg',
+            brand: 'UPSA',
+            tagline: 'Complément alimentaire effervescent',
+            emoji: '&#x1F34A;',
+            bgClass: 'vitalite',
+            shortDesc: 'Vitamine C pour réduire la fatigue passagère.',
+            posology: '1 comprimé effervescent le matin',
+            why: 'Contribue à réduire la fatigue et soutient le système immunitaire.'
+        },
+        acerolabio: {
+            name: 'UPSA Acérola 1000 Bio',
+            brand: 'UPSA',
+            tagline: 'Vitamine C naturelle Bio',
+            emoji: '&#x1F352;',
+            bgClass: 'vitalite',
+            shortDesc: 'Vitamine C naturelle issue de l\'acérola biologique.',
+            posology: '1 comprimé à croquer le matin',
+            why: 'Source naturelle de vitamine C, certifié agriculture biologique.'
+        },
+
+        // ===== FORMES PÉDIATRIQUES =====
+        // Variantes enfant des produits (sirops, gouttes)
+
+        paracetamol_enfant: {
+            name: 'Paracétamol Sirop Pédiatrique',
+            brand: 'BIOGARAN CONSEIL',
+            tagline: 'Sirop avec pipette doseuse',
+            emoji: '&#x1F476;',
+            bgClass: 'douleur',
+            description: 'Sirop de paracétamol avec pipette graduée selon le poids de l\'enfant. Adapté dès la naissance. Goût fruité pour faciliter la prise.',
+            shortDesc: 'Sirop antalgique et antipyrétique adapté au poids de l\'enfant.',
+            posology: [
+                'Dose selon le poids : 15 mg/kg par prise',
+                'Remplir la pipette jusqu\'à la graduation du poids',
+                'Maximum 4 prises par jour, espacées de 6h'
+            ],
+            duration: '3 jours max pour la fièvre, 5 jours max pour la douleur',
+            warnings: 'Ne jamais dépasser 60 mg/kg/jour. Utiliser UNIQUEMENT la pipette fournie. Vérifier l\'absence de paracétamol dans d\'autres médicaments (Doliprane, sirops anti-rhume...).',
+            alertConsult: 'Consultez si fièvre > 3 jours, douleur > 5 jours, enfant < 3 mois avec fièvre, ou convulsions.',
+            forChild: true,
+            ageMin: 0
+        },
+        efferalgan_enfant: {
+            name: 'Efferalgan Pédiatrique Sirop',
+            brand: 'UPSA',
+            tagline: 'Sirop fraise avec seringue doseuse',
+            emoji: '&#x1F353;',
+            bgClass: 'douleur',
+            description: 'Sirop de paracétamol goût fraise avec seringue graduée selon le poids. Pour enfants de 3 à 32 kg (naissance à ~12 ans).',
+            shortDesc: 'Sirop paracétamol goût fraise adapté aux enfants.',
+            posology: [
+                'Dose selon le poids : 15 mg/kg par prise',
+                'Utiliser la seringue graduée fournie',
+                'Maximum 4 prises par jour, espacées de 6h'
+            ],
+            duration: '3 jours max pour la fièvre, 5 jours max pour la douleur',
+            warnings: 'Utiliser UNIQUEMENT la seringue fournie. Attention au cumul avec autres médicaments contenant du paracétamol.',
+            alertConsult: 'Consultez si fièvre persistante, enfant < 3 mois, ou douleur non soulagée.',
+            forChild: true,
+            ageMin: 0
+        },
+        ibuprofene_enfant: {
+            name: 'Ibuprofène Sirop Enfant',
+            brand: 'BIOGARAN CONSEIL',
+            tagline: 'Sirop anti-inflammatoire pédiatrique',
+            emoji: '&#x1F476;',
+            bgClass: 'douleur',
+            description: 'Sirop d\'ibuprofène pour enfants dès 3 mois (>5 kg). Anti-inflammatoire et antipyrétique. À prendre pendant un repas ou avec du lait.',
+            shortDesc: 'Sirop anti-inflammatoire pour enfants dès 3 mois.',
+            posology: [
+                'Dose selon le poids : 7,5 mg/kg par prise',
+                'Maximum 3 prises par jour, espacées de 6-8h',
+                'TOUJOURS donner pendant ou après un repas/lait'
+            ],
+            duration: '3 jours max pour la fièvre, 5 jours max pour la douleur',
+            warnings: 'Contre-indiqué si varicelle. Ne pas utiliser si déshydratation. Donner avec alimentation pour protéger l\'estomac.',
+            alertConsult: 'Consultez si varicelle, vomissements répétés, ou douleurs abdominales.',
+            forChild: true,
+            ageMin: 3 // mois
+        },
+        cetirizine_enfant: {
+            name: 'Cétirizine Gouttes Pédiatriques',
+            brand: 'SUR ORDONNANCE',
+            tagline: 'Solution buvable en gouttes (prescription)',
+            emoji: '&#x1F33C;',
+            bgClass: 'allergie',
+            description: 'Antihistaminique en gouttes pour enfants de moins de 6 ans. Ce médicament nécessite une ordonnance pour les jeunes enfants.',
+            shortDesc: 'Gouttes antihistaminiques sur ordonnance pour les moins de 6 ans.',
+            posology: [
+                'Posologie déterminée par le médecin',
+                'Généralement 2,5 à 5 mg par jour selon l\'âge'
+            ],
+            duration: 'Selon prescription médicale',
+            warnings: 'Médicament sur ordonnance pour les moins de 6 ans. Consultez votre médecin.',
+            alertConsult: 'Ce produit nécessite une consultation médicale préalable.',
+            forChild: true,
+            requiresPrescription: true,
+            ageMin: 24 // mois
+        },
+        carbocisteine_enfant: {
+            name: 'Carbocistéine Sirop Enfant 2%',
+            brand: 'BIOGARAN CONSEIL',
+            tagline: 'Fluidifiant bronchique pédiatrique',
+            emoji: '&#x1F476;',
+            bgClass: 'toux',
+            description: 'Sirop mucolytique dosé à 2% pour enfants dès 2 ans. Fluidifie les sécrétions bronchiques pour faciliter l\'expectoration.',
+            shortDesc: 'Sirop fluidifiant pour toux grasse chez l\'enfant dès 2 ans.',
+            posology: [
+                'Enfant 2-5 ans : 2,5 ml 2 à 3 fois/jour',
+                'Enfant 5-12 ans : 5 ml 3 fois/jour',
+                'JAMAIS le soir (risque de toux nocturne)'
+            ],
+            duration: '5 jours maximum',
+            warnings: 'Ne pas associer à un antitussif. Prendre en dehors des repas, sauf le soir.',
+            alertConsult: 'Consultez si fièvre, difficultés respiratoires ou toux > 5 jours.',
+            forChild: true,
+            ageMin: 24 // mois
+        },
+
+        // ===== PRODUITS SANOFI / OPELLA =====
+        // Forces Sanofi : Maalox (antiacide rapide), Maxilase (anti-inflammatoire gorge), Dulcolax (laxatif ponctuel)
+
+        // DIGESTIF SANOFI
+        maalox: {
+            name: 'Maalox Maux d\'Estomac',
+            brand: 'SANOFI / OPELLA',
+            tagline: 'Antiacide action rapide',
+            emoji: '&#x1F525;',
+            bgClass: 'digestif',
+            description: 'Le Maalox neutralise immédiatement l\'acidité gastrique grâce à l\'hydroxyde d\'aluminium et de magnésium. Soulagement rapide des brûlures d\'estomac, idéal après un repas copieux.',
+            shortDesc: 'Soulagement rapide des brûlures d\'estomac et remontées acides.',
+            posology: [
+                '1 à 2 comprimés à croquer ou sachets',
+                'À prendre 1h après les repas pour un effet optimal',
+                'Maximum 6 prises par jour'
+            ],
+            duration: '10 jours maximum sans avis médical',
+            warnings: 'Espacer de 2h avec tous les autres médicaments (4h avec les antibiotiques quinolones). Contre-indiqué si insuffisance rénale sévère.',
+            alertConsult: 'Consultez si symptômes > 10 jours, difficulté à avaler, perte de poids ou vomissements de sang.',
+            why: 'Soulagement immédiat contrairement aux IPP qui mettent 2-3 jours à agir pleinement.'
+        },
+        dulcolax: {
+            name: 'Dulcolax 5 mg',
+            brand: 'SANOFI / OPELLA',
+            tagline: 'Laxatif stimulant ponctuel',
+            emoji: '&#x1F4A9;',
+            bgClass: 'digestif',
+            description: 'Le bisacodyl stimule les contractions intestinales. Action en ~10h (prise le soir, effet le matin). Réservé aux constipations occasionnelles résistantes aux mesures simples.',
+            shortDesc: 'Laxatif stimulant efficace pour constipation ponctuelle résistante.',
+            posology: [
+                '1 à 2 comprimés le soir au coucher',
+                'Avaler entier SANS croquer avec de l\'eau',
+                'Ne pas prendre avec du lait ou des antiacides'
+            ],
+            duration: 'Usage PONCTUEL uniquement - quelques jours max',
+            warnings: 'Ne pas utiliser de façon régulière : risque de dépendance et "côlon paresseux". Contre-indiqué si douleurs abdominales inexpliquées, obstruction intestinale ou inflammation intestinale (Crohn, RCH).',
+            alertConsult: 'Consultez si constipation chronique, sang dans les selles, douleurs abdominales intenses ou arrêt des gaz.',
+            why: 'Solution rapide pour débloquer une constipation ponctuelle résistante aux laxatifs doux.'
+        },
+
+        // GORGE SANOFI
+        maxilase: {
+            name: 'Maxilase Comprimés',
+            brand: 'SANOFI / OPELLA',
+            tagline: 'Anti-inflammatoire naturel (adulte)',
+            emoji: '&#x1F33F;',
+            bgClass: 'gorge',
+            description: 'L\'alpha-amylase est une enzyme anti-œdémateuse qui réduit l\'inflammation de la gorge sans perturber la flore bactérienne. Comprimés réservés à l\'adulte.',
+            shortDesc: 'Enzyme anti-inflammatoire naturelle pour réduire le gonflement de la gorge.',
+            posology: [
+                '1 comprimé 3 fois par jour',
+                'Avaler avec un verre d\'eau',
+                'Pendant ou en dehors des repas'
+            ],
+            duration: '5 jours maximum',
+            warnings: 'Comprimés réservés à l\'adulte. Déconseillé pendant grossesse et allaitement. Allergie possible chez personnes sensibles aux enzymes.',
+            alertConsult: 'Consultez si fièvre, expectorations purulentes, gêne à avaler les aliments ou pas d\'amélioration après 5 jours.',
+            why: 'Action anti-inflammatoire sans effet antiseptique, complémentaire aux pastilles pour réduire le gonflement.',
+            forAdult: true
+        },
+        maxilase_enfant: {
+            name: 'Maxilase Sirop',
+            brand: 'SANOFI / OPELLA',
+            tagline: 'Anti-inflammatoire naturel (sirop)',
+            emoji: '&#x1F33F;',
+            bgClass: 'gorge',
+            description: 'Sirop d\'alpha-amylase pour enfants dès 6 mois. Enzyme anti-œdémateuse qui réduit l\'inflammation de la gorge en douceur.',
+            shortDesc: 'Sirop anti-inflammatoire naturel pour gorge gonflée chez l\'enfant.',
+            posology: [
+                'Enfant 6 mois-3 ans : 5 mL (1 cuillère à café) 3x/jour',
+                'Enfant > 3 ans : 10 mL (2 cuillères à café) 3x/jour',
+                'Adulte : 15 mL (1 cuillère à soupe) 3x/jour'
+            ],
+            duration: '5 jours maximum',
+            warnings: 'Conservation 10 jours après ouverture. Contient du sucre. Déconseillé pendant grossesse et allaitement.',
+            alertConsult: 'Consultez si fièvre, difficultés à avaler ou pas d\'amélioration après 5 jours.',
+            why: 'Sirop adapté aux enfants dès 6 mois pour réduire le gonflement de la gorge.',
+            forChild: true,
+            ageMin: 6 // mois
+        },
+        amylase_sirop_enfant: {
+            name: 'Alpha-amylase Sirop',
+            brand: 'BIOGARAN CONSEIL',
+            tagline: 'Anti-inflammatoire naturel (sirop)',
+            emoji: '&#x1F33F;',
+            bgClass: 'gorge',
+            description: 'Sirop d\'alpha-amylase pour enfants dès 6 mois. Enzyme anti-œdémateuse qui réduit l\'inflammation de la gorge en douceur. Équivalent générique du Maxilase.',
+            shortDesc: 'Sirop anti-inflammatoire naturel pour gorge gonflée chez l\'enfant.',
+            posology: [
+                'Enfant 6 mois-3 ans : 5 mL (1 cuillère à café) 3x/jour',
+                'Enfant > 3 ans : 10 mL (2 cuillères à café) 3x/jour',
+                'Adulte : 15 mL (1 cuillère à soupe) 3x/jour'
+            ],
+            duration: '5 jours maximum',
+            warnings: 'Conservation 10 jours après ouverture. Contient du sucre. Déconseillé pendant grossesse et allaitement.',
+            alertConsult: 'Consultez si fièvre, difficultés à avaler ou pas d\'amélioration après 5 jours.',
+            why: 'Sirop adapté aux enfants dès 6 mois pour réduire le gonflement de la gorge.',
+            forChild: true,
+            ageMin: 6 // mois
+        },
+
+        // GORGE ENFANT HOMEOPATHIE
+        homeogene9: {
+            name: 'Homéogène 9',
+            brand: 'BOIRON',
+            tagline: 'Homéopathie mal de gorge',
+            emoji: '&#x1F33F;',
+            bgClass: 'gorge',
+            description: 'Médicament homéopathique traditionnellement utilisé dans le traitement des maux de gorge. Comprimés à sucer adaptés aux enfants dès 18 mois (faire fondre dans un peu d\'eau).',
+            shortDesc: 'Traitement homéopathique doux pour les maux de gorge des tout-petits.',
+            posology: [
+                'Enfant < 6 ans : 2 comprimés fondus dans un peu d\'eau, 3x/jour',
+                'Enfant > 6 ans et adulte : 2 comprimés à sucer, 3x/jour',
+                'Espacer les prises de 4h minimum'
+            ],
+            duration: '5 jours maximum',
+            warnings: 'Contient du lactose et du saccharose. Sans contre-indication connue.',
+            alertConsult: 'Consultez si fièvre > 38,5°C, douleur intense ou symptômes > 5 jours.',
+            why: 'Alternative douce pour les moins de 6 ans, sans risque de fausse route.',
+            forChild: true,
+            ageMin: 18 // mois
+        }
+    };
+
+    // Dynamic Q2 options with complementary products
+    // Dual-brand system: product = Biogaran, productUpsa = UPSA
+    const q2Options = {
+        douleur: {
+            title: 'Quel type de douleur ?',
+            subtitle: 'Cela nous aide à choisir le bon antalgique.',
+            options: [
+                { value: 'cephalee', icon: '&#x1F9E0;', label: 'Maux de tête', desc: 'Céphalées, migraines légères', product: 'paracetamol', productUpsa: 'efferalgan1000', productChild: 'paracetamol_enfant', productChildUpsa: 'efferalgan_enfant', complements: [] },
+                { value: 'dysmenorrhee', icon: '&#x1F469;', label: 'Règles douloureuses', desc: 'Crampes menstruelles', product: 'ibuprofene', productUpsa: 'ibuprofene', productChild: 'ibuprofene_enfant', complements: ['phloroglucinol'], singleBrand: true, brandNote: 'L\'ibuprofène est le seul choix recommandé. L\'aspirine est contre-indiquée pendant les règles car elle fluidifie le sang et peut augmenter les saignements.' },
+                { value: 'fievre', icon: '&#x1F321;', label: 'Fièvre', desc: 'Température élevée', product: 'paracetamol', productUpsa: 'dafalgan1000', productChild: 'paracetamol_enfant', productChildUpsa: 'efferalgan_enfant', complements: [] },
+                { value: 'musculaire', icon: '&#x1F4AA;', label: 'Douleur musculaire', desc: 'Courbatures, tensions', product: 'paracetamol', productUpsa: 'efferalgan1000', productChild: 'paracetamol_enfant', productChildUpsa: 'efferalgan_enfant', complements: ['ibuprofene'], complementsChild: ['ibuprofene_enfant'] },
+                { value: 'etatgrippal', icon: '&#x1F912;', label: 'État grippal', desc: 'Fièvre + courbatures + fatigue', product: 'paracetamol', productUpsa: 'fervex', productChild: 'paracetamol_enfant', productChildUpsa: 'efferalgan_enfant', complements: ['vitamineC_upsa'], brandQuestion: { question: 'Avez-vous le nez qui coule et souhaitez-vous vous reposer ?', subtitle: 'Le Fervex contient un antihistaminique qui assèche le nez mais provoque de la somnolence.', optionYes: { label: 'Oui, nez qui coule + besoin de repos', desc: 'Je peux me permettre de somnoler', recommendUpsa: true }, optionNo: { label: 'Non, je dois rester vigilant(e)', desc: 'Conduite ou travail prévu', recommendUpsa: false } } }
+            ]
+        },
+        allergie: {
+            title: 'Quels sont vos symptômes allergiques ?',
+            subtitle: 'Rhinite, urticaire ou les deux.',
+            options: [
+                { value: 'rhinite', icon: '&#x1F4A7;', label: 'Nez qui coule, éternuements', desc: 'Rhinite allergique saisonnière', product: 'cetirizine', productUpsa: 'cetirizine', childConsult: true, complements: [] },
+                { value: 'urticaire', icon: '&#x1F534;', label: 'Boutons, démangeaisons', desc: 'Urticaire aiguë', product: 'cetirizine', productUpsa: 'cetirizine', childConsult: true, complements: [] },
+                { value: 'conjonctivite', icon: '&#x1F441;', label: 'Yeux qui piquent, rouges', desc: 'Conjonctivite allergique', product: 'cetirizine', productUpsa: 'cetirizine', childConsult: true, complements: [] }
+            ],
+            childConsultMessage: 'Les antihistaminiques pour les moins de 6 ans nécessitent une ordonnance. Consultez votre médecin ou demandez conseil à votre pharmacien.'
+        },
+        gorge: {
+            title: 'Comment décrivez-vous votre mal de gorge ?',
+            subtitle: 'Avec ou sans difficulté à avaler.',
+            options: [
+                { value: 'legere', icon: '&#x1F36F;', label: 'Irritation légère', desc: 'Picotements, gêne modérée', product: 'pastillegorge', productUpsa: 'phytovex', productChild: 'amylase_sirop_enfant', productChildSanofi: 'maxilase_enfant', complements: ['bainbouche'], complementsChild: ['homeogene9'] },
+                { value: 'deglutition', icon: '&#x1F630;', label: 'Douleur à la déglutition', desc: 'Avaler est douloureux', product: 'collutoire', productUpsa: 'phytovex', productChild: 'amylase_sirop_enfant', productChildSanofi: 'maxilase_enfant', complements: ['pastillegorge', 'paracetamol'], complementsChild: ['homeogene9', 'paracetamol_enfant'] },
+                { value: 'inflammation', icon: '&#x1F33F;', label: 'Gorge gonflée, enflammée', desc: 'Sensation de gonflement, inflammation visible', product: 'maxilase', productUpsa: 'maxilase', productChild: 'amylase_sirop_enfant', productChildSanofi: 'maxilase_enfant', complements: ['pastillegorge', 'paracetamol'], complementsChild: ['homeogene9', 'paracetamol_enfant'] },
+                { value: 'rhume', icon: '&#x1F927;', label: 'Rhume avec mal de gorge', desc: 'Nez bouché + gorge irritée', product: 'pastillegorge', productUpsa: 'fervex', productChild: 'amylase_sirop_enfant', productChildSanofi: 'maxilase_enfant', complements: ['paracetamol'], complementsChild: ['homeogene9', 'paracetamol_enfant'] }
+            ]
+        },
+        digestif: {
+            title: 'Quel trouble digestif ?',
+            subtitle: 'Chaque problème a sa solution.',
+            options: [
+                { value: 'constipation', icon: '&#x1F4A9;', label: 'Constipation', desc: 'Difficultés à aller aux toilettes', product: 'macrogol', productUpsa: 'macrogol', productSanofi: 'dulcolax', productChild: 'macrogol_enfant', complements: [], complementsChild: [], brandQuestion: { question: 'Avez-vous besoin d\'un effet rapide ou préférez-vous un traitement doux ?', subtitle: 'Le Macrogol agit en douceur (24-48h), le Dulcolax est plus rapide (~10h) mais réservé à un usage ponctuel.', optionYes: { label: 'Effet rapide souhaité', desc: 'Constipation ponctuelle, besoin urgent', recommendSanofi: true }, optionNo: { label: 'Traitement doux en 1ère intention', desc: 'Constipation modérée, sans urgence', recommendSanofi: false } } },
+                { value: 'diarrhee', icon: '&#x1F6BD;', label: 'Diarrhée', desc: 'Selles liquides fréquentes', product: 'loperamide', productUpsa: 'smecta', productChild: 'smecta_enfant', complements: ['levure', 'racecadotril'], complementsChild: [], brandQuestion: { question: 'Y a-t-il de la fièvre ou avez-vous voyagé récemment ?', subtitle: 'En cas de suspicion d\'infection, le Smecta est préféré car il n\'empêche pas l\'élimination des germes.', optionYes: { label: 'Oui, fièvre ou voyage récent', desc: 'Possible origine infectieuse (turista, gastro)', recommendUpsa: true }, optionNo: { label: 'Non, diarrhée banale', desc: 'Stress, alimentation, sans fièvre', recommendUpsa: false } } },
+                { value: 'nausees', icon: '&#x1F922;', label: 'Nausées, vomissements', desc: 'Envie de vomir, mal des transports', product: 'metopimazine', productUpsa: 'metopimazine', complements: ['phloroglucinol'], childConsult: true },
+                { value: 'spasmes', icon: '&#x1F4AB;', label: 'Spasmes, crampes', desc: 'Douleurs abdominales par crampes', product: 'phloroglucinol', productUpsa: 'phloroglucinol', complements: ['levure'], childConsult: true },
+                { value: 'reflux', icon: '&#x1F525;', label: 'Brûlures d\'estomac, reflux', desc: 'Remontées acides, sensation de brûlure', product: 'maalox', productUpsa: 'maalox', productBiogaran: 'omeprazole', complements: ['alginate'], childConsult: true, brandQuestion: { question: 'Vos brûlures sont-elles ponctuelles ou récurrentes ?', subtitle: 'Le Maalox soulage immédiatement. L\'Oméprazole est plus adapté aux symptômes fréquents (effet en 2-3 jours).', optionYes: { label: 'Ponctuelles, après repas copieux', desc: 'Occasionnel, besoin de soulagement rapide', recommendSanofi: true }, optionNo: { label: 'Récurrentes, plusieurs fois par semaine', desc: 'Symptômes fréquents nécessitant un traitement de fond', recommendSanofi: false } } }
+            ],
+            childConsultMessage: 'Pour les nausées, spasmes ou reflux chez les moins de 6 ans, consultez votre médecin ou demandez conseil à votre pharmacien.'
+        },
+        toux: {
+            title: 'Quel type de toux ?',
+            subtitle: 'Sèche ou grasse, le traitement est différent.',
+            options: [
+                { value: 'seche', icon: '&#x1F634;', label: 'Toux sèche', desc: 'Sans crachat, irritante, surtout la nuit', product: 'oxomémazine', productUpsa: 'oxomemazineupsa', productChild: 'oxomémazine', productChildUpsa: 'oxomemazineupsa', complements: ['pastillegorge'], complementsChild: [], childAgeMin: 30 },
+                { value: 'grasse', icon: '&#x1F4A8;', label: 'Toux grasse', desc: 'Avec sécrétions, mucus à expulser', product: 'carbocisteine', productUpsa: 'mucomyst', productChild: 'carbocisteine_enfant', productChildUpsa: 'carbocisteine_enfant', complements: [], childAgeMin: 30 }
+            ],
+            childWarning: 'Les sirops antitussifs sont réservés aux enfants de plus de 30 mois (2 ans et demi). Pour les plus jeunes, consultez votre médecin.'
+        },
+        brulure: {
+            title: 'Quel type de lésion ?',
+            subtitle: 'Brûlure ou plaie nécessitent des soins différents.',
+            options: [
+                { value: 'coupdesoleil', icon: '&#x2600;&#xFE0F;', label: 'Coup de soleil', desc: 'Peau rouge et chaude après exposition', product: 'trolamine', productUpsa: 'trolamine', productChild: 'trolamine', complements: [], complementsChild: [] },
+                { value: 'brulurelegere', icon: '&#x1F525;', label: 'Petite brûlure', desc: 'Brûlure domestique sans cloque', product: 'trolamine', productUpsa: 'trolamine', productChild: 'trolamine', complements: ['chlorhexidine'], complementsChild: ['chlorhexidine'] },
+                { value: 'plaie', icon: '&#x1FA79;', label: 'Écorchure, petite plaie', desc: 'Coupure superficielle, abrasion', product: 'chlorhexidine', productUpsa: 'chlorhexidine', productChild: 'chlorhexidine', complements: ['trolamine'], complementsChild: ['trolamine'] }
+            ]
+        }
+    };
+
+    // Q4 alerts by symptom
+    const alertOptions = {
+        douleur: [
+            { value: 'fievrehaute', label: 'Fièvre > 39°C ou persistante > 3 jours', severe: true },
+            { value: 'raideur', label: 'Raideur de la nuque avec fièvre', severe: true },
+            { value: 'aucun', label: 'Aucun de ces signaux', severe: false }
+        ],
+        allergie: [
+            { value: 'respiration', label: 'Difficulté à respirer ou gonflement du visage', severe: true },
+            { value: 'malaise', label: 'Malaise, vertiges, chute de tension', severe: true },
+            { value: 'aucun', label: 'Aucun de ces signaux', severe: false }
+        ],
+        gorge: [
+            { value: 'fievre', label: 'Fièvre > 38,5°C', severe: true },
+            { value: 'ganglions', label: 'Ganglions très gonflés et douloureux', severe: true },
+            { value: 'respiration', label: 'Difficulté à respirer ou avaler la salive', severe: true },
+            { value: 'aucun', label: 'Aucun de ces signaux', severe: false }
+        ],
+        digestif: [
+            { value: 'sang', label: 'Sang dans les selles ou vomissements', severe: true },
+            { value: 'deshydratation', label: 'Signes de déshydratation (soif intense, urines foncées)', severe: true },
+            { value: 'fievredouleur', label: 'Fièvre > 38,5°C avec douleurs abdominales intenses', severe: true },
+            { value: 'aucun', label: 'Aucun de ces signaux', severe: false }
+        ],
+        toux: [
+            { value: 'essoufflement', label: 'Essoufflement ou difficulté à respirer', severe: true },
+            { value: 'crachats', label: 'Crachats de sang ou crachats très colorés', severe: true },
+            { value: 'fievre', label: 'Fièvre > 38,5°C', severe: true },
+            { value: 'aucun', label: 'Aucun de ces signaux', severe: false }
+        ],
+        brulure: [
+            { value: 'etendue', label: 'Brûlure étendue (plus grande que la paume)', severe: true },
+            { value: 'cloques', label: 'Présence de cloques importantes', severe: true },
+            { value: 'visage', label: 'Brûlure du visage, des mains ou des organes génitaux', severe: true },
+            { value: 'aucun', label: 'Aucun de ces signaux', severe: false }
+        ]
+    };
+
+    // Functions
+    function startQuiz() {
+        document.getElementById('step-intro').classList.remove('active');
+        document.getElementById('step-1').classList.add('active');
+        document.getElementById('progressContainer').style.display = 'block';
+        currentStep = 1;
+        updateProgress();
+    }
+
+    const TRANSITION_DELAY = 300; // ms before moving to next step
+
+    function selectSymptom(el, symptom) {
+        const stepEl = document.getElementById('step-1');
+        stepEl.querySelectorAll('.option').forEach(o => o.classList.remove('selected'));
+        el.classList.add('selected');
+        selectedSymptom = symptom;
+
+        // Auto-advance after short delay
+        setTimeout(() => nextStep(1), TRANSITION_DELAY);
+    }
+
+    function selectAge(el, forChild) {
+        const stepEl = document.getElementById('step-age');
+        stepEl.querySelectorAll('.option').forEach(o => o.classList.remove('selected'));
+        el.classList.add('selected');
+        isForChild = forChild;
+
+        // Auto-advance after short delay
+        setTimeout(() => nextStep('age'), TRANSITION_DELAY);
+    }
+
+    function selectDuration(el, duration) {
+        const stepEl = document.getElementById('step-3');
+        stepEl.querySelectorAll('.option').forEach(o => o.classList.remove('selected'));
+        el.classList.add('selected');
+        selectedDuration = duration;
+
+        // Auto-advance after short delay
+        setTimeout(() => nextStep(3), TRANSITION_DELAY);
+    }
+
+    function selectAlert(el, alert, severe) {
+        const stepEl = document.getElementById('step-4');
+        stepEl.querySelectorAll('.option').forEach(o => o.classList.remove('selected'));
+        el.classList.add('selected');
+        hasAlert = severe;
+
+        // Auto-show result after short delay
+        setTimeout(() => showResult(), TRANSITION_DELAY);
+    }
+
+    function nextStep(from) {
+        document.getElementById('step-' + from).classList.remove('active');
+
+        if (from === 1) {
+            // Go to age question
+            document.getElementById('step-age').classList.add('active');
+            currentStep = 1.5;
+        } else if (from === 'age') {
+            // Coming from age question, go to step 2
+            document.getElementById('step-age').classList.remove('active');
+            buildQ2();
+            document.getElementById('step-2').classList.add('active');
+            currentStep = 2;
+        } else if (from === 2) {
+            // Check if we need to show brand question
+            if (selectedDetail.brandQuestion && !selectedDetail.singleBrand) {
+                hasBrandQuestion = true;
+                buildBrandQuestion();
+                document.getElementById('step-brand').classList.add('active');
+                currentStep = 2.5; // Intermediate step
+            } else {
+                // No brand question needed, go to step 3
+                hasBrandQuestion = false;
+                brandChoice = null; // Reset - will show both or single
+                document.getElementById('step-3').classList.add('active');
+                currentStep = 3;
+            }
+        } else if (from === 'brand') {
+            // Coming from brand question, go to step 3
+            document.getElementById('step-brand').classList.remove('active');
+            document.getElementById('step-3').classList.add('active');
+            currentStep = 3;
+        } else if (from === 3) {
+            // Build Q4 dynamically
+            buildQ4();
+            document.getElementById('step-4').classList.add('active');
+            currentStep = 4;
+        } else {
+            // Default behavior
+            document.getElementById('step-' + (from + 1)).classList.add('active');
+            currentStep = from + 1;
+        }
+
+        updateProgress();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function buildBrandQuestion() {
+        const bq = selectedDetail.brandQuestion;
+        document.getElementById('qBrandTitle').textContent = bq.question;
+        document.getElementById('qBrandSubtitle').textContent = bq.subtitle;
+
+        let html = `
+            <div class="option" onclick="selectBrand(this, true)" data-brand="yes">
+                <div class="option-icon">&#x2705;</div>
+                <div class="option-content">
+                    <div class="option-label">${bq.optionYes.label}</div>
+                    <div class="option-desc">${bq.optionYes.desc}</div>
+                </div>
+                <div class="option-check"></div>
+            </div>
+            <div class="option" onclick="selectBrand(this, false)" data-brand="no">
+                <div class="option-icon">&#x274C;</div>
+                <div class="option-content">
+                    <div class="option-label">${bq.optionNo.label}</div>
+                    <div class="option-desc">${bq.optionNo.desc}</div>
+                </div>
+                <div class="option-check"></div>
+            </div>
+        `;
+        document.getElementById('qBrandOptions').innerHTML = html;
+    }
+
+    function selectBrand(el, isYes) {
+        const stepEl = document.getElementById('step-brand');
+        stepEl.querySelectorAll('.option').forEach(o => o.classList.remove('selected'));
+        el.classList.add('selected');
+
+        const bq = selectedDetail.brandQuestion;
+
+        // Check for Sanofi recommendation first (new feature)
+        const recommendSanofi = isYes ? bq.optionYes.recommendSanofi : bq.optionNo.recommendSanofi;
+        const recommendUpsa = isYes ? bq.optionYes.recommendUpsa : bq.optionNo.recommendUpsa;
+
+        if (recommendSanofi === true) {
+            brandChoice = 'sanofi';
+        } else if (recommendSanofi === false && selectedDetail.productBiogaran) {
+            // Explicitly not Sanofi, use Biogaran alternative
+            brandChoice = 'biogaran';
+        } else if (recommendUpsa === true) {
+            brandChoice = 'upsa';
+        } else if (recommendUpsa === false) {
+            brandChoice = 'biogaran';
+        } else {
+            brandChoice = null; // Show both options
+        }
+
+        // Auto-advance after short delay
+        setTimeout(() => nextStep('brand'), TRANSITION_DELAY);
+    }
+
+    function buildQ2() {
+        const config = q2Options[selectedSymptom];
+        document.getElementById('q2Title').textContent = config.title;
+        document.getElementById('q2Subtitle').textContent = config.subtitle;
+
+        let html = '';
+        config.options.forEach((opt, index) => {
+            // Store complements in data attribute to avoid quote issues
+            const complementsData = (opt.complements || []).join(',');
+            html += `
+                <div class="option" onclick="selectDetailFromIndex(this, ${index})" data-detail="${opt.value}" data-index="${index}">
+                    <div class="option-icon">${opt.icon}</div>
+                    <div class="option-content">
+                        <div class="option-label">${opt.label}</div>
+                        <div class="option-desc">${opt.desc}</div>
+                    </div>
+                    <div class="option-check"></div>
+                </div>
+            `;
+        });
+        document.getElementById('q2Options').innerHTML = html;
+    }
+
+    function selectDetailFromIndex(el, index) {
+        const config = q2Options[selectedSymptom];
+        const opt = config.options[index];
+        // Store all option data including brandQuestion
+        // Extended to support Sanofi products and child variants
+        selectedDetail = {
+            detail: opt.value,
+            product: opt.product,
+            productUpsa: opt.productUpsa || opt.product,
+            productSanofi: opt.productSanofi || null,
+            productBiogaran: opt.productBiogaran || opt.product,
+            // Child variants (sirop, gouttes)
+            productChild: opt.productChild || null,
+            productChildUpsa: opt.productChildUpsa || null,
+            productChildSanofi: opt.productChildSanofi || null,
+            complements: opt.complements || [],
+            complementsChild: opt.complementsChild || opt.complements || [],
+            brandQuestion: opt.brandQuestion || null,
+            singleBrand: opt.singleBrand || false,
+            brandNote: opt.brandNote || null
+        };
+
+        const stepEl = document.getElementById('step-2');
+        stepEl.querySelectorAll('.option').forEach(o => o.classList.remove('selected'));
+        el.classList.add('selected');
+
+        // Auto-advance after short delay
+        setTimeout(() => nextStep(2), TRANSITION_DELAY);
+    }
+
+    function buildQ4() {
+        const alerts = alertOptions[selectedSymptom];
+        let html = '';
+        alerts.forEach(alert => {
+            const icon = alert.severe ? '&#x26A0;&#xFE0F;' : '&#x2705;';
+            html += `
+                <div class="option" onclick="selectAlert(this, '${alert.value}', ${alert.severe})" data-alert="${alert.value}">
+                    <div class="option-icon">${icon}</div>
+                    <div class="option-content">
+                        <div class="option-label">${alert.label}</div>
+                    </div>
+                    <div class="option-check"></div>
+                </div>
+            `;
+        });
+        document.getElementById('q4Options').innerHTML = html;
+    }
+
+    function goBack() {
+        if (currentStep <= 1) {
+            document.getElementById('step-1').classList.remove('active');
+            document.getElementById('step-intro').classList.add('active');
+            document.getElementById('progressContainer').style.display = 'none';
+            currentStep = 0;
+        } else if (currentStep === 1.5) {
+            // Going back from age question to step 1
+            document.getElementById('step-age').classList.remove('active');
+            document.getElementById('step-1').classList.add('active');
+            currentStep = 1;
+            isForChild = null;
+        } else if (currentStep === 2) {
+            // Going back from step 2 to age question
+            document.getElementById('step-2').classList.remove('active');
+            document.getElementById('step-age').classList.add('active');
+            currentStep = 1.5;
+        } else if (currentStep === 2.5) {
+            // Going back from brand question to step 2
+            document.getElementById('step-brand').classList.remove('active');
+            document.getElementById('step-2').classList.add('active');
+            currentStep = 2;
+            brandChoice = null;
+        } else if (currentStep === 3 && hasBrandQuestion) {
+            // Going back from step 3 to brand question (if we showed it)
+            document.getElementById('step-3').classList.remove('active');
+            document.getElementById('step-brand').classList.add('active');
+            currentStep = 2.5;
+        } else if (currentStep === 3 && !hasBrandQuestion) {
+            // Going back from step 3 to step 2 (no brand question)
+            document.getElementById('step-3').classList.remove('active');
+            document.getElementById('step-2').classList.add('active');
+            currentStep = 2;
+        } else {
+            document.getElementById('step-' + currentStep).classList.remove('active');
+            currentStep--;
+            document.getElementById('step-' + currentStep).classList.add('active');
+        }
+        updateProgress();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function updateProgress() {
+        // Map step 2.5 (brand question) to appear between 2 and 3
+        const displayStep = currentStep === 2.5 ? 2 : Math.floor(currentStep);
+        const progressPercent = currentStep === 2.5 ? 62.5 : (currentStep / totalQuestions * 100);
+        document.getElementById('progressFill').style.width = progressPercent + '%';
+        document.getElementById('progressLabel').textContent = displayStep + '/' + totalQuestions;
+    }
+
+    function showResult() {
+        document.getElementById('step-4').classList.remove('active');
+        document.getElementById('progressContainer').style.display = 'none';
+        document.getElementById('interlude').classList.add('active');
+        setTimeout(() => {
+            document.getElementById('interlude').classList.remove('active');
+            renderResult();
+            document.getElementById('step-result').classList.add('active');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }, 2200);
+    }
+
+    function renderResult() {
+        const container = document.getElementById('resultContainer');
+
+        // Check for alerts or prolonged duration
+        if (hasAlert || selectedDuration === 'prolonge') {
+            container.innerHTML = `
+                <div class="alert-box">
+                    <div class="alert-box-icon">&#x1F6A8;</div>
+                    <h3>Consultation médicale recommandée</h3>
+                    <p>
+                        ${hasAlert ? 'Les symptômes que vous décrivez nécessitent un avis médical.' : ''}
+                        ${selectedDuration === 'prolonge' ? 'Des symptômes qui persistent plus d\'une semaine doivent être évalués par un professionnel de santé.' : ''}
+                        <br><br>
+                        <strong>Passez nous voir à la pharmacie</strong> pour une orientation adaptée, ou consultez votre médecin traitant.
+                    </p>
+                </div>
+                <div class="disclaimer">
+                    <strong>Pharmacie Charnal</strong> — 32 Place de Toulouse, 56530 Quéven<br>
+                    Tél : 02 97 05 09 31
+                </div>
+                <div class="restart-section">
+                    <button class="restart-link" onclick="restartQuiz()">&#x21BB; Recommencer le questionnaire</button>
+                </div>
+            `;
+            return;
+        }
+
+        // Check if child needs consultation (e.g., allergies require prescription for <6 years)
+        const symptomConfig = q2Options[selectedSymptom];
+        if (isForChild && (selectedDetail.childConsult || symptomConfig.childConsultMessage)) {
+            const consultMessage = symptomConfig.childConsultMessage || 'Pour les enfants de moins de 6 ans, ce type de traitement nécessite un avis médical.';
+            container.innerHTML = `
+                <div class="alert-box" style="border-color: var(--teal-pro); background: var(--pastel-teal);">
+                    <div class="alert-box-icon">&#x1F476;</div>
+                    <h3>Avis médical nécessaire pour les moins de 6 ans</h3>
+                    <p>
+                        ${consultMessage}
+                        <br><br>
+                        <strong>Passez nous voir à la pharmacie</strong> — nous pourrons vous orienter vers votre médecin ou vous proposer des alternatives adaptées.
+                    </p>
+                </div>
+                <div class="disclaimer">
+                    <strong>Pharmacie Charnal</strong> — 32 Place de Toulouse, 56530 Quéven<br>
+                    Tél : 02 97 05 09 31
+                </div>
+                <div class="restart-section">
+                    <button class="restart-link" onclick="restartQuiz()">&#x21BB; Recommencer le questionnaire</button>
+                </div>
+            `;
+            return;
+        }
+
+        // Normal result with multi-brand product recommendation (Biogaran, UPSA, Sanofi)
+        // If isForChild is true, use child variants when available
+        let productKeyBiogaran, productKeyUpsa, productKeySanofi;
+        let complements;
+
+        if (isForChild) {
+            // Child products: use ONLY child variants (no fallback to adult products)
+            productKeyBiogaran = selectedDetail.productChild || null;
+            productKeyUpsa = selectedDetail.productChildUpsa || null;
+            productKeySanofi = selectedDetail.productChildSanofi || null;
+            complements = selectedDetail.complementsChild || [];
+        } else {
+            // Adult products: use standard variants
+            productKeyBiogaran = selectedDetail.productBiogaran || selectedDetail.product;
+            productKeyUpsa = selectedDetail.productUpsa;
+            productKeySanofi = selectedDetail.productSanofi;
+            complements = selectedDetail.complements || [];
+        }
+
+        const pBiogaran = products[productKeyBiogaran];
+        const pUpsa = products[productKeyUpsa];
+        const pSanofi = productKeySanofi ? products[productKeySanofi] : null;
+
+        // Determine what to show based on brandChoice and singleBrand flag
+        const isSingleBrand = selectedDetail.singleBrand || false;
+        const brandNote = selectedDetail.brandNote || null;
+
+        // Check if we can show dual brand (Biogaran vs UPSA or Biogaran vs Sanofi)
+        let showDualBrand = false;
+        let showDualBrandSanofi = false; // true = Biogaran vs Sanofi, false = Biogaran vs UPSA
+
+        if (pBiogaran && pUpsa && productKeyBiogaran !== productKeyUpsa) {
+            showDualBrand = true;
+            showDualBrandSanofi = false;
+        } else if (pBiogaran && pSanofi && productKeyBiogaran !== productKeySanofi) {
+            showDualBrand = true;
+            showDualBrandSanofi = true;
+        }
+
+        // Override if we have a specific brand choice from the brand question
+        let showOnlyUpsa = brandChoice === 'upsa';
+        let showOnlyBiogaran = brandChoice === 'biogaran' || isSingleBrand;
+        let showOnlySanofi = brandChoice === 'sanofi';
+
+        // If a specific brand was chosen, don't show dual brand
+        if (brandChoice !== null || isSingleBrand) {
+            showDualBrand = false;
+        }
+
+        // Helper function to render a product card
+        function renderProductCard(p, brandLabel) {
+            const posologyHtml = Array.isArray(p.posology)
+                ? p.posology.map(pos => `<li>${pos}</li>`).join('')
+                : `<li>${p.posology}</li>`;
+
+            return `
+                <div class="product-card">
+                    <div class="product-card-top ${p.bgClass}">
+                        <div class="product-brand-tag">${p.brand}</div>
+                        <div class="product-image-placeholder">${p.emoji}</div>
+                    </div>
+                    <div class="product-card-body">
+                        <div class="product-name">${p.name}</div>
+                        <div class="product-brand">${p.brand} · ${p.tagline}</div>
+
+                        <div class="product-posology">
+                            <h4>&#x1F4CB; Posologie</h4>
+                            <ul>${posologyHtml}</ul>
+                        </div>
+
+                        <div class="product-duration">
+                            <div class="product-duration-icon">&#x23F1;</div>
+                            <div class="product-duration-text">
+                                <strong>Durée de traitement</strong>
+                                ${p.duration}
+                            </div>
+                        </div>
+
+                        <div class="product-warning">
+                            <h4>&#x26A0;&#xFE0F; À savoir</h4>
+                            <p>${p.warnings}</p>
+                        </div>
+
+                        <div class="stock-badge">
+                            <div class="stock-dot"></div>
+                            Disponible à la pharmacie
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        // Build complementary products HTML
+        let complementsHtml = '';
+        if (complements.length > 0) {
+            complementsHtml = `
+                <div class="complementary-section">
+                    <div class="complementary-title">&#x2795; En complément</div>
+                    ${complements.map(compKey => {
+                        const comp = products[compKey];
+                        if (!comp) return '';
+                        const desc = comp.shortDesc || comp.description;
+                        const posology = comp.posology ? (Array.isArray(comp.posology) ? comp.posology[0] : comp.posology) : '';
+                        const why = comp.why || '';
+                        return `
+                            <div class="complementary-card">
+                                <div class="complementary-header">
+                                    <div class="complementary-icon ${comp.bgClass}">${comp.emoji}</div>
+                                    <div class="complementary-info">
+                                        <div class="complementary-name">${comp.name}</div>
+                                        <div class="complementary-tagline">${comp.tagline}</div>
+                                    </div>
+                                    <div class="complementary-badge">Optionnel</div>
+                                </div>
+                                ${why ? `<div class="complementary-why">&#x1F4A1; <strong>Pourquoi ?</strong> ${why}</div>` : `<div class="complementary-why">${desc}</div>`}
+                                ${posology ? `<div class="complementary-posology">&#x1F4CB; ${posology}</div>` : ''}
+                            </div>
+                        `;
+                    }).join('')}
+                </div>
+            `;
+        }
+
+        // Build result HTML based on whether we show dual brand
+        const childBadgeDualHtml = isForChild ? '<div class="child-badge">&#x1F476; Formules pédiatriques</div>' : '';
+        const forWhoDualText = isForChild ? 'Deux options pour votre enfant' : 'Deux options pour vous';
+
+        // Child warning for specific categories (e.g., cough syrup age restrictions)
+        const childWarningHtml = (isForChild && symptomConfig.childWarning)
+            ? `<div class="child-warning-box">&#x26A0;&#xFE0F; <strong>Précaution :</strong> ${symptomConfig.childWarning}</div>`
+            : '';
+
+        if (showDualBrand) {
+            // Dual brand display - show both UPSA and Biogaran
+            container.innerHTML = `
+                <div class="result-badge">&#x2714; Nos recommandations</div>
+                ${childBadgeDualHtml}
+                <div class="result-title">${forWhoDualText}</div>
+                <div class="result-subtitle">Choisissez selon vos préférences. Les deux sont efficaces et disponibles à la pharmacie.</div>
+
+                ${childWarningHtml}
+
+                <div class="dual-brand-container">
+                    <div class="brand-section">
+                        ${renderProductCard(showDualBrandSanofi ? pSanofi : pUpsa, showDualBrandSanofi ? 'SANOFI' : 'UPSA')}
+                    </div>
+                    <div class="brand-section">
+                        ${renderProductCard(pBiogaran, 'BIOGARAN')}
+                    </div>
+                </div>
+
+                ${complementsHtml}
+
+                <div class="disclaimer">
+                    <strong>&#x1F4A1; Quand consulter ?</strong><br>
+                    ${(showDualBrandSanofi ? pSanofi : pUpsa).alertConsult || pBiogaran.alertConsult}<br><br>
+                    <strong>Information</strong> — Ce guide est proposé à titre indicatif par la Pharmacie Charnal. Il ne remplace pas l'avis d'un professionnel de santé. En cas de doute, passez nous voir ou consultez votre médecin.
+                </div>
+                <div class="restart-section">
+                    <button class="restart-link" onclick="restartQuiz()">&#x21BB; Recommencer le questionnaire</button>
+                </div>
+            `;
+        } else {
+            // Single product display - based on brand choice, singleBrand, or same product for both
+            let p;
+            let reasonText = '';
+
+            if (showOnlySanofi && pSanofi) {
+                p = pSanofi;
+                reasonText = 'Basé sur vos réponses, nous vous recommandons ce produit Sanofi/Opella.';
+            } else if (showOnlyUpsa && pUpsa) {
+                p = pUpsa;
+                reasonText = 'Basé sur vos réponses, nous vous recommandons ce produit.';
+            } else if (showOnlyBiogaran && pBiogaran) {
+                p = pBiogaran;
+                reasonText = brandNote || 'Basé sur vos réponses, nous vous recommandons ce produit.';
+            } else {
+                p = pBiogaran || pUpsa;
+                reasonText = '';
+            }
+
+            // Build brand note HTML if applicable
+            const brandNoteHtml = (brandNote && isSingleBrand) ? `
+                <div class="brand-recommendation-note">
+                    <div class="brand-note-icon">&#x26A0;&#xFE0F;</div>
+                    <div class="brand-note-text">${brandNote}</div>
+                </div>
+            ` : (reasonText && brandChoice) ? `
+                <div class="brand-recommendation-note success">
+                    <div class="brand-note-icon">&#x2705;</div>
+                    <div class="brand-note-text">${reasonText}</div>
+                </div>
+            ` : '';
+
+            const forWhoText = isForChild ? 'Pour votre enfant' : 'Pour vous';
+            const childBadgeHtml = isForChild ? '<div class="child-badge">&#x1F476; Formule pédiatrique</div>' : '';
+
+            container.innerHTML = `
+                <div class="result-badge">&#x2714; Notre recommandation</div>
+                ${childBadgeHtml}
+                <div class="result-title">${forWhoText} : <span class="highlight">${p.name}</span></div>
+                <div class="result-subtitle">${p.description}</div>
+
+                ${childWarningHtml}
+
+                ${brandNoteHtml}
+
+                ${renderProductCard(p, p.brand)}
+
+                ${complementsHtml}
+
+                <div class="disclaimer">
+                    <strong>&#x1F4A1; Quand consulter ?</strong><br>
+                    ${p.alertConsult}<br><br>
+                    <strong>Information</strong> — Ce guide est proposé à titre indicatif par la Pharmacie Charnal. Il ne remplace pas l'avis d'un professionnel de santé. En cas de doute, passez nous voir ou consultez votre médecin.
+                </div>
+                <div class="restart-section">
+                    <button class="restart-link" onclick="restartQuiz()">&#x21BB; Recommencer le questionnaire</button>
+                </div>
+            `;
+        }
+    }
+
+    function restartQuiz() {
+        selectedSymptom = null;
+        selectedDetail = null;
+        selectedDuration = null;
+        hasAlert = false;
+        brandChoice = null;
+        hasBrandQuestion = false;
+        isForChild = null;
+        currentStep = 0;
+
+        document.querySelectorAll('.option').forEach(o => o.classList.remove('selected'));
+        document.querySelectorAll('.step').forEach(s => s.classList.remove('active'));
+        document.getElementById('interlude').classList.remove('active');
+        document.getElementById('step-brand').classList.remove('active');
+        document.getElementById('step-age').classList.remove('active');
+        document.getElementById('step-intro').classList.add('active');
+        document.getElementById('progressContainer').style.display = 'none';
+        document.getElementById('resultContainer').innerHTML = '';
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // Mobile menu toggle
+    const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
+    const navLinks = document.querySelector('.nav-links');
+
+    if (mobileMenuToggle && navLinks) {
+        mobileMenuToggle.addEventListener('click', () => {
+            const isExpanded = mobileMenuToggle.getAttribute('aria-expanded') === 'true';
+            mobileMenuToggle.setAttribute('aria-expanded', !isExpanded);
+            navLinks.classList.toggle('active');
+        });
+
+        const links = navLinks.querySelectorAll('.nav-link');
+        links.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenuToggle.setAttribute('aria-expanded', 'false');
+                navLinks.classList.remove('active');
+            });
+        });
+
+        document.addEventListener('click', (e) => {
+            if (!navLinks.contains(e.target) && !mobileMenuToggle.contains(e.target)) {
+                mobileMenuToggle.setAttribute('aria-expanded', 'false');
+                navLinks.classList.remove('active');
+            }
+        });
+    }
+    </script>
+
+</body>
+</html>
