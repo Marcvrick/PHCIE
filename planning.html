@@ -525,6 +525,73 @@
         .balance-negative { background: var(--red-light); color: var(--red); }
         .balance-neutral { background: var(--gray-light); color: var(--gray); }
 
+        /* Tabs solde */
+        .solde-tabs {
+            display: flex;
+            gap: 0;
+            margin-bottom: 1rem;
+            border-bottom: 2px solid var(--gray-light);
+        }
+
+        .solde-tab {
+            background: transparent;
+            border: none;
+            padding: 0.6rem 1.2rem;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--gray);
+            cursor: pointer;
+            border-bottom: 2px solid transparent;
+            margin-bottom: -2px;
+            transition: all 0.2s;
+        }
+
+        .solde-tab:hover { color: var(--teal); }
+        .solde-tab.active { color: var(--teal); border-bottom-color: var(--teal); }
+
+        .solde-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.9rem;
+        }
+
+        .solde-table th {
+            text-align: left;
+            padding: 0.5rem 0.75rem;
+            border-bottom: 2px solid var(--gray-light);
+            color: var(--gray);
+            font-size: 0.8rem;
+            text-transform: uppercase;
+        }
+
+        .solde-table td {
+            padding: 0.6rem 0.75rem;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .solde-table tr:last-child td { border-bottom: none; }
+
+        .solde-table .solde-name { font-weight: 600; color: var(--teal-dark); }
+
+        .solde-tag {
+            display: inline-block;
+            padding: 0.15rem 0.5rem;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 0.85rem;
+        }
+
+        .solde-tag-green { background: var(--green-light); color: var(--green); }
+        .solde-tag-red { background: var(--red-light); color: var(--red); }
+        .solde-tag-orange { background: #FFF3E0; color: var(--orange); }
+        .solde-tag-neutral { background: var(--gray-light); color: var(--gray); }
+
+        @media (max-width: 600px) {
+            .solde-table { font-size: 0.8rem; }
+            .solde-table th, .solde-table td { padding: 0.4rem 0.5rem; }
+            .solde-tab { padding: 0.5rem 0.8rem; font-size: 0.85rem; }
+        }
+
         /* Vacances */
         .vacances-balance-bar {
             height: 12px;
@@ -1037,10 +1104,14 @@
 
         <!-- VUE VACANCES -->
         <div id="view-vacances" class="view">
-            <!-- Solde -->
+            <!-- Solde equipe (tabs) -->
             <div class="card">
-                <h2 class="card-title">Mon solde de vacances</h2>
-                <div id="vacancesBalance"></div>
+                <div class="solde-tabs">
+                    <button class="solde-tab active" data-solde-tab="vacances" onclick="switchSoldeTab('vacances')">Solde vacances</button>
+                    <button class="solde-tab" data-solde-tab="heures" onclick="switchSoldeTab('heures')">Solde d'heures</button>
+                </div>
+                <div id="soldeTabVacances"></div>
+                <div id="soldeTabHeures" style="display:none;"></div>
             </div>
 
             <!-- Formulaire -->
@@ -3180,37 +3251,67 @@ Connectez-vous a l'application Planning pour traiter cette demande.
             }
         }
 
+        function switchSoldeTab(tab) {
+            document.querySelectorAll('.solde-tab').forEach(t => t.classList.remove('active'));
+            document.querySelector(`.solde-tab[data-solde-tab="${tab}"]`).classList.add('active');
+            document.getElementById('soldeTabVacances').style.display = tab === 'vacances' ? 'block' : 'none';
+            document.getElementById('soldeTabHeures').style.display = tab === 'heures' ? 'block' : 'none';
+        }
+
         function renderVacancesBalance() {
-            const user = document.getElementById('currentUser').value;
             const solde = getVacancesSolde();
-            const s = solde[user];
-            if (!s) return;
+            const currentUser = document.getElementById('currentUser').value;
 
-            const report = s.report || 0;
-            const total = s.annuel + report;
-            const restant = total - s.pris;
-            const pct = total > 0 ? Math.round((s.pris / total) * 100) : 0;
-            const fillClass = pct > 80 ? 'danger' : pct > 60 ? 'warning' : '';
+            // Tab 1: Solde vacances equipe
+            let vacHtml = '<div style="overflow-x: auto;"><table class="solde-table"><thead><tr>';
+            vacHtml += '<th>Employe</th><th>Acquis</th><th>Report</th><th>Pris</th><th>Restant</th>';
+            vacHtml += '</tr></thead><tbody>';
 
-            document.getElementById('vacancesBalance').innerHTML = `
-                <div class="vacances-stats">
-                    <div class="vacances-stat">
-                        <div class="vacances-stat-value">${s.annuel}${report > 0 ? `<span style="font-size: 0.7em; color: var(--blue);">+${report}</span>` : ''}</div>
-                        <div class="vacances-stat-label">Annuel${report > 0 ? ' + Report' : ''}</div>
-                    </div>
-                    <div class="vacances-stat">
-                        <div class="vacances-stat-value" style="color: var(--orange);">${s.pris}</div>
-                        <div class="vacances-stat-label">Pris</div>
-                    </div>
-                    <div class="vacances-stat">
-                        <div class="vacances-stat-value" style="color: ${restant <= 5 ? 'var(--red)' : 'var(--green)'};">${restant}</div>
-                        <div class="vacances-stat-label">Restant</div>
-                    </div>
-                </div>
-                <div class="vacances-balance-bar">
-                    <div class="vacances-balance-fill ${fillClass}" style="width: ${pct}%;"></div>
-                </div>
-            `;
+            VACANCES_EMPLOYEES.forEach(name => {
+                const s = solde[name];
+                if (!s) return;
+                const report = s.report || 0;
+                const total = s.annuel + report;
+                const restant = total - s.pris;
+                const isCurrentUser = name === currentUser;
+                const rowStyle = isCurrentUser ? ' style="background: #f0f9f4;"' : '';
+                const restantClass = restant <= 0 ? 'solde-tag-red' : restant <= 5 ? 'solde-tag-orange' : 'solde-tag-green';
+
+                vacHtml += `<tr${rowStyle}>`;
+                vacHtml += `<td class="solde-name">${name}${isCurrentUser ? ' *' : ''}</td>`;
+                vacHtml += `<td>${s.annuel}</td>`;
+                vacHtml += `<td>${report > 0 ? '<span style="color: var(--blue);">+' + report + '</span>' : report}</td>`;
+                vacHtml += `<td>${s.pris}</td>`;
+                vacHtml += `<td><span class="solde-tag ${restantClass}">${restant}j</span></td>`;
+                vacHtml += '</tr>';
+            });
+
+            vacHtml += '</tbody></table></div>';
+            document.getElementById('soldeTabVacances').innerHTML = vacHtml;
+
+            // Tab 2: Solde d'heures equipe
+            const balances = calculateHoursBalance();
+            let heuresHtml = '<div style="overflow-x: auto;"><table class="solde-table"><thead><tr>';
+            heuresHtml += '<th>Employe</th><th>Dues</th><th>Recuperees</th><th>Solde</th>';
+            heuresHtml += '</tr></thead><tbody>';
+
+            for (const [name, balance] of Object.entries(balances)) {
+                const soldeH = balance.recuperees - balance.dues;
+                const isCurrentUser = name === currentUser;
+                const rowStyle = isCurrentUser ? ' style="background: #f0f9f4;"' : '';
+                const soldeClass = soldeH > 0 ? 'solde-tag-green' : soldeH < 0 ? 'solde-tag-red' : 'solde-tag-neutral';
+                const sign = soldeH > 0 ? '+' : '';
+
+                heuresHtml += `<tr${rowStyle}>`;
+                heuresHtml += `<td class="solde-name">${name}${isCurrentUser ? ' *' : ''}</td>`;
+                heuresHtml += `<td>${formatHeures(balance.dues)}</td>`;
+                heuresHtml += `<td>${formatHeures(balance.recuperees)}</td>`;
+                heuresHtml += `<td><span class="solde-tag ${soldeClass}">${sign}${formatHeures(Math.abs(soldeH))}</span></td>`;
+                heuresHtml += '</tr>';
+            }
+
+            heuresHtml += '</tbody></table></div>';
+            document.getElementById('soldeTabHeures').innerHTML = heuresHtml;
         }
 
         function updateVacancesCalc() {
@@ -3645,6 +3746,11 @@ Connectez-vous a l'application Planning pour traiter cette demande.
                 if (contractsCache['Pascal'] && contractsCache['Pascal'].contractType !== 'freelance') {
                     contractsCache['Pascal'].contractType = 'freelance';
                     await db.collection('config').doc('staff_contracts').update({ 'Pascal.contractType': 'freelance' });
+                }
+                // Correction: Stephanie embauchee le 01/01/2026
+                if (contractsCache['Stephanie'] && contractsCache['Stephanie'].hireDate !== '2026-01-01') {
+                    contractsCache['Stephanie'].hireDate = '2026-01-01';
+                    await db.collection('config').doc('staff_contracts').update({ 'Stephanie.hireDate': '2026-01-01' });
                 }
             }
         }
