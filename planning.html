@@ -1388,6 +1388,25 @@
             return { minEffectif, criticalTranches };
         }
 
+        // Effectif pondere pour le badge PM du planning
+        // Personne presente toute l'apres-midi (>=19h) = 1, depart apres 16h30 = 0.5
+        function getEffectifPondere(jour, semaine, absences = []) {
+            let total = 0;
+            for (const [nom, data] of Object.entries(STAFF)) {
+                if (absences.includes(nom)) continue;
+                const planning = data[semaine][jour];
+                if (!planning?.pm) continue;
+                const horaires = parseCreneauHoraire(planning.pm);
+                if (!horaires) continue;
+                if (horaires.fin >= 19) {
+                    total += 1;
+                } else if (horaires.fin > 16.5) {
+                    total += 0.5;
+                }
+            }
+            return { minEffectif: total, criticalTranches: [] };
+        }
+
         function getEffectifClass(count) {
             if (count >= SEUILS.optimal) return 'effectif-ok';
             if (count > SEUILS.critique) return 'effectif-limite';
@@ -1654,10 +1673,10 @@
                 html += '</tr>';
             }
 
-            html += '<tr class="effectif-row"><td class="employee-name">Effectif min</td>';
+            html += '<tr class="effectif-row"><td class="employee-name">Effectif</td>';
             for (const jour of JOURS) {
                 const amEffectif = getEffectifJour(jour, semaine, 'am');
-                const pmEffectif = jour !== 'samedi' ? getEffectifJour(jour, semaine, 'pm') : { minEffectif: '-' };
+                const pmEffectif = jour !== 'samedi' ? getEffectifPondere(jour, semaine) : { minEffectif: '-' };
                 const amClass = getEffectifClass(amEffectif.minEffectif);
                 const pmClass = jour !== 'samedi' ? getEffectifClass(pmEffectif.minEffectif) : '';
                 html += `<td>
