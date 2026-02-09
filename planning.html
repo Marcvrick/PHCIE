@@ -1646,8 +1646,8 @@
                     <td style="padding: 0.5rem; text-align: right;">${formatHeures(data.net)}</td>
                 </tr>
                 <tr style="color: var(--gray);">
-                    <td style="padding: 0.5rem;">Ref. mensualisation (${formatHeures(data.weeklyRef)}/sem)</td>
-                    <td style="padding: 0.5rem; text-align: right;">${formatHeures(data.monthlyRef)}</td>
+                    <td style="padding: 0.5rem;">Ref. mensualisation (${formatHeuresDecimal(data.weeklyRef)}/sem)</td>
+                    <td style="padding: 0.5rem; text-align: right;">${formatHeuresDecimal(data.monthlyRef)}</td>
                 </tr>
                 </tbody></table>`;
 
@@ -1697,7 +1697,7 @@
                     <td style="padding: 0.5rem; text-align: right; color: var(--orange);">${data.holidayHours > 0 ? '-' + formatHeures(data.holidayHours) : '-'}</td>
                     <td style="padding: 0.5rem; text-align: right; color: var(--blue);">${(data.vacationHours + data.absenceHours) > 0 ? '-' + formatHeures(data.vacationHours + data.absenceHours) : '-'}</td>
                     <td style="padding: 0.5rem; text-align: right; font-weight: 600;">${formatHeures(data.net)}</td>
-                    <td style="padding: 0.5rem; text-align: right; color: var(--gray);">${formatHeures(data.monthlyRef)}</td>
+                    <td style="padding: 0.5rem; text-align: right; color: var(--gray);">${formatHeuresDecimal(data.monthlyRef)}</td>
                 </tr>`;
             });
 
@@ -1737,6 +1737,13 @@
             const m = Math.round((heures - h) * 60);
             if (m === 0) return `${h}h`;
             return `${h}h${m.toString().padStart(2, '0')}`;
+        }
+
+        function formatHeuresDecimal(heures) {
+            const rounded = Math.round(heures * 100) / 100;
+            const parts = rounded.toFixed(2).split('.');
+            if (parts[1] === '00') return `${parts[0]}h`;
+            return `${parts[0]}h${parts[1]}`;
         }
 
         function formatDate(dateStr) {
@@ -3634,6 +3641,11 @@ Connectez-vous a l'application Planning pour traiter cette demande.
                 contractsCache = init;
             } else {
                 contractsCache = doc.data();
+                // Correction: Pascal est freelance, pas CDI
+                if (contractsCache['Pascal'] && contractsCache['Pascal'].contractType !== 'freelance') {
+                    contractsCache['Pascal'].contractType = 'freelance';
+                    await db.collection('config').doc('staff_contracts').update({ 'Pascal.contractType': 'freelance' });
+                }
             }
         }
 
