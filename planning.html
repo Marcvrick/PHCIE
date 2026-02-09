@@ -731,6 +731,7 @@
         .contract-badge.cdi { background: var(--green-light); color: var(--green); }
         .contract-badge.cdd { background: var(--orange-light); color: var(--orange); }
         .contract-badge.periode_essai { background: var(--blue-light); color: var(--blue); }
+        .contract-badge.freelance { background: #F3E8FF; color: #7C3AED; }
 
         .contract-details {
             display: grid;
@@ -1023,6 +1024,15 @@
                 <h2 class="card-title">Mes demandes</h2>
                 <div id="mesDemandes"></div>
             </div>
+
+            <div class="card">
+                <h2 class="card-title">Mes heures du mois</h2>
+                <div style="margin-bottom: 1rem;">
+                    <select id="employeeMonthSelect" style="padding: 0.5rem; border-radius: 6px; border: 1px solid var(--gray-light);" onchange="renderMonthlyHoursEmployee()">
+                    </select>
+                </div>
+                <div id="employeeMonthlyHours"></div>
+            </div>
         </div>
 
         <!-- VUE VACANCES -->
@@ -1107,6 +1117,17 @@
             <div class="card">
                 <h2 class="card-title">Solde vacances (tous les employes)</h2>
                 <div class="vacances-manager-card" id="managerVacancesBalance"></div>
+            </div>
+
+            <div class="card">
+                <h2 class="card-title">Heures mensuelles par employe</h2>
+                <div style="display: flex; gap: 0.5rem; margin-bottom: 1rem; align-items: center;">
+                    <select id="managerMonthSelect" style="padding: 0.5rem; border-radius: 6px; border: 1px solid var(--gray-light);" onchange="renderMonthlyHoursManager()">
+                    </select>
+                    <select id="managerYearSelect" style="padding: 0.5rem; border-radius: 6px; border: 1px solid var(--gray-light);" onchange="renderMonthlyHoursManager()">
+                    </select>
+                </div>
+                <div id="managerMonthlyHours"></div>
             </div>
 
             <div class="card">
@@ -1446,6 +1467,269 @@
                 if (pm) total += pm.fin - pm.debut;
             }
             return total;
+        }
+
+        // ========== CALCUL HEURES MENSUELLES ==========
+
+        function getWeeklyHours(employee) {
+            if (!STAFF[employee]) return 0;
+            let totalPaire = 0, totalImpaire = 0;
+            for (const jour of JOURS) {
+                totalPaire += calculerHeures(employee, jour, 'paire', 'journee');
+                totalImpaire += calculerHeures(employee, jour, 'impaire', 'journee');
+            }
+            return (totalPaire + totalImpaire) / 2;
+        }
+
+        function calculateMonthlyHoursForEmployee(employee, month, year) {
+            if (!STAFF[employee]) return null;
+            const demandes = getDemandes();
+            const approvedVacations = demandes.filter(d =>
+                d.employee === employee &&
+                d.type === 'vacances' &&
+                d.status === 'approuvee'
+            );
+            const approvedAbsences = demandes.filter(d =>
+                d.employee === employee &&
+                d.type !== 'vacances' &&
+                d.type !== 'echange' &&
+                d.type !== 'recuperation' &&
+                d.status === 'approuvee'
+            );
+
+            let planned = 0, holidayHours = 0, vacationHours = 0, absenceHours = 0;
+            let holidayDays = [], vacationDays = [], workingDays = 0;
+            const daysInMonth = new Date(year, month + 1, 0).getDate();
+
+            for (let day = 1; day <= daysInMonth; day++) {
+                const date = new Date(year, month, day);
+                const jour = getJourFromDate(date);
+                if (!jour) continue; // Dimanche
+
+                const semaine = getSemaineType(date);
+                const dayHours = calculerHeures(employee, jour, semaine, 'journee');
+                if (dayHours === 0) continue; // Jour de repos de l'employe
+
+                const dateStr = `${year}-${String(month + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
+
+                // Jour ferie
+                if (JOURS_FERIES[dateStr]) {
+                    holidayHours += dayHours;
+                    holidayDays.push({ date: dateStr, name: JOURS_FERIES[dateStr], hours: dayHours });
+                    continue;
+                }
+
+                // Vacances approuvees
+                const onVacation = approvedVacations.some(d => d.dates && d.dates.includes(dateStr));
+                if (onVacation) {
+                    vacationHours += dayHours;
+                    vacationDays.push(dateStr);
+                    continue;
+                }
+
+                // Absence approuvee
+                const onAbsence = approvedAbsences.some(d => {
+                    if (d.dates && d.dates.includes(dateStr)) return true;
+                    if (d.dateDebut === dateStr || d.date === dateStr) return true;
+                    return false;
+                });
+                if (onAbsence) {
+                    absenceHours += dayHours;
+                    continue;
+                }
+
+                planned += dayHours;
+                workingDays++;
+            }
+
+            const weeklyRef = getWeeklyHours(employee);
+            const monthlyRef = Math.round((weeklyRef * 52 / 12) * 100) / 100;
+            const totalScheduled = planned + holidayHours + vacationHours + absenceHours;
+            const net = planned;
+
+            return { planned, holidayHours, vacationHours, absenceHours, net, totalScheduled, monthlyRef, weeklyRef, holidayDays, vacationDays, workingDays };
+        }
+
+        function getMonthOptions() {
+            const months = ['Janvier', 'Fevrier', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Aout', 'Septembre', 'Octobre', 'Novembre', 'Decembre'];
+            return months;
+        }
+
+        function populateMonthSelectors() {
+            const months = getMonthOptions();
+            const today = new Date();
+
+            // Employee selector
+            const empSelect = document.getElementById('employeeMonthSelect');
+            if (empSelect) {
+                empSelect.innerHTML = '';
+                for (let i = 0; i < 12; i++) {
+                    const opt = document.createElement('option');
+                    opt.value = i;
+                    opt.textContent = `${months[i]} ${today.getFullYear()}`;
+                    if (i === today.getMonth()) opt.selected = true;
+                    empSelect.appendChild(opt);
+                }
+            }
+
+            // Manager month selector
+            const mgrMonthSelect = document.getElementById('managerMonthSelect');
+            if (mgrMonthSelect) {
+                mgrMonthSelect.innerHTML = '';
+                for (let i = 0; i < 12; i++) {
+                    const opt = document.createElement('option');
+                    opt.value = i;
+                    opt.textContent = months[i];
+                    if (i === today.getMonth()) opt.selected = true;
+                    mgrMonthSelect.appendChild(opt);
+                }
+            }
+
+            // Manager year selector
+            const mgrYearSelect = document.getElementById('managerYearSelect');
+            if (mgrYearSelect) {
+                mgrYearSelect.innerHTML = '';
+                for (let y = today.getFullYear(); y <= today.getFullYear() + 1; y++) {
+                    const opt = document.createElement('option');
+                    opt.value = y;
+                    opt.textContent = y;
+                    mgrYearSelect.appendChild(opt);
+                }
+            }
+        }
+
+        function renderMonthlyHoursEmployee() {
+            const container = document.getElementById('employeeMonthlyHours');
+            if (!container) return;
+            const employee = document.getElementById('currentUser').value;
+            if (!employee || !STAFF[employee]) {
+                container.innerHTML = '<p style="color: var(--gray);">Selectionnez un employe.</p>';
+                return;
+            }
+
+            const monthSelect = document.getElementById('employeeMonthSelect');
+            const month = parseInt(monthSelect.value);
+            const year = new Date().getFullYear();
+            const data = calculateMonthlyHoursForEmployee(employee, month, year);
+            if (!data) {
+                container.innerHTML = '<p style="color: var(--gray);">Pas de planning disponible.</p>';
+                return;
+            }
+
+            const months = getMonthOptions();
+            let html = `<table style="width: 100%; border-collapse: collapse; font-size: 0.9rem;">
+                <tbody>
+                    <tr style="border-bottom: 1px solid var(--gray-light);">
+                        <td style="padding: 0.5rem;">Heures planifiees</td>
+                        <td style="padding: 0.5rem; text-align: right; font-weight: 600;">${formatHeures(data.totalScheduled)}</td>
+                    </tr>`;
+            if (data.holidayHours > 0) {
+                html += `<tr style="border-bottom: 1px solid var(--gray-light); color: var(--orange);">
+                    <td style="padding: 0.5rem;">Jours feries (${data.holidayDays.length}j)</td>
+                    <td style="padding: 0.5rem; text-align: right;">-${formatHeures(data.holidayHours)}</td>
+                </tr>`;
+            }
+            if (data.vacationHours > 0) {
+                html += `<tr style="border-bottom: 1px solid var(--gray-light); color: var(--blue);">
+                    <td style="padding: 0.5rem;">Vacances (${data.vacationDays.length}j)</td>
+                    <td style="padding: 0.5rem; text-align: right;">-${formatHeures(data.vacationHours)}</td>
+                </tr>`;
+            }
+            if (data.absenceHours > 0) {
+                html += `<tr style="border-bottom: 1px solid var(--gray-light); color: var(--red);">
+                    <td style="padding: 0.5rem;">Absences approuvees</td>
+                    <td style="padding: 0.5rem; text-align: right;">-${formatHeures(data.absenceHours)}</td>
+                </tr>`;
+            }
+            html += `<tr style="background: var(--gray-light); font-weight: 600;">
+                    <td style="padding: 0.5rem;">Heures nettes a travailler</td>
+                    <td style="padding: 0.5rem; text-align: right;">${formatHeures(data.net)}</td>
+                </tr>
+                <tr style="color: var(--gray);">
+                    <td style="padding: 0.5rem;">Ref. mensualisation (${formatHeures(data.weeklyRef)}/sem)</td>
+                    <td style="padding: 0.5rem; text-align: right;">${formatHeures(data.monthlyRef)}</td>
+                </tr>
+                </tbody></table>`;
+
+            if (data.holidayDays.length > 0) {
+                html += '<div style="margin-top: 0.75rem; font-size: 0.8rem; color: var(--gray);">';
+                html += '<strong>Jours feries ce mois :</strong> ';
+                html += data.holidayDays.map(h => `${new Date(h.date).getDate()}/${month + 1} ${h.name}`).join(', ');
+                html += '</div>';
+            }
+
+            container.innerHTML = html;
+        }
+
+        function renderMonthlyHoursManager() {
+            const container = document.getElementById('managerMonthlyHours');
+            if (!container) return;
+
+            const month = parseInt(document.getElementById('managerMonthSelect').value);
+            const year = parseInt(document.getElementById('managerYearSelect').value);
+            const months = getMonthOptions();
+
+            const employees = Object.keys(STAFF).filter(n => n !== 'Laure');
+
+            let html = `<div style="overflow-x: auto;"><table style="width: 100%; border-collapse: collapse; font-size: 0.85rem;">
+                <thead><tr style="background: var(--gray-light);">
+                    <th style="padding: 0.5rem; text-align: left;">Employe</th>
+                    <th style="padding: 0.5rem; text-align: right;">Planifie</th>
+                    <th style="padding: 0.5rem; text-align: right;">Feries</th>
+                    <th style="padding: 0.5rem; text-align: right;">Vacances</th>
+                    <th style="padding: 0.5rem; text-align: right;">Net</th>
+                    <th style="padding: 0.5rem; text-align: right;">Ref. mensuel</th>
+                </tr></thead><tbody>`;
+
+            let totPlanned = 0, totHolidays = 0, totVacations = 0, totNet = 0;
+
+            employees.forEach(emp => {
+                const data = calculateMonthlyHoursForEmployee(emp, month, year);
+                if (!data) return;
+                totPlanned += data.totalScheduled;
+                totHolidays += data.holidayHours;
+                totVacations += data.vacationHours + data.absenceHours;
+                totNet += data.net;
+
+                html += `<tr style="border-bottom: 1px solid var(--gray-light);">
+                    <td style="padding: 0.5rem; font-weight: 500;">${emp}</td>
+                    <td style="padding: 0.5rem; text-align: right;">${formatHeures(data.totalScheduled)}</td>
+                    <td style="padding: 0.5rem; text-align: right; color: var(--orange);">${data.holidayHours > 0 ? '-' + formatHeures(data.holidayHours) : '-'}</td>
+                    <td style="padding: 0.5rem; text-align: right; color: var(--blue);">${(data.vacationHours + data.absenceHours) > 0 ? '-' + formatHeures(data.vacationHours + data.absenceHours) : '-'}</td>
+                    <td style="padding: 0.5rem; text-align: right; font-weight: 600;">${formatHeures(data.net)}</td>
+                    <td style="padding: 0.5rem; text-align: right; color: var(--gray);">${formatHeures(data.monthlyRef)}</td>
+                </tr>`;
+            });
+
+            html += `<tr style="background: var(--gray-light); font-weight: 600;">
+                <td style="padding: 0.5rem;">TOTAL</td>
+                <td style="padding: 0.5rem; text-align: right;">${formatHeures(totPlanned)}</td>
+                <td style="padding: 0.5rem; text-align: right; color: var(--orange);">${totHolidays > 0 ? '-' + formatHeures(totHolidays) : '-'}</td>
+                <td style="padding: 0.5rem; text-align: right; color: var(--blue);">${totVacations > 0 ? '-' + formatHeures(totVacations) : '-'}</td>
+                <td style="padding: 0.5rem; text-align: right;">${formatHeures(totNet)}</td>
+                <td style="padding: 0.5rem; text-align: right;">-</td>
+            </tr>`;
+
+            html += '</tbody></table></div>';
+
+            // Show holidays this month
+            const firstDay = new Date(year, month, 1);
+            const lastDay = new Date(year, month + 1, 0);
+            const holidaysThisMonth = [];
+            for (let d = new Date(firstDay); d <= lastDay; d.setDate(d.getDate() + 1)) {
+                const ds = `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
+                if (JOURS_FERIES[ds]) holidaysThisMonth.push({ date: ds, name: JOURS_FERIES[ds] });
+            }
+            if (holidaysThisMonth.length > 0) {
+                html += '<div style="margin-top: 0.75rem; font-size: 0.8rem; color: var(--gray);">';
+                html += '<strong>Jours feries :</strong> ';
+                html += holidaysThisMonth.map(h => `${new Date(h.date).getDate()} ${months[month]} - ${h.name}`).join(' | ');
+                html += '</div>';
+            }
+
+            html += '<div style="margin-top: 0.5rem; font-size: 0.8rem; color: var(--gray);">Ref. mensuel = heures hebdo x 52 / 12 (base de paie constante, identique chaque mois)</div>';
+
+            container.innerHTML = html;
         }
 
         function formatHeures(heures) {
@@ -2462,6 +2746,7 @@ Connectez-vous a l'application Planning pour traiter cette demande.
         // ========== RENDU MES DEMANDES ==========
         function renderMesDemandes() {
             renderEchanges();
+            renderMonthlyHoursEmployee();
 
             const container = document.getElementById('mesDemandes');
             const employee = document.getElementById('currentUser').value;
@@ -2537,6 +2822,7 @@ Connectez-vous a l'application Planning pour traiter cette demande.
             renderDemandesAttente();
             renderContractsManager();
             renderManagerVacancesBalance();
+            renderMonthlyHoursManager();
             renderHoursBalance('managerHoursBalance');
             renderTensionsCalendar();
             renderHistoriqueComplet();
@@ -2653,11 +2939,14 @@ Connectez-vous a l'application Planning pour traiter cette demande.
                         html += `<div class="tension-day" style="background: var(--gray-light);">${dayNum}<br><small>Ferme</small></div>`;
                     } else {
                         const semaine = getSemaineType(checkDate);
-                        const effectif = getEffectifJour(jour, semaine);
-                        let className = 'ok';
-                        if (effectif.minEffectif <= SEUILS.critique) className = 'critique';
-                        else if (effectif.minEffectif <= SEUILS.limite) className = 'limite';
-                        html += `<div class="tension-day ${className}">${dayNum}<br><small>${effectif.minEffectif}p</small></div>`;
+                        const amEffectif = getEffectifJour(jour, semaine, 'am');
+                        const pmEffectif = jour !== 'samedi' ? getEffectifPondere(jour, semaine) : amEffectif;
+                        const minVal = Math.min(amEffectif.minEffectif, pmEffectif.minEffectif);
+                        let className;
+                        if (minVal >= SEUILS.optimal) className = 'ok';
+                        else if (minVal > SEUILS.critique) className = 'limite';
+                        else className = 'critique';
+                        html += `<div class="tension-day ${className}">${dayNum}<br><small>${minVal}p</small></div>`;
                     }
                 }
             }
@@ -2665,8 +2954,8 @@ Connectez-vous a l'application Planning pour traiter cette demande.
             html += '</div>';
             html += '<div style="margin-top: 1rem; font-size: 0.8rem; display: flex; gap: 1rem;">';
             html += '<span><span style="display: inline-block; width: 12px; height: 12px; background: var(--green-light); border-radius: 2px;"></span> OK (4+)</span>';
-            html += '<span><span style="display: inline-block; width: 12px; height: 12px; background: var(--orange-light); border-radius: 2px;"></span> Limite (3)</span>';
-            html += '<span><span style="display: inline-block; width: 12px; height: 12px; background: var(--red-light); border-radius: 2px;"></span> Critique (≤2)</span>';
+            html += '<span><span style="display: inline-block; width: 12px; height: 12px; background: var(--orange-light); border-radius: 2px;"></span> Limite (3.5)</span>';
+            html += '<span><span style="display: inline-block; width: 12px; height: 12px; background: var(--red-light); border-radius: 2px;"></span> Critique (≤3)</span>';
             html += '</div>';
             container.innerHTML = html;
         }
@@ -3349,9 +3638,10 @@ Connectez-vous a l'application Planning pour traiter cette demande.
         }
 
         // Calcule les jours de vacances acquis selon la loi francaise
-        // Periode de reference: 1er juin N-1 au 31 mai N
+        // Droits = mois travailles pendant la PERIODE DE REFERENCE PRECEDENTE (1er juin N-2 au 31 mai N-1)
         // 2.5 jours ouvrables par mois = ~2.08 jours ouvres (25j/an max)
         // +2 jours apres 6 ans d'anciennete (convention pharmacie)
+        // Nouvel employe (embauche pendant la periode actuelle) : pro-rata depuis date embauche
         function calculateVacationDays(contract) {
             if (!contract || !contract.hireDate) return { acquired: 0, bonus: 0, total: 0, details: 'Date d\'embauche requise' };
 
@@ -3359,35 +3649,52 @@ Connectez-vous a l'application Planning pour traiter cette demande.
             const hireDate = new Date(contract.hireDate);
             const endDate = contract.endDate ? new Date(contract.endDate) : null;
 
-            // Periode de reference actuelle (1er juin N-1 au 31 mai N)
-            let refStart;
-            if (today.getMonth() >= 5) { // Juin ou apres
-                refStart = new Date(today.getFullYear(), 5, 1); // 1er juin de cette annee
-            } else {
-                refStart = new Date(today.getFullYear() - 1, 5, 1); // 1er juin de l'annee derniere
-            }
-
-            // Date de debut effectif pour le calcul
-            const effectiveStart = hireDate > refStart ? hireDate : refStart;
-
-            // Date de fin effectif (aujourd'hui ou fin de contrat si CDD termine)
-            let effectiveEnd = today;
-            if (endDate && endDate < effectiveEnd) {
-                effectiveEnd = endDate;
-            }
-
             // Si l'employe n'a pas encore commence
             if (hireDate > today) {
                 return { acquired: 0, bonus: 0, total: 0, details: 'Contrat non commence' };
             }
 
-            // Si CDD termine avant la periode de reference
-            if (endDate && endDate < refStart) {
-                return { acquired: 0, bonus: 0, total: 0, details: 'Contrat termine' };
+            // Periode de reference PRECEDENTE (1er juin N-2 au 31 mai N-1)
+            // C'est cette periode qui determine les droits utilisables maintenant
+            let prevRefStart, prevRefEnd;
+            if (today.getMonth() >= 5) { // Juin ou apres
+                prevRefStart = new Date(today.getFullYear() - 1, 5, 1);
+                prevRefEnd = new Date(today.getFullYear(), 4, 31);
+            } else {
+                prevRefStart = new Date(today.getFullYear() - 2, 5, 1);
+                prevRefEnd = new Date(today.getFullYear() - 1, 4, 31);
             }
 
-            // Calcul du nombre de mois travailles depuis le 1er juin (ou date embauche si apres)
-            const monthsWorked = monthsDiff(effectiveStart, effectiveEnd);
+            // Periode de reference actuelle (pour les nouveaux employes)
+            let curRefStart;
+            if (today.getMonth() >= 5) {
+                curRefStart = new Date(today.getFullYear(), 5, 1);
+            } else {
+                curRefStart = new Date(today.getFullYear() - 1, 5, 1);
+            }
+
+            let monthsWorked;
+            let details;
+
+            // Verifier si l'employe a travaille pendant la periode precedente
+            const effectiveStart = hireDate > prevRefStart ? hireDate : prevRefStart;
+            const effectiveEnd = (endDate && endDate < prevRefEnd) ? endDate : prevRefEnd;
+
+            if (effectiveStart <= effectiveEnd) {
+                // L'employe a travaille pendant la periode precedente
+                monthsWorked = monthsDiff(effectiveStart, effectiveEnd);
+                details = `${monthsWorked.toFixed(1)} mois (juin ${prevRefStart.getFullYear()}-mai ${prevRefEnd.getFullYear()}) = `;
+            } else if (hireDate >= curRefStart) {
+                // Nouvel employe embauche pendant la periode actuelle
+                // Pro-rata depuis date embauche (prise anticipee des droits)
+                let endCalc = today;
+                if (endDate && endDate < endCalc) endCalc = endDate;
+                monthsWorked = monthsDiff(hireDate, endCalc);
+                details = `${monthsWorked.toFixed(1)} mois depuis embauche = `;
+            } else {
+                // CDD termine avant la periode precedente
+                return { acquired: 0, bonus: 0, total: 0, details: 'Contrat termine' };
+            }
 
             // 2.08 jours ouvres par mois (25j/an)
             const acquiredDays = Math.min(Math.round(monthsWorked * 2.08), 25);
@@ -3398,7 +3705,7 @@ Connectez-vous a l'application Planning pour traiter cette demande.
 
             const total = acquiredDays + seniorityBonus;
 
-            let details = `${monthsWorked.toFixed(1)} mois depuis 1er juin = ${acquiredDays}j`;
+            details += `${acquiredDays}j`;
             if (seniorityBonus > 0) {
                 details += ` + ${seniorityBonus}j (${yearsOfService} ans anciennete)`;
             }
@@ -3427,7 +3734,7 @@ Connectez-vous a l'application Planning pour traiter cette demande.
         }
 
         function getContractEndAlert(contract) {
-            if (!contract.endDate || contract.contractType === 'CDI') return null;
+            if (!contract.endDate || contract.contractType === 'CDI' || contract.contractType === 'freelance') return null;
 
             const endDate = new Date(contract.endDate);
             const today = new Date();
@@ -3458,7 +3765,8 @@ Connectez-vous a l'application Planning pour traiter cette demande.
                 const cardClass = alert ? (alert.type === 'danger' ? 'ended' : 'ending-soon') : '';
                 const badgeClass = contract.contractType.toLowerCase().replace(' ', '_');
                 const typeLabel = contract.contractType === 'CDI' ? 'CDI' :
-                                 contract.contractType === 'CDD' ? 'CDD' : 'Periode d\'essai';
+                                 contract.contractType === 'CDD' ? 'CDD' :
+                                 contract.contractType === 'freelance' ? 'Freelance' : 'Periode d\'essai';
 
                 html += `
                     <div class="contract-card ${cardClass}">
@@ -3475,13 +3783,14 @@ Connectez-vous a l'application Planning pour traiter cette demande.
                                     <option value="CDI" ${contract.contractType === 'CDI' ? 'selected' : ''}>CDI</option>
                                     <option value="CDD" ${contract.contractType === 'CDD' ? 'selected' : ''}>CDD</option>
                                     <option value="periode_essai" ${contract.contractType === 'periode_essai' ? 'selected' : ''}>Periode d'essai</option>
+                                    <option value="freelance" ${contract.contractType === 'freelance' ? 'selected' : ''}>Freelance</option>
                                 </select>
                             </div>
                             <div class="contract-field">
                                 <label>Date d'embauche</label>
                                 <input type="date" id="contract-hire-${name}" value="${contract.hireDate || ''}">
                             </div>
-                            <div class="contract-field" id="contract-end-field-${name}" style="${contract.contractType === 'CDI' ? 'display: none;' : ''}">
+                            <div class="contract-field" id="contract-end-field-${name}" style="${(contract.contractType === 'CDI' || contract.contractType === 'freelance') ? 'display: none;' : ''}">
                                 <label>Fin de contrat</label>
                                 <input type="date" id="contract-end-${name}" value="${contract.endDate || ''}">
                             </div>
@@ -3510,7 +3819,7 @@ Connectez-vous a l'application Planning pour traiter cette demande.
         function toggleEndDateField(name) {
             const typeSelect = document.getElementById(`contract-type-${name}`);
             const endField = document.getElementById(`contract-end-field-${name}`);
-            if (typeSelect.value === 'CDI') {
+            if (typeSelect.value === 'CDI' || typeSelect.value === 'freelance') {
                 endField.style.display = 'none';
             } else {
                 endField.style.display = 'block';
@@ -3527,7 +3836,7 @@ Connectez-vous a l'application Planning pour traiter cette demande.
             contracts[name] = {
                 contractType,
                 hireDate,
-                endDate: contractType === 'CDI' ? null : endDate,
+                endDate: (contractType === 'CDI' || contractType === 'freelance') ? null : endDate,
                 daysTaken
             };
 
@@ -3696,6 +4005,7 @@ Connectez-vous a l'application Planning pour traiter cette demande.
             // Initial render
             renderPlanning('paire');
             renderHoursBalance();
+            populateMonthSelectors();
             updateVacancesNavVisibility();
             updateRecuperationOptionVisibility();
         }
