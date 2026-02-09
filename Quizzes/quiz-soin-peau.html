@@ -1447,7 +1447,6 @@
             </div>
             <div class="btn-group">
                 <button class="btn btn-secondary" onclick="goBack()">&larr;</button>
-                <button class="btn btn-primary" id="nextBtn1" onclick="nextStep(1)" disabled>Continuer</button>
             </div>
         </div>
 
@@ -1494,7 +1493,6 @@
             </div>
             <div class="btn-group">
                 <button class="btn btn-secondary" onclick="goBack()">&larr;</button>
-                <button class="btn btn-primary" id="nextBtn2" onclick="nextStep(2)" disabled>Continuer</button>
             </div>
         </div>
 
@@ -1541,7 +1539,6 @@
             </div>
             <div class="btn-group">
                 <button class="btn btn-secondary" onclick="goBack()">&larr;</button>
-                <button class="btn btn-primary" id="nextBtn3" onclick="nextStep(3)" disabled>Continuer</button>
             </div>
         </div>
 
@@ -1580,7 +1577,6 @@
             </div>
             <div class="btn-group">
                 <button class="btn btn-secondary" onclick="goBack()">&larr;</button>
-                <button class="btn btn-primary" id="nextBtn4" onclick="nextStep(4)" disabled>Continuer</button>
             </div>
         </div>
 
@@ -1627,7 +1623,6 @@
             </div>
             <div class="btn-group">
                 <button class="btn btn-secondary" onclick="goBack()">&larr;</button>
-                <button class="btn btn-primary" id="nextBtn5" onclick="showResult()" disabled>Voir mon r&eacute;sultat</button>
             </div>
         </div>
 
@@ -1736,7 +1731,13 @@
         stepEl.querySelectorAll('.option').forEach(o => o.classList.remove('selected'));
         el.classList.add('selected');
         recalcScores();
-        document.getElementById('nextBtn' + step).disabled = false;
+        setTimeout(() => {
+            if (step < totalQuestions) {
+                nextStep(step);
+            } else {
+                showResult();
+            }
+        }, 300);
     }
 
     function recalcScores() {
@@ -1853,7 +1854,6 @@
         scores.hydrance = 0; scores.cerave = 0; scores.pigmentbio = 0;
         currentStep = 0;
         document.querySelectorAll('.option').forEach(o => o.classList.remove('selected'));
-        for (let i = 1; i <= totalQuestions; i++) document.getElementById('nextBtn' + i).disabled = true;
         document.querySelectorAll('.step').forEach(s => s.classList.remove('active'));
         document.getElementById('interlude').classList.remove('active');
         document.getElementById('step-intro').classList.add('active');
