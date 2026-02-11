@@ -82,7 +82,7 @@ mentions-legales.html, donnees-personnelles.html
 
 **RÈGLE:** Seules les marques réellement vendues peuvent être mentionnées.
 
-**Cosmétiques:** Bioderma, La Roche-Posay, Avène, Nuxe, Caudalie, Mustela, Klorane
+**Cosmétiques:** Bioderma, La Roche-Posay, Avène, Nuxe, La Rosée, Mustela, Klorane
 **Compléments:** PiLeJe, Arkopharma, Boiron, Aragan, Nat&Form, Bion 3, Biogaran
 
 **❌ Ne JAMAIS inventer de marques**
