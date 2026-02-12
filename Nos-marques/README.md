@@ -47,7 +47,6 @@ Nos-marques/
 ├── natform-page.html            # ✅ Page dédiée Nat&Form (harmonisée 2026-02-06)
 ├── aragan-page.html             # ✅ Page dédiée Aragan (harmonisée 2026-02-06)
 ├── caudalie-page.html           # ❌ DÉPRÉCIÉ - Non lié (remplacée par La Rosée)
-├── ducray-page.html             # ❌ DÉPRÉCIÉ - Non lié (marque retirée)
 └── *.md                         # Briefs/contenus pour futures pages
 ```
 
@@ -466,7 +465,7 @@ python3 update_brand_pages.py \
 - **🎯 TEMPLATE OFFICIEL** : `la-roche-posay-page.html` — À copier pour chaque nouvelle marque
 - **🎯 PAGE CATALOGUE** : `nosmarques.html` — Page principale avec grille 2 colonnes mobile
 - **Template placeholders** : `TEMPLATE-marque.html` — Template avec `{{PLACEHOLDERS}}` à remplacer (mis à jour 2026-02-11)
-- **Pages dépréciées** : `caudalie-page.html`, `ducray-page.html` — Non liées, à supprimer éventuellement
+- **Page dépréciée** : `caudalie-page.html` — Non liée, à supprimer éventuellement
 - **Design system** : `../index-redesign/README.md` (documentation complète du design HIMS)
 - **Index redesign** : `../index-redesign/index-redesign.html` (référence design system)
 - **Fiches marques** : `/Users/mc/Documents/MarcOS/Pharma/GESTION/1-RESSOURCES/Fiche par Marque/`
