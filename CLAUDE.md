@@ -180,13 +180,18 @@ Code à insérer dans `<head>`:
 
 ---
 
-## Accents Français (CRITIQUE)
+## Typographie Francaise (CRITIQUE)
 
-Vérifier systématiquement:
-- ✅ **Quéven** (pas "Queven")
-- ✅ **Découvrez**, **française**, **expérience**
+### Accents
+Verifier systematiquement:
+- ✅ **Queven** (pas "Queven")
+- ✅ **Decouvrez**, **francaise**, **experience**
 
 Emplacements prioritaires: `<meta description>`, header, footer
+
+### Ponctuation
+- **Pas d'espace avant `?`** : `symptomes?` (pas `symptomes ?`)
+- Convention du site : style sans espace avant la ponctuation double
 
 ---
 
@@ -199,14 +204,34 @@ Quand on modifie un titre d'article, mettre à jour:
 
 ---
 
-## Ordre Services (Homepage)
+## Homepage - Structure et Design
 
-1. Délivrance d'ordonnances
+### Hero Section
+- Titre : "Votre sante, notre priorite"
+- Description + **CTA bouton outline** (`btn-secondary`) : "Quel medicament pour vos symptomes?" → `Quizzes/quiz-automedication.html`
+- Le CTA utilise `.hero-cta` (animation fadeInUp 0.3s)
+
+### Badges Quiz (sous le marquee)
+4 badges style HIMS avec images PNG transparentes flottantes + ombre elliptique.
+Voir section Quiz ci-dessous pour details.
+
+### Sections dans l'ordre
+1. Hero + CTA
+2. Marquee banner (services defilants)
+3. Badges quiz (4 categories)
+4. Services (6 cartes)
+5. Dernier article blog (auto-fetch depuis blog.html)
+6. Marque a decouvrir (rotation aleatoire)
+7. Stats bar (40+ ans, 4.9 Google, 6j/7, 100% conseil)
+
+### Ordre Services
+
+1. Delivrance d'ordonnances
 2. Parapharmacie
 3. Vaccinations
 4. Produits naturels
-5. Matériel médical
-6. **Livraison à domicile** (toujours en dernier)
+5. Materiel medical
+6. **Livraison a domicile** (toujours en dernier)
 
 ---
 
