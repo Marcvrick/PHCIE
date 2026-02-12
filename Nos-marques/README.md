@@ -2,8 +2,9 @@
 
 Ce guide documente le processus de création des pages dédiées aux marques pour le site Pharmacie Charnal.
 
-> **📅 Dernière mise à jour majeure : 2026-02-06**
-> 17 pages harmonisées avec le design system officiel (template `la-roche-posay-page.html`)
+> **📅 Dernière mise à jour majeure : 2026-02-11**
+> 16 pages harmonisées avec le design system officiel (template `la-roche-posay-page.html`)
+> Derniers changements : Ducray et Caudalie retirées, La Rosée ajoutée
 
 ---
 
@@ -12,7 +13,7 @@ Ce guide documente le processus de création des pages dédiées aux marques pou
 ```
 Nos-marques/
 ├── README.md                    # Ce fichier
-├── TEMPLATE-marque.html         # ⚠️ OBSOLÈTE - Ne plus utiliser
+├── TEMPLATE-marque.html         # Template avec placeholders (mis à jour 2026-02-11)
 ├── nosmarques.html              # 🎯 Page catalogue officielle (harmonisée avec index-redesign)
 ├── logos/                       # Logos des marques (source unique)
 │   ├── Avene.jpeg
@@ -21,10 +22,9 @@ Nos-marques/
 │   ├── biogaran_logo.jpg
 │   ├── Bion3_logo.png
 │   ├── boiron-logo-png-transparent.png
-│   ├── Caudalie.png
-│   ├── DUCRAY_logo.*
 │   ├── Klorane.png
 │   ├── La-roche-posay.png
+│   ├── la-rosee.svg
 │   ├── logo-arkopharma-2.png
 │   ├── Mustella.*
 │   ├── NatForm.avif
@@ -37,7 +37,7 @@ Nos-marques/
 ├── bioderma-page.html           # ✅ Page dédiée Bioderma (harmonisée 2026-02-06)
 ├── avene-page.html              # ✅ Page dédiée Avène (harmonisée 2026-02-06)
 ├── nuxe-page.html               # ✅ Page dédiée Nuxe (harmonisée 2026-02-06)
-├── caudalie-page.html           # ✅ Page dédiée Caudalie (harmonisée 2026-02-06)
+├── larosee-page.html            # ✅ Page dédiée La Rosée (créée 2026-02-11)
 ├── klorane-page.html            # ✅ Page dédiée Klorane (harmonisée 2026-02-06)
 ├── biogaran-page.html           # ✅ Page dédiée Biogaran (harmonisée 2026-02-06)
 ├── bion3-page.html              # ✅ Page dédiée Bion 3 (harmonisée 2026-02-06)
@@ -46,9 +46,10 @@ Nos-marques/
 ├── arkopharma-page.html         # ✅ Page dédiée Arkopharma (harmonisée 2026-02-06)
 ├── pileje-page.html             # ✅ Page dédiée PiLeJe (harmonisée 2026-02-06)
 ├── mustela-page.html            # ✅ Page dédiée Mustela (harmonisée 2026-02-06)
-├── ducray-page.html             # ✅ Page dédiée Ducray (harmonisée 2026-02-06)
 ├── natform-page.html            # ✅ Page dédiée Nat&Form (harmonisée 2026-02-06)
 ├── aragan-page.html             # ✅ Page dédiée Aragan (harmonisée 2026-02-06)
+├── caudalie-page.html           # ❌ DÉPRÉCIÉ - Non lié (remplacée par La Rosée)
+├── ducray-page.html             # ❌ DÉPRÉCIÉ - Non lié (marque retirée)
 └── *.md                         # Briefs/contenus pour futures pages
 ```
 
@@ -57,24 +58,31 @@ Nos-marques/
 ## Vue d'ensemble
 
 ### État actuel
-- **17 marques actives** avec pages dédiées complètes
+- **16 marques actives** avec pages dédiées complètes
 - **Page catalogue** : `nosmarques.html` (grille responsive avec filtrage par catégorie)
 - **Template officiel** : `la-roche-posay-page.html` (design system harmonisé)
+- **Template avec placeholders** : `TEMPLATE-marque.html` (grille benefits 2x2, nav avec Contact dropdown)
 - **Tous les liens fonctionnels** entre le catalogue et les pages individuelles
-- **✅ 16 pages harmonisées** avec le nouveau design system (mise à jour 2026-02-06)
+- **✅ 16 pages harmonisées** avec le nouveau design system
 
-### Dernières mises à jour (2026-02-06)
+### Dernières mises à jour (2026-02-11)
 
-**16 pages mises à niveau vers le design system officiel** :
+**Changements récents :**
+- ❌ **Ducray** retirée (marque non vendue en pharmacie)
+- ❌ **Caudalie** retirée (remplacée par La Rosée)
+- ✅ **La Rosée** ajoutée (cosmétique naturelle, fondée par des pharmaciennes)
+- ✅ Grille "Pourquoi nous avons choisi" : 2x2 au lieu de 3+1 (toutes les pages)
+- ✅ Suppression des badges "Nouveau" sur les cartes produits
+- ✅ Nav corrigée sur toutes les pages (Contact dropdown avec Recrutement)
 
-✅ **Pages à jour** :
+✅ **16 pages actives** :
 1. la-roche-posay-page.html (template de référence)
 2. avene-page.html
 3. biocanina-page.html
 4. bioderma-page.html
 5. biogaran-page.html
 6. bion3-page.html
-7. caudalie-page.html
+7. larosee-page.html *(nouveau 2026-02-11)*
 8. klorane-page.html
 9. nuxe-page.html
 10. pileje-page.html
@@ -82,11 +90,10 @@ Nos-marques/
 12. boiron-page.html
 13. mustela-page.html
 14. arkopharma-page.html
-15. ducray-page.html
-16. natform-page.html
-17. aragan-page.html
+15. natform-page.html
+16. aragan-page.html
 
-**Modifications appliquées** :
+**Design system appliqué (2026-02-06)** :
 - ✅ `--charcoal` modifié de `#2C2C2C` → `#1F2121`
 - ✅ Ajout variables CSS manquantes : `--text-xs`, `--text-sm`, `--text-base`, `--text-lg`, `--text-xl`
 - ✅ Ajout `--ease-standard`, `--font-display`, `--font-body`
@@ -230,7 +237,7 @@ Chaque page de marque a sa propre palette de couleurs basée sur l'identité vis
 | **La Roche-Posay** | `#003D7D` (bleu marine) | `#002D5C` | `#E8F0F8`, `#F0F5FA` |
 | **Avène** | `#F47920` (orange) | `#D66A1C` | `#FFF3E8`, `#FFEDE0` |
 | **Nuxe** | `#C9A227` (doré) | `#A68620` | `#FDF8E8`, `#FFF9E6` |
-| **Caudalie** | `#7B5E3C` (bordeaux/brun) | `#5C462D` | `#F5F0EB`, `#EDE6DF` |
+| **La Rosée** | `#F57EB6` (rose) | `#D4609A` | `#FDF0F6`, `#F5E0EC` |
 | **Klorane** | `#00843D` (vert) | `#006830` | `#E8F5ED`, `#F0FAF4` |
 | **Biocanina** | `#E31837` (rouge) | `#B81430` | `#FCE8EB`, `#FFF0F2` |
 
@@ -258,17 +265,18 @@ Chaque page de marque a sa propre palette de couleurs basée sur l'identité vis
 - Citation/blockquote
 
 ### 4. Pourquoi cette marque
-- 4 avantages numérotés
+- 4 avantages numérotés (grille 2x2, pas 3+1)
 - Cartes avec animation hover
 
 ### 5. Produits/Gammes
 - Onglets de filtrage par catégorie
-- 3 cartes produits avec :
+- 3-5 cartes produits avec :
   - Image de fond dégradé
   - Titre de gamme
   - Sous-titre
   - Liste de produits
   - Lien "Demander conseil"
+  - **Pas de badges "Nouveau"** (supprimés)
 
 ### 6. Conseil/Coup de cœur
 - Titre : "Un conseil" (pas "Notre conseil")
@@ -285,8 +293,8 @@ Chaque page de marque a sa propre palette de couleurs basée sur l'identité vis
 | Catégorie (data-category) | Affichage | Marques |
 |---------------------------|-----------|---------|
 | `dermatologie` | Dermatologie | Bioderma, La Roche-Posay, Avène, Vichy |
-| `cosmetique` | Cosmétique | Nuxe, Caudalie |
-| `capillaire` | Soins Capillaires | Klorane, Ducray |
+| `cosmetique` | Cosmétique | Nuxe, La Rosée |
+| `capillaire` | Soins Capillaires | Klorane |
 | `bebe` | Bébé & Maman | Mustela |
 | `homeopathie` | Homéopathie | Boiron |
 | `animaux` | Santé Animale | Biocanina |
@@ -310,7 +318,7 @@ Chaque page de marque a sa propre palette de couleurs basée sur l'identité vis
 [ ] 7. Adapter les dégradés du hero et sections
 [ ] 8. Vérifier les accents français (Découvrez, qualité, Quéven, etc.)
 [ ] 9. Vérifier le responsive mobile :
-    [ ] Grilles 2 colonnes pour .benefits-grid
+    [ ] Grille 2x2 pour .benefits-grid (repeat(2, 1fr) mobile ET desktop)
     [ ] Grilles 2 colonnes pour .product-cards
     [ ] Images produits 120px mobile / 220px desktop
     [ ] Descriptions et listes masquées sur mobile
@@ -354,7 +362,7 @@ Cette page applique le design system HIMS de `index-redesign` et doit être copi
 | Footer | Styles inline, couleurs variables | Classes CSS, fond fixe `#1F2121` |
 | Footer mobile | 1 colonne ou inline | 2 colonnes (Contact + Horaires), Navigation cachée |
 | Variables CSS | Basiques | Complètes (`--text-xs` à `--text-xl`, `--font-display`, `--font-body`, `--ease-standard`) |
-| Grilles mobile | 1 colonne ou desktop uniquement | 2 colonnes pour "Pourquoi nous avons choisi" et "Les gammes" |
+| Grilles | 1 colonne ou auto-fit 3+1 | 2x2 pour "Pourquoi nous avons choisi", 2 colonnes pour "Les gammes" |
 | Padding mobile | Souvent fixe | Responsive avec media queries (`24px` mobile, `32px` desktop) |
 | Produits mobile | Tout visible | Description et liste masquées, images réduites (120px) |
 
@@ -369,7 +377,7 @@ Cette page applique le design system HIMS de `index-redesign` et doit être copi
 - Filtres catégorie : défilement horizontal
 
 **Section "Pourquoi nous avons choisi" (.benefits-grid)** :
-- Grille : 2 colonnes (`grid-template-columns: repeat(2, 1fr)`)
+- Grille : **toujours 2 colonnes** (`grid-template-columns: repeat(2, 1fr)`) — layout 2+2, pas 3+1
 - Gap : `var(--space-16)` mobile, `var(--space-32)` desktop
 - Padding cartes : `var(--space-24)` mobile, `var(--space-32)` desktop
 - Numéros : `2rem` mobile, `3rem` desktop
@@ -460,8 +468,8 @@ python3 update_brand_pages.py \
 
 - **🎯 TEMPLATE OFFICIEL** : `la-roche-posay-page.html` — À copier pour chaque nouvelle marque
 - **🎯 PAGE CATALOGUE** : `nosmarques.html` — Page principale avec grille 2 colonnes mobile
-- **Ancien template (obsolète)** : `TEMPLATE-marque.html` — Ne plus utiliser
-- **Ancien style (obsolète)** : `vichy-page.html` — Footer gradient, styles inline
+- **Template placeholders** : `TEMPLATE-marque.html` — Template avec `{{PLACEHOLDERS}}` à remplacer (mis à jour 2026-02-11)
+- **Pages dépréciées** : `caudalie-page.html`, `ducray-page.html` — Non liées, à supprimer éventuellement
 - **Design system** : `../index-redesign/README.md` (documentation complète du design HIMS)
 - **Index redesign** : `../index-redesign/index-redesign.html` (référence design system)
 - **Fiches marques** : `/Users/mc/Documents/MarcOS/Pharma/GESTION/1-RESSOURCES/Fiche par Marque/`
