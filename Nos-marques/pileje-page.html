@@ -948,7 +948,7 @@
 
         @media (min-width: 768px) {
             .benefits-grid {
-                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+                grid-template-columns: repeat(2, 1fr);
                 gap: var(--space-32);
             }
         }
@@ -1131,32 +1131,7 @@
         .product-image-bg.sommeil { background: linear-gradient(135deg, #C4B5E9 0%, #9B7FE6 100%); }
         .product-image-bg.femme { background: linear-gradient(135deg, #F8BBD9 0%, #E89FC3 100%); }
         .product-image-bg.phyto { background: linear-gradient(135deg, #B8E6D5 0%, #7CB89B 100%); }
-
-        .product-badge {
-            position: absolute;
-            top: var(--space-8);
-            left: var(--space-8);
-            padding: var(--space-4) var(--space-8);
-            font-size: 0.625rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            color: var(--white);
-            background: rgba(0, 0, 0, 0.2);
-            backdrop-filter: blur(8px);
-            border-radius: var(--radius-sm);
-        }
-
-        @media (min-width: 768px) {
-            .product-badge {
-                top: var(--space-16);
-                left: var(--space-16);
-                padding: var(--space-8) var(--space-12);
-                font-size: 0.75rem;
-            }
-        }
-
-        .product-content {
+.product-content {
             padding: var(--space-24);
         }
 

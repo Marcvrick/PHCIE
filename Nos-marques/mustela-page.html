@@ -740,7 +740,7 @@
 
         @media (min-width: 768px) {
             .benefits-grid {
-                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+                grid-template-columns: repeat(2, 1fr);
                 gap: var(--space-32);
             }
         }
@@ -904,32 +904,7 @@
         .product-image-bg.atopique { background: linear-gradient(135deg, #E8D4F5 0%, #C5A3E0 100%); }
         .product-image-bg.change { background: linear-gradient(135deg, #A8E6CF 0%, #88D8B0 100%); }
         .product-image-bg.maternite { background: linear-gradient(135deg, #FFD8E8 0%, #FFAEC9 100%); }
-
-        .product-badge {
-            position: absolute;
-            top: var(--space-8);
-            left: var(--space-8);
-            padding: var(--space-4) var(--space-8);
-            font-size: 0.625rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            color: var(--white);
-            background: rgba(0, 0, 0, 0.2);
-            backdrop-filter: blur(8px);
-            border-radius: var(--radius-sm);
-        }
-
-        @media (min-width: 768px) {
-            .product-badge {
-                top: var(--space-16);
-                left: var(--space-16);
-                padding: var(--space-8) var(--space-12);
-                font-size: 0.75rem;
-            }
-        }
-
-        .product-content {
+.product-content {
             padding: var(--space-12);
         }
 
@@ -1612,8 +1587,7 @@
                 <article class="product-card reveal reveal-delay-1" data-category="normale">
                     <div class="product-image">
                         <div class="product-image-bg normale"></div>
-                        <span class="product-badge">Essentiel</span>
-                    </div>
+</div>
                     <div class="product-content">
                         <h3>Peau Normale</h3>
                         <div class="product-subtitle">Soins quotidiens</div>
@@ -1658,8 +1632,7 @@
                 <article class="product-card reveal reveal-delay-3" data-category="atopique">
                     <div class="product-image">
                         <div class="product-image-bg atopique"></div>
-                        <span class="product-badge">Stelatopia</span>
-                    </div>
+</div>
                     <div class="product-content">
                         <h3>Peau Atopique</h3>
                         <div class="product-subtitle">Gamme Stelatopia</div>

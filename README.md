@@ -29,9 +29,8 @@ website-pharmacie-charnal/
 ├── professionnels-sante-queven-carte.csv  # Données carte Leaflet
 ├── Nos-marques/            # Section marques
 │   ├── nosmarques.html     # Page catalogue marques (ancres: #cosmetiques, #complements, #premiers-soins)
-│   ├── vichy-page.html     # Page dédiée Vichy
 │   ├── biogaran-page.html  # Page dédiée Biogaran
-│   ├── logos/              # Logos des marques (Avene, Bioderma, Vichy, Biogaran, etc.)
+│   ├── logos/              # Logos des marques (Avene, Bioderma, Biogaran, etc.)
 │   └── *.md                # Articles marques (briefs pour futures pages)
 ├── blog/                   # Articles de blog
 │   ├── GUIDE-REDACTION-BLOG.md            # Guide rédactionnel Laure

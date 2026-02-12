@@ -956,7 +956,7 @@
 
         @media (min-width: 768px) {
             .benefits-grid {
-                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+                grid-template-columns: repeat(2, 1fr);
                 gap: var(--space-32);
             }
         }
@@ -1139,32 +1139,7 @@
         .product-image-bg.anthelios { background: linear-gradient(135deg, #FFD89B 0%, #F5A623 100%); }
         .product-image-bg.lipikar { background: linear-gradient(135deg, #F5E6E0 0%, #E8D5CC 100%); }
         .product-image-bg.hyalub5 { background: linear-gradient(135deg, #C8E6F5 0%, #9AC8E0 100%); }
-
-        .product-badge {
-            position: absolute;
-            top: var(--space-8);
-            left: var(--space-8);
-            padding: var(--space-4) var(--space-8);
-            font-size: 0.625rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            color: var(--white);
-            background: rgba(0, 61, 125, 0.8);
-            backdrop-filter: blur(8px);
-            border-radius: var(--radius-sm);
-        }
-
-        @media (min-width: 768px) {
-            .product-badge {
-                top: var(--space-16);
-                left: var(--space-16);
-                padding: var(--space-8) var(--space-12);
-                font-size: 0.75rem;
-            }
-        }
-
-        .product-content {
+.product-content {
             padding: var(--space-12);
         }
 
@@ -1748,7 +1723,13 @@
                     </ul>
                 </li>
                 <li><a href="../blog.html" class="nav-link nav-link-blog" style="background: #b4a6d7; color: white; border-radius: 9999px;">Au comptoir</a></li>
-                <li><a href="../contact.html" class="nav-link">Contact</a></li>
+                <li class="nav-dropdown">
+                    <a href="../contact.html" class="nav-link nav-dropdown-toggle">Contact</a>
+                    <ul class="nav-dropdown-menu">
+                        <li><a href="../contact.html" class="nav-link">Contact</a></li>
+                        <li><a href="../contact.html#recrutement" class="nav-link">Recrutement</a></li>
+                    </ul>
+                </li>
             </ul>
         </div>
     </nav>
@@ -2017,8 +1998,7 @@
                 <article class="product-card reveal reveal-delay-2" data-category="sensible">
                     <div class="product-image">
                         <div class="product-image-bg toleriane"></div>
-                        <span class="product-badge">Peaux intolerantes</span>
-                    </div>
+</div>
                     <div class="product-content">
                         <h3>Toleriane</h3>
                         <div class="product-subtitle">Peaux ultra-sensibles et allergiques</div>
@@ -2035,8 +2015,7 @@
                 <article class="product-card reveal reveal-delay-3" data-category="solaire">
                     <div class="product-image">
                         <div class="product-image-bg anthelios"></div>
-                        <span class="product-badge">Reference solaire</span>
-                    </div>
+</div>
                     <div class="product-content">
                         <h3>Anthelios</h3>
                         <div class="product-subtitle">Protection solaire haute tolerance</div>

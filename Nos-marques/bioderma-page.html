@@ -954,7 +954,7 @@
 
         @media (min-width: 768px) {
             .benefits-grid {
-                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+                grid-template-columns: repeat(2, 1fr);
                 gap: var(--space-32);
             }
         }
@@ -1153,32 +1153,7 @@
         .product-image-bg.hydrabio { background: linear-gradient(135deg, #A8D8EA 0%, #79C2D0 100%); }
         .product-image-bg.atoderm { background: linear-gradient(135deg, #E8D4B8 0%, #D4BC98 100%); }
         .product-image-bg.photoderm { background: linear-gradient(135deg, #FFE4A0 0%, #FFD060 100%); }
-
-        .product-badge {
-            position: absolute;
-            top: var(--space-8);
-            left: var(--space-8);
-            padding: var(--space-4) var(--space-8);
-            font-size: 0.625rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            color: var(--white);
-            background: rgba(0, 0, 0, 0.2);
-            backdrop-filter: blur(8px);
-            border-radius: var(--radius-sm);
-        }
-
-        @media (min-width: 768px) {
-            .product-badge {
-                top: var(--space-16);
-                left: var(--space-16);
-                padding: var(--space-8) var(--space-12);
-                font-size: 0.75rem;
-            }
-        }
-
-        .product-content {
+.product-content {
             padding: var(--space-12);
         }
 
@@ -1757,7 +1732,13 @@
                     </ul>
                 </li>
                 <li><a href="../blog.html" class="nav-link nav-link-blog" style="background: #b4a6d7; color: white; border-radius: 9999px;">Au comptoir</a></li>
-                <li><a href="../contact.html" class="nav-link">Contact</a></li>
+                <li class="nav-dropdown">
+                    <a href="../contact.html" class="nav-link nav-dropdown-toggle">Contact</a>
+                    <ul class="nav-dropdown-menu">
+                        <li><a href="../contact.html" class="nav-link">Contact</a></li>
+                        <li><a href="../contact.html#recrutement" class="nav-link">Recrutement</a></li>
+                    </ul>
+                </li>
             </ul>
         </div>
     </nav>
