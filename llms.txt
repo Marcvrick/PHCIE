@@ -1,5 +1,9 @@
 # Pharmacie Charnal - Quéven
 
+> Language: fr
+> Last updated: 2026-02-12
+> Sitemap: https://www.pharmaciecharnal.com/sitemap.xml
+
 > Pharmacie familiale indépendante à Quéven (Morbihan, Bretagne) depuis 1984. Délivrance d'ordonnances, vaccinations, livraison à domicile, parapharmacie et produits naturels.
 
 ## Informations essentielles
