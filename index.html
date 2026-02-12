@@ -1693,6 +1693,11 @@
 
         /* === MOBILE IMAGE OPTIMIZATIONS === */
         @media (max-width: 767px) {
+            .editorial-image {
+                margin: 0 auto;
+                max-width: 100%;
+            }
+
             .editorial-image img {
                 aspect-ratio: 3/2;
             }
@@ -1705,6 +1710,14 @@
                 gap: var(--space-32);
             }
 
+            .editorial-content {
+                text-align: center;
+            }
+
+            .editorial-content .link-arrow {
+                justify-content: center;
+            }
+
             .brand-spotlight {
                 padding: var(--space-64) 0;
             }
@@ -1712,6 +1725,8 @@
             .brand-spotlight-logo {
                 aspect-ratio: 3/2;
                 padding: var(--space-32);
+                margin: 0 auto;
+                max-width: 100%;
             }
 
             .brand-spotlight-logo img {
@@ -1721,6 +1736,14 @@
 
             .brand-spotlight-grid {
                 gap: var(--space-32);
+            }
+
+            .brand-spotlight-content {
+                text-align: center;
+            }
+
+            .brand-spotlight-content .link-arrow {
+                justify-content: center;
             }
 
             .category-image {
