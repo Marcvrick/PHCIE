@@ -193,7 +193,6 @@ Chaque page de marque (`Nos-marques/*-page.html`) peut avoir sa propre palette d
 
 | Marque | Couleur principale | Couleur sombre | Pastels |
 |--------|-------------------|----------------|---------|
-| **Vichy** | `#2D5F5D` (teal) | `#1E4745` | `#D4E8E7`, `#DFF5ED` |
 | **Biogaran** | `#0066CC` (bleu) | `#004C99` | `#E3F2FD`, `#E8F4FC`, `#F0F7FF` |
 
 **Pour ajouter une nouvelle marque :**
