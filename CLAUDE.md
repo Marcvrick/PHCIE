@@ -13,7 +13,7 @@
 - **GitHub Pages:** Activé sur `main`
 
 **Custom Domain:**
-- **URL:** `www.pharmaciecharnal.com`
+- **URL canonique:** `https://www.pharmaciecharnal.com` (TOUJOURS .com, JAMAIS .fr)
 - **Fichier CNAME:** Contient `www.pharmaciecharnal.com`
 - **DNS:** CNAME → `marcvrick.github.io`
 - **HTTPS:** Activé
@@ -269,19 +269,58 @@ Guide complet : `Guide Badge produit style HIMS.md`
 
 ---
 
-## Checklist Avant Déploiement
+## Checklist Nouvelle Page (OBLIGATOIRE)
 
+Quand Claude cree une nouvelle page HTML :
+
+**1. Head — SEO meta :**
+- [ ] `<link rel="canonical" href="https://www.pharmaciecharnal.com/[path]">`
+- [ ] `<meta name="robots" content="index, follow">` (ou `noindex` pour placeholders)
+- [ ] `<meta property="og:url" content="https://www.pharmaciecharnal.com/[path]">`
+- [ ] `<meta property="og:image" content="https://www.pharmaciecharnal.com/images/pharmacie-charnal-logo.png">`
+- [ ] Toutes les URLs en `https://www.pharmaciecharnal.com` (JAMAIS .fr)
+
+**2. Head — Schema JSON-LD :**
+- [ ] BreadcrumbList en JSON-LD avec URLs absolues (PAS de Microdata)
+- [ ] Si la page concerne la pharmacie : reference `{"@id": "https://www.pharmaciecharnal.com/#pharmacy"}` — NE PAS dupliquer le schema Pharmacy complet
+- [ ] Le schema Pharmacy complet n'existe QUE sur `index.html`
+
+**3. Fichiers a mettre a jour :**
+- [ ] `sitemap.xml` — ajouter la nouvelle URL avec `<lastmod>`
+- [ ] `llms.txt` — ajouter si c'est une page importante
+
+**4. Contenu :**
 - [ ] Google Analytics (G-2Q64V6B0QE) dans `<head>`
 - [ ] Images avec attribut `alt`
 - [ ] Liens internes relatifs
-- [ ] Mobile menu présent
-- [ ] Marques vérifiées (pas d'invention)
+- [ ] Mobile menu present
+- [ ] Marques verifiees (pas d'invention)
 - [ ] CTAs → venir en pharmacie
-- [ ] Footer complet avec mentions légales
-- [ ] Footer navigation masquée sur mobile
-- [ ] Copyright visible (blanc)
-- [ ] Accents français corrects
-- [ ] Tester en local avant push
+- [ ] Footer complet avec mentions legales
+- [ ] Accents francais corrects
+
+---
+
+## Architecture Schema (IMPORTANT)
+
+**Principe : schema Pharmacy unique sur la homepage, references @id partout ailleurs.**
+
+```
+index.html (homepage)
+├── Pharmacy schema complet (@id: #pharmacy)
+│   └── Contient : address, telephone, openingHours, aggregateRating (4.9),
+│       sameAs, geo, areaServed, reviews, foundingDate, medicalSpecialty
+├── WebSite schema (@id: #website, publisher → #pharmacy)
+└── BreadcrumbList JSON-LD (si applicable)
+
+Autres pages
+├── Schema specifique a la page (WebPage, ContactPage, Blog, etc.)
+│   └── Reference : {"@id": "https://www.pharmaciecharnal.com/#pharmacy"}
+└── BreadcrumbList JSON-LD avec URLs absolues
+```
+
+**Interdit :** Copier-coller le schema Pharmacy (address, openingHours, reviews) sur d'autres pages.
+**aggregateRating :** Toujours `"4.9"` — valeur unique, definie uniquement sur la homepage.
 
 ---
 
