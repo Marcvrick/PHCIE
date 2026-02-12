@@ -44,8 +44,8 @@
       "hiringOrganization": {
         "@type": "Pharmacy",
         "name": "Pharmacie Charnal",
-        "sameAs": "https://www.pharmaciecharnal.fr",
-        "logo": "https://www.pharmaciecharnal.fr/images/pharmacie-charnal-logo.png"
+        "sameAs": "https://www.pharmaciecharnal.com",
+        "logo": "https://www.pharmaciecharnal.com/images/pharmacie-charnal-logo.png"
       },
       "jobLocation": {
         "@type": "Place",
@@ -507,6 +507,17 @@
             }
         }
     </style>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://www.pharmaciecharnal.com/" },
+        { "@type": "ListItem", "position": 2, "name": "Contact", "item": "https://www.pharmaciecharnal.com/contact.html" },
+        { "@type": "ListItem", "position": 3, "name": "Recrutement" }
+      ]
+    }
+    </script>
 </head>
 <body>
     <!-- Navigation -->
@@ -554,18 +565,15 @@
     <!-- Breadcrumb -->
     <nav class="breadcrumb" aria-label="Fil d'Ariane">
         <div class="container">
-            <ol class="breadcrumb-list" itemscope itemtype="https://schema.org/BreadcrumbList">
-                <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
-                    <a itemprop="item" href="index.html"><span itemprop="name">Accueil</span></a>
-                    <meta itemprop="position" content="1" />
+            <ol class="breadcrumb-list">
+                <li>
+                    <a href="index.html">Accueil</a>
                 </li>
-                <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
-                    <a itemprop="item" href="contact.html"><span itemprop="name">Contact</span></a>
-                    <meta itemprop="position" content="2" />
+                <li>
+                    <a href="contact.html">Contact</a>
                 </li>
-                <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
-                    <span itemprop="name">Recrutement</span>
-                    <meta itemprop="position" content="3" />
+                <li>
+                    Recrutement
                 </li>
             </ol>
         </div>

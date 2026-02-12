@@ -6,8 +6,11 @@
 User-agent: *
 Allow: /
 
-# Sitemap XML - Aide à l'indexation complète du site
+# Sitemap XML
 Sitemap: https://www.pharmaciecharnal.com/sitemap.xml
+
+# LLMs.txt - Contexte pour les AI crawlers
+# https://www.pharmaciecharnal.com/llms.txt
 
 # ==========================================
 # MOTEURS DE RECHERCHE CLASSIQUES

@@ -1,205 +1,159 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
-  <!-- Page d'accueil - Priorité maximale -->
+  <!-- Page d'accueil -->
   <url>
     <loc>https://www.pharmaciecharnal.com/index.html</loc>
-    <lastmod>2026-02-06</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>1.0</priority>
+    <lastmod>2026-02-12</lastmod>
   </url>
 
   <!-- Pages principales -->
   <url>
     <loc>https://www.pharmaciecharnal.com/histoire.html</loc>
-    <lastmod>2026-02-06</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <lastmod>2026-02-12</lastmod>
   </url>
 
   <url>
     <loc>https://www.pharmaciecharnal.com/services.html</loc>
-    <lastmod>2026-02-06</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
+    <lastmod>2026-02-12</lastmod>
   </url>
 
   <url>
     <loc>https://www.pharmaciecharnal.com/Nos-marques/nosmarques.html</loc>
     <lastmod>2026-02-06</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
   </url>
 
   <url>
     <loc>https://www.pharmaciecharnal.com/blog.html</loc>
-    <lastmod>2026-02-06</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
+    <lastmod>2026-02-12</lastmod>
   </url>
 
   <url>
     <loc>https://www.pharmaciecharnal.com/contact.html</loc>
-    <lastmod>2026-02-06</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
+    <lastmod>2026-02-12</lastmod>
   </url>
 
   <url>
     <loc>https://www.pharmaciecharnal.com/recrutement-preparatrice-pharmacie-queven.html</loc>
     <lastmod>2026-02-06</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://www.pharmaciecharnal.com/annuaire-sante.html</loc>
+    <lastmod>2026-02-12</lastmod>
+  </url>
+
+  <url>
+    <loc>https://www.pharmaciecharnal.com/pharmacie-de-garde-queven-hennebont-lorient.html</loc>
+    <lastmod>2026-02-12</lastmod>
   </url>
 
   <!-- Pages légales -->
   <url>
     <loc>https://www.pharmaciecharnal.com/mentions-legales.html</loc>
     <lastmod>2026-02-06</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.3</priority>
   </url>
 
   <url>
     <loc>https://www.pharmaciecharnal.com/donnees-personnelles.html</loc>
     <lastmod>2026-02-06</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.3</priority>
   </url>
 
   <!-- Pages marques -->
   <url>
     <loc>https://www.pharmaciecharnal.com/Nos-marques/la-roche-posay-page.html</loc>
     <lastmod>2026-02-11</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.pharmaciecharnal.com/Nos-marques/bioderma-page.html</loc>
     <lastmod>2026-02-11</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.pharmaciecharnal.com/Nos-marques/avene-page.html</loc>
     <lastmod>2026-02-11</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.pharmaciecharnal.com/Nos-marques/nuxe-page.html</loc>
     <lastmod>2026-02-11</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.pharmaciecharnal.com/Nos-marques/larosee-page.html</loc>
     <lastmod>2026-02-11</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.pharmaciecharnal.com/Nos-marques/klorane-page.html</loc>
     <lastmod>2026-02-11</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.pharmaciecharnal.com/Nos-marques/mustela-page.html</loc>
     <lastmod>2026-02-11</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.pharmaciecharnal.com/Nos-marques/pileje-page.html</loc>
     <lastmod>2026-02-11</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.pharmaciecharnal.com/Nos-marques/arkopharma-page.html</loc>
     <lastmod>2026-02-11</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.pharmaciecharnal.com/Nos-marques/boiron-page.html</loc>
     <lastmod>2026-02-11</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.pharmaciecharnal.com/Nos-marques/natform-page.html</loc>
     <lastmod>2026-02-11</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.pharmaciecharnal.com/Nos-marques/aragan-page.html</loc>
     <lastmod>2026-02-11</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.pharmaciecharnal.com/Nos-marques/biogaran-page.html</loc>
     <lastmod>2026-02-11</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.pharmaciecharnal.com/Nos-marques/bion3-page.html</loc>
     <lastmod>2026-02-11</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.pharmaciecharnal.com/Nos-marques/biocanina-page.html</loc>
     <lastmod>2026-02-11</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.pharmaciecharnal.com/Nos-marques/caudalie-page.html</loc>
+    <lastmod>2026-02-12</lastmod>
   </url>
 
   <!-- Articles de blog -->
   <url>
     <loc>https://www.pharmaciecharnal.com/blog/prevenir-maux-hiver-queven.html</loc>
     <lastmod>2026-02-06</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
   </url>
 
   <url>
     <loc>https://www.pharmaciecharnal.com/blog/vaccination-adulte-guide-pratique.html</loc>
     <lastmod>2026-02-06</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
   </url>
 
   <url>
     <loc>https://www.pharmaciecharnal.com/blog/detox-apres-fetes-mythe-realite-queven.html</loc>
     <lastmod>2026-02-06</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
   </url>
 
   <url>
     <loc>https://www.pharmaciecharnal.com/blog/proteger-peau-seche-hiver-breton-queven.html</loc>
     <lastmod>2026-02-06</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
   </url>
 
   <url>
     <loc>https://www.pharmaciecharnal.com/blog/humidite-douleurs-articulaires-queven.html</loc>
     <lastmod>2026-02-06</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
   </url>
 
   <url>
     <loc>https://www.pharmaciecharnal.com/blog/professionnels-sante-queven-2026.html</loc>
     <lastmod>2026-02-06</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
   </url>
 
 </urlset>

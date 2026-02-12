@@ -54,6 +54,16 @@
             border-radius: var(--radius-md);
         }
     </style>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://www.pharmaciecharnal.com/" },
+        { "@type": "ListItem", "position": 2, "name": "Données personnelles" }
+      ]
+    }
+    </script>
 </head>
 <body>
     <!-- Navigation -->
@@ -100,14 +110,12 @@
     <!-- Breadcrumb -->
     <nav class="breadcrumb" aria-label="Fil d'Ariane">
         <div class="container">
-            <ol class="breadcrumb-list" itemscope itemtype="https://schema.org/BreadcrumbList">
-                <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
-                    <a itemprop="item" href="index.html"><span itemprop="name">Accueil</span></a>
-                    <meta itemprop="position" content="1" />
+            <ol class="breadcrumb-list">
+                <li>
+                    <a href="index.html">Accueil</a>
                 </li>
-                <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
-                    <span itemprop="name">Données personnelles</span>
-                    <meta itemprop="position" content="2" />
+                <li>
+                    Données personnelles
                 </li>
             </ol>
         </div>
