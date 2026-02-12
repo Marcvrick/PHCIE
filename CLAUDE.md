@@ -20,11 +20,8 @@
 
 **Workflow Git:**
 ```bash
-git checkout pharmacie-charnal
-git add . && git commit -m "Message" && git push origin pharmacie-charnal
-# Déployer: merge sur main
-git checkout main && git merge pharmacie-charnal && git push origin main
-git checkout pharmacie-charnal
+# Seule branche active: main (deploiement automatique GitHub Pages)
+git add [fichiers] && git commit -m "Message" && git push origin main
 ```
 
 ---
@@ -67,11 +64,14 @@ git checkout pharmacie-charnal
 ```
 index.html, histoire.html, services.html, blog.html, contact.html
 mentions-legales.html, donnees-personnelles.html
+pharmacie-de-garde-queven-hennebont-lorient.html
+recrutement-preparatrice-pharmacie-queven.html
+annuaire-sante.html, planning.html
 ```
 
-**Blog:** `blog/*.html`
-**Marques:** `Nos-marques/*.html`
-**Quiz:** `Quizzes/*.html`
+**Blog:** `blog/*.html` (6 articles)
+**Marques:** `Nos-marques/*.html` (16 pages + nosmarques.html index + TEMPLATE-marque.html)
+**Quiz:** `Quizzes/*.html` (quiz-automedication, quiz-soin-peau, quiz-coming-soon)
 **Assets:** `images/`, `style.css`, `style-v2.css`, `animations.js`
 **Guides:** `Guide Badge produit style HIMS.md`
 
@@ -177,8 +177,9 @@ Code à insérer dans `<head>`:
 
 ### Fichiers CSS
 
-- `style-v2.css`: Pages principales, pages marques
-- `style.css`: Blog, pages secondaires
+- `style-v2.css`: Pages principales (index, services, histoire, contact, pharmacie-de-garde, recrutement, annuaire-sante, nosmarques index)
+- `style.css`: Blog, mentions-legales, donnees-personnelles
+- **Pages marques (Nos-marques/*-page.html):** CSS inline (pas de stylesheet externe). Chaque page contient ~3400 lignes de `<style>` avec variables CSS propres + couleurs de la marque.
 
 ---
 
@@ -324,17 +325,40 @@ Autres pages
 
 ---
 
+## Pages Marques (Nos-marques/)
+
+### Structure `<head>` obligatoire
+
+Chaque page marque doit contenir dans cet ordre :
+1. Google Analytics (`G-2Q64V6B0QE`)
+2. `<meta charset>` + `<meta viewport>`
+3. Favicons (5 liens : ico, png 32, png 16, png 192, apple-touch-icon) avec `../favicon/`
+4. `<title>` : `NomMarque : Slogan | Pharmacie Charnal`
+5. `<meta name="description">` : unique par marque, mentionner Queven
+6. `<link rel="canonical">` : `https://www.pharmaciecharnal.com/Nos-marques/nom-page.html`
+7. OG tags (type, url, title, description, image, locale)
+8. Google Fonts (Cormorant Garamond + DM Sans)
+9. `<style>` inline avec variables CSS de la marque
+
+### Template
+
+`Nos-marques/TEMPLATE-marque.html` — Copier et remplir les `{{PLACEHOLDERS}}`.
+**IMPORTANT:** Le template doit etre maintenu en sync avec cette checklist.
+
+### Polices marques
+
+Les pages marques utilisent **Cormorant Garamond** (display) + **DM Sans** (body), pas Fraunces.
+
+---
+
 ## Commandes Rapides
 
 ```bash
 # Test local
 python3 -m http.server 8000
 
-# Déployer
-git checkout pharmacie-charnal
-git add . && git commit -m "Message" && git push origin pharmacie-charnal
-git checkout main && git merge pharmacie-charnal && git push origin main
-git checkout pharmacie-charnal
+# Deployer (branche unique: main)
+git add [fichiers] && git commit -m "Message" && git push origin main
 ```
 
 ---
