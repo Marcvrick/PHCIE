@@ -170,6 +170,8 @@ Code à insérer dans `<head>`:
 
 **Images blog/marque (homepage):**
 - `.editorial-image` et `.brand-spotlight-logo` : `max-width: 84%` (bords alignes verticalement)
+- Mobile : images et textes centres (`margin: 0 auto`, `text-align: center`)
+- La Rosee SVG : dimensions explicites `width="125" height="34"` requises pour le rendu
 
 **Boutons navigation:** `background: linear-gradient(135deg, var(--cream-dark), var(--beige));`
 
