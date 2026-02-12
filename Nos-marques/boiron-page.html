@@ -741,7 +741,7 @@
 
         @media (min-width: 768px) {
             .benefits-grid {
-                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+                grid-template-columns: repeat(2, 1fr);
                 gap: var(--space-32);
             }
         }
@@ -903,32 +903,7 @@
         .product-image-bg.tubes { background: linear-gradient(135deg, #A8D8EA 0%, #79C2D0 100%); }
         .product-image-bg.specialites { background: linear-gradient(135deg, #B8D4E6 0%, #0066B3 100%); }
         .product-image-bg.bebe { background: linear-gradient(135deg, #FFE4EC 0%, #FFC0CB 100%); }
-
-        .product-badge {
-            position: absolute;
-            top: var(--space-8);
-            left: var(--space-8);
-            padding: var(--space-4) var(--space-8);
-            font-size: 0.625rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            color: var(--white);
-            background: rgba(0, 0, 0, 0.2);
-            backdrop-filter: blur(8px);
-            border-radius: var(--radius-sm);
-        }
-
-        @media (min-width: 768px) {
-            .product-badge {
-                top: var(--space-16);
-                left: var(--space-16);
-                padding: var(--space-8) var(--space-12);
-                font-size: 0.75rem;
-            }
-        }
-
-        .product-content {
+.product-content {
             padding: var(--space-12);
         }
 
@@ -1624,8 +1599,7 @@
                 <article class="product-card reveal reveal-delay-1" data-category="tubes">
                     <div class="product-image">
                         <div class="product-image-bg tubes"></div>
-                        <span class="product-badge">Essentiel</span>
-                    </div>
+</div>
                     <div class="product-content">
                         <h3>Tubes & Doses</h3>
                         <div class="product-subtitle">Souches unitaires</div>

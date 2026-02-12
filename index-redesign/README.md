@@ -158,7 +158,7 @@ La page reprend les codes visuels de **HIMS.com** (DTC wellness brand) et les ad
 
 ### Brand Spotlight (JS)
 - **Comment ca marche** : un tableau JS contient 9 marques (nom, categorie, tagline, description, chemin logo, lien page). Au chargement, `Math.random()` en selectionne une aleatoirement
-- **Marques incluses** : Bioderma, Nuxe, Avene, La Roche-Posay, Klorane, Vichy, Caudalie, Biocanina, Biogaran
+- **Marques incluses** : Bioderma, Nuxe, Avene, La Roche-Posay, Klorane, La Rosée, Biocanina, Biogaran
 - **Donnees par marque** : `name`, `category`, `tagline`, `description`, `logo` (chemin vers `logos/`), `page` (lien vers `../Nos-marques/`)
 - **Pour ajouter une marque** : ajouter un objet dans le tableau `brands` du JS + placer le logo dans `logos/`
 - **Rotation** : aleatoire a chaque chargement de page
@@ -260,7 +260,7 @@ Les images sont referencees depuis le dossier parent `images/` (relatif a l'empl
 - Image du blog : codee en dur (fallback) + mise a jour dynamique via JS fetch `../blog.html`
 
 **Logos marques** (dans `logos/`) :
-- `logos/Bioderma.png`, `logos/Nuxe.jpeg`, `logos/Avene.jpeg`, `logos/La-roche-posay.png`, `logos/Klorane.png`, `logos/Vichy.png`, `logos/Caudalie.png`, `logos/Biocanina.png`, `logos/biogaran_logo.jpg`
+- `logos/Bioderma.png`, `logos/Nuxe.jpeg`, `logos/Avene.jpeg`, `logos/La-roche-posay.png`, `logos/Klorane.png`, `logos/la-rosee.svg`, `logos/Biocanina.png`, `logos/biogaran_logo.jpg`
 - Source originale : `/Nos-marques/logos/` — copies dans `index-redesign/logos/` pour fonctionnement local
 
 **Note sur les chemins :** le dossier `images/` et `logos/` sont des copies locales dans `index-redesign/` pour garantir le fonctionnement en mode `file://` local (les liens symboliques ne fonctionnent pas avec le protocole `file://`). Le fetch blog utilise `../blog.html` (repertoire parent). Les liens vers les pages marques utilisent `../Nos-marques/`.

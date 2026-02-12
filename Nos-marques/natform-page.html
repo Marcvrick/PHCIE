@@ -947,7 +947,7 @@
 
         @media (min-width: 768px) {
             .benefits-grid {
-                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+                grid-template-columns: repeat(2, 1fr);
                 gap: var(--space-32);
             }
         }
@@ -1130,32 +1130,7 @@
         .product-image-bg.expert { background: linear-gradient(135deg, #A8D8EA 0%, #79C2D0 100%); }
         .product-image-bg.junior { background: linear-gradient(135deg, #FFD4A3 0%, #FFB366 100%); }
         .product-image-bg.sport { background: linear-gradient(135deg, #C4A3FF 0%, #9B6FFF 100%); }
-
-        .product-badge {
-            position: absolute;
-            top: var(--space-8);
-            left: var(--space-8);
-            padding: var(--space-4) var(--space-8);
-            font-size: 0.625rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            color: var(--white);
-            background: rgba(0, 0, 0, 0.2);
-            backdrop-filter: blur(8px);
-            border-radius: var(--radius-sm);
-        }
-
-        @media (min-width: 768px) {
-            .product-badge {
-                top: var(--space-16);
-                left: var(--space-16);
-                padding: var(--space-8) var(--space-12);
-                font-size: 0.75rem;
-            }
-        }
-
-        .product-content {
+.product-content {
             padding: var(--space-12);
         }
 
@@ -2063,8 +2038,7 @@
                 <article class="product-card reveal reveal-delay-5" data-category="sport">
                     <div class="product-image">
                         <div class="product-image-bg sport"></div>
-                        <span class="product-badge">Nouveau 2025</span>
-                    </div>
+</div>
                     <div class="product-content">
                         <h3>Gamme Sport</h3>
                         <div class="product-subtitle">Nutrition sportive</div>

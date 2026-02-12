@@ -952,7 +952,7 @@
 
         @media (min-width: 768px) {
             .benefits-grid {
-                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+                grid-template-columns: repeat(2, 1fr);
                 gap: var(--space-32);
             }
         }
@@ -1150,32 +1150,7 @@
         .product-image-bg.nuxuriance { background: linear-gradient(135deg, #E8B4B8 0%, #D4A5A5 100%); }
         .product-image-bg.fraiche { background: linear-gradient(135deg, #B3E5FC 0%, #81D4FA 100%); }
         .product-image-bg.miel { background: linear-gradient(135deg, #FFE082 0%, #FFB300 100%); }
-
-        .product-badge {
-            position: absolute;
-            top: var(--space-8);
-            left: var(--space-8);
-            padding: var(--space-4) var(--space-8);
-            font-size: 0.625rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            color: var(--white);
-            background: rgba(0, 0, 0, 0.2);
-            backdrop-filter: blur(8px);
-            border-radius: var(--radius-sm);
-        }
-
-        @media (min-width: 768px) {
-            .product-badge {
-                top: var(--space-16);
-                left: var(--space-16);
-                padding: var(--space-8) var(--space-12);
-                font-size: 0.75rem;
-            }
-        }
-
-        .product-content {
+.product-content {
             padding: var(--space-12);
         }
 
@@ -1754,7 +1729,13 @@
                     </ul>
                 </li>
                 <li><a href="../blog.html" class="nav-link nav-link-blog" style="background: #b4a6d7; color: white; border-radius: 9999px;">Au comptoir</a></li>
-                <li><a href="../contact.html" class="nav-link">Contact</a></li>
+                <li class="nav-dropdown">
+                    <a href="../contact.html" class="nav-link nav-dropdown-toggle">Contact</a>
+                    <ul class="nav-dropdown-menu">
+                        <li><a href="../contact.html" class="nav-link">Contact</a></li>
+                        <li><a href="../contact.html#recrutement" class="nav-link">Recrutement</a></li>
+                    </ul>
+                </li>
             </ul>
         </div>
     </nav>
@@ -2002,8 +1983,7 @@
                 <article class="product-card reveal reveal-delay-1" data-category="multi-usage">
                     <div class="product-image">
                         <div class="product-image-bg huile"></div>
-                        <span class="product-badge">Iconique</span>
-                    </div>
+</div>
                     <div class="product-content">
                         <h3>Huile Prodigieuse</h3>
                         <div class="product-subtitle">Soin multi-usage visage, corps, cheveux</div>
@@ -2019,8 +1999,7 @@
                 <article class="product-card reveal reveal-delay-2" data-category="bio">
                     <div class="product-image">
                         <div class="product-image-bg bio"></div>
-                        <span class="product-badge">Certifie Bio</span>
-                    </div>
+</div>
                     <div class="product-content">
                         <h3>Nuxe Bio</h3>
                         <div class="product-subtitle">Soins certifies biologiques</div>

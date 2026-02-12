@@ -3,7 +3,7 @@
 Ce guide documente le processus de création des pages dédiées aux marques pour le site Pharmacie Charnal.
 
 > **📅 Dernière mise à jour majeure : 2026-02-11**
-> 16 pages harmonisées avec le design system officiel (template `la-roche-posay-page.html`)
+> 15 pages harmonisées avec le design system officiel (template `la-roche-posay-page.html`)
 > Derniers changements : Ducray et Caudalie retirées, La Rosée ajoutée
 
 ---
@@ -31,9 +31,7 @@ Nos-marques/
 │   ├── Nuxe.jpeg
 │   ├── Pileje-Logo.jpg
 │   ├── aragan_logo.jpg
-│   └── Vichy.png
 ├── la-roche-posay-page.html     # 🎯 TEMPLATE OFFICIEL - Copier pour nouvelles marques
-├── vichy-page.html              # ✅ Page dédiée Vichy (harmonisée 2026-02-06)
 ├── bioderma-page.html           # ✅ Page dédiée Bioderma (harmonisée 2026-02-06)
 ├── avene-page.html              # ✅ Page dédiée Avène (harmonisée 2026-02-06)
 ├── nuxe-page.html               # ✅ Page dédiée Nuxe (harmonisée 2026-02-06)
@@ -58,24 +56,25 @@ Nos-marques/
 ## Vue d'ensemble
 
 ### État actuel
-- **16 marques actives** avec pages dédiées complètes
+- **15 marques actives** avec pages dédiées complètes
 - **Page catalogue** : `nosmarques.html` (grille responsive avec filtrage par catégorie)
 - **Template officiel** : `la-roche-posay-page.html` (design system harmonisé)
 - **Template avec placeholders** : `TEMPLATE-marque.html` (grille benefits 2x2, nav avec Contact dropdown)
 - **Tous les liens fonctionnels** entre le catalogue et les pages individuelles
-- **✅ 16 pages harmonisées** avec le nouveau design system
+- **✅ 15 pages harmonisées** avec le nouveau design system
 
 ### Dernières mises à jour (2026-02-11)
 
 **Changements récents :**
 - ❌ **Ducray** retirée (marque non vendue en pharmacie)
 - ❌ **Caudalie** retirée (remplacée par La Rosée)
+- ❌ **Vichy** retirée (marque non vendue en pharmacie)
 - ✅ **La Rosée** ajoutée (cosmétique naturelle, fondée par des pharmaciennes)
 - ✅ Grille "Pourquoi nous avons choisi" : 2x2 au lieu de 3+1 (toutes les pages)
 - ✅ Suppression des badges "Nouveau" sur les cartes produits
 - ✅ Nav corrigée sur toutes les pages (Contact dropdown avec Recrutement)
 
-✅ **16 pages actives** :
+✅ **15 pages actives** :
 1. la-roche-posay-page.html (template de référence)
 2. avene-page.html
 3. biocanina-page.html
@@ -86,8 +85,7 @@ Nos-marques/
 8. klorane-page.html
 9. nuxe-page.html
 10. pileje-page.html
-11. vichy-page.html
-12. boiron-page.html
+11. boiron-page.html
 13. mustela-page.html
 14. arkopharma-page.html
 15. natform-page.html
@@ -231,7 +229,6 @@ Chaque page de marque a sa propre palette de couleurs basée sur l'identité vis
 
 | Marque | Principale | Sombre | Pastels |
 |--------|-----------|--------|---------|
-| **Vichy** | `#2D5F5D` (teal) | `#1E4745` | `#D4E8E7`, `#DFF5ED` |
 | **Biogaran** | `#0066CC` (bleu) | `#004C99` | `#E3F2FD`, `#E8F4FC`, `#F0F7FF` |
 | **Bioderma** | `#00A3E0` (bleu ciel) | `#0082B4` | `#E0F4FC`, `#F0FAFF` |
 | **La Roche-Posay** | `#003D7D` (bleu marine) | `#002D5C` | `#E8F0F8`, `#F0F5FA` |
@@ -292,7 +289,7 @@ Chaque page de marque a sa propre palette de couleurs basée sur l'identité vis
 
 | Catégorie (data-category) | Affichage | Marques |
 |---------------------------|-----------|---------|
-| `dermatologie` | Dermatologie | Bioderma, La Roche-Posay, Avène, Vichy |
+| `dermatologie` | Dermatologie | Bioderma, La Roche-Posay, Avène |
 | `cosmetique` | Cosmétique | Nuxe, La Rosée |
 | `capillaire` | Soins Capillaires | Klorane |
 | `bebe` | Bébé & Maman | Mustela |
