@@ -469,6 +469,51 @@
         .product-feature-card.card--complements:hover { background: #E9B870; }
         .product-feature-card.card--medical:hover     { background: #ADA5D7; }
 
+        /* Product image style (HIMS-style) */
+        .product-feature-img-wrap {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .product-feature-img-wrap::after {
+            content: '';
+            position: absolute;
+            bottom: 12%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 55%;
+            height: 12px;
+            background: radial-gradient(ellipse at center, rgba(0,0,0,0.22) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+
+        .product-feature-img {
+            width: 140px;
+            height: 140px;
+            object-fit: contain;
+            filter: none;
+            transition: transform var(--duration-normal) var(--ease-standard);
+            position: relative;
+            z-index: 1;
+        }
+
+        .product-feature-card:hover .product-feature-img {
+            transform: scale(1.05);
+        }
+
+        @media (min-width: 1024px) {
+            .product-feature-img {
+                width: 220px;
+                height: 220px;
+            }
+
+            .product-feature-img-wrap::after {
+                height: 16px;
+            }
+        }
+
         .product-feature-header {
             display: flex;
             align-items: flex-start;
@@ -549,51 +594,6 @@
             justify-content: center;
             width: 100%;
             margin-top: -24px;
-        }
-
-        /* Product image style (HIMS-style) */
-        .product-feature-img-wrap {
-            position: relative;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .product-feature-img-wrap::after {
-            content: '';
-            position: absolute;
-            bottom: 12%;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 55%;
-            height: 12px;
-            background: radial-gradient(ellipse at center, rgba(0,0,0,0.22) 0%, transparent 70%);
-            border-radius: 50%;
-        }
-
-        .product-feature-img {
-            width: 140px;
-            height: 140px;
-            object-fit: contain;
-            filter: none;
-            transition: transform var(--duration-normal) var(--ease-standard);
-            position: relative;
-            z-index: 1;
-        }
-
-        .product-feature-card:hover .product-feature-img {
-            transform: scale(1.05);
-        }
-
-        @media (min-width: 1024px) {
-            .product-feature-img {
-                width: 220px;
-                height: 220px;
-            }
-
-            .product-feature-img-wrap::after {
-                height: 16px;
-            }
         }
 
         .product-feature-icon-wrap {
