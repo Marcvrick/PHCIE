@@ -73,6 +73,7 @@ mentions-legales.html, donnees-personnelles.html
 **Marques:** `Nos-marques/*.html`
 **Quiz:** `Quizzes/*.html`
 **Assets:** `images/`, `style.css`, `style-v2.css`, `animations.js`
+**Guides:** `Guide Badge produit style HIMS.md`
 
 ---
 
@@ -167,6 +168,9 @@ Code à insérer dans `<head>`:
 
 **Copyright visible:** `color: var(--white); opacity: 0.8;`
 
+**Images blog/marque (homepage):**
+- `.editorial-image` et `.brand-spotlight-logo` : `max-width: 84%` (bords alignes verticalement)
+
 **Boutons navigation:** `background: linear-gradient(135deg, var(--cream-dark), var(--beige));`
 
 ### Fichiers CSS
@@ -213,8 +217,28 @@ Quand on modifie un titre d'article, mettre à jour:
 - Boutons: fond teal-pro, radius 8px
 - Variables CSS pastels + spacing 8pt
 
-**Disponibles:** quiz-soin-peau.html ✅
-**En préparation:** Produits naturels, Compléments, Automédication
+**Disponibles:** quiz-soin-peau.html ✅, quiz-automedication.html ✅
+**En préparation:** Produits naturels, Compléments
+
+### Badges Quiz (Style HIMS)
+
+Les 4 badges homepage utilisent des images PNG transparentes (RGBA) avec ombre elliptique au sol.
+Guide complet : `Guide Badge produit style HIMS.md`
+
+| Badge | Image | Fichier |
+|---|---|---|
+| Produits naturels | Feuilles eucalyptus/menthe | `images/naturels-product.png` |
+| Dermocosmetique | Pot de creme jaune | `images/dermocosmetique-product.png` |
+| Complements alimentaires | Capsules rouges | `images/complements-product.png` |
+| Automedication | Pilules jaunes | `images/automedication-product.png` |
+
+**CSS cle :**
+- `.product-feature-img-wrap::after` : ombre elliptique (`radial-gradient`)
+- `.product-feature-visual` : `margin-top: -24px`
+- Image : 140px mobile / 220px desktop, `scale(1.05)` au hover
+- Fond : `var(--beige)` par defaut, couleur au hover par categorie
+
+**Creation d'image :** `rembg[cpu]` pour supprimer le fond → verifier mode RGBA
 
 ---
 
@@ -257,4 +281,4 @@ git checkout pharmacie-charnal
 
 ---
 
-*Dernière mise à jour: Février 2026*
+*Derniere mise a jour: 12 Fevrier 2026*

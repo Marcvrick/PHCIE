@@ -148,14 +148,14 @@ Remplacer le SVG icon par une image produit dans le badge :
 
 ---
 
-## Badges actuellement mis a jour
+## Badges (tous mis a jour)
 
 | Badge | Image | Fichier |
 |---|---|---|
+| Produits naturels | Feuilles eucalyptus/menthe | `images/naturels-product.png` |
 | Dermocosmetique | Pot de creme jaune | `images/dermocosmetique-product.png` |
-| Automedication | Pilules flottantes | `images/automedication-product.png` |
-| Produits naturels | SVG icon (a remplacer) | — |
-| Complements alimentaires | SVG icon (a remplacer) | — |
+| Complements alimentaires | Capsules rouges softgel | `images/complements-product.png` |
+| Automedication | Pilules jaunes flottantes | `images/automedication-product.png` |
 
 ---
 
