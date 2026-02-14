@@ -439,10 +439,21 @@
         </div>
     </section>
 
-    <!-- Info Section -->
-    <section class="today-guard-section">
+    <!-- Today Guard Section (visible weekends & holidays only) -->
+    <section class="today-guard-section" id="todayGuardSection" style="display: none;">
         <div class="container">
-            <!-- 3237 Info -->
+            <div class="today-guard-card">
+                <div class="today-guard-date" id="todayDate"></div>
+                <div class="today-guard-pharmacie" id="todayPharmacie"></div>
+                <div class="today-guard-ville" id="todayVille"></div>
+                <div class="today-guard-type" id="todayType"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3237 Info Section (always visible) -->
+    <section style="background: var(--cream); padding: var(--space-64) 0;">
+        <div class="container">
             <div class="info-3237" style="background: var(--white); max-width: 600px;">
                 <p style="font-size: var(--text-lg);">Pour connaître la pharmacie de garde, appelez le :</p>
                 <div class="number-3237" style="font-size: var(--text-4xl);"><a href="tel:3237">3237</a></div>
@@ -809,18 +820,37 @@
             return now.toLocaleDateString('fr-FR', options);
         }
 
-        // === RENDER TODAY'S GUARD ===
+        // === CHECK IF TODAY IS A WEEKEND OR HOLIDAY ===
+        function isWeekendOrHoliday() {
+            const now = new Date();
+            const day = now.getDay(); // 0 = Sunday, 6 = Saturday
+            if (day === 0 || day === 6) return true;
+
+            // Check if today has a "Férié" or "Jour" entry in the data
+            const currentMonth = getCurrentMonthKey();
+            const data = gardesData[currentMonth];
+            if (!data) return false;
+            const todayGuards = data.filter(row => isToday(currentMonth, row.jour));
+            return todayGuards.some(g => g.type === 'Férié' || g.type === 'Jour');
+        }
+
+        // === RENDER TODAY'S GUARD (weekends & holidays only) ===
         function renderTodayGuard() {
+            const section = document.getElementById('todayGuardSection');
+
+            // Only show on weekends and holidays
+            if (!isWeekendOrHoliday()) {
+                section.style.display = 'none';
+                return;
+            }
+
             const currentMonth = getCurrentMonthKey();
             const data = gardesData[currentMonth];
             const now = new Date();
             const currentHour = now.getHours();
 
-            document.getElementById('todayDate').textContent = formatTodayDate();
-
             if (!data) {
-                document.getElementById('todayPharmacie').textContent = 'Appelez le 3237';
-                document.getElementById('todayVille').textContent = '';
+                section.style.display = 'none';
                 return;
             }
 
@@ -828,21 +858,29 @@
             const todayGuards = data.filter(row => isToday(currentMonth, row.jour));
 
             if (todayGuards.length === 0) {
-                document.getElementById('todayPharmacie').textContent = 'Appelez le 3237';
-                document.getElementById('todayVille').textContent = 'pour connaître la pharmacie de garde';
+                section.style.display = 'none';
                 return;
             }
 
             // Determine which guard to show based on time
             let currentGuard;
+            let guardLabel;
             if (currentHour >= 9 && currentHour < 19) {
                 currentGuard = todayGuards.find(g => g.type === 'Jour' || g.type === 'Férié') || todayGuards[0];
+                guardLabel = currentGuard.type === 'Férié' ? 'Garde jour férié' : 'Garde de jour';
             } else {
                 currentGuard = todayGuards.find(g => g.type === 'Nuit') || todayGuards[0];
+                guardLabel = 'Garde de nuit';
             }
 
+            // Populate the card
+            document.getElementById('todayDate').textContent = formatTodayDate();
             document.getElementById('todayPharmacie').textContent = `Pharmacie ${currentGuard.pharmacie}`;
             document.getElementById('todayVille').textContent = currentGuard.ville;
+            document.getElementById('todayType').textContent = guardLabel;
+
+            // Show the section
+            section.style.display = '';
         }
 
         // === INITIALIZE ===
