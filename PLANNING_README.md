@@ -212,6 +212,8 @@ Tous les employes ont acces au module vacances.
     - Contient : demandes, vacances solde, contrats, staff schedules, timestamp
     - Fichier : `planning-backup-YYYY-MM-DD.json`
 
+41. **Enlever tableau Solde d'heures de la page Planning** — Le tableau "Solde d'heures" n'apparait plus sur la page Planning (qui affichait les heures dues par employe avec courbes). Les heures dues restent accessibles dans "Mes demandes" pour les employes qui en ont besoin.
+
 ## Fichiers
 
 ### Fichiers principaux
