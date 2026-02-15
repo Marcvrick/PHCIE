@@ -1698,11 +1698,6 @@
                 </div>
             </div>
 
-            <!-- Compteur d'heures -->
-            <div class="card">
-                <h2 class="card-title">Heures dues</h2>
-                <div id="hoursBalance"></div>
-            </div>
         </div>
 
         <!-- VUE DEMANDE -->
@@ -5310,9 +5305,7 @@ Connectez-vous a l'application Planning pour traiter cette demande.
             document.getElementById(`view-${viewName}`).classList.add('active');
             document.querySelector(`.nav-btn[data-view="${viewName}"]`).classList.add('active');
 
-            if (viewName === 'planning') {
-                renderHoursBalance();
-            } else if (viewName === 'mes-demandes') {
+            if (viewName === 'mes-demandes') {
                 renderMesDemandes();
             } else if (viewName === 'vacances') {
                 renderVacancesView();
@@ -5359,7 +5352,6 @@ Connectez-vous a l'application Planning pour traiter cette demande.
                     if (currentView) {
                         const viewName = currentView.id.replace('view-', '');
                         if (viewName === 'mes-demandes') renderMesDemandes();
-                        if (viewName === 'planning') renderHoursBalance();
                         if (viewName === 'manager' && isManagerAuthenticated) renderManager();
                     }
                     updateExchangeBadge();
@@ -5785,7 +5777,6 @@ Connectez-vous a l'application Planning pour traiter cette demande.
 
             // Initial render
             renderPlanning('paire');
-            renderHoursBalance();
             populateMonthSelectors();
             updateVacancesNavVisibility();
             updateRecuperationOptionVisibility();
@@ -5895,7 +5886,6 @@ Connectez-vous a l'application Planning pour traiter cette demande.
                 handleTypeChange();
                 const currentView = document.querySelector('.view.active').id.replace('view-', '');
                 if (currentView === 'mes-demandes') renderMesDemandes();
-                if (currentView === 'planning') renderHoursBalance();
                 if (currentView === 'vacances') renderVacancesView();
             });
 
