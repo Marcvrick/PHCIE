@@ -1,5 +1,5 @@
 ---
-title: "Fatigue, moral en berne : comment tenir le coup en fin d'hiver ?"
+title: "Fatigue, moral en berne : comment tenir le coup en fin d'hiver?"
 description: "Pourquoi la fin d'hiver nous épuise et plombe le moral. Vitamine D, luminothérapie, magnésium, safran : des solutions concrètes pour retrouver l'énergie."
 date: 2026-02-16
 author: Équipe Pharmacie Charnal
@@ -26,7 +26,7 @@ image: "<!-- TODO: Ajouter image hero -->"
 
 ---
 
-# Fatigue, moral en berne : comment tenir le coup en fin d'hiver ?
+# Fatigue, moral en berne : comment tenir le coup en fin d'hiver?
 
 Mi-février. Il pleut. Encore. Le ciel est gris depuis des semaines, la nuit tombe relativement tôt et le soleil semble avoir oublié le Morbihan. Si vous vous sentez épuisé(e), sans énergie, avec un moral au ras des pâquerettes : **vous n'êtes pas seul(e), et surtout, vous n'êtes pas « faible ».**
 
