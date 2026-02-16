@@ -1,7 +1,7 @@
 ---
 title: "Fatigue, moral en berne : comment tenir le coup en fin d'hiver ?"
 description: "Pourquoi la fin d'hiver nous épuise et plombe le moral. Vitamine D, luminothérapie, magnésium, safran : des solutions concrètes pour retrouver l'énergie."
-date: 2026-02-24
+date: 2026-02-16
 author: Équipe Pharmacie Charnal
 categories:
   - Conseils santé
