@@ -193,8 +193,16 @@ Verifier systematiquement:
 Emplacements prioritaires: `<meta description>`, header, footer
 
 ### Ponctuation
-- **Pas d'espace avant `?`** : `symptomes?` (pas `symptomes ?`)
-- Convention du site : style sans espace avant la ponctuation double
+
+**RÈGLE ABSOLUE:** `!` et `?` doivent TOUJOURS être collés au dernier mot du mot précédent (typographie française standard)
+
+- ✅ `symptomes?` (pas `symptomes ?`)
+- ✅ `comment tenir le coup en fin d'hiver?`
+- ✅ `Venez nous voir!`
+- ❌ `symptomes ?` (INCORRECT)
+- ❌ `Venez nous voir !` (INCORRECT)
+
+Vérifier systématiquement: titres, h1-h6, meta descriptions, textes visibles
 
 ---
 
@@ -245,8 +253,8 @@ Voir section Quiz ci-dessous pour details.
 - Boutons: fond teal-pro, radius 8px
 - Variables CSS pastels + spacing 8pt
 
-**Disponibles:** quiz-soin-peau.html ✅, quiz-automedication.html ✅
-**En préparation:** Produits naturels, Compléments
+**Disponibles:** quiz-soin-peau.html ✅, quiz-automedication.html ✅, quiz-produits-naturels.html ✅
+**En préparation:** Compléments alimentaires
 
 ### Badges Quiz (Style HIMS)
 
