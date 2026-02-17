@@ -5173,7 +5173,7 @@ Connectez-vous a l'application Planning pour traiter cette demande.
                             <button class="btn btn-outline" style="flex: 1;" onclick="toggleCardEdit('${sanitize(name)}')">
                                 ✏️ Modifier
                             </button>
-                            <button class="btn btn-danger" style="flex: 0 0 auto; padding: 0.5rem 0.75rem;" onclick="confirmDeleteEmployee('${sanitize(name)}')">
+                            <button class="btn" style="flex: 0 0 auto; padding: 0.5rem 0.75rem; background: #FEE2E2; color: #DC2626; border: 1px solid #FECACA;" onclick="confirmDeleteEmployee('${sanitize(name)}')">
                                 🗑
                             </button>
                         </div>
@@ -5261,7 +5261,8 @@ Connectez-vous a l'application Planning pour traiter cette demande.
                 // Re-render
                 renderContractsManager();
                 renderManagerVacancesBalance();
-                renderPlanning();
+                const activeWeekBtn = document.querySelector('.week-btn.active');
+                renderPlanning(activeWeekBtn ? activeWeekBtn.dataset.week : 'paire');
 
                 alert(`${name} a ete supprime(e) avec succes.`);
             } catch (e) {
