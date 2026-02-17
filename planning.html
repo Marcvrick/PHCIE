@@ -5168,10 +5168,13 @@ Connectez-vous a l'application Planning pour traiter cette demande.
                             ` : ''}
                         </div>
 
-                        <!-- Card Footer with Edit Button -->
-                        <div class="contract-card-footer">
-                            <button class="btn btn-outline" style="width: 100%;" onclick="toggleCardEdit('${sanitize(name)}')">
+                        <!-- Card Footer with Edit/Delete Buttons -->
+                        <div class="contract-card-footer" style="display: flex; gap: 0.5rem;">
+                            <button class="btn btn-outline" style="flex: 1;" onclick="toggleCardEdit('${sanitize(name)}')">
                                 ✏️ Modifier
+                            </button>
+                            <button class="btn btn-danger" style="flex: 0 0 auto; padding: 0.5rem 0.75rem;" onclick="confirmDeleteEmployee('${sanitize(name)}')">
+                                🗑
                             </button>
                         </div>
 
@@ -5217,6 +5220,54 @@ Connectez-vous a l'application Planning pour traiter cette demande.
         function toggleCardEdit(name) {
             const editForm = document.getElementById(`edit-form-${name}`);
             editForm.classList.toggle('hidden');
+        }
+
+        function confirmDeleteEmployee(name) {
+            if (!confirm(`Supprimer ${name} et toutes ses donnees (planning, contrat, solde vacances) ?\n\nCette action est irreversible.`)) return;
+            deleteEmployee(name);
+        }
+
+        async function deleteEmployee(name) {
+            try {
+                // Remove from VACANCES_EMPLOYEES
+                const idx = VACANCES_EMPLOYEES.indexOf(name);
+                if (idx > -1) VACANCES_EMPLOYEES.splice(idx, 1);
+
+                // Remove from ROLES and STAFF
+                delete ROLES[name];
+                delete STAFF[name];
+
+                // Remove from contracts (Firestore)
+                const contracts = getContracts();
+                delete contracts[name];
+                await saveContracts(contracts);
+
+                // Remove from vacances solde (Firestore)
+                if (vacancesSoldeCache && vacancesSoldeCache[name]) {
+                    delete vacancesSoldeCache[name];
+                    await db.collection('config').doc('vacances_solde').set(vacancesSoldeCache);
+                }
+
+                // Remove from custom staff_schedule (Firestore)
+                const scheduleDoc = await db.collection('config').doc('staff_schedule').get();
+                if (scheduleDoc.exists) {
+                    const schedules = scheduleDoc.data();
+                    if (schedules[name]) {
+                        delete schedules[name];
+                        await db.collection('config').doc('staff_schedule').set(schedules);
+                    }
+                }
+
+                // Re-render
+                renderContractsManager();
+                renderManagerVacancesBalance();
+                renderPlanning();
+
+                alert(`${name} a ete supprime(e) avec succes.`);
+            } catch (e) {
+                console.error('Erreur suppression employe:', e);
+                alert('Erreur lors de la suppression. Voir la console.');
+            }
         }
 
         function toggleEndDateField(name) {
