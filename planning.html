@@ -3413,12 +3413,15 @@
 
             // Proposer recuperation (sauf pour echange et conges)
             const recoverySection = document.getElementById('impactRecovery');
+            const engagementBox = document.querySelector('.engagement-box');
             if (type === 'echange' || type === 'conge') {
                 recoverySection.classList.add('hidden');
+                engagementBox.classList.add('hidden');
                 document.getElementById('engagementCheck').checked = true;
                 document.getElementById('submitDemande').disabled = false;
             } else {
                 recoverySection.classList.remove('hidden');
+                engagementBox.classList.remove('hidden');
                 renderRecoverySlots(employee, heuresConcernees, dateDebut);
                 selectedRecoverySlots = [];
                 updateHoursSummary();
