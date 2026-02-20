@@ -5735,12 +5735,23 @@ Connectez-vous a l'application Planning pour traiter cette demande.
             return hours;
         }
 
+        let editingExistingEmployee = null; // nom de l'employe en cours de modification
+
         function selectTemplate(templateName) {
             selectedTemplate = templateName;
             currentSchedule = JSON.parse(JSON.stringify(STAFF[templateName]));
+            editingExistingEmployee = templateName;
 
             document.getElementById('scheduleTemplateSelector').classList.add('hidden');
             document.getElementById('scheduleEditor').classList.remove('hidden');
+
+            // Pre-fill name and role
+            document.getElementById('newEmployeeName').value = templateName;
+            const role = ROLES[templateName] || 'preparatrice';
+            document.querySelector(`input[name="employeeRole"][value="${role}"]`).checked = true;
+
+            // Update button text
+            document.querySelector('#scheduleEditor .btn-success').textContent = '✓ Enregistrer les modifications';
 
             populateScheduleEditor();
         }
@@ -5826,7 +5837,8 @@ Connectez-vous a l'application Planning pour traiter cette demande.
                 return;
             }
 
-            if (STAFF[name] && !confirm(`Une employée nommée ${name} existe déjà. Remplacer ?`)) {
+            // Si on modifie la meme personne, pas de confirmation. Sinon, demander.
+            if (STAFF[name] && name !== editingExistingEmployee && !confirm(`Une employée nommée ${name} existe déjà. Remplacer ?`)) {
                 return;
             }
 
@@ -5915,6 +5927,7 @@ Connectez-vous a l'application Planning pour traiter cette demande.
         function resetScheduleManager() {
             selectedTemplate = null;
             currentSchedule = null;
+            editingExistingEmployee = null;
             document.getElementById('newEmployeeName').value = '';
             document.getElementById('scheduleEditor').classList.add('hidden');
             document.getElementById('scheduleConfirmation').classList.add('hidden');
@@ -5939,6 +5952,7 @@ Connectez-vous a l'application Planning pour traiter cette demande.
 
         function showBlankSchedule() {
             // Create a blank schedule with default times
+            editingExistingEmployee = null;
             selectedTemplate = null;
             currentSchedule = {
                 paire: {
@@ -5971,6 +5985,7 @@ Connectez-vous a l'application Planning pour traiter cette demande.
             document.getElementById('scheduleEditor').classList.remove('hidden');
             document.getElementById('newEmployeeName').value = '';
             document.querySelector('input[name="employeeRole"][value="preparatrice"]').checked = true;
+            document.querySelector('#scheduleEditor .btn-success').textContent = '✓ Créer le planning';
 
             // Populate editor with blank schedule
             populateScheduleEditor();
