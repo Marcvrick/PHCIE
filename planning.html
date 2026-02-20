@@ -3118,6 +3118,14 @@
             // Recuperer les creneaux deja utilises
             const usedSlots = getUsedRecoverySlots(employee);
 
+            // Recuperer les dates de vacances approuvees/en attente de l'employe
+            const vacationDates = new Set();
+            getDemandes().forEach(d => {
+                if (d.employee === employee && d.type === 'vacances' && (d.status === 'approuvee' || d.status === 'attente') && d.dates) {
+                    d.dates.forEach(date => vacationDates.add(date));
+                }
+            });
+
             for (let i = 1; i <= 30; i++) {
                 const checkDate = new Date(startDate);
                 checkDate.setDate(startDate.getDate() + i);
@@ -3126,6 +3134,10 @@
 
                 const semaine = getSemaineType(checkDate);
                 const dateStr = checkDate.toISOString().split('T')[0];
+
+                // Skip days where employee is on vacation
+                if (vacationDates.has(dateStr)) continue;
+
                 const planning = employeePlanning?.[semaine]?.[jour];
 
                 // Check morning - if employee not scheduled for AM
@@ -3399,9 +3411,9 @@
             // Analyser l'effectif
             renderImpactEffectif(joursDetails, employee, periode, heure);
 
-            // Proposer recuperation (sauf pour echange)
+            // Proposer recuperation (sauf pour echange et conges)
             const recoverySection = document.getElementById('impactRecovery');
-            if (type === 'echange') {
+            if (type === 'echange' || type === 'conge') {
                 recoverySection.classList.add('hidden');
                 document.getElementById('engagementCheck').checked = true;
                 document.getElementById('submitDemande').disabled = false;
