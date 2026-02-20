@@ -3737,7 +3737,7 @@ Connectez-vous a l'application Planning pour traiter cette demande.
 
             const container = document.getElementById('mesDemandes');
             const employee = document.getElementById('currentUser').value;
-            const demandes = getDemandes().filter(d => d.employee === employee);
+            const demandes = getDemandes().filter(d => d.employee === employee && d.status !== 'bug');
 
             if (demandes.length === 0) {
                 container.innerHTML = '<p style="color: var(--gray);">Aucune demande pour le moment.</p>';
@@ -3987,7 +3987,7 @@ Connectez-vous a l'application Planning pour traiter cette demande.
 
         function renderHistoriqueComplet() {
             const container = document.getElementById('historiqueComplet');
-            const demandes = getDemandes();
+            const demandes = getDemandes().filter(d => d.status !== 'bug');
 
             if (demandes.length === 0) {
                 container.innerHTML = '<p style="color: var(--gray);">Aucune demande.</p>';
@@ -4001,6 +4001,7 @@ Connectez-vous a l'application Planning pour traiter cette demande.
             html += '<th style="padding: 0.5rem; text-align: left;">Date</th>';
             html += '<th style="padding: 0.5rem; text-align: left;">Heures</th>';
             html += '<th style="padding: 0.5rem; text-align: left;">Statut</th>';
+            html += '<th style="padding: 0.5rem; text-align: left;">Actions</th>';
             html += '</tr></thead><tbody>';
 
             demandes.sort((a, b) => b.id - a.id);
@@ -4016,11 +4017,55 @@ Connectez-vous a l'application Planning pour traiter cette demande.
                 html += `<td style="padding: 0.5rem;">${dateDisplay}</td>`;
                 html += `<td style="padding: 0.5rem;">${isMultiDay ? (d.joursOuvrables || joursCount || d.heuresConcernees) + 'j' : formatHeures(d.heuresConcernees)}</td>`;
                 html += `<td style="padding: 0.5rem;"><span class="demande-status ${statusClass}">${statusLabel}</span></td>`;
+                html += `<td style="padding: 0.5rem;">`;
+                if (d.status === 'refusee') {
+                    html += `<button class="btn btn-secondary" style="font-size: 0.7rem; padding: 0.2rem 0.4rem;" onclick="markAsBug(${d.id})">BUG</button> `;
+                }
+                html += `<button class="btn" style="font-size: 0.7rem; padding: 0.2rem 0.4rem; background: #ccc; color: #333;" onclick="deleteDemandeCompletely(${d.id})">Supprimer</button>`;
+                html += `</td>`;
                 html += `</tr>`;
             });
 
             html += '</tbody></table>';
+
+            // Show bug entries separately if any
+            const bugEntries = getDemandes().filter(d => d.status === 'bug');
+            if (bugEntries.length > 0) {
+                html += `<details style="margin-top: 1rem;"><summary style="cursor: pointer; color: var(--gray); font-size: 0.8rem;">${bugEntries.length} entree(s) masquee(s) (bug)</summary>`;
+                html += '<table style="width: 100%; border-collapse: collapse; font-size: 0.8rem; opacity: 0.6; margin-top: 0.5rem;">';
+                bugEntries.forEach(d => {
+                    const isMultiDay = d.type === 'vacances' || d.type === 'conge';
+                    const dateDisplay = isMultiDay && d.dates?.length ? formatDateShort(d.dates[0]) : formatDateShort(d.dateDebut || d.date);
+                    html += `<tr style="border-bottom: 1px solid #E5E7EB;">`;
+                    html += `<td style="padding: 0.3rem;">${d.employee}</td>`;
+                    html += `<td style="padding: 0.3rem;">${getTypeLabel(d.type)}</td>`;
+                    html += `<td style="padding: 0.3rem;">${dateDisplay}</td>`;
+                    html += `<td style="padding: 0.3rem;"><span style="background: #E5E7EB; color: #6B7280; padding: 0.15rem 0.5rem; border-radius: 4px; font-size: 0.75rem;">BUG</span></td>`;
+                    html += `<td style="padding: 0.3rem;"><button class="btn" style="font-size: 0.7rem; padding: 0.2rem 0.4rem; background: #ccc; color: #333;" onclick="deleteDemandeCompletely(${d.id})">Supprimer</button></td>`;
+                    html += `</tr>`;
+                });
+                html += '</table></details>';
+            }
+
             container.innerHTML = html;
+        }
+
+        async function markAsBug(id) {
+            if (!confirm('Marquer cette demande comme BUG ? Elle sera masquee de l\'historique.')) return;
+            try {
+                await db.collection('demandes').doc(String(id)).update({ status: 'bug' });
+            } catch (e) {
+                console.error('Erreur marquage bug:', e);
+            }
+        }
+
+        async function deleteDemandeCompletely(id) {
+            if (!confirm('Supprimer definitivement cette demande ?')) return;
+            try {
+                await db.collection('demandes').doc(String(id)).delete();
+            } catch (e) {
+                console.error('Erreur suppression:', e);
+            }
         }
 
         // ========== EXPORT / IMPORT ==========
@@ -4689,7 +4734,7 @@ Connectez-vous a l'application Planning pour traiter cette demande.
         function renderVacancesHistorique() {
             const container = document.getElementById('vacancesHistorique');
             const user = document.getElementById('currentUser').value;
-            const demandes = getDemandes().filter(d => d.type === 'vacances' && d.employee === user).sort((a, b) => b.id - a.id);
+            const demandes = getDemandes().filter(d => d.type === 'vacances' && d.employee === user && d.status !== 'bug').sort((a, b) => b.id - a.id);
 
             if (demandes.length === 0) {
                 container.innerHTML = '<p style="color: var(--gray);">Aucune demande de vacances.</p>';
