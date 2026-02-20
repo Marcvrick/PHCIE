@@ -2740,13 +2740,15 @@
         }
 
         function formatDate(dateStr) {
-            const d = new Date(dateStr);
-            return d.toLocaleDateString('fr-FR', { weekday: 'long', day: 'numeric', month: 'long' });
+            const [y, m, d] = dateStr.split('-').map(Number);
+            const date = new Date(y, m - 1, d);
+            return date.toLocaleDateString('fr-FR', { weekday: 'long', day: 'numeric', month: 'long' });
         }
 
         function formatDateShort(dateStr) {
-            const d = new Date(dateStr);
-            return d.toLocaleDateString('fr-FR', { day: 'numeric', month: 'short' });
+            const [y, m, d] = dateStr.split('-').map(Number);
+            const date = new Date(y, m - 1, d);
+            return date.toLocaleDateString('fr-FR', { day: 'numeric', month: 'short' });
         }
 
         function getTypeLabel(type) {
@@ -3597,6 +3599,10 @@
                 ? demande.recoverySlots.map(s => `- ${formatDate(s.date)} ${s.periode} (${formatHeures(s.heures)})`).join('\n')
                 : 'Aucune';
 
+            const dateStart = demande.type === 'conge' && demande.joursDetails?.length ? formatDate(demande.joursDetails[0].date) : formatDate(demande.dateDebut);
+            const dateEnd = demande.type === 'conge' && demande.joursDetails?.length ? formatDate(demande.joursDetails[demande.joursDetails.length - 1].date) : (demande.dateFin !== demande.dateDebut ? formatDate(demande.dateFin) : null);
+            const dateText = dateStart + (dateEnd && dateEnd !== dateStart ? ' au ' + dateEnd : '');
+
             const body = encodeURIComponent(
 `Bonjour,
 
@@ -3606,14 +3612,13 @@ DETAILS
 -------
 Employe : ${demande.employee}
 Type : ${getTypeLabel(demande.type)}
-Date : ${formatDate(demande.dateDebut)}${demande.dateFin !== demande.dateDebut ? ' au ' + formatDate(demande.dateFin) : ''}
-Heures : ${formatHeures(demande.heuresConcernees)}
+Date : ${dateText}
+${demande.type === 'conge' ? `Jours ouvrables : ${demande.joursDetails?.length || ''}` : `Heures : ${formatHeures(demande.heuresConcernees)}`}
 ${demande.motif ? `Motif : ${demande.motif}` : ''}
-
+${demande.recoverySlots?.length > 0 ? `
 RECUPERATION
 ------------
-${recoveryText}
-
+${recoveryText}` : ''}
 ---
 Connectez-vous a l'application Planning pour traiter cette demande.
 `);
