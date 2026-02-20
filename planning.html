@@ -1710,6 +1710,7 @@
                         <select class="form-select" id="demandeType" required>
                             <option value="">-- Selectionnez --</option>
                             <option value="recuperation" id="optionRecuperation" class="hidden">Recuperation d'heures</option>
+                            <option value="absence">Absence personnelle</option>
                             <option value="depart_anticipe">Depart anticipe</option>
                             <option value="maladie">Maladie</option>
                             <option value="conge">Congés</option>
@@ -2053,6 +2054,68 @@
                     <input type="text" class="form-input" id="echangeMotifInput" placeholder="Ex: Echange samedi entre Claire et Sandrine">
                 </div>
                 <button class="btn btn-primary" onclick="registerExchange()" style="margin-top: 0.75rem;">Enregistrer l'echange</button>
+            </div>
+
+            <div class="card">
+                <h2 class="card-title">Enregistrer une absence passee</h2>
+                <p style="color: var(--gray); font-size: 0.9rem; margin-bottom: 1rem;">
+                    Enregistrer une absence deja effectuee avec recuperation partielle ou totale.
+                </p>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                    <div class="form-group">
+                        <label class="form-label">Employe</label>
+                        <select class="form-select" id="absencePasseeEmployee">
+                            <option value="">-- Choisir --</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Date d'absence</label>
+                        <input type="date" class="form-input" id="absencePasseeDate">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Periode absente</label>
+                        <select class="form-select" id="absencePasseePeriode">
+                            <option value="journee">Journee entiere</option>
+                            <option value="am">Matin seulement</option>
+                            <option value="pm">Apres-midi seulement</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Type</label>
+                        <select class="form-select" id="absencePasseeType">
+                            <option value="absence">Absence personnelle</option>
+                            <option value="depart_anticipe">Depart anticipe</option>
+                            <option value="maladie">Maladie</option>
+                        </select>
+                    </div>
+                </div>
+                <div id="absencePasseeCalc" style="display: none; margin: 0.75rem 0; padding: 0.75rem; background: var(--sage-light); border-radius: 6px; font-size: 0.9rem;"></div>
+
+                <div style="margin-top: 1rem; padding-top: 1rem; border-top: 1px solid var(--gray-light);">
+                    <h3 style="font-size: 1rem; margin-bottom: 0.75rem; color: var(--teal-dark);">Recuperation deja effectuee (optionnel)</h3>
+                    <div id="absencePasseeRecoveryList"></div>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr auto; gap: 0.75rem; align-items: end;">
+                        <div class="form-group" style="margin:0;">
+                            <label class="form-label">Date recup</label>
+                            <input type="date" class="form-input" id="absenceRecupDate">
+                        </div>
+                        <div class="form-group" style="margin:0;">
+                            <label class="form-label">Periode</label>
+                            <select class="form-select" id="absenceRecupPeriode">
+                                <option value="am">Matin</option>
+                                <option value="pm">Apres-midi</option>
+                                <option value="journee">Journee</option>
+                            </select>
+                        </div>
+                        <button class="btn btn-secondary" onclick="addAbsenceRecoverySlot()" style="height: 38px;">+ Ajouter</button>
+                    </div>
+                </div>
+
+                <div class="form-group" style="margin-top: 0.75rem;">
+                    <label class="form-label">Motif (optionnel)</label>
+                    <input type="text" class="form-input" id="absencePasseeMotif" placeholder="Ex: Jour personnel, rattrapage partiel effectue">
+                </div>
+                <button class="btn btn-primary" onclick="registerPastAbsence()" style="margin-top: 0.75rem;">Enregistrer l'absence</button>
             </div>
 
             <div class="card">
@@ -2796,6 +2859,7 @@
 
         function getTypeLabel(type) {
             const labels = {
+                'absence': 'Absence personnelle',
                 'depart_anticipe': 'Depart anticipe',
                 'maladie': 'Maladie',
                 'conge': 'Congés',
@@ -3841,6 +3905,160 @@ Connectez-vous a l'application Planning pour traiter cette demande.
             }
         }
 
+        // ========== ABSENCE PASSEE (MANAGER) ==========
+        let absenceRecoverySlots = [];
+
+        function populateAbsencePasseeSelect() {
+            const select = document.getElementById('absencePasseeEmployee');
+            if (!select) return;
+            const current = select.value;
+            select.innerHTML = '<option value="">-- Choisir --</option>';
+            Object.keys(STAFF).forEach(name => {
+                if (name !== 'Laure') {
+                    select.innerHTML += `<option value="${name}"${name === current ? ' selected' : ''}>${name}</option>`;
+                }
+            });
+        }
+
+        function addAbsenceRecoverySlot() {
+            const date = document.getElementById('absenceRecupDate').value;
+            const periode = document.getElementById('absenceRecupPeriode').value;
+            const employee = document.getElementById('absencePasseeEmployee').value;
+
+            if (!date || !employee) {
+                alert('Selectionnez d\'abord un employe et une date de recuperation.');
+                return;
+            }
+
+            const jour = getJourFromDate(date);
+            if (!jour) { alert('Dimanche : pharmacie fermee.'); return; }
+
+            const semaine = getSemaineType(date);
+            // For recovery, use a standard shift duration since the employee might not normally work that day
+            let heures = 0;
+            if (periode === 'journee') {
+                const hAm = calculerHeures(employee, jour, semaine, 'am');
+                const hPm = calculerHeures(employee, jour, semaine, 'pm');
+                heures = (hAm || 3.5) + (hPm || 5);
+            } else {
+                heures = calculerHeures(employee, jour, semaine, periode);
+                if (!heures) heures = periode === 'am' ? 3.5 : 5;
+            }
+
+            absenceRecoverySlots.push({ date, periode, heures });
+            renderAbsenceRecoveryList();
+            document.getElementById('absenceRecupDate').value = '';
+        }
+
+        function removeAbsenceRecoverySlot(index) {
+            absenceRecoverySlots.splice(index, 1);
+            renderAbsenceRecoveryList();
+        }
+
+        function renderAbsenceRecoveryList() {
+            const container = document.getElementById('absencePasseeRecoveryList');
+            if (absenceRecoverySlots.length === 0) {
+                container.innerHTML = '';
+                return;
+            }
+            const totalRecup = absenceRecoverySlots.reduce((s, r) => s + r.heures, 0);
+            let html = '<div style="margin-bottom: 0.75rem;">';
+            absenceRecoverySlots.forEach((slot, i) => {
+                html += `<div style="display: flex; justify-content: space-between; align-items: center; padding: 0.4rem 0.6rem; background: var(--green-light); border-radius: 4px; margin-bottom: 0.3rem; font-size: 0.85rem;">
+                    <span>${formatDate(slot.date)} — ${slot.periode === 'am' ? 'Matin' : slot.periode === 'pm' ? 'Apres-midi' : 'Journee'} (${formatHeures(slot.heures)})</span>
+                    <button onclick="removeAbsenceRecoverySlot(${i})" style="background: none; border: none; color: var(--red); cursor: pointer; font-size: 1rem;">✕</button>
+                </div>`;
+            });
+            html += `<div style="font-size: 0.85rem; color: var(--green); font-weight: 600; margin-top: 0.3rem;">Total recupere: ${formatHeures(totalRecup)}</div>`;
+            html += '</div>';
+            container.innerHTML = html;
+        }
+
+        async function registerPastAbsence() {
+            const employee = document.getElementById('absencePasseeEmployee').value;
+            const date = document.getElementById('absencePasseeDate').value;
+            const periode = document.getElementById('absencePasseePeriode').value;
+            const type = document.getElementById('absencePasseeType').value;
+            const motif = document.getElementById('absencePasseeMotif').value;
+
+            if (!employee || !date) {
+                alert('Veuillez selectionner un employe et une date.');
+                return;
+            }
+
+            const jour = getJourFromDate(date);
+            if (!jour) { alert('Dimanche : pharmacie fermee.'); return; }
+
+            const semaine = getSemaineType(date);
+            const heures = calculerHeures(employee, jour, semaine, periode);
+
+            if (!heures) {
+                alert('Aucune heure prevue pour cet employe a cette date/periode.');
+                return;
+            }
+
+            // Create absence demande
+            const absenceId = Date.now();
+            const demande = {
+                id: absenceId,
+                type: type,
+                employee: employee,
+                dateDebut: date,
+                dateFin: date,
+                dates: [date],
+                jour: jour,
+                semaine: semaine,
+                periode: periode,
+                heuresConcernees: heures,
+                motif: motif || 'Absence enregistree par le manager',
+                status: 'approuvee',
+                dateCreation: new Date().toISOString(),
+                dateTraitement: new Date().toISOString(),
+                commentaire: 'Enregistre retroactivement par le manager',
+                recoverySlots: absenceRecoverySlots.length > 0 ? [...absenceRecoverySlots] : undefined
+            };
+
+            try {
+                await db.collection('demandes').doc(String(absenceId)).set(demande);
+
+                // Create standalone recuperation if recovery slots exist
+                if (absenceRecoverySlots.length > 0) {
+                    const totalRecup = absenceRecoverySlots.reduce((s, r) => s + r.heures, 0);
+                    const recupId = Date.now() + 1;
+                    const recup = {
+                        id: recupId,
+                        type: 'recuperation',
+                        employee: employee,
+                        recoverySlots: [...absenceRecoverySlots],
+                        heuresRecuperees: totalRecup,
+                        heuresDuesAvant: heures,
+                        status: 'approuvee',
+                        dateCreation: new Date().toISOString(),
+                        dateTraitement: new Date().toISOString(),
+                        commentaire: `Recuperation pour absence du ${formatDate(date)}`
+                    };
+                    await db.collection('demandes').doc(String(recupId)).set(recup);
+                }
+
+                const totalRecup = absenceRecoverySlots.reduce((s, r) => s + r.heures, 0);
+                const reste = heures - totalRecup;
+                let msg = `Absence enregistree: ${employee} absent(e) le ${formatDate(date)} (${formatHeures(heures)} dues).`;
+                if (totalRecup > 0) msg += `\nRecupere: ${formatHeures(totalRecup)}.`;
+                if (reste > 0) msg += `\nReste a recuperer: ${formatHeures(reste)}.`;
+                alert(msg);
+
+                // Reset form
+                document.getElementById('absencePasseeEmployee').value = '';
+                document.getElementById('absencePasseeDate').value = '';
+                document.getElementById('absencePasseeMotif').value = '';
+                absenceRecoverySlots = [];
+                renderAbsenceRecoveryList();
+            } catch (e) {
+                console.error('Erreur enregistrement absence:', e);
+                alert('Erreur lors de l\'enregistrement.');
+            }
+        }
+
         // ========== RENDU MES DEMANDES ==========
         function renderMesDemandes() {
             renderEchanges();
@@ -3929,6 +4147,7 @@ Connectez-vous a l'application Planning pour traiter cette demande.
             renderTensionsCalendar();
             renderHistoriqueComplet();
             populateManagerExchangeSelects();
+            populateAbsencePasseeSelect();
             updateLastExport();
             renderTemplateCards();
         }
