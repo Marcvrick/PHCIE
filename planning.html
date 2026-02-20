@@ -2428,7 +2428,7 @@
         }
 
         function getSemaineType(date) {
-            const d = new Date(date);
+            const d = parseLocalDate(date);
             const weekNumber = getWeekNumber(d);
             return weekNumber % 2 === 0 ? 'paire' : 'impaire';
         }
@@ -2441,7 +2441,7 @@
         }
 
         function getJourFromDate(date) {
-            const d = new Date(date);
+            const d = parseLocalDate(date);
             const dayIndex = d.getDay();
             if (dayIndex === 0) return null;
             return JOURS[dayIndex - 1];
@@ -2647,7 +2647,7 @@
             if (data.holidayDays.length > 0) {
                 html += '<div style="margin-top: 0.75rem; font-size: 0.8rem; color: var(--gray);">';
                 html += '<strong>Jours feries ce mois :</strong> ';
-                html += data.holidayDays.map(h => `${new Date(h.date).getDate()}/${month + 1} ${h.name}`).join(', ');
+                html += data.holidayDays.map(h => `${parseLocalDate(h.date).getDate()}/${month + 1} ${h.name}`).join(', ');
                 html += '</div>';
             }
 
@@ -2716,7 +2716,7 @@
             if (holidaysThisMonth.length > 0) {
                 html += '<div style="margin-top: 0.75rem; font-size: 0.8rem; color: var(--gray);">';
                 html += '<strong>Jours feries :</strong> ';
-                html += holidaysThisMonth.map(h => `${new Date(h.date).getDate()} ${months[month]} - ${h.name}`).join(' | ');
+                html += holidaysThisMonth.map(h => `${parseLocalDate(h.date).getDate()} ${months[month]} - ${h.name}`).join(' | ');
                 html += '</div>';
             }
 
@@ -2739,16 +2739,21 @@
             return `${parts[0]}h${parts[1]}`;
         }
 
+        // Parse "YYYY-MM-DD" en heure locale (evite le decalage UTC)
+        function parseLocalDate(dateStr) {
+            if (typeof dateStr === 'string' && /^\d{4}-\d{2}-\d{2}$/.test(dateStr)) {
+                const [y, m, d] = dateStr.split('-').map(Number);
+                return new Date(y, m - 1, d);
+            }
+            return new Date(dateStr);
+        }
+
         function formatDate(dateStr) {
-            const [y, m, d] = dateStr.split('-').map(Number);
-            const date = new Date(y, m - 1, d);
-            return date.toLocaleDateString('fr-FR', { weekday: 'long', day: 'numeric', month: 'long' });
+            return parseLocalDate(dateStr).toLocaleDateString('fr-FR', { weekday: 'long', day: 'numeric', month: 'long' });
         }
 
         function formatDateShort(dateStr) {
-            const [y, m, d] = dateStr.split('-').map(Number);
-            const date = new Date(y, m - 1, d);
-            return date.toLocaleDateString('fr-FR', { day: 'numeric', month: 'short' });
+            return parseLocalDate(dateStr).toLocaleDateString('fr-FR', { day: 'numeric', month: 'short' });
         }
 
         function getTypeLabel(type) {
@@ -2765,10 +2770,13 @@
 
         function getDatesBetween(start, end) {
             const dates = [];
-            const current = new Date(start);
-            const endDate = new Date(end);
+            const current = parseLocalDate(start);
+            const endDate = parseLocalDate(end);
             while (current <= endDate) {
-                dates.push(current.toISOString().split('T')[0]);
+                const yy = current.getFullYear();
+                const mm = String(current.getMonth() + 1).padStart(2, '0');
+                const dd = String(current.getDate()).padStart(2, '0');
+                dates.push(`${yy}-${mm}-${dd}`);
                 current.setDate(current.getDate() + 1);
             }
             return dates;
@@ -3112,7 +3120,7 @@
 
         function getAvailableRecoverySlots(employee, startFrom) {
             const slots = [];
-            const startDate = startFrom ? new Date(startFrom) : new Date();
+            const startDate = startFrom ? parseLocalDate(startFrom) : new Date();
             const employeePlanning = STAFF[employee];
 
             // Recuperer les creneaux deja utilises
@@ -3599,9 +3607,12 @@
                 ? demande.recoverySlots.map(s => `- ${formatDate(s.date)} ${s.periode} (${formatHeures(s.heures)})`).join('\n')
                 : 'Aucune';
 
-            const dateStart = demande.type === 'conge' && demande.joursDetails?.length ? formatDate(demande.joursDetails[0].date) : formatDate(demande.dateDebut);
-            const dateEnd = demande.type === 'conge' && demande.joursDetails?.length ? formatDate(demande.joursDetails[demande.joursDetails.length - 1].date) : (demande.dateFin !== demande.dateDebut ? formatDate(demande.dateFin) : null);
+            const isConge = demande.type === 'conge';
+            const congeDates = isConge && demande.dates?.length ? demande.dates : (isConge && demande.joursDetails?.length ? demande.joursDetails.map(j => j.date) : null);
+            const dateStart = congeDates ? formatDate(congeDates[0]) : formatDate(demande.dateDebut);
+            const dateEnd = congeDates ? formatDate(congeDates[congeDates.length - 1]) : (demande.dateFin !== demande.dateDebut ? formatDate(demande.dateFin) : null);
             const dateText = dateStart + (dateEnd && dateEnd !== dateStart ? ' au ' + dateEnd : '');
+            const congeJours = congeDates ? congeDates.filter(dt => isJourOuvrable(dt)).length : (demande.joursDetails?.length || '');
 
             const body = encodeURIComponent(
 `Bonjour,
@@ -3613,7 +3624,7 @@ DETAILS
 Employe : ${demande.employee}
 Type : ${getTypeLabel(demande.type)}
 Date : ${dateText}
-${demande.type === 'conge' ? `Jours ouvrables : ${demande.joursDetails?.length || ''}` : `Heures : ${formatHeures(demande.heuresConcernees)}`}
+${isConge ? `Jours ouvrables : ${congeJours}` : `Heures : ${formatHeures(demande.heuresConcernees)}`}
 ${demande.motif ? `Motif : ${demande.motif}` : ''}
 ${demande.recoverySlots?.length > 0 ? `
 RECUPERATION
@@ -3760,12 +3771,14 @@ Connectez-vous a l'application Planning pour traiter cette demande.
                     `;
                 } else {
                     // Regular demande
-                    const vacDateStart = d.type === 'vacances' && d.dates?.length ? formatDate(d.dates[0]) : formatDate(d.dateDebut || d.date);
-                    const vacDateEnd = d.type === 'vacances' && d.dates?.length ? formatDate(d.dates[d.dates.length - 1]) : (d.dateFin ? formatDate(d.dateFin) : null);
+                    const isMultiDay = d.type === 'vacances' || d.type === 'conge';
+                    const vacDateStart = isMultiDay && d.dates?.length ? formatDate(d.dates[0]) : formatDate(d.dateDebut || d.date);
+                    const vacDateEnd = isMultiDay && d.dates?.length ? formatDate(d.dates[d.dates.length - 1]) : (d.dateFin ? formatDate(d.dateFin) : null);
+                    const joursCount = isMultiDay && d.dates?.length ? d.dates.filter(dt => isJourOuvrable(dt)).length : null;
                     detailsHtml = `
                         <p><strong>Type :</strong> ${getTypeLabel(d.type)}</p>
                         <p><strong>Date :</strong> ${vacDateStart}${vacDateEnd && vacDateEnd !== vacDateStart ? ' au ' + vacDateEnd : ''}</p>
-                        <p><strong>${d.type === 'vacances' ? 'Jours ouvrables' : 'Heures'} :</strong> ${d.type === 'vacances' ? d.joursOuvrables + 'j' : formatHeures(d.heuresConcernees)}</p>
+                        <p><strong>${isMultiDay ? 'Jours ouvrables' : 'Heures'} :</strong> ${isMultiDay ? (d.joursOuvrables || joursCount || '?') + 'j' : formatHeures(d.heuresConcernees)}</p>
                         ${d.type === 'echange' ? `<p><strong>Echange avec :</strong> ${d.echangeAvec}</p>` : ''}
                         ${d.motif ? `<p><strong>Motif :</strong> ${sanitize(d.motif)}</p>` : ''}
                         ${d.recoverySlots?.length > 0 ? `
@@ -3833,12 +3846,14 @@ Connectez-vous a l'application Planning pour traiter cette demande.
                     `;
                 } else {
                     // Regular absence request
-                    const vacDateStart = d.type === 'vacances' && d.dates?.length ? formatDate(d.dates[0]) : formatDate(d.dateDebut || d.date);
-                    const vacDateEnd = d.type === 'vacances' && d.dates?.length ? formatDate(d.dates[d.dates.length - 1]) : (d.dateFin ? formatDate(d.dateFin) : null);
+                    const isMultiDay = d.type === 'vacances' || d.type === 'conge';
+                    const vacDateStart = isMultiDay && d.dates?.length ? formatDate(d.dates[0]) : formatDate(d.dateDebut || d.date);
+                    const vacDateEnd = isMultiDay && d.dates?.length ? formatDate(d.dates[d.dates.length - 1]) : (d.dateFin ? formatDate(d.dateFin) : null);
+                    const joursCount = isMultiDay && d.dates?.length ? d.dates.filter(dt => isJourOuvrable(dt)).length : null;
                     detailsHtml = `
                         <p><strong>Type :</strong> ${getTypeLabel(d.type)}</p>
                         <p><strong>Date :</strong> ${vacDateStart}${vacDateEnd && vacDateEnd !== vacDateStart ? ' au ' + vacDateEnd : ''}</p>
-                        <p><strong>${d.type === 'vacances' ? 'Jours ouvrables' : 'Heures'} :</strong> ${d.type === 'vacances' ? d.joursOuvrables + 'j' : formatHeures(d.heuresConcernees)}</p>
+                        <p><strong>${isMultiDay ? 'Jours ouvrables' : 'Heures'} :</strong> ${isMultiDay ? (d.joursOuvrables || joursCount || '?') + 'j' : formatHeures(d.heuresConcernees)}</p>
                         ${d.type === 'echange' ? `<p><strong>Echange avec :</strong> ${d.echangeAvec}</p>` : ''}
                         ${d.motif ? `<p><strong>Motif :</strong> ${sanitize(d.motif)}</p>` : ''}
                         ${d.recoverySlots?.length > 0 ? `
@@ -3995,8 +4010,11 @@ Connectez-vous a l'application Planning pour traiter cette demande.
                 html += `<tr style="border-bottom: 1px solid #E5E7EB;">`;
                 html += `<td style="padding: 0.5rem;">${d.employee}</td>`;
                 html += `<td style="padding: 0.5rem;">${getTypeLabel(d.type)}</td>`;
-                html += `<td style="padding: 0.5rem;">${formatDateShort(d.dateDebut || d.date)}</td>`;
-                html += `<td style="padding: 0.5rem;">${d.type === 'vacances' ? (d.joursOuvrables || d.heuresConcernees) + 'j' : formatHeures(d.heuresConcernees)}</td>`;
+                const isMultiDay = d.type === 'vacances' || d.type === 'conge';
+                const dateDisplay = isMultiDay && d.dates?.length ? formatDateShort(d.dates[0]) : formatDateShort(d.dateDebut || d.date);
+                const joursCount = isMultiDay && d.dates?.length ? d.dates.filter(dt => isJourOuvrable(dt)).length : null;
+                html += `<td style="padding: 0.5rem;">${dateDisplay}</td>`;
+                html += `<td style="padding: 0.5rem;">${isMultiDay ? (d.joursOuvrables || joursCount || d.heuresConcernees) + 'j' : formatHeures(d.heuresConcernees)}</td>`;
                 html += `<td style="padding: 0.5rem;"><span class="demande-status ${statusClass}">${statusLabel}</span></td>`;
                 html += `</tr>`;
             });
@@ -4249,7 +4267,7 @@ Connectez-vous a l'application Planning pour traiter cette demande.
         }
 
         function isJourOuvrable(dateStr) {
-            const d = new Date(dateStr);
+            const d = parseLocalDate(dateStr);
             const day = d.getDay();
             if (day === 0) return false; // dimanche
             if (isJourFerie(dateStr)) return false;
@@ -4356,7 +4374,7 @@ Connectez-vous a l'application Planning pour traiter cette demande.
 
             // Count feries in range
             const allDates = getDatesBetween(dateDebut, dateFin);
-            const feries = allDates.filter(d => isJourFerie(d) && new Date(d).getDay() !== 0);
+            const feries = allDates.filter(d => isJourFerie(d) && parseLocalDate(d).getDay() !== 0);
 
             calcEl.classList.remove('hidden');
             calcEl.style.background = '';
@@ -5134,8 +5152,8 @@ Connectez-vous a l'application Planning pour traiter cette demande.
                                  contract.contractType === 'freelance' ? 'Freelance' : 'Periode d\'essai';
 
                 // Format dates for display
-                const hireDate = contract.hireDate ? new Date(contract.hireDate).toLocaleDateString('fr-FR') : 'N/A';
-                const endDate = contract.endDate ? new Date(contract.endDate).toLocaleDateString('fr-FR') : 'N/A';
+                const hireDate = contract.hireDate ? parseLocalDate(contract.hireDate).toLocaleDateString('fr-FR') : 'N/A';
+                const endDate = contract.endDate ? parseLocalDate(contract.endDate).toLocaleDateString('fr-FR') : 'N/A';
 
                 html += `
                     <div class="contract-card">
