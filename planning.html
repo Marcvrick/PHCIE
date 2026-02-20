@@ -3411,20 +3411,20 @@
             // Analyser l'effectif
             renderImpactEffectif(joursDetails, employee, periode, heure);
 
-            // Proposer recuperation (sauf pour echange et conges)
+            // Proposer recuperation uniquement pour depart anticipe
             const recoverySection = document.getElementById('impactRecovery');
             const engagementBox = document.querySelector('.engagement-box');
-            if (type === 'echange' || type === 'conge') {
-                recoverySection.classList.add('hidden');
-                engagementBox.classList.add('hidden');
-                document.getElementById('engagementCheck').checked = true;
-                document.getElementById('submitDemande').disabled = false;
-            } else {
+            if (type === 'depart_anticipe') {
                 recoverySection.classList.remove('hidden');
                 engagementBox.classList.remove('hidden');
                 renderRecoverySlots(employee, heuresConcernees, dateDebut);
                 selectedRecoverySlots = [];
                 updateHoursSummary();
+            } else {
+                recoverySection.classList.add('hidden');
+                engagementBox.classList.add('hidden');
+                document.getElementById('engagementCheck').checked = true;
+                document.getElementById('submitDemande').disabled = false;
             }
 
             document.getElementById('impactAnalysis').classList.remove('hidden');
