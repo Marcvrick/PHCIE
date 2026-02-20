@@ -3745,7 +3745,7 @@ Connectez-vous a l'application Planning pour traiter cette demande.
                     detailsHtml = `
                         <p><strong>Type :</strong> ${getTypeLabel(d.type)}</p>
                         <p><strong>Date :</strong> ${formatDate(d.dateDebut || d.date)}${d.dateFin && d.dateFin !== d.dateDebut ? ' au ' + formatDate(d.dateFin) : ''}</p>
-                        <p><strong>Heures :</strong> ${formatHeures(d.heuresConcernees)}</p>
+                        <p><strong>${d.type === 'vacances' ? 'Jours' : 'Heures'} :</strong> ${d.type === 'vacances' ? d.joursOuvrables + 'j' : formatHeures(d.heuresConcernees)}</p>
                         ${d.type === 'echange' ? `<p><strong>Echange avec :</strong> ${d.echangeAvec}</p>` : ''}
                         ${d.motif ? `<p><strong>Motif :</strong> ${sanitize(d.motif)}</p>` : ''}
                         ${d.recoverySlots?.length > 0 ? `
@@ -3816,7 +3816,7 @@ Connectez-vous a l'application Planning pour traiter cette demande.
                     detailsHtml = `
                         <p><strong>Type :</strong> ${getTypeLabel(d.type)}</p>
                         <p><strong>Date :</strong> ${formatDate(d.dateDebut || d.date)}${d.dateFin && d.dateFin !== d.dateDebut ? ' au ' + formatDate(d.dateFin) : ''}</p>
-                        <p><strong>Heures :</strong> ${formatHeures(d.heuresConcernees)}</p>
+                        <p><strong>${d.type === 'vacances' ? 'Jours' : 'Heures'} :</strong> ${d.type === 'vacances' ? d.joursOuvrables + 'j' : formatHeures(d.heuresConcernees)}</p>
                         ${d.type === 'echange' ? `<p><strong>Echange avec :</strong> ${d.echangeAvec}</p>` : ''}
                         ${d.motif ? `<p><strong>Motif :</strong> ${sanitize(d.motif)}</p>` : ''}
                         ${d.recoverySlots?.length > 0 ? `
@@ -3974,7 +3974,7 @@ Connectez-vous a l'application Planning pour traiter cette demande.
                 html += `<td style="padding: 0.5rem;">${d.employee}</td>`;
                 html += `<td style="padding: 0.5rem;">${getTypeLabel(d.type)}</td>`;
                 html += `<td style="padding: 0.5rem;">${formatDateShort(d.dateDebut || d.date)}</td>`;
-                html += `<td style="padding: 0.5rem;">${formatHeures(d.heuresConcernees)}</td>`;
+                html += `<td style="padding: 0.5rem;">${d.type === 'vacances' ? (d.joursOuvrables || d.heuresConcernees) + 'j' : formatHeures(d.heuresConcernees)}</td>`;
                 html += `<td style="padding: 0.5rem;"><span class="demande-status ${statusClass}">${statusLabel}</span></td>`;
                 html += `</tr>`;
             });
