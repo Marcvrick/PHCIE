@@ -2018,6 +2018,44 @@
             </div>
 
             <div class="card">
+                <h2 class="card-title">Enregistrer un echange</h2>
+                <p style="color: var(--gray); font-size: 0.9rem; margin-bottom: 1rem;">
+                    Enregistrer un echange de poste deja convenu entre deux employes.
+                </p>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                    <div class="form-group">
+                        <label class="form-label">Employe absent</label>
+                        <select class="form-select" id="echangeAbsent">
+                            <option value="">-- Choisir --</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Remplace par</label>
+                        <select class="form-select" id="echangeRemplacant">
+                            <option value="">-- Choisir --</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Date</label>
+                        <input type="date" class="form-input" id="echangeDateInput">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Periode</label>
+                        <select class="form-select" id="echangePeriodeInput">
+                            <option value="am">Matin</option>
+                            <option value="journee">Journee entiere</option>
+                            <option value="pm">Apres-midi</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group" style="margin-top: 0.5rem;">
+                    <label class="form-label">Motif (optionnel)</label>
+                    <input type="text" class="form-input" id="echangeMotifInput" placeholder="Ex: Echange samedi entre Claire et Sandrine">
+                </div>
+                <button class="btn btn-primary" onclick="registerExchange()" style="margin-top: 0.75rem;">Enregistrer l'echange</button>
+            </div>
+
+            <div class="card">
                 <h2 class="card-title">Historique complet</h2>
                 <div id="historiqueComplet"></div>
             </div>
@@ -2825,8 +2863,8 @@
                     if (d.type === 'recuperation') {
                         // Standalone recovery: add to recuperees
                         balances[d.employee].recuperees += d.heuresRecuperees || 0;
-                    } else if (d.type !== 'vacances') {
-                        // Regular absence: add dues and any attached recovery
+                    } else if (d.type !== 'vacances' && d.type !== 'echange' && d.type !== 'conge') {
+                        // Regular absence: add dues and any attached recovery (exclude vacances/conge/echange)
                         balances[d.employee].dues += d.heuresConcernees || 0;
 
                         // Heures recuperees (attached to absence)
@@ -3730,6 +3768,79 @@ Connectez-vous a l'application Planning pour traiter cette demande.
             alert('Echange refuse.');
         }
 
+        function populateManagerExchangeSelects() {
+            const selects = ['echangeAbsent', 'echangeRemplacant'];
+            selects.forEach(id => {
+                const select = document.getElementById(id);
+                if (!select) return;
+                const current = select.value;
+                select.innerHTML = '<option value="">-- Choisir --</option>';
+                Object.keys(STAFF).forEach(name => {
+                    if (name !== 'Laure') {
+                        select.innerHTML += `<option value="${name}"${name === current ? ' selected' : ''}>${name}</option>`;
+                    }
+                });
+            });
+        }
+
+        async function registerExchange() {
+            const absent = document.getElementById('echangeAbsent').value;
+            const remplacant = document.getElementById('echangeRemplacant').value;
+            const date = document.getElementById('echangeDateInput').value;
+            const periode = document.getElementById('echangePeriodeInput').value;
+            const motif = document.getElementById('echangeMotifInput').value;
+
+            if (!absent || !remplacant || !date) {
+                alert('Veuillez remplir l\'employe absent, le remplacant et la date.');
+                return;
+            }
+            if (absent === remplacant) {
+                alert('L\'employe absent et le remplacant doivent etre differents.');
+                return;
+            }
+
+            const jour = getJourFromDate(date);
+            if (!jour) {
+                alert('La date selectionnee est un dimanche (pharmacie fermee).');
+                return;
+            }
+
+            const semaine = getSemaineType(date);
+            const heures = calculerHeures(absent, jour, semaine, periode);
+
+            const demande = {
+                id: Date.now(),
+                type: 'echange',
+                employee: absent,
+                echangeAvec: remplacant,
+                dateDebut: date,
+                dateFin: date,
+                dates: [date],
+                periode: periode,
+                jour: jour,
+                semaine: semaine,
+                heuresConcernees: heures,
+                motif: motif || `Echange: ${absent} absent(e), ${remplacant} remplace`,
+                status: 'approuvee',
+                dateCreation: new Date().toISOString(),
+                dateTraitement: new Date().toISOString(),
+                commentaire: 'Enregistre par le manager'
+            };
+
+            try {
+                await db.collection('demandes').doc(String(demande.id)).set(demande);
+                alert(`Echange enregistre : ${absent} absent(e) le ${formatDate(date)}, remplace(e) par ${remplacant}.`);
+                // Reset form
+                document.getElementById('echangeAbsent').value = '';
+                document.getElementById('echangeRemplacant').value = '';
+                document.getElementById('echangeDateInput').value = '';
+                document.getElementById('echangeMotifInput').value = '';
+            } catch (e) {
+                console.error('Erreur enregistrement echange:', e);
+                alert('Erreur lors de l\'enregistrement.');
+            }
+        }
+
         // ========== RENDU MES DEMANDES ==========
         function renderMesDemandes() {
             renderEchanges();
@@ -3817,6 +3928,7 @@ Connectez-vous a l'application Planning pour traiter cette demande.
             renderManagerHoursBalance();
             renderTensionsCalendar();
             renderHistoriqueComplet();
+            populateManagerExchangeSelects();
             updateLastExport();
             renderTemplateCards();
         }
