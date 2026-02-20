@@ -2013,7 +2013,7 @@
                 <h2 class="card-title">Gestion des contrats et anciennete</h2>
                 <p style="color: var(--gray); font-size: 0.9rem; margin-bottom: 1rem;">
                     Definissez le type de contrat, les dates de debut/fin et l'anciennete de chaque employe.
-                    Les vacances sont calculees automatiquement (2.08 jours ouvres/mois + 2 jours apres 6 ans d'anciennete).
+                    Les vacances sont calculees automatiquement (2.5 jours ouvrables/mois, lun-sam + 2 jours apres 6 ans d'anciennete).
                 </p>
                 <div class="contracts-grid" id="contractsManager"></div>
             </div>
@@ -3742,10 +3742,12 @@ Connectez-vous a l'application Planning pour traiter cette demande.
                     `;
                 } else {
                     // Regular demande
+                    const vacDateStart = d.type === 'vacances' && d.dates?.length ? formatDate(d.dates[0]) : formatDate(d.dateDebut || d.date);
+                    const vacDateEnd = d.type === 'vacances' && d.dates?.length ? formatDate(d.dates[d.dates.length - 1]) : (d.dateFin ? formatDate(d.dateFin) : null);
                     detailsHtml = `
                         <p><strong>Type :</strong> ${getTypeLabel(d.type)}</p>
-                        <p><strong>Date :</strong> ${formatDate(d.dateDebut || d.date)}${d.dateFin && d.dateFin !== d.dateDebut ? ' au ' + formatDate(d.dateFin) : ''}</p>
-                        <p><strong>${d.type === 'vacances' ? 'Jours' : 'Heures'} :</strong> ${d.type === 'vacances' ? d.joursOuvrables + 'j' : formatHeures(d.heuresConcernees)}</p>
+                        <p><strong>Date :</strong> ${vacDateStart}${vacDateEnd && vacDateEnd !== vacDateStart ? ' au ' + vacDateEnd : ''}</p>
+                        <p><strong>${d.type === 'vacances' ? 'Jours ouvrables' : 'Heures'} :</strong> ${d.type === 'vacances' ? d.joursOuvrables + 'j' : formatHeures(d.heuresConcernees)}</p>
                         ${d.type === 'echange' ? `<p><strong>Echange avec :</strong> ${d.echangeAvec}</p>` : ''}
                         ${d.motif ? `<p><strong>Motif :</strong> ${sanitize(d.motif)}</p>` : ''}
                         ${d.recoverySlots?.length > 0 ? `
@@ -3813,10 +3815,12 @@ Connectez-vous a l'application Planning pour traiter cette demande.
                     `;
                 } else {
                     // Regular absence request
+                    const vacDateStart = d.type === 'vacances' && d.dates?.length ? formatDate(d.dates[0]) : formatDate(d.dateDebut || d.date);
+                    const vacDateEnd = d.type === 'vacances' && d.dates?.length ? formatDate(d.dates[d.dates.length - 1]) : (d.dateFin ? formatDate(d.dateFin) : null);
                     detailsHtml = `
                         <p><strong>Type :</strong> ${getTypeLabel(d.type)}</p>
-                        <p><strong>Date :</strong> ${formatDate(d.dateDebut || d.date)}${d.dateFin && d.dateFin !== d.dateDebut ? ' au ' + formatDate(d.dateFin) : ''}</p>
-                        <p><strong>${d.type === 'vacances' ? 'Jours' : 'Heures'} :</strong> ${d.type === 'vacances' ? d.joursOuvrables + 'j' : formatHeures(d.heuresConcernees)}</p>
+                        <p><strong>Date :</strong> ${vacDateStart}${vacDateEnd && vacDateEnd !== vacDateStart ? ' au ' + vacDateEnd : ''}</p>
+                        <p><strong>${d.type === 'vacances' ? 'Jours ouvrables' : 'Heures'} :</strong> ${d.type === 'vacances' ? d.joursOuvrables + 'j' : formatHeures(d.heuresConcernees)}</p>
                         ${d.type === 'echange' ? `<p><strong>Echange avec :</strong> ${d.echangeAvec}</p>` : ''}
                         ${d.motif ? `<p><strong>Motif :</strong> ${sanitize(d.motif)}</p>` : ''}
                         ${d.recoverySlots?.length > 0 ? `
@@ -4136,7 +4140,7 @@ Connectez-vous a l'application Planning pour traiter cette demande.
         // ========== VACANCES ==========
         // Tous les employes ont acces aux vacances
         const VACANCES_EMPLOYEES = ['Stephanie', 'Claire', 'Sandrine', 'Titia', 'Melanie', 'Emilie', 'Chloe', 'Mathilde', 'Pascal'];
-        const VACANCES_ANNUEL = 25; // Max legal par an (25 jours ouvres)
+        const VACANCES_ANNUEL = 30; // Max legal par an (30 jours ouvrables, lun-sam)
 
         // Jours feries francais 2026-2028
         const JOURS_FERIES = {
@@ -4229,7 +4233,7 @@ Connectez-vous a l'application Planning pour traiter cette demande.
         function isJourOuvrable(dateStr) {
             const d = new Date(dateStr);
             const day = d.getDay();
-            if (day === 0 || day === 6) return false; // weekend
+            if (day === 0) return false; // dimanche
             if (isJourFerie(dateStr)) return false;
             return true;
         }
@@ -4334,13 +4338,13 @@ Connectez-vous a l'application Planning pour traiter cette demande.
 
             // Count feries in range
             const allDates = getDatesBetween(dateDebut, dateFin);
-            const feries = allDates.filter(d => isJourFerie(d) && new Date(d).getDay() !== 0 && new Date(d).getDay() !== 6);
+            const feries = allDates.filter(d => isJourFerie(d) && new Date(d).getDay() !== 0);
 
             calcEl.classList.remove('hidden');
             calcEl.style.background = '';
             calcEl.style.color = '';
 
-            let html = `<strong>${count} jour${count > 1 ? 's' : ''} ouvre${count > 1 ? 's' : ''}</strong> demande${count > 1 ? 's' : ''}`;
+            let html = `<strong>${count} jour${count > 1 ? 's' : ''} ouvrable${count > 1 ? 's' : ''}</strong> demande${count > 1 ? 's' : ''}`;
             if (feries.length > 0) {
                 html += ` (${feries.length} jour${feries.length > 1 ? 's' : ''} ferie${feries.length > 1 ? 's' : ''} exclus : ${feries.map(f => JOURS_FERIES[f]).join(', ')})`;
             }
@@ -4551,9 +4555,9 @@ DETAILS
 -------
 Employe : ${demande.employee}
 Type : Vacances
-Du : ${formatDate(demande.dateDebut)}
-Au : ${formatDate(demande.dateFin)}
-Jours ouvres : ${demande.joursOuvrables}
+Du : ${demande.dates?.length ? formatDate(demande.dates[0]) : formatDate(demande.dateDebut)}
+Au : ${demande.dates?.length ? formatDate(demande.dates[demande.dates.length - 1]) : formatDate(demande.dateFin)}
+Jours ouvrables : ${demande.joursOuvrables}
 ${demande.motif ? `Motif : ${demande.motif}` : ''}
 
 ---
@@ -4985,7 +4989,7 @@ Connectez-vous a l'application Planning pour traiter cette demande.
 
         // Calcule les jours de vacances acquis selon la loi francaise
         // Droits = mois travailles pendant la PERIODE DE REFERENCE PRECEDENTE (1er juin N-2 au 31 mai N-1)
-        // 2.08 jours ouvres par mois (25j/an max)
+        // 2.5 jours ouvrables par mois (30j/an max, lun-sam)
         // +2 jours apres 6 ans d'anciennete (convention pharmacie)
         // Nouvel employe (embauche pendant la periode actuelle) : pro-rata depuis date embauche
         function calculateVacationDays(contract) {
@@ -5042,8 +5046,8 @@ Connectez-vous a l'application Planning pour traiter cette demande.
                 return { acquired: 0, bonus: 0, total: 0, details: 'Contrat termine' };
             }
 
-            // 2.08 jours ouvres par mois (25j/an)
-            const acquiredDays = Math.min(Math.round(monthsWorked * 2.08), 25);
+            // 2.5 jours ouvrables par mois (30j/an)
+            const acquiredDays = Math.min(Math.round(monthsWorked * 2.5), 30);
 
             // Bonus anciennete: +2 jours apres 6 ans (convention pharmacie)
             const yearsOfService = yearsDiff(hireDate, today);
@@ -5311,7 +5315,7 @@ Connectez-vous a l'application Planning pour traiter cette demande.
         }
 
         // Synchroniser le calcul des vacances avec les contrats
-        // annuel = calcul automatique (2.08j/mois ouvre)
+        // annuel = calcul automatique (2.5j/mois ouvrable)
         // report = jours reportes des annees precedentes (ajuste manuellement)
         // pris = jours pris depuis le 1er juin (saisi dans contrats)
         // Total disponible = annuel + report - pris
@@ -5731,7 +5735,7 @@ Connectez-vous a l'application Planning pour traiter cette demande.
                 // Initialize vacation balance
                 const solde = getVacancesSolde();
                 if (!solde[name]) {
-                    solde[name] = { annuel: 25, pris: 0, report: 0 };
+                    solde[name] = { annuel: 30, pris: 0, report: 0 };
                     await saveVacancesSolde(solde);
                 }
 
