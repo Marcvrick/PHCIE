@@ -5346,7 +5346,7 @@ Connectez-vous a l'application Planning pour traiter cette demande.
         }
 
         // ========== NAVIGATION ==========
-        function showView(viewName) {
+        function showView(viewName, updateHash = true) {
             if (viewName === 'manager' && !isManagerAuthenticated) {
                 showPasswordModal();
                 return;
@@ -5357,6 +5357,10 @@ Connectez-vous a l'application Planning pour traiter cette demande.
             document.getElementById(`view-${viewName}`).classList.add('active');
             document.querySelector(`.nav-btn[data-view="${viewName}"]`).classList.add('active');
 
+            if (updateHash) {
+                history.replaceState(null, '', `#${viewName}`);
+            }
+
             if (viewName === 'mes-demandes') {
                 renderMesDemandes();
             } else if (viewName === 'vacances') {
@@ -5365,6 +5369,16 @@ Connectez-vous a l'application Planning pour traiter cette demande.
                 renderManager();
             }
         }
+
+        function navigateFromHash() {
+            const hash = location.hash.replace('#', '');
+            const validViews = ['planning', 'demande', 'mes-demandes', 'vacances', 'manager'];
+            if (hash && validViews.includes(hash)) {
+                showView(hash, false);
+            }
+        }
+
+        window.addEventListener('hashchange', navigateFromHash);
 
         function showPasswordModal() {
             document.getElementById('passwordModal').classList.remove('hidden');
@@ -5833,6 +5847,9 @@ Connectez-vous a l'application Planning pour traiter cette demande.
             populateMonthSelectors();
             updateVacancesNavVisibility();
             updateRecuperationOptionVisibility();
+
+            // Navigate to hash view if present (e.g. #manager, #vacances)
+            navigateFromHash();
         }
 
         function handleLogin() {
