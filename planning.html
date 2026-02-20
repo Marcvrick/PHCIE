@@ -4221,6 +4221,7 @@ Connectez-vous a l'application Planning pour traiter cette demande.
         let calendarMonth = new Date().getMonth();
         let calendarYear = new Date().getFullYear();
         let currentVacancesImpact = null;
+        let editingVacancesId = null; // ID de la demande en cours de modification
 
         function getVacancesSolde() {
             return vacancesSoldeCache;
@@ -4400,12 +4401,13 @@ Connectez-vous a l'application Planning pour traiter cette demande.
             const demandes = getDemandes();
             const MAX_SIMULTANEOUS = 2; // Maximum de personnes en vacances en meme temps
 
-            // Recuperer toutes les vacances approuvees ou en attente (sauf de l'employe actuel)
+            // Recuperer toutes les vacances approuvees ou en attente (sauf de l'employe actuel et la demande en cours de modification)
             const otherVacations = demandes.filter(d =>
                 d.type === 'vacances' &&
                 d.employee !== employee &&
                 (d.status === 'approuvee' || d.status === 'attente') &&
-                d.dates && d.dates.length > 0
+                d.dates && d.dates.length > 0 &&
+                (!editingVacancesId || d.id !== editingVacancesId)
             );
 
             // Pour chaque jour demande, compter combien d'autres personnes sont en vacances
@@ -4554,9 +4556,12 @@ Connectez-vous a l'application Planning pour traiter cette demande.
 
             effectifContainer.innerHTML = html;
             document.getElementById('vacancesImpact').classList.remove('hidden');
+
+            // Update button label based on edit mode
+            document.getElementById('submitVacances').textContent = editingVacancesId ? 'Modifier la demande' : 'Soumettre la demande';
         }
 
-        function submitVacances() {
+        async function submitVacances() {
             if (!currentVacancesImpact) return;
             const demande = {
                 employee: currentVacancesImpact.employee,
@@ -4565,12 +4570,26 @@ Connectez-vous a l'application Planning pour traiter cette demande.
                 dateFin: currentVacancesImpact.dateFin,
                 dates: currentVacancesImpact.dates,
                 joursOuvrables: currentVacancesImpact.joursOuvrables,
-                heuresConcernees: currentVacancesImpact.joursOuvrables, // for display in history (days not hours)
+                heuresConcernees: currentVacancesImpact.joursOuvrables,
                 motif: currentVacancesImpact.motif
             };
 
-            addDemande(demande);
-            lastSubmittedDemande = demande;
+            if (editingVacancesId) {
+                // Update existing request
+                demande.id = editingVacancesId;
+                demande.status = 'attente';
+                demande.dateCreation = new Date().toISOString();
+                try {
+                    await db.collection('demandes').doc(String(editingVacancesId)).set(demande);
+                } catch (e) {
+                    console.error('Erreur mise a jour demande:', e);
+                }
+                lastSubmittedDemande = demande;
+                editingVacancesId = null;
+            } else {
+                await addDemande(demande);
+                lastSubmittedDemande = demande;
+            }
 
             document.getElementById('vacancesForm').reset();
             document.getElementById('vacancesImpact').classList.add('hidden');
@@ -4678,7 +4697,7 @@ Connectez-vous a l'application Planning pour traiter cette demande.
             }
 
             let html = '<table style="width: 100%; border-collapse: collapse; font-size: 0.85rem;">';
-            html += '<thead><tr style="background: var(--gray-light);"><th style="padding: 0.5rem; text-align: left;">Du</th><th style="padding: 0.5rem; text-align: left;">Au</th><th style="padding: 0.5rem; text-align: left;">Jours</th><th style="padding: 0.5rem; text-align: left;">Statut</th></tr></thead><tbody>';
+            html += '<thead><tr style="background: var(--gray-light);"><th style="padding: 0.5rem; text-align: left;">Du</th><th style="padding: 0.5rem; text-align: left;">Au</th><th style="padding: 0.5rem; text-align: left;">Jours</th><th style="padding: 0.5rem; text-align: left;">Statut</th><th style="padding: 0.5rem; text-align: left;">Actions</th></tr></thead><tbody>';
 
             demandes.forEach(d => {
                 const statusClass = d.status === 'attente' ? 'status-attente' : d.status === 'approuvee' ? 'status-approuvee' : 'status-refusee';
@@ -4688,11 +4707,47 @@ Connectez-vous a l'application Planning pour traiter cette demande.
                 html += `<td style="padding: 0.5rem;">${formatDateShort(d.dateFin)}</td>`;
                 html += `<td style="padding: 0.5rem;">${d.joursOuvrables}</td>`;
                 html += `<td style="padding: 0.5rem;"><span class="demande-status ${statusClass}">${statusLabel}</span></td>`;
+                html += `<td style="padding: 0.5rem;">`;
+                if (d.status === 'attente') {
+                    html += `<button class="btn btn-secondary" style="font-size: 0.75rem; padding: 0.25rem 0.5rem; margin-right: 0.25rem;" onclick="editVacancesRequest(${d.id})">Modifier</button>`;
+                    html += `<button class="btn btn-danger" style="font-size: 0.75rem; padding: 0.25rem 0.5rem;" onclick="cancelVacancesRequest(${d.id})">Annuler</button>`;
+                }
+                html += `</td>`;
                 html += `</tr>`;
             });
 
             html += '</tbody></table>';
             container.innerHTML = html;
+        }
+
+        function editVacancesRequest(id) {
+            const d = getDemandes().find(x => x.id === id);
+            if (!d || d.status !== 'attente') return;
+
+            // Pre-fill the form with existing dates
+            document.getElementById('vacancesDateDebut').value = d.dateDebut;
+            document.getElementById('vacancesDateFin').value = d.dateFin;
+            document.getElementById('vacancesMotif').value = d.motif || '';
+
+            // Set editing mode
+            editingVacancesId = id;
+
+            // Update button text and trigger calc
+            updateVacancesCalc();
+
+            // Scroll to the form
+            document.querySelector('#view-vacances .card:nth-child(2)').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        async function cancelVacancesRequest(id) {
+            if (!confirm('Annuler cette demande de vacances ?')) return;
+            try {
+                await db.collection('demandes').doc(String(id)).delete();
+                editingVacancesId = null;
+            } catch (e) {
+                console.error('Erreur suppression demande:', e);
+                alert('Erreur lors de la suppression.');
+            }
         }
 
         function renderVacancesView() {
@@ -5968,6 +6023,7 @@ Connectez-vous a l'application Planning pour traiter cette demande.
                 document.getElementById('vacancesForm').reset();
                 document.getElementById('vacancesCalc').classList.add('hidden');
                 currentVacancesImpact = null;
+                editingVacancesId = null;
             });
 
             // Calendar navigation (block past months)
