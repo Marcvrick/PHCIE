@@ -5770,6 +5770,7 @@ Connectez-vous a l'application Planning pour traiter cette demande.
             const actionButtons = templateSelector.querySelector('.schedule-actions-buttons');
             const templateSelectionView = document.getElementById('templateSelectionView');
 
+            templateSelector.classList.remove('hidden');
             templateSelectionView.classList.add('hidden');
             actionButtons.classList.remove('hidden');
         }
