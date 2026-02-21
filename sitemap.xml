@@ -134,6 +134,14 @@
     <loc>https://www.pharmaciecharnal.com/Quizzes/quiz-soin-peau.html</loc>
     <lastmod>2026-02-12</lastmod>
   </url>
+  <url>
+    <loc>https://www.pharmaciecharnal.com/Quizzes/quiz-produits-naturels.html</loc>
+    <lastmod>2026-02-20</lastmod>
+  </url>
+  <url>
+    <loc>https://www.pharmaciecharnal.com/Quizzes/guide-quizzes-sante-pharmacie-queven.html</loc>
+    <lastmod>2026-02-28</lastmod>
+  </url>
 
   <!-- Articles de blog -->
   <url>
@@ -164,6 +172,11 @@
   <url>
     <loc>https://www.pharmaciecharnal.com/blog/Moral%20en%20berne/fatigue-moral-fin-hiver-queven.html</loc>
     <lastmod>2026-02-15</lastmod>
+  </url>
+
+  <url>
+    <loc>https://www.pharmaciecharnal.com/blog/gastro-enterite-prevention-bons-reflexes-queven.html</loc>
+    <lastmod>2026-02-21</lastmod>
   </url>
 
   <url>
