@@ -122,7 +122,7 @@ Le differenciateur majeur : la plupart des contenus sante sont generiques et sec
 | **Vaccination** | Prevention, rappels, voyages | Vaccination adulte, grippe, preparation voyage |
 | **Produits naturels** | Phyto, aroma, alternatives | Aromatherapie rhume, plantes et sommeil |
 | **Matériel médical** | Autonomie, suivi, seniors | Tensiometre mode d'emploi, maintien a domicile |
-| **Quizzes interactifs** | Automedication, soin peau, naturel | Pages mode d'emploi (hors blog) |
+| **Quiz interactifs** | Automedication, soin peau, naturel | Pages mode d'emploi (hors blog) |
 
 ### 2.3 Nos 3 types d'articles
 
@@ -184,7 +184,7 @@ Nos pharmaciens sont la pour vous conseiller.
 |---|---|---|---|---|
 | S7 | 10 fev | Peau seche en hiver breton | Long editorial | 🟡 HTML pret |
 | S8 | **Mer 18 fev** | **Fatigue, moral en berne : fin d'hiver** | Long editorial | 🟡 MD pret → HTML |
-| S9 | Mer 25 fev | Nos quizzes sante : trouvez le bon conseil en 2 minutes | Court mode d'emploi | A rediger |
+| S9 | Mer 25 fev | Nos quiz sante : trouvez le bon conseil en 2 minutes | Court mode d'emploi | A rediger |
 
 ### MARS 2026
 
@@ -237,22 +237,22 @@ Nos pharmaciens sont la pour vous conseiller.
 
 ### Concept
 
-**Titre** : "Nos quizzes sante : trouvez le bon conseil en 2 minutes"
+**Titre** : "Nos quiz sante : trouvez le bon conseil en 2 minutes"
 **URL** : `/Quizzes/guide-quizzes-sante-pharmacie-queven.html`
 **Type** : Page autonome, **NON listee dans blog.html**
 **Longueur** : 600-800 mots
 
 ### Structure
 
-1. **Intro** (anecdote comptoir) : "Vous hesitez devant le rayon parapharmacie ? Pas toujours facile de savoir quel produit correspond a votre peau, ou quel medicament prendre sans ordonnance. Nos quizzes vous guident en quelques questions."
+1. **Intro** (anecdote comptoir) : "Vous hesitez devant le rayon parapharmacie ? Pas toujours facile de savoir quel produit correspond a votre peau, ou quel medicament prendre sans ordonnance. Nos quiz vous guident en quelques questions."
 2. **H2 par quiz** :
    - Quiz Automedication → "Quel medicament pour vos symptomes ?" + lien
    - Quiz Soin Peau → "Quelle routine pour votre peau ?" + lien
    - Quiz Produits Naturels → "Quelle solution naturelle pour vous ?" + lien
 3. **Comment ca marche** : questions simples → recommandation personnalisee → conseil pharmacien
 4. **Pourquoi c'est fiable** : concu par des pharmaciens, mis a jour regulierement, base sur les recommandations officielles
-5. **CTA** : "Ces quizzes ne remplacent pas un conseil personnalise. Passez nous voir pour adapter les recommandations a votre situation."
-6. **FAQ Schema** (3 questions) : "Est-ce que les quizzes remplacent un avis medical ?", "Combien de temps prend un quiz ?", "Les recommandations sont-elles fiables ?"
+5. **CTA** : "Ces quiz ne remplacent pas un conseil personnalise. Passez nous voir pour adapter les recommandations a votre situation."
+6. **FAQ Schema** (3 questions) : "Est-ce que les quiz remplacent un avis medical ?", "Combien de temps prend un quiz ?", "Les recommandations sont-elles fiables ?"
 
 ### Valeur SEO
 
