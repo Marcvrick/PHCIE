@@ -1,5 +1,5 @@
 # Robots.txt - Pharmacie Charnal
-# Dernière mise à jour: 11 février 2026
+# Dernière mise à jour: 20 février 2026
 # Ce fichier indique aux robots d'indexation comment explorer le site
 
 # Autoriser tous les robots à indexer tout le contenu
