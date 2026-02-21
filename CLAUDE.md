@@ -69,9 +69,9 @@ recrutement-preparatrice-pharmacie-queven.html
 annuaire-sante.html, planning.html
 ```
 
-**Blog:** `blog/*.html` (6 articles)
+**Blog:** `blog/*.html` (8 articles)
 **Marques:** `Nos-marques/*.html` (16 pages + nosmarques.html index + TEMPLATE-marque.html)
-**Quiz:** `Quizzes/*.html` (quiz-automedication, quiz-soin-peau, quiz-coming-soon)
+**Quiz:** `Quizzes/*.html` (quiz-automedication, quiz-soin-peau, quiz-produits-naturels, quiz-coming-soon, guide-quizzes-sante)
 **Assets:** `images/`, `style.css`, `style-v2.css`, `animations.js`
 **Guides:** `Guide Badge produit style HIMS.md`
 
