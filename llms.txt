@@ -47,9 +47,9 @@ Quéven, Lorient, Lanester, Hennebont et communes environnantes du Morbihan.
 - [Contact](https://www.pharmaciecharnal.com/contact.html)
 - [Pharmacie de garde](https://www.pharmaciecharnal.com/pharmacie-de-garde-queven-hennebont-lorient.html)
 - [Annuaire Santé Quéven](https://www.pharmaciecharnal.com/annuaire-sante.html)
-- [Quizzes santé](https://www.pharmaciecharnal.com/Quizzes/guide-quizzes-sante-pharmacie-queven.html)
+- [Quiz santé](https://www.pharmaciecharnal.com/Quizzes/guide-quizzes-sante-pharmacie-queven.html)
 
-## Quizzes interactifs
+## Quiz interactifs
 
 - [Quel médicament pour vos symptômes?](https://www.pharmaciecharnal.com/Quizzes/quiz-automedication.html)
 - [Quelle routine pour votre peau?](https://www.pharmaciecharnal.com/Quizzes/quiz-soin-peau.html)

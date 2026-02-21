@@ -33,7 +33,7 @@ website-pharmacie-charnal/
 │   ├── TEMPLATE-marque.html # Template pour nouvelles pages marques
 │   ├── logos/              # Logos des marques (Avene, Bioderma, Biogaran, etc.)
 │   └── *.md                # Articles marques (briefs pour futures pages)
-├── Quizzes/                # Quizzes interactifs santé
+├── Quizzes/                # Quiz interactifs santé
 │   ├── guide-quizzes-sante-pharmacie-queven.html  # Page guide SEO (hub)
 │   ├── quiz-automedication.html      # Quiz automédication ✅
 │   ├── quiz-soin-peau.html           # Quiz soin de la peau ✅
@@ -166,7 +166,7 @@ Le site migre progressivement d'un design "Wellness Minimal" vers un nouveau des
 2. Nos Marques
 3. Pharmacie de garde
 4. Annuaire Santé
-5. **Quizzes santé** ← Lien vers page guide quiz
+5. **Quiz santé** ← Lien vers page guide quiz
 
 **Ordre des Services (Homepage):**
 1. Délivrance d'ordonnances
@@ -629,9 +629,9 @@ Les deux fichiers sont complémentaires et doivent rester à jour.
 
 **Quizzes:**
 - Quiz produits naturels publié (`quiz-produits-naturels.html`) — badge homepage mis à jour
-- Page guide quizzes créée (`guide-quizzes-sante-pharmacie-queven.html`) — hub SEO pour les 3 quizzes
+- Page guide quizzes créée (`guide-quizzes-sante-pharmacie-queven.html`) — hub SEO pour les 3 quiz
 - "Quizzes santé" ajouté au dropdown Services (navbar) et footer Navigation sur toutes les pages (43 pages)
-- Homepage : lien "Voir tous nos quizzes" sous les badges quiz
+- Homepage : lien "Voir tous nos quiz" sous les badges quiz
 
 **Blog:**
 - Article "Fatigue et moral en fin d'hiver" publié (16 fév)
@@ -641,7 +641,7 @@ Les deux fichiers sont complémentaires et doivent rester à jour.
 
 **SEO:**
 - sitemap.xml mis à jour (+3 URLs : quiz produits naturels, guide quizzes, gastro)
-- llms.txt mis à jour (section Quizzes interactifs + articles récents)
+- llms.txt mis à jour (section Quiz interactifs + articles récents)
 
 ### 6 Février 2026
 
