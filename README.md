@@ -29,18 +29,28 @@ website-pharmacie-charnal/
 ├── professionnels-sante-queven-carte.csv  # Données carte Leaflet
 ├── Nos-marques/            # Section marques
 │   ├── nosmarques.html     # Page catalogue marques (ancres: #cosmetiques, #complements, #premiers-soins)
-│   ├── biogaran-page.html  # Page dédiée Biogaran
+│   ├── biogaran-page.html  # Page dédiée Biogaran (+ 15 autres pages marques)
+│   ├── TEMPLATE-marque.html # Template pour nouvelles pages marques
 │   ├── logos/              # Logos des marques (Avene, Bioderma, Biogaran, etc.)
 │   └── *.md                # Articles marques (briefs pour futures pages)
-├── blog/                   # Articles de blog
+├── Quizzes/                # Quizzes interactifs santé
+│   ├── guide-quizzes-sante-pharmacie-queven.html  # Page guide SEO (hub)
+│   ├── quiz-automedication.html      # Quiz automédication ✅
+│   ├── quiz-soin-peau.html           # Quiz soin de la peau ✅
+│   ├── quiz-produits-naturels.html   # Quiz produits naturels ✅
+│   └── quiz-coming-soon.html         # Placeholder (compléments alimentaires)
+├── blog/                   # Articles de blog (8 articles)
 │   ├── GUIDE-REDACTION-BLOG.md            # Guide rédactionnel Laure
 │   ├── PLANNING-BLOG-PHARMACIE.md         # Planning éditorial
+│   ├── SEO blog strategy.md               # Stratégie SEO blog
 │   ├── detox-apres-fetes-mythe-realite-queven.html
+│   ├── gastro-enterite-prevention-bons-reflexes-queven.html
 │   ├── humidite-douleurs-articulaires-queven.html
 │   ├── prevenir-maux-hiver-queven.html
 │   ├── professionnels-sante-queven-2026.html  # Carte Leaflet interactive
-│   ├── proteger-peau-seche-hiver-breton-queven.html
-│   └── vaccination-adulte-guide-pratique.html
+│   ├── vaccination-adulte-guide-pratique.html
+│   ├── Moral en berne/fatigue-moral-fin-hiver-queven.html
+│   └── Peau Seche/proteger-peau-seche-hiver-breton-queven.html
 ├── fonts/                  # Fonts auto-hébergées (RGPD) - À TÉLÉCHARGER
 └── images/                 # Logo et ressources visuelles
 ```
@@ -151,11 +161,12 @@ Le site migre progressivement d'un design "Wellness Minimal" vers un nouveau des
 
 ### Navigation & UX
 
-**Dropdown Services (toutes pages migrées) :**
+**Dropdown Services (toutes pages) :**
 1. Notre Histoire
-2. **Nos Marques** ← Nouveau lien ajouté
+2. Nos Marques
 3. Pharmacie de garde
 4. Annuaire Santé
+5. **Quizzes santé** ← Lien vers page guide quiz
 
 **Ordre des Services (Homepage):**
 1. Délivrance d'ordonnances
@@ -344,14 +355,16 @@ git push origin main
 
 ## 📝 Articles de Blog Publiés
 
-**6 articles actuellement en ligne:**
+**8 articles actuellement en ligne:**
 
 1. **Détox après les fêtes** - `detox-apres-fetes-mythe-realite-queven.html`
 2. **Humidité et douleurs articulaires** - `humidite-douleurs-articulaires-queven.html`
 3. **Prévenir les maux d'hiver** - `prevenir-maux-hiver-queven.html`
 4. **Professionnels de santé à Quéven** - `professionnels-sante-queven-2026.html` (carte Leaflet)
-5. **Protéger sa peau sèche** - `proteger-peau-seche-hiver-breton-queven.html`
+5. **Protéger sa peau sèche** - `Peau Seche/proteger-peau-seche-hiver-breton-queven.html`
 6. **Vaccination adulte** - `vaccination-adulte-guide-pratique.html`
+7. **Fatigue et moral en fin d'hiver** - `Moral en berne/fatigue-moral-fin-hiver-queven.html` (pub 16 fév)
+8. **Gastro-entérite : prévention et bons réflexes** - `gastro-enterite-prevention-bons-reflexes-queven.html` (pub 21 fév)
 
 **Stratégie éditoriale**:
 - Ton: Voix de Laure (pharmacienne pédagogue, professionnelle accessible)
@@ -601,6 +614,24 @@ Les deux fichiers sont complémentaires et doivent rester à jour.
 
 ## 📝 Changelog Récent
 
+### 20 Février 2026
+
+**Quizzes:**
+- Quiz produits naturels publié (`quiz-produits-naturels.html`) — badge homepage mis à jour
+- Page guide quizzes créée (`guide-quizzes-sante-pharmacie-queven.html`) — hub SEO pour les 3 quizzes
+- "Quizzes santé" ajouté au dropdown Services (navbar) et footer Navigation sur toutes les pages (43 pages)
+- Homepage : lien "Voir tous nos quizzes" sous les badges quiz
+
+**Blog:**
+- Article "Fatigue et moral en fin d'hiver" publié (16 fév)
+- Article "Gastro-entérite : prévention et bons réflexes" publié (21 fév)
+- Article Peau Sèche déplacé dans sous-dossier `Peau Seche/`
+- Stratégie SEO blog documentée (`SEO blog strategy.md`)
+
+**SEO:**
+- sitemap.xml mis à jour (+3 URLs : quiz produits naturels, guide quizzes, gastro)
+- llms.txt mis à jour (section Quizzes interactifs + articles récents)
+
 ### 6 Février 2026
 
 **Pages de marques (`Nos-marques/*-page.html`):**
@@ -625,6 +656,6 @@ Les deux fichiers sont complémentaires et doivent rester à jour.
 
 ---
 
-**Dernière mise à jour**: 6 Février 2026
+**Dernière mise à jour**: 20 Février 2026
 **Version du site**: Production (main branch) - Migration style-v2.css en cours
 **Statut**: ✅ En ligne sur www.pharmaciecharnal.com
