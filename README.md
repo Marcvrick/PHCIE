@@ -498,11 +498,22 @@ La page `recrutement-preparatrice-pharmacie-queven.html` a ses propres règles m
 
 ### Nouvel article de blog
 
+**Structure & navigation :**
 - [ ] Ajouter la navigation "Article précédent/suivant" en bas de l'article (voir modèle ci-dessous)
 - [ ] Mettre à jour l'article précédent pour ajouter le lien "Article suivant" vers le nouveau
 - [ ] Ajouter l'article dans blog.html (liste des articles) — **en première position** (le script homepage récupère le premier)
 - [ ] Vérifier que l'image a un nom ASCII-safe (pas d'accents, espaces → tirets)
-- [ ] Mettre à jour sitemap.xml et feed.json
+- [ ] Mettre à jour sitemap.xml, llms.txt et feed.json
+
+**SEO obligatoire (chaque article doit respecter) :**
+- [ ] **H2/H3 en questions** : au moins 50% des headings doivent être des questions explicites (ex: "Comment éviter...?" plutôt que "Prévention")
+- [ ] **Schema.org** : MedicalWebPage (ou WebPage) + FAQPage (3-5 Q&A) + BreadcrumbList + BlogPosting
+- [ ] **dateModified** dans les schemas — mettre à jour à chaque modification de l'article
+- [ ] **OG image spécifique** : utiliser l'image de l'article (pas le logo générique) pour og:image et twitter:image
+- [ ] **Liens internes** : minimum 3 liens vers d'autres pages du site (articles, quizzes, services, annuaire, contact)
+- [ ] **Citation meta tags** : citation_title, citation_author, citation_author_institution, citation_publication_date, citation_language
+- [ ] **Hyper-localisation** : mentionner Quéven, Bretagne, Morbihan au moins 2-3 fois
+- [ ] **E-E-A-T** : sources/références en fin d'article, mécanismes biologiques, dosages précis
 
 **Modèle bouton "Article précédent"** (à placer après les références, avant `</div></article>`) :
 ```html
