@@ -93,10 +93,20 @@ annuaire-sante.html, planning.html
 **✅ Autorisé:** "Passez nous voir", "Venez en pharmacie", "N'hésitez pas à venir"
 **❌ Interdit:** "Contactez-nous", "Appelez-nous", "Prenez rendez-vous"
 
-### Formulations Naturelles
+### Ton de Voix Blog (Voix de Laure — OBLIGATOIRE)
 
-**✅** "Chez nous", "Notre pharmacie", "Nous proposons"
-**❌** "À la Pharmacie Charnal", "La Pharmacie Charnal propose..."
+**Chaque article de blog doit être écrit dans la voix de Laure.** Référence: article "Moral en berne".
+
+- **"Je" pour l'expertise personnelle:** "L'alternative que je privilégie", "Je vérifie toujours..."
+- **"Nous" pour l'équipe/la pharmacie:** "Passez nous voir", "Chez nous", "Nous prendrons le temps"
+- **Conversationnel:** Parle comme au comptoir, pas comme une encyclopédie médicale
+- **Franche et empathique:** "Parlons franchement", "vous n'êtes pas seul(e)"
+- **Ancrée localement:** Météo bretonne, vie à Quéven, références concrètes
+- **Vulgarisatrice:** Images parlantes ("la boule au ventre"), mécanismes expliqués simplement
+
+**Formulations naturelles:**
+- ✅ "Chez nous", "Notre pharmacie", "Nous proposons"
+- ❌ "À la Pharmacie Charnal", "La Pharmacie Charnal propose..."
 
 ### Informations Pharmacie
 
