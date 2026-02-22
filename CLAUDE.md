@@ -194,13 +194,16 @@ Emplacements prioritaires: `<meta description>`, header, footer
 
 ### Ponctuation
 
-**RÈGLE ABSOLUE:** `!` et `?` doivent TOUJOURS être collés au dernier mot du mot précédent (typographie française standard)
+**RÈGLE ABSOLUE:** `!`, `?` et `:` doivent TOUJOURS être collés au dernier mot du mot précédent (pas d'espace avant)
 
 - ✅ `symptomes?` (pas `symptomes ?`)
 - ✅ `comment tenir le coup en fin d'hiver?`
 - ✅ `Venez nous voir!`
+- ✅ `Crampes abdominales: comprendre et soulager`
+- ✅ `L'essentiel en 3 points:`
 - ❌ `symptomes ?` (INCORRECT)
 - ❌ `Venez nous voir !` (INCORRECT)
+- ❌ `Crampes abdominales : comprendre` (INCORRECT)
 
 Vérifier systématiquement: titres, h1-h6, meta descriptions, textes visibles
 
