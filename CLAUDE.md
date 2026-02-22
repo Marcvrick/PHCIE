@@ -103,6 +103,7 @@ annuaire-sante.html, planning.html
 - **Franche et empathique:** "Parlons franchement", "vous n'êtes pas seul(e)"
 - **Ancrée localement:** Météo bretonne, vie à Quéven, références concrètes
 - **Vulgarisatrice:** Images parlantes ("la boule au ventre"), mécanismes expliqués simplement
+- **Pas d'autopromotion:** Éviter "je recommande souvent/régulièrement/fréquemment" — "je recommande" suffit. Pas d'adverbes de fréquence qui en font trop.
 
 **Formulations naturelles:**
 - ✅ "Chez nous", "Notre pharmacie", "Nous proposons"
