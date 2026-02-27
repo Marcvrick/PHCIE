@@ -710,17 +710,6 @@ p {
     box-shadow: var(--shadow-xl);
 }
 
-.hero-image::before {
-    content: '';
-    position: absolute;
-    top: -20px;
-    right: -20px;
-    width: 100%;
-    height: 100%;
-    background: var(--pastel-teal);
-    border-radius: var(--radius-2xl);
-    z-index: -1;
-}
 
 /* === SECTION HEADERS === */
 .section-header {
