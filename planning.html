@@ -1709,12 +1709,18 @@
                         <label class="form-label">Type de demande</label>
                         <select class="form-select" id="demandeType" required>
                             <option value="">-- Selectionnez --</option>
+                            <option value="absence_group">Demande d'absence</option>
+                            <option value="echange">Echange horaires</option>
                             <option value="recuperation" id="optionRecuperation" class="hidden">Recuperation d'heures</option>
+                        </select>
+                    </div>
+                    <div class="form-group hidden" id="raisonGroup">
+                        <label class="form-label">Raison</label>
+                        <select class="form-select" id="demandeRaison">
                             <option value="absence">Absence personnelle</option>
                             <option value="depart_anticipe">Depart anticipe</option>
                             <option value="maladie">Maladie</option>
                             <option value="conge">Congés</option>
-                            <option value="echange">Echange horaires</option>
                         </select>
                     </div>
 
@@ -3076,6 +3082,7 @@
         // ========== GESTION DU FORMULAIRE ==========
         function handleTypeChange() {
             const type = document.getElementById('demandeType').value;
+            const raisonGroup = document.getElementById('raisonGroup');
             const dateFinGroup = document.getElementById('dateFinGroup');
             const heureGroup = document.getElementById('heureGroup');
             const echangeGroup = document.getElementById('echangeGroup');
@@ -3083,7 +3090,8 @@
             const absenceFields = document.getElementById('absenceFields');
             const recuperationFields = document.getElementById('recuperationFields');
 
-            // Reset
+            // Reset all
+            raisonGroup.classList.add('hidden');
             dateFinGroup.classList.add('hidden');
             heureGroup.classList.add('hidden');
             echangeGroup.classList.add('hidden');
@@ -3092,19 +3100,42 @@
             recuperationFields.classList.add('hidden');
 
             if (type === 'recuperation') {
-                // Hide absence fields, show recovery fields
                 absenceFields.classList.add('hidden');
                 recuperationFields.classList.remove('hidden');
                 populateRecuperationSlots();
-            } else if (type === 'conge' || type === 'maladie') {
-                dateFinGroup.classList.remove('hidden');
-            } else if (type === 'depart_anticipe') {
-                heureGroup.classList.remove('hidden');
-                updateHeureOptions();
+            } else if (type === 'absence_group') {
+                raisonGroup.classList.remove('hidden');
+                handleRaisonChange();
             } else if (type === 'echange') {
                 echangeGroup.classList.remove('hidden');
                 populateEchangeSelect();
+            } else {
+                absenceFields.classList.add('hidden');
             }
+        }
+
+        function handleRaisonChange() {
+            const raison = document.getElementById('demandeRaison').value;
+            const dateFinGroup = document.getElementById('dateFinGroup');
+            const heureGroup = document.getElementById('heureGroup');
+
+            dateFinGroup.classList.add('hidden');
+            heureGroup.classList.add('hidden');
+
+            if (raison === 'conge' || raison === 'maladie') {
+                dateFinGroup.classList.remove('hidden');
+            } else if (raison === 'depart_anticipe') {
+                heureGroup.classList.remove('hidden');
+                updateHeureOptions();
+            }
+        }
+
+        function getEffectiveType() {
+            const type = document.getElementById('demandeType').value;
+            if (type === 'absence_group') {
+                return document.getElementById('demandeRaison').value;
+            }
+            return type;
         }
 
         function updateHeureOptions() {
@@ -3426,10 +3457,11 @@
         // ========== ANALYSE D'IMPACT ==========
         function analyserImpact() {
             const employee = document.getElementById('currentUser').value;
-            const type = document.getElementById('demandeType').value;
+            const rawType = document.getElementById('demandeType').value;
+            const type = getEffectiveType();
 
             // Handle recuperation type separately
-            if (type === 'recuperation') {
+            if (rawType === 'recuperation') {
                 analyserRecuperationImpact(employee);
                 return;
             }
@@ -3705,6 +3737,7 @@
             document.getElementById('engagementCheck').checked = false;
             document.getElementById('absenceFields').classList.remove('hidden');
             document.getElementById('recuperationFields').classList.add('hidden');
+            document.getElementById('raisonGroup').classList.add('hidden');
             currentImpact = null;
             selectedRecoverySlots = [];
             selectedRecupSlots = [];
@@ -6400,6 +6433,7 @@ Connectez-vous a l'application Planning pour traiter cette demande.
 
             // Type change
             document.getElementById('demandeType').addEventListener('change', handleTypeChange);
+            document.getElementById('demandeRaison').addEventListener('change', handleRaisonChange);
             document.getElementById('demandePeriode').addEventListener('change', updateHeureOptions);
 
             // Analyse impact
