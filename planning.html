@@ -3567,10 +3567,10 @@
             // Analyser l'effectif
             renderImpactEffectif(joursDetails, employee, periode, heure);
 
-            // Proposer recuperation uniquement pour depart anticipe
+            // Proposer recuperation pour toutes les demandes d'absence (pas echange)
             const recoverySection = document.getElementById('impactRecovery');
             const engagementBox = document.querySelector('.engagement-box');
-            if (type === 'depart_anticipe') {
+            if (type !== 'echange') {
                 recoverySection.classList.remove('hidden');
                 engagementBox.classList.remove('hidden');
                 renderRecoverySlots(employee, heuresConcernees, dateDebut);
