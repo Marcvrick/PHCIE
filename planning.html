@@ -1744,13 +1744,7 @@
                             <div class="form-group hidden" id="heureGroup">
                                 <label class="form-label">Heure de depart (si depart anticipe)</label>
                                 <select class="form-select" id="demandeHeure">
-                                    <option value="">-- Journee complete --</option>
-                                    <option value="14h">14h</option>
-                                    <option value="15h">15h</option>
-                                    <option value="16h">16h</option>
-                                    <option value="17h">17h</option>
-                                    <option value="17h30">17h30</option>
-                                    <option value="18h">18h</option>
+                                    <option value="">-- Choisir l'heure de depart --</option>
                                 </select>
                             </div>
                             <div class="form-group hidden" id="echangeGroup">
@@ -3106,10 +3100,30 @@
                 dateFinGroup.classList.remove('hidden');
             } else if (type === 'depart_anticipe') {
                 heureGroup.classList.remove('hidden');
+                updateHeureOptions();
             } else if (type === 'echange') {
                 echangeGroup.classList.remove('hidden');
                 populateEchangeSelect();
             }
+        }
+
+        function updateHeureOptions() {
+            const periode = document.getElementById('demandePeriode').value;
+            const select = document.getElementById('demandeHeure');
+            const HEURES_MATIN = ['9h', '9h30', '10h', '10h30', '11h', '11h30', '12h'];
+            const HEURES_PM = ['14h', '15h', '16h', '17h', '17h30', '18h'];
+            let options;
+            if (periode === 'matin') {
+                options = HEURES_MATIN;
+            } else if (periode === 'apresmidi') {
+                options = HEURES_PM;
+            } else {
+                options = [...HEURES_MATIN, ...HEURES_PM];
+            }
+            select.innerHTML = '<option value="">-- Choisir l\'heure de depart --</option>';
+            options.forEach(h => {
+                select.innerHTML += `<option value="${h}">${h}</option>`;
+            });
         }
 
         function populateEchangeSelect() {
@@ -6386,6 +6400,7 @@ Connectez-vous a l'application Planning pour traiter cette demande.
 
             // Type change
             document.getElementById('demandeType').addEventListener('change', handleTypeChange);
+            document.getElementById('demandePeriode').addEventListener('change', updateHeureOptions);
 
             // Analyse impact
             document.getElementById('analyserImpact').addEventListener('click', analyserImpact);
