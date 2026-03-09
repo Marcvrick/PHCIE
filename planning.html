@@ -1911,7 +1911,14 @@
             <div class="stats-grid" id="statsDashboard"></div>
 
             <div class="card">
-                <h2 class="card-title">Tensions d'effectif (4 prochaines semaines)</h2>
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+                    <h2 class="card-title" style="margin-bottom: 0;">Tensions d'effectif</h2>
+                    <div style="display: flex; align-items: center; gap: 0.5rem;">
+                        <button class="btn btn-secondary" style="padding: 0.3rem 0.6rem; font-size: 0.85rem;" onclick="changeTensionsMonth(-1)">◀</button>
+                        <span id="tensionsMonthLabel" style="font-weight: 600; font-size: 0.95rem; min-width: 120px; text-align: center;"></span>
+                        <button class="btn btn-secondary" style="padding: 0.3rem 0.6rem; font-size: 0.85rem;" onclick="changeTensionsMonth(1)">▶</button>
+                    </div>
+                </div>
                 <div id="tensionsCalendar"></div>
             </div>
 
@@ -4361,42 +4368,106 @@ Connectez-vous a l'application Planning pour traiter cette demande.
             return absents;
         }
 
-        function renderTensionsCalendar() {
-            const container = document.getElementById('tensionsCalendar');
+        // Manager tensions: month navigation state
+        let tensionsMonth = getNowFrance().getMonth();
+        let tensionsYear = getNowFrance().getFullYear();
+
+        function changeTensionsMonth(delta) {
+            tensionsMonth += delta;
+            if (tensionsMonth > 11) { tensionsMonth = 0; tensionsYear++; }
+            if (tensionsMonth < 0) { tensionsMonth = 11; tensionsYear--; }
+            renderTensionsCalendarManager();
+        }
+
+        function buildTensionsGridHTML(dates) {
+            const legend = '<div style="margin-top: 1rem; font-size: 0.8rem; display: flex; gap: 1rem;">'
+                + '<span><span style="display: inline-block; width: 12px; height: 12px; background: var(--green-light); border-radius: 2px;"></span> OK (4+)</span>'
+                + '<span><span style="display: inline-block; width: 12px; height: 12px; background: var(--orange-light); border-radius: 2px;"></span> Limite (3.5)</span>'
+                + '<span><span style="display: inline-block; width: 12px; height: 12px; background: var(--red-light); border-radius: 2px;"></span> Critique (≤3)</span>'
+                + '</div>';
+
             let html = '<div style="display: grid; grid-template-columns: repeat(7, 1fr); gap: 0.25rem; text-align: center; margin-bottom: 0.5rem;">';
             ['Lun', 'Mar', 'Mer', 'Jeu', 'Ven', 'Sam', 'Dim'].forEach(day => {
                 html += `<div style="font-weight: 600; padding: 0.5rem;">${day}</div>`;
             });
             html += '</div><div class="tensions-grid">';
 
-            const today = getNowFrance();
-            const startOfWeek = new Date(today);
-            startOfWeek.setDate(today.getDate() - today.getDay() + 1);
-
-            for (let week = 0; week < 4; week++) {
-                for (let day = 0; day < 7; day++) {
-                    const checkDate = new Date(startOfWeek);
-                    checkDate.setDate(startOfWeek.getDate() + (week * 7) + day);
-                    const jour = getJourFromDate(checkDate);
-                    const dayNum = checkDate.getDate();
-
-                    if (!jour) {
-                        html += `<div class="tension-day" style="background: var(--gray-light);">${dayNum}<br><small>Ferme</small></div>`;
-                    } else {
-                        const semaine = getSemaineType(checkDate);
-                        const dateStr = formatLocalDate(checkDate);
-                        const absents = getAbsentsOnDate(dateStr);
-                        const amEffectif = getEffectifJour(jour, semaine, 'am', absents);
-                        const pmEffectif = jour !== 'samedi' ? getEffectifPondere(jour, semaine, absents) : amEffectif;
-                        const minVal = Math.min(amEffectif.minEffectif, pmEffectif.minEffectif);
-                        let className;
-                        if (minVal >= SEUILS.optimal) className = 'ok';
-                        else if (minVal > SEUILS.critique) className = 'limite';
-                        else className = 'critique';
-                        html += `<div class="tension-day ${className}">${dayNum}<br><small>${minVal}p</small></div>`;
-                    }
+            dates.forEach(checkDate => {
+                const jour = getJourFromDate(checkDate);
+                const dayNum = checkDate.getDate();
+                if (!jour) {
+                    html += `<div class="tension-day" style="background: var(--gray-light);">${dayNum}<br><small>Ferme</small></div>`;
+                } else {
+                    const semaine = getSemaineType(checkDate);
+                    const dateStr = formatLocalDate(checkDate);
+                    const absents = getAbsentsOnDate(dateStr);
+                    const amEffectif = getEffectifJour(jour, semaine, 'am', absents);
+                    const pmEffectif = jour !== 'samedi' ? getEffectifPondere(jour, semaine, absents) : amEffectif;
+                    const minVal = Math.min(amEffectif.minEffectif, pmEffectif.minEffectif);
+                    let className;
+                    if (minVal >= SEUILS.optimal) className = 'ok';
+                    else if (minVal > SEUILS.critique) className = 'limite';
+                    else className = 'critique';
+                    html += `<div class="tension-day ${className}">${dayNum}<br><small>${minVal}p</small></div>`;
                 }
-            }
+            });
+
+            html += '</div>';
+            html += legend;
+            return html;
+        }
+
+        // Manager view: full month calendar with navigation
+        function renderTensionsCalendarManager() {
+            const container = document.getElementById('tensionsCalendar');
+            if (!container) return;
+
+            const MONTHS_FR = ['Janvier', 'Fevrier', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Aout', 'Septembre', 'Octobre', 'Novembre', 'Decembre'];
+            const label = document.getElementById('tensionsMonthLabel');
+            if (label) label.textContent = `${MONTHS_FR[tensionsMonth]} ${tensionsYear}`;
+
+            // Build full month grid (aligned to weekday columns)
+            const firstDay = new Date(tensionsYear, tensionsMonth, 1);
+            const daysInMonth = new Date(tensionsYear, tensionsMonth + 1, 0).getDate();
+            // Monday=0 offset: getDay() returns 0=Sun, we want Mon=0
+            const startOffset = (firstDay.getDay() + 6) % 7;
+
+            const dates = [];
+            // Empty slots before month starts
+            for (let i = 0; i < startOffset; i++) dates.push(null);
+            for (let d = 1; d <= daysInMonth; d++) dates.push(new Date(tensionsYear, tensionsMonth, d));
+            // Pad to complete last week
+            while (dates.length % 7 !== 0) dates.push(null);
+
+            let html = '<div style="display: grid; grid-template-columns: repeat(7, 1fr); gap: 0.25rem; text-align: center; margin-bottom: 0.5rem;">';
+            ['Lun', 'Mar', 'Mer', 'Jeu', 'Ven', 'Sam', 'Dim'].forEach(day => {
+                html += `<div style="font-weight: 600; padding: 0.5rem;">${day}</div>`;
+            });
+            html += '</div><div class="tensions-grid">';
+
+            dates.forEach(checkDate => {
+                if (!checkDate) {
+                    html += '<div class="tension-day" style="background: transparent;"></div>';
+                    return;
+                }
+                const jour = getJourFromDate(checkDate);
+                const dayNum = checkDate.getDate();
+                if (!jour) {
+                    html += `<div class="tension-day" style="background: var(--gray-light);">${dayNum}<br><small>Ferme</small></div>`;
+                } else {
+                    const semaine = getSemaineType(checkDate);
+                    const dateStr = formatLocalDate(checkDate);
+                    const absents = getAbsentsOnDate(dateStr);
+                    const amEffectif = getEffectifJour(jour, semaine, 'am', absents);
+                    const pmEffectif = jour !== 'samedi' ? getEffectifPondere(jour, semaine, absents) : amEffectif;
+                    const minVal = Math.min(amEffectif.minEffectif, pmEffectif.minEffectif);
+                    let className;
+                    if (minVal >= SEUILS.optimal) className = 'ok';
+                    else if (minVal > SEUILS.critique) className = 'limite';
+                    else className = 'critique';
+                    html += `<div class="tension-day ${className}">${dayNum}<br><small>${minVal}p</small></div>`;
+                }
+            });
 
             html += '</div>';
             html += '<div style="margin-top: 1rem; font-size: 0.8rem; display: flex; gap: 1rem;">';
@@ -4405,9 +4476,31 @@ Connectez-vous a l'application Planning pour traiter cette demande.
             html += '<span><span style="display: inline-block; width: 12px; height: 12px; background: var(--red-light); border-radius: 2px;"></span> Critique (≤3)</span>';
             html += '</div>';
             container.innerHTML = html;
-            // Also render in planning tab if present
+        }
+
+        // Planning tab: rolling 4 weeks from today
+        function renderTensionsPlanningTab() {
             const planningContainer = document.getElementById('tensionsCalendarPlanning');
-            if (planningContainer) planningContainer.innerHTML = html;
+            if (!planningContainer) return;
+
+            const today = getNowFrance();
+            const startOfWeek = new Date(today);
+            startOfWeek.setDate(today.getDate() - today.getDay() + 1);
+
+            const dates = [];
+            for (let week = 0; week < 4; week++) {
+                for (let day = 0; day < 7; day++) {
+                    const d = new Date(startOfWeek);
+                    d.setDate(startOfWeek.getDate() + (week * 7) + day);
+                    dates.push(d);
+                }
+            }
+            planningContainer.innerHTML = buildTensionsGridHTML(dates);
+        }
+
+        function renderTensionsCalendar() {
+            renderTensionsCalendarManager();
+            renderTensionsPlanningTab();
         }
 
         function renderHistoriqueComplet() {
