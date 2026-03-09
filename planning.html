@@ -2651,7 +2651,7 @@
 
         function populateMonthSelectors() {
             const months = getMonthOptions();
-            const today = new Date();
+            const today = getNowFrance();
 
             // Employee selector
             const empSelect = document.getElementById('employeeMonthSelect');
@@ -2703,7 +2703,7 @@
 
             const monthSelect = document.getElementById('employeeMonthSelect');
             const month = parseInt(monthSelect.value);
-            const year = new Date().getFullYear();
+            const year = getNowFrance().getFullYear();
             const data = calculateMonthlyHoursForEmployee(employee, month, year);
             if (!data) {
                 container.innerHTML = '<p style="color: var(--gray);">Pas de planning disponible.</p>';
@@ -2841,20 +2841,50 @@
         }
 
         // Parse "YYYY-MM-DD" en heure locale (evite le decalage UTC)
+        // Garantit que la date est interpretee comme Paris midnight, pas UTC
         function parseLocalDate(dateStr) {
             if (typeof dateStr === 'string' && /^\d{4}-\d{2}-\d{2}$/.test(dateStr)) {
                 const [y, m, d] = dateStr.split('-').map(Number);
                 return new Date(y, m - 1, d);
             }
+            if (dateStr instanceof Date) return dateStr;
             return new Date(dateStr);
         }
 
+        // Cree une date Paris a partir de composants (year, month 0-indexed, day)
+        // Utiliser TOUJOURS cette fonction au lieu de new Date(year, month, day)
+        function makeDateParis(year, month, day) {
+            return new Date(year, month, day);
+        }
+
+        // Toujours utiliser l'heure de France, quel que soit le fuseau horaire du navigateur
+        // Utilise Intl.DateTimeFormat (compatible Safari/iPhone/Chrome/Firefox)
+        function getNowFrance() {
+            const fmt = new Intl.DateTimeFormat('en-US', {
+                timeZone: 'Europe/Paris',
+                year: 'numeric', month: '2-digit', day: '2-digit',
+                hour: '2-digit', minute: '2-digit', second: '2-digit',
+                hour12: false
+            });
+            const parts = {};
+            fmt.formatToParts(new Date()).forEach(p => { parts[p.type] = p.value; });
+            return new Date(
+                parseInt(parts.year), parseInt(parts.month) - 1, parseInt(parts.day),
+                parseInt(parts.hour), parseInt(parts.minute), parseInt(parts.second)
+            );
+        }
+
+        function formatLocalDate(d) {
+            if (typeof d === 'string') d = parseLocalDate(d);
+            return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
+        }
+
         function formatDate(dateStr) {
-            return parseLocalDate(dateStr).toLocaleDateString('fr-FR', { weekday: 'long', day: 'numeric', month: 'long' });
+            return parseLocalDate(dateStr).toLocaleDateString('fr-FR', { weekday: 'long', day: 'numeric', month: 'long', timeZone: 'Europe/Paris' });
         }
 
         function formatDateShort(dateStr) {
-            return parseLocalDate(dateStr).toLocaleDateString('fr-FR', { day: 'numeric', month: 'short' });
+            return parseLocalDate(dateStr).toLocaleDateString('fr-FR', { day: 'numeric', month: 'short', timeZone: 'Europe/Paris' });
         }
 
         function getTypeLabel(type) {
@@ -2892,7 +2922,7 @@
         async function addDemande(demande) {
             demande.id = Date.now();
             demande.status = demande.type === 'echange' ? 'echange_attente' : 'attente';
-            demande.dateCreation = new Date().toISOString();
+            demande.dateCreation = getNowFrance().toISOString();
             try {
                 await db.collection('demandes').doc(String(demande.id)).set(demande);
             } catch (e) {
@@ -2906,7 +2936,7 @@
                 await db.collection('demandes').doc(String(id)).update({
                     status: status,
                     commentaire: commentaire,
-                    dateTraitement: new Date().toISOString()
+                    dateTraitement: getNowFrance().toISOString()
                 });
             } catch (e) {
                 console.error('Erreur update demande:', e);
@@ -2973,7 +3003,7 @@
         // ========== STATISTIQUES MANAGER ==========
         function calculateStats() {
             const demandes = getDemandes();
-            const now = new Date();
+            const now = getNowFrance();
             const thirtyDaysAgo = new Date(now - 30 * 24 * 60 * 60 * 1000);
 
             // Demandes des 30 derniers jours
@@ -3199,7 +3229,7 @@
             }
         }
 
-        function populateRecuperationSlots() {
+        async function populateRecuperationSlots() {
             const employee = document.getElementById('currentUser').value;
             const balances = calculateHoursBalance();
             const balance = balances[employee];
@@ -3209,7 +3239,7 @@
             selectedRecupSlots = [];
 
             const container = document.getElementById('recupSlotsContainer');
-            const slots = getAvailableRecoverySlots(employee);
+            const slots = await getAvailableRecoverySlots(employee);
 
             if (slots.length === 0) {
                 container.innerHTML = '<p style="color: var(--gray);">Aucun creneau de recuperation disponible dans les 30 prochains jours.</p>';
@@ -3265,9 +3295,18 @@
             return usedSlots.some(s => s.date === date && s.periode === periode);
         }
 
-        function getAvailableRecoverySlots(employee, startFrom) {
+        async function getAvailableRecoverySlots(employee, startFrom) {
+            // Force fresh read from Firestore before computing slots
+            try {
+                const snapshot = await db.collection('demandes').get();
+                demandesCache = [];
+                snapshot.forEach(doc => demandesCache.push(doc.data()));
+            } catch (e) {
+                console.warn('Recovery slots: Firestore refresh failed, using cache', e);
+            }
+
             const slots = [];
-            const startDate = startFrom ? parseLocalDate(startFrom) : new Date();
+            const startDate = startFrom ? parseLocalDate(startFrom) : getNowFrance();
             const employeePlanning = STAFF[employee];
 
             // Recuperer les creneaux deja utilises
@@ -3288,7 +3327,7 @@
                 if (!jour) continue;
 
                 const semaine = getSemaineType(checkDate);
-                const dateStr = checkDate.toISOString().split('T')[0];
+                const dateStr = formatLocalDate(checkDate);
 
                 // Skip days where employee is on vacation
                 if (vacationDates.has(dateStr)) continue;
@@ -3622,9 +3661,10 @@
             container.innerHTML = html;
         }
 
-        function renderRecoverySlots(employee, heuresARecuperer, dateDebut) {
+        async function renderRecoverySlots(employee, heuresARecuperer, dateDebut) {
             const container = document.getElementById('recoverySlots');
-            const slots = getAvailableRecoverySlots(employee, dateDebut);
+            container.innerHTML = '<p style="color: var(--gray);">Chargement des creneaux...</p>';
+            const slots = await getAvailableRecoverySlots(employee, dateDebut);
 
             let html = '';
             if (slots.length === 0) {
@@ -3779,6 +3819,7 @@ ${demande.recoverySlots?.length > 0 ? `
 RECUPERATION
 ------------
 ${recoveryText}` : ''}
+
 ---
 Connectez-vous a l'application Planning pour traiter cette demande.
 `);
@@ -3933,8 +3974,8 @@ Connectez-vous a l'application Planning pour traiter cette demande.
                 heuresConcernees: heures,
                 motif: motif || `Echange: ${absent} absent(e), ${remplacant} remplace`,
                 status: 'approuvee',
-                dateCreation: new Date().toISOString(),
-                dateTraitement: new Date().toISOString(),
+                dateCreation: getNowFrance().toISOString(),
+                dateTraitement: getNowFrance().toISOString(),
                 commentaire: 'Enregistre par le manager'
             };
 
@@ -3981,7 +4022,6 @@ Connectez-vous a l'application Planning pour traiter cette demande.
             if (!jour) { alert('Dimanche : pharmacie fermee.'); return; }
 
             const semaine = getSemaineType(date);
-            // For recovery, use a standard shift duration since the employee might not normally work that day
             let heures = 0;
             if (periode === 'journee') {
                 const hAm = calculerHeures(employee, jour, semaine, 'am');
@@ -4044,7 +4084,6 @@ Connectez-vous a l'application Planning pour traiter cette demande.
                 return;
             }
 
-            // Create absence demande
             const absenceId = Date.now();
             const demande = {
                 id: absenceId,
@@ -4059,8 +4098,8 @@ Connectez-vous a l'application Planning pour traiter cette demande.
                 heuresConcernees: heures,
                 motif: motif || 'Absence enregistree par le manager',
                 status: 'approuvee',
-                dateCreation: new Date().toISOString(),
-                dateTraitement: new Date().toISOString(),
+                dateCreation: getNowFrance().toISOString(),
+                dateTraitement: getNowFrance().toISOString(),
                 commentaire: 'Enregistre retroactivement par le manager',
                 recoverySlots: absenceRecoverySlots.length > 0 ? [...absenceRecoverySlots] : undefined
             };
@@ -4068,7 +4107,6 @@ Connectez-vous a l'application Planning pour traiter cette demande.
             try {
                 await db.collection('demandes').doc(String(absenceId)).set(demande);
 
-                // Create standalone recuperation if recovery slots exist
                 if (absenceRecoverySlots.length > 0) {
                     const totalRecup = absenceRecoverySlots.reduce((s, r) => s + r.heures, 0);
                     const recupId = Date.now() + 1;
@@ -4080,8 +4118,8 @@ Connectez-vous a l'application Planning pour traiter cette demande.
                         heuresRecuperees: totalRecup,
                         heuresDuesAvant: heures,
                         status: 'approuvee',
-                        dateCreation: new Date().toISOString(),
-                        dateTraitement: new Date().toISOString(),
+                        dateCreation: getNowFrance().toISOString(),
+                        dateTraitement: getNowFrance().toISOString(),
                         commentaire: `Recuperation pour absence du ${formatDate(date)}`
                     };
                     await db.collection('demandes').doc(String(recupId)).set(recup);
@@ -4094,7 +4132,6 @@ Connectez-vous a l'application Planning pour traiter cette demande.
                 if (reste > 0) msg += `\nReste a recuperer: ${formatHeures(reste)}.`;
                 alert(msg);
 
-                // Reset form
                 document.getElementById('absencePasseeEmployee').value = '';
                 document.getElementById('absencePasseeDate').value = '';
                 document.getElementById('absencePasseeMotif').value = '';
@@ -4166,6 +4203,7 @@ Connectez-vous a l'application Planning pour traiter cette demande.
                     `;
                 }
 
+                const canCancel = d.status === 'attente' || d.status === 'echange_attente';
                 html += `
                     <div class="demande-card">
                         <div class="demande-header">
@@ -4176,6 +4214,7 @@ Connectez-vous a l'application Planning pour traiter cette demande.
                             ${detailsHtml}
                             ${d.commentaire ? `<p style="margin-top: 0.5rem; font-style: italic;"><strong>Commentaire :</strong> ${sanitize(d.commentaire)}</p>` : ''}
                         </div>
+                        ${canCancel ? `<div style="margin-top: 0.5rem; text-align: right;"><button class="btn btn-danger" style="font-size: 0.75rem; padding: 0.25rem 0.75rem;" onclick="cancelDemandeRequest(${d.id})">Annuler ma demande</button></div>` : ''}
                     </div>
                 `;
             });
@@ -4325,7 +4364,7 @@ Connectez-vous a l'application Planning pour traiter cette demande.
             });
             html += '</div><div class="tensions-grid">';
 
-            const today = new Date();
+            const today = getNowFrance();
             const startOfWeek = new Date(today);
             startOfWeek.setDate(today.getDate() - today.getDay() + 1);
 
@@ -4340,7 +4379,7 @@ Connectez-vous a l'application Planning pour traiter cette demande.
                         html += `<div class="tension-day" style="background: var(--gray-light);">${dayNum}<br><small>Ferme</small></div>`;
                     } else {
                         const semaine = getSemaineType(checkDate);
-                        const dateStr = `${checkDate.getFullYear()}-${String(checkDate.getMonth() + 1).padStart(2, '0')}-${String(checkDate.getDate()).padStart(2, '0')}`;
+                        const dateStr = formatLocalDate(checkDate);
                         const absents = getAbsentsOnDate(dateStr);
                         const amEffectif = getEffectifJour(jour, semaine, 'am', absents);
                         const pmEffectif = jour !== 'samedi' ? getEffectifPondere(jour, semaine, absents) : amEffectif;
@@ -4377,7 +4416,7 @@ Connectez-vous a l'application Planning pour traiter cette demande.
             html += '<th style="padding: 0.5rem; text-align: left;">Employe</th>';
             html += '<th style="padding: 0.5rem; text-align: left;">Type</th>';
             html += '<th style="padding: 0.5rem; text-align: left;">Date</th>';
-            html += '<th style="padding: 0.5rem; text-align: left;">Heures</th>';
+            html += '<th style="padding: 0.5rem; text-align: left;">Duree</th>';
             html += '<th style="padding: 0.5rem; text-align: left;">Statut</th>';
             html += '<th style="padding: 0.5rem; text-align: left;">Actions</th>';
             html += '</tr></thead><tbody>';
@@ -4451,13 +4490,13 @@ Connectez-vous a l'application Planning pour traiter cette demande.
             const data = {
                 demandes: getDemandes(),
                 vacancesSolde: getVacancesSolde(),
-                exportDate: new Date().toISOString()
+                exportDate: getNowFrance().toISOString()
             };
             const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
             const url = URL.createObjectURL(blob);
             const a = document.createElement('a');
             a.href = url;
-            a.download = `planning-export-${new Date().toISOString().split('T')[0]}.json`;
+            a.download = `planning-export-${formatLocalDate(getNowFrance())}.json`;
             a.click();
         }
 
@@ -4514,17 +4553,17 @@ Connectez-vous a l'application Planning pour traiter cette demande.
 
         async function performWeeklyBackup() {
             try {
-                const now = new Date();
+                const now = getNowFrance();
                 const dayOfWeek = now.getDay(); // 0=Sunday, 6=Saturday
                 const hour = now.getHours();
 
-                // Check if it's Saturday and time >= 14:00
+                // Check if it's Saturday and time >= 14:00 (heure francaise)
                 if (dayOfWeek !== 6 || hour < 14) {
                     return;
                 }
 
                 const tracker = await getLastBackupTracker() || {};
-                const today = new Date().toISOString().split('T')[0]; // YYYY-MM-DD
+                const today = formatLocalDate(getNowFrance()); // YYYY-MM-DD local
 
                 // Check if backup already done today
                 if (tracker.lastBackupDate === today) {
@@ -4537,7 +4576,7 @@ Connectez-vous a l'application Planning pour traiter cette demande.
                     vacancesSolde: getVacancesSolde(),
                     contracts: getContracts(),
                     staff_schedule: STAFF,
-                    exportDate: new Date().toISOString(),
+                    exportDate: getNowFrance().toISOString(),
                     backupType: 'weekly_auto'
                 };
 
@@ -4546,13 +4585,13 @@ Connectez-vous a l'application Planning pour traiter cette demande.
                 const url = URL.createObjectURL(blob);
                 const a = document.createElement('a');
                 a.href = url;
-                a.download = `planning-backup-${new Date().toISOString().split('T')[0]}.json`;
+                a.download = `planning-backup-${formatLocalDate(getNowFrance())}.json`;
                 a.click();
 
                 // Update tracker
                 const newTracker = {
                     lastBackupDate: today,
-                    lastBackupTime: now.toISOString(),
+                    lastBackupTime: getNowFrance().toISOString(),
                     backupCount: (tracker.backupCount || 0) + 1
                 };
                 await saveBackupTracker(newTracker);
@@ -4578,11 +4617,13 @@ Connectez-vous a l'application Planning pour traiter cette demande.
                 const formattedDate = lastBackup.toLocaleDateString('fr-FR', {
                     year: 'numeric',
                     month: 'long',
-                    day: 'numeric'
+                    day: 'numeric',
+                    timeZone: 'Europe/Paris'
                 });
                 const formattedTime = lastBackup.toLocaleTimeString('fr-FR', {
                     hour: '2-digit',
-                    minute: '2-digit'
+                    minute: '2-digit',
+                    timeZone: 'Europe/Paris'
                 });
 
                 statusEl.innerHTML = `
@@ -4641,8 +4682,8 @@ Connectez-vous a l'application Planning pour traiter cette demande.
             '2028-12-25': 'Noel'
         };
 
-        let calendarMonth = new Date().getMonth();
-        let calendarYear = new Date().getFullYear();
+        let calendarMonth = getNowFrance().getMonth();
+        let calendarYear = getNowFrance().getFullYear();
         let currentVacancesImpact = null;
         let editingVacancesId = null; // ID de la demande en cours de modification
 
@@ -5001,7 +5042,7 @@ Connectez-vous a l'application Planning pour traiter cette demande.
                 // Update existing request
                 demande.id = editingVacancesId;
                 demande.status = 'attente';
-                demande.dateCreation = new Date().toISOString();
+                demande.dateCreation = getNowFrance().toISOString();
                 try {
                     await db.collection('demandes').doc(String(editingVacancesId)).set(demande);
                 } catch (e) {
@@ -5047,7 +5088,7 @@ Connectez-vous a l'application Planning pour traiter cette demande.
         // Calendar rendering
         function renderVacancesCalendar() {
             const container = document.getElementById('vacancesCalendar');
-            document.getElementById('calMonth').textContent = new Date(calendarYear, calendarMonth).toLocaleDateString('fr-FR', { month: 'long', year: 'numeric' });
+            document.getElementById('calMonth').textContent = new Date(calendarYear, calendarMonth).toLocaleDateString('fr-FR', { month: 'long', year: 'numeric', timeZone: 'Europe/Paris' });
 
             const firstDay = new Date(calendarYear, calendarMonth, 1);
             const lastDay = new Date(calendarYear, calendarMonth + 1, 0);
@@ -5063,7 +5104,7 @@ Connectez-vous a l'application Planning pour traiter cette demande.
                 html += `<div class="calendar-header">${d}</div>`;
             });
 
-            const today = new Date().toISOString().split('T')[0];
+            const today = formatLocalDate(getNowFrance());
 
             // Fill previous month
             for (let i = 0; i < startDay; i++) {
@@ -5167,6 +5208,16 @@ Connectez-vous a l'application Planning pour traiter cette demande.
             try {
                 await db.collection('demandes').doc(String(id)).delete();
                 editingVacancesId = null;
+            } catch (e) {
+                console.error('Erreur suppression demande:', e);
+                alert('Erreur lors de la suppression.');
+            }
+        }
+
+        async function cancelDemandeRequest(id) {
+            if (!confirm('Annuler cette demande ?')) return;
+            try {
+                await db.collection('demandes').doc(String(id)).delete();
             } catch (e) {
                 console.error('Erreur suppression demande:', e);
                 alert('Erreur lors de la suppression.');
@@ -5509,9 +5560,9 @@ Connectez-vous a l'application Planning pour traiter cette demande.
         function calculateVacationDays(contract) {
             if (!contract || !contract.hireDate) return { acquired: 0, bonus: 0, total: 0, details: 'Date d\'embauche requise' };
 
-            const today = new Date();
-            const hireDate = new Date(contract.hireDate);
-            const endDate = contract.endDate ? new Date(contract.endDate) : null;
+            const today = getNowFrance();
+            const hireDate = parseLocalDate(contract.hireDate);
+            const endDate = contract.endDate ? parseLocalDate(contract.endDate) : null;
 
             // Si l'employe n'a pas encore commence
             if (hireDate > today) {
@@ -5598,8 +5649,8 @@ Connectez-vous a l'application Planning pour traiter cette demande.
         function getContractEndAlert(contract) {
             if (!contract.endDate || contract.contractType === 'CDI' || contract.contractType === 'freelance') return null;
 
-            const endDate = new Date(contract.endDate);
-            const today = new Date();
+            const endDate = parseLocalDate(contract.endDate);
+            const today = getNowFrance();
             const daysUntilEnd = Math.ceil((endDate - today) / (1000 * 60 * 60 * 24));
 
             if (daysUntilEnd < 0) {
@@ -5630,8 +5681,8 @@ Connectez-vous a l'application Planning pour traiter cette demande.
                                  contract.contractType === 'freelance' ? 'Freelance' : 'Periode d\'essai';
 
                 // Format dates for display
-                const hireDate = contract.hireDate ? parseLocalDate(contract.hireDate).toLocaleDateString('fr-FR') : 'N/A';
-                const endDate = contract.endDate ? parseLocalDate(contract.endDate).toLocaleDateString('fr-FR') : 'N/A';
+                const hireDate = contract.hireDate ? parseLocalDate(contract.hireDate).toLocaleDateString('fr-FR', { timeZone: 'Europe/Paris' }) : 'N/A';
+                const endDate = contract.endDate ? parseLocalDate(contract.endDate).toLocaleDateString('fr-FR', { timeZone: 'Europe/Paris' }) : 'N/A';
 
                 html += `
                     <div class="contract-card">
@@ -6113,7 +6164,7 @@ Connectez-vous a l'application Planning pour traiter cette demande.
             return hours;
         }
 
-        let editingExistingEmployee = null; // nom de l'employe en cours de modification
+        let editingExistingEmployee = null;
 
         function selectTemplate(templateName) {
             selectedTemplate = templateName;
@@ -6215,7 +6266,6 @@ Connectez-vous a l'application Planning pour traiter cette demande.
                 return;
             }
 
-            // Si on modifie la meme personne, pas de confirmation. Sinon, demander.
             if (STAFF[name] && name !== editingExistingEmployee && !confirm(`Une employée nommée ${name} existe déjà. Remplacer ?`)) {
                 return;
             }
@@ -6225,7 +6275,7 @@ Connectez-vous a l'application Planning pour traiter cette demande.
                 role: role,
                 paire: currentSchedule.paire,
                 impaire: currentSchedule.impaire,
-                createdAt: new Date().toISOString(),
+                createdAt: getNowFrance().toISOString(),
                 createdBy: 'manager',
                 source_template: selectedTemplate
             };
@@ -6251,7 +6301,7 @@ Connectez-vous a l'application Planning pour traiter cette demande.
                 if (!contracts[name]) {
                     contracts[name] = {
                         contractType: 'CDI',
-                        hireDate: new Date().toISOString().split('T')[0],
+                        hireDate: formatLocalDate(getNowFrance()),
                         endDate: null,
                         daysTaken: 0
                     };
@@ -6468,7 +6518,7 @@ Connectez-vous a l'application Planning pour traiter cette demande.
 
             // Calendar navigation (block past months)
             document.getElementById('calPrev').addEventListener('click', () => {
-                const now = new Date();
+                const now = getNowFrance();
                 const prevMonth = calendarMonth - 1 < 0 ? 11 : calendarMonth - 1;
                 const prevYear = calendarMonth - 1 < 0 ? calendarYear - 1 : calendarYear;
                 if (prevYear < now.getFullYear() || (prevYear === now.getFullYear() && prevMonth < now.getMonth())) return;
@@ -6514,7 +6564,7 @@ Connectez-vous a l'application Planning pour traiter cette demande.
             document.getElementById('closeConfirm').addEventListener('click', closeConfirmModal);
 
             // Set min dates
-            const today = new Date().toISOString().split('T')[0];
+            const today = formatLocalDate(getNowFrance());
             document.getElementById('demandeDate').min = today;
             document.getElementById('demandeDateFin').min = today;
             document.getElementById('vacancesDateDebut').min = today;
