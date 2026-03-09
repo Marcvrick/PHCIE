@@ -1698,6 +1698,11 @@
                 </div>
             </div>
 
+            <div class="card">
+                <h2 class="card-title">Tensions d'effectif (4 prochaines semaines)</h2>
+                <div id="tensionsCalendarPlanning"></div>
+            </div>
+
         </div>
 
         <!-- VUE DEMANDE -->
@@ -4400,6 +4405,9 @@ Connectez-vous a l'application Planning pour traiter cette demande.
             html += '<span><span style="display: inline-block; width: 12px; height: 12px; background: var(--red-light); border-radius: 2px;"></span> Critique (≤3)</span>';
             html += '</div>';
             container.innerHTML = html;
+            // Also render in planning tab if present
+            const planningContainer = document.getElementById('tensionsCalendarPlanning');
+            if (planningContainer) planningContainer.innerHTML = html;
         }
 
         function renderHistoriqueComplet() {
@@ -6427,6 +6435,7 @@ Connectez-vous a l'application Planning pour traiter cette demande.
 
             // Initial render
             renderPlanning('paire');
+            renderTensionsCalendar();
             populateMonthSelectors();
             updateVacancesNavVisibility();
             updateRecuperationOptionVisibility();
