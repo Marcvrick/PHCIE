@@ -4305,7 +4305,33 @@ Connectez-vous a l'application Planning pour traiter cette demande.
                         </div>
                         <div class="manager-actions">
                             <button class="btn btn-success" onclick="approveDemande(${d.id})">Approuver</button>
+                            <button class="btn" style="background: var(--orange); color: white;" onclick="showModifyForm(${d.id})">Modifier et approuver</button>
                             <button class="btn btn-danger" onclick="showRefuseForm(${d.id})">Refuser</button>
+                        </div>
+                        <div class="manager-comment hidden" id="modify-form-${d.id}">
+                            ${d.type === 'recuperation' ? `
+                                <p style="font-size: 0.85rem; color: var(--gray); margin-bottom: 0.5rem;">Modification non disponible pour les recuperations.</p>
+                            ` : (d.type === 'vacances' || d.type === 'conge') ? `
+                                <div style="display: flex; gap: 0.5rem; align-items: end; flex-wrap: wrap;">
+                                    <div>
+                                        <label style="font-size: 0.8rem; font-weight: 600;">Nouvelle date debut</label>
+                                        <input type="date" class="form-input" id="modify-start-${d.id}" value="${d.dates?.[0] || d.dateDebut || ''}" style="font-size: 0.85rem;">
+                                    </div>
+                                    <div>
+                                        <label style="font-size: 0.8rem; font-weight: 600;">Nouvelle date fin</label>
+                                        <input type="date" class="form-input" id="modify-end-${d.id}" value="${d.dates?.[d.dates.length - 1] || d.dateFin || ''}" style="font-size: 0.85rem;">
+                                    </div>
+                                    <button class="btn btn-success" style="height: 38px;" onclick="approveWithModifiedDates(${d.id})">Valider</button>
+                                </div>
+                            ` : `
+                                <div style="display: flex; gap: 0.5rem; align-items: end; flex-wrap: wrap;">
+                                    <div>
+                                        <label style="font-size: 0.8rem; font-weight: 600;">Nouvelle date</label>
+                                        <input type="date" class="form-input" id="modify-date-${d.id}" value="${d.dateDebut || d.date || ''}" style="font-size: 0.85rem;">
+                                    </div>
+                                    <button class="btn btn-success" style="height: 38px;" onclick="approveWithModifiedDate(${d.id})">Valider</button>
+                                </div>
+                            `}
                         </div>
                         <div class="manager-comment hidden" id="refuse-form-${d.id}">
                             <textarea class="form-textarea" id="refuse-comment-${d.id}" placeholder="Motif du refus..." rows="2"></textarea>
@@ -4340,8 +4366,121 @@ Connectez-vous a l'application Planning pour traiter cette demande.
             }
         }
 
+        function showModifyForm(id) {
+            // Hide refuse form if open, toggle modify form
+            document.getElementById(`refuse-form-${id}`).classList.add('hidden');
+            document.getElementById(`modify-form-${id}`).classList.toggle('hidden');
+        }
+
+        async function approveWithModifiedDate(id) {
+            const newDate = document.getElementById(`modify-date-${id}`).value;
+            if (!newDate) { alert('Selectionnez une date.'); return; }
+
+            const demandes = getDemandes();
+            const d = demandes.find(x => x.id === id);
+            if (!d) return;
+
+            const jour = getJourFromDate(newDate);
+            if (!jour) { alert('Dimanche : pharmacie fermee.'); return; }
+            const semaine = getSemaineType(newDate);
+
+            // Update demande fields
+            const updates = {
+                dateDebut: newDate,
+                dateFin: newDate,
+                date: newDate,
+                dates: [newDate],
+                jour: jour,
+                semaine: semaine,
+                status: 'approuvee',
+                dateTraitement: getNowFrance().toISOString(),
+                commentaire: `Date modifiee par le manager (initialement ${d.dateDebut || d.date})`
+            };
+
+            // Recalculate hours for the new date
+            if (d.employee && STAFF[d.employee]) {
+                const heures = calculerHeures(d.employee, jour, semaine, d.periode || 'journee');
+                if (heures) updates.heuresConcernees = heures;
+            }
+
+            try {
+                await db.collection('demandes').doc(String(id)).update(updates);
+            } catch (e) {
+                console.error('Erreur modification demande:', e);
+                alert('Erreur lors de la modification.');
+                return;
+            }
+
+            // Trigger vacation deduction if needed
+            if (d.type === 'vacances') {
+                const solde = getVacancesSolde();
+                if (solde[d.employee]) {
+                    const joursToDeduct = [newDate].filter(dt => isJourOuvrable(dt)).length;
+                    solde[d.employee].pris += joursToDeduct;
+                    await saveVacancesSolde(solde);
+                }
+                const contracts = getContracts();
+                if (contracts[d.employee]) {
+                    contracts[d.employee].daysTaken = (contracts[d.employee].daysTaken || 0) + 1;
+                    await saveContracts(contracts);
+                }
+            }
+        }
+
+        async function approveWithModifiedDates(id) {
+            const newStart = document.getElementById(`modify-start-${id}`).value;
+            const newEnd = document.getElementById(`modify-end-${id}`).value;
+            if (!newStart || !newEnd) { alert('Selectionnez les deux dates.'); return; }
+            if (newEnd < newStart) { alert('La date de fin doit etre apres la date de debut.'); return; }
+
+            const demandes = getDemandes();
+            const d = demandes.find(x => x.id === id);
+            if (!d) return;
+
+            const newDates = getDatesBetween(newStart, newEnd);
+            const joursOuvrables = newDates.filter(dt => isJourOuvrable(dt)).length;
+
+            const oldStart = d.dates?.[0] || d.dateDebut || '?';
+            const oldEnd = d.dates?.[d.dates.length - 1] || d.dateFin || '?';
+
+            const updates = {
+                dateDebut: newStart,
+                dateFin: newEnd,
+                dates: newDates,
+                joursOuvrables: joursOuvrables,
+                heuresConcernees: joursOuvrables,
+                status: 'approuvee',
+                dateTraitement: getNowFrance().toISOString(),
+                commentaire: `Dates modifiees par le manager (initialement ${oldStart} au ${oldEnd})`
+            };
+
+            try {
+                await db.collection('demandes').doc(String(id)).update(updates);
+            } catch (e) {
+                console.error('Erreur modification demande:', e);
+                alert('Erreur lors de la modification.');
+                return;
+            }
+
+            // Deduct vacation days
+            if (d.type === 'vacances') {
+                const solde = getVacancesSolde();
+                if (solde[d.employee]) {
+                    solde[d.employee].pris += joursOuvrables;
+                    await saveVacancesSolde(solde);
+                }
+                const contracts = getContracts();
+                if (contracts[d.employee]) {
+                    contracts[d.employee].daysTaken = (contracts[d.employee].daysTaken || 0) + joursOuvrables;
+                    await saveContracts(contracts);
+                }
+            }
+        }
+
         function showRefuseForm(id) {
-            document.getElementById(`refuse-form-${id}`).classList.remove('hidden');
+            // Hide modify form if open, toggle refuse form
+            document.getElementById(`modify-form-${id}`).classList.add('hidden');
+            document.getElementById(`refuse-form-${id}`).classList.toggle('hidden');
         }
 
         async function refuseDemande(id) {
