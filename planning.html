@@ -1670,13 +1670,13 @@
             </div>
             <div class="nav-user">
                 <select id="currentUser">
-                    <option value="Stephanie">Stephanie</option>
-                    <option value="Claire">Claire</option>
-                    <option value="Sandrine">Sandrine</option>
-                    <option value="Titia">Titia</option>
-                    <option value="Melanie">Melanie</option>
+                    <option value="Stephanie">Stephanie [7]</option>
+                    <option value="Claire">Claire [4]</option>
+                    <option value="Sandrine">Sandrine [3]</option>
+                    <option value="Titia">Titia [6]</option>
+                    <option value="Melanie">Melanie [10]</option>
                     <option value="Chloe">Chloe</option>
-                    <option value="Mathilde">Mathilde</option>
+                    <option value="Mathilde">Mathilde [5]</option>
                     <option value="Pascal">Pascal</option>
                     <option value="Emilie">Emilie</option>
                 </select>
@@ -1709,12 +1709,18 @@
                         <label class="form-label">Type de demande</label>
                         <select class="form-select" id="demandeType" required>
                             <option value="">-- Selectionnez --</option>
+                            <option value="absence_group">Demande d'absence</option>
+                            <option value="echange">Echange horaires</option>
                             <option value="recuperation" id="optionRecuperation" class="hidden">Recuperation d'heures</option>
+                        </select>
+                    </div>
+                    <div class="form-group hidden" id="raisonGroup">
+                        <label class="form-label">Raison</label>
+                        <select class="form-select" id="demandeRaison">
+                            <option value="absence">Absence personnelle</option>
                             <option value="depart_anticipe">Depart anticipe</option>
                             <option value="maladie">Maladie</option>
-                            <option value="conge">Conge</option>
-                            <option value="echange">Echange horaires</option>
-                            <option value="autre">Autre</option>
+                            <option value="conge">Congés</option>
                         </select>
                     </div>
 
@@ -1744,13 +1750,7 @@
                             <div class="form-group hidden" id="heureGroup">
                                 <label class="form-label">Heure de depart (si depart anticipe)</label>
                                 <select class="form-select" id="demandeHeure">
-                                    <option value="">-- Journee complete --</option>
-                                    <option value="14h">14h</option>
-                                    <option value="15h">15h</option>
-                                    <option value="16h">16h</option>
-                                    <option value="17h">17h</option>
-                                    <option value="17h30">17h30</option>
-                                    <option value="18h">18h</option>
+                                    <option value="">-- Choisir l'heure de depart --</option>
                                 </select>
                             </div>
                             <div class="form-group hidden" id="echangeGroup">
@@ -2013,9 +2013,109 @@
                 <h2 class="card-title">Gestion des contrats et anciennete</h2>
                 <p style="color: var(--gray); font-size: 0.9rem; margin-bottom: 1rem;">
                     Definissez le type de contrat, les dates de debut/fin et l'anciennete de chaque employe.
-                    Les vacances sont calculees automatiquement (2.08 jours ouvres/mois + 2 jours apres 6 ans d'anciennete).
+                    Les vacances sont calculees automatiquement (2.5 jours ouvrables/mois, lun-sam + 2 jours apres 6 ans d'anciennete).
                 </p>
                 <div class="contracts-grid" id="contractsManager"></div>
+            </div>
+
+            <div class="card">
+                <h2 class="card-title">Enregistrer un echange</h2>
+                <p style="color: var(--gray); font-size: 0.9rem; margin-bottom: 1rem;">
+                    Enregistrer un echange de poste deja convenu entre deux employes.
+                </p>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                    <div class="form-group">
+                        <label class="form-label">Employe absent</label>
+                        <select class="form-select" id="echangeAbsent">
+                            <option value="">-- Choisir --</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Remplace par</label>
+                        <select class="form-select" id="echangeRemplacant">
+                            <option value="">-- Choisir --</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Date</label>
+                        <input type="date" class="form-input" id="echangeDateInput">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Periode</label>
+                        <select class="form-select" id="echangePeriodeInput">
+                            <option value="am">Matin</option>
+                            <option value="journee">Journee entiere</option>
+                            <option value="pm">Apres-midi</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group" style="margin-top: 0.5rem;">
+                    <label class="form-label">Motif (optionnel)</label>
+                    <input type="text" class="form-input" id="echangeMotifInput" placeholder="Ex: Echange samedi entre Claire et Sandrine">
+                </div>
+                <button class="btn btn-primary" onclick="registerExchange()" style="margin-top: 0.75rem;">Enregistrer l'echange</button>
+            </div>
+
+            <div class="card">
+                <h2 class="card-title">Enregistrer une absence passee</h2>
+                <p style="color: var(--gray); font-size: 0.9rem; margin-bottom: 1rem;">
+                    Enregistrer une absence deja effectuee avec recuperation partielle ou totale.
+                </p>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                    <div class="form-group">
+                        <label class="form-label">Employe</label>
+                        <select class="form-select" id="absencePasseeEmployee">
+                            <option value="">-- Choisir --</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Date d'absence</label>
+                        <input type="date" class="form-input" id="absencePasseeDate">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Periode absente</label>
+                        <select class="form-select" id="absencePasseePeriode">
+                            <option value="journee">Journee entiere</option>
+                            <option value="am">Matin seulement</option>
+                            <option value="pm">Apres-midi seulement</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Type</label>
+                        <select class="form-select" id="absencePasseeType">
+                            <option value="absence">Absence personnelle</option>
+                            <option value="depart_anticipe">Depart anticipe</option>
+                            <option value="maladie">Maladie</option>
+                        </select>
+                    </div>
+                </div>
+                <div id="absencePasseeCalc" style="display: none; margin: 0.75rem 0; padding: 0.75rem; background: var(--sage-light); border-radius: 6px; font-size: 0.9rem;"></div>
+
+                <div style="margin-top: 1rem; padding-top: 1rem; border-top: 1px solid var(--gray-light);">
+                    <h3 style="font-size: 1rem; margin-bottom: 0.75rem; color: var(--teal-dark);">Recuperation deja effectuee (optionnel)</h3>
+                    <div id="absencePasseeRecoveryList"></div>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr auto; gap: 0.75rem; align-items: end;">
+                        <div class="form-group" style="margin:0;">
+                            <label class="form-label">Date recup</label>
+                            <input type="date" class="form-input" id="absenceRecupDate">
+                        </div>
+                        <div class="form-group" style="margin:0;">
+                            <label class="form-label">Periode</label>
+                            <select class="form-select" id="absenceRecupPeriode">
+                                <option value="am">Matin</option>
+                                <option value="pm">Apres-midi</option>
+                                <option value="journee">Journee</option>
+                            </select>
+                        </div>
+                        <button class="btn btn-secondary" onclick="addAbsenceRecoverySlot()" style="height: 38px;">+ Ajouter</button>
+                    </div>
+                </div>
+
+                <div class="form-group" style="margin-top: 0.75rem;">
+                    <label class="form-label">Motif (optionnel)</label>
+                    <input type="text" class="form-input" id="absencePasseeMotif" placeholder="Ex: Jour personnel, rattrapage partiel effectue">
+                </div>
+                <button class="btn btn-primary" onclick="registerPastAbsence()" style="margin-top: 0.75rem;">Enregistrer l'absence</button>
             </div>
 
             <div class="card">
@@ -2145,20 +2245,20 @@
             },
             "Claire": {
                 paire: {
-                    lundi: { am: "9h-12h30", pm: "14h-19h15" },
-                    mardi: { am: "9h-12h30", pm: "14h-19h15" },
-                    mercredi: { am: null, pm: null },
-                    jeudi: { am: "9h-12h30", pm: "14h-19h15" },
-                    vendredi: { am: "9h-12h30", pm: "14h-19h15" },
-                    samedi: { am: null, pm: null }
-                },
-                impaire: {
                     lundi: { am: "9h-12h30", pm: "14h-19h" },
                     mardi: { am: "9h-12h30", pm: "14h-19h" },
                     mercredi: { am: null, pm: null },
                     jeudi: { am: "9h-12h30", pm: "14h-16h30" },
                     vendredi: { am: "9h-12h30", pm: "14h-19h" },
                     samedi: { am: "9h-12h30", pm: null }
+                },
+                impaire: {
+                    lundi: { am: "9h-12h30", pm: "14h-19h15" },
+                    mardi: { am: "9h-12h30", pm: "14h-19h15" },
+                    mercredi: { am: null, pm: null },
+                    jeudi: { am: "9h-12h30", pm: "14h-19h15" },
+                    vendredi: { am: "9h-12h30", pm: "14h-19h15" },
+                    samedi: { am: null, pm: null }
                 }
             },
             "Sandrine": {
@@ -2429,7 +2529,7 @@
         }
 
         function getSemaineType(date) {
-            const d = new Date(date);
+            const d = parseLocalDate(date);
             const weekNumber = getWeekNumber(d);
             return weekNumber % 2 === 0 ? 'paire' : 'impaire';
         }
@@ -2442,7 +2542,7 @@
         }
 
         function getJourFromDate(date) {
-            const d = new Date(date);
+            const d = parseLocalDate(date);
             const dayIndex = d.getDay();
             if (dayIndex === 0) return null;
             return JOURS[dayIndex - 1];
@@ -2551,7 +2651,7 @@
 
         function populateMonthSelectors() {
             const months = getMonthOptions();
-            const today = new Date();
+            const today = getNowFrance();
 
             // Employee selector
             const empSelect = document.getElementById('employeeMonthSelect');
@@ -2603,7 +2703,7 @@
 
             const monthSelect = document.getElementById('employeeMonthSelect');
             const month = parseInt(monthSelect.value);
-            const year = new Date().getFullYear();
+            const year = getNowFrance().getFullYear();
             const data = calculateMonthlyHoursForEmployee(employee, month, year);
             if (!data) {
                 container.innerHTML = '<p style="color: var(--gray);">Pas de planning disponible.</p>';
@@ -2648,7 +2748,7 @@
             if (data.holidayDays.length > 0) {
                 html += '<div style="margin-top: 0.75rem; font-size: 0.8rem; color: var(--gray);">';
                 html += '<strong>Jours feries ce mois :</strong> ';
-                html += data.holidayDays.map(h => `${new Date(h.date).getDate()}/${month + 1} ${h.name}`).join(', ');
+                html += data.holidayDays.map(h => `${parseLocalDate(h.date).getDate()}/${month + 1} ${h.name}`).join(', ');
                 html += '</div>';
             }
 
@@ -2717,7 +2817,7 @@
             if (holidaysThisMonth.length > 0) {
                 html += '<div style="margin-top: 0.75rem; font-size: 0.8rem; color: var(--gray);">';
                 html += '<strong>Jours feries :</strong> ';
-                html += holidaysThisMonth.map(h => `${new Date(h.date).getDate()} ${months[month]} - ${h.name}`).join(' | ');
+                html += holidaysThisMonth.map(h => `${parseLocalDate(h.date).getDate()} ${months[month]} - ${h.name}`).join(' | ');
                 html += '</div>';
             }
 
@@ -2740,23 +2840,60 @@
             return `${parts[0]}h${parts[1]}`;
         }
 
+        // Parse "YYYY-MM-DD" en heure locale (evite le decalage UTC)
+        // Garantit que la date est interpretee comme Paris midnight, pas UTC
+        function parseLocalDate(dateStr) {
+            if (typeof dateStr === 'string' && /^\d{4}-\d{2}-\d{2}$/.test(dateStr)) {
+                const [y, m, d] = dateStr.split('-').map(Number);
+                return new Date(y, m - 1, d);
+            }
+            if (dateStr instanceof Date) return dateStr;
+            return new Date(dateStr);
+        }
+
+        // Cree une date Paris a partir de composants (year, month 0-indexed, day)
+        // Utiliser TOUJOURS cette fonction au lieu de new Date(year, month, day)
+        function makeDateParis(year, month, day) {
+            return new Date(year, month, day);
+        }
+
+        // Toujours utiliser l'heure de France, quel que soit le fuseau horaire du navigateur
+        // Utilise Intl.DateTimeFormat (compatible Safari/iPhone/Chrome/Firefox)
+        function getNowFrance() {
+            const fmt = new Intl.DateTimeFormat('en-US', {
+                timeZone: 'Europe/Paris',
+                year: 'numeric', month: '2-digit', day: '2-digit',
+                hour: '2-digit', minute: '2-digit', second: '2-digit',
+                hour12: false
+            });
+            const parts = {};
+            fmt.formatToParts(new Date()).forEach(p => { parts[p.type] = p.value; });
+            return new Date(
+                parseInt(parts.year), parseInt(parts.month) - 1, parseInt(parts.day),
+                parseInt(parts.hour), parseInt(parts.minute), parseInt(parts.second)
+            );
+        }
+
+        function formatLocalDate(d) {
+            if (typeof d === 'string') d = parseLocalDate(d);
+            return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
+        }
+
         function formatDate(dateStr) {
-            const d = new Date(dateStr);
-            return d.toLocaleDateString('fr-FR', { weekday: 'long', day: 'numeric', month: 'long' });
+            return parseLocalDate(dateStr).toLocaleDateString('fr-FR', { weekday: 'long', day: 'numeric', month: 'long', timeZone: 'Europe/Paris' });
         }
 
         function formatDateShort(dateStr) {
-            const d = new Date(dateStr);
-            return d.toLocaleDateString('fr-FR', { day: 'numeric', month: 'short' });
+            return parseLocalDate(dateStr).toLocaleDateString('fr-FR', { day: 'numeric', month: 'short', timeZone: 'Europe/Paris' });
         }
 
         function getTypeLabel(type) {
             const labels = {
+                'absence': 'Absence personnelle',
                 'depart_anticipe': 'Depart anticipe',
                 'maladie': 'Maladie',
-                'conge': 'Conge',
+                'conge': 'Congés',
                 'echange': 'Echange horaires',
-                'autre': 'Autre',
                 'vacances': 'Vacances',
                 'recuperation': 'Recuperation heures dues'
             };
@@ -2765,10 +2902,13 @@
 
         function getDatesBetween(start, end) {
             const dates = [];
-            const current = new Date(start);
-            const endDate = new Date(end);
+            const current = parseLocalDate(start);
+            const endDate = parseLocalDate(end);
             while (current <= endDate) {
-                dates.push(current.toISOString().split('T')[0]);
+                const yy = current.getFullYear();
+                const mm = String(current.getMonth() + 1).padStart(2, '0');
+                const dd = String(current.getDate()).padStart(2, '0');
+                dates.push(`${yy}-${mm}-${dd}`);
                 current.setDate(current.getDate() + 1);
             }
             return dates;
@@ -2782,7 +2922,7 @@
         async function addDemande(demande) {
             demande.id = Date.now();
             demande.status = demande.type === 'echange' ? 'echange_attente' : 'attente';
-            demande.dateCreation = new Date().toISOString();
+            demande.dateCreation = getNowFrance().toISOString();
             try {
                 await db.collection('demandes').doc(String(demande.id)).set(demande);
             } catch (e) {
@@ -2796,7 +2936,7 @@
                 await db.collection('demandes').doc(String(id)).update({
                     status: status,
                     commentaire: commentaire,
-                    dateTraitement: new Date().toISOString()
+                    dateTraitement: getNowFrance().toISOString()
                 });
             } catch (e) {
                 console.error('Erreur update demande:', e);
@@ -2817,8 +2957,8 @@
                     if (d.type === 'recuperation') {
                         // Standalone recovery: add to recuperees
                         balances[d.employee].recuperees += d.heuresRecuperees || 0;
-                    } else if (d.type !== 'vacances') {
-                        // Regular absence: add dues and any attached recovery
+                    } else if (d.type !== 'vacances' && d.type !== 'echange' && d.type !== 'conge') {
+                        // Regular absence: add dues and any attached recovery (exclude vacances/conge/echange)
                         balances[d.employee].dues += d.heuresConcernees || 0;
 
                         // Heures recuperees (attached to absence)
@@ -2863,7 +3003,7 @@
         // ========== STATISTIQUES MANAGER ==========
         function calculateStats() {
             const demandes = getDemandes();
-            const now = new Date();
+            const now = getNowFrance();
             const thirtyDaysAgo = new Date(now - 30 * 24 * 60 * 60 * 1000);
 
             // Demandes des 30 derniers jours
@@ -2972,6 +3112,7 @@
         // ========== GESTION DU FORMULAIRE ==========
         function handleTypeChange() {
             const type = document.getElementById('demandeType').value;
+            const raisonGroup = document.getElementById('raisonGroup');
             const dateFinGroup = document.getElementById('dateFinGroup');
             const heureGroup = document.getElementById('heureGroup');
             const echangeGroup = document.getElementById('echangeGroup');
@@ -2979,7 +3120,8 @@
             const absenceFields = document.getElementById('absenceFields');
             const recuperationFields = document.getElementById('recuperationFields');
 
-            // Reset
+            // Reset all
+            raisonGroup.classList.add('hidden');
             dateFinGroup.classList.add('hidden');
             heureGroup.classList.add('hidden');
             echangeGroup.classList.add('hidden');
@@ -2988,18 +3130,61 @@
             recuperationFields.classList.add('hidden');
 
             if (type === 'recuperation') {
-                // Hide absence fields, show recovery fields
                 absenceFields.classList.add('hidden');
                 recuperationFields.classList.remove('hidden');
                 populateRecuperationSlots();
-            } else if (type === 'conge' || type === 'maladie') {
-                dateFinGroup.classList.remove('hidden');
-            } else if (type === 'depart_anticipe') {
-                heureGroup.classList.remove('hidden');
+            } else if (type === 'absence_group') {
+                raisonGroup.classList.remove('hidden');
+                handleRaisonChange();
             } else if (type === 'echange') {
                 echangeGroup.classList.remove('hidden');
                 populateEchangeSelect();
+            } else {
+                absenceFields.classList.add('hidden');
             }
+        }
+
+        function handleRaisonChange() {
+            const raison = document.getElementById('demandeRaison').value;
+            const dateFinGroup = document.getElementById('dateFinGroup');
+            const heureGroup = document.getElementById('heureGroup');
+
+            dateFinGroup.classList.add('hidden');
+            heureGroup.classList.add('hidden');
+
+            if (raison === 'conge' || raison === 'maladie') {
+                dateFinGroup.classList.remove('hidden');
+            } else if (raison === 'depart_anticipe') {
+                heureGroup.classList.remove('hidden');
+                updateHeureOptions();
+            }
+        }
+
+        function getEffectiveType() {
+            const type = document.getElementById('demandeType').value;
+            if (type === 'absence_group') {
+                return document.getElementById('demandeRaison').value;
+            }
+            return type;
+        }
+
+        function updateHeureOptions() {
+            const periode = document.getElementById('demandePeriode').value;
+            const select = document.getElementById('demandeHeure');
+            const HEURES_MATIN = ['9h', '9h30', '10h', '10h30', '11h', '11h30', '12h'];
+            const HEURES_PM = ['14h', '15h', '16h', '17h', '17h30', '18h'];
+            let options;
+            if (periode === 'matin') {
+                options = HEURES_MATIN;
+            } else if (periode === 'apresmidi') {
+                options = HEURES_PM;
+            } else {
+                options = [...HEURES_MATIN, ...HEURES_PM];
+            }
+            select.innerHTML = '<option value="">-- Choisir l\'heure de depart --</option>';
+            options.forEach(h => {
+                select.innerHTML += `<option value="${h}">${h}</option>`;
+            });
         }
 
         function populateEchangeSelect() {
@@ -3044,7 +3229,7 @@
             }
         }
 
-        function populateRecuperationSlots() {
+        async function populateRecuperationSlots() {
             const employee = document.getElementById('currentUser').value;
             const balances = calculateHoursBalance();
             const balance = balances[employee];
@@ -3054,7 +3239,7 @@
             selectedRecupSlots = [];
 
             const container = document.getElementById('recupSlotsContainer');
-            const slots = getAvailableRecoverySlots(employee);
+            const slots = await getAvailableRecoverySlots(employee);
 
             if (slots.length === 0) {
                 container.innerHTML = '<p style="color: var(--gray);">Aucun creneau de recuperation disponible dans les 30 prochains jours.</p>';
@@ -3110,13 +3295,30 @@
             return usedSlots.some(s => s.date === date && s.periode === periode);
         }
 
-        function getAvailableRecoverySlots(employee, startFrom) {
+        async function getAvailableRecoverySlots(employee, startFrom) {
+            // Force fresh read from Firestore before computing slots
+            try {
+                const snapshot = await db.collection('demandes').get();
+                demandesCache = [];
+                snapshot.forEach(doc => demandesCache.push(doc.data()));
+            } catch (e) {
+                console.warn('Recovery slots: Firestore refresh failed, using cache', e);
+            }
+
             const slots = [];
-            const startDate = startFrom ? new Date(startFrom) : new Date();
+            const startDate = startFrom ? parseLocalDate(startFrom) : getNowFrance();
             const employeePlanning = STAFF[employee];
 
             // Recuperer les creneaux deja utilises
             const usedSlots = getUsedRecoverySlots(employee);
+
+            // Recuperer les dates de vacances approuvees/en attente de l'employe
+            const vacationDates = new Set();
+            getDemandes().forEach(d => {
+                if (d.employee === employee && d.type === 'vacances' && (d.status === 'approuvee' || d.status === 'attente') && d.dates) {
+                    d.dates.forEach(date => vacationDates.add(date));
+                }
+            });
 
             for (let i = 1; i <= 30; i++) {
                 const checkDate = new Date(startDate);
@@ -3125,7 +3327,11 @@
                 if (!jour) continue;
 
                 const semaine = getSemaineType(checkDate);
-                const dateStr = checkDate.toISOString().split('T')[0];
+                const dateStr = formatLocalDate(checkDate);
+
+                // Skip days where employee is on vacation
+                if (vacationDates.has(dateStr)) continue;
+
                 const planning = employeePlanning?.[semaine]?.[jour];
 
                 // Check morning - if employee not scheduled for AM
@@ -3290,10 +3496,11 @@
         // ========== ANALYSE D'IMPACT ==========
         function analyserImpact() {
             const employee = document.getElementById('currentUser').value;
-            const type = document.getElementById('demandeType').value;
+            const rawType = document.getElementById('demandeType').value;
+            const type = getEffectiveType();
 
             // Handle recuperation type separately
-            if (type === 'recuperation') {
+            if (rawType === 'recuperation') {
                 analyserRecuperationImpact(employee);
                 return;
             }
@@ -3399,17 +3606,20 @@
             // Analyser l'effectif
             renderImpactEffectif(joursDetails, employee, periode, heure);
 
-            // Proposer recuperation (sauf pour echange)
+            // Proposer recuperation pour toutes les demandes d'absence (pas echange)
             const recoverySection = document.getElementById('impactRecovery');
-            if (type === 'echange') {
-                recoverySection.classList.add('hidden');
-                document.getElementById('engagementCheck').checked = true;
-                document.getElementById('submitDemande').disabled = false;
-            } else {
+            const engagementBox = document.querySelector('.engagement-box');
+            if (type !== 'echange') {
                 recoverySection.classList.remove('hidden');
+                engagementBox.classList.remove('hidden');
                 renderRecoverySlots(employee, heuresConcernees, dateDebut);
                 selectedRecoverySlots = [];
                 updateHoursSummary();
+            } else {
+                recoverySection.classList.add('hidden');
+                engagementBox.classList.add('hidden');
+                document.getElementById('engagementCheck').checked = true;
+                document.getElementById('submitDemande').disabled = false;
             }
 
             document.getElementById('impactAnalysis').classList.remove('hidden');
@@ -3451,9 +3661,10 @@
             container.innerHTML = html;
         }
 
-        function renderRecoverySlots(employee, heuresARecuperer, dateDebut) {
+        async function renderRecoverySlots(employee, heuresARecuperer, dateDebut) {
             const container = document.getElementById('recoverySlots');
-            const slots = getAvailableRecoverySlots(employee, dateDebut);
+            container.innerHTML = '<p style="color: var(--gray);">Chargement des creneaux...</p>';
+            const slots = await getAvailableRecoverySlots(employee, dateDebut);
 
             let html = '';
             if (slots.length === 0) {
@@ -3566,6 +3777,7 @@
             document.getElementById('engagementCheck').checked = false;
             document.getElementById('absenceFields').classList.remove('hidden');
             document.getElementById('recuperationFields').classList.add('hidden');
+            document.getElementById('raisonGroup').classList.add('hidden');
             currentImpact = null;
             selectedRecoverySlots = [];
             selectedRecupSlots = [];
@@ -3584,6 +3796,13 @@
                 ? demande.recoverySlots.map(s => `- ${formatDate(s.date)} ${s.periode} (${formatHeures(s.heures)})`).join('\n')
                 : 'Aucune';
 
+            const isConge = demande.type === 'conge';
+            const congeDates = isConge && demande.dates?.length ? demande.dates : (isConge && demande.joursDetails?.length ? demande.joursDetails.map(j => j.date) : null);
+            const dateStart = congeDates ? formatDate(congeDates[0]) : formatDate(demande.dateDebut);
+            const dateEnd = congeDates ? formatDate(congeDates[congeDates.length - 1]) : (demande.dateFin !== demande.dateDebut ? formatDate(demande.dateFin) : null);
+            const dateText = dateStart + (dateEnd && dateEnd !== dateStart ? ' au ' + dateEnd : '');
+            const congeJours = congeDates ? congeDates.filter(dt => isJourOuvrable(dt)).length : (demande.joursDetails?.length || '');
+
             const body = encodeURIComponent(
 `Bonjour,
 
@@ -3593,13 +3812,13 @@ DETAILS
 -------
 Employe : ${demande.employee}
 Type : ${getTypeLabel(demande.type)}
-Date : ${formatDate(demande.dateDebut)}${demande.dateFin !== demande.dateDebut ? ' au ' + formatDate(demande.dateFin) : ''}
-Heures : ${formatHeures(demande.heuresConcernees)}
+Date : ${dateText}
+${isConge ? `Jours ouvrables : ${congeJours}` : `Heures : ${formatHeures(demande.heuresConcernees)}`}
 ${demande.motif ? `Motif : ${demande.motif}` : ''}
-
+${demande.recoverySlots?.length > 0 ? `
 RECUPERATION
 ------------
-${recoveryText}
+${recoveryText}` : ''}
 
 ---
 Connectez-vous a l'application Planning pour traiter cette demande.
@@ -3701,6 +3920,229 @@ Connectez-vous a l'application Planning pour traiter cette demande.
             alert('Echange refuse.');
         }
 
+        function populateManagerExchangeSelects() {
+            const selects = ['echangeAbsent', 'echangeRemplacant'];
+            selects.forEach(id => {
+                const select = document.getElementById(id);
+                if (!select) return;
+                const current = select.value;
+                select.innerHTML = '<option value="">-- Choisir --</option>';
+                Object.keys(STAFF).forEach(name => {
+                    if (name !== 'Laure') {
+                        select.innerHTML += `<option value="${name}"${name === current ? ' selected' : ''}>${name}</option>`;
+                    }
+                });
+            });
+        }
+
+        async function registerExchange() {
+            const absent = document.getElementById('echangeAbsent').value;
+            const remplacant = document.getElementById('echangeRemplacant').value;
+            const date = document.getElementById('echangeDateInput').value;
+            const periode = document.getElementById('echangePeriodeInput').value;
+            const motif = document.getElementById('echangeMotifInput').value;
+
+            if (!absent || !remplacant || !date) {
+                alert('Veuillez remplir l\'employe absent, le remplacant et la date.');
+                return;
+            }
+            if (absent === remplacant) {
+                alert('L\'employe absent et le remplacant doivent etre differents.');
+                return;
+            }
+
+            const jour = getJourFromDate(date);
+            if (!jour) {
+                alert('La date selectionnee est un dimanche (pharmacie fermee).');
+                return;
+            }
+
+            const semaine = getSemaineType(date);
+            const heures = calculerHeures(absent, jour, semaine, periode);
+
+            const demande = {
+                id: Date.now(),
+                type: 'echange',
+                employee: absent,
+                echangeAvec: remplacant,
+                dateDebut: date,
+                dateFin: date,
+                dates: [date],
+                periode: periode,
+                jour: jour,
+                semaine: semaine,
+                heuresConcernees: heures,
+                motif: motif || `Echange: ${absent} absent(e), ${remplacant} remplace`,
+                status: 'approuvee',
+                dateCreation: getNowFrance().toISOString(),
+                dateTraitement: getNowFrance().toISOString(),
+                commentaire: 'Enregistre par le manager'
+            };
+
+            try {
+                await db.collection('demandes').doc(String(demande.id)).set(demande);
+                alert(`Echange enregistre : ${absent} absent(e) le ${formatDate(date)}, remplace(e) par ${remplacant}.`);
+                // Reset form
+                document.getElementById('echangeAbsent').value = '';
+                document.getElementById('echangeRemplacant').value = '';
+                document.getElementById('echangeDateInput').value = '';
+                document.getElementById('echangeMotifInput').value = '';
+            } catch (e) {
+                console.error('Erreur enregistrement echange:', e);
+                alert('Erreur lors de l\'enregistrement.');
+            }
+        }
+
+        // ========== ABSENCE PASSEE (MANAGER) ==========
+        let absenceRecoverySlots = [];
+
+        function populateAbsencePasseeSelect() {
+            const select = document.getElementById('absencePasseeEmployee');
+            if (!select) return;
+            const current = select.value;
+            select.innerHTML = '<option value="">-- Choisir --</option>';
+            Object.keys(STAFF).forEach(name => {
+                if (name !== 'Laure') {
+                    select.innerHTML += `<option value="${name}"${name === current ? ' selected' : ''}>${name}</option>`;
+                }
+            });
+        }
+
+        function addAbsenceRecoverySlot() {
+            const date = document.getElementById('absenceRecupDate').value;
+            const periode = document.getElementById('absenceRecupPeriode').value;
+            const employee = document.getElementById('absencePasseeEmployee').value;
+
+            if (!date || !employee) {
+                alert('Selectionnez d\'abord un employe et une date de recuperation.');
+                return;
+            }
+
+            const jour = getJourFromDate(date);
+            if (!jour) { alert('Dimanche : pharmacie fermee.'); return; }
+
+            const semaine = getSemaineType(date);
+            let heures = 0;
+            if (periode === 'journee') {
+                const hAm = calculerHeures(employee, jour, semaine, 'am');
+                const hPm = calculerHeures(employee, jour, semaine, 'pm');
+                heures = (hAm || 3.5) + (hPm || 5);
+            } else {
+                heures = calculerHeures(employee, jour, semaine, periode);
+                if (!heures) heures = periode === 'am' ? 3.5 : 5;
+            }
+
+            absenceRecoverySlots.push({ date, periode, heures });
+            renderAbsenceRecoveryList();
+            document.getElementById('absenceRecupDate').value = '';
+        }
+
+        function removeAbsenceRecoverySlot(index) {
+            absenceRecoverySlots.splice(index, 1);
+            renderAbsenceRecoveryList();
+        }
+
+        function renderAbsenceRecoveryList() {
+            const container = document.getElementById('absencePasseeRecoveryList');
+            if (absenceRecoverySlots.length === 0) {
+                container.innerHTML = '';
+                return;
+            }
+            const totalRecup = absenceRecoverySlots.reduce((s, r) => s + r.heures, 0);
+            let html = '<div style="margin-bottom: 0.75rem;">';
+            absenceRecoverySlots.forEach((slot, i) => {
+                html += `<div style="display: flex; justify-content: space-between; align-items: center; padding: 0.4rem 0.6rem; background: var(--green-light); border-radius: 4px; margin-bottom: 0.3rem; font-size: 0.85rem;">
+                    <span>${formatDate(slot.date)} — ${slot.periode === 'am' ? 'Matin' : slot.periode === 'pm' ? 'Apres-midi' : 'Journee'} (${formatHeures(slot.heures)})</span>
+                    <button onclick="removeAbsenceRecoverySlot(${i})" style="background: none; border: none; color: var(--red); cursor: pointer; font-size: 1rem;">✕</button>
+                </div>`;
+            });
+            html += `<div style="font-size: 0.85rem; color: var(--green); font-weight: 600; margin-top: 0.3rem;">Total recupere: ${formatHeures(totalRecup)}</div>`;
+            html += '</div>';
+            container.innerHTML = html;
+        }
+
+        async function registerPastAbsence() {
+            const employee = document.getElementById('absencePasseeEmployee').value;
+            const date = document.getElementById('absencePasseeDate').value;
+            const periode = document.getElementById('absencePasseePeriode').value;
+            const type = document.getElementById('absencePasseeType').value;
+            const motif = document.getElementById('absencePasseeMotif').value;
+
+            if (!employee || !date) {
+                alert('Veuillez selectionner un employe et une date.');
+                return;
+            }
+
+            const jour = getJourFromDate(date);
+            if (!jour) { alert('Dimanche : pharmacie fermee.'); return; }
+
+            const semaine = getSemaineType(date);
+            const heures = calculerHeures(employee, jour, semaine, periode);
+
+            if (!heures) {
+                alert('Aucune heure prevue pour cet employe a cette date/periode.');
+                return;
+            }
+
+            const absenceId = Date.now();
+            const demande = {
+                id: absenceId,
+                type: type,
+                employee: employee,
+                dateDebut: date,
+                dateFin: date,
+                dates: [date],
+                jour: jour,
+                semaine: semaine,
+                periode: periode,
+                heuresConcernees: heures,
+                motif: motif || 'Absence enregistree par le manager',
+                status: 'approuvee',
+                dateCreation: getNowFrance().toISOString(),
+                dateTraitement: getNowFrance().toISOString(),
+                commentaire: 'Enregistre retroactivement par le manager',
+                recoverySlots: absenceRecoverySlots.length > 0 ? [...absenceRecoverySlots] : undefined
+            };
+
+            try {
+                await db.collection('demandes').doc(String(absenceId)).set(demande);
+
+                if (absenceRecoverySlots.length > 0) {
+                    const totalRecup = absenceRecoverySlots.reduce((s, r) => s + r.heures, 0);
+                    const recupId = Date.now() + 1;
+                    const recup = {
+                        id: recupId,
+                        type: 'recuperation',
+                        employee: employee,
+                        recoverySlots: [...absenceRecoverySlots],
+                        heuresRecuperees: totalRecup,
+                        heuresDuesAvant: heures,
+                        status: 'approuvee',
+                        dateCreation: getNowFrance().toISOString(),
+                        dateTraitement: getNowFrance().toISOString(),
+                        commentaire: `Recuperation pour absence du ${formatDate(date)}`
+                    };
+                    await db.collection('demandes').doc(String(recupId)).set(recup);
+                }
+
+                const totalRecup = absenceRecoverySlots.reduce((s, r) => s + r.heures, 0);
+                const reste = heures - totalRecup;
+                let msg = `Absence enregistree: ${employee} absent(e) le ${formatDate(date)} (${formatHeures(heures)} dues).`;
+                if (totalRecup > 0) msg += `\nRecupere: ${formatHeures(totalRecup)}.`;
+                if (reste > 0) msg += `\nReste a recuperer: ${formatHeures(reste)}.`;
+                alert(msg);
+
+                document.getElementById('absencePasseeEmployee').value = '';
+                document.getElementById('absencePasseeDate').value = '';
+                document.getElementById('absencePasseeMotif').value = '';
+                absenceRecoverySlots = [];
+                renderAbsenceRecoveryList();
+            } catch (e) {
+                console.error('Erreur enregistrement absence:', e);
+                alert('Erreur lors de l\'enregistrement.');
+            }
+        }
+
         // ========== RENDU MES DEMANDES ==========
         function renderMesDemandes() {
             renderEchanges();
@@ -3708,7 +4150,7 @@ Connectez-vous a l'application Planning pour traiter cette demande.
 
             const container = document.getElementById('mesDemandes');
             const employee = document.getElementById('currentUser').value;
-            const demandes = getDemandes().filter(d => d.employee === employee);
+            const demandes = getDemandes().filter(d => d.employee === employee && d.status !== 'bug');
 
             if (demandes.length === 0) {
                 container.innerHTML = '<p style="color: var(--gray);">Aucune demande pour le moment.</p>';
@@ -3742,10 +4184,14 @@ Connectez-vous a l'application Planning pour traiter cette demande.
                     `;
                 } else {
                     // Regular demande
+                    const isMultiDay = d.type === 'vacances' || d.type === 'conge';
+                    const vacDateStart = isMultiDay && d.dates?.length ? formatDate(d.dates[0]) : formatDate(d.dateDebut || d.date);
+                    const vacDateEnd = isMultiDay && d.dates?.length ? formatDate(d.dates[d.dates.length - 1]) : (d.dateFin ? formatDate(d.dateFin) : null);
+                    const joursCount = isMultiDay && d.dates?.length ? d.dates.filter(dt => isJourOuvrable(dt)).length : null;
                     detailsHtml = `
                         <p><strong>Type :</strong> ${getTypeLabel(d.type)}</p>
-                        <p><strong>Date :</strong> ${formatDate(d.dateDebut || d.date)}${d.dateFin && d.dateFin !== d.dateDebut ? ' au ' + formatDate(d.dateFin) : ''}</p>
-                        <p><strong>Heures :</strong> ${formatHeures(d.heuresConcernees)}</p>
+                        <p><strong>Date :</strong> ${vacDateStart}${vacDateEnd && vacDateEnd !== vacDateStart ? ' au ' + vacDateEnd : ''}</p>
+                        <p><strong>${isMultiDay ? 'Jours ouvrables' : 'Heures'} :</strong> ${isMultiDay ? (d.joursOuvrables || joursCount || '?') + 'j' : formatHeures(d.heuresConcernees)}</p>
                         ${d.type === 'echange' ? `<p><strong>Echange avec :</strong> ${d.echangeAvec}</p>` : ''}
                         ${d.motif ? `<p><strong>Motif :</strong> ${sanitize(d.motif)}</p>` : ''}
                         ${d.recoverySlots?.length > 0 ? `
@@ -3757,6 +4203,7 @@ Connectez-vous a l'application Planning pour traiter cette demande.
                     `;
                 }
 
+                const canCancel = d.status === 'attente' || d.status === 'echange_attente';
                 html += `
                     <div class="demande-card">
                         <div class="demande-header">
@@ -3767,6 +4214,7 @@ Connectez-vous a l'application Planning pour traiter cette demande.
                             ${detailsHtml}
                             ${d.commentaire ? `<p style="margin-top: 0.5rem; font-style: italic;"><strong>Commentaire :</strong> ${sanitize(d.commentaire)}</p>` : ''}
                         </div>
+                        ${canCancel ? `<div style="margin-top: 0.5rem; text-align: right;"><button class="btn btn-danger" style="font-size: 0.75rem; padding: 0.25rem 0.75rem;" onclick="cancelDemandeRequest(${d.id})">Annuler ma demande</button></div>` : ''}
                     </div>
                 `;
             });
@@ -3784,6 +4232,8 @@ Connectez-vous a l'application Planning pour traiter cette demande.
             renderManagerHoursBalance();
             renderTensionsCalendar();
             renderHistoriqueComplet();
+            populateManagerExchangeSelects();
+            populateAbsencePasseeSelect();
             updateLastExport();
             renderTemplateCards();
         }
@@ -3813,10 +4263,14 @@ Connectez-vous a l'application Planning pour traiter cette demande.
                     `;
                 } else {
                     // Regular absence request
+                    const isMultiDay = d.type === 'vacances' || d.type === 'conge';
+                    const vacDateStart = isMultiDay && d.dates?.length ? formatDate(d.dates[0]) : formatDate(d.dateDebut || d.date);
+                    const vacDateEnd = isMultiDay && d.dates?.length ? formatDate(d.dates[d.dates.length - 1]) : (d.dateFin ? formatDate(d.dateFin) : null);
+                    const joursCount = isMultiDay && d.dates?.length ? d.dates.filter(dt => isJourOuvrable(dt)).length : null;
                     detailsHtml = `
                         <p><strong>Type :</strong> ${getTypeLabel(d.type)}</p>
-                        <p><strong>Date :</strong> ${formatDate(d.dateDebut || d.date)}${d.dateFin && d.dateFin !== d.dateDebut ? ' au ' + formatDate(d.dateFin) : ''}</p>
-                        <p><strong>Heures :</strong> ${formatHeures(d.heuresConcernees)}</p>
+                        <p><strong>Date :</strong> ${vacDateStart}${vacDateEnd && vacDateEnd !== vacDateStart ? ' au ' + vacDateEnd : ''}</p>
+                        <p><strong>${isMultiDay ? 'Jours ouvrables' : 'Heures'} :</strong> ${isMultiDay ? (d.joursOuvrables || joursCount || '?') + 'j' : formatHeures(d.heuresConcernees)}</p>
                         ${d.type === 'echange' ? `<p><strong>Echange avec :</strong> ${d.echangeAvec}</p>` : ''}
                         ${d.motif ? `<p><strong>Motif :</strong> ${sanitize(d.motif)}</p>` : ''}
                         ${d.recoverySlots?.length > 0 ? `
@@ -3910,7 +4364,7 @@ Connectez-vous a l'application Planning pour traiter cette demande.
             });
             html += '</div><div class="tensions-grid">';
 
-            const today = new Date();
+            const today = getNowFrance();
             const startOfWeek = new Date(today);
             startOfWeek.setDate(today.getDate() - today.getDay() + 1);
 
@@ -3925,7 +4379,7 @@ Connectez-vous a l'application Planning pour traiter cette demande.
                         html += `<div class="tension-day" style="background: var(--gray-light);">${dayNum}<br><small>Ferme</small></div>`;
                     } else {
                         const semaine = getSemaineType(checkDate);
-                        const dateStr = `${checkDate.getFullYear()}-${String(checkDate.getMonth() + 1).padStart(2, '0')}-${String(checkDate.getDate()).padStart(2, '0')}`;
+                        const dateStr = formatLocalDate(checkDate);
                         const absents = getAbsentsOnDate(dateStr);
                         const amEffectif = getEffectifJour(jour, semaine, 'am', absents);
                         const pmEffectif = jour !== 'samedi' ? getEffectifPondere(jour, semaine, absents) : amEffectif;
@@ -3950,7 +4404,7 @@ Connectez-vous a l'application Planning pour traiter cette demande.
 
         function renderHistoriqueComplet() {
             const container = document.getElementById('historiqueComplet');
-            const demandes = getDemandes();
+            const demandes = getDemandes().filter(d => d.status !== 'bug');
 
             if (demandes.length === 0) {
                 container.innerHTML = '<p style="color: var(--gray);">Aucune demande.</p>';
@@ -3962,8 +4416,9 @@ Connectez-vous a l'application Planning pour traiter cette demande.
             html += '<th style="padding: 0.5rem; text-align: left;">Employe</th>';
             html += '<th style="padding: 0.5rem; text-align: left;">Type</th>';
             html += '<th style="padding: 0.5rem; text-align: left;">Date</th>';
-            html += '<th style="padding: 0.5rem; text-align: left;">Heures</th>';
+            html += '<th style="padding: 0.5rem; text-align: left;">Duree</th>';
             html += '<th style="padding: 0.5rem; text-align: left;">Statut</th>';
+            html += '<th style="padding: 0.5rem; text-align: left;">Actions</th>';
             html += '</tr></thead><tbody>';
 
             demandes.sort((a, b) => b.id - a.id);
@@ -3973,14 +4428,61 @@ Connectez-vous a l'application Planning pour traiter cette demande.
                 html += `<tr style="border-bottom: 1px solid #E5E7EB;">`;
                 html += `<td style="padding: 0.5rem;">${d.employee}</td>`;
                 html += `<td style="padding: 0.5rem;">${getTypeLabel(d.type)}</td>`;
-                html += `<td style="padding: 0.5rem;">${formatDateShort(d.dateDebut || d.date)}</td>`;
-                html += `<td style="padding: 0.5rem;">${formatHeures(d.heuresConcernees)}</td>`;
+                const isMultiDay = d.type === 'vacances' || d.type === 'conge';
+                const dateDisplay = isMultiDay && d.dates?.length ? formatDateShort(d.dates[0]) : formatDateShort(d.dateDebut || d.date);
+                const joursCount = isMultiDay && d.dates?.length ? d.dates.filter(dt => isJourOuvrable(dt)).length : null;
+                html += `<td style="padding: 0.5rem;">${dateDisplay}</td>`;
+                html += `<td style="padding: 0.5rem;">${isMultiDay ? (d.joursOuvrables || joursCount || d.heuresConcernees) + 'j' : formatHeures(d.heuresConcernees)}</td>`;
                 html += `<td style="padding: 0.5rem;"><span class="demande-status ${statusClass}">${statusLabel}</span></td>`;
+                html += `<td style="padding: 0.5rem;">`;
+                if (d.status === 'refusee') {
+                    html += `<button class="btn btn-secondary" style="font-size: 0.7rem; padding: 0.2rem 0.4rem;" onclick="markAsBug(${d.id})">BUG</button> `;
+                }
+                html += `<button class="btn" style="font-size: 0.7rem; padding: 0.2rem 0.4rem; background: #ccc; color: #333;" onclick="deleteDemandeCompletely(${d.id})">Supprimer</button>`;
+                html += `</td>`;
                 html += `</tr>`;
             });
 
             html += '</tbody></table>';
+
+            // Show bug entries separately if any
+            const bugEntries = getDemandes().filter(d => d.status === 'bug');
+            if (bugEntries.length > 0) {
+                html += `<details style="margin-top: 1rem;"><summary style="cursor: pointer; color: var(--gray); font-size: 0.8rem;">${bugEntries.length} entree(s) masquee(s) (bug)</summary>`;
+                html += '<table style="width: 100%; border-collapse: collapse; font-size: 0.8rem; opacity: 0.6; margin-top: 0.5rem;">';
+                bugEntries.forEach(d => {
+                    const isMultiDay = d.type === 'vacances' || d.type === 'conge';
+                    const dateDisplay = isMultiDay && d.dates?.length ? formatDateShort(d.dates[0]) : formatDateShort(d.dateDebut || d.date);
+                    html += `<tr style="border-bottom: 1px solid #E5E7EB;">`;
+                    html += `<td style="padding: 0.3rem;">${d.employee}</td>`;
+                    html += `<td style="padding: 0.3rem;">${getTypeLabel(d.type)}</td>`;
+                    html += `<td style="padding: 0.3rem;">${dateDisplay}</td>`;
+                    html += `<td style="padding: 0.3rem;"><span style="background: #E5E7EB; color: #6B7280; padding: 0.15rem 0.5rem; border-radius: 4px; font-size: 0.75rem;">BUG</span></td>`;
+                    html += `<td style="padding: 0.3rem;"><button class="btn" style="font-size: 0.7rem; padding: 0.2rem 0.4rem; background: #ccc; color: #333;" onclick="deleteDemandeCompletely(${d.id})">Supprimer</button></td>`;
+                    html += `</tr>`;
+                });
+                html += '</table></details>';
+            }
+
             container.innerHTML = html;
+        }
+
+        async function markAsBug(id) {
+            if (!confirm('Marquer cette demande comme BUG ? Elle sera masquee de l\'historique.')) return;
+            try {
+                await db.collection('demandes').doc(String(id)).update({ status: 'bug' });
+            } catch (e) {
+                console.error('Erreur marquage bug:', e);
+            }
+        }
+
+        async function deleteDemandeCompletely(id) {
+            if (!confirm('Supprimer definitivement cette demande ?')) return;
+            try {
+                await db.collection('demandes').doc(String(id)).delete();
+            } catch (e) {
+                console.error('Erreur suppression:', e);
+            }
         }
 
         // ========== EXPORT / IMPORT ==========
@@ -3988,13 +4490,13 @@ Connectez-vous a l'application Planning pour traiter cette demande.
             const data = {
                 demandes: getDemandes(),
                 vacancesSolde: getVacancesSolde(),
-                exportDate: new Date().toISOString()
+                exportDate: getNowFrance().toISOString()
             };
             const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
             const url = URL.createObjectURL(blob);
             const a = document.createElement('a');
             a.href = url;
-            a.download = `planning-export-${new Date().toISOString().split('T')[0]}.json`;
+            a.download = `planning-export-${formatLocalDate(getNowFrance())}.json`;
             a.click();
         }
 
@@ -4051,17 +4553,17 @@ Connectez-vous a l'application Planning pour traiter cette demande.
 
         async function performWeeklyBackup() {
             try {
-                const now = new Date();
+                const now = getNowFrance();
                 const dayOfWeek = now.getDay(); // 0=Sunday, 6=Saturday
                 const hour = now.getHours();
 
-                // Check if it's Saturday and time >= 14:00
+                // Check if it's Saturday and time >= 14:00 (heure francaise)
                 if (dayOfWeek !== 6 || hour < 14) {
                     return;
                 }
 
                 const tracker = await getLastBackupTracker() || {};
-                const today = new Date().toISOString().split('T')[0]; // YYYY-MM-DD
+                const today = formatLocalDate(getNowFrance()); // YYYY-MM-DD local
 
                 // Check if backup already done today
                 if (tracker.lastBackupDate === today) {
@@ -4074,7 +4576,7 @@ Connectez-vous a l'application Planning pour traiter cette demande.
                     vacancesSolde: getVacancesSolde(),
                     contracts: getContracts(),
                     staff_schedule: STAFF,
-                    exportDate: new Date().toISOString(),
+                    exportDate: getNowFrance().toISOString(),
                     backupType: 'weekly_auto'
                 };
 
@@ -4083,13 +4585,13 @@ Connectez-vous a l'application Planning pour traiter cette demande.
                 const url = URL.createObjectURL(blob);
                 const a = document.createElement('a');
                 a.href = url;
-                a.download = `planning-backup-${new Date().toISOString().split('T')[0]}.json`;
+                a.download = `planning-backup-${formatLocalDate(getNowFrance())}.json`;
                 a.click();
 
                 // Update tracker
                 const newTracker = {
                     lastBackupDate: today,
-                    lastBackupTime: now.toISOString(),
+                    lastBackupTime: getNowFrance().toISOString(),
                     backupCount: (tracker.backupCount || 0) + 1
                 };
                 await saveBackupTracker(newTracker);
@@ -4115,11 +4617,13 @@ Connectez-vous a l'application Planning pour traiter cette demande.
                 const formattedDate = lastBackup.toLocaleDateString('fr-FR', {
                     year: 'numeric',
                     month: 'long',
-                    day: 'numeric'
+                    day: 'numeric',
+                    timeZone: 'Europe/Paris'
                 });
                 const formattedTime = lastBackup.toLocaleTimeString('fr-FR', {
                     hour: '2-digit',
-                    minute: '2-digit'
+                    minute: '2-digit',
+                    timeZone: 'Europe/Paris'
                 });
 
                 statusEl.innerHTML = `
@@ -4136,7 +4640,7 @@ Connectez-vous a l'application Planning pour traiter cette demande.
         // ========== VACANCES ==========
         // Tous les employes ont acces aux vacances
         const VACANCES_EMPLOYEES = ['Stephanie', 'Claire', 'Sandrine', 'Titia', 'Melanie', 'Emilie', 'Chloe', 'Mathilde', 'Pascal'];
-        const VACANCES_ANNUEL = 25; // Max legal par an (25 jours ouvres)
+        const VACANCES_ANNUEL = 30; // Max legal par an (30 jours ouvrables, lun-sam)
 
         // Jours feries francais 2026-2028
         const JOURS_FERIES = {
@@ -4178,9 +4682,10 @@ Connectez-vous a l'application Planning pour traiter cette demande.
             '2028-12-25': 'Noel'
         };
 
-        let calendarMonth = new Date().getMonth();
-        let calendarYear = new Date().getFullYear();
+        let calendarMonth = getNowFrance().getMonth();
+        let calendarYear = getNowFrance().getFullYear();
         let currentVacancesImpact = null;
+        let editingVacancesId = null; // ID de la demande en cours de modification
 
         function getVacancesSolde() {
             return vacancesSoldeCache;
@@ -4227,9 +4732,9 @@ Connectez-vous a l'application Planning pour traiter cette demande.
         }
 
         function isJourOuvrable(dateStr) {
-            const d = new Date(dateStr);
+            const d = parseLocalDate(dateStr);
             const day = d.getDay();
-            if (day === 0 || day === 6) return false; // weekend
+            if (day === 0) return false; // dimanche
             if (isJourFerie(dateStr)) return false;
             return true;
         }
@@ -4334,13 +4839,13 @@ Connectez-vous a l'application Planning pour traiter cette demande.
 
             // Count feries in range
             const allDates = getDatesBetween(dateDebut, dateFin);
-            const feries = allDates.filter(d => isJourFerie(d) && new Date(d).getDay() !== 0 && new Date(d).getDay() !== 6);
+            const feries = allDates.filter(d => isJourFerie(d) && parseLocalDate(d).getDay() !== 0);
 
             calcEl.classList.remove('hidden');
             calcEl.style.background = '';
             calcEl.style.color = '';
 
-            let html = `<strong>${count} jour${count > 1 ? 's' : ''} ouvre${count > 1 ? 's' : ''}</strong> demande${count > 1 ? 's' : ''}`;
+            let html = `<strong>${count} jour${count > 1 ? 's' : ''} ouvrable${count > 1 ? 's' : ''}</strong> demande${count > 1 ? 's' : ''}`;
             if (feries.length > 0) {
                 html += ` (${feries.length} jour${feries.length > 1 ? 's' : ''} ferie${feries.length > 1 ? 's' : ''} exclus : ${feries.map(f => JOURS_FERIES[f]).join(', ')})`;
             }
@@ -4360,12 +4865,13 @@ Connectez-vous a l'application Planning pour traiter cette demande.
             const demandes = getDemandes();
             const MAX_SIMULTANEOUS = 2; // Maximum de personnes en vacances en meme temps
 
-            // Recuperer toutes les vacances approuvees ou en attente (sauf de l'employe actuel)
+            // Recuperer toutes les vacances approuvees ou en attente (sauf de l'employe actuel et la demande en cours de modification)
             const otherVacations = demandes.filter(d =>
                 d.type === 'vacances' &&
                 d.employee !== employee &&
                 (d.status === 'approuvee' || d.status === 'attente') &&
-                d.dates && d.dates.length > 0
+                d.dates && d.dates.length > 0 &&
+                (!editingVacancesId || d.id !== editingVacancesId)
             );
 
             // Pour chaque jour demande, compter combien d'autres personnes sont en vacances
@@ -4514,9 +5020,12 @@ Connectez-vous a l'application Planning pour traiter cette demande.
 
             effectifContainer.innerHTML = html;
             document.getElementById('vacancesImpact').classList.remove('hidden');
+
+            // Update button label based on edit mode
+            document.getElementById('submitVacances').textContent = editingVacancesId ? 'Modifier la demande' : 'Soumettre la demande';
         }
 
-        function submitVacances() {
+        async function submitVacances() {
             if (!currentVacancesImpact) return;
             const demande = {
                 employee: currentVacancesImpact.employee,
@@ -4525,12 +5034,26 @@ Connectez-vous a l'application Planning pour traiter cette demande.
                 dateFin: currentVacancesImpact.dateFin,
                 dates: currentVacancesImpact.dates,
                 joursOuvrables: currentVacancesImpact.joursOuvrables,
-                heuresConcernees: currentVacancesImpact.joursOuvrables, // for display in history (days not hours)
+                heuresConcernees: currentVacancesImpact.joursOuvrables,
                 motif: currentVacancesImpact.motif
             };
 
-            addDemande(demande);
-            lastSubmittedDemande = demande;
+            if (editingVacancesId) {
+                // Update existing request
+                demande.id = editingVacancesId;
+                demande.status = 'attente';
+                demande.dateCreation = getNowFrance().toISOString();
+                try {
+                    await db.collection('demandes').doc(String(editingVacancesId)).set(demande);
+                } catch (e) {
+                    console.error('Erreur mise a jour demande:', e);
+                }
+                lastSubmittedDemande = demande;
+                editingVacancesId = null;
+            } else {
+                await addDemande(demande);
+                lastSubmittedDemande = demande;
+            }
 
             document.getElementById('vacancesForm').reset();
             document.getElementById('vacancesImpact').classList.add('hidden');
@@ -4551,9 +5074,9 @@ DETAILS
 -------
 Employe : ${demande.employee}
 Type : Vacances
-Du : ${formatDate(demande.dateDebut)}
-Au : ${formatDate(demande.dateFin)}
-Jours ouvres : ${demande.joursOuvrables}
+Du : ${demande.dates?.length ? formatDate(demande.dates[0]) : formatDate(demande.dateDebut)}
+Au : ${demande.dates?.length ? formatDate(demande.dates[demande.dates.length - 1]) : formatDate(demande.dateFin)}
+Jours ouvrables : ${demande.joursOuvrables}
 ${demande.motif ? `Motif : ${demande.motif}` : ''}
 
 ---
@@ -4565,7 +5088,7 @@ Connectez-vous a l'application Planning pour traiter cette demande.
         // Calendar rendering
         function renderVacancesCalendar() {
             const container = document.getElementById('vacancesCalendar');
-            document.getElementById('calMonth').textContent = new Date(calendarYear, calendarMonth).toLocaleDateString('fr-FR', { month: 'long', year: 'numeric' });
+            document.getElementById('calMonth').textContent = new Date(calendarYear, calendarMonth).toLocaleDateString('fr-FR', { month: 'long', year: 'numeric', timeZone: 'Europe/Paris' });
 
             const firstDay = new Date(calendarYear, calendarMonth, 1);
             const lastDay = new Date(calendarYear, calendarMonth + 1, 0);
@@ -4581,7 +5104,7 @@ Connectez-vous a l'application Planning pour traiter cette demande.
                 html += `<div class="calendar-header">${d}</div>`;
             });
 
-            const today = new Date().toISOString().split('T')[0];
+            const today = formatLocalDate(getNowFrance());
 
             // Fill previous month
             for (let i = 0; i < startDay; i++) {
@@ -4630,7 +5153,7 @@ Connectez-vous a l'application Planning pour traiter cette demande.
         function renderVacancesHistorique() {
             const container = document.getElementById('vacancesHistorique');
             const user = document.getElementById('currentUser').value;
-            const demandes = getDemandes().filter(d => d.type === 'vacances' && d.employee === user).sort((a, b) => b.id - a.id);
+            const demandes = getDemandes().filter(d => d.type === 'vacances' && d.employee === user && d.status !== 'bug').sort((a, b) => b.id - a.id);
 
             if (demandes.length === 0) {
                 container.innerHTML = '<p style="color: var(--gray);">Aucune demande de vacances.</p>';
@@ -4638,7 +5161,7 @@ Connectez-vous a l'application Planning pour traiter cette demande.
             }
 
             let html = '<table style="width: 100%; border-collapse: collapse; font-size: 0.85rem;">';
-            html += '<thead><tr style="background: var(--gray-light);"><th style="padding: 0.5rem; text-align: left;">Du</th><th style="padding: 0.5rem; text-align: left;">Au</th><th style="padding: 0.5rem; text-align: left;">Jours</th><th style="padding: 0.5rem; text-align: left;">Statut</th></tr></thead><tbody>';
+            html += '<thead><tr style="background: var(--gray-light);"><th style="padding: 0.5rem; text-align: left;">Du</th><th style="padding: 0.5rem; text-align: left;">Au</th><th style="padding: 0.5rem; text-align: left;">Jours</th><th style="padding: 0.5rem; text-align: left;">Statut</th><th style="padding: 0.5rem; text-align: left;">Actions</th></tr></thead><tbody>';
 
             demandes.forEach(d => {
                 const statusClass = d.status === 'attente' ? 'status-attente' : d.status === 'approuvee' ? 'status-approuvee' : 'status-refusee';
@@ -4648,11 +5171,57 @@ Connectez-vous a l'application Planning pour traiter cette demande.
                 html += `<td style="padding: 0.5rem;">${formatDateShort(d.dateFin)}</td>`;
                 html += `<td style="padding: 0.5rem;">${d.joursOuvrables}</td>`;
                 html += `<td style="padding: 0.5rem;"><span class="demande-status ${statusClass}">${statusLabel}</span></td>`;
+                html += `<td style="padding: 0.5rem;">`;
+                if (d.status === 'attente') {
+                    html += `<button class="btn btn-secondary" style="font-size: 0.75rem; padding: 0.25rem 0.5rem; margin-right: 0.25rem;" onclick="editVacancesRequest(${d.id})">Modifier</button>`;
+                    html += `<button class="btn btn-danger" style="font-size: 0.75rem; padding: 0.25rem 0.5rem;" onclick="cancelVacancesRequest(${d.id})">Annuler</button>`;
+                }
+                html += `</td>`;
                 html += `</tr>`;
             });
 
             html += '</tbody></table>';
             container.innerHTML = html;
+        }
+
+        function editVacancesRequest(id) {
+            const d = getDemandes().find(x => x.id === id);
+            if (!d || d.status !== 'attente') return;
+
+            // Pre-fill the form with existing dates
+            document.getElementById('vacancesDateDebut').value = d.dateDebut;
+            document.getElementById('vacancesDateFin').value = d.dateFin;
+            document.getElementById('vacancesMotif').value = d.motif || '';
+
+            // Set editing mode
+            editingVacancesId = id;
+
+            // Update button text and trigger calc
+            updateVacancesCalc();
+
+            // Scroll to the form
+            document.querySelector('#view-vacances .card:nth-child(2)').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        async function cancelVacancesRequest(id) {
+            if (!confirm('Annuler cette demande de vacances ?')) return;
+            try {
+                await db.collection('demandes').doc(String(id)).delete();
+                editingVacancesId = null;
+            } catch (e) {
+                console.error('Erreur suppression demande:', e);
+                alert('Erreur lors de la suppression.');
+            }
+        }
+
+        async function cancelDemandeRequest(id) {
+            if (!confirm('Annuler cette demande ?')) return;
+            try {
+                await db.collection('demandes').doc(String(id)).delete();
+            } catch (e) {
+                console.error('Erreur suppression demande:', e);
+                alert('Erreur lors de la suppression.');
+            }
         }
 
         function renderVacancesView() {
@@ -4985,15 +5554,15 @@ Connectez-vous a l'application Planning pour traiter cette demande.
 
         // Calcule les jours de vacances acquis selon la loi francaise
         // Droits = mois travailles pendant la PERIODE DE REFERENCE PRECEDENTE (1er juin N-2 au 31 mai N-1)
-        // 2.08 jours ouvres par mois (25j/an max)
+        // 2.5 jours ouvrables par mois (30j/an max, lun-sam)
         // +2 jours apres 6 ans d'anciennete (convention pharmacie)
         // Nouvel employe (embauche pendant la periode actuelle) : pro-rata depuis date embauche
         function calculateVacationDays(contract) {
             if (!contract || !contract.hireDate) return { acquired: 0, bonus: 0, total: 0, details: 'Date d\'embauche requise' };
 
-            const today = new Date();
-            const hireDate = new Date(contract.hireDate);
-            const endDate = contract.endDate ? new Date(contract.endDate) : null;
+            const today = getNowFrance();
+            const hireDate = parseLocalDate(contract.hireDate);
+            const endDate = contract.endDate ? parseLocalDate(contract.endDate) : null;
 
             // Si l'employe n'a pas encore commence
             if (hireDate > today) {
@@ -5042,8 +5611,8 @@ Connectez-vous a l'application Planning pour traiter cette demande.
                 return { acquired: 0, bonus: 0, total: 0, details: 'Contrat termine' };
             }
 
-            // 2.08 jours ouvres par mois (25j/an)
-            const acquiredDays = Math.min(Math.round(monthsWorked * 2.08), 25);
+            // 2.5 jours ouvrables par mois (30j/an)
+            const acquiredDays = Math.min(Math.round(monthsWorked * 2.5), 30);
 
             // Bonus anciennete: +2 jours apres 6 ans (convention pharmacie)
             const yearsOfService = yearsDiff(hireDate, today);
@@ -5080,8 +5649,8 @@ Connectez-vous a l'application Planning pour traiter cette demande.
         function getContractEndAlert(contract) {
             if (!contract.endDate || contract.contractType === 'CDI' || contract.contractType === 'freelance') return null;
 
-            const endDate = new Date(contract.endDate);
-            const today = new Date();
+            const endDate = parseLocalDate(contract.endDate);
+            const today = getNowFrance();
             const daysUntilEnd = Math.ceil((endDate - today) / (1000 * 60 * 60 * 24));
 
             if (daysUntilEnd < 0) {
@@ -5112,8 +5681,8 @@ Connectez-vous a l'application Planning pour traiter cette demande.
                                  contract.contractType === 'freelance' ? 'Freelance' : 'Periode d\'essai';
 
                 // Format dates for display
-                const hireDate = contract.hireDate ? new Date(contract.hireDate).toLocaleDateString('fr-FR') : 'N/A';
-                const endDate = contract.endDate ? new Date(contract.endDate).toLocaleDateString('fr-FR') : 'N/A';
+                const hireDate = contract.hireDate ? parseLocalDate(contract.hireDate).toLocaleDateString('fr-FR', { timeZone: 'Europe/Paris' }) : 'N/A';
+                const endDate = contract.endDate ? parseLocalDate(contract.endDate).toLocaleDateString('fr-FR', { timeZone: 'Europe/Paris' }) : 'N/A';
 
                 html += `
                     <div class="contract-card">
@@ -5168,10 +5737,13 @@ Connectez-vous a l'application Planning pour traiter cette demande.
                             ` : ''}
                         </div>
 
-                        <!-- Card Footer with Edit Button -->
-                        <div class="contract-card-footer">
-                            <button class="btn btn-outline" style="width: 100%;" onclick="toggleCardEdit('${sanitize(name)}')">
+                        <!-- Card Footer with Edit/Delete Buttons -->
+                        <div class="contract-card-footer" style="display: flex; gap: 0.5rem;">
+                            <button class="btn btn-outline" style="flex: 1;" onclick="toggleCardEdit('${sanitize(name)}')">
                                 ✏️ Modifier
+                            </button>
+                            <button class="btn" style="flex: 0 0 auto; padding: 0.5rem 0.75rem; background: #FEE2E2; color: #DC2626; border: 1px solid #FECACA;" onclick="confirmDeleteEmployee('${sanitize(name)}')">
+                                🗑
                             </button>
                         </div>
 
@@ -5219,6 +5791,55 @@ Connectez-vous a l'application Planning pour traiter cette demande.
             editForm.classList.toggle('hidden');
         }
 
+        function confirmDeleteEmployee(name) {
+            if (!confirm(`Supprimer ${name} et toutes ses donnees (planning, contrat, solde vacances) ?\n\nCette action est irreversible.`)) return;
+            deleteEmployee(name);
+        }
+
+        async function deleteEmployee(name) {
+            try {
+                // Remove from VACANCES_EMPLOYEES
+                const idx = VACANCES_EMPLOYEES.indexOf(name);
+                if (idx > -1) VACANCES_EMPLOYEES.splice(idx, 1);
+
+                // Remove from ROLES and STAFF
+                delete ROLES[name];
+                delete STAFF[name];
+
+                // Remove from contracts (Firestore)
+                const contracts = getContracts();
+                delete contracts[name];
+                await saveContracts(contracts);
+
+                // Remove from vacances solde (Firestore)
+                if (vacancesSoldeCache && vacancesSoldeCache[name]) {
+                    delete vacancesSoldeCache[name];
+                    await db.collection('config').doc('vacances_solde').set(vacancesSoldeCache);
+                }
+
+                // Remove from custom staff_schedule (Firestore)
+                const scheduleDoc = await db.collection('config').doc('staff_schedule').get();
+                if (scheduleDoc.exists) {
+                    const schedules = scheduleDoc.data();
+                    if (schedules[name]) {
+                        delete schedules[name];
+                        await db.collection('config').doc('staff_schedule').set(schedules);
+                    }
+                }
+
+                // Re-render
+                renderContractsManager();
+                renderManagerVacancesBalance();
+                const activeWeekBtn = document.querySelector('.week-btn.active');
+                renderPlanning(activeWeekBtn ? activeWeekBtn.dataset.week : 'paire');
+
+                alert(`${name} a ete supprime(e) avec succes.`);
+            } catch (e) {
+                console.error('Erreur suppression employe:', e);
+                alert('Erreur lors de la suppression. Voir la console.');
+            }
+        }
+
         function toggleEndDateField(name) {
             const typeSelect = document.getElementById(`contract-type-${name}`);
             const endField = document.getElementById(`contract-end-field-${name}`);
@@ -5259,7 +5880,7 @@ Connectez-vous a l'application Planning pour traiter cette demande.
         }
 
         // Synchroniser le calcul des vacances avec les contrats
-        // annuel = calcul automatique (2.08j/mois ouvre)
+        // annuel = calcul automatique (2.5j/mois ouvrable)
         // report = jours reportes des annees precedentes (ajuste manuellement)
         // pris = jours pris depuis le 1er juin (saisi dans contrats)
         // Total disponible = annuel + report - pris
@@ -5294,7 +5915,7 @@ Connectez-vous a l'application Planning pour traiter cette demande.
         }
 
         // ========== NAVIGATION ==========
-        function showView(viewName) {
+        function showView(viewName, updateHash = true) {
             if (viewName === 'manager' && !isManagerAuthenticated) {
                 showPasswordModal();
                 return;
@@ -5305,6 +5926,10 @@ Connectez-vous a l'application Planning pour traiter cette demande.
             document.getElementById(`view-${viewName}`).classList.add('active');
             document.querySelector(`.nav-btn[data-view="${viewName}"]`).classList.add('active');
 
+            if (updateHash) {
+                history.replaceState(null, '', `#${viewName}`);
+            }
+
             if (viewName === 'mes-demandes') {
                 renderMesDemandes();
             } else if (viewName === 'vacances') {
@@ -5313,6 +5938,16 @@ Connectez-vous a l'application Planning pour traiter cette demande.
                 renderManager();
             }
         }
+
+        function navigateFromHash() {
+            const hash = location.hash.replace('#', '');
+            const validViews = ['planning', 'demande', 'mes-demandes', 'vacances', 'manager'];
+            if (hash && validViews.includes(hash)) {
+                showView(hash, false);
+            }
+        }
+
+        window.addEventListener('hashchange', navigateFromHash);
 
         function showPasswordModal() {
             document.getElementById('passwordModal').classList.remove('hidden');
@@ -5529,12 +6164,23 @@ Connectez-vous a l'application Planning pour traiter cette demande.
             return hours;
         }
 
+        let editingExistingEmployee = null;
+
         function selectTemplate(templateName) {
             selectedTemplate = templateName;
             currentSchedule = JSON.parse(JSON.stringify(STAFF[templateName]));
+            editingExistingEmployee = templateName;
 
             document.getElementById('scheduleTemplateSelector').classList.add('hidden');
             document.getElementById('scheduleEditor').classList.remove('hidden');
+
+            // Pre-fill name and role
+            document.getElementById('newEmployeeName').value = templateName;
+            const role = ROLES[templateName] || 'preparatrice';
+            document.querySelector(`input[name="employeeRole"][value="${role}"]`).checked = true;
+
+            // Update button text
+            document.querySelector('#scheduleEditor .btn-success').textContent = '✓ Enregistrer les modifications';
 
             populateScheduleEditor();
         }
@@ -5620,7 +6266,7 @@ Connectez-vous a l'application Planning pour traiter cette demande.
                 return;
             }
 
-            if (STAFF[name] && !confirm(`Une employée nommée ${name} existe déjà. Remplacer ?`)) {
+            if (STAFF[name] && name !== editingExistingEmployee && !confirm(`Une employée nommée ${name} existe déjà. Remplacer ?`)) {
                 return;
             }
 
@@ -5629,7 +6275,7 @@ Connectez-vous a l'application Planning pour traiter cette demande.
                 role: role,
                 paire: currentSchedule.paire,
                 impaire: currentSchedule.impaire,
-                createdAt: new Date().toISOString(),
+                createdAt: getNowFrance().toISOString(),
                 createdBy: 'manager',
                 source_template: selectedTemplate
             };
@@ -5655,7 +6301,7 @@ Connectez-vous a l'application Planning pour traiter cette demande.
                 if (!contracts[name]) {
                     contracts[name] = {
                         contractType: 'CDI',
-                        hireDate: new Date().toISOString().split('T')[0],
+                        hireDate: formatLocalDate(getNowFrance()),
                         endDate: null,
                         daysTaken: 0
                     };
@@ -5665,7 +6311,7 @@ Connectez-vous a l'application Planning pour traiter cette demande.
                 // Initialize vacation balance
                 const solde = getVacancesSolde();
                 if (!solde[name]) {
-                    solde[name] = { annuel: 25, pris: 0, report: 0 };
+                    solde[name] = { annuel: 30, pris: 0, report: 0 };
                     await saveVacancesSolde(solde);
                 }
 
@@ -5709,6 +6355,7 @@ Connectez-vous a l'application Planning pour traiter cette demande.
         function resetScheduleManager() {
             selectedTemplate = null;
             currentSchedule = null;
+            editingExistingEmployee = null;
             document.getElementById('newEmployeeName').value = '';
             document.getElementById('scheduleEditor').classList.add('hidden');
             document.getElementById('scheduleConfirmation').classList.add('hidden');
@@ -5718,6 +6365,7 @@ Connectez-vous a l'application Planning pour traiter cette demande.
             const actionButtons = templateSelector.querySelector('.schedule-actions-buttons');
             const templateSelectionView = document.getElementById('templateSelectionView');
 
+            templateSelector.classList.remove('hidden');
             templateSelectionView.classList.add('hidden');
             actionButtons.classList.remove('hidden');
         }
@@ -5732,6 +6380,7 @@ Connectez-vous a l'application Planning pour traiter cette demande.
 
         function showBlankSchedule() {
             // Create a blank schedule with default times
+            editingExistingEmployee = null;
             selectedTemplate = null;
             currentSchedule = {
                 paire: {
@@ -5764,6 +6413,7 @@ Connectez-vous a l'application Planning pour traiter cette demande.
             document.getElementById('scheduleEditor').classList.remove('hidden');
             document.getElementById('newEmployeeName').value = '';
             document.querySelector('input[name="employeeRole"][value="preparatrice"]').checked = true;
+            document.querySelector('#scheduleEditor .btn-success').textContent = '✓ Créer le planning';
 
             // Populate editor with blank schedule
             populateScheduleEditor();
@@ -5780,6 +6430,9 @@ Connectez-vous a l'application Planning pour traiter cette demande.
             populateMonthSelectors();
             updateVacancesNavVisibility();
             updateRecuperationOptionVisibility();
+
+            // Navigate to hash view if present (e.g. #manager, #vacances)
+            navigateFromHash();
         }
 
         function handleLogin() {
@@ -5830,6 +6483,8 @@ Connectez-vous a l'application Planning pour traiter cette demande.
 
             // Type change
             document.getElementById('demandeType').addEventListener('change', handleTypeChange);
+            document.getElementById('demandeRaison').addEventListener('change', handleRaisonChange);
+            document.getElementById('demandePeriode').addEventListener('change', updateHeureOptions);
 
             // Analyse impact
             document.getElementById('analyserImpact').addEventListener('click', analyserImpact);
@@ -5858,11 +6513,12 @@ Connectez-vous a l'application Planning pour traiter cette demande.
                 document.getElementById('vacancesForm').reset();
                 document.getElementById('vacancesCalc').classList.add('hidden');
                 currentVacancesImpact = null;
+                editingVacancesId = null;
             });
 
             // Calendar navigation (block past months)
             document.getElementById('calPrev').addEventListener('click', () => {
-                const now = new Date();
+                const now = getNowFrance();
                 const prevMonth = calendarMonth - 1 < 0 ? 11 : calendarMonth - 1;
                 const prevYear = calendarMonth - 1 < 0 ? calendarYear - 1 : calendarYear;
                 if (prevYear < now.getFullYear() || (prevYear === now.getFullYear() && prevMonth < now.getMonth())) return;
@@ -5908,7 +6564,7 @@ Connectez-vous a l'application Planning pour traiter cette demande.
             document.getElementById('closeConfirm').addEventListener('click', closeConfirmModal);
 
             // Set min dates
-            const today = new Date().toISOString().split('T')[0];
+            const today = formatLocalDate(getNowFrance());
             document.getElementById('demandeDate').min = today;
             document.getElementById('demandeDateFin').min = today;
             document.getElementById('vacancesDateDebut').min = today;
