@@ -785,33 +785,41 @@ Pour un article de 1000 mots :
 - [ ] Authoritativeness : rôle professionnel clair
 - [ ] Trustworthiness : limites et précautions mentionnées
 
-### Navigation Entre Articles (OBLIGATOIRE)
+### Navigation Entre Articles (OBLIGATOIRE — DOUBLE ACTION)
 
-- [ ] **Article précédent** : Ajouter un lien vers l'article publié juste avant (sauf si c'est le premier article)
-- [ ] **Article suivant** : Mettre à jour l'article précédent pour qu'il pointe vers le nouvel article
-- [ ] Les liens doivent être en bas de l'article, avant le footer
+Chaque publication d'un nouvel article implique **deux fichiers à modifier** :
 
-**Structure HTML à ajouter en fin d'article :**
+1. **Le nouvel article** : ajouter un lien "Article précédent" vers le dernier article publié
+2. **L'article précédent** : ajouter un lien "Article suivant" vers le nouvel article (ce fichier doit être modifié ET inclus dans le commit/push)
+
+**Ne jamais oublier l'étape 2.** Sans elle, le dernier article en ligne n'a pas de bouton "Article suivant" et l'utilisateur ne peut pas naviguer vers le nouvel article.
+
+- [ ] **Nouvel article** : lien "Article précédent" ajouté (sauf si c'est le premier article)
+- [ ] **Article précédent** : lien "Article suivant" ajouté vers le nouvel article
+- [ ] Les deux fichiers sont dans le même commit/push
+- [ ] Les liens sont en bas de l'article, avant le footer
+
+**Structure HTML à ajouter en fin d'article (layout vertical, boutons pleine largeur) :**
 ```html
 <!-- Article Navigation -->
-<nav style="display: flex; justify-content: space-between; gap: var(--space-lg); margin-top: var(--space-2xl); padding-top: var(--space-xl); border-top: 1px solid var(--beige);">
-    <!-- Article précédent (à gauche) -->
-    <a href="[article-precedent].html" style="display: flex; align-items: center; gap: var(--space-md); padding: var(--space-lg); background: linear-gradient(135deg, var(--cream-dark) 0%, var(--beige) 100%); border-radius: var(--radius-lg); text-decoration: none;">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--sage)" stroke-width="2">
-            <path d="M19 12H5M12 19l-7-7 7-7"/>
+<nav style="display: flex; flex-direction: column; gap: var(--space-md); margin-top: var(--space-2xl); padding-top: var(--space-xl); border-top: 1px solid var(--beige);">
+    <!-- Article précédent (flèche à gauche, texte à gauche) -->
+    <a href="[article-precedent].html" style="display: flex; align-items: center; gap: var(--space-md); padding: var(--space-lg); background: linear-gradient(135deg, var(--cream-dark) 0%, var(--beige) 100%); border-radius: var(--radius-lg); text-decoration: none; transition: all 0.3s ease;" onmouseover="this.style.transform='translateX(-4px)'; this.style.boxShadow='0 4px 12px rgba(0,0,0,0.1)';" onmouseout="this.style.transform='translateX(0)'; this.style.boxShadow='none';">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--sage)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink: 0; transform: scaleX(-1);">
+            <path d="M5 12h14M12 5l7 7-7 7"/>
         </svg>
         <div>
-            <span style="display: block; font-size: var(--text-sm); color: var(--gray);">Article précédent</span>
+            <span style="display: block; font-size: var(--text-sm); color: var(--gray); margin-bottom: var(--space-xs);">Article précédent</span>
             <span style="display: block; font-size: var(--text-lg); color: var(--charcoal); font-weight: 600;">[Titre article précédent]</span>
         </div>
     </a>
-    <!-- Article suivant (à droite) - si applicable -->
-    <a href="[article-suivant].html" style="display: flex; align-items: center; gap: var(--space-md); padding: var(--space-lg); background: linear-gradient(135deg, var(--cream-dark) 0%, var(--beige) 100%); border-radius: var(--radius-lg); text-decoration: none;">
-        <div>
-            <span style="display: block; font-size: var(--text-sm); color: var(--gray);">Article suivant</span>
+    <!-- Article suivant (texte à droite, flèche à droite) - si applicable -->
+    <a href="[article-suivant].html" style="display: flex; align-items: center; justify-content: flex-end; gap: var(--space-md); padding: var(--space-lg); background: linear-gradient(135deg, var(--cream-dark) 0%, var(--beige) 100%); border-radius: var(--radius-lg); text-decoration: none; transition: all 0.3s ease;" onmouseover="this.style.transform='translateX(4px)'; this.style.boxShadow='0 4px 12px rgba(0,0,0,0.1)';" onmouseout="this.style.transform='translateX(0)'; this.style.boxShadow='none';">
+        <div style="text-align: right;">
+            <span style="display: block; font-size: var(--text-sm); color: var(--gray); margin-bottom: var(--space-xs);">Article suivant</span>
             <span style="display: block; font-size: var(--text-lg); color: var(--charcoal); font-weight: 600;">[Titre article suivant]</span>
         </div>
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--sage)" stroke-width="2">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--sage)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink: 0;">
             <path d="M5 12h14M12 5l7 7-7 7"/>
         </svg>
     </a>
