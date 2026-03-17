@@ -199,6 +199,119 @@
         .data-table tr:nth-child(even) {
             background-color: #fdfbf7;
         }
+        /* Infographic: screening steps */
+        .screening-infographic {
+            background: linear-gradient(135deg, #eef4f8 0%, #e3edf4 100%);
+            border-radius: var(--radius-lg);
+            padding: var(--space-xl);
+            margin: var(--space-xl) 0;
+        }
+        .screening-title {
+            text-align: center;
+            font-size: var(--text-xl);
+            font-weight: 700;
+            color: var(--charcoal);
+            margin-bottom: var(--space-lg);
+        }
+        .screening-steps {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 0;
+            align-items: start;
+        }
+        .screening-step {
+            text-align: center;
+            position: relative;
+            padding: 0 var(--space-sm);
+        }
+        .screening-step:not(:last-child)::after {
+            content: '';
+            position: absolute;
+            top: 32px;
+            right: -8px;
+            width: 16px;
+            height: 2px;
+            background: #4A7C8E;
+        }
+        .screening-step:not(:last-child)::before {
+            content: '';
+            position: absolute;
+            top: 28px;
+            right: -8px;
+            width: 0;
+            height: 0;
+            border-top: 6px solid transparent;
+            border-bottom: 6px solid transparent;
+            border-left: 8px solid #4A7C8E;
+        }
+        .screen-icon {
+            width: 64px;
+            height: 64px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto var(--space-sm);
+            font-size: 28px;
+        }
+        .screen-icon-1 { background: #d4e8e7; }
+        .screen-icon-2 { background: #dce8f0; }
+        .screen-icon-3 { background: #d4dff0; }
+        .screen-icon-4 { background: #d0f0db; }
+        .screen-num {
+            display: inline-block;
+            font-size: var(--text-xs);
+            font-weight: 700;
+            color: var(--white);
+            background: #4A7C8E;
+            width: 20px;
+            height: 20px;
+            line-height: 20px;
+            border-radius: 50%;
+            margin-bottom: var(--space-xs);
+        }
+        .screen-label {
+            font-size: var(--text-base);
+            font-weight: 600;
+            color: var(--charcoal);
+            margin-bottom: 4px;
+        }
+        .screen-desc {
+            font-size: var(--text-sm);
+            color: var(--gray);
+            line-height: 1.5;
+        }
+        @media (max-width: 767px) {
+            .screening-steps {
+                grid-template-columns: 1fr;
+                gap: var(--space-md);
+            }
+            .screening-step {
+                display: grid;
+                grid-template-columns: 56px 1fr;
+                grid-template-rows: auto auto;
+                text-align: left;
+                gap: 0 var(--space-md);
+                padding: 0;
+            }
+            .screen-icon {
+                width: 56px;
+                height: 56px;
+                grid-row: 1 / 3;
+                margin: 0;
+            }
+            .screen-num { display: none; }
+            .screen-label { align-self: end; }
+            .screen-desc { align-self: start; }
+            .screening-step:not(:last-child)::after,
+            .screening-step:not(:last-child)::before {
+                display: none;
+            }
+            .screening-step:not(:last-child) {
+                padding-bottom: var(--space-md);
+                border-bottom: 1px solid #c8d8e4;
+            }
+        }
         .trust-cta {
             background: linear-gradient(135deg, var(--cream) 0%, #f0ebe0 100%);
             border: 2px solid var(--sage);
@@ -468,15 +581,46 @@
 
             <h2>Comment ça marche concrètement?</h2>
 
-            <p>Le test immunologique fécal (FIT) se fait <strong>chez soi, en 5 minutes</strong>, sans douleur et sans restriction alimentaire. Le kit contient un tube de prélèvement, une notice, et une enveloppe préaffranchie. Concrètement :</p>
+            <p>Le test immunologique fécal (FIT) se fait <strong>chez soi, en 5 minutes</strong>, sans douleur et sans restriction alimentaire. Le kit contient un tube de prélèvement, une notice, et une enveloppe préaffranchie.</p>
 
-            <ol>
-                <li>Vous grattez la surface des selles avec la tige du tube</li>
-                <li>Vous refermez le tube et le secouez</li>
-                <li>Vous le glissez dans l'enveloppe et vous le postez</li>
-            </ol>
-
-            <p>Un conseil pratique : postez-le <strong>entre lundi et jeudi</strong> pour éviter qu'il ne reste trop longtemps dans la boîte aux lettres du week-end.</p>
+            <!-- Infographic: screening steps -->
+            <div class="screening-infographic">
+                <div class="screening-title">Le parcours de dépistage en 4 étapes</div>
+                <div class="screening-steps">
+                    <div class="screening-step">
+                        <div class="screen-icon screen-icon-1">
+                            <svg width="32" height="32" viewBox="0 0 32 32" fill="none"><path d="M8 6h16v20H8z" stroke="#2D5F5D" stroke-width="2" stroke-linejoin="round"/><path d="M12 6V4a2 2 0 012-2h4a2 2 0 012 2v2" stroke="#2D5F5D" stroke-width="2"/><path d="M12 14h8M12 18h5" stroke="#2D5F5D" stroke-width="1.5" stroke-linecap="round"/><circle cx="22" cy="22" r="6" fill="#d4e8e7" stroke="#2D5F5D" stroke-width="1.5"/><path d="M22 19v6M19 22h6" stroke="#2D5F5D" stroke-width="1.5" stroke-linecap="round"/></svg>
+                        </div>
+                        <span class="screen-num">1</span>
+                        <div class="screen-label">Récupérez le kit</div>
+                        <div class="screen-desc">En pharmacie, gratuit, sans ordonnance. On vérifie votre éligibilité sur place</div>
+                    </div>
+                    <div class="screening-step">
+                        <div class="screen-icon screen-icon-2">
+                            <svg width="32" height="32" viewBox="0 0 32 32" fill="none"><path d="M10 8h12a2 2 0 012 2v12a2 2 0 01-2 2H10a2 2 0 01-2-2V10a2 2 0 012-2z" stroke="#4A7C8E" stroke-width="2"/><circle cx="16" cy="16" r="4" stroke="#4A7C8E" stroke-width="2"/><path d="M16 12v4l2.5 2.5" stroke="#4A7C8E" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M6 14h2M24 14h2M6 18h2M24 18h2" stroke="#4A7C8E" stroke-width="1.5" stroke-linecap="round" opacity="0.5"/></svg>
+                        </div>
+                        <span class="screen-num">2</span>
+                        <div class="screen-label">Faites le test chez vous</div>
+                        <div class="screen-desc">Un seul prélèvement, 5 minutes, sans préparation ni restriction alimentaire</div>
+                    </div>
+                    <div class="screening-step">
+                        <div class="screen-icon screen-icon-3">
+                            <svg width="32" height="32" viewBox="0 0 32 32" fill="none"><path d="M4 12l12-8 12 8" stroke="#3a5f8a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M4 12v12a2 2 0 002 2h20a2 2 0 002-2V12" stroke="#3a5f8a" stroke-width="2"/><path d="M4 12l12 8 12-8" stroke="#3a5f8a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                        </div>
+                        <span class="screen-num">3</span>
+                        <div class="screen-label">Postez l'enveloppe</div>
+                        <div class="screen-desc">Enveloppe préaffranchie incluse. Postez entre lundi et jeudi</div>
+                    </div>
+                    <div class="screening-step">
+                        <div class="screen-icon screen-icon-4">
+                            <svg width="32" height="32" viewBox="0 0 32 32" fill="none"><circle cx="16" cy="16" r="10" stroke="#2d8a5f" stroke-width="2"/><path d="M11 16l3.5 3.5L21 12" stroke="#2d8a5f" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                        </div>
+                        <span class="screen-num">4</span>
+                        <div class="screen-label">Résultat sous 15 jours</div>
+                        <div class="screen-desc">Envoyé à vous et à votre médecin. Négatif dans 96% des cas</div>
+                    </div>
+                </div>
+            </div>
 
             <p>Le test cherche des traces de sang invisibles à l'oeil nu — signe potentiel d'un polype ou d'une lésion. Les résultats arrivent sous <strong>environ 15 jours</strong>, à vous et à votre médecin traitant.</p>
 
