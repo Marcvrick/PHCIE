@@ -16,6 +16,35 @@
   "language": "fr-FR",
   "items": [
     {
+      "id": "https://www.pharmaciecharnal.com/blog/allergie-pollen-bretagne-queven.html",
+      "url": "https://www.pharmaciecharnal.com/blog/allergie-pollen-bretagne-queven.html",
+      "title": "Allergie au pollen : comment bien vivre la saison en Bretagne?",
+      "content_html": "Pollens, symptômes et traitements en pharmacie à Quéven. Conseils pratiques pour gérer les allergies saisonnières en Bretagne cette année.",
+      "summary": "Nez qui coule, yeux rouges, éternuements? Avec un hiver doux, les pollens de bouleau et de frêne circulent déjà à des niveaux élevés en Bretagne. Antihistaminiques, sprays nasaux, désensibilisation : vos solutions en pharmacie.",
+      "date_published": "2026-03-16T00:00:00+01:00",
+      "date_modified": "2026-03-16T00:00:00+01:00",
+      "authors": [
+        {
+          "name": "Laure Charnal"
+        }
+      ],
+      "tags": [
+        "allergie pollen",
+        "rhinite allergique",
+        "antihistaminique",
+        "bouleau",
+        "graminées",
+        "Bretagne",
+        "désensibilisation"
+      ],
+      "language": "fr-FR",
+      "_medical_topic": {
+        "conditions": ["Rhinite allergique", "Allergie au pollen", "Conjonctivite allergique"],
+        "audience": "Patient",
+        "specialty": "Pharmacie"
+      }
+    },
+    {
       "id": "https://www.pharmaciecharnal.com/blog/prevenir-maux-hiver-queven.html",
       "url": "https://www.pharmaciecharnal.com/blog/prevenir-maux-hiver-queven.html",
       "title": "Prévenir les maux de l'hiver à Quéven",
