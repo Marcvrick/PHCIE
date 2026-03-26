@@ -5597,24 +5597,39 @@ Connectez-vous a l'application Planning pour traiter cette demande.
 
             for (const [name, demandesOfEmployee] of Object.entries(employeeHours)) {
                 let totalDues = 0;
+                let totalRecuperees = 0;
                 let recoverySlots = [];
+                const today = formatLocalDate(getNowFrance());
 
                 // Calculate total dues and gather recovery slots
                 demandesOfEmployee.forEach(d => {
                     totalDues += d.heuresConcernees || 0;
                     if (d.recoverySlots && d.recoverySlots.length > 0) {
                         d.recoverySlots.forEach(slot => {
+                            const done = slot.date <= today;
+                            if (done) totalRecuperees += slot.heures || 0;
                             recoverySlots.push({
                                 date: slot.date,
                                 periode: slot.periode,
                                 heures: slot.heures,
-                                demandeId: d.id
+                                demandeId: d.id,
+                                done: done
                             });
                         });
                     }
                 });
 
-                const soldeClass = totalDues > 0 ? 'hours-negative' : 'hours-neutral';
+                // Also count standalone recuperation demandes
+                const standaloneRecups = getDemandes().filter(d => d.status === 'approuvee' && d.type === 'recuperation' && d.employee === name);
+                standaloneRecups.forEach(d => {
+                    totalRecuperees += d.heuresRecuperees || 0;
+                });
+
+                const remaining = totalDues - totalRecuperees;
+                const isBalanced = remaining <= 0;
+                const soldeClass = isBalanced ? 'hours-neutral' : 'hours-negative';
+                const pendingSlots = recoverySlots.filter(s => !s.done);
+                const doneSlots = recoverySlots.filter(s => s.done);
 
                 html += `
                     <div class="hours-employee-card">
@@ -5626,32 +5641,45 @@ Connectez-vous a l'application Planning pour traiter cette demande.
                         <!-- Main info: Big number -->
                         <div class="hours-main-value">
                             <div class="hours-main-number ${soldeClass}">
-                                -${formatHeures(totalDues)}
+                                ${isBalanced ? '0h' : '-' + formatHeures(remaining)}
                             </div>
                             <div class="hours-main-label">
-                                ${totalDues > 0 ? 'à récupérer' : 'équilibré'}
+                                ${isBalanced ? 'équilibré' : 'à récupérer'}
                             </div>
                         </div>
 
                         <!-- Recovery slots -->
-                        ${recoverySlots.length > 0 ? `
+                        ${doneSlots.length > 0 ? `
                             <div style="margin-top: 1rem; padding-top: 1rem; border-top: 1px solid #E5E7EB;">
-                                <div style="font-size: 0.85rem; font-weight: 600; color: var(--teal-dark); margin-bottom: 0.5rem;">
-                                    📅 Récupération prévue:
+                                <div style="font-size: 0.85rem; font-weight: 600; color: var(--green); margin-bottom: 0.5rem;">
+                                    ✓ Récupération effectuée:
                                 </div>
-                                ${recoverySlots.map(slot => `
+                                ${doneSlots.map(slot => `
                                     <div style="font-size: 0.75rem; color: var(--gray); padding: 0.35rem 0;">
                                         ${formatDateShort(slot.date)} - ${slot.periode} (${formatHeures(slot.heures)})
                                     </div>
                                 `).join('')}
                             </div>
-                        ` : `
+                        ` : ''}
+                        ${pendingSlots.length > 0 ? `
+                            <div style="margin-top: ${doneSlots.length > 0 ? '0.5' : '1'}rem; padding-top: ${doneSlots.length > 0 ? '0.5' : '1'}rem; border-top: ${doneSlots.length > 0 ? 'none' : '1px solid #E5E7EB'};">
+                                <div style="font-size: 0.85rem; font-weight: 600; color: var(--teal-dark); margin-bottom: 0.5rem;">
+                                    📅 Récupération prévue:
+                                </div>
+                                ${pendingSlots.map(slot => `
+                                    <div style="font-size: 0.75rem; color: var(--gray); padding: 0.35rem 0;">
+                                        ${formatDateShort(slot.date)} - ${slot.periode} (${formatHeures(slot.heures)})
+                                    </div>
+                                `).join('')}
+                            </div>
+                        ` : ''}
+                        ${recoverySlots.length === 0 && !isBalanced ? `
                             <div style="margin-top: 1rem; padding-top: 1rem; border-top: 1px solid #E5E7EB;">
                                 <div style="font-size: 0.75rem; color: var(--orange); font-style: italic;">
                                     ⚠️ Pas de récupération prévue
                                 </div>
                             </div>
-                        `}
+                        ` : ''}
 
                         <!-- Details button -->
                         <button class="hours-toggle-btn" onclick="toggleHoursDetails('${sanitize(name)}')" style="margin-top: 0.75rem;">
