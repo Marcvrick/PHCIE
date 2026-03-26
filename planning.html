@@ -1677,7 +1677,7 @@
                     <option value="Sandrine">Sandrine [3]</option>
                     <option value="Titia">Titia [6]</option>
                     <option value="Melanie">Melanie [10]</option>
-                    <option value="Chloe">Chloe</option>
+                    <option value="Chloe">Chloe [9]</option>
                     <option value="Mathilde">Mathilde [5]</option>
                     <option value="Pascal">Pascal</option>
                     <option value="Emilie">Emilie</option>
@@ -5036,9 +5036,15 @@ Connectez-vous a l'application Planning pour traiter cette demande.
 
             document.getElementById('vacancesBalance').innerHTML = `
                 <div class="vacances-stats">
+                    ${report > 0 ? `
                     <div class="vacances-stat">
-                        <div class="vacances-stat-value">${s.annuel}${report > 0 ? `<span style="font-size: 0.7em; color: var(--blue);">+${report}</span>` : ''}</div>
-                        <div class="vacances-stat-label">Annuel${report > 0 ? ' + Report' : ''}</div>
+                        <div class="vacances-stat-value" style="color: var(--blue);">${report}</div>
+                        <div class="vacances-stat-label">Report</div>
+                    </div>
+                    ` : ''}
+                    <div class="vacances-stat">
+                        <div class="vacances-stat-value">${s.annuel}</div>
+                        <div class="vacances-stat-label">Acquis</div>
                     </div>
                     <div class="vacances-stat">
                         <div class="vacances-stat-value" style="color: var(--orange);">${s.pris}</div>
@@ -5049,6 +5055,9 @@ Connectez-vous a l'application Planning pour traiter cette demande.
                         <div class="vacances-stat-label">Restant</div>
                     </div>
                 </div>
+                ${report > 0 ? `<div style="font-size: 0.75rem; color: var(--gray); text-align: center; margin-bottom: 0.5rem;">
+                    ${report}j (année préc.) + ${s.annuel}j (acquis) - ${s.pris}j (pris) = <strong>${restant}j</strong>
+                </div>` : ''}
                 <div class="vacances-balance-bar">
                     <div class="vacances-balance-fill ${fillClass}" style="width: ${pct}%;"></div>
                 </div>
@@ -6155,6 +6164,44 @@ Connectez-vous a l'application Planning pour traiter cette demande.
         // pris = jours pris depuis le 1er juin (saisi dans contrats)
         // Total disponible = annuel + report - pris
         // Sync only calculated accrual (annuel) from contracts.
+        // Automatic annual rollover on June 1st
+        // Unused days from previous year become "report", pris resets to 0
+        async function performAnnualRollover() {
+            const today = getNowFrance();
+            const currentYear = today.getFullYear();
+            const currentMonth = today.getMonth(); // 0-based, 5 = June
+
+            // Only run if we're in June or later
+            if (currentMonth < 5) return;
+
+            const solde = getVacancesSolde();
+
+            // Check if rollover already done for this year
+            const rolloverKey = `_rolloverYear`;
+            if (solde[rolloverKey] === currentYear) return;
+
+            let updated = false;
+            VACANCES_EMPLOYEES.forEach(name => {
+                if (solde[name]) {
+                    const report = solde[name].report || 0;
+                    const unused = solde[name].annuel + report - solde[name].pris;
+                    if (unused > 0 || solde[name].pris > 0) {
+                        solde[name].report = Math.max(0, unused);
+                        solde[name].pris = 0;
+                        updated = true;
+                    }
+                }
+            });
+
+            solde[rolloverKey] = currentYear;
+            if (updated) {
+                await saveVacancesSolde(solde);
+            } else {
+                // Still save the rollover marker
+                await saveVacancesSolde(solde);
+            }
+        }
+
         // pris is managed by approveDemande and manual contract adjustments — never overwritten here.
         async function syncVacationsWithContracts() {
             const contracts = getContracts();
@@ -6296,6 +6343,9 @@ Connectez-vous a l'application Planning pour traiter cette demande.
             // Initialize vacances solde and contracts if needed
             await initVacancesSolde();
             await initContracts();
+
+            // Basculement annuel au 1er juin (report des jours non pris)
+            await performAnnualRollover();
 
             // Synchroniser les soldes vacances avec les contrats (calcul 2.5j/mois)
             await syncVacationsWithContracts();
