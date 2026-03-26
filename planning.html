@@ -1963,7 +1963,7 @@
                             📋 Choisir le modèle d'un planning existant
                         </button>
                         <button class="btn btn-secondary" onclick="showBlankSchedule()" style="width: 100%;">
-                            ✏️ Créer un planning vide (avancé)
+                            ✏️ Créer un nouveau planning
                         </button>
                     </div>
 
@@ -6241,6 +6241,9 @@ Connectez-vous a l'application Planning pour traiter cette demande.
                         const currentView = document.querySelector('.view.active');
                         if (currentView && currentView.id === 'view-vacances') {
                             renderVacancesView();
+                        }
+                        if (isManagerAuthenticated && currentView && currentView.id === 'view-manager') {
+                            renderManagerVacancesBalance();
                         }
                     }
                 }
