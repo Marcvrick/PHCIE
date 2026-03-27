@@ -154,6 +154,7 @@
             line-height: 1.6;
             color: var(--charcoal);
             background-color: var(--cream);
+            overflow-x: hidden;
         }
 
         img {
@@ -2091,6 +2092,10 @@
         @media (max-width: 767px) {
             .brands-strip { padding: var(--space-48) 0 var(--space-32); }
             .brands-strip-header { justify-content: center; text-align: center; flex-direction: column; align-items: center; }
+            .brands-strip-logos { gap: 8px; }
+            .brands-strip-logo-card { padding: var(--space-12) var(--space-8); }
+            .brands-strip-logo-card img { max-width: 80px; max-height: 36px; }
+            .brands-strip-container { padding: 0 var(--space-16); overflow: hidden; }
         }
 
         /* === BENTO GRID === */
@@ -2508,6 +2513,7 @@
       "inLanguage": "fr"
     }
     </script>
+    <link rel="alternate" type="application/rss+xml" title="Blog Pharmacie Charnal" href="https://www.pharmaciecharnal.com/feed.xml">
 </head>
 <body>
     <!-- Navigation (style-v2.css) -->
@@ -2907,6 +2913,7 @@
                 <div class="footer-legal">
                     <a href="mentions-legales.html">Mentions légales</a>
                     <a href="donnees-personnelles.html">Confidentialité</a>
+                    <a href="/feed.xml" title="Flux RSS">RSS</a>
                 </div>
             </div>
         </div>
