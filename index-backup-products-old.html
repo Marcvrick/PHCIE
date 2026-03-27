@@ -618,8 +618,7 @@
             }
         }
 
-        /* === PRODUCT CARDS (Redesign v2 — asymmetric grid) === */
-        /* ROLLBACK: To restore the old 4-column Hims layout, see backup in index-backup-products-old.html */
+        /* === PRODUCT FEATURE CARDS (Hims-style) === */
         .product-features {
             padding: var(--space-24) 0 var(--space-32);
             background: var(--cream);
@@ -633,32 +632,63 @@
 
         .product-features-grid {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 16px;
+            grid-template-columns: repeat(2, 1fr);
+            gap: var(--space-12);
         }
 
-        @media (min-width: 768px) {
+        @media (min-width: 1024px) {
             .product-features-grid {
-                grid-template-columns: 1.4fr 1fr 1fr;
-                grid-template-rows: 1fr 1fr;
-                gap: 20px;
+                grid-template-columns: repeat(4, 1fr);
+                gap: var(--space-16);
             }
         }
 
         .product-feature-card {
-            border-radius: 18px;
-            overflow: hidden;
-            position: relative;
+            border-radius: var(--radius-lg);
+            padding: var(--space-16);
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: center;
-            padding: 24px 20px 20px;
-            min-height: 220px;
-            transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+            min-height: 100px;
+            transition: all var(--duration-normal) var(--ease-standard);
             cursor: pointer;
+            overflow: hidden;
             text-decoration: none;
             color: inherit;
+        }
+
+        /* Colors always visible */
+        .product-feature-card.card--naturels    { background: #C5D08C; }
+        .product-feature-card.card--dermo       { background: #9DCCAE; }
+        .product-feature-card.card--complements { background: #E9B870; }
+        .product-feature-card.card--medical     { background: #ADA5D7; }
+
+        .product-feature-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .product-feature-card.card--naturels:hover    { background: #b8c57a; }
+        .product-feature-card.card--dermo:hover       { background: #8dc0a0; }
+        .product-feature-card.card--complements:hover { background: #dea955; }
+        .product-feature-card.card--medical:hover     { background: #9e96ca; }
+
+        .product-feature-header {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            margin-bottom: var(--space-8);
+            min-height: 2.4em;
+            width: 100%;
+        }
+
+        .product-feature-title {
+            font-family: var(--font-display);
+            font-size: var(--text-base);
+            font-weight: 500;
+            line-height: 1.2;
+            color: var(--charcoal);
+            text-decoration: none;
         }
 
         .product-feature-card,
@@ -668,44 +698,68 @@
             text-decoration: none !important;
         }
 
-        .product-feature-card:hover {
-            transform: translateY(-6px);
-        }
-
-        @media (min-width: 768px) {
+        @media (min-width: 1024px) {
             .product-feature-card {
-                min-height: 280px;
-                padding: 32px 28px;
+                border-radius: var(--radius-xl);
+                padding: var(--space-16) var(--space-16) 0;
+                min-height: 180px;
+            }
+
+            .product-feature-header {
+                min-height: 3.2em;
+            }
+
+            .product-feature-title {
+                font-size: var(--text-2xl);
             }
         }
 
-        /* First card spans 2 rows on desktop for asymmetry */
-        @media (min-width: 768px) {
-            .product-feature-card.card--big {
-                grid-row: 1 / 3;
-                min-height: 100%;
+        .product-feature-title .accent-green { color: var(--sage-natural); font-style: italic; }
+        .product-feature-title .accent-teal { color: var(--teal-pro); font-style: italic; }
+        .product-feature-title .accent-copper { color: var(--copper); font-style: italic; }
+        .product-feature-title .accent-blue { color: var(--bleu-confiance); font-style: italic; }
+
+        .product-feature-arrow {
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            color: var(--gray-500);
+            transition: transform var(--duration-fast) var(--ease-standard);
+        }
+
+        @media (min-width: 1024px) {
+            .product-feature-arrow {
+                width: 32px;
+                height: 32px;
             }
         }
 
-        .product-feature-card.card--naturels    { background: #C5D08C; }
-        .product-feature-card.card--dermo       { background: #9DCCAE; }
-        .product-feature-card.card--complements { background: #E9B870; }
-        .product-feature-card.card--medical     { background: #ADA5D7; }
+        .product-feature-card:hover .product-feature-arrow {
+            transform: translateX(4px);
+        }
 
-        .product-feature-card.card--naturels:hover    { background: #b8c57a; }
-        .product-feature-card.card--dermo:hover       { background: #8dc0a0; }
-        .product-feature-card.card--complements:hover { background: #dea955; }
-        .product-feature-card.card--medical:hover     { background: #9e96ca; }
+        .product-feature-arrow svg {
+            width: 20px;
+            height: 20px;
+        }
+
+        .product-feature-visual {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            margin-top: -24px;
+        }
 
         .product-feature-img-wrap {
             position: relative;
             display: flex;
             align-items: center;
             justify-content: center;
-            flex: 1;
-            width: 85%;
-            max-width: 320px;
-            margin-bottom: 12px;
         }
 
         .product-feature-img-wrap::after {
@@ -721,70 +775,62 @@
         }
 
         .product-feature-img {
-            width: 100%;
-            height: auto;
+            width: 100px;
+            height: 100px;
             object-fit: contain;
+            filter: none;
+            transition: transform var(--duration-normal) var(--ease-standard);
             position: relative;
             z-index: 1;
-            transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
         .product-feature-card:hover .product-feature-img {
-            transform: scale(1.08) translateY(-4px);
+            transform: scale(1.05);
         }
 
-        @media (min-width: 768px) {
-            .product-feature-card.card--big .product-feature-img-wrap {
-                width: 75%;
-                max-width: 400px;
+        @media (min-width: 1024px) {
+            .product-feature-img {
+                width: 155px;
+                height: 155px;
+            }
+
+            .product-feature-img-wrap::after {
+                height: 16px;
             }
         }
 
-        .product-feature-title {
-            font-family: Georgia, 'Fraunces', serif;
-            font-size: 1.4rem;
-            font-weight: 500;
-            font-style: italic;
-            color: #1F2121;
-            text-align: center;
-            line-height: 1.2;
-            align-self: center;
-            margin-top: auto;
-        }
-
-        @media (min-width: 768px) {
-            .product-feature-card.card--big .product-feature-title {
-                font-size: 1.8rem;
-            }
-        }
-
-        /* Wide card spans 2 columns */
-        @media (min-width: 768px) {
-            .product-feature-card.card--wide {
-                grid-column: 2 / 4;
-            }
-        }
-
-        .product-feature-arrow {
-            position: absolute;
-            top: 16px;
-            right: 16px;
-            width: 28px;
-            height: 28px;
-            border-radius: 50%;
-            background: rgba(255,255,255,0.5);
+        .product-feature-icon-wrap {
+            width: 64px;
+            height: 64px;
+            border-radius: var(--radius-lg);
             display: flex;
             align-items: center;
             justify-content: center;
-            opacity: 0;
-            transform: translateX(-4px);
-            transition: opacity 0.2s, transform 0.2s;
         }
 
-        .product-feature-card:hover .product-feature-arrow {
-            opacity: 1;
-            transform: translateX(0);
+        .product-feature-icon-wrap svg {
+            width: 32px;
+            height: 32px;
+            stroke-width: 1.5;
         }
+
+        @media (min-width: 1024px) {
+            .product-feature-icon-wrap {
+                width: 100px;
+                height: 100px;
+                border-radius: var(--radius-xl);
+            }
+
+            .product-feature-icon-wrap svg {
+                width: 52px;
+                height: 52px;
+            }
+        }
+
+        .product-feature-icon-wrap.bg-sage { background: var(--pastel-sage); color: var(--sage-dark); }
+        .product-feature-icon-wrap.bg-teal { background: var(--pastel-teal); color: var(--teal-pro); }
+        .product-feature-icon-wrap.bg-peach { background: var(--pastel-peach); color: var(--copper); }
+        .product-feature-icon-wrap.bg-lavender { background: var(--pastel-lavender); color: var(--bleu-confiance); }
 
         /* === STATS BAR === */
         .stats-bar {
@@ -2587,41 +2633,57 @@
     <section class="product-features">
         <div class="container">
             <div class="product-features-grid">
-                <a href="Quizzes/quiz-produits-naturels.html" class="product-feature-card card--naturels card--big">
-                    <span class="product-feature-arrow">
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-                    </span>
-                    <div class="product-feature-img-wrap">
-                        <img src="images/naturels-product.png" alt="Feuilles naturelles" class="product-feature-img">
+                <a href="Quizzes/quiz-produits-naturels.html" class="product-feature-card card--naturels">
+                    <div class="product-feature-header">
+                        <span class="product-feature-title">Produits <span class="accent-green">naturels</span></span>
+                        <span class="product-feature-arrow">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+                        </span>
                     </div>
-                    <span class="product-feature-title">Produits naturels</span>
+                    <div class="product-feature-visual">
+                        <div class="product-feature-img-wrap">
+                            <img src="images/naturels-product.png" alt="Feuilles naturelles" class="product-feature-img">
+                        </div>
+                    </div>
                 </a>
                 <a href="Quizzes/quiz-soin-peau.html" class="product-feature-card card--dermo">
-                    <span class="product-feature-arrow">
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-                    </span>
-                    <div class="product-feature-img-wrap">
-                        <img src="images/dermocosmetique-product.png" alt="Crème dermocosmétique" class="product-feature-img">
+                    <div class="product-feature-header">
+                        <span class="product-feature-title">Dermo<span class="accent-teal">cosmétique</span></span>
+                        <span class="product-feature-arrow">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+                        </span>
                     </div>
-                    <span class="product-feature-title">Dermocosmétique</span>
+                    <div class="product-feature-visual">
+                        <div class="product-feature-img-wrap">
+                            <img src="images/dermocosmetique-product.png" alt="Crème dermocosmétique" class="product-feature-img">
+                        </div>
+                    </div>
                 </a>
                 <a href="Quizzes/quiz-coming-soon.html" class="product-feature-card card--complements">
-                    <span class="product-feature-arrow">
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-                    </span>
-                    <div class="product-feature-img-wrap">
-                        <img src="images/complements-product.png" alt="Compléments alimentaires" class="product-feature-img">
+                    <div class="product-feature-header">
+                        <span class="product-feature-title">Compléments <span class="accent-copper">alimentaires</span></span>
+                        <span class="product-feature-arrow">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+                        </span>
                     </div>
-                    <span class="product-feature-title">Compléments</span>
+                    <div class="product-feature-visual">
+                        <div class="product-feature-img-wrap">
+                            <img src="images/complements-product.png" alt="Compléments alimentaires" class="product-feature-img">
+                        </div>
+                    </div>
                 </a>
-                <a href="Quizzes/quiz-automedication.html" class="product-feature-card card--medical card--wide">
-                    <span class="product-feature-arrow">
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-                    </span>
-                    <div class="product-feature-img-wrap">
-                        <img src="images/automedication-product.png" alt="Comprimés automédication" class="product-feature-img">
+                <a href="Quizzes/quiz-automedication.html" class="product-feature-card card--medical">
+                    <div class="product-feature-header">
+                        <span class="product-feature-title">Auto<span class="accent-blue">médication</span></span>
+                        <span class="product-feature-arrow">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+                        </span>
                     </div>
-                    <span class="product-feature-title">Automédication</span>
+                    <div class="product-feature-visual">
+                        <div class="product-feature-img-wrap">
+                            <img src="images/automedication-product.png" alt="Comprimés automédication" class="product-feature-img">
+                        </div>
+                    </div>
                 </a>
             </div>
             <div style="text-align: center; margin-top: var(--space-16);">
