@@ -656,7 +656,7 @@
             align-items: center;
             justify-content: center;
             padding: 20px 16px 16px;
-            min-height: 160px;
+            aspect-ratio: 1;
             transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
             cursor: pointer;
             text-decoration: none;
@@ -676,6 +676,7 @@
 
         @media (min-width: 768px) {
             .product-feature-card {
+                aspect-ratio: auto;
                 min-height: 200px;
                 padding: 24px 20px 18px;
             }
@@ -2585,56 +2586,6 @@
         </div>
     </div>
 
-    <!-- Product Feature Cards (Bento layout) -->
-    <section class="product-features">
-        <div class="container">
-            <div class="product-features-grid">
-                <a href="Quizzes/quiz-produits-naturels.html" class="product-feature-card card--naturels card--big">
-                    <span class="product-feature-arrow">
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-                    </span>
-                    <div class="product-feature-img-wrap">
-                        <img src="images/naturels-product.png" alt="Feuilles naturelles" class="product-feature-img">
-                    </div>
-                    <span class="product-feature-title">Produits naturels</span>
-                </a>
-                <a href="Quizzes/quiz-soin-peau.html" class="product-feature-card card--dermo">
-                    <span class="product-feature-arrow">
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-                    </span>
-                    <div class="product-feature-img-wrap">
-                        <img src="images/dermocosmetique-product.png" alt="Crème dermocosmétique" class="product-feature-img">
-                    </div>
-                    <span class="product-feature-title">Dermocosmétique</span>
-                </a>
-                <a href="Quizzes/quiz-coming-soon.html" class="product-feature-card card--complements">
-                    <span class="product-feature-arrow">
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-                    </span>
-                    <div class="product-feature-img-wrap">
-                        <img src="images/complements-product.png" alt="Compléments alimentaires" class="product-feature-img">
-                    </div>
-                    <span class="product-feature-title">Compléments</span>
-                </a>
-                <a href="Quizzes/quiz-automedication.html" class="product-feature-card card--medical card--wide">
-                    <span class="product-feature-arrow">
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-                    </span>
-                    <div class="product-feature-img-wrap">
-                        <img src="images/automedication-product.png" alt="Comprimés automédication" class="product-feature-img">
-                    </div>
-                    <span class="product-feature-title">Automédication</span>
-                </a>
-            </div>
-            <div style="text-align: center; margin-top: var(--space-16);">
-                <a href="Quizzes/guide-quizzes-sante-pharmacie-queven.html" style="color: var(--teal); font-weight: 600; font-size: var(--text-base); text-decoration: none; display: inline-flex; align-items: center; gap: 6px; transition: gap 0.3s ease;" onmouseover="this.style.gap='10px'" onmouseout="this.style.gap='6px'">
-                    Voir tous nos quiz
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-                </a>
-            </div>
-        </div>
-    </section>
-
     <!-- Services Section - Asymmetric layout -->
     <section class="services-v2">
         <div class="services-v2-container">
@@ -2734,6 +2685,55 @@
         </div>
     </section>
 
+    <!-- Product Feature Cards (Bento layout) -->
+    <section class="product-features">
+        <div class="container">
+            <div class="product-features-grid">
+                <a href="Quizzes/quiz-produits-naturels.html" class="product-feature-card card--naturels card--big">
+                    <span class="product-feature-arrow">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                    </span>
+                    <div class="product-feature-img-wrap">
+                        <img src="images/naturels-product.png" alt="Feuilles naturelles" class="product-feature-img">
+                    </div>
+                    <span class="product-feature-title">Produits naturels</span>
+                </a>
+                <a href="Quizzes/quiz-soin-peau.html" class="product-feature-card card--dermo">
+                    <span class="product-feature-arrow">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                    </span>
+                    <div class="product-feature-img-wrap">
+                        <img src="images/dermocosmetique-product.png" alt="Crème dermocosmétique" class="product-feature-img">
+                    </div>
+                    <span class="product-feature-title">Dermocosmétique</span>
+                </a>
+                <a href="Quizzes/quiz-coming-soon.html" class="product-feature-card card--complements">
+                    <span class="product-feature-arrow">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                    </span>
+                    <div class="product-feature-img-wrap">
+                        <img src="images/complements-product.png" alt="Compléments alimentaires" class="product-feature-img">
+                    </div>
+                    <span class="product-feature-title">Compléments</span>
+                </a>
+                <a href="Quizzes/quiz-automedication.html" class="product-feature-card card--medical card--wide">
+                    <span class="product-feature-arrow">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                    </span>
+                    <div class="product-feature-img-wrap">
+                        <img src="images/automedication-product.png" alt="Comprimés automédication" class="product-feature-img">
+                    </div>
+                    <span class="product-feature-title">Automédication</span>
+                </a>
+            </div>
+            <div style="text-align: center; margin-top: var(--space-16);">
+                <a href="Quizzes/guide-quizzes-sante-pharmacie-queven.html" style="color: var(--teal); font-weight: 600; font-size: var(--text-base); text-decoration: none; display: inline-flex; align-items: center; gap: 6px; transition: gap 0.3s ease;" onmouseover="this.style.gap='10px'" onmouseout="this.style.gap='6px'">
+                    Voir tous nos quiz
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                </a>
+            </div>
+        </div>
+    </section>
 
     <!-- Blog Highlight - Dernier article (auto-fetched from blog.html) -->
     <section class="blog-highlight" id="latest-article-section">
