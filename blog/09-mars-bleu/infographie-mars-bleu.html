@@ -1,0 +1,187 @@
+<!-- Infographie Mars Bleu — version compacte pour blog -->
+<style>
+.imb {
+    max-width: 760px;
+    margin: 2rem auto;
+    font-family: -apple-system, 'DM Sans', sans-serif;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid #D6E4F0;
+}
+.imb * { box-sizing: border-box; margin: 0; padding: 0; }
+
+.imb-top {
+    background: linear-gradient(135deg, #3B82C4 0%, #2563A0 100%);
+    color: #fff;
+    padding: 1rem 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+}
+.imb-top-title {
+    font-family: Georgia, serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+}
+.imb-top-sub {
+    font-size: 0.75rem;
+    opacity: 0.8;
+}
+.imb-badge {
+    background: rgba(255,255,255,0.2);
+    font-size: 0.65rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    padding: 3px 12px;
+    border-radius: 50px;
+    white-space: nowrap;
+}
+
+.imb-stats {
+    display: flex;
+    background: #F0F6FC;
+}
+.imb-stat {
+    flex: 1;
+    text-align: center;
+    padding: 0.8rem 0.5rem;
+    border-right: 1px solid #D6E4F0;
+}
+.imb-stat:last-child { border-right: none; }
+.imb-stat-num {
+    font-family: Georgia, serif;
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: #2563A0;
+    line-height: 1.1;
+}
+.imb-stat-lbl {
+    font-size: 0.65rem;
+    color: #666;
+    margin-top: 0.15rem;
+    line-height: 1.2;
+}
+
+.imb-steps {
+    display: flex;
+    background: #fff;
+    border-top: 1px solid #D6E4F0;
+}
+.imb-step {
+    flex: 1;
+    padding: 0.8rem 0.6rem;
+    text-align: center;
+    border-right: 1px solid #F0F0F0;
+    position: relative;
+}
+.imb-step:last-child { border-right: none; }
+.imb-step-num {
+    width: 24px;
+    height: 24px;
+    background: #3B82C4;
+    color: #fff;
+    border-radius: 50%;
+    font-size: 0.7rem;
+    font-weight: 700;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 0.3rem;
+}
+.imb-step-title {
+    font-size: 0.7rem;
+    font-weight: 700;
+    color: #1A1A1A;
+    line-height: 1.3;
+}
+.imb-step-detail {
+    font-size: 0.6rem;
+    color: #888;
+    margin-top: 0.15rem;
+}
+.imb-step-tag {
+    display: inline-block;
+    font-size: 0.55rem;
+    font-weight: 600;
+    padding: 1px 6px;
+    border-radius: 50px;
+    margin-top: 0.25rem;
+    background: #E8F2FC;
+    color: #2563A0;
+}
+
+.imb-bottom {
+    background: #2563A0;
+    color: #fff;
+    text-align: center;
+    padding: 0.6rem 1rem;
+    font-size: 0.75rem;
+}
+.imb-bottom strong { color: #9DD4F5; }
+
+@media (max-width: 600px) {
+    .imb-stats { flex-wrap: wrap; }
+    .imb-stat { flex: 1 1 33%; }
+    .imb-steps { flex-wrap: wrap; }
+    .imb-step { flex: 1 1 50%; border-bottom: 1px solid #F0F0F0; }
+    .imb-top { flex-direction: column; text-align: center; }
+}
+</style>
+
+<div class="imb">
+    <div class="imb-top">
+        <div>
+            <div class="imb-top-title">Cancer colorectal: les chiffres qui comptent</div>
+            <div class="imb-top-sub">Un test simple peut vous sauver la vie</div>
+        </div>
+        <div class="imb-badge">Mars Bleu 2026</div>
+    </div>
+
+    <div class="imb-stats">
+        <div class="imb-stat">
+            <div class="imb-stat-num">47 500</div>
+            <div class="imb-stat-lbl">cas/an en France</div>
+        </div>
+        <div class="imb-stat">
+            <div class="imb-stat-num">17 000</div>
+            <div class="imb-stat-lbl">deces/an (2e cancer)</div>
+        </div>
+        <div class="imb-stat">
+            <div class="imb-stat-num">9/10</div>
+            <div class="imb-stat-lbl">guerisons si detecte tot</div>
+        </div>
+    </div>
+
+    <div class="imb-steps">
+        <div class="imb-step">
+            <div class="imb-step-num">1</div>
+            <div class="imb-step-title">Kit en pharmacie</div>
+            <div class="imb-step-detail">Sans ordonnance</div>
+            <div class="imb-step-tag">Gratuit</div>
+        </div>
+        <div class="imb-step">
+            <div class="imb-step-num">2</div>
+            <div class="imb-step-title">Test chez soi</div>
+            <div class="imb-step-detail">Simple prelevement</div>
+            <div class="imb-step-tag">5 min</div>
+        </div>
+        <div class="imb-step">
+            <div class="imb-step-num">3</div>
+            <div class="imb-step-title">Envoi postal</div>
+            <div class="imb-step-detail">Enveloppe incluse</div>
+            <div class="imb-step-tag">Pre-affranchi</div>
+        </div>
+        <div class="imb-step">
+            <div class="imb-step-num">4</div>
+            <div class="imb-step-title">Resultats</div>
+            <div class="imb-step-detail">96% negatifs</div>
+            <div class="imb-step-tag">15 jours</div>
+        </div>
+    </div>
+
+    <div class="imb-bottom">
+        50-74 ans, tous les 2 ans, <strong>100% rembourse</strong> — Venez retirer votre kit en pharmacie
+    </div>
+</div>
