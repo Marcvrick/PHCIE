@@ -318,20 +318,17 @@ a {
 
 .nav-link-blog {
     background: #b4a6d7;
-    color: var(--white);
+    color: var(--white) !important;
     font-weight: 600;
 }
 
 .nav-link-blog:hover {
     background: #9b8bc4;
-    color: var(--white);
-    transform: translateY(-2px);
-    box-shadow: var(--shadow-md);
+    color: var(--white) !important;
 }
 
-.nav-link-blog.active {
-    background: #8270b1;
-    color: var(--white);
+.nav-link-blog::after {
+    display: none;
 }
 
 .nav-link-recruit {
