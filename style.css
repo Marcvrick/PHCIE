@@ -316,7 +316,8 @@ a {
     background: var(--gradient);
 }
 
-.nav-link-blog {
+.nav-link-blog,
+.nav-link-blog.active {
     background: #b4a6d7;
     color: var(--white) !important;
     font-weight: 600;
