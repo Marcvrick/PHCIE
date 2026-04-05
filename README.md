@@ -625,6 +625,12 @@ Les deux fichiers sont complémentaires et doivent rester à jour.
 
 ## 📝 Changelog Récent
 
+### 5 Avril 2026
+
+**planning.html — Fix samedi vacances:**
+- Warning dynamique dans le formulaire vacances : quand la date de fin tombe un vendredi et que l'employée travaille le samedi matin, un bandeau orange s'affiche avec lien "Inclure le samedi →" pour auto-étendre la date de fin au samedi
+- Ajout de `employeeTravailleSamedi(employee)` — détecte les employées concernées selon le planning paire/impaire (Laure, Claire, Sandrine, Titia, Melanie)
+
 ### 20 Février 2026
 
 **Quizzes:**
@@ -667,6 +673,6 @@ Les deux fichiers sont complémentaires et doivent rester à jour.
 
 ---
 
-**Dernière mise à jour**: 20 Février 2026
+**Dernière mise à jour**: 5 Avril 2026
 **Version du site**: Production (main branch) - Migration style-v2.css en cours
 **Statut**: ✅ En ligne sur www.pharmaciecharnal.com
