@@ -5029,6 +5029,13 @@ Connectez-vous a l'application Planning pour traiter cette demande.
             return true;
         }
 
+        function employeeTravailleSamedi(employee) {
+            if (!STAFF[employee]) return false;
+            const s = STAFF[employee];
+            return !!(s.paire?.samedi?.am || s.paire?.samedi?.pm ||
+                      s.impaire?.samedi?.am || s.impaire?.samedi?.pm);
+        }
+
         function countJoursOuvrables(dateDebut, dateFin) {
             const dates = getDatesBetween(dateDebut, dateFin);
             let count = 0;
@@ -5157,6 +5164,21 @@ Connectez-vous a l'application Planning pour traiter cette demande.
             }
 
             calcEl.innerHTML = html;
+
+            // Warning si dateFin est un vendredi et l'employe travaille le samedi
+            const finParsed = parseLocalDate(dateFin);
+            if (finParsed.getDay() === 5) { // vendredi
+                const samedi = new Date(finParsed);
+                samedi.setDate(samedi.getDate() + 1);
+                const samediStr = `${samedi.getFullYear()}-${String(samedi.getMonth()+1).padStart(2,'0')}-${String(samedi.getDate()).padStart(2,'0')}`;
+                const user = document.getElementById('currentUser').value;
+                if (employeeTravailleSamedi(user) && !isJourFerie(samediStr)) {
+                    calcEl.innerHTML += `<div style="margin-top:0.6rem;padding:0.5rem 0.75rem;background:#FEF3C7;border:1px solid #F59E0B;border-radius:4px;color:#92400E;font-size:0.85rem;">
+                        ⚠️ La pharmacie est ouverte le <strong>samedi matin</strong>. Le samedi <strong>${formatDate(samediStr)}</strong> n'est pas inclus dans cette demande.
+                        <a href="#" onclick="document.getElementById('vacancesDateFin').value='${samediStr}';updateVacancesCalc();return false;" style="color:#92400E;font-weight:bold;margin-left:0.5rem;">Inclure le samedi →</a>
+                    </div>`;
+                }
+            }
         }
 
         // Verifie le chevauchement des vacances (max 2 personnes en meme temps)
