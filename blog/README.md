@@ -15,6 +15,16 @@ Ce guide définit le style et le ton à adopter pour tous les articles du blog d
 
 ---
 
+## Pagination automatique
+
+- **9 articles par page** — géré automatiquement par JS dans `blog.html`
+- Tous les articles sont dans un seul fichier `blog.html`, **dans l'ordre chronologique inverse** (le plus récent en premier)
+- Quand on ajoute un nouvel article, on l'insère **en tête** de `.blog-articles-grid` — la pagination se recalcule seule
+- Page 1 : `blog.html` | Page 2 : `blog.html?page=2` | etc.
+- **`blog-2.html` n'existe pas** et n'est pas nécessaire
+
+---
+
 # Configuration Voix Narrative - Laure
 ## Pharmacie Charnal, Quéven
 
