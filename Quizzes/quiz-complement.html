@@ -1,0 +1,1629 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-2Q64V6B0QE"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-2Q64V6B0QE');
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quel complément alimentaire vous convient ? | Pharmacie Charnal Quéven</title>
+    <meta name="description" content="Répondez à 5 questions et découvrez le complément alimentaire fait pour vous : magnésium, probiotiques, vitamine D, mélatonine ou curcuma. Conseil gratuit par vos pharmaciens à Quéven.">
+    <link rel="canonical" href="https://www.pharmaciecharnal.com/Quizzes/quiz-complement.html">
+    <meta name="robots" content="index, follow">
+    <link rel="icon" type="image/x-icon" href="../favicon/favicon.ico">
+    <link rel="icon" type="image/png" sizes="32x32" href="../favicon/favicon-32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../favicon/favicon-16.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="../favicon/favicon-192.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="../favicon/apple-touch-icon.png">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.pharmaciecharnal.com/Quizzes/quiz-complement.html">
+    <meta property="og:title" content="Quel complément alimentaire vous convient ?">
+    <meta property="og:description" content="5 questions pour trouver le complément adapté à vos besoins, conseillé par vos pharmaciens de Quéven.">
+    <meta property="og:image" content="https://www.pharmaciecharnal.com/images/pharmacie-charnal-logo.png">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap" rel="stylesheet">
+
+    <style>
+        /* ============================================
+           HIMS-INSPIRED DESIGN SYSTEM
+           Adapted for Quiz Compléments — Pharmacie Charnal
+           ============================================ */
+
+        :root {
+            --pastel-sage: #E8F0EA;
+            --pastel-mint: #D4E8E0;
+            --pastel-teal: #D0E5E4;
+            --pastel-cream: #FBF9F6;
+            --pastel-peach: #FEF0E6;
+            --pastel-lavender: #EDE8F5;
+            --pastel-amber: #FDF3D0;
+            --pastel-yellow: #FDF8D4;
+
+            --teal-pro: #2D5F5D;
+            --sage-natural: #7C9885;
+            --sage-dark: #5A7563;
+            --bleu-confiance: #4A7C8E;
+            --amber-warm: #C8862A;
+
+            --white: #FFFFFF;
+            --cream: #FFFEF9;
+            --beige: #F5F3EF;
+            --gray-100: #F7F7F7;
+            --gray-200: #E5E7EB;
+            --gray-300: #D1D5DB;
+            --gray-500: #6B7280;
+            --gray-600: #4B5563;
+            --charcoal: #1F2121;
+
+            --space-4: 4px;
+            --space-8: 8px;
+            --space-12: 12px;
+            --space-16: 16px;
+            --space-24: 24px;
+            --space-32: 32px;
+            --space-48: 48px;
+            --space-64: 64px;
+            --space-96: 96px;
+
+            --font-display: 'Fraunces', Georgia, serif;
+            --font-body: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+            --text-xs: 0.75rem;
+            --text-sm: 0.875rem;
+            --text-base: 1rem;
+            --text-lg: 1.125rem;
+            --text-xl: 1.25rem;
+            --text-2xl: 1.5rem;
+            --text-3xl: 1.875rem;
+
+            --radius-sm: 6px;
+            --radius-base: 8px;
+            --radius-lg: 12px;
+            --radius-xl: 16px;
+            --radius-2xl: 20px;
+            --radius-full: 9999px;
+
+            --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.04);
+            --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.06);
+            --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.08);
+            --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.10);
+
+            --ease-standard: cubic-bezier(0.16, 1, 0.3, 1);
+            --duration-fast: 150ms;
+            --duration-normal: 250ms;
+            --duration-slow: 400ms;
+        }
+
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+
+        body {
+            font-family: var(--font-body);
+            font-size: var(--text-base);
+            line-height: 1.6;
+            color: var(--charcoal);
+            background-color: var(--cream);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding-top: 72px;
+        }
+
+        a { color: inherit; text-decoration: none; cursor: pointer; }
+
+        /* === NAVBAR === */
+        .navbar {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 1000;
+            background: rgba(255, 255, 254, 0.92);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+        }
+
+        .nav-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 72px;
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 var(--space-24);
+        }
+
+        .nav-logo-link {
+            display: flex;
+            align-items: center;
+            gap: var(--space-12);
+            text-decoration: none;
+            cursor: pointer;
+            z-index: 10;
+        }
+
+        .nav-logo { display: flex; align-items: center; gap: var(--space-12); }
+
+        .logo-icon {
+            width: 44px; height: 44px;
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+        }
+
+        .logo-icon img { width: 100%; height: 100%; object-fit: contain; }
+
+        .logo-text { display: flex; flex-direction: column; }
+
+        .logo-name {
+            font-family: var(--font-display);
+            font-size: var(--text-lg);
+            font-weight: 600;
+            color: var(--teal-pro);
+            letter-spacing: -0.01em;
+        }
+
+        .logo-tagline {
+            font-size: var(--text-xs);
+            color: var(--gray-500);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .nav-links {
+            display: none;
+            list-style: none;
+            gap: var(--space-32);
+            align-items: center;
+            margin: 0; padding: 0;
+        }
+
+        .nav-links li { list-style: none; }
+
+        @media (min-width: 768px) { .nav-links { display: flex; } }
+
+        .nav-link {
+            font-size: var(--text-base);
+            font-weight: 500;
+            color: var(--gray-600);
+            text-decoration: none;
+            padding: var(--space-8) var(--space-16);
+            border-radius: var(--radius-full);
+            transition: all var(--duration-fast) var(--ease-standard);
+            cursor: pointer;
+            display: block;
+        }
+
+        .nav-link:hover { color: var(--teal-pro); background-color: var(--pastel-mint); }
+        .nav-link-blog { background: #b4a6d7; color: white !important; }
+        .nav-link-blog:hover { background: #a090c7; }
+
+        .nav-dropdown { position: relative; }
+
+        .nav-dropdown-toggle {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.3rem;
+            cursor: pointer;
+        }
+
+        .nav-dropdown-toggle::after {
+            content: '';
+            border: solid var(--gray-500);
+            border-width: 0 2px 2px 0;
+            display: inline-block;
+            padding: 2px;
+            transform: rotate(45deg);
+            transition: transform var(--duration-normal) var(--ease-standard);
+            margin-top: -2px;
+            margin-left: 4px;
+        }
+
+        .nav-dropdown:hover .nav-dropdown-toggle::after {
+            transform: rotate(-135deg);
+            margin-top: 2px;
+        }
+
+        .nav-dropdown-menu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--white);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-lg);
+            border: 1px solid var(--gray-200);
+            padding: var(--space-16) 0 var(--space-8);
+            min-width: 200px;
+            list-style: none;
+            z-index: 100;
+        }
+
+        .nav-dropdown-menu::before {
+            content: '';
+            position: absolute;
+            top: -16px; left: 0; right: 0;
+            height: 16px;
+        }
+
+        .nav-dropdown:hover .nav-dropdown-menu { display: block; }
+        .nav-dropdown-menu li { list-style: none; }
+
+        .nav-dropdown-menu .nav-link {
+            display: block;
+            padding: var(--space-8) var(--space-16);
+            font-size: var(--text-sm);
+            white-space: nowrap;
+            border-radius: 0;
+        }
+
+        .nav-dropdown-menu .nav-link:hover { background: var(--pastel-sage); }
+
+        .mobile-menu-toggle {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: 5px;
+            width: 44px; height: 44px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: var(--space-8);
+        }
+
+        @media (min-width: 768px) { .mobile-menu-toggle { display: none; } }
+
+        .hamburger-line {
+            width: 24px; height: 2px;
+            background: var(--charcoal);
+            border-radius: 2px;
+            transition: all var(--duration-normal) var(--ease-standard);
+        }
+
+        .mobile-menu-toggle[aria-expanded="true"] .hamburger-line:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+        .mobile-menu-toggle[aria-expanded="true"] .hamburger-line:nth-child(2) { opacity: 0; }
+        .mobile-menu-toggle[aria-expanded="true"] .hamburger-line:nth-child(3) {
+            transform: rotate(-45deg) translate(5px, -5px);
+        }
+
+        @media (max-width: 767px) {
+            .nav-links {
+                position: fixed;
+                top: 72px; right: 0;
+                background: var(--white);
+                width: 100%; max-width: 280px;
+                flex-direction: column;
+                padding: var(--space-32);
+                gap: var(--space-24);
+                box-shadow: var(--shadow-lg);
+                transform: translateX(100%);
+                transition: transform 0.3s ease-in-out;
+            }
+            .nav-links.active { display: flex; transform: translateX(0); }
+            .nav-links li { width: 100%; }
+            .nav-link { width: 100%; text-align: left; padding: var(--space-12) var(--space-16); font-size: var(--text-lg); }
+            .nav-dropdown { flex-direction: column; width: 100%; }
+            .nav-dropdown-menu {
+                position: static; transform: none;
+                box-shadow: none; background: transparent;
+                border: none; padding: 0; min-width: 100%;
+                display: flex; flex-direction: column; gap: var(--space-8);
+                padding-left: var(--space-16);
+                border-left: 2px solid var(--pastel-mint);
+                margin-top: var(--space-8);
+            }
+            .nav-dropdown-toggle::after { display: none; }
+            .nav-dropdown-menu .nav-link { padding: var(--space-8) var(--space-16); font-size: var(--text-base); color: var(--gray-500); }
+        }
+
+        /* === PROGRESS BAR === */
+        .progress-container {
+            width: 100%;
+            max-width: 640px;
+            padding: var(--space-24) var(--space-24) 0;
+        }
+
+        .progress-bar-wrapper {
+            display: flex;
+            align-items: center;
+            gap: var(--space-12);
+        }
+
+        .progress-track {
+            flex: 1;
+            height: 4px;
+            background: var(--gray-200);
+            border-radius: var(--radius-full);
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: var(--teal-pro);
+            border-radius: var(--radius-full);
+            transition: width 0.5s var(--ease-standard);
+            width: 0%;
+        }
+
+        .progress-label {
+            font-size: var(--text-xs);
+            font-weight: 500;
+            color: var(--gray-500);
+            white-space: nowrap;
+        }
+
+        /* === QUIZ CONTAINER === */
+        .quiz-container {
+            width: 100%;
+            max-width: 640px;
+            padding: 0 var(--space-24);
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* === STEPS === */
+        .step {
+            display: none;
+            flex-direction: column;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .step.active {
+            display: flex;
+            animation: fadeInUp 0.6s var(--ease-standard) forwards;
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* === INTRO === */
+        .intro {
+            text-align: center;
+            padding: var(--space-64) 0 var(--space-48);
+        }
+
+        .intro-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--space-8);
+            padding: var(--space-8) var(--space-16);
+            background: var(--white);
+            border-radius: var(--radius-full);
+            font-size: var(--text-sm);
+            font-weight: 500;
+            color: var(--teal-pro);
+            box-shadow: var(--shadow-sm);
+            margin-bottom: var(--space-32);
+        }
+
+        .intro h1 {
+            font-family: var(--font-display);
+            font-size: clamp(2rem, 5vw, var(--text-3xl));
+            font-weight: 500;
+            line-height: 1.15;
+            color: var(--charcoal);
+            letter-spacing: -0.02em;
+            margin-bottom: var(--space-16);
+        }
+
+        .intro h1 .highlight {
+            color: var(--teal-pro);
+            font-style: italic;
+        }
+
+        .intro p {
+            font-size: var(--text-lg);
+            line-height: 1.7;
+            color: var(--gray-600);
+            max-width: 440px;
+            margin: 0 auto var(--space-48);
+        }
+
+        .intro-features {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-12);
+            text-align: left;
+            margin-bottom: var(--space-48);
+        }
+
+        .intro-feature {
+            display: flex;
+            align-items: center;
+            gap: var(--space-16);
+            padding: var(--space-16) var(--space-24);
+            background: var(--white);
+            border: 1px solid var(--gray-200);
+            border-radius: var(--radius-lg);
+            transition: all var(--duration-normal) var(--ease-standard);
+        }
+
+        .intro-feature:hover { transform: translateY(-2px); box-shadow: var(--shadow-sm); }
+
+        .feat-icon {
+            width: 40px; height: 40px; min-width: 40px;
+            border-radius: var(--radius-base);
+            background: var(--pastel-amber);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: var(--text-lg);
+        }
+
+        .feat-label { font-weight: 600; font-size: var(--text-base); color: var(--charcoal); }
+        .feat-desc { font-size: var(--text-sm); color: var(--gray-500); margin-top: 2px; }
+
+        /* === BUTTONS === */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: var(--space-8);
+            font-family: var(--font-body);
+            font-size: var(--text-base);
+            font-weight: 600;
+            line-height: 1;
+            padding: var(--space-16) var(--space-32);
+            border-radius: var(--radius-base);
+            border: none;
+            cursor: pointer;
+            transition: all var(--duration-normal) var(--ease-standard);
+            text-decoration: none;
+            width: 100%;
+        }
+
+        .btn-primary { background: var(--teal-pro); color: var(--white); }
+        .btn-primary:hover {
+            transform: scale(1.02);
+            box-shadow: 0 8px 24px rgba(45, 95, 93, 0.25);
+            background: #245250;
+        }
+        .btn-primary:active { transform: scale(0.98); }
+        .btn-primary:disabled { opacity: 0.35; cursor: not-allowed; transform: none; box-shadow: none; }
+
+        .btn-secondary {
+            background: var(--white);
+            color: var(--gray-600);
+            border: 1px solid var(--gray-200);
+            width: auto;
+            padding: var(--space-12) var(--space-24);
+        }
+
+        .btn-secondary:hover { background: var(--beige); border-color: var(--gray-300); }
+
+        .btn-group {
+            display: flex;
+            gap: var(--space-12);
+            margin-top: var(--space-24);
+            margin-bottom: var(--space-48);
+        }
+
+        /* === QUESTIONS === */
+        .question-header {
+            padding: var(--space-48) 0 var(--space-32);
+        }
+
+        .question-number {
+            font-size: var(--text-sm);
+            font-weight: 600;
+            color: var(--teal-pro);
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            margin-bottom: var(--space-12);
+        }
+
+        .question-title {
+            font-family: var(--font-display);
+            font-size: clamp(1.5rem, 4vw, var(--text-2xl));
+            font-weight: 500;
+            line-height: 1.25;
+            color: var(--charcoal);
+            letter-spacing: -0.01em;
+            margin-bottom: var(--space-8);
+        }
+
+        .question-subtitle {
+            font-size: var(--text-base);
+            color: var(--gray-500);
+        }
+
+        /* === OPTIONS === */
+        .options {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-12);
+        }
+
+        .option {
+            display: flex;
+            align-items: center;
+            gap: var(--space-16);
+            padding: var(--space-16) var(--space-20);
+            background: var(--white);
+            border: 2px solid var(--gray-200);
+            border-radius: var(--radius-lg);
+            cursor: pointer;
+            transition: all var(--duration-normal) var(--ease-standard);
+            user-select: none;
+        }
+
+        .option:hover {
+            border-color: var(--teal-pro);
+            background: var(--pastel-mint);
+            transform: translateY(-1px);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .option.selected {
+            border-color: var(--teal-pro);
+            background: var(--pastel-mint);
+            box-shadow: 0 0 0 3px rgba(45, 95, 93, 0.12);
+        }
+
+        .option-icon {
+            font-size: 1.5rem;
+            min-width: 40px;
+            text-align: center;
+        }
+
+        .option-content { flex: 1; }
+        .option-label { font-weight: 600; font-size: var(--text-base); color: var(--charcoal); }
+        .option-desc { font-size: var(--text-sm); color: var(--gray-500); margin-top: 2px; line-height: 1.4; }
+
+        .option-check {
+            width: 22px; height: 22px; min-width: 22px;
+            border: 2px solid var(--gray-300);
+            border-radius: 50%;
+            transition: all var(--duration-fast) var(--ease-standard);
+        }
+
+        .option.selected .option-check {
+            background: var(--teal-pro);
+            border-color: var(--teal-pro);
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3' stroke-linecap='round' stroke-linejoin='round' xmlns='http://www.w3.org/2000/svg'%3E%3Cpolyline points='20 6 9 17 4 12'/%3E%3C/svg%3E");
+            background-size: 14px;
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+
+        /* === INTERLUDE === */
+        .interlude {
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: var(--space-96) var(--space-24);
+            min-height: 60vh;
+        }
+
+        .interlude.active {
+            display: flex;
+            animation: fadeInUp 0.5s var(--ease-standard) forwards;
+        }
+
+        .interlude-icon {
+            font-size: 3.5rem;
+            margin-bottom: var(--space-24);
+            animation: pulse 1.5s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.12); }
+        }
+
+        .interlude-text {
+            font-family: var(--font-display);
+            font-size: var(--text-xl);
+            font-weight: 500;
+            color: var(--charcoal);
+            margin-bottom: var(--space-8);
+        }
+
+        .interlude-sub {
+            font-size: var(--text-base);
+            color: var(--gray-500);
+            max-width: 320px;
+        }
+
+        .loading-dots::after {
+            content: '';
+            animation: dots 1.5s steps(4, end) infinite;
+        }
+
+        @keyframes dots {
+            0%   { content: ''; }
+            25%  { content: '.'; }
+            50%  { content: '..'; }
+            75%  { content: '...'; }
+            100% { content: ''; }
+        }
+
+        /* === RESULT === */
+        .result-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--space-8);
+            padding: var(--space-8) var(--space-16);
+            background: var(--pastel-amber);
+            color: var(--amber-warm);
+            border-radius: var(--radius-full);
+            font-size: var(--text-sm);
+            font-weight: 600;
+            margin-bottom: var(--space-16);
+            margin-top: var(--space-48);
+        }
+
+        .result-title {
+            font-family: var(--font-display);
+            font-size: clamp(1.5rem, 4vw, var(--text-2xl));
+            font-weight: 500;
+            line-height: 1.25;
+            color: var(--charcoal);
+            letter-spacing: -0.01em;
+            margin-bottom: var(--space-12);
+        }
+
+        .result-title .highlight { color: var(--teal-pro); font-style: italic; }
+
+        .result-subtitle {
+            font-size: var(--text-base);
+            color: var(--gray-600);
+            line-height: 1.6;
+            margin-bottom: var(--space-32);
+        }
+
+        /* === PRODUCT CARD === */
+        .product-card {
+            background: var(--white);
+            border-radius: var(--radius-xl);
+            overflow: hidden;
+            box-shadow: var(--shadow-lg);
+            margin-bottom: var(--space-32);
+        }
+
+        .product-card-top {
+            position: relative;
+            padding: var(--space-48) var(--space-32);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 180px;
+        }
+
+        /* Product card backgrounds */
+        .product-card-top.lactibiane { background: var(--pastel-mint); }
+        .product-card-top.formag { background: var(--pastel-peach); }
+        .product-card-top.chronobiane { background: var(--pastel-lavender); }
+        .product-card-top.d3biane { background: var(--pastel-yellow); }
+        .product-card-top.curcuma { background: var(--pastel-amber); }
+
+        .product-brand-tag {
+            position: absolute;
+            top: var(--space-16);
+            left: var(--space-16);
+            padding: var(--space-4) var(--space-12);
+            background: rgba(255,255,255,0.85);
+            border-radius: var(--radius-full);
+            font-size: var(--text-xs);
+            font-weight: 700;
+            color: var(--charcoal);
+            letter-spacing: 0.05em;
+        }
+
+        .product-image-placeholder {
+            font-size: 4.5rem;
+            line-height: 1;
+        }
+
+        .product-card-body {
+            padding: var(--space-32);
+        }
+
+        .product-name {
+            font-family: var(--font-display);
+            font-size: var(--text-xl);
+            font-weight: 600;
+            color: var(--charcoal);
+            margin-bottom: var(--space-4);
+        }
+
+        .product-brand {
+            font-size: var(--text-sm);
+            font-weight: 500;
+            color: var(--teal-pro);
+            margin-bottom: var(--space-16);
+        }
+
+        .product-description {
+            font-size: var(--text-base);
+            color: var(--gray-600);
+            line-height: 1.7;
+            margin-bottom: var(--space-24);
+        }
+
+        .product-benefits {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-8);
+            margin-bottom: var(--space-24);
+        }
+
+        .product-benefit {
+            display: flex;
+            align-items: flex-start;
+            gap: var(--space-12);
+            font-size: var(--text-sm);
+            color: var(--gray-600);
+        }
+
+        .benefit-check {
+            width: 20px; height: 20px; min-width: 20px;
+            background: var(--pastel-mint);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 1px;
+        }
+
+        .benefit-check svg { width: 11px; height: 11px; stroke: var(--teal-pro); }
+
+        .product-price-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: var(--space-16) 0;
+            border-top: 1px solid var(--gray-200);
+            margin-bottom: var(--space-16);
+        }
+
+        .product-price {
+            font-size: var(--text-xl);
+            font-weight: 700;
+            color: var(--charcoal);
+        }
+
+        .product-price span {
+            display: block;
+            font-size: var(--text-xs);
+            font-weight: 400;
+            color: var(--gray-500);
+        }
+
+        .product-format {
+            font-size: var(--text-sm);
+            color: var(--gray-500);
+            background: var(--beige);
+            padding: var(--space-4) var(--space-12);
+            border-radius: var(--radius-full);
+        }
+
+        .stock-badge {
+            display: flex;
+            align-items: center;
+            gap: var(--space-8);
+            font-size: var(--text-sm);
+            font-weight: 500;
+            color: #2D7A4F;
+            background: #E8F5ED;
+            padding: var(--space-8) var(--space-16);
+            border-radius: var(--radius-base);
+            margin-bottom: var(--space-24);
+        }
+
+        .stock-dot {
+            width: 8px; height: 8px;
+            background: #2D7A4F;
+            border-radius: 50%;
+            animation: blink 2s ease-in-out infinite;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.3; }
+        }
+
+        /* === CTA CONSEIL === */
+        .conseil-block {
+            background: var(--beige);
+            border-radius: var(--radius-lg);
+            padding: var(--space-24);
+            margin-bottom: var(--space-24);
+            text-align: center;
+        }
+
+        .conseil-block p {
+            font-size: var(--text-sm);
+            color: var(--gray-600);
+            line-height: 1.6;
+            margin-bottom: var(--space-16);
+        }
+
+        .conseil-block .btn-primary {
+            font-size: var(--text-sm);
+            padding: var(--space-12) var(--space-24);
+        }
+
+        /* === ALTERNATIVES === */
+        .alternatives-section { margin-bottom: var(--space-32); }
+
+        .alternatives-title {
+            font-size: var(--text-sm);
+            font-weight: 600;
+            color: var(--gray-500);
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            margin-bottom: var(--space-16);
+        }
+
+        .alternative-card {
+            display: flex;
+            align-items: center;
+            gap: var(--space-16);
+            padding: var(--space-16);
+            background: var(--white);
+            border: 1px solid var(--gray-200);
+            border-radius: var(--radius-lg);
+            cursor: pointer;
+            transition: all var(--duration-normal) var(--ease-standard);
+            margin-bottom: var(--space-8);
+        }
+
+        .alternative-card:hover {
+            border-color: var(--teal-pro);
+            background: var(--pastel-mint);
+            transform: translateX(4px);
+        }
+
+        .alt-icon {
+            width: 44px; height: 44px;
+            border-radius: var(--radius-base);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.4rem;
+            flex-shrink: 0;
+        }
+
+        .alt-icon.lactibiane-bg { background: var(--pastel-mint); }
+        .alt-icon.formag-bg { background: var(--pastel-peach); }
+        .alt-icon.chronobiane-bg { background: var(--pastel-lavender); }
+        .alt-icon.d3biane-bg { background: var(--pastel-yellow); }
+        .alt-icon.curcuma-bg { background: var(--pastel-amber); }
+
+        .alt-info { flex: 1; }
+        .alt-name { font-weight: 600; font-size: var(--text-sm); color: var(--charcoal); }
+        .alt-brand { font-size: var(--text-xs); color: var(--gray-500); margin-top: 2px; }
+
+        .alt-arrow { color: var(--gray-400); }
+        .alt-arrow svg { width: 18px; height: 18px; display: block; }
+
+        /* === DISCLAIMER + RESTART === */
+        .disclaimer {
+            background: var(--beige);
+            border-left: 3px solid var(--gray-300);
+            padding: var(--space-16);
+            border-radius: 0 var(--radius-base) var(--radius-base) 0;
+            font-size: var(--text-sm);
+            color: var(--gray-500);
+            line-height: 1.6;
+            margin-bottom: var(--space-24);
+        }
+
+        .restart-section {
+            text-align: center;
+            margin-bottom: var(--space-64);
+        }
+
+        .restart-link {
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: var(--gray-500);
+            font-size: var(--text-sm);
+            font-family: var(--font-body);
+            text-decoration: underline;
+            padding: var(--space-8);
+            transition: color var(--duration-fast) var(--ease-standard);
+        }
+
+        .restart-link:hover { color: var(--teal-pro); }
+
+        /* === FOOTER === */
+        .footer {
+            width: 100%;
+            background: var(--charcoal);
+            color: var(--gray-300);
+            margin-top: auto;
+        }
+
+        .container { max-width: 1280px; margin: 0 auto; padding: 0 var(--space-24); }
+
+        .footer-bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: var(--space-24) 0;
+            border-top: 1px solid rgba(255,255,255,0.08);
+            flex-wrap: wrap;
+            gap: var(--space-16);
+        }
+
+        .footer-copyright { font-size: var(--text-sm); color: var(--gray-500); }
+
+        .footer-legal {
+            display: flex;
+            gap: var(--space-24);
+        }
+
+        .footer-legal a {
+            font-size: var(--text-sm);
+            color: var(--gray-500);
+            text-decoration: none;
+            transition: color var(--duration-fast) var(--ease-standard);
+        }
+
+        .footer-legal a:hover { color: var(--white); }
+
+        /* === OPTION SPACING FIX === */
+        .option { padding: var(--space-16) 20px; }
+
+        @media (max-width: 480px) {
+            .option { padding: var(--space-12) var(--space-16); gap: var(--space-12); }
+            .product-card-body { padding: var(--space-24); }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="../index.html" class="nav-logo-link">
+                <div class="nav-logo">
+                    <div class="logo-icon">
+                        <img src="../images/pharmacie-charnal-logo.png" alt="Logo Pharmacie Charnal">
+                    </div>
+                    <div class="logo-text">
+                        <span class="logo-name">Pharmacie Charnal</span>
+                        <span class="logo-tagline">Quéven</span>
+                    </div>
+                </div>
+            </a>
+            <button class="mobile-menu-toggle" aria-label="Menu" aria-expanded="false">
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+            </button>
+            <ul class="nav-links">
+                <li><a href="../index.html" class="nav-link">Accueil</a></li>
+                <li class="nav-dropdown">
+                    <a href="../services.html" class="nav-link nav-dropdown-toggle">Services</a>
+                    <ul class="nav-dropdown-menu">
+                        <li><a href="../histoire.html" class="nav-link">Notre Histoire</a></li>
+                        <li><a href="../Nos-marques/nosmarques.html" class="nav-link">Nos Marques</a></li>
+                        <li><a href="../pharmacie-de-garde-queven-hennebont-lorient.html" class="nav-link">Pharmacie de garde</a></li>
+                        <li><a href="../annuaire-sante.html" class="nav-link">Annuaire Santé</a></li>
+                    </ul>
+                </li>
+                <li><a href="../blog.html" class="nav-link nav-link-blog">Au comptoir</a></li>
+                <li class="nav-dropdown">
+                    <a href="../contact.html" class="nav-link nav-dropdown-toggle">Contact</a>
+                    <ul class="nav-dropdown-menu">
+                        <li><a href="../recrutement-preparatrice-pharmacie-queven.html" class="nav-link">Recrutement</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Progress Bar (hidden at start) -->
+    <div class="progress-container" id="progressContainer" style="display:none;">
+        <div class="progress-bar-wrapper">
+            <div class="progress-track">
+                <div class="progress-fill" id="progressFill"></div>
+            </div>
+            <div class="progress-label" id="progressLabel">0/5</div>
+        </div>
+    </div>
+
+    <!-- Quiz -->
+    <div class="quiz-container">
+
+        <!-- INTRO -->
+        <div class="step active" id="step-intro">
+            <div class="intro">
+                <div class="intro-badge">
+                    ✦ Quiz gratuit · 2 minutes
+                </div>
+                <h1>Quel <span class="highlight">complément alimentaire</span> vous convient vraiment&nbsp;?</h1>
+                <p>Fatigue, stress, sommeil, digestion, articulations... 5 questions pour trouver le complément adapté à vos besoins du moment.</p>
+
+                <div class="intro-features">
+                    <div class="intro-feature">
+                        <div class="feat-icon">⚗️</div>
+                        <div>
+                            <div class="feat-label">Marques sélectionnées par nos pharmaciens</div>
+                            <div class="feat-desc">PiLeJe et Nat&Form — qualité vérifiée, en stock à la pharmacie</div>
+                        </div>
+                    </div>
+                    <div class="intro-feature">
+                        <div class="feat-icon">🎯</div>
+                        <div>
+                            <div class="feat-label">Personnalisé selon votre profil</div>
+                            <div class="feat-desc">Pas de réponse générique — on adapte au besoin réel</div>
+                        </div>
+                    </div>
+                    <div class="intro-feature">
+                        <div class="feat-icon">💊</div>
+                        <div>
+                            <div class="feat-label">Un complément, pas une liste</div>
+                            <div class="feat-desc">Une recommandation claire, avec les alternatives disponibles</div>
+                        </div>
+                    </div>
+                </div>
+
+                <button class="btn btn-primary" onclick="startQuiz()">
+                    Commencer le bilan &rarr;
+                </button>
+            </div>
+        </div>
+
+        <!-- Q1 -->
+        <div class="step" id="step-1">
+            <div class="question-header">
+                <div class="question-number">Question 1 / 5</div>
+                <div class="question-title">Quelle est votre gêne principale en ce moment&nbsp;?</div>
+                <div class="question-subtitle">Choisissez ce qui vous correspond le mieux.</div>
+            </div>
+            <div class="options">
+                <div class="option" onclick="selectOption(this, 1)" data-scores='{"lactibiane":0,"formag":3,"chronobiane":1,"d3biane":2,"curcuma":0}'>
+                    <div class="option-icon">⚡</div>
+                    <div class="option-content">
+                        <div class="option-label">Fatigue et manque d'énergie</div>
+                        <div class="option-desc">Coups de pompe, difficultés à démarrer, manque de vitalité</div>
+                    </div>
+                    <div class="option-check"></div>
+                </div>
+                <div class="option" onclick="selectOption(this, 1)" data-scores='{"lactibiane":0,"formag":1,"chronobiane":3,"d3biane":0,"curcuma":0}'>
+                    <div class="option-icon">🌙</div>
+                    <div class="option-content">
+                        <div class="option-label">Sommeil difficile ou peu réparateur</div>
+                        <div class="option-desc">Mal à m'endormir, réveils nocturnes, fatigue au réveil</div>
+                    </div>
+                    <div class="option-check"></div>
+                </div>
+                <div class="option" onclick="selectOption(this, 1)" data-scores='{"lactibiane":3,"formag":0,"chronobiane":0,"d3biane":2,"curcuma":0}'>
+                    <div class="option-icon">🌿</div>
+                    <div class="option-content">
+                        <div class="option-label">Digestion ou défenses immunitaires</div>
+                        <div class="option-desc">Ballonnements, transit irrégulier, ou je tombe souvent malade</div>
+                    </div>
+                    <div class="option-check"></div>
+                </div>
+                <div class="option" onclick="selectOption(this, 1)" data-scores='{"lactibiane":0,"formag":1,"chronobiane":0,"d3biane":1,"curcuma":3}'>
+                    <div class="option-icon">🦴</div>
+                    <div class="option-content">
+                        <div class="option-label">Douleurs articulaires ou récupération</div>
+                        <div class="option-desc">Articulations raides, douleurs musculaires, récupération lente</div>
+                    </div>
+                    <div class="option-check"></div>
+                </div>
+            </div>
+            <div class="btn-group">
+                <button class="btn btn-secondary" onclick="goBack()">&larr;</button>
+            </div>
+        </div>
+
+        <!-- Q2 -->
+        <div class="step" id="step-2">
+            <div class="question-header">
+                <div class="question-number">Question 2 / 5</div>
+                <div class="question-title">À quel moment vos symptômes sont-ils les plus présents&nbsp;?</div>
+                <div class="question-subtitle">Le moment de la journée nous aide à cibler le bon produit.</div>
+            </div>
+            <div class="options">
+                <div class="option" onclick="selectOption(this, 2)" data-scores='{"lactibiane":0,"formag":3,"chronobiane":1,"d3biane":2,"curcuma":0}'>
+                    <div class="option-icon">🌅</div>
+                    <div class="option-content">
+                        <div class="option-label">Le matin, j'ai du mal à démarrer</div>
+                        <div class="option-desc">Difficile de se lever, réveil sans énergie malgré le sommeil</div>
+                    </div>
+                    <div class="option-check"></div>
+                </div>
+                <div class="option" onclick="selectOption(this, 2)" data-scores='{"lactibiane":1,"formag":2,"chronobiane":1,"d3biane":1,"curcuma":0}'>
+                    <div class="option-icon">🌇</div>
+                    <div class="option-content">
+                        <div class="option-label">En journée, coups de fatigue ou irritabilité</div>
+                        <div class="option-desc">Perte de concentration, tensions, humeur changeante</div>
+                    </div>
+                    <div class="option-check"></div>
+                </div>
+                <div class="option" onclick="selectOption(this, 2)" data-scores='{"lactibiane":0,"formag":2,"chronobiane":3,"d3biane":0,"curcuma":0}'>
+                    <div class="option-icon">🌙</div>
+                    <div class="option-content">
+                        <div class="option-label">Le soir, je n'arrive pas à me détendre</div>
+                        <div class="option-desc">Pensées qui tournent, agitation, endormissement difficile</div>
+                    </div>
+                    <div class="option-check"></div>
+                </div>
+                <div class="option" onclick="selectOption(this, 2)" data-scores='{"lactibiane":1,"formag":0,"chronobiane":0,"d3biane":1,"curcuma":3}'>
+                    <div class="option-icon">🔄</div>
+                    <div class="option-content">
+                        <div class="option-label">En continu, surtout après l'effort ou le mouvement</div>
+                        <div class="option-desc">Douleurs persistantes, raideurs, inconfort lors des activités</div>
+                    </div>
+                    <div class="option-check"></div>
+                </div>
+            </div>
+            <div class="btn-group">
+                <button class="btn btn-secondary" onclick="goBack()">&larr;</button>
+            </div>
+        </div>
+
+        <!-- Q3 -->
+        <div class="step" id="step-3">
+            <div class="question-header">
+                <div class="question-number">Question 3 / 5</div>
+                <div class="question-title">Quel est votre contexte de vie en ce moment&nbsp;?</div>
+                <div class="question-subtitle">Votre situation nous aide à trouver la cause probable.</div>
+            </div>
+            <div class="options">
+                <div class="option" onclick="selectOption(this, 3)" data-scores='{"lactibiane":0,"formag":3,"chronobiane":2,"d3biane":0,"curcuma":0}'>
+                    <div class="option-icon">💼</div>
+                    <div class="option-content">
+                        <div class="option-label">Forte charge mentale ou émotionnelle</div>
+                        <div class="option-desc">Pression au travail, stress chronique, manque de ressources</div>
+                    </div>
+                    <div class="option-check"></div>
+                </div>
+                <div class="option" onclick="selectOption(this, 3)" data-scores='{"lactibiane":0,"formag":2,"chronobiane":0,"d3biane":1,"curcuma":3}'>
+                    <div class="option-icon">🏃</div>
+                    <div class="option-content">
+                        <div class="option-label">Activité sportive ou physique intense</div>
+                        <div class="option-desc">Récupération difficile, courbatures, sollicitation articulaire</div>
+                    </div>
+                    <div class="option-check"></div>
+                </div>
+                <div class="option" onclick="selectOption(this, 3)" data-scores='{"lactibiane":3,"formag":0,"chronobiane":0,"d3biane":2,"curcuma":0}'>
+                    <div class="option-icon">💊</div>
+                    <div class="option-content">
+                        <div class="option-label">Convalescence ou sortie d'antibiotiques</div>
+                        <div class="option-desc">Flore intestinale fragilisée, défenses à reconstruire</div>
+                    </div>
+                    <div class="option-check"></div>
+                </div>
+                <div class="option" onclick="selectOption(this, 3)" data-scores='{"lactibiane":1,"formag":0,"chronobiane":1,"d3biane":3,"curcuma":2}'>
+                    <div class="option-icon">🍂</div>
+                    <div class="option-content">
+                        <div class="option-label">Prévention hivernale ou vieillissement</div>
+                        <div class="option-desc">Je veux renforcer mon organisme avant l'hiver ou sur le long terme</div>
+                    </div>
+                    <div class="option-check"></div>
+                </div>
+            </div>
+            <div class="btn-group">
+                <button class="btn btn-secondary" onclick="goBack()">&larr;</button>
+            </div>
+        </div>
+
+        <!-- Q4 -->
+        <div class="step" id="step-4">
+            <div class="question-header">
+                <div class="question-number">Question 4 / 5</div>
+                <div class="question-title">Depuis combien de temps ressentez-vous cela&nbsp;?</div>
+                <div class="question-subtitle">La durée oriente vers une cure ponctuelle ou de fond.</div>
+            </div>
+            <div class="options">
+                <div class="option" onclick="selectOption(this, 4)" data-scores='{"lactibiane":2,"formag":2,"chronobiane":1,"d3biane":1,"curcuma":0}'>
+                    <div class="option-icon">📅</div>
+                    <div class="option-content">
+                        <div class="option-label">Récent — quelques jours à 2 semaines</div>
+                        <div class="option-desc">C'est apparu récemment, peut-être lié à un événement particulier</div>
+                    </div>
+                    <div class="option-check"></div>
+                </div>
+                <div class="option" onclick="selectOption(this, 4)" data-scores='{"lactibiane":1,"formag":2,"chronobiane":2,"d3biane":2,"curcuma":1}'>
+                    <div class="option-icon">📆</div>
+                    <div class="option-content">
+                        <div class="option-label">Depuis 1 à 3 mois</div>
+                        <div class="option-desc">C'est installé progressivement, ça dure</div>
+                    </div>
+                    <div class="option-check"></div>
+                </div>
+                <div class="option" onclick="selectOption(this, 4)" data-scores='{"lactibiane":1,"formag":1,"chronobiane":2,"d3biane":2,"curcuma":3}'>
+                    <div class="option-icon">🗓️</div>
+                    <div class="option-content">
+                        <div class="option-label">Depuis plusieurs mois ou de manière chronique</div>
+                        <div class="option-desc">C'est mon quotidien, j'y suis habitué(e)</div>
+                    </div>
+                    <div class="option-check"></div>
+                </div>
+                <div class="option" onclick="selectOption(this, 4)" data-scores='{"lactibiane":2,"formag":0,"chronobiane":0,"d3biane":3,"curcuma":1}'>
+                    <div class="option-icon">❄️</div>
+                    <div class="option-content">
+                        <div class="option-label">Saisonnier — chaque automne ou hiver</div>
+                        <div class="option-desc">Ça revient à la même période, dès que les températures baissent</div>
+                    </div>
+                    <div class="option-check"></div>
+                </div>
+            </div>
+            <div class="btn-group">
+                <button class="btn btn-secondary" onclick="goBack()">&larr;</button>
+            </div>
+        </div>
+
+        <!-- Q5 -->
+        <div class="step" id="step-5">
+            <div class="question-header">
+                <div class="question-number">Question 5 / 5</div>
+                <div class="question-title">Quel est votre profil&nbsp;?</div>
+                <div class="question-subtitle">Certains compléments s'adaptent mieux à certaines tranches de vie.</div>
+            </div>
+            <div class="options">
+                <div class="option" onclick="selectOption(this, 5)" data-scores='{"lactibiane":1,"formag":3,"chronobiane":1,"d3biane":1,"curcuma":0}'>
+                    <div class="option-icon">🎓</div>
+                    <div class="option-content">
+                        <div class="option-label">Moins de 35 ans — rythme intense</div>
+                        <div class="option-desc">Études, vie active, beaucoup de sollicitations mentales et physiques</div>
+                    </div>
+                    <div class="option-check"></div>
+                </div>
+                <div class="option" onclick="selectOption(this, 5)" data-scores='{"lactibiane":1,"formag":2,"chronobiane":2,"d3biane":1,"curcuma":1}'>
+                    <div class="option-icon">👔</div>
+                    <div class="option-content">
+                        <div class="option-label">35 à 55 ans — actif(ve) avec quelques tensions</div>
+                        <div class="option-desc">Vie professionnelle et familiale, quelques petits inconforts qui s'installent</div>
+                    </div>
+                    <div class="option-check"></div>
+                </div>
+                <div class="option" onclick="selectOption(this, 5)" data-scores='{"lactibiane":1,"formag":0,"chronobiane":1,"d3biane":2,"curcuma":3}'>
+                    <div class="option-icon">🌿</div>
+                    <div class="option-content">
+                        <div class="option-label">55 ans et plus — prévention et confort durable</div>
+                        <div class="option-desc">Articulations, os, immunité : je veux préserver ma santé sur le long terme</div>
+                    </div>
+                    <div class="option-check"></div>
+                </div>
+                <div class="option" onclick="selectOption(this, 5)" data-scores='{"lactibiane":2,"formag":1,"chronobiane":1,"d3biane":2,"curcuma":0}'>
+                    <div class="option-icon">🌱</div>
+                    <div class="option-content">
+                        <div class="option-label">Je mange peu ou j'ai un régime restrictif</div>
+                        <div class="option-desc">Végétarien(ne), vegan, alimentation irrégulière ou déséquilibrée</div>
+                    </div>
+                    <div class="option-check"></div>
+                </div>
+            </div>
+            <div class="btn-group">
+                <button class="btn btn-secondary" onclick="goBack()">&larr;</button>
+            </div>
+        </div>
+
+        <!-- INTERLUDE -->
+        <div class="interlude" id="interlude">
+            <div class="interlude-icon">🔬</div>
+            <div class="interlude-text">Analyse de vos besoins<span class="loading-dots"></span></div>
+            <div class="interlude-sub">Nos pharmaciens comparent vos réponses avec nos compléments en stock.</div>
+        </div>
+
+        <!-- RESULT -->
+        <div class="step" id="step-result">
+            <div class="result-container" id="resultContainer"></div>
+        </div>
+
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-bottom" style="border-top: none; padding-top: 0;">
+                <p class="footer-copyright">© 2026 Pharmacie Charnal. Tous droits réservés.</p>
+                <div class="footer-legal">
+                    <a href="../mentions-legales.html">Mentions légales</a>
+                    <a href="../donnees-personnelles.html">Confidentialité</a>
+                    <a href="/feed.xml" title="Flux RSS">RSS</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+    const scores = { lactibiane: 0, formag: 0, chronobiane: 0, d3biane: 0, curcuma: 0 };
+    let currentStep = 0;
+    const totalQuestions = 5;
+
+    const checkSvg = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>';
+    const arrowSvg = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>';
+
+    const products = {
+        lactibiane: {
+            name: 'Lactibiane R\u00e9f\u00e9rence',
+            brand: 'PiLeJe',
+            tagline: 'Probiotiques \u2014 \u00e9quilibre de la flore intestinale',
+            emoji: '&#x1F9AB;',
+            bgClass: 'lactibiane',
+            altBgClass: 'lactibiane-bg',
+            description: 'Lactibiane R\u00e9f\u00e9rence est le probiotique de r\u00e9f\u00e9rence PiLeJe, formul\u00e9 avec 5 souches scientifiquement document\u00e9es pour r\u00e9\u00e9quilibrer la flore intestinale. Chaque g\u00e9lule apporte 10 milliards d\u2019UFC (Unit\u00e9s Formant Colonie), actives jusqu\u2019en fin de vie du produit. Id\u00e9al apr\u00e8s une prise d\u2019antibiotiques, en p\u00e9riode de troubles digestifs ou pour renforcer les d\u00e9fenses immunitaires.',
+            benefits: [
+                '5 souches probiotiques compl\u00e9mentaires et scientifiquement valid\u00e9es',
+                'R\u00e9\u00e9quilibre la flore intestinale apr\u00e8s antibiotiques',
+                'R\u00e9duit ballonnements, inconforts et troubles du transit',
+                'Renforce l\u2019immunit\u00e9 (70\u00a0% de nos d\u00e9fenses logent dans l\u2019intestin)'
+            ],
+            price: '17,50\u00a0\u20ac',
+            format: '30 g\u00e9lules \u2014 1 mois',
+            why: 'Votre digestion ou vos d\u00e9fenses immunitaires sont en jeu. Lactibiane R\u00e9f\u00e9rence r\u00e9\u00e9quilibre votre flore intestinale avec des souches cliniquement \u00e9prouv\u00e9es \u2014 la solution de fond recommand\u00e9e par nos pharmaciens.'
+        },
+        formag: {
+            name: 'Formag',
+            brand: 'PiLeJe',
+            tagline: 'Magn\u00e9sium marin \u2014 fatigue, stress, tensions',
+            emoji: '&#x26A1;',
+            bgClass: 'formag',
+            altBgClass: 'formag-bg',
+            description: 'Formag est la formule magn\u00e9sium de r\u00e9f\u00e9rence PiLeJe, con\u00e7ue pour les personnes soumises au stress et \u00e0 la fatigue. Sa combinaison brevet\u00e9e associe le magn\u00e9sium marin Hypro-RI\u00ae (forme hautement biodisponible et non laxative), la taurine et les vitamines B6 et D3 pour une efficacit\u00e9 renforc\u00e9e sur l\u2019\u00e9nergie et le syst\u00e8me nerveux.',
+            benefits: [
+                'Magn\u00e9sium marin Hypro-RI\u00ae : absorption optimale sans effet laxatif',
+                'R\u00e9duit la fatigue physique et mentale',
+                'Apaise les tensions musculaires et les crampes',
+                'Soutient le syst\u00e8me nerveux en p\u00e9riode de stress intense'
+            ],
+            price: '24,90\u00a0\u20ac',
+            format: '90 comprim\u00e9s \u2014 1\u00a0\u00e0\u00a03 mois',
+            why: 'Fatigue et stress \u00e0 la fois \u2014 c\u2019est souvent le magn\u00e9sium qui manque. Formag apporte un magn\u00e9sium marin de haute qualit\u00e9, associ\u00e9 \u00e0 la taurine et aux vitamines B, pour restaurer votre \u00e9nergie et calmer les tensions.'
+        },
+        chronobiane: {
+            name: 'Chronobiane LP',
+            brand: 'PiLeJe',
+            tagline: 'M\u00e9latonine \u2014 endormissement et sommeil profond',
+            emoji: '&#x1F319;',
+            bgClass: 'chronobiane',
+            altBgClass: 'chronobiane-bg',
+            description: 'Chronobiane LP (Lib\u00e9ration Prolong\u00e9e) combine la m\u00e9latonine \u00e0 faible dose (1,9 mg) avec l\u2019eschscholtzia et la valerian\u0065 dans une formule \u00e0 double lib\u00e9ration. La fraction \u00e0 action imm\u00e9diate facilite l\u2019endormissement, la fraction LP maintient un sommeil de qualit\u00e9 toute la nuit, sans accoutumance ni somnolence le matin.',
+            benefits: [
+                'Double lib\u00e9ration : endormissement rapide + maintien du sommeil',
+                'M\u00e9latonine 1,9 mg \u2014 dosage efficace sans exc\u00e8s',
+                'Eschscholtzia et valerian\u0065 : plantes apaisantes compl\u00e9mentaires',
+                'Sans accoutumance, sans somnolence r\u00e9siduelle au matin'
+            ],
+            price: '15,90\u00a0\u20ac',
+            format: '30 comprim\u00e9s \u2014 1 mois',
+            why: 'Votre sommeil est votre point faible. Chronobiane LP agit en deux temps : il facilite l\u2019endormissement gr\u00e2ce \u00e0 la m\u00e9latonine, puis maintient la qualit\u00e9 du sommeil toute la nuit avec ses plantes apaisantes.'
+        },
+        d3biane: {
+            name: 'D3 Biane Spray 1000 UI',
+            brand: 'PiLeJe',
+            tagline: 'Vitamine D3 \u2014 immunit\u00e9, os et vitalit\u00e9 hivernale',
+            emoji: '&#x2600;&#xFE0F;',
+            bgClass: 'd3biane',
+            altBgClass: 'd3biane-bg',
+            description: 'D3 Biane Spray de PiLeJe apporte 1000 UI de vitamine D3 d\u2019origine naturelle (huile de poissons certifi\u00e9e) sous forme de spray buccal, la voie d\u2019absorption la plus rapide et pratique. La vitamine D est indispensable \u00e0 l\u2019immunit\u00e9, \u00e0 la sant\u00e9 osseuse et \u00e0 la vitalit\u00e9 \u2014 et 80\u00a0% des Fran\u00e7ais en manquent en hiver.',
+            benefits: [
+                'Spray buccal : absorption rapide, facile \u00e0 utiliser au quotidien',
+                'Renforce les d\u00e9fenses immunitaires et r\u00e9duit la fatigue hivernale',
+                'Contribue \u00e0 la sant\u00e9 des os et des muscles',
+                'Vitamine D3 naturelle (huile de poissons, lichen pour les v\u00e9g\u00e9tariens)'
+            ],
+            price: '14,50\u00a0\u20ac',
+            format: '20 ml \u2014 4 mois (1 spray/jour)',
+            why: 'En automne-hiver, la carence en vitamine D est quasi universelle en France. D3 Biane Spray couvre l\u2019apport quotidien recommand\u00e9 en un seul spray \u2014 pratique, efficace, et fondamental pour votre immunit\u00e9.'
+        },
+        curcuma: {
+            name: 'Curcuma Bio',
+            brand: 'Nat&amp;Form',
+            tagline: 'Curcuma + poivre noir \u2014 articulations et inflammation',
+            emoji: '&#x1F33F;',
+            bgClass: 'curcuma',
+            altBgClass: 'curcuma-bg',
+            description: 'Le Curcuma Bio Nat&Form est issu de l\u2019agriculture biologique certifi\u00e9e, combin\u00e9 au poivre noir (pip\u00e9rine) pour multiplier par 20 l\u2019absorption de la curcumine. Ce duo naturel est reconnu pour ses propri\u00e9t\u00e9s anti-inflammatoires qui soulagent les articulations douloureuses et favorisent la r\u00e9cup\u00e9ration physique, sur une cure d\u2019au moins 2 \u00e0 3 mois.',
+            benefits: [
+                'Curcumine absorb\u00e9e \u00d720 gr\u00e2ce \u00e0 la pip\u00e9rine du poivre noir',
+                'Soulage les douleurs articulaires et r\u00e9duit l\u2019inflammation chronique',
+                'Am\u00e9liore la r\u00e9cup\u00e9ration apr\u00e8s l\u2019effort physique',
+                '100\u00a0% bio certifi\u00e9 Ecocert \u2014 fabriqu\u00e9 en Bretagne'
+            ],
+            price: '12,90\u00a0\u20ac',
+            format: '60 g\u00e9lules \u2014 1 \u00e0 2 mois',
+            why: 'Vos articulations ou douleurs musculaires chroniques ont besoin d\u2019une action de fond. Le Curcuma Bio Nat&Form, associ\u00e9 au poivre noir, est l\u2019anti-inflammatoire naturel de r\u00e9f\u00e9rence \u2014 accessible, efficace, et 100\u00a0% bio.'
+        }
+    };
+
+    function startQuiz() {
+        document.getElementById('step-intro').classList.remove('active');
+        document.getElementById('step-1').classList.add('active');
+        document.getElementById('progressContainer').style.display = 'block';
+        currentStep = 1;
+        updateProgress();
+    }
+
+    function selectOption(el, step) {
+        const stepEl = document.getElementById('step-' + step);
+        stepEl.querySelectorAll('.option').forEach(o => o.classList.remove('selected'));
+        el.classList.add('selected');
+        recalcScores();
+        setTimeout(() => {
+            if (step < totalQuestions) {
+                nextStep(step);
+            } else {
+                showResult();
+            }
+        }, 300);
+    }
+
+    function recalcScores() {
+        Object.keys(scores).forEach(k => scores[k] = 0);
+        for (let s = 1; s <= totalQuestions; s++) {
+            const sel = document.getElementById('step-' + s)?.querySelector('.option.selected');
+            if (sel) {
+                const sc = JSON.parse(sel.dataset.scores);
+                Object.keys(sc).forEach(k => { scores[k] += sc[k]; });
+            }
+        }
+    }
+
+    function nextStep(from) {
+        document.getElementById('step-' + from).classList.remove('active');
+        document.getElementById('step-' + (from + 1)).classList.add('active');
+        currentStep = from + 1;
+        updateProgress();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function goBack() {
+        if (currentStep <= 1) {
+            document.getElementById('step-1').classList.remove('active');
+            document.getElementById('step-intro').classList.add('active');
+            document.getElementById('progressContainer').style.display = 'none';
+            currentStep = 0;
+        } else {
+            document.getElementById('step-' + currentStep).classList.remove('active');
+            currentStep--;
+            document.getElementById('step-' + currentStep).classList.add('active');
+            updateProgress();
+        }
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function updateProgress() {
+        document.getElementById('progressFill').style.width = (currentStep / totalQuestions * 100) + '%';
+        document.getElementById('progressLabel').textContent = currentStep + '/' + totalQuestions;
+    }
+
+    function showResult() {
+        recalcScores();
+        document.getElementById('step-' + totalQuestions).classList.remove('active');
+        document.getElementById('progressContainer').style.display = 'none';
+        document.getElementById('interlude').classList.add('active');
+        setTimeout(() => {
+            document.getElementById('interlude').classList.remove('active');
+            renderResult();
+            document.getElementById('step-result').classList.add('active');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }, 2500);
+    }
+
+    function getWinner() {
+        let max = -1, winner = 'formag';
+        Object.keys(scores).forEach(k => {
+            if (scores[k] > max) { max = scores[k]; winner = k; }
+        });
+        return winner;
+    }
+
+    function renderResult(force) {
+        const winner = force || getWinner();
+        const p = products[winner];
+        const alts = Object.keys(products).filter(k => k !== winner);
+
+        document.getElementById('resultContainer').innerHTML = `
+            <div class="result-badge">&#x2714; Votre r\u00e9sultat personnalis\u00e9</div>
+            <div class="result-title">Notre conseil pour vous&nbsp;: <span class="highlight">${p.name}</span></div>
+            <div class="result-subtitle">${p.why}</div>
+
+            <div class="product-card">
+                <div class="product-card-top ${p.bgClass}">
+                    <div class="product-brand-tag">${p.brand}</div>
+                    <div class="product-image-placeholder">${p.emoji}</div>
+                </div>
+                <div class="product-card-body">
+                    <div class="product-name">${p.name}</div>
+                    <div class="product-brand">${p.brand} &middot; ${p.tagline}</div>
+                    <div class="product-description">${p.description}</div>
+                    <div class="product-benefits">
+                        ${p.benefits.map(b => `<div class="product-benefit"><div class="benefit-check">${checkSvg}</div><span>${b}</span></div>`).join('')}
+                    </div>
+                    <div class="product-price-row">
+                        <div class="product-price">${p.price}<span>prix indicatif</span></div>
+                        <div class="product-format">${p.format}</div>
+                    </div>
+                    <div class="stock-badge"><div class="stock-dot"></div>Disponible en stock &agrave; la pharmacie</div>
+                </div>
+            </div>
+
+            <div class="conseil-block">
+                <p>Vous souhaitez confirmer ce choix ou adapter la cure &agrave; votre situation personnelle (traitements en cours, grossesse, enfant...) ?</p>
+                <a href="../contact.html" class="btn btn-primary" style="width:auto; display:inline-flex;">
+                    Demander conseil &agrave; notre &eacute;quipe
+                </a>
+            </div>
+
+            <div class="alternatives-section">
+                <div class="alternatives-title">Les autres options disponibles</div>
+                ${alts.map(k => {
+                    const a = products[k];
+                    return `<div class="alternative-card" onclick="switchResult('${k}')">
+                        <div class="alt-icon ${a.altBgClass}">${a.emoji}</div>
+                        <div class="alt-info"><div class="alt-name">${a.name}</div><div class="alt-brand">${a.brand} &middot; ${a.tagline}</div></div>
+                        <div class="alt-arrow">${arrowSvg}</div>
+                    </div>`;
+                }).join('')}
+            </div>
+
+            <div class="disclaimer"><strong>Information</strong> &mdash; Ce bilan est proposé à titre indicatif par la Pharmacie Charnal. Les compléments alimentaires ne remplacent pas un traitement médical. En cas de traitement en cours, de grossesse, d'allaitement ou de pathologie chronique, demandez toujours l'avis de votre pharmacien ou médecin avant de commencer une cure.</div>
+            <div class="restart-section"><button class="restart-link" onclick="restartQuiz()">&#x21BB; Recommencer le bilan</button></div>
+        `;
+    }
+
+    function switchResult(k) {
+        renderResult(k);
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function restartQuiz() {
+        Object.keys(scores).forEach(k => scores[k] = 0);
+        currentStep = 0;
+        document.querySelectorAll('.option').forEach(o => o.classList.remove('selected'));
+        document.querySelectorAll('.step').forEach(s => s.classList.remove('active'));
+        document.getElementById('interlude').classList.remove('active');
+        document.getElementById('step-intro').classList.add('active');
+        document.getElementById('progressContainer').style.display = 'none';
+        document.getElementById('resultContainer').innerHTML = '';
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // Mobile menu
+    const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
+    const navLinks = document.querySelector('.nav-links');
+
+    if (mobileMenuToggle) {
+        mobileMenuToggle.addEventListener('click', () => {
+            const isExpanded = mobileMenuToggle.getAttribute('aria-expanded') === 'true';
+            mobileMenuToggle.setAttribute('aria-expanded', !isExpanded);
+            navLinks.classList.toggle('active');
+        });
+
+        navLinks.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenuToggle.setAttribute('aria-expanded', 'false');
+                navLinks.classList.remove('active');
+            });
+        });
+
+        document.addEventListener('click', (e) => {
+            if (!navLinks.contains(e.target) && !mobileMenuToggle.contains(e.target)) {
+                mobileMenuToggle.setAttribute('aria-expanded', 'false');
+                navLinks.classList.remove('active');
+            }
+        });
+    }
+    </script>
+
+</body>
+</html>
