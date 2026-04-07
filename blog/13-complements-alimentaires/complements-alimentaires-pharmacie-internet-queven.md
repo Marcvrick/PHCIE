@@ -78,8 +78,7 @@ Autre point que l'on vérifie systématiquement: la **forme galénique**. Ce n'e
 ---
 
 **Vous prenez un traitement ou vous souhaitez débuter une cure de compléments ?**
-Passez nous voir — nous vérifions les interactions et vous orientons vers la forme la plus adaptée.
-32 Place de Toulouse, Quéven
+[Faites notre quiz santé](https://www.pharmaciecharnal.com/Quizzes/quiz-coming-soon.html) pour trouver le conseil adapté à votre profil — ou passez nous voir directement au 32 Place de Toulouse, Quéven.
 
 ---
 
