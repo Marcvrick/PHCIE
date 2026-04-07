@@ -715,6 +715,7 @@
             .btn-group .btn { width: 100%; }
         }
     </style>
+    <link rel="alternate" type="application/rss+xml" title="Blog Pharmacie Charnal" href="https://www.pharmaciecharnal.com/feed.xml">
 </head>
 <body>
 
@@ -796,13 +797,16 @@
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
                     </div>
                 </li>
-                <li class="quiz-item">
+                <li class="quiz-item available" onclick="window.location.href='quiz-complement.html'">
                     <div class="quiz-icon complement">&#x1F48A;</div>
                     <div class="quiz-info">
                         <div class="quiz-name">Compléments alimentaires</div>
                         <div class="quiz-desc">Vitamines, minéraux, probiotiques</div>
                     </div>
-                    <span class="quiz-status soon">Bientôt</span>
+                    <span class="quiz-status ready">Disponible</span>
+                    <div style="color:var(--gray-400);">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+                    </div>
                 </li>
                 <li class="quiz-item available" onclick="window.location.href='quiz-automedication.html'">
                     <div class="quiz-icon medical">&#x1FA79;</div>
@@ -840,6 +844,7 @@
                 <div class="footer-legal">
                     <a href="../mentions-legales.html">Mentions légales</a>
                     <a href="../donnees-personnelles.html">Confidentialité</a>
+                    <a href="/feed.xml" title="Flux RSS">RSS</a>
                 </div>
             </div>
         </div>
