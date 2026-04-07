@@ -2,6 +2,17 @@
 
 Ce guide définit le style et le ton à adopter pour tous les articles du blog de la Pharmacie Charnal à Quéven.
 
+**Planification :** Voir [[KEYWORD-ACTION-PLAN]] pour le calendrier éditorial, les keywords cibles, et les priorités de publication.
+
+---
+
+## ⚠️ Format de sortie obligatoire
+
+- L'article livré est **toujours** un fichier `.html` autonome (qui utilise `../style.css` partagé)
+- Le fichier `.md` est un brouillon de travail local — il **ne se commit jamais** dans le repo git
+- Nom du fichier : `sujet-principal-queven.html` (jamais `.md`)
+- Seul le `.html` est pushé, référencé dans `blog.html` et dans `feed.xml`
+
 ---
 
 # Configuration Voix Narrative - Laure
