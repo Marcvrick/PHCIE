@@ -16,6 +16,36 @@
   "language": "fr-FR",
   "items": [
     {
+      "id": "https://www.pharmaciecharnal.com/blog/14-paracetamol-ibuprofene-aspirine/paracetamol-ibuprofene-aspirine-lequel-choisir-queven.html",
+      "url": "https://www.pharmaciecharnal.com/blog/14-paracetamol-ibuprofene-aspirine/paracetamol-ibuprofene-aspirine-lequel-choisir-queven.html",
+      "title": "Paracétamol, ibuprofène, aspirine : lequel choisir et pourquoi ?",
+      "content_html": "Les trois soulagent la douleur, mais pas de la même façon. Ce guide pratique explique les différences, les bonnes indications et les contre-indications à connaître avant de vous automédier.",
+      "summary": "Paracétamol, ibuprofène ou aspirine ? Ce guide de votre pharmacienne à Quéven explique quand choisir chaque antalgique, les contre-indications fréquentes et les situations où l'ibuprofène a un vrai avantage.",
+      "date_published": "2026-04-14T09:00:00+02:00",
+      "date_modified": "2026-04-14T09:00:00+02:00",
+      "authors": [
+        {
+          "name": "Laure Charnal"
+        }
+      ],
+      "tags": [
+        "paracétamol",
+        "ibuprofène",
+        "aspirine",
+        "antalgique",
+        "automédication",
+        "contre-indications",
+        "douleur",
+        "fièvre"
+      ],
+      "language": "fr-FR",
+      "_medical_topic": {
+        "conditions": ["Douleur", "Fièvre", "Inflammation", "Dysménorrhée"],
+        "audience": "Patient",
+        "specialty": "Pharmacie"
+      }
+    },
+    {
       "id": "https://www.pharmaciecharnal.com/blog/allergie-pollen-bretagne-queven.html",
       "url": "https://www.pharmaciecharnal.com/blog/allergie-pollen-bretagne-queven.html",
       "title": "Allergie au pollen : comment bien vivre la saison en Bretagne?",
