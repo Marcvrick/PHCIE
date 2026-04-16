@@ -1720,7 +1720,7 @@
                     <option value="Claire">Claire [4]</option>
                     <option value="Sandrine">Sandrine [3]</option>
                     <option value="Titia">Titia [6]</option>
-                    <option value="Melanie">Melanie [10]</option>
+
                     <option value="Chloe">Chloe [9]</option>
                     <option value="Mathilde">Mathilde [5]</option>
                     <option value="Pascal">Pascal</option>
@@ -2252,7 +2252,6 @@
             'Pascal': 'pharmacien',
             'Sandrine': 'preparatrice',
             'Titia': 'preparatrice',
-            'Melanie': 'preparatrice',
             'Mathilde': 'preparatrice',
             'Chloe': 'preparatrice',
             'Emilie': 'preparatrice'
@@ -2357,24 +2356,6 @@
                     jeudi: { am: "9h-12h30", pm: "14h-19h15" },
                     vendredi: { am: "9h-12h30", pm: "14h-19h15" },
                     samedi: { am: "9h-12h30", pm: null }
-                }
-            },
-            "Melanie": {
-                paire: {
-                    lundi: { am: null, pm: null },
-                    mardi: { am: null, pm: "14h-19h15" },
-                    mercredi: { am: "9h-12h30", pm: "14h-19h15" },
-                    jeudi: { am: "9h-12h30", pm: "14h-19h15" },
-                    vendredi: { am: "9h-12h30", pm: "14h-19h15" },
-                    samedi: { am: "9h-12h30", pm: null }
-                },
-                impaire: {
-                    lundi: { am: "9h-12h30", pm: "14h-19h15" },
-                    mardi: { am: "9h-12h30", pm: "14h-19h15" },
-                    mercredi: { am: "9h-12h30", pm: "14h-19h15" },
-                    jeudi: { am: "9h-12h30", pm: "14h-19h15" },
-                    vendredi: { am: null, pm: null },
-                    samedi: { am: null, pm: null }
                 }
             },
             "Mathilde": {
@@ -4939,7 +4920,7 @@ Connectez-vous a l'application Planning pour traiter cette demande.
 
         // ========== VACANCES ==========
         // Tous les employes ont acces aux vacances
-        const VACANCES_EMPLOYEES = ['Stephanie', 'Claire', 'Sandrine', 'Titia', 'Melanie', 'Emilie', 'Chloe', 'Mathilde', 'Pascal'];
+        const VACANCES_EMPLOYEES = ['Stephanie', 'Claire', 'Sandrine', 'Titia', 'Emilie', 'Chloe', 'Mathilde', 'Pascal'];
         const VACANCES_ANNUEL = 30; // Max legal par an (30 jours ouvrables, lun-sam)
 
         // Remove a deleted employee from all in-memory lists and the HTML dropdown
