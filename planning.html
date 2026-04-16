@@ -5112,7 +5112,7 @@ Connectez-vous a l'application Planning pour traiter cette demande.
                 const s = solde[user];
                 if (s) {
                     const report = s.report || 0;
-                    document.getElementById('vacancesBadge').textContent = (s.annuel + report - s.pris) + 'j';
+                    document.getElementById('vacancesBadge').textContent = fmtDays(s.annuel + report - s.pris) + 'j';
                 }
             } else {
                 btn.classList.add('hidden');
