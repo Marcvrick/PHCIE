@@ -2404,6 +2404,13 @@
         const TRANCHES_PM = ['14h', '15h15', '16h', '16h30', '17h30', '18h', '18h30'];
 
         // ========== SECURITE ==========
+        // Format a number to 1 decimal max, no trailing .0
+        function fmtDays(n) {
+            if (n == null) return '0';
+            const r = parseFloat(Number(n).toFixed(1));
+            return r % 1 === 0 ? String(Math.round(r)) : String(r);
+        }
+
         function sanitize(str) {
             if (!str) return '';
             const div = document.createElement('div');
@@ -5127,25 +5134,25 @@ Connectez-vous a l'application Planning pour traiter cette demande.
                 <div class="vacances-stats">
                     ${report > 0 ? `
                     <div class="vacances-stat">
-                        <div class="vacances-stat-value" style="color: var(--blue);">${report}</div>
+                        <div class="vacances-stat-value" style="color: var(--blue);">${fmtDays(report)}</div>
                         <div class="vacances-stat-label">Report</div>
                     </div>
                     ` : ''}
                     <div class="vacances-stat">
-                        <div class="vacances-stat-value">${s.annuel}</div>
+                        <div class="vacances-stat-value">${fmtDays(s.annuel)}</div>
                         <div class="vacances-stat-label">Acquis</div>
                     </div>
                     <div class="vacances-stat">
-                        <div class="vacances-stat-value" style="color: var(--orange);">${s.pris}</div>
+                        <div class="vacances-stat-value" style="color: var(--orange);">${fmtDays(s.pris)}</div>
                         <div class="vacances-stat-label">Pris</div>
                     </div>
                     <div class="vacances-stat">
-                        <div class="vacances-stat-value" style="color: ${restant <= 5 ? 'var(--red)' : 'var(--green)'};">${restant}</div>
+                        <div class="vacances-stat-value" style="color: ${restant <= 5 ? 'var(--red)' : 'var(--green)'};">${fmtDays(restant)}</div>
                         <div class="vacances-stat-label">Restant</div>
                     </div>
                 </div>
                 ${report > 0 ? `<div style="font-size: 0.75rem; color: var(--gray); text-align: center; margin-bottom: 0.5rem;">
-                    ${report}j (année préc.) + ${s.annuel}j (acquis) - ${s.pris}j (pris) = <strong>${restant}j</strong>
+                    ${fmtDays(report)}j (année préc.) + ${fmtDays(s.annuel)}j (acquis) - ${fmtDays(s.pris)}j (pris) = <strong>${fmtDays(restant)}j</strong>
                 </div>` : ''}
                 <div class="vacances-balance-bar">
                     <div class="vacances-balance-fill ${fillClass}" style="width: ${pct}%;"></div>
@@ -5309,7 +5316,7 @@ Connectez-vous a l'application Planning pour traiter cette demande.
             const projectedRestant = restant + projectedExtra;
 
             if (count > projectedRestant) {
-                alert(`Solde insuffisant ! Vous demandez ${count} jours mais vous n'aurez que ${projectedRestant} jours disponibles au ${formatDate(dateDebut)}${projectedExtra > 0 ? ` (${restant} actuels + ${projectedExtra} a acquerir)` : ''}.`);
+                alert(`Solde insuffisant ! Vous demandez ${count} jours mais vous n'aurez que ${fmtDays(projectedRestant)} jours disponibles au ${formatDate(dateDebut)}${projectedExtra > 0 ? ` (${fmtDays(restant)} actuels + ${fmtDays(projectedExtra)} a acquerir)` : ''}.`);
                 return;
             }
 
@@ -5330,11 +5337,11 @@ Connectez-vous a l'application Planning pour traiter cette demande.
                 <p><strong>Employé :</strong> ${user}</p>
                 <p><strong>Période :</strong> ${formatDate(dateDebut)} au ${formatDate(dateFin)}</p>
                 <p><strong>Jours ouvres :</strong> ${count}</p>
-                <p><strong>Solde actuel :</strong> ${restant} jours</p>
-                ${projectedExtra > 0 ? `<p><strong>Jours a acquerir d'ici le ${formatDate(dateDebut)} :</strong> +${projectedExtra} jours</p>` : ''}
-                <p><strong>Solde après validation :</strong> ${soldeApres} jours${willBeNegative ? ' (sera compense par acquisition future)' : ''}</p>
+                <p><strong>Solde actuel :</strong> ${fmtDays(restant)} jours</p>
+                ${projectedExtra > 0 ? `<p><strong>Jours a acquerir d'ici le ${formatDate(dateDebut)} :</strong> +${fmtDays(projectedExtra)} jours</p>` : ''}
+                <p><strong>Solde après validation :</strong> ${fmtDays(soldeApres)} jours${willBeNegative ? ' (sera compense par acquisition future)' : ''}</p>
                 ${willBeNegative ? `<div style="background: #FEF3C7; border-left: 4px solid var(--orange); padding: 0.75rem; margin-top: 0.5rem; border-radius: 4px;">
-                    <p style="margin: 0; color: #92400E; font-size: 0.85rem;"><strong>Note :</strong> Le solde sera temporairement negatif (${soldeApres}j). Les ${projectedExtra} jours acquis d'ici ${formatDate(dateDebut)} couvriront cette demande.</p>
+                    <p style="margin: 0; color: #92400E; font-size: 0.85rem;"><strong>Note :</strong> Le solde sera temporairement negatif (${fmtDays(soldeApres)}j). Les ${fmtDays(projectedExtra)} jours acquis d'ici ${formatDate(dateDebut)} couvriront cette demande.</p>
                 </div>` : ''}
                 ${motif ? `<p><strong>Motif :</strong> ${motif}</p>` : ''}
             `;
@@ -5633,7 +5640,7 @@ Connectez-vous a l'application Planning pour traiter cette demande.
                         <div class="vacances-card-main">
                             <div>
                                 <div class="vacances-remaining ${remainingClass}">
-                                    ${restant}
+                                    ${fmtDays(restant)}
                                 </div>
                                 <div class="vacances-remaining-label">jours restants</div>
                             </div>
@@ -5661,21 +5668,21 @@ Connectez-vous a l'application Planning pour traiter cette demande.
                         <div id="details-${sanitize(name)}" class="vacances-details">
                             <div class="vacances-detail-item">
                                 <span class="vacances-detail-label">Acquis annuel:</span>
-                                <span class="vacances-detail-value">${s.annuel}j</span>
+                                <span class="vacances-detail-value">${fmtDays(s.annuel)}j</span>
                             </div>
                             ${report > 0 ? `
                                 <div class="vacances-detail-item">
                                     <span class="vacances-detail-label">Report:</span>
-                                    <span class="vacances-detail-value">+${report}j</span>
+                                    <span class="vacances-detail-value">+${fmtDays(report)}j</span>
                                 </div>
                             ` : ''}
                             <div class="vacances-detail-item">
                                 <span class="vacances-detail-label">Total disponible:</span>
-                                <span class="vacances-detail-value">${total}j</span>
+                                <span class="vacances-detail-value">${fmtDays(total)}j</span>
                             </div>
                             <div class="vacances-detail-item" style="border-top: 1px solid #E5E7EB; padding-top: 0.5rem; margin-top: 0.5rem;">
                                 <span class="vacances-detail-label">Déjà pris:</span>
-                                <span class="vacances-detail-value">${s.pris}j</span>
+                                <span class="vacances-detail-value">${fmtDays(s.pris)}j</span>
                             </div>
                         </div>
 
@@ -6098,15 +6105,15 @@ Connectez-vous a l'application Planning pour traiter cette demande.
                                 <div class="contract-card-vacances">
                                     <div class="contract-card-vacances-row">
                                         <span class="contract-card-vacances-label">Acquis:</span>
-                                        <span class="contract-card-vacances-value">${vacCalc.total}j ${vacCalc.bonus > 0 ? `(+${vacCalc.bonus}j)` : ''}</span>
+                                        <span class="contract-card-vacances-value">${fmtDays(vacCalc.total)}j ${vacCalc.bonus > 0 ? `(+${vacCalc.bonus}j)` : ''}</span>
                                     </div>
                                     <div class="contract-card-vacances-row">
                                         <span class="contract-card-vacances-label">Pris:</span>
-                                        <span class="contract-card-vacances-value">${daysTaken}j</span>
+                                        <span class="contract-card-vacances-value">${fmtDays(daysTaken)}j</span>
                                     </div>
                                     <div class="contract-card-vacances-row" style="border-top: 1px solid rgba(0,0,0,0.1); padding-top: 0.5rem; margin-top: 0.5rem;">
                                         <span class="contract-card-vacances-label"><strong>Restant:</strong></span>
-                                        <span class="contract-card-vacances-value"><strong>${remaining}j</strong></span>
+                                        <span class="contract-card-vacances-value"><strong>${fmtDays(remaining)}j</strong></span>
                                     </div>
                                 </div>
                             </div>
@@ -6265,7 +6272,7 @@ Connectez-vous a l'application Planning pour traiter cette demande.
             }
 
             const remaining = Math.max(0, vacCalc.total + (solde[name]?.report || 0) - daysTaken);
-            alert(`Contrat de ${name} enregistré.\nDroits: ${vacCalc.total}j | Pris: ${daysTaken}j | Restant: ${remaining}j`);
+            alert(`Contrat de ${name} enregistré.\nDroits: ${fmtDays(vacCalc.total)}j | Pris: ${fmtDays(daysTaken)}j | Restant: ${fmtDays(remaining)}j`);
         }
 
         // Synchroniser le calcul des vacances avec les contrats
