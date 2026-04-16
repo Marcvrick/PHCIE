@@ -5952,8 +5952,8 @@ Connectez-vous a l'application Planning pour traiter cette demande.
                 return { acquired: 0, bonus: 0, total: 0, details: 'Contrat termine' };
             }
 
-            // 2.5 jours ouvrables par mois (30j/an)
-            const acquiredDays = Math.min(Math.round(monthsWorked * 2.5), 30);
+            // 2.5 jours ouvrables par mois (30j/an) — pas d'arrondi, valeur exacte
+            const acquiredDays = Math.min(parseFloat((monthsWorked * 2.5).toFixed(1)), 30);
 
             // Bonus ancienneté: +2 jours après 6 ans (convention pharmacie)
             const yearsOfService = yearsDiff(hireDate, today);

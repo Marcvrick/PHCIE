@@ -16,7 +16,7 @@
     <link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16.png">
     <link rel="icon" type="image/png" sizes="192x192" href="favicon/favicon-192.png">
     <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">
-    <meta name="description" content="Pharmacie Charnal à Quéven, proche Lorient: pharmacie familiale depuis 40 ans. Ordonnances, vaccinations, livraison à domicile, produits naturels. Tél: 02 97 05 09 31">
+    <meta name="description" content="Pharmacie Charnal à Quéven, proche Lorient : pharmacie familiale depuis 40 ans. Ordonnances, vaccinations, livraison à domicile, produits naturels. Tél: 02 97 05 09 31">
     <title>Pharmacie Charnal - Quéven | Votre Santé, notre priorité</title>
     <link rel="canonical" href="https://www.pharmaciecharnal.com/index.html">
 
@@ -154,7 +154,6 @@
             line-height: 1.6;
             color: var(--charcoal);
             background-color: var(--cream);
-            overflow-x: hidden;
         }
 
         img {
@@ -530,7 +529,7 @@
 
         .hero-image img {
             width: 100%;
-            max-width: 420px;
+            max-width: 288px;
             margin: 0 auto;
             border-radius: var(--radius-2xl);
             box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08), 0 1px 4px rgba(0, 0, 0, 0.05);
@@ -538,9 +537,9 @@
 
         @media (min-width: 1024px) {
             .hero-image img {
-                max-width: 580px;
+                max-width: 432px;
                 margin: 0;
-                margin-right: 24px;
+                margin-right: 48px;
             }
         }
 
@@ -550,15 +549,13 @@
         }
 
         .hero-pills {
-            position: relative;
-            bottom: auto;
-            left: auto;
-            transform: none;
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
             display: flex;
             gap: 8px;
             z-index: 2;
-            justify-content: center;
-            margin-top: 12px;
         }
 
         .hero-pill {
@@ -618,19 +615,10 @@
             }
         }
 
-        /* === PRODUCT CARDS (Redesign v2 — asymmetric grid) === */
-        /* ROLLBACK: To restore the old 4-column Hims layout, see backup in index-backup-products-old.html */
+        /* === PRODUCT FEATURE CARDS (Hims-style) === */
         .product-features {
             padding: var(--space-24) 0 var(--space-32);
             background: var(--cream);
-        }
-
-        @media (min-width: 768px) {
-            .product-features .container {
-                grid-template-columns: auto 1fr;
-                gap: var(--space-64);
-                align-items: start;
-            }
         }
 
         @media (min-width: 1024px) {
@@ -641,34 +629,63 @@
 
         .product-features-grid {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 16px;
+            grid-template-columns: repeat(2, 1fr);
+            gap: var(--space-12);
         }
 
-        @media (min-width: 768px) {
+        @media (min-width: 1024px) {
             .product-features-grid {
-                grid-template-columns: 1.4fr 1fr 1fr;
-                grid-template-rows: 1fr 1fr;
-                gap: 16px;
-                max-width: 900px;
-                margin: 0 auto;
+                grid-template-columns: repeat(4, 1fr);
+                gap: var(--space-16);
             }
         }
 
         .product-feature-card {
-            border-radius: 18px;
-            overflow: hidden;
-            position: relative;
+            border-radius: var(--radius-lg);
+            padding: var(--space-16);
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: center;
-            padding: 20px 16px 16px;
-            aspect-ratio: 1;
-            transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+            min-height: 100px;
+            transition: all var(--duration-normal) var(--ease-standard);
             cursor: pointer;
+            overflow: hidden;
             text-decoration: none;
             color: inherit;
+        }
+
+        /* Colors always visible */
+        .product-feature-card.card--naturels    { background: #C5D08C; }
+        .product-feature-card.card--dermo       { background: #9DCCAE; }
+        .product-feature-card.card--complements { background: #E9B870; }
+        .product-feature-card.card--medical     { background: #ADA5D7; }
+
+        .product-feature-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .product-feature-card.card--naturels:hover    { background: #b8c57a; }
+        .product-feature-card.card--dermo:hover       { background: #8dc0a0; }
+        .product-feature-card.card--complements:hover { background: #dea955; }
+        .product-feature-card.card--medical:hover     { background: #9e96ca; }
+
+        .product-feature-header {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            margin-bottom: var(--space-8);
+            min-height: 2.4em;
+            width: 100%;
+        }
+
+        .product-feature-title {
+            font-family: var(--font-display);
+            font-size: var(--text-base);
+            font-weight: 500;
+            line-height: 1.2;
+            color: var(--charcoal);
+            text-decoration: none;
         }
 
         .product-feature-card,
@@ -678,45 +695,68 @@
             text-decoration: none !important;
         }
 
-        .product-feature-card:hover {
-            transform: translateY(-6px);
-        }
-
-        @media (min-width: 768px) {
+        @media (min-width: 1024px) {
             .product-feature-card {
-                aspect-ratio: auto;
-                min-height: 200px;
-                padding: 24px 20px 18px;
+                border-radius: var(--radius-xl);
+                padding: var(--space-16) var(--space-16) 0;
+                min-height: 180px;
+            }
+
+            .product-feature-header {
+                min-height: 3.2em;
+            }
+
+            .product-feature-title {
+                font-size: var(--text-2xl);
             }
         }
 
-        /* First card spans 2 rows on desktop for asymmetry */
-        @media (min-width: 768px) {
-            .product-feature-card.card--big {
-                grid-row: 1 / 3;
-                min-height: 100%;
+        .product-feature-title .accent-green { color: var(--sage-natural); font-style: italic; }
+        .product-feature-title .accent-teal { color: var(--teal-pro); font-style: italic; }
+        .product-feature-title .accent-copper { color: var(--copper); font-style: italic; }
+        .product-feature-title .accent-blue { color: var(--bleu-confiance); font-style: italic; }
+
+        .product-feature-arrow {
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            color: var(--gray-500);
+            transition: transform var(--duration-fast) var(--ease-standard);
+        }
+
+        @media (min-width: 1024px) {
+            .product-feature-arrow {
+                width: 32px;
+                height: 32px;
             }
         }
 
-        .product-feature-card.card--naturels    { background: #C5D08C; }
-        .product-feature-card.card--dermo       { background: #9DCCAE; }
-        .product-feature-card.card--complements { background: #E9B870; }
-        .product-feature-card.card--medical     { background: #ADA5D7; }
+        .product-feature-card:hover .product-feature-arrow {
+            transform: translateX(4px);
+        }
 
-        .product-feature-card.card--naturels:hover    { background: #b8c57a; }
-        .product-feature-card.card--dermo:hover       { background: #8dc0a0; }
-        .product-feature-card.card--complements:hover { background: #dea955; }
-        .product-feature-card.card--medical:hover     { background: #9e96ca; }
+        .product-feature-arrow svg {
+            width: 20px;
+            height: 20px;
+        }
+
+        .product-feature-visual {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            margin-top: -24px;
+        }
 
         .product-feature-img-wrap {
             position: relative;
             display: flex;
             align-items: center;
             justify-content: center;
-            flex: 1;
-            width: 75%;
-            max-width: 240px;
-            margin-bottom: 8px;
         }
 
         .product-feature-img-wrap::after {
@@ -732,70 +772,62 @@
         }
 
         .product-feature-img {
-            width: 100%;
-            height: auto;
+            width: 100px;
+            height: 100px;
             object-fit: contain;
+            filter: none;
+            transition: transform var(--duration-normal) var(--ease-standard);
             position: relative;
             z-index: 1;
-            transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
         .product-feature-card:hover .product-feature-img {
-            transform: scale(1.08) translateY(-4px);
+            transform: scale(1.05);
         }
 
-        @media (min-width: 768px) {
-            .product-feature-card.card--big .product-feature-img-wrap {
-                width: 75%;
-                max-width: 400px;
+        @media (min-width: 1024px) {
+            .product-feature-img {
+                width: 155px;
+                height: 155px;
+            }
+
+            .product-feature-img-wrap::after {
+                height: 16px;
             }
         }
 
-        .product-feature-title {
-            font-family: Georgia, 'Fraunces', serif;
-            font-size: 1.1rem;
-            font-weight: 500;
-            font-style: italic;
-            color: #1F2121;
-            text-align: center;
-            line-height: 1.2;
-            align-self: center;
-            margin-top: auto;
-        }
-
-        @media (min-width: 768px) {
-            .product-feature-card.card--big .product-feature-title {
-                font-size: 1.4rem;
-            }
-        }
-
-        /* Wide card spans 2 columns */
-        @media (min-width: 768px) {
-            .product-feature-card.card--wide {
-                grid-column: 2 / 4;
-            }
-        }
-
-        .product-feature-arrow {
-            position: absolute;
-            top: 16px;
-            right: 16px;
-            width: 28px;
-            height: 28px;
-            border-radius: 50%;
-            background: rgba(255,255,255,0.5);
+        .product-feature-icon-wrap {
+            width: 64px;
+            height: 64px;
+            border-radius: var(--radius-lg);
             display: flex;
             align-items: center;
             justify-content: center;
-            opacity: 0;
-            transform: translateX(-4px);
-            transition: opacity 0.2s, transform 0.2s;
         }
 
-        .product-feature-card:hover .product-feature-arrow {
-            opacity: 1;
-            transform: translateX(0);
+        .product-feature-icon-wrap svg {
+            width: 32px;
+            height: 32px;
+            stroke-width: 1.5;
         }
+
+        @media (min-width: 1024px) {
+            .product-feature-icon-wrap {
+                width: 100px;
+                height: 100px;
+                border-radius: var(--radius-xl);
+            }
+
+            .product-feature-icon-wrap svg {
+                width: 52px;
+                height: 52px;
+            }
+        }
+
+        .product-feature-icon-wrap.bg-sage { background: var(--pastel-sage); color: var(--sage-dark); }
+        .product-feature-icon-wrap.bg-teal { background: var(--pastel-teal); color: var(--teal-pro); }
+        .product-feature-icon-wrap.bg-peach { background: var(--pastel-peach); color: var(--copper); }
+        .product-feature-icon-wrap.bg-lavender { background: var(--pastel-lavender); color: var(--bleu-confiance); }
 
         /* === STATS BAR === */
         .stats-bar {
@@ -1057,7 +1089,7 @@
         }
 
         .service-card p {
-            font-size: var(--text-sm);
+            font-size: var(--text-xs);
             color: var(--gray-500);
             line-height: 1.5;
             flex-grow: 1;
@@ -1069,7 +1101,7 @@
 
         @media (min-width: 768px) {
             .service-card p {
-                font-size: var(--text-lg);
+                font-size: var(--text-base);
                 line-height: 1.6;
                 display: block;
                 -webkit-line-clamp: unset;
@@ -2004,6 +2036,7 @@
             max-width: 1280px;
             margin: 0 auto;
             padding: 0 var(--space-24);
+            box-sizing: border-box;
         }
 
         .brands-strip-header {
@@ -2059,10 +2092,8 @@
         @media (max-width: 767px) {
             .brands-strip { padding: var(--space-48) 0 var(--space-32); }
             .brands-strip-header { justify-content: center; text-align: center; flex-direction: column; align-items: center; }
-            .brands-strip-logos { gap: 8px; }
-            .brands-strip-logo-card { padding: var(--space-12) var(--space-8); }
+            .brands-strip-logo-card { padding: var(--space-16) var(--space-8); }
             .brands-strip-logo-card img { max-width: 80px; max-height: 36px; }
-            .brands-strip-container { padding: 0 var(--space-16); overflow: hidden; }
         }
 
         /* === BENTO GRID === */
@@ -2480,7 +2511,6 @@
       "inLanguage": "fr"
     }
     </script>
-    <link rel="alternate" type="application/rss+xml" title="Blog Pharmacie Charnal" href="https://www.pharmaciecharnal.com/feed.xml">
 </head>
 <body>
     <!-- Navigation (style-v2.css) -->
@@ -2551,7 +2581,7 @@
             </div>
             <div class="hero-image">
                 <div class="hero-image-inner">
-                <img src="images/hp PC.jpg" alt="Pharmacie Charnal - Des soins pour toute la famille">
+                <img src="images/Pharmacie Charnal Queven vectorielle.jpg" alt="Illustration de la Pharmacie Charnal à Quéven">
                 <div class="hero-pills">
                     <div class="hero-pill">
                         <strong>40+</strong>
@@ -2594,12 +2624,78 @@
         </div>
     </div>
 
+    <!-- Product Feature Cards (Bento layout) -->
+    <section class="product-features">
+        <div class="container">
+            <div class="product-features-grid">
+                <a href="Quizzes/quiz-produits-naturels.html" class="product-feature-card card--naturels">
+                    <div class="product-feature-header">
+                        <span class="product-feature-title">Produits <span class="accent-green">naturels</span></span>
+                        <span class="product-feature-arrow">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+                        </span>
+                    </div>
+                    <div class="product-feature-visual">
+                        <div class="product-feature-img-wrap">
+                            <img src="images/naturels-product.png" alt="Feuilles naturelles" class="product-feature-img">
+                        </div>
+                    </div>
+                </a>
+                <a href="Quizzes/quiz-soin-peau.html" class="product-feature-card card--dermo">
+                    <div class="product-feature-header">
+                        <span class="product-feature-title">Dermo<span class="accent-teal">cosmétique</span></span>
+                        <span class="product-feature-arrow">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+                        </span>
+                    </div>
+                    <div class="product-feature-visual">
+                        <div class="product-feature-img-wrap">
+                            <img src="images/dermocosmetique-product.png" alt="Crème dermocosmétique" class="product-feature-img">
+                        </div>
+                    </div>
+                </a>
+                <a href="Quizzes/quiz-coming-soon.html" class="product-feature-card card--complements">
+                    <div class="product-feature-header">
+                        <span class="product-feature-title">Compléments <span class="accent-copper">alimentaires</span></span>
+                        <span class="product-feature-arrow">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+                        </span>
+                    </div>
+                    <div class="product-feature-visual">
+                        <div class="product-feature-img-wrap">
+                            <img src="images/complements-product.png" alt="Compléments alimentaires" class="product-feature-img">
+                        </div>
+                    </div>
+                </a>
+                <a href="Quizzes/quiz-automedication.html" class="product-feature-card card--medical">
+                    <div class="product-feature-header">
+                        <span class="product-feature-title">Auto<span class="accent-blue">médication</span></span>
+                        <span class="product-feature-arrow">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+                        </span>
+                    </div>
+                    <div class="product-feature-visual">
+                        <div class="product-feature-img-wrap">
+                            <img src="images/automedication-product.png" alt="Comprimés automédication" class="product-feature-img">
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div style="text-align: center; margin-top: var(--space-16);">
+                <a href="Quizzes/guide-quizzes-sante-pharmacie-queven.html" style="color: var(--teal); font-weight: 600; font-size: var(--text-base); text-decoration: none; display: inline-flex; align-items: center; gap: 6px; transition: gap 0.3s ease;" onmouseover="this.style.gap='10px'" onmouseout="this.style.gap='6px'">
+                    Voir tous nos quiz
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                </a>
+            </div>
+        </div>
+    </section>
+
     <!-- Services Section - Asymmetric layout -->
     <section class="services-v2">
         <div class="services-v2-container">
             <!-- Header row: title left, subtitle right -->
             <div class="services-v2-header">
-                <h2 class="services-v2-title">On s'occupe<br>de <em>Vous</em></h2>
+                <h2 class="services-v2-title">On s'occupe<br>de <em>tout</em></h2>
                 <p class="services-v2-subtitle">Bien plus qu'une pharmacie. Ordonnances, conseil, livraison, vaccination... On vous accompagne à chaque étape.</p>
             </div>
 
@@ -2616,7 +2712,7 @@
                         </svg>
                     </div>
                     <h3>Délivrance d'ordonnances</h3>
-                    <p>On prend le temps de vous expliquer chaque traitement. Posologie, interactions, effets secondaires: vous repartez toujours avec des réponses claires. Envoi de l'ordonnance par photo possible.</p>
+                    <p>On prend le temps de vous expliquer chaque traitement. Posologie, interactions, effets secondaires : vous repartez toujours avec des réponses claires. Envoi de l'ordonnance par photo possible.</p>
                 </a>
 
                 <!-- Service list: 5 items stacked -->
@@ -2693,72 +2789,22 @@
         </div>
     </section>
 
-    <!-- Product Feature Cards (Bento layout) -->
-    <section class="product-features">
-        <div class="container" style="display: grid; grid-template-columns: 1fr; gap: var(--space-24);">
-            <h2 style="font-family: var(--font-display); font-size: clamp(1.8rem, 3vw, 2.4rem); font-weight: 500; line-height: 1.15; color: var(--charcoal); margin: 0;">Quel soin<br>vous <em style="font-style: italic; color: var(--teal-pro);">correspond?</em></h2>
-            <div class="product-features-grid">
-                <a href="Quizzes/quiz-produits-naturels.html" class="product-feature-card card--naturels card--big">
-                    <span class="product-feature-arrow">
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-                    </span>
-                    <div class="product-feature-img-wrap">
-                        <img src="images/naturels-product.png" alt="Feuilles naturelles" class="product-feature-img">
-                    </div>
-                    <span class="product-feature-title">Produits naturels</span>
-                </a>
-                <a href="Quizzes/quiz-soin-peau.html" class="product-feature-card card--dermo">
-                    <span class="product-feature-arrow">
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-                    </span>
-                    <div class="product-feature-img-wrap">
-                        <img src="images/dermocosmetique-product.png" alt="Crème dermocosmétique" class="product-feature-img">
-                    </div>
-                    <span class="product-feature-title">Dermocosmétique</span>
-                </a>
-                <a href="Quizzes/quiz-complement.html" class="product-feature-card card--complements">
-                    <span class="product-feature-arrow">
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-                    </span>
-                    <div class="product-feature-img-wrap">
-                        <img src="images/complements-product.png" alt="Compléments alimentaires" class="product-feature-img">
-                    </div>
-                    <span class="product-feature-title">Compléments</span>
-                </a>
-                <a href="Quizzes/quiz-automedication.html" class="product-feature-card card--medical card--wide">
-                    <span class="product-feature-arrow">
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-                    </span>
-                    <div class="product-feature-img-wrap">
-                        <img src="images/automedication-product.png" alt="Comprimés automédication" class="product-feature-img">
-                    </div>
-                    <span class="product-feature-title">Automédication</span>
-                </a>
-            </div>
-            <div style="grid-column: -2 / -1; text-align: center; margin-top: var(--space-16);">
-                <a href="Quizzes/guide-quizzes-sante-pharmacie-queven.html" style="color: var(--teal); font-weight: 600; font-size: var(--text-base); text-decoration: none; display: inline-flex; align-items: center; gap: 6px; transition: gap 0.3s ease;" onmouseover="this.style.gap='10px'" onmouseout="this.style.gap='6px'">
-                    Voir tous nos quiz
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-                </a>
-            </div>
-        </div>
-    </section>
 
     <!-- Blog Highlight - Dernier article (auto-fetched from blog.html) -->
     <section class="blog-highlight" id="latest-article-section">
         <div class="blog-highlight-container">
             <div class="blog-highlight-grid">
                 <div class="blog-highlight-image" id="latest-article-image">
-                    <a id="latest-article-image-link" href="blog/13-complements-alimentaires/complements-alimentaires-pharmacie-internet-queven.html">
-                        <img id="latest-article-img" src="images/Blog%20photos/blog-13-complements-alimentaires-internet.jpg" alt="Femme lisant l'étiquette d'un complément alimentaire — pharmacie ou internet, conseils pharmacien Quéven">
+                    <a id="latest-article-image-link" href="blog/detox-apres-fetes-mythe-realite-queven.html">
+                        <img id="latest-article-img" src="images/Detox en Janvier.jpeg" alt="Femme en pull beige tenant une tasse - Bien-être après les fêtes">
                     </a>
                 </div>
                 <div class="blog-highlight-text">
                     <span class="blog-highlight-label">Blog</span>
-                    <span class="blog-highlight-date" id="latest-article-date">8 Avril 2026</span>
-                    <h2 class="blog-highlight-title" id="latest-article-title">Compléments alimentaires: pharmacie ou internet?</h2>
-                    <p class="blog-highlight-excerpt" id="latest-article-excerpt">Risques des achats en ligne, formes biodisponibles, interactions médicamenteuses: ce que votre pharmacien vérifie avant de vous remettre un complément.</p>
-                    <a href="blog/13-complements-alimentaires/complements-alimentaires-pharmacie-internet-queven.html" class="link-arrow" id="latest-article-link">
+                    <span class="blog-highlight-date" id="latest-article-date">12 Janvier 2026</span>
+                    <h2 class="blog-highlight-title" id="latest-article-title">Détox après les fêtes : mythe ou réalité ?</h2>
+                    <p class="blog-highlight-excerpt" id="latest-article-excerpt">Après les fêtes, les promesses de détox miracle fleurissent partout. Mais que dit vraiment la science ? Laure vous explique ce qui fonctionne réellement pour aider votre corps.</p>
+                    <a href="blog/detox-apres-fetes-mythe-realite-queven.html" class="link-arrow" id="latest-article-link">
                         Lire l'article
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
                     </a>
@@ -2864,7 +2910,6 @@
                 <div class="footer-legal">
                     <a href="mentions-legales.html">Mentions légales</a>
                     <a href="donnees-personnelles.html">Confidentialité</a>
-                    <a href="/feed.xml" title="Flux RSS">RSS</a>
                 </div>
             </div>
         </div>
