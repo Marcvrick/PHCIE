@@ -4982,6 +4982,51 @@ Connectez-vous a l'application Planning pour traiter cette demande.
             return deletedEmployeesCache.includes(name);
         }
 
+        // Purge an employee from all Firebase collections (one-time cleanup)
+        async function purgeEmployeeFromFirebase(name) {
+            try {
+                // Ensure in deleted list
+                if (!deletedEmployeesCache.includes(name)) {
+                    deletedEmployeesCache.push(name);
+                }
+                removeDeletedEmployee(name);
+
+                // Add to Firebase deleted list
+                const deletedDoc = await db.collection('config').doc('deleted_employees').get();
+                const deletedList = deletedDoc.exists ? (deletedDoc.data().list || []) : [];
+                if (!deletedList.includes(name)) {
+                    deletedList.push(name);
+                    await db.collection('config').doc('deleted_employees').set({ list: deletedList });
+                }
+
+                // Remove from staff_schedule
+                const scheduleDoc = await db.collection('config').doc('staff_schedule').get();
+                if (scheduleDoc.exists && scheduleDoc.data()[name]) {
+                    const schedules = scheduleDoc.data();
+                    delete schedules[name];
+                    await db.collection('config').doc('staff_schedule').set(schedules);
+                }
+
+                // Remove from staff_contracts
+                const contractsDoc = await db.collection('config').doc('staff_contracts').get();
+                if (contractsDoc.exists && contractsDoc.data()[name]) {
+                    const contracts = contractsDoc.data();
+                    delete contracts[name];
+                    await db.collection('config').doc('staff_contracts').set(contracts);
+                }
+
+                // Remove from vacances_solde
+                const soldeDoc = await db.collection('config').doc('vacances_solde').get();
+                if (soldeDoc.exists && soldeDoc.data()[name]) {
+                    const solde = soldeDoc.data();
+                    delete solde[name];
+                    await db.collection('config').doc('vacances_solde').set(solde);
+                }
+            } catch (e) {
+                console.error('Erreur purge employee:', e);
+            }
+        }
+
         // Jours feries francais 2026-2028
         const JOURS_FERIES = {
             // 2026
@@ -6173,7 +6218,9 @@ Connectez-vous a l'application Planning pour traiter cette demande.
                             </div>
                             <div class="contract-field">
                                 <label>Date d'embauche</label>
-                                <input type="date" id="contract-hire-${sanitize(name)}" value="${contract.hireDate || ''}">
+                                <div style="display: flex; gap: 0.4rem;" id="contract-hire-wrap-${sanitize(name)}">
+                                    ${buildDateDropdowns('contract-hire', sanitize(name), contract.hireDate || '')}
+                                </div>
                             </div>
                             <div class="contract-field" id="contract-end-field-${sanitize(name)}" style="${(contract.contractType === 'CDI' || contract.contractType === 'freelance') ? 'display: none;' : ''}">
                                 <label>Fin de contrat</label>
@@ -6271,6 +6318,46 @@ Connectez-vous a l'application Planning pour traiter cette demande.
             }
         }
 
+        function buildDateDropdowns(prefix, name, dateStr) {
+            const parts = dateStr ? dateStr.split('-') : ['', '', ''];
+            const y = parts[0] || '';
+            const m = parts[1] || '';
+            const d = parts[2] || '';
+            const currentYear = new Date().getFullYear();
+
+            let yearOpts = '<option value="">--</option>';
+            for (let yr = currentYear; yr >= 2000; yr--) {
+                yearOpts += `<option value="${yr}" ${y == yr ? 'selected' : ''}>${yr}</option>`;
+            }
+
+            const moisNoms = ['Jan','Fev','Mar','Avr','Mai','Jun','Jul','Aou','Sep','Oct','Nov','Dec'];
+            let monthOpts = '<option value="">--</option>';
+            for (let mo = 1; mo <= 12; mo++) {
+                const moStr = String(mo).padStart(2, '0');
+                monthOpts += `<option value="${moStr}" ${m === moStr ? 'selected' : ''}>${moisNoms[mo-1]}</option>`;
+            }
+
+            let dayOpts = '<option value="">--</option>';
+            for (let dy = 1; dy <= 31; dy++) {
+                const dyStr = String(dy).padStart(2, '0');
+                dayOpts += `<option value="${dyStr}" ${d === dyStr ? 'selected' : ''}>${dy}</option>`;
+            }
+
+            return `
+                <select id="${prefix}-y-${name}" style="flex: 1; padding: 0.4rem;">${yearOpts}</select>
+                <select id="${prefix}-m-${name}" style="flex: 1; padding: 0.4rem;">${monthOpts}</select>
+                <select id="${prefix}-d-${name}" style="flex: 0.7; padding: 0.4rem;">${dayOpts}</select>
+            `;
+        }
+
+        function readDateDropdowns(prefix, name) {
+            const y = document.getElementById(`${prefix}-y-${name}`)?.value;
+            const m = document.getElementById(`${prefix}-m-${name}`)?.value;
+            const d = document.getElementById(`${prefix}-d-${name}`)?.value;
+            if (y && m && d) return `${y}-${m}-${d}`;
+            return '';
+        }
+
         function toggleArrangementDate(name) {
             const select = document.getElementById(`contract-arrangement-${name}`);
             const dateField = document.getElementById(`contract-arrangement-date-field-${name}`);
@@ -6279,7 +6366,7 @@ Connectez-vous a l'application Planning pour traiter cette demande.
 
         async function saveContract(name) {
             const contractType = document.getElementById(`contract-type-${name}`).value;
-            const hireDate = document.getElementById(`contract-hire-${name}`).value;
+            const hireDate = readDateDropdowns('contract-hire', name);
             const endDate = document.getElementById(`contract-end-${name}`).value || null;
             const daysTaken = parseInt(document.getElementById(`contract-taken-${name}`).value) || 0;
             const workArrangement = document.getElementById(`contract-arrangement-${name}`).value;
@@ -6495,6 +6582,9 @@ Connectez-vous a l'application Planning pour traiter cette demande.
             // Initialize vacances solde and contracts if needed
             // Remove deleted employees before initializing anything
             await applyDeletedEmployees();
+
+            // One-time cleanup: purge Melanie from all Firebase collections
+            await purgeEmployeeFromFirebase('Melanie');
 
             await initVacancesSolde();
             await initContracts();
