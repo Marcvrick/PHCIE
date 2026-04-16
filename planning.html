@@ -5216,8 +5216,24 @@ Connectez-vous a l'application Planning pour traiter cette demande.
                 <div class="vacances-balance-bar">
                     <div class="vacances-balance-fill ${fillClass}" style="width: ${pct}%;"></div>
                 </div>
+                ${(() => {
+                    const hist = getVacancesHistorique(user);
+                    if (hist.length === 0) return '';
+                    let h = '<div style="margin-top: 1rem; padding: 0.75rem; background: #F9FAFB; border-radius: 8px; border: 1px solid #E5E7EB;">';
+                    h += '<div style="font-weight: 600; font-size: 0.85rem; color: #374151; margin-bottom: 0.5rem;">Détail des congés pris</div>';
+                    h += '<table style="width: 100%; font-size: 0.82rem; border-collapse: collapse;">';
+                    h += '<tr style="color: #6B7280; border-bottom: 1px solid #D1D5DB;"><td style="padding: 0.3rem 0;">Dates</td><td style="padding: 0.3rem 0; text-align: right;">Jours</td></tr>';
+                    hist.forEach(entry => {
+                        const duFmt = parseLocalDate(entry.du).toLocaleDateString('fr-FR', { timeZone: 'Europe/Paris', day: '2-digit', month: 'short', year: 'numeric' });
+                        const auFmt = entry.au !== entry.du ? ' → ' + parseLocalDate(entry.au).toLocaleDateString('fr-FR', { timeZone: 'Europe/Paris', day: '2-digit', month: 'short', year: 'numeric' }) : '';
+                        h += '<tr style="border-bottom: 1px solid #F3F4F6;"><td style="padding: 0.3rem 0;">' + duFmt + auFmt + '</td><td style="padding: 0.3rem 0; text-align: right; font-weight: 500;">' + fmtDays(entry.jours) + 'j</td></tr>';
+                    });
+                    h += '<tr style="font-weight: 700; border-top: 2px solid #D1D5DB;"><td style="padding: 0.4rem 0;">Total pris</td><td style="padding: 0.4rem 0; text-align: right;">' + fmtDays(hist.reduce((s, e) => s + e.jours, 0)) + 'j</td></tr>';
+                    h += '</table></div>';
+                    return h;
+                })()}
                 <div style="text-align: center; margin-top: 0.75rem;">
-                    <button class="btn btn-secondary" style="font-size: 0.8rem; padding: 0.4rem 0.8rem;" onclick="downloadVacancesCSV('${sanitize(user)}')">📥 Excel mes congés (Excel)</button>
+                    <button class="btn btn-secondary" style="font-size: 0.8rem; padding: 0.4rem 0.8rem;" onclick="downloadVacancesCSV('${sanitize(user)}')">📥 Télécharger mes congés (Excel)</button>
                 </div>
             `;
         }
@@ -5936,6 +5952,22 @@ Connectez-vous a l'application Planning pour traiter cette demande.
                                 <span class="vacances-detail-label">Déjà pris:</span>
                                 <span class="vacances-detail-value">${fmtDays(s.pris)}j</span>
                             </div>
+                            ${(() => {
+                                const hist = getVacancesHistorique(name);
+                                if (hist.length === 0) return '';
+                                let h = '<div style="border-top: 1px solid #E5E7EB; padding-top: 0.5rem; margin-top: 0.5rem;">';
+                                h += '<div style="font-weight: 600; font-size: 0.8rem; color: #374151; margin-bottom: 0.4rem;">Détail des congés pris:</div>';
+                                h += '<table style="width: 100%; font-size: 0.78rem; border-collapse: collapse;">';
+                                h += '<tr style="color: #6B7280; border-bottom: 1px solid #E5E7EB;"><td style="padding: 0.25rem 0;">Dates</td><td style="padding: 0.25rem 0; text-align: right;">Jours</td></tr>';
+                                hist.forEach(entry => {
+                                    const duFmt = parseLocalDate(entry.du).toLocaleDateString('fr-FR', { timeZone: 'Europe/Paris', day: '2-digit', month: 'short' });
+                                    const auFmt = entry.au !== entry.du ? ' → ' + parseLocalDate(entry.au).toLocaleDateString('fr-FR', { timeZone: 'Europe/Paris', day: '2-digit', month: 'short' }) : '';
+                                    h += `<tr style="border-bottom: 1px solid #F3F4F6;"><td style="padding: 0.25rem 0;">${duFmt}${auFmt}</td><td style="padding: 0.25rem 0; text-align: right; font-weight: 500;">${fmtDays(entry.jours)}j</td></tr>`;
+                                });
+                                h += `<tr style="font-weight: 700; border-top: 1px solid #D1D5DB;"><td style="padding: 0.3rem 0;">Total</td><td style="padding: 0.3rem 0; text-align: right;">${fmtDays(hist.reduce((s, e) => s + e.jours, 0))}j</td></tr>`;
+                                h += '</table></div>';
+                                return h;
+                            })()}
                         </div>
 
                         <!-- Edit section (hidden by default) -->
