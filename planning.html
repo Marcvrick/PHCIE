@@ -1094,6 +1094,16 @@
         .contract-badge.cdd { background: rgba(255,255,255,0.25); color: white; }
         .contract-badge.periode_essai { background: rgba(255,255,255,0.25); color: white; }
         .contract-badge.freelance { background: rgba(255,255,255,0.25); color: white; }
+        .work-arrangement-badge {
+            display: inline-block;
+            padding: 0.25rem 0.6rem;
+            border-radius: 12px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            background: #DBEAFE;
+            color: #1E40AF;
+            margin-top: 0.3rem;
+        }
 
         /* Card content sections */
         .contract-card-content {
@@ -2355,6 +2365,24 @@
                     mercredi: { am: "9h-12h30", pm: "14h-19h15" },
                     jeudi: { am: "9h-12h30", pm: "14h-19h15" },
                     vendredi: { am: "9h-12h30", pm: "14h-19h15" },
+                    samedi: { am: "9h-12h30", pm: null }
+                }
+            },
+            "Chloe": {
+                paire: {
+                    lundi: { am: "9h-12h30", pm: null },
+                    mardi: { am: "9h-12h30", pm: null },
+                    mercredi: { am: null, pm: null },
+                    jeudi: { am: "9h-12h30", pm: null },
+                    vendredi: { am: "9h-12h30", pm: null },
+                    samedi: { am: "9h-12h30", pm: null }
+                },
+                impaire: {
+                    lundi: { am: "9h-12h30", pm: null },
+                    mardi: { am: "9h-12h30", pm: null },
+                    mercredi: { am: null, pm: null },
+                    jeudi: { am: "9h-12h30", pm: null },
+                    vendredi: { am: "9h-12h30", pm: null },
                     samedi: { am: "9h-12h30", pm: null }
                 }
             },
@@ -6053,12 +6081,17 @@ Connectez-vous a l'application Planning pour traiter cette demande.
                 const hireDate = contract.hireDate ? parseLocalDate(contract.hireDate).toLocaleDateString('fr-FR', { timeZone: 'Europe/Paris' }) : 'N/A';
                 const endDate = contract.endDate ? parseLocalDate(contract.endDate).toLocaleDateString('fr-FR', { timeZone: 'Europe/Paris' }) : 'N/A';
 
+                const workArr = contract.workArrangement || 'normal';
+                const workArrSince = contract.workArrangementSince || '';
+                const workArrSinceDisplay = workArrSince ? parseLocalDate(workArrSince).toLocaleDateString('fr-FR', { timeZone: 'Europe/Paris' }) : '';
+
                 html += `
                     <div class="contract-card">
                         <!-- Card Header -->
                         <div class="contract-card-header">
                             <div>
                                 <h3 class="contract-name">${sanitize(name)}</h3>
+                                ${workArr === 'mi_temps_therapeutique' ? `<span class="work-arrangement-badge">Mi-temps thérapeutique${workArrSinceDisplay ? ' depuis ' + workArrSinceDisplay : ''}</span>` : ''}
                             </div>
                             <span class="contract-badge ${badgeClass}">${typeLabel}</span>
                         </div>
@@ -6126,6 +6159,17 @@ Connectez-vous a l'application Planning pour traiter cette demande.
                                     <option value="periode_essai" ${contract.contractType === 'periode_essai' ? 'selected' : ''}>Période d'essai</option>
                                     <option value="freelance" ${contract.contractType === 'freelance' ? 'selected' : ''}>Freelance</option>
                                 </select>
+                            </div>
+                            <div class="contract-field">
+                                <label>Aménagement</label>
+                                <select id="contract-arrangement-${sanitize(name)}" onchange="toggleArrangementDate('${sanitize(name)}')">
+                                    <option value="normal" ${workArr === 'normal' ? 'selected' : ''}>Temps plein</option>
+                                    <option value="mi_temps_therapeutique" ${workArr === 'mi_temps_therapeutique' ? 'selected' : ''}>Mi-temps thérapeutique</option>
+                                </select>
+                            </div>
+                            <div class="contract-field" id="contract-arrangement-date-field-${sanitize(name)}" style="${workArr !== 'mi_temps_therapeutique' ? 'display: none;' : ''}">
+                                <label>Depuis le</label>
+                                <input type="date" id="contract-arrangement-since-${sanitize(name)}" value="${workArrSince}">
                             </div>
                             <div class="contract-field">
                                 <label>Date d'embauche</label>
@@ -6227,18 +6271,28 @@ Connectez-vous a l'application Planning pour traiter cette demande.
             }
         }
 
+        function toggleArrangementDate(name) {
+            const select = document.getElementById(`contract-arrangement-${name}`);
+            const dateField = document.getElementById(`contract-arrangement-date-field-${name}`);
+            dateField.style.display = select.value === 'mi_temps_therapeutique' ? 'block' : 'none';
+        }
+
         async function saveContract(name) {
             const contractType = document.getElementById(`contract-type-${name}`).value;
             const hireDate = document.getElementById(`contract-hire-${name}`).value;
             const endDate = document.getElementById(`contract-end-${name}`).value || null;
             const daysTaken = parseInt(document.getElementById(`contract-taken-${name}`).value) || 0;
+            const workArrangement = document.getElementById(`contract-arrangement-${name}`).value;
+            const workArrangementSince = document.getElementById(`contract-arrangement-since-${name}`).value || null;
 
             const contracts = getContracts();
             contracts[name] = {
                 contractType,
                 hireDate,
                 endDate: (contractType === 'CDI' || contractType === 'freelance') ? null : endDate,
-                daysTaken
+                daysTaken,
+                workArrangement: workArrangement === 'normal' ? null : workArrangement,
+                workArrangementSince: workArrangement === 'normal' ? null : workArrangementSince
             };
 
             await saveContracts(contracts);
