@@ -8,6 +8,8 @@
     <!-- Firebase SDK -->
     <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
+    <!-- SheetJS for Excel export -->
+    <script src="https://cdn.sheetjs.com/xlsx-0.20.3/package/dist/xlsx.full.min.js"></script>
     <style>
         :root {
             --sage: #7C9885;
@@ -1095,6 +1097,16 @@
         .contract-badge.cdd { background: rgba(255,255,255,0.25); color: white; }
         .contract-badge.periode_essai { background: rgba(255,255,255,0.25); color: white; }
         .contract-badge.freelance { background: rgba(255,255,255,0.25); color: white; }
+        .work-arrangement-badge {
+            display: inline-block;
+            padding: 0.25rem 0.6rem;
+            border-radius: 12px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            background: #DBEAFE;
+            color: #1E40AF;
+            margin-top: 0.3rem;
+        }
 
         /* Card content sections */
         .contract-card-content {
@@ -1699,7 +1711,7 @@
         <div class="login-box">
             <h1>Planning Pharmacie</h1>
             <p>Entrez le mot de passe equipe</p>
-            <input type="password" id="staffPassword" placeholder="Mot de passe" autocomplete="off">
+            <input type="text" id="staffPassword" placeholder="Mot de passe" autocomplete="off" style="-webkit-text-security: disc;">
             <button id="loginBtn">Entrer</button>
             <p class="login-error hidden" id="loginError">Mot de passe incorrect</p>
         </div>
@@ -1721,7 +1733,7 @@
                     <option value="Claire">Claire [4]</option>
                     <option value="Sandrine">Sandrine [3]</option>
                     <option value="Titia">Titia [6]</option>
-                    <option value="Melanie">Melanie [10]</option>
+
                     <option value="Chloe">Chloe [9]</option>
                     <option value="Mathilde">Mathilde [5]</option>
                     <option value="Pascal">Pascal</option>
@@ -1760,17 +1772,17 @@
                     <div class="form-group">
                         <label class="form-label">Type de demande</label>
                         <select class="form-select" id="demandeType" required>
-                            <option value="">-- Selectionnez --</option>
+                            <option value="">-- Sélectionnez --</option>
                             <option value="absence_group">Demande d'absence</option>
-                            <option value="echange">Echange horaires</option>
-                            <option value="recuperation" id="optionRecuperation" class="hidden">Recuperation d'heures</option>
+                            <option value="echange">Échange horaires</option>
+                            <option value="recuperation" id="optionRecuperation" class="hidden">Récupération d'heures</option>
                         </select>
                     </div>
                     <div class="form-group hidden" id="raisonGroup">
                         <label class="form-label">Raison</label>
                         <select class="form-select" id="demandeRaison">
                             <option value="absence">Absence personnelle</option>
-                            <option value="depart_anticipe">Depart anticipe</option>
+                            <option value="depart_anticipe">Départ anticipé</option>
                             <option value="maladie">Maladie</option>
                             <option value="conge">Congés</option>
                         </select>
@@ -1790,25 +1802,25 @@
                         </div>
                         <div class="form-row">
                             <div class="form-group" id="periodeGroup">
-                                <label class="form-label">Periode</label>
+                                <label class="form-label">Période</label>
                                 <select class="form-select" id="demandePeriode">
-                                    <option value="journee">Journee complete</option>
+                                    <option value="journee">Journée complète</option>
                                     <option value="matin">Matin uniquement</option>
-                                    <option value="apresmidi">Apres-midi uniquement</option>
+                                    <option value="apresmidi">Après-midi uniquement</option>
                                 </select>
                             </div>
                         </div>
                         <div class="form-row" id="horaireRow">
                             <div class="form-group hidden" id="heureGroup">
-                                <label class="form-label">Heure de depart (si depart anticipe)</label>
+                                <label class="form-label">Heure de départ (si depart anticipe)</label>
                                 <select class="form-select" id="demandeHeure">
-                                    <option value="">-- Choisir l'heure de depart --</option>
+                                    <option value="">-- Choisir l'heure de départ --</option>
                                 </select>
                             </div>
                             <div class="form-group hidden" id="echangeGroup">
                                 <label class="form-label">Echanger avec</label>
                                 <select class="form-select" id="echangeAvec">
-                                    <option value="">-- Choisir un collegue --</option>
+                                    <option value="">-- Choisir un collègue --</option>
                                 </select>
                             </div>
                         </div>
@@ -1825,7 +1837,7 @@
                                 <strong>Heures dues:</strong> <span id="recupHeuresDues">0h</span>
                             </p>
                             <p style="margin: 0.5rem 0 0; color: var(--gray); font-size: 0.9rem;">
-                                Selectionnez les creneaux ou vous souhaitez venir travailler pour recuperer vos heures.
+                                Sélectionnez les créneaux où vous souhaitez venir travailler pour récupérer vos heures.
                             </p>
                         </div>
                         <div id="recupSlotsContainer" class="recovery-slots"></div>
@@ -1845,7 +1857,7 @@
                 <div class="impact-section" id="impactRecovery">
                     <div class="impact-section-title">RECUPERATION PROPOSEE</div>
                     <p style="margin-bottom: 1rem; color: var(--gray);">
-                        Pour compenser vos heures, voici les creneaux ou l'equipe a besoin de renfort:
+                        Pour compenser vos heures, voici les créneaux où l'equipe a besoin de renfort:
                     </p>
                     <div class="recovery-slots" id="recoverySlots"></div>
                     <div class="hours-summary" id="hoursSummary"></div>
@@ -1854,7 +1866,7 @@
                     <div class="engagement-box">
                         <label class="engagement-checkbox">
                             <input type="checkbox" id="engagementCheck">
-                            <span>Je m'engage a recuperer sur les creneaux selectionnes</span>
+                            <span>Je m'engage à récupérer sur les créneaux sélectionnés</span>
                         </label>
                     </div>
                     <div style="display: flex; gap: 1rem; margin-top: 1rem; flex-wrap: wrap;">
@@ -1869,7 +1881,7 @@
         <div id="view-mes-demandes" class="view">
             <!-- Echanges en attente de reponse -->
             <div class="card" id="echangesEnAttente">
-                <h2 class="card-title">Demandes d'echange recues</h2>
+                <h2 class="card-title">Demandes d'échange reçues</h2>
                 <div id="echangesList"></div>
             </div>
 
@@ -1981,6 +1993,9 @@
                     <button class="solde-tab" data-solde-tab="mensuelles" onclick="switchSoldeTab('mensuelles')">Heures mensuelles par employé</button>
                 </div>
                 <div id="soldeTabVacances">
+                    <div style="text-align: right; margin-bottom: 0.75rem;">
+                        <button class="btn btn-secondary" style="font-size: 0.8rem; padding: 0.4rem 0.8rem;" onclick="downloadVacancesCSV()">📥 Excel tout (Excel)</button>
+                    </div>
                     <div class="vacances-manager-card" id="managerVacancesBalance"></div>
                 </div>
                 <div id="soldeTabHeures" style="display:none;">
@@ -2069,22 +2084,22 @@
             </div>
 
             <div class="card">
-                <h2 class="card-title">Gestion des contrats et anciennete</h2>
+                <h2 class="card-title">Gestion des contrats et ancienneté</h2>
                 <p style="color: var(--gray); font-size: 0.9rem; margin-bottom: 1rem;">
-                    Definissez le type de contrat, les dates de debut/fin et l'anciennete de chaque employe.
-                    Les vacances sont calculees automatiquement (2.5 jours ouvrables/mois, lun-sam + 2 jours apres 6 ans d'anciennete).
+                    Définissez le type de contrat, les dates de début/fin et l'ancienneté de chaque employé.
+                    Les vacances sont calculees automatiquement (2.5 jours ouvrables/mois, lun-sam + 2 jours après 6 ans d'ancienneté).
                 </p>
                 <div class="contracts-grid" id="contractsManager"></div>
             </div>
 
             <div class="card">
-                <h2 class="card-title">Enregistrer un echange</h2>
+                <h2 class="card-title">Enregistrer un échange</h2>
                 <p style="color: var(--gray); font-size: 0.9rem; margin-bottom: 1rem;">
-                    Enregistrer un echange de poste deja convenu entre deux employes.
+                    Enregistrer un échange de poste déjà convenu entre deux employés.
                 </p>
                 <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
                     <div class="form-group">
-                        <label class="form-label">Employe absent</label>
+                        <label class="form-label">Employé absent</label>
                         <select class="form-select" id="echangeAbsent">
                             <option value="">-- Choisir --</option>
                         </select>
@@ -2100,11 +2115,11 @@
                         <input type="date" class="form-input" id="echangeDateInput">
                     </div>
                     <div class="form-group">
-                        <label class="form-label">Periode</label>
+                        <label class="form-label">Période</label>
                         <select class="form-select" id="echangePeriodeInput">
                             <option value="am">Matin</option>
                             <option value="journee">Journee entiere</option>
-                            <option value="pm">Apres-midi</option>
+                            <option value="pm">Après-midi</option>
                         </select>
                     </div>
                 </div>
@@ -2112,20 +2127,20 @@
                     <label class="form-label">Motif (optionnel)</label>
                     <input type="text" class="form-input" id="echangeMotifInput" placeholder="Ex: Echange samedi entre Claire et Sandrine">
                 </div>
-                <button class="btn btn-primary" onclick="registerExchange()" style="margin-top: 0.75rem;">Enregistrer l'echange</button>
+                <button class="btn btn-primary" onclick="registerExchange()" style="margin-top: 0.75rem;">Enregistrer l'échange</button>
             </div>
 
             <div class="card">
                 <h2 class="card-title" style="cursor: pointer; display: flex; justify-content: space-between; align-items: center;" onclick="document.getElementById('absencePasseeContent').classList.toggle('hidden'); this.querySelector('span').textContent = document.getElementById('absencePasseeContent').classList.contains('hidden') ? '▶' : '▼';">
-                    Enregistrer une absence passee <span style="font-size: 0.8rem; color: var(--gray);">▶</span>
+                    Enregistrer une absence passée <span style="font-size: 0.8rem; color: var(--gray);">▶</span>
                 </h2>
                 <div id="absencePasseeContent" class="hidden">
                 <p style="color: var(--gray); font-size: 0.9rem; margin-bottom: 1rem;">
-                    Enregistrer une absence deja effectuee avec recuperation partielle ou totale.
+                    Enregistrer une absence déjà effectuée avec récupération partielle ou totale.
                 </p>
                 <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
                     <div class="form-group">
-                        <label class="form-label">Employe</label>
+                        <label class="form-label">Employé</label>
                         <select class="form-select" id="absencePasseeEmployee">
                             <option value="">-- Choisir --</option>
                         </select>
@@ -2135,18 +2150,18 @@
                         <input type="date" class="form-input" id="absencePasseeDate">
                     </div>
                     <div class="form-group">
-                        <label class="form-label">Periode absente</label>
+                        <label class="form-label">Période absente</label>
                         <select class="form-select" id="absencePasseePeriode">
                             <option value="journee">Journee entiere</option>
                             <option value="am">Matin seulement</option>
-                            <option value="pm">Apres-midi seulement</option>
+                            <option value="pm">Après-midi seulement</option>
                         </select>
                     </div>
                     <div class="form-group">
                         <label class="form-label">Type</label>
                         <select class="form-select" id="absencePasseeType">
                             <option value="absence">Absence personnelle</option>
-                            <option value="depart_anticipe">Depart anticipe</option>
+                            <option value="depart_anticipe">Départ anticipé</option>
                             <option value="maladie">Maladie</option>
                         </select>
                     </div>
@@ -2154,7 +2169,7 @@
                 <div id="absencePasseeCalc" style="display: none; margin: 0.75rem 0; padding: 0.75rem; background: var(--sage-light); border-radius: 6px; font-size: 0.9rem;"></div>
 
                 <div style="margin-top: 1rem; padding-top: 1rem; border-top: 1px solid var(--gray-light);">
-                    <h3 style="font-size: 1rem; margin-bottom: 0.75rem; color: var(--teal-dark);">Recuperation deja effectuee (optionnel)</h3>
+                    <h3 style="font-size: 1rem; margin-bottom: 0.75rem; color: var(--teal-dark);">Récupération déjà effectuée (optionnel)</h3>
                     <div id="absencePasseeRecoveryList"></div>
                     <div style="display: grid; grid-template-columns: 1fr 1fr auto; gap: 0.75rem; align-items: end;">
                         <div class="form-group" style="margin:0;">
@@ -2162,10 +2177,10 @@
                             <input type="date" class="form-input" id="absenceRecupDate">
                         </div>
                         <div class="form-group" style="margin:0;">
-                            <label class="form-label">Periode</label>
+                            <label class="form-label">Période</label>
                             <select class="form-select" id="absenceRecupPeriode">
                                 <option value="am">Matin</option>
-                                <option value="pm">Apres-midi</option>
+                                <option value="pm">Après-midi</option>
                                 <option value="journee">Journee</option>
                             </select>
                         </div>
@@ -2203,7 +2218,7 @@
         <div class="modal">
             <h3>Acces Manager</h3>
             <p style="margin-bottom: 1rem; color: var(--gray);">Entrez le mot de passe pour acceder a l'espace manager.</p>
-            <input type="password" class="form-input" id="managerPassword" placeholder="Mot de passe">
+            <input type="text" class="form-input" id="managerPassword" placeholder="Mot de passe" autocomplete="off" style="-webkit-text-security: disc;">
             <div id="passwordError" class="modal-error hidden">Mot de passe incorrect</div>
             <div style="display: flex; gap: 0.5rem;">
                 <button class="btn btn-primary" id="validatePassword">Valider</button>
@@ -2216,7 +2231,7 @@
     <div id="confirmModal" class="modal-overlay hidden">
         <div class="modal">
             <h3 style="color: var(--green);">Demande soumise!</h3>
-            <p style="margin: 1rem 0; color: var(--gray);">Votre demande a ete enregistree. Voulez-vous notifier le manager par email?</p>
+            <p style="margin: 1rem 0; color: var(--gray);">Votre demande a été enregistrée. Voulez-vous notifier le manager par email?</p>
             <div style="display: flex; gap: 0.5rem; justify-content: center; flex-wrap: wrap;">
                 <button class="btn btn-gmail" id="notifyGmail">Notifier via Gmail</button>
                 <button class="btn btn-secondary" id="closeConfirm">Fermer</button>
@@ -2253,7 +2268,6 @@
             'Pascal': 'pharmacien',
             'Sandrine': 'preparatrice',
             'Titia': 'preparatrice',
-            'Melanie': 'preparatrice',
             'Mathilde': 'preparatrice',
             'Chloe': 'preparatrice',
             'Emilie': 'preparatrice'
@@ -2360,22 +2374,22 @@
                     samedi: { am: "9h-12h30", pm: null }
                 }
             },
-            "Melanie": {
+            "Chloe": {
                 paire: {
-                    lundi: { am: null, pm: null },
-                    mardi: { am: null, pm: "14h-19h15" },
-                    mercredi: { am: "9h-12h30", pm: "14h-19h15" },
-                    jeudi: { am: "9h-12h30", pm: "14h-19h15" },
-                    vendredi: { am: "9h-12h30", pm: "14h-19h15" },
+                    lundi: { am: "9h-12h30", pm: null },
+                    mardi: { am: "9h-12h30", pm: null },
+                    mercredi: { am: null, pm: null },
+                    jeudi: { am: "9h-12h30", pm: null },
+                    vendredi: { am: "9h-12h30", pm: null },
                     samedi: { am: "9h-12h30", pm: null }
                 },
                 impaire: {
-                    lundi: { am: "9h-12h30", pm: "14h-19h15" },
-                    mardi: { am: "9h-12h30", pm: "14h-19h15" },
-                    mercredi: { am: "9h-12h30", pm: "14h-19h15" },
-                    jeudi: { am: "9h-12h30", pm: "14h-19h15" },
-                    vendredi: { am: null, pm: null },
-                    samedi: { am: null, pm: null }
+                    lundi: { am: "9h-12h30", pm: null },
+                    mardi: { am: "9h-12h30", pm: null },
+                    mercredi: { am: null, pm: null },
+                    jeudi: { am: "9h-12h30", pm: null },
+                    vendredi: { am: "9h-12h30", pm: null },
+                    samedi: { am: "9h-12h30", pm: null }
                 }
             },
             "Mathilde": {
@@ -2405,6 +2419,13 @@
         const TRANCHES_PM = ['14h', '15h15', '16h', '16h30', '17h30', '18h', '18h30'];
 
         // ========== SECURITE ==========
+        // Format a number to 1 decimal max, no trailing .0
+        function fmtDays(n) {
+            if (n == null) return '0';
+            const r = parseFloat(Number(n).toFixed(1));
+            return r % 1 === 0 ? String(Math.round(r)) : String(r);
+        }
+
         function sanitize(str) {
             if (!str) return '';
             const div = document.createElement('div');
@@ -2438,7 +2459,7 @@
             }
 
             if (isOtherAlreadyScheduled) {
-                return { allowed: false, message: '⚠️ PAS D\'INTERET : ' + otherEmployee + ' travaille déjà à cette période. Un échange n\'apporte aucun bénéfice.' };
+                return { allowed: false, message: '⚠️ PAS D\'INTERET : ' + otherEmployee + ' travaille déjà à cette période. Un echange n\'apporte aucun bénéfice.' };
             }
 
             // If leaving employee is not a pharmacist, no constraint
@@ -2760,7 +2781,7 @@
             if (!container) return;
             const employee = document.getElementById('currentUser').value;
             if (!employee || !STAFF[employee]) {
-                container.innerHTML = '<p style="color: var(--gray);">Selectionnez un employe.</p>';
+                container.innerHTML = '<p style="color: var(--gray);">Sélectionnez un employé.</p>';
                 return;
             }
 
@@ -2830,7 +2851,7 @@
 
             let html = `<div style="overflow-x: auto;"><table style="width: 100%; border-collapse: collapse; font-size: 0.85rem;">
                 <thead><tr style="background: var(--gray-light);">
-                    <th style="padding: 0.5rem; text-align: left;">Employe</th>
+                    <th style="padding: 0.5rem; text-align: left;">Employé</th>
                     <th style="padding: 0.5rem; text-align: right;">Planifie</th>
                     <th style="padding: 0.5rem; text-align: right;">Feries</th>
                     <th style="padding: 0.5rem; text-align: right;">Vacances</th>
@@ -2953,12 +2974,12 @@
         function getTypeLabel(type) {
             const labels = {
                 'absence': 'Absence personnelle',
-                'depart_anticipe': 'Depart anticipe',
+                'depart_anticipe': 'Départ anticipé',
                 'maladie': 'Maladie',
                 'conge': 'Congés',
-                'echange': 'Echange horaires',
+                'echange': 'Échange horaires',
                 'vacances': 'Vacances',
-                'recuperation': 'Recuperation heures dues'
+                'recuperation': 'Récupération heures dues'
             };
             return labels[type] || type;
         }
@@ -3018,13 +3039,13 @@
             demandes.forEach(d => {
                 if (d.status === 'approuvee' && balances[d.employee]) {
                     if (d.type === 'recuperation') {
-                        // Standalone recovery: add to recuperees
+                        // Standalone recovery: add to récupérées
                         balances[d.employee].recuperees += d.heuresRecuperees || 0;
                     } else if (d.type !== 'vacances' && d.type !== 'echange' && d.type !== 'conge') {
                         // Regular absence: add dues and any attached recovery (exclude vacances/conge/echange)
                         balances[d.employee].dues += d.heuresConcernees || 0;
 
-                        // Heures recuperees (attached to absence)
+                        // Heures récupérées (attached to absence)
                         if (d.recoverySlots) {
                             d.recoverySlots.forEach(slot => {
                                 balances[d.employee].recuperees += slot.heures || 0;
@@ -3135,7 +3156,7 @@
         // ========== RENDU PLANNING ==========
         function renderPlanning(semaine) {
             const table = document.getElementById('planningTable');
-            let html = '<thead><tr><th>Employe</th>';
+            let html = '<thead><tr><th>Employé</th>';
             for (const jour of JOURS_DISPLAY) {
                 html += `<th class="day-header">${jour}<br><small>AM / PM</small></th>`;
             }
@@ -3253,7 +3274,7 @@
         function populateEchangeSelect() {
             const currentUser = document.getElementById('currentUser').value;
             const select = document.getElementById('echangeAvec');
-            select.innerHTML = '<option value="">-- Choisir un collegue --</option>';
+            select.innerHTML = '<option value="">-- Choisir un collègue --</option>';
 
             Object.keys(STAFF).forEach(name => {
                 // Exclure l'utilisateur actuel et Laure (manager, non disponible pour echange)
@@ -3305,7 +3326,7 @@
             const slots = await getAvailableRecoverySlots(employee);
 
             if (slots.length === 0) {
-                container.innerHTML = '<p style="color: var(--gray);">Aucun creneau de recuperation disponible dans les 30 prochains jours.</p>';
+                container.innerHTML = '<p style="color: var(--gray);">Aucun créneau de récupération disponible dans les 30 prochains jours.</p>';
                 return;
             }
 
@@ -3330,7 +3351,7 @@
             updateRecupSummary(heuresDues);
         }
 
-        // Recupere les creneaux de recuperation deja approuves pour un employe
+        // Recupere les créneaux de récupération déjà approuves pour un employé
         function getUsedRecoverySlots(employee) {
             const demandes = getDemandes();
             const usedSlots = [];
@@ -3353,7 +3374,7 @@
             return usedSlots;
         }
 
-        // Verifie si un creneau est deja utilise
+        // Verifie si un creneau est déjà utilise
         function isSlotUsed(date, periode, usedSlots) {
             return usedSlots.some(s => s.date === date && s.periode === periode);
         }
@@ -3372,7 +3393,7 @@
             const startDate = startFrom ? parseLocalDate(startFrom) : getNowFrance();
             const employeePlanning = STAFF[employee];
 
-            // Recuperer les creneaux deja utilises
+            // Recuperer les créneaux déjà utilises
             const usedSlots = getUsedRecoverySlots(employee);
 
             // Recuperer les dates de vacances approuvees/en attente de l'employe
@@ -3401,7 +3422,7 @@
                 const worksAM = planning?.am;
                 if (!worksAM) {
                     const periodeAM = 'matin (9h-12h30)';
-                    // Verifier si ce creneau n'est pas deja utilise
+                    // Verifier si ce creneau n'est pas déjà utilise
                     if (!isSlotUsed(dateStr, periodeAM, usedSlots)) {
                         const amEffectif = getEffectifJour(jour, semaine, 'am');
                         // Show if effectif <= 4 (at or below optimal)
@@ -3418,7 +3439,7 @@
                     const worksPM = planning?.pm;
                     if (!worksPM) {
                         const periodePM = 'apres-midi (14h-19h)';
-                        // Verifier si ce creneau n'est pas deja utilise
+                        // Verifier si ce creneau n'est pas déjà utilise
                         if (!isSlotUsed(dateStr, periodePM, usedSlots)) {
                             // Check core hours (14h-17h30)
                             const TRANCHES_PM_COEUR = ['14h', '15h15', '16h', '16h30'];
@@ -3487,7 +3508,7 @@
                     <div class="hours-item"><strong>Heures dues :</strong> ${formatHeures(heuresDues)}</div>
                     <div class="hours-item"><strong>Selectionne :</strong> ${formatHeures(totalRecup)}</div>
                     <div class="hours-item" style="color: ${reste > 0 ? 'var(--orange)' : 'var(--green)'};">
-                        <strong>${reste > 0 ? 'Reste a recuperer : ' + formatHeures(reste) : 'Heures couvertes !'}</strong>
+                        <strong>${reste > 0 ? 'Reste à récupérer : ' + formatHeures(reste) : 'Heures couvertes !'}</strong>
                     </div>
                 `;
                 summaryEl.classList.remove('hidden');
@@ -3498,7 +3519,7 @@
 
         function analyserRecuperationImpact(employee) {
             if (selectedRecupSlots.length === 0) {
-                alert('Veuillez selectionner au moins un creneau de recuperation');
+                alert('Veuillez sélectionner au moins un créneau de récupération');
                 return;
             }
 
@@ -3516,12 +3537,12 @@
 
             // Build resume
             resumeEl.innerHTML = `
-                <p><strong>Employe :</strong> ${employee}</p>
+                <p><strong>Employé :</strong> ${employee}</p>
                 <p><strong>Type :</strong> Recuperation d'heures</p>
                 <p><strong>Heures dues actuelles :</strong> ${formatHeures(heuresDues)}</p>
-                <p><strong>Heures a recuperer :</strong> ${formatHeures(heuresRecup)}</p>
+                <p><strong>Heures à récupérer :</strong> ${formatHeures(heuresRecup)}</p>
                 <p style="color: ${reste > 0 ? 'var(--orange)' : 'var(--green)'}; font-weight: 600;">
-                    ${reste > 0 ? 'Solde restant apres recuperation : ' + formatHeures(reste) : 'Toutes les heures seront recuperees !'}
+                    ${reste > 0 ? 'Solde restant après récupération : ' + formatHeures(reste) : 'Toutes les heures seront récupérées !'}
                 </p>
             `;
 
@@ -3581,7 +3602,7 @@
             }
 
             if (type === 'echange' && !echangeAvec) {
-                alert('Veuillez selectionner un collegue pour l\'echange');
+                alert('Veuillez sélectionner un collègue pour l\'échange');
                 return;
             }
 
@@ -3619,7 +3640,7 @@
             }
 
             if (heuresConcernees === 0) {
-                alert('Aucune heure de travail concernee pour les dates selectionnees');
+                alert('Aucune heure de travail concernee pour les dates sélectionnées');
                 return;
             }
 
@@ -3639,14 +3660,14 @@
 
             // Afficher le resume
             let resumeHtml = `
-                <p><strong>Employe :</strong> ${employee}</p>
+                <p><strong>Employé :</strong> ${employee}</p>
                 <p><strong>Demande :</strong> ${getTypeLabel(type)}</p>
-                <p><strong>Periode :</strong> ${formatDate(dateDebut)}${dateFin && dateFin !== dateDebut ? ' au ' + formatDate(dateFin) : ''}</p>
+                <p><strong>Période :</strong> ${formatDate(dateDebut)}${dateFin && dateFin !== dateDebut ? ' au ' + formatDate(dateFin) : ''}</p>
                 <p><strong>Heures concernees :</strong> ${formatHeures(heuresConcernees)} (${dates.length} jour${dates.length > 1 ? 's' : ''})</p>
             `;
 
             if (type === 'echange') {
-                resumeHtml += `<p><strong>Echange avec :</strong> ${echangeAvec}</p>`;
+                resumeHtml += `<p><strong>Échange avec :</strong> ${echangeAvec}</p>`;
 
                 // Validation pharmacien
                 const validation = validatePharmacienExchange(employee, dateDebut, periode, echangeAvec);
@@ -3716,9 +3737,9 @@
             }
 
             if (hasCritical) {
-                html += `<div class="impact-critical"><strong>ATTENTION :</strong> Effectif CRITIQUE sur certains creneaux.</div>`;
+                html += `<div class="impact-critical"><strong>ATTENTION :</strong> Effectif CRITIQUE sur certains créneaux.</div>`;
             } else if (hasWarning) {
-                html += `<div class="impact-warning"><strong>ATTENTION :</strong> Effectif LIMITE sur certains creneaux.</div>`;
+                html += `<div class="impact-warning"><strong>ATTENTION :</strong> Effectif LIMITE sur certains créneaux.</div>`;
             }
 
             container.innerHTML = html;
@@ -3731,7 +3752,7 @@
 
             let html = '';
             if (slots.length === 0) {
-                html = '<p style="color: var(--gray);">Aucun creneau de recuperation disponible dans les 30 prochains jours.</p>';
+                html = '<p style="color: var(--gray);">Aucun créneau de récupération disponible dans les 30 prochains jours.</p>';
             } else {
                 const prioritySlots = slots.filter(s => s.priority === 'priority');
                 const recommendedSlots = slots.filter(s => s.priority === 'recommended');
@@ -3785,7 +3806,7 @@
             const reste = heuresARecuperer - totalRecup;
 
             document.getElementById('hoursSummary').innerHTML = `
-                <div class="hours-item"><strong>A recuperer :</strong> ${formatHeures(heuresARecuperer)}</div>
+                <div class="hours-item"><strong>À récupérer :</strong> ${formatHeures(heuresARecuperer)}</div>
                 <div class="hours-item"><strong>Selectionne :</strong> ${formatHeures(totalRecup)}</div>
                 <div class="hours-item" style="color: ${reste > 0 ? 'var(--orange)' : 'var(--green)'};">
                     <strong>${reste > 0 ? 'Solde du : ' + formatHeures(reste) : 'Heures couvertes'}</strong>
@@ -3803,10 +3824,10 @@
 
             const subject = encodeURIComponent(`[Planning] Demande de recuperation de ${demande.employee}`);
             const body = encodeURIComponent(
-                `${demande.employee} souhaite recuperer ses heures dues.\n\n` +
+                `${demande.employee} souhaite récupérer ses heures dues.\n\n` +
                 `Heures dues actuelles : ${formatHeures(demande.heuresDuesAvant)}\n` +
-                `Heures a recuperer : ${formatHeures(demande.heuresRecuperees)}\n\n` +
-                `Creneaux selectionnes :\n${slotsText}\n\n` +
+                `Heures à récupérer : ${formatHeures(demande.heuresRecuperees)}\n\n` +
+                `Creneaux sélectionnés :\n${slotsText}\n\n` +
                 `--\nEnvoye depuis l'app Planning Pharmacie Charnal`
             );
             return `https://mail.google.com/mail/?view=cm&fs=1&to=${CONFIG.managerEmail}&su=${subject}&body=${body}`;
@@ -3846,7 +3867,7 @@
             selectedRecupSlots = [];
 
             if (demande.type === 'echange') {
-                alert('Demande d\'echange envoyee a ' + demande.echangeAvec + ' !');
+                alert('Demande d\'échange envoyee a ' + demande.echangeAvec + ' !');
                 showView('mes-demandes');
             } else {
                 document.getElementById('confirmModal').classList.remove('hidden');
@@ -3869,11 +3890,11 @@
             const body = encodeURIComponent(
 `Bonjour,
 
-Une nouvelle demande de planning a ete soumise.
+Une nouvelle demande de planning a été soumise.
 
 DETAILS
 -------
-Employe : ${demande.employee}
+Employé : ${demande.employee}
 Type : ${getTypeLabel(demande.type)}
 Date : ${dateText}
 ${isConge ? `Jours ouvrables : ${congeJours}` : `Heures : ${formatHeures(demande.heuresConcernees)}`}
@@ -4006,17 +4027,17 @@ Connectez-vous a l'application Planning pour traiter cette demande.
             const motif = document.getElementById('echangeMotifInput').value;
 
             if (!absent || !remplacant || !date) {
-                alert('Veuillez remplir l\'employe absent, le remplacant et la date.');
+                alert('Veuillez remplir l\'employe absent, le remplaçant et la date.');
                 return;
             }
             if (absent === remplacant) {
-                alert('L\'employe absent et le remplacant doivent etre differents.');
+                alert('L\'employe absent et le remplaçant doivent être différents.');
                 return;
             }
 
             const jour = getJourFromDate(date);
             if (!jour) {
-                alert('La date selectionnee est un dimanche (pharmacie fermee).');
+                alert('La date sélectionnée est un dimanche (pharmacie fermee).');
                 return;
             }
 
@@ -4044,15 +4065,15 @@ Connectez-vous a l'application Planning pour traiter cette demande.
 
             try {
                 await db.collection('demandes').doc(String(demande.id)).set(demande);
-                alert(`Echange enregistre : ${absent} absent(e) le ${formatDate(date)}, remplace(e) par ${remplacant}.`);
+                alert(`Échange enregistré : ${absent} absent(e) le ${formatDate(date)}, remplace(e) par ${remplacant}.`);
                 // Reset form
                 document.getElementById('echangeAbsent').value = '';
                 document.getElementById('echangeRemplacant').value = '';
                 document.getElementById('echangeDateInput').value = '';
                 document.getElementById('echangeMotifInput').value = '';
             } catch (e) {
-                console.error('Erreur enregistrement echange:', e);
-                alert('Erreur lors de l\'enregistrement.');
+                console.error('Erreur enregistrément echange:', e);
+                alert('Erreur lors de l\'enregistrément.');
             }
         }
 
@@ -4077,7 +4098,7 @@ Connectez-vous a l'application Planning pour traiter cette demande.
             const employee = document.getElementById('absencePasseeEmployee').value;
 
             if (!date || !employee) {
-                alert('Selectionnez d\'abord un employe et une date de recuperation.');
+                alert('Sélectionnez d\'abord un employé et une date de recuperation.');
                 return;
             }
 
@@ -4115,11 +4136,11 @@ Connectez-vous a l'application Planning pour traiter cette demande.
             let html = '<div style="margin-bottom: 0.75rem;">';
             absenceRecoverySlots.forEach((slot, i) => {
                 html += `<div style="display: flex; justify-content: space-between; align-items: center; padding: 0.4rem 0.6rem; background: var(--green-light); border-radius: 4px; margin-bottom: 0.3rem; font-size: 0.85rem;">
-                    <span>${formatDate(slot.date)} — ${slot.periode === 'am' ? 'Matin' : slot.periode === 'pm' ? 'Apres-midi' : 'Journee'} (${formatHeures(slot.heures)})</span>
+                    <span>${formatDate(slot.date)} — ${slot.periode === 'am' ? 'Matin' : slot.periode === 'pm' ? 'Après-midi' : 'Journee'} (${formatHeures(slot.heures)})</span>
                     <button onclick="removeAbsenceRecoverySlot(${i})" style="background: none; border: none; color: var(--red); cursor: pointer; font-size: 1rem;">✕</button>
                 </div>`;
             });
-            html += `<div style="font-size: 0.85rem; color: var(--green); font-weight: 600; margin-top: 0.3rem;">Total recupere: ${formatHeures(totalRecup)}</div>`;
+            html += `<div style="font-size: 0.85rem; color: var(--green); font-weight: 600; margin-top: 0.3rem;">Total récupéré: ${formatHeures(totalRecup)}</div>`;
             html += '</div>';
             container.innerHTML = html;
         }
@@ -4132,7 +4153,7 @@ Connectez-vous a l'application Planning pour traiter cette demande.
             const motif = document.getElementById('absencePasseeMotif').value;
 
             if (!employee || !date) {
-                alert('Veuillez selectionner un employe et une date.');
+                alert('Veuillez sélectionner un employé et une date.');
                 return;
             }
 
@@ -4143,7 +4164,7 @@ Connectez-vous a l'application Planning pour traiter cette demande.
             const heures = calculerHeures(employee, jour, semaine, periode);
 
             if (!heures) {
-                alert('Aucune heure prevue pour cet employe a cette date/periode.');
+                alert('Aucune heure prévue pour cet employé a cette date/période.');
                 return;
             }
 
@@ -4159,7 +4180,7 @@ Connectez-vous a l'application Planning pour traiter cette demande.
                 semaine: semaine,
                 periode: periode,
                 heuresConcernees: heures,
-                motif: motif || 'Absence enregistree par le manager',
+                motif: motif || 'Absence enregistrée par le manager',
                 status: 'approuvee',
                 dateCreation: getNowFrance().toISOString(),
                 dateTraitement: getNowFrance().toISOString(),
@@ -4183,16 +4204,16 @@ Connectez-vous a l'application Planning pour traiter cette demande.
                         status: 'approuvee',
                         dateCreation: getNowFrance().toISOString(),
                         dateTraitement: getNowFrance().toISOString(),
-                        commentaire: `Recuperation pour absence du ${formatDate(date)}`
+                        commentaire: `Récupération pour absence du ${formatDate(date)}`
                     };
                     await db.collection('demandes').doc(String(recupId)).set(recup);
                 }
 
                 const totalRecup = absenceRecoverySlots.reduce((s, r) => s + r.heures, 0);
                 const reste = heures - totalRecup;
-                let msg = `Absence enregistree: ${employee} absent(e) le ${formatDate(date)} (${formatHeures(heures)} dues).`;
+                let msg = `Absence enregistrée: ${employee} absent(e) le ${formatDate(date)} (${formatHeures(heures)} dues).`;
                 if (totalRecup > 0) msg += `\nRecupere: ${formatHeures(totalRecup)}.`;
-                if (reste > 0) msg += `\nReste a recuperer: ${formatHeures(reste)}.`;
+                if (reste > 0) msg += `\nReste à récupérer: ${formatHeures(reste)}.`;
                 alert(msg);
 
                 document.getElementById('absencePasseeEmployee').value = '';
@@ -4201,8 +4222,8 @@ Connectez-vous a l'application Planning pour traiter cette demande.
                 absenceRecoverySlots = [];
                 renderAbsenceRecoveryList();
             } catch (e) {
-                console.error('Erreur enregistrement absence:', e);
-                alert('Erreur lors de l\'enregistrement.');
+                console.error('Erreur enregistrément absence:', e);
+                alert('Erreur lors de l\'enregistrément.');
             }
         }
 
@@ -4227,10 +4248,10 @@ Connectez-vous a l'application Planning pour traiter cette demande.
                 let statusClass, statusLabel;
                 switch(d.status) {
                     case 'attente': statusClass = 'status-attente'; statusLabel = 'EN ATTENTE'; break;
-                    case 'approuvee': statusClass = 'status-approuvee'; statusLabel = 'APPROUVEE'; break;
-                    case 'refusee': statusClass = 'status-refusee'; statusLabel = 'REFUSEE'; break;
-                    case 'echange_attente': statusClass = 'status-echange'; statusLabel = 'ECHANGE EN ATTENTE'; break;
-                    case 'echange_refuse': statusClass = 'status-refusee'; statusLabel = 'ECHANGE REFUSE'; break;
+                    case 'approuvee': statusClass = 'status-approuvee'; statusLabel = 'APPROUVÉE'; break;
+                    case 'refusee': statusClass = 'status-refusee'; statusLabel = 'REFUSÉE'; break;
+                    case 'echange_attente': statusClass = 'status-echange'; statusLabel = 'ÉCHANGE EN ATTENTE'; break;
+                    case 'echange_refuse': statusClass = 'status-refusee'; statusLabel = 'ÉCHANGE REFUSÉ'; break;
                     default: statusClass = 'status-attente'; statusLabel = d.status.toUpperCase();
                 }
 
@@ -4239,7 +4260,7 @@ Connectez-vous a l'application Planning pour traiter cette demande.
                     // Standalone recovery request
                     detailsHtml = `
                         <p><strong>Type :</strong> ${getTypeLabel(d.type)}</p>
-                        <p><strong>Heures a recuperer :</strong> ${formatHeures(d.heuresRecuperees)}</p>
+                        <p><strong>Heures à récupérer :</strong> ${formatHeures(d.heuresRecuperees)}</p>
                         <p><strong>Creneaux :</strong></p>
                         <ul style="margin-left: 1rem;">
                             ${d.recoverySlots.map(s => `<li>${formatDate(s.date)} ${s.periode} (${formatHeures(s.heures)})</li>`).join('')}
@@ -4251,14 +4272,17 @@ Connectez-vous a l'application Planning pour traiter cette demande.
                     const vacDateStart = isMultiDay && d.dates?.length ? formatDate(d.dates[0]) : formatDate(d.dateDebut || d.date);
                     const vacDateEnd = isMultiDay && d.dates?.length ? formatDate(d.dates[d.dates.length - 1]) : (d.dateFin ? formatDate(d.dateFin) : null);
                     const joursCount = isMultiDay && d.dates?.length ? d.dates.filter(dt => isJourOuvrable(dt)).length : null;
+                    const periodeLabel = d.periode === 'matin' ? 'Matin' : d.periode === 'apres-midi' ? 'Après-midi' : d.periode === 'journee' ? 'Journée complète' : '';
                     detailsHtml = `
                         <p><strong>Type :</strong> ${getTypeLabel(d.type)}</p>
                         <p><strong>Date :</strong> ${vacDateStart}${vacDateEnd && vacDateEnd !== vacDateStart ? ' au ' + vacDateEnd : ''}</p>
+                        ${periodeLabel && !isMultiDay ? `<p><strong>Période :</strong> ${periodeLabel}</p>` : ''}
+                        ${d.type === 'depart_anticipe' && d.heure ? `<p><strong>Heure de départ :</strong> ${d.heure}</p>` : ''}
                         <p><strong>${isMultiDay ? 'Jours ouvrables' : 'Heures'} :</strong> ${isMultiDay ? (d.joursOuvrables || joursCount || '?') + 'j' : formatHeures(d.heuresConcernees)}</p>
-                        ${d.type === 'echange' ? `<p><strong>Echange avec :</strong> ${d.echangeAvec}</p>` : ''}
+                        ${d.type === 'echange' ? `<p><strong>Échange avec :</strong> ${d.echangeAvec}</p>` : ''}
                         ${d.motif ? `<p><strong>Motif :</strong> ${sanitize(d.motif)}</p>` : ''}
                         ${d.recoverySlots?.length > 0 ? `
-                            <p><strong>Recuperation :</strong></p>
+                            <p><strong>Récupération :</strong></p>
                             <ul style="margin-left: 1rem;">
                                 ${d.recoverySlots.map(s => `<li>${formatDate(s.date)} ${s.periode} (${formatHeures(s.heures)})</li>`).join('')}
                             </ul>
@@ -4318,7 +4342,7 @@ Connectez-vous a l'application Planning pour traiter cette demande.
                     detailsHtml = `
                         <p><strong>Type :</strong> ${getTypeLabel(d.type)}</p>
                         <p><strong>Heures dues actuelles :</strong> ${formatHeures(d.heuresDuesAvant)}</p>
-                        <p><strong>Heures a recuperer :</strong> ${formatHeures(d.heuresRecuperees)}</p>
+                        <p><strong>Heures à récupérer :</strong> ${formatHeures(d.heuresRecuperees)}</p>
                         <p><strong>Creneaux proposes :</strong></p>
                         <ul style="margin-left: 1rem; font-size: 0.85rem;">
                             ${d.recoverySlots.map(s => `<li>${formatDateShort(s.date)} ${s.periode} (${formatHeures(s.heures)})</li>`).join('')}
@@ -4334,10 +4358,10 @@ Connectez-vous a l'application Planning pour traiter cette demande.
                         <p><strong>Type :</strong> ${getTypeLabel(d.type)}</p>
                         <p><strong>Date :</strong> ${vacDateStart}${vacDateEnd && vacDateEnd !== vacDateStart ? ' au ' + vacDateEnd : ''}</p>
                         <p><strong>${isMultiDay ? 'Jours ouvrables' : 'Heures'} :</strong> ${isMultiDay ? (d.joursOuvrables || joursCount || '?') + 'j' : formatHeures(d.heuresConcernees)}</p>
-                        ${d.type === 'echange' ? `<p><strong>Echange avec :</strong> ${d.echangeAvec}</p>` : ''}
+                        ${d.type === 'echange' ? `<p><strong>Échange avec :</strong> ${d.echangeAvec}</p>` : ''}
                         ${d.motif ? `<p><strong>Motif :</strong> ${sanitize(d.motif)}</p>` : ''}
                         ${d.recoverySlots?.length > 0 ? `
-                            <p><strong>Recuperation proposee :</strong></p>
+                            <p><strong>Récupération proposée :</strong></p>
                             <ul style="margin-left: 1rem; font-size: 0.85rem;">
                                 ${d.recoverySlots.map(s => `<li>${formatDateShort(s.date)} ${s.periode} (${formatHeures(s.heures)})</li>`).join('')}
                             </ul>
@@ -4361,7 +4385,7 @@ Connectez-vous a l'application Planning pour traiter cette demande.
                         </div>
                         <div class="manager-comment hidden" id="modify-form-${d.id}">
                             ${d.type === 'recuperation' ? `
-                                <p style="font-size: 0.85rem; color: var(--gray); margin-bottom: 0.5rem;">Modification non disponible pour les recuperations.</p>
+                                <p style="font-size: 0.85rem; color: var(--gray); margin-bottom: 0.5rem;">Modification non disponible pour les récupérations.</p>
                             ` : (d.type === 'vacances' || d.type === 'conge') ? `
                                 <div style="display: flex; gap: 0.5rem; align-items: end; flex-wrap: wrap;">
                                     <div>
@@ -4425,7 +4449,7 @@ Connectez-vous a l'application Planning pour traiter cette demande.
 
         async function approveWithModifiedDate(id) {
             const newDate = document.getElementById(`modify-date-${id}`).value;
-            if (!newDate) { alert('Selectionnez une date.'); return; }
+            if (!newDate) { alert('Sélectionnez une date.'); return; }
 
             const demandes = getDemandes();
             const d = demandes.find(x => x.id === id);
@@ -4481,7 +4505,7 @@ Connectez-vous a l'application Planning pour traiter cette demande.
         async function approveWithModifiedDates(id) {
             const newStart = document.getElementById(`modify-start-${id}`).value;
             const newEnd = document.getElementById(`modify-end-${id}`).value;
-            if (!newStart || !newEnd) { alert('Selectionnez les deux dates.'); return; }
+            if (!newStart || !newEnd) { alert('Sélectionnez les deux dates.'); return; }
             if (newEnd < newStart) { alert('La date de fin doit etre apres la date de debut.'); return; }
 
             const demandes = getDemandes();
@@ -4704,7 +4728,7 @@ Connectez-vous a l'application Planning pour traiter cette demande.
 
             let html = '<table style="width: 100%; border-collapse: collapse; font-size: 0.85rem;">';
             html += '<thead><tr style="background: var(--gray-light);">';
-            html += '<th style="padding: 0.5rem; text-align: left;">Employe</th>';
+            html += '<th style="padding: 0.5rem; text-align: left;">Employé</th>';
             html += '<th style="padding: 0.5rem; text-align: left;">Type</th>';
             html += '<th style="padding: 0.5rem; text-align: left;">Date</th>';
             html += '<th style="padding: 0.5rem; text-align: left;">Duree</th>';
@@ -4715,7 +4739,7 @@ Connectez-vous a l'application Planning pour traiter cette demande.
             demandes.sort((a, b) => b.id - a.id);
             demandes.slice(0, 10).forEach(d => {
                 const statusClass = d.status === 'attente' || d.status === 'echange_attente' ? 'status-attente' : d.status === 'approuvee' ? 'status-approuvee' : 'status-refusee';
-                const statusLabel = d.status === 'echange_attente' ? 'ECHANGE EN ATTENTE' : d.status.toUpperCase();
+                const statusLabel = d.status === 'echange_attente' ? 'ÉCHANGE EN ATTENTE' : d.status.toUpperCase();
                 html += `<tr style="border-bottom: 1px solid #E5E7EB;">`;
                 html += `<td style="padding: 0.5rem;">${d.employee}</td>`;
                 html += `<td style="padding: 0.5rem;">${getTypeLabel(d.type)}</td>`;
@@ -4930,8 +4954,84 @@ Connectez-vous a l'application Planning pour traiter cette demande.
 
         // ========== VACANCES ==========
         // Tous les employes ont acces aux vacances
-        const VACANCES_EMPLOYEES = ['Stephanie', 'Claire', 'Sandrine', 'Titia', 'Melanie', 'Emilie', 'Chloe', 'Mathilde', 'Pascal'];
+        const VACANCES_EMPLOYEES = ['Stephanie', 'Claire', 'Sandrine', 'Titia', 'Emilie', 'Chloe', 'Mathilde', 'Pascal'];
         const VACANCES_ANNUEL = 30; // Max legal par an (30 jours ouvrables, lun-sam)
+
+        // Remove a deleted employee from all in-memory lists and the HTML dropdown
+        function removeDeletedEmployee(name) {
+            const idx = VACANCES_EMPLOYEES.indexOf(name);
+            if (idx > -1) VACANCES_EMPLOYEES.splice(idx, 1);
+            delete ROLES[name];
+            delete STAFF[name];
+            // Remove from dropdown
+            const option = document.querySelector(`#currentUser option[value="${name}"]`);
+            if (option) option.remove();
+        }
+
+        // Cache of deleted employee names (used by listeners to avoid re-adding)
+        let deletedEmployeesCache = [];
+
+        // Load deleted employees from Firebase and clean up hardcoded lists
+        async function applyDeletedEmployees() {
+            try {
+                const doc = await db.collection('config').doc('deleted_employees').get();
+                if (doc.exists) {
+                    deletedEmployeesCache = doc.data().list || [];
+                    deletedEmployeesCache.forEach(name => removeDeletedEmployee(name));
+                }
+            } catch (e) {
+                console.error('Erreur chargement deleted_employees:', e);
+            }
+        }
+
+        function isDeletedEmployee(name) {
+            return deletedEmployeesCache.includes(name);
+        }
+
+        // Purge an employee from all Firebase collections (one-time cleanup)
+        async function purgeEmployeeFromFirebase(name) {
+            try {
+                // Ensure in deleted list
+                if (!deletedEmployeesCache.includes(name)) {
+                    deletedEmployeesCache.push(name);
+                }
+                removeDeletedEmployee(name);
+
+                // Add to Firebase deleted list
+                const deletedDoc = await db.collection('config').doc('deleted_employees').get();
+                const deletedList = deletedDoc.exists ? (deletedDoc.data().list || []) : [];
+                if (!deletedList.includes(name)) {
+                    deletedList.push(name);
+                    await db.collection('config').doc('deleted_employees').set({ list: deletedList });
+                }
+
+                // Remove from staff_schedule
+                const scheduleDoc = await db.collection('config').doc('staff_schedule').get();
+                if (scheduleDoc.exists && scheduleDoc.data()[name]) {
+                    const schedules = scheduleDoc.data();
+                    delete schedules[name];
+                    await db.collection('config').doc('staff_schedule').set(schedules);
+                }
+
+                // Remove from staff_contracts
+                const contractsDoc = await db.collection('config').doc('staff_contracts').get();
+                if (contractsDoc.exists && contractsDoc.data()[name]) {
+                    const contracts = contractsDoc.data();
+                    delete contracts[name];
+                    await db.collection('config').doc('staff_contracts').set(contracts);
+                }
+
+                // Remove from vacances_solde
+                const soldeDoc = await db.collection('config').doc('vacances_solde').get();
+                if (soldeDoc.exists && soldeDoc.data()[name]) {
+                    const solde = soldeDoc.data();
+                    delete solde[name];
+                    await db.collection('config').doc('vacances_solde').set(solde);
+                }
+            } catch (e) {
+                console.error('Erreur purge employee:', e);
+            }
+        }
 
         // Jours feries francais 2026-2028
         const JOURS_FERIES = {
@@ -5030,6 +5130,13 @@ Connectez-vous a l'application Planning pour traiter cette demande.
             return true;
         }
 
+        function employeeTravailleSamedi(employee) {
+            if (!STAFF[employee]) return false;
+            const s = STAFF[employee];
+            return !!(s.paire?.samedi?.am || s.paire?.samedi?.pm ||
+                      s.impaire?.samedi?.am || s.impaire?.samedi?.pm);
+        }
+
         function countJoursOuvrables(dateDebut, dateFin) {
             const dates = getDatesBetween(dateDebut, dateFin);
             let count = 0;
@@ -5056,7 +5163,7 @@ Connectez-vous a l'application Planning pour traiter cette demande.
                 const s = solde[user];
                 if (s) {
                     const report = s.report || 0;
-                    document.getElementById('vacancesBadge').textContent = (s.annuel + report - s.pris) + 'j';
+                    document.getElementById('vacancesBadge').textContent = fmtDays(s.annuel + report - s.pris) + 'j';
                 }
             } else {
                 btn.classList.add('hidden');
@@ -5087,28 +5194,47 @@ Connectez-vous a l'application Planning pour traiter cette demande.
                 <div class="vacances-stats">
                     ${report > 0 ? `
                     <div class="vacances-stat">
-                        <div class="vacances-stat-value" style="color: var(--blue);">${report}</div>
+                        <div class="vacances-stat-value" style="color: var(--blue);">${fmtDays(report)}</div>
                         <div class="vacances-stat-label">Report</div>
                     </div>
                     ` : ''}
                     <div class="vacances-stat">
-                        <div class="vacances-stat-value">${s.annuel}</div>
+                        <div class="vacances-stat-value">${fmtDays(s.annuel)}</div>
                         <div class="vacances-stat-label">Acquis</div>
                     </div>
                     <div class="vacances-stat">
-                        <div class="vacances-stat-value" style="color: var(--orange);">${s.pris}</div>
+                        <div class="vacances-stat-value" style="color: var(--orange);">${fmtDays(s.pris)}</div>
                         <div class="vacances-stat-label">Pris</div>
                     </div>
                     <div class="vacances-stat">
-                        <div class="vacances-stat-value" style="color: ${restant <= 5 ? 'var(--red)' : 'var(--green)'};">${restant}</div>
+                        <div class="vacances-stat-value" style="color: ${restant <= 5 ? 'var(--red)' : 'var(--green)'};">${fmtDays(restant)}</div>
                         <div class="vacances-stat-label">Restant</div>
                     </div>
                 </div>
                 ${report > 0 ? `<div style="font-size: 0.75rem; color: var(--gray); text-align: center; margin-bottom: 0.5rem;">
-                    ${report}j (année préc.) + ${s.annuel}j (acquis) - ${s.pris}j (pris) = <strong>${restant}j</strong>
+                    ${fmtDays(report)}j (année préc.) + ${fmtDays(s.annuel)}j (acquis) - ${fmtDays(s.pris)}j (pris) = <strong>${fmtDays(restant)}j</strong>
                 </div>` : ''}
                 <div class="vacances-balance-bar">
                     <div class="vacances-balance-fill ${fillClass}" style="width: ${pct}%;"></div>
+                </div>
+                ${(() => {
+                    const hist = getVacancesHistorique(user);
+                    if (hist.length === 0) return '';
+                    let h = '<div style="margin-top: 1rem; padding: 0.75rem; background: #F9FAFB; border-radius: 8px; border: 1px solid #E5E7EB;">';
+                    h += '<div style="font-weight: 600; font-size: 0.85rem; color: #374151; margin-bottom: 0.5rem;">Détail des congés pris</div>';
+                    h += '<table style="width: 100%; font-size: 0.82rem; border-collapse: collapse;">';
+                    h += '<tr style="color: #6B7280; border-bottom: 1px solid #D1D5DB;"><td style="padding: 0.3rem 0;">Dates</td><td style="padding: 0.3rem 0; text-align: right;">Jours</td></tr>';
+                    hist.forEach(entry => {
+                        const duFmt = parseLocalDate(entry.du).toLocaleDateString('fr-FR', { timeZone: 'Europe/Paris', day: '2-digit', month: 'short', year: 'numeric' });
+                        const auFmt = entry.au !== entry.du ? ' → ' + parseLocalDate(entry.au).toLocaleDateString('fr-FR', { timeZone: 'Europe/Paris', day: '2-digit', month: 'short', year: 'numeric' }) : '';
+                        h += '<tr style="border-bottom: 1px solid #F3F4F6;"><td style="padding: 0.3rem 0;">' + duFmt + auFmt + '</td><td style="padding: 0.3rem 0; text-align: right; font-weight: 500;">' + fmtDays(entry.jours) + 'j</td></tr>';
+                    });
+                    h += '<tr style="font-weight: 700; border-top: 2px solid #D1D5DB;"><td style="padding: 0.4rem 0;">Total pris</td><td style="padding: 0.4rem 0; text-align: right;">' + fmtDays(hist.reduce((s, e) => s + e.jours, 0)) + 'j</td></tr>';
+                    h += '</table></div>';
+                    return h;
+                })()}
+                <div style="text-align: center; margin-top: 0.75rem;">
+                    <button class="btn btn-secondary" style="font-size: 0.8rem; padding: 0.4rem 0.8rem;" onclick="downloadVacancesCSV('${sanitize(user)}')">📥 Télécharger mes congés (Excel)</button>
                 </div>
             `;
         }
@@ -5149,7 +5275,7 @@ Connectez-vous a l'application Planning pour traiter cette demande.
             if (feries.length > 0) {
                 html += ` (${feries.length} jour${feries.length > 1 ? 's' : ''} ferie${feries.length > 1 ? 's' : ''} exclus : ${feries.map(f => JOURS_FERIES[f]).join(', ')})`;
             }
-            html += ` — Solde restant apres : ${restant - count} jours`;
+            html += ` — Solde restant après : ${restant - count} jours`;
 
             if (count > restant) {
                 calcEl.style.background = 'var(--red-light)';
@@ -5158,6 +5284,21 @@ Connectez-vous a l'application Planning pour traiter cette demande.
             }
 
             calcEl.innerHTML = html;
+
+            // Warning si dateFin est un vendredi et l'employe travaille le samedi
+            const finParsed = parseLocalDate(dateFin);
+            if (finParsed.getDay() === 5) { // vendredi
+                const samedi = new Date(finParsed);
+                samedi.setDate(samedi.getDate() + 1);
+                const samediStr = `${samedi.getFullYear()}-${String(samedi.getMonth()+1).padStart(2,'0')}-${String(samedi.getDate()).padStart(2,'0')}`;
+                const user = document.getElementById('currentUser').value;
+                if (employeeTravailleSamedi(user) && !isJourFerie(samediStr)) {
+                    calcEl.innerHTML += `<div style="margin-top:0.6rem;padding:0.5rem 0.75rem;background:#FEF3C7;border:1px solid #F59E0B;border-radius:4px;color:#92400E;font-size:0.85rem;">
+                        ⚠️ La pharmacie est ouverte le <strong>samedi matin</strong>. Le samedi <strong>${formatDate(samediStr)}</strong> n'est pas inclus dans cette demande.
+                        <a href="#" onclick="document.getElementById('vacancesDateFin').value='${samediStr}';updateVacancesCalc();return false;" style="color:#92400E;font-weight:bold;margin-left:0.5rem;">Inclure le samedi →</a>
+                    </div>`;
+                }
+            }
         }
 
         // Verifie le chevauchement des vacances (max 2 personnes en meme temps)
@@ -5188,7 +5329,7 @@ Connectez-vous a l'application Planning pour traiter cette demande.
                 }
 
                 // Si avec cette demande on depasse le max (2 personnes), c'est un conflit
-                // employeesOnVacation = autres personnes deja en vacances
+                // employeesOnVacation = autres personnes déjà en vacances
                 // +1 pour l'employe actuel = total
                 const totalOnVacation = employeesOnVacation.length + 1;
                 if (totalOnVacation > MAX_SIMULTANEOUS) {
@@ -5206,7 +5347,7 @@ Connectez-vous a l'application Planning pour traiter cette demande.
             if (conflicts.length > 0) {
                 // Grouper les conflits par employes
                 const conflictDates = conflicts.slice(0, 5).map(c =>
-                    `${formatDateShort(c.date)} : ${c.employees.join(', ')} deja en vacances`
+                    `${formatDateShort(c.date)} : ${c.employees.join(', ')} déjà en vacances`
                 ).join('\n');
 
                 return {
@@ -5233,7 +5374,7 @@ Connectez-vous a l'application Planning pour traiter cette demande.
             const motif = document.getElementById('vacancesMotif').value;
 
             if (!dateDebut || !dateFin) {
-                alert('Veuillez remplir les dates de debut et de fin.');
+                alert('Veuillez remplir les dates de début et de fin.');
                 return;
             }
             if (dateFin < dateDebut) {
@@ -5243,15 +5384,18 @@ Connectez-vous a l'application Planning pour traiter cette demande.
 
             const { count, dates } = countJoursOuvrables(dateDebut, dateFin);
             if (count === 0) {
-                alert('Aucun jour ouvre dans la periode selectionnee.');
+                alert('Aucun jour ouvré dans la période sélectionnée.');
                 return;
             }
 
             const solde = getVacancesSolde();
             const report = solde[user].report || 0;
             const restant = solde[user].annuel + report - solde[user].pris;
-            if (count > restant) {
-                alert(`Solde insuffisant ! Vous demandez ${count} jours mais il ne vous reste que ${restant} jours.`);
+            const projectedExtra = calculateProjectedExtraDays(user, dateDebut);
+            const projectedRestant = restant + projectedExtra;
+
+            if (count > projectedRestant) {
+                alert(`Solde insuffisant ! Vous demandez ${count} jours mais vous n'aurez que ${fmtDays(projectedRestant)} jours disponibles au ${formatDate(dateDebut)}${projectedExtra > 0 ? ` (${fmtDays(restant)} actuels + ${fmtDays(projectedExtra)} a acquerir)` : ''}.`);
                 return;
             }
 
@@ -5262,14 +5406,22 @@ Connectez-vous a l'application Planning pour traiter cette demande.
                 return;
             }
 
+            const soldeApres = restant - count;
+            const willBeNegative = soldeApres < 0;
+
             currentVacancesImpact = { employee: user, dateDebut, dateFin, dates, joursOuvrables: count, motif, overlapWarning: overlapCheck.warning };
 
             // Resume
             document.getElementById('vacancesImpactResume').innerHTML = `
-                <p><strong>Employe :</strong> ${user}</p>
-                <p><strong>Periode :</strong> ${formatDate(dateDebut)} au ${formatDate(dateFin)}</p>
+                <p><strong>Employé :</strong> ${user}</p>
+                <p><strong>Période :</strong> ${formatDate(dateDebut)} au ${formatDate(dateFin)}</p>
                 <p><strong>Jours ouvres :</strong> ${count}</p>
-                <p><strong>Solde apres validation :</strong> ${restant - count} jours</p>
+                <p><strong>Solde actuel :</strong> ${fmtDays(restant)} jours</p>
+                ${projectedExtra > 0 ? `<p><strong>Jours a acquerir d'ici le ${formatDate(dateDebut)} :</strong> +${fmtDays(projectedExtra)} jours</p>` : ''}
+                <p><strong>Solde après validation :</strong> ${fmtDays(soldeApres)} jours${willBeNegative ? ' (sera compense par acquisition future)' : ''}</p>
+                ${willBeNegative ? `<div style="background: #FEF3C7; border-left: 4px solid var(--orange); padding: 0.75rem; margin-top: 0.5rem; border-radius: 4px;">
+                    <p style="margin: 0; color: #92400E; font-size: 0.85rem;"><strong>Note :</strong> Le solde sera temporairement negatif (${fmtDays(soldeApres)}j). Les ${fmtDays(projectedExtra)} jours acquis d'ici ${formatDate(dateDebut)} couvriront cette demande.</p>
+                </div>` : ''}
                 ${motif ? `<p><strong>Motif :</strong> ${motif}</p>` : ''}
             `;
 
@@ -5308,9 +5460,9 @@ Connectez-vous a l'application Planning pour traiter cette demande.
             }
 
             if (hasCritical) {
-                html += `<div class="impact-critical"><strong>ATTENTION :</strong> Effectif CRITIQUE sur certains creneaux.</div>`;
+                html += `<div class="impact-critical"><strong>ATTENTION :</strong> Effectif CRITIQUE sur certains créneaux.</div>`;
             } else if (hasWarning) {
-                html += `<div class="impact-warning"><strong>ATTENTION :</strong> Effectif LIMITE sur certains creneaux.</div>`;
+                html += `<div class="impact-warning"><strong>ATTENTION :</strong> Effectif LIMITE sur certains créneaux.</div>`;
             }
 
             // Afficher le warning de chevauchement s'il y en a un
@@ -5368,11 +5520,11 @@ Connectez-vous a l'application Planning pour traiter cette demande.
             const body = encodeURIComponent(
 `Bonjour,
 
-Une demande de vacances a ete soumise.
+Une demande de vacances a été soumise.
 
 DETAILS
 -------
-Employe : ${demande.employee}
+Employé : ${demande.employee}
 Type : Vacances
 Du : ${demande.dates?.length ? formatDate(demande.dates[0]) : formatDate(demande.dateDebut)}
 Au : ${demande.dates?.length ? formatDate(demande.dates[demande.dates.length - 1]) : formatDate(demande.dateFin)}
@@ -5465,7 +5617,7 @@ Connectez-vous a l'application Planning pour traiter cette demande.
 
             demandes.forEach(d => {
                 const statusClass = d.status === 'attente' ? 'status-attente' : d.status === 'approuvee' ? 'status-approuvee' : 'status-refusee';
-                const statusLabel = d.status === 'attente' ? 'EN ATTENTE' : d.status === 'approuvee' ? 'APPROUVEE' : 'REFUSEE';
+                const statusLabel = d.status === 'attente' ? 'EN ATTENTE' : d.status === 'approuvee' ? 'APPROUVÉE' : 'REFUSÉE';
                 html += `<tr style="border-bottom: 1px solid #E5E7EB;">`;
                 html += `<td style="padding: 0.5rem;">${formatDateShort(d.dateDebut)}</td>`;
                 html += `<td style="padding: 0.5rem;">${formatDateShort(d.dateFin)}</td>`;
@@ -5530,6 +5682,193 @@ Connectez-vous a l'application Planning pour traiter cette demande.
             renderVacancesHistorique();
         }
 
+        // Historical vacation data (source: payroll system PDF, Apr 2026)
+        // Only includes days taken since June 1, 2025 (current vacation year)
+        const VACANCES_HISTORIQUE_PDF = {
+            'Stephanie': [],
+            'Claire': [
+                { du: '2025-07-28', au: '2025-07-31', jours: 4, source: 'paie' },
+                { du: '2025-08-01', au: '2025-08-09', jours: 8, source: 'paie' },
+                { du: '2025-09-09', au: '2025-09-09', jours: 1, source: 'paie' },
+                { du: '2026-02-23', au: '2026-02-28', jours: 6, source: 'paie' }
+            ],
+            'Sandrine': [
+                { du: '2025-09-16', au: '2025-09-29', jours: 12, source: 'paie' },
+                { du: '2025-12-30', au: '2025-12-31', jours: 2, source: 'paie' },
+                { du: '2026-01-01', au: '2026-01-04', jours: 2, source: 'paie' }
+            ],
+            'Chloe': [
+                { du: '2025-06-10', au: '2025-06-10', jours: 1, source: 'paie' },
+                { du: '2025-08-11', au: '2025-08-31', jours: 17, source: 'paie' },
+                { du: '2025-09-08', au: '2025-09-08', jours: 1, source: 'paie' },
+                { du: '2025-10-06', au: '2025-10-06', jours: 1, source: 'paie' },
+                { du: '2025-10-10', au: '2025-10-10', jours: 0.5, source: 'paie' }
+            ]
+        };
+
+        function getVacancesHistorique(employeeName) {
+            // Combine PDF historical data + approved app requests (type conge/vacances)
+            const historique = [...(VACANCES_HISTORIQUE_PDF[employeeName] || [])];
+
+            // Add approved vacation requests from the app
+            demandesCache.forEach(d => {
+                if (d.employee !== employeeName) return;
+                if (d.statut !== 'approuve') return;
+                if (d.type !== 'conge' && d.type !== 'vacances') return;
+                // Skip if already covered by PDF data (before Apr 16, 2026)
+                if (d.dateDebut && d.dateDebut < '2026-04-16') return;
+                historique.push({
+                    du: d.dateDebut || d.date,
+                    au: d.dateFin || d.dateDebut || d.date,
+                    jours: d.joursOuvrables || 1,
+                    source: 'app'
+                });
+            });
+
+            historique.sort((a, b) => a.du.localeCompare(b.du));
+            return historique;
+        }
+
+        function downloadVacancesCSV(employeeName) {
+            const isManager = !employeeName;
+            const employees = isManager ? VACANCES_EMPLOYEES : [employeeName];
+            const solde = getVacancesSolde();
+            const contracts = getContracts();
+            const today = getNowFrance().toLocaleDateString('fr-FR', { timeZone: 'Europe/Paris' });
+
+            const wb = XLSX.utils.book_new();
+
+            employees.forEach(name => {
+                const historique = getVacancesHistorique(name);
+                const s = solde[name] || { annuel: 0, pris: 0, report: 0 };
+                const contract = contracts[name] || {};
+                const report = s.report || 0;
+                const total = s.annuel + report;
+                const restant = total - s.pris;
+                const totalPrisHistorique = historique.reduce((sum, h) => sum + h.jours, 0);
+
+                const contractLabel = contract.contractType === 'CDD' ? 'CDD' :
+                    contract.contractType === 'freelance' ? 'Freelance' :
+                    contract.contractType === 'periode_essai' ? 'Période d\'essai' : 'CDI';
+                const workArr = contract.workArrangement === 'mi_temps_therapeutique' ? 'Mi-temps thérapeutique' : 'Temps plein';
+
+                const rows = [];
+
+                // Header block
+                rows.push(['PHARMACIE CHARNAL — Suivi des congés payés']);
+                rows.push([]);
+                rows.push(['Employé', name]);
+                rows.push(['Contrat', contractLabel]);
+                if (contract.workArrangement === 'mi_temps_therapeutique') {
+                    const since = contract.workArrangementSince ? parseLocalDate(contract.workArrangementSince).toLocaleDateString('fr-FR', { timeZone: 'Europe/Paris' }) : '';
+                    rows.push(['Aménagement', `${workArr} depuis ${since}`]);
+                }
+                rows.push(['Période de référence', '1er juin 2025 — 31 mai 2026']);
+                rows.push(['Généré le', today]);
+                rows.push([]);
+
+                // Summary block
+                rows.push(['SOLDE DES CONGÉS']);
+                rows.push(['Jours acquis (annuel)', parseFloat(fmtDays(s.annuel))]);
+                if (report > 0) rows.push(['Report année précédente', parseFloat(fmtDays(report))]);
+                rows.push(['Total disponible', parseFloat(fmtDays(total))]);
+                rows.push(['Jours pris', parseFloat(fmtDays(s.pris))]);
+                rows.push(['JOURS RESTANTS', parseFloat(fmtDays(restant))]);
+                rows.push([]);
+
+                // Detail block
+                rows.push(['DÉTAIL DES CONGÉS PRIS']);
+                rows.push(['Du', 'Au', 'Jours', 'Source']);
+
+                if (historique.length === 0) {
+                    rows.push(['Aucun congé enregistré', '', '', '']);
+                } else {
+                    historique.forEach(h => {
+                        const duFmt = parseLocalDate(h.du).toLocaleDateString('fr-FR', { timeZone: 'Europe/Paris' });
+                        const auFmt = h.au !== h.du ? parseLocalDate(h.au).toLocaleDateString('fr-FR', { timeZone: 'Europe/Paris' }) : duFmt;
+                        rows.push([duFmt, auFmt, h.jours, h.source === 'paie' ? 'Fiche de paie' : 'App planning']);
+                    });
+                    rows.push([]);
+                    rows.push(['', 'TOTAL', totalPrisHistorique, '']);
+                }
+
+                const ws = XLSX.utils.aoa_to_sheet(rows);
+
+                // Column widths
+                ws['!cols'] = [
+                    { wch: 28 }, // A
+                    { wch: 18 }, // B
+                    { wch: 10 }, // C
+                    { wch: 16 }  // D
+                ];
+
+                // Merge header cell across columns
+                if (!ws['!merges']) ws['!merges'] = [];
+                ws['!merges'].push({ s: { r: 0, c: 0 }, e: { r: 0, c: 3 } });
+
+                const sheetName = name.length > 31 ? name.substring(0, 31) : name;
+                XLSX.utils.book_append_sheet(wb, ws, sheetName);
+            });
+
+            // If manager view, add a summary sheet at the beginning
+            if (isManager) {
+                const summaryRows = [];
+                summaryRows.push(['PHARMACIE CHARNAL — Récapitulatif congés équipe']);
+                summaryRows.push([]);
+                summaryRows.push(['Période de référence', '1er juin 2025 — 31 mai 2026']);
+                summaryRows.push(['Généré le', today]);
+                summaryRows.push([]);
+                summaryRows.push(['Employé', 'Acquis', 'Report', 'Total', 'Pris', 'Restant']);
+
+                employees.forEach(name => {
+                    const s = solde[name] || { annuel: 0, pris: 0, report: 0 };
+                    const report = s.report || 0;
+                    const total = s.annuel + report;
+                    const restant = total - s.pris;
+                    summaryRows.push([
+                        name,
+                        parseFloat(fmtDays(s.annuel)),
+                        parseFloat(fmtDays(report)),
+                        parseFloat(fmtDays(total)),
+                        parseFloat(fmtDays(s.pris)),
+                        parseFloat(fmtDays(restant))
+                    ]);
+                });
+
+                const summaryWs = XLSX.utils.aoa_to_sheet(summaryRows);
+                summaryWs['!cols'] = [
+                    { wch: 20 }, { wch: 10 }, { wch: 10 }, { wch: 10 }, { wch: 10 }, { wch: 10 }
+                ];
+                if (!summaryWs['!merges']) summaryWs['!merges'] = [];
+                summaryWs['!merges'].push({ s: { r: 0, c: 0 }, e: { r: 0, c: 5 } });
+
+                // Insert summary as first sheet
+                wb.SheetNames.unshift('Récapitulatif');
+                wb.Sheets['Récapitulatif'] = summaryWs;
+            }
+
+            const fileName = isManager
+                ? `Conges-Equipe-Pharmacie-Charnal-${formatLocalDate(getNowFrance())}.xlsx`
+                : `Conges-${employeeName}-${formatLocalDate(getNowFrance())}.xlsx`;
+            XLSX.writeFile(wb, fileName);
+        }
+
+        // One-time migration: set correct pris values from payroll PDF (Apr 2026)
+        async function migratePrisFromPDF() {
+            const solde = getVacancesSolde();
+            const correctPris = { 'Claire': 19, 'Sandrine': 16, 'Chloe': 20.5, 'Stephanie': 0 };
+            let updated = false;
+            Object.entries(correctPris).forEach(([name, pris]) => {
+                if (solde[name] && solde[name].pris !== pris) {
+                    solde[name].pris = pris;
+                    updated = true;
+                }
+            });
+            if (updated) {
+                await saveVacancesSolde(solde);
+            }
+        }
+
         // Manager: vacances balance view + adjust
         function renderManagerVacancesBalance() {
             const container = document.getElementById('managerVacancesBalance');
@@ -5567,7 +5906,7 @@ Connectez-vous a l'application Planning pour traiter cette demande.
                         <div class="vacances-card-main">
                             <div>
                                 <div class="vacances-remaining ${remainingClass}">
-                                    ${restant}
+                                    ${fmtDays(restant)}
                                 </div>
                                 <div class="vacances-remaining-label">jours restants</div>
                             </div>
@@ -5586,6 +5925,9 @@ Connectez-vous a l'application Planning pour traiter cette demande.
                             <button class="vacances-toggle-btn" onclick="toggleVacancesDetails('${sanitize(name)}')">
                                 ▼ Détails
                             </button>
+                            <button class="vacances-toggle-btn" onclick="downloadVacancesCSV('${sanitize(name)}')" style="margin-left: 0.5rem;">
+                                📥 Excel
+                            </button>
                             <button class="vacances-toggle-btn" onclick="toggleVacancesEdit('${sanitize(name)}')" style="margin-left: auto;">
                                 ✏️ Modifier
                             </button>
@@ -5595,22 +5937,38 @@ Connectez-vous a l'application Planning pour traiter cette demande.
                         <div id="details-${sanitize(name)}" class="vacances-details">
                             <div class="vacances-detail-item">
                                 <span class="vacances-detail-label">Acquis annuel:</span>
-                                <span class="vacances-detail-value">${s.annuel}j</span>
+                                <span class="vacances-detail-value">${fmtDays(s.annuel)}j</span>
                             </div>
                             ${report > 0 ? `
                                 <div class="vacances-detail-item">
                                     <span class="vacances-detail-label">Report:</span>
-                                    <span class="vacances-detail-value">+${report}j</span>
+                                    <span class="vacances-detail-value">+${fmtDays(report)}j</span>
                                 </div>
                             ` : ''}
                             <div class="vacances-detail-item">
                                 <span class="vacances-detail-label">Total disponible:</span>
-                                <span class="vacances-detail-value">${total}j</span>
+                                <span class="vacances-detail-value">${fmtDays(total)}j</span>
                             </div>
                             <div class="vacances-detail-item" style="border-top: 1px solid #E5E7EB; padding-top: 0.5rem; margin-top: 0.5rem;">
                                 <span class="vacances-detail-label">Déjà pris:</span>
-                                <span class="vacances-detail-value">${s.pris}j</span>
+                                <span class="vacances-detail-value">${fmtDays(s.pris)}j</span>
                             </div>
+                            ${(() => {
+                                const hist = getVacancesHistorique(name);
+                                if (hist.length === 0) return '';
+                                let h = '<div style="border-top: 1px solid #E5E7EB; padding-top: 0.5rem; margin-top: 0.5rem;">';
+                                h += '<div style="font-weight: 600; font-size: 0.8rem; color: #374151; margin-bottom: 0.4rem;">Détail des congés pris:</div>';
+                                h += '<table style="width: 100%; font-size: 0.78rem; border-collapse: collapse;">';
+                                h += '<tr style="color: #6B7280; border-bottom: 1px solid #E5E7EB;"><td style="padding: 0.25rem 0;">Dates</td><td style="padding: 0.25rem 0; text-align: right;">Jours</td></tr>';
+                                hist.forEach(entry => {
+                                    const duFmt = parseLocalDate(entry.du).toLocaleDateString('fr-FR', { timeZone: 'Europe/Paris', day: '2-digit', month: 'short' });
+                                    const auFmt = entry.au !== entry.du ? ' → ' + parseLocalDate(entry.au).toLocaleDateString('fr-FR', { timeZone: 'Europe/Paris', day: '2-digit', month: 'short' }) : '';
+                                    h += `<tr style="border-bottom: 1px solid #F3F4F6;"><td style="padding: 0.25rem 0;">${duFmt}${auFmt}</td><td style="padding: 0.25rem 0; text-align: right; font-weight: 500;">${fmtDays(entry.jours)}j</td></tr>`;
+                                });
+                                h += `<tr style="font-weight: 700; border-top: 1px solid #D1D5DB;"><td style="padding: 0.3rem 0;">Total</td><td style="padding: 0.3rem 0; text-align: right;">${fmtDays(hist.reduce((s, e) => s + e.jours, 0))}j</td></tr>`;
+                                h += '</table></div>';
+                                return h;
+                            })()}
                         </div>
 
                         <!-- Edit section (hidden by default) -->
@@ -5824,67 +6182,14 @@ Connectez-vous a l'application Planning pour traiter cette demande.
                 contractsCache = init;
             } else {
                 contractsCache = doc.data();
-                // Correction: Pascal est freelance, pas CDI
-                if (contractsCache['Pascal'] && contractsCache['Pascal'].contractType !== 'freelance') {
-                    contractsCache['Pascal'].contractType = 'freelance';
-                    await db.collection('config').doc('staff_contracts').update({ 'Pascal.contractType': 'freelance' });
-                }
-                // Correction: Stephanie embauchee le 01/01/2026
-                if (contractsCache['Stephanie'] && contractsCache['Stephanie'].hireDate !== '2026-01-01') {
-                    contractsCache['Stephanie'].hireDate = '2026-01-01';
-                    await db.collection('config').doc('staff_contracts').update({ 'Stephanie.hireDate': '2026-01-01' });
-                }
-                // Correction: Titia CDD du 13/01/2026 au 11/04/2026
-                if (contractsCache['Titia']) {
-                    let titiaUpdate = {};
-                    if (contractsCache['Titia'].hireDate !== '2026-01-13') {
-                        contractsCache['Titia'].hireDate = '2026-01-13';
-                        titiaUpdate['Titia.hireDate'] = '2026-01-13';
-                    }
-                    if (contractsCache['Titia'].endDate !== '2026-04-11') {
-                        contractsCache['Titia'].endDate = '2026-04-11';
-                        titiaUpdate['Titia.endDate'] = '2026-04-11';
-                    }
-                    if (contractsCache['Titia'].contractType !== 'CDD') {
-                        contractsCache['Titia'].contractType = 'CDD';
-                        titiaUpdate['Titia.contractType'] = 'CDD';
-                    }
-                    if (Object.keys(titiaUpdate).length > 0) {
-                        await db.collection('config').doc('staff_contracts').update(titiaUpdate);
-                    }
-                }
-                // Correction: Melanie embauchee le 03/02/2026
-                if (contractsCache['Melanie'] && contractsCache['Melanie'].hireDate !== '2026-02-03') {
-                    contractsCache['Melanie'].hireDate = '2026-02-03';
-                    await db.collection('config').doc('staff_contracts').update({ 'Melanie.hireDate': '2026-02-03' });
-                }
-                // Correction: Mathilde CDD du 05/01/2026 au 30/06/2026
-                if (contractsCache['Mathilde']) {
-                    let mathildeUpdate = {};
-                    if (contractsCache['Mathilde'].hireDate !== '2026-01-05') {
-                        contractsCache['Mathilde'].hireDate = '2026-01-05';
-                        mathildeUpdate['Mathilde.hireDate'] = '2026-01-05';
-                    }
-                    if (contractsCache['Mathilde'].endDate !== '2026-06-30') {
-                        contractsCache['Mathilde'].endDate = '2026-06-30';
-                        mathildeUpdate['Mathilde.endDate'] = '2026-06-30';
-                    }
-                    if (contractsCache['Mathilde'].contractType !== 'CDD') {
-                        contractsCache['Mathilde'].contractType = 'CDD';
-                        mathildeUpdate['Mathilde.contractType'] = 'CDD';
-                    }
-                    if (Object.keys(mathildeUpdate).length > 0) {
-                        await db.collection('config').doc('staff_contracts').update(mathildeUpdate);
-                    }
-                }
             }
         }
 
         // Calcule les jours de vacances acquis selon la loi francaise
         // Droits = mois travailles pendant la PERIODE DE REFERENCE PRECEDENTE (1er juin N-2 au 31 mai N-1)
         // 2.5 jours ouvrables par mois (30j/an max, lun-sam)
-        // +2 jours apres 6 ans d'anciennete (convention pharmacie)
-        // Nouvel employe (embauche pendant la periode actuelle) : pro-rata depuis date embauche
+        // +2 jours après 6 ans d'ancienneté (convention pharmacie)
+        // Nouvel employe (embauche pendant la période actuelle) : pro-rata depuis date embauche
         function calculateVacationDays(contract) {
             if (!contract || !contract.hireDate) return { acquired: 0, bonus: 0, total: 0, details: 'Date d\'embauche requise' };
 
@@ -5898,7 +6203,7 @@ Connectez-vous a l'application Planning pour traiter cette demande.
             }
 
             // Periode de reference PRECEDENTE (1er juin N-2 au 31 mai N-1)
-            // C'est cette periode qui determine les droits utilisables maintenant
+            // C'est cette période qui determine les droits utilisables maintenant
             let prevRefStart, prevRefEnd;
             if (today.getMonth() >= 5) { // Juin ou apres
                 prevRefStart = new Date(today.getFullYear() - 1, 5, 1);
@@ -5919,30 +6224,30 @@ Connectez-vous a l'application Planning pour traiter cette demande.
             let monthsWorked;
             let details;
 
-            // Verifier si l'employe a travaille pendant la periode precedente
+            // Verifier si l'employe a travaille pendant la période precedente
             const effectiveStart = hireDate > prevRefStart ? hireDate : prevRefStart;
             const effectiveEnd = (endDate && endDate < prevRefEnd) ? endDate : prevRefEnd;
 
             if (effectiveStart <= effectiveEnd) {
-                // L'employe a travaille pendant la periode precedente
+                // L'employe a travaille pendant la période precedente
                 monthsWorked = monthsDiff(effectiveStart, effectiveEnd);
                 details = `${monthsWorked.toFixed(1)} mois (juin ${prevRefStart.getFullYear()}-mai ${prevRefEnd.getFullYear()}) = `;
             } else if (hireDate >= curRefStart) {
-                // Nouvel employe embauche pendant la periode actuelle
+                // Nouvel employe embauche pendant la période actuelle
                 // Pro-rata depuis date embauche (prise anticipee des droits)
                 let endCalc = today;
                 if (endDate && endDate < endCalc) endCalc = endDate;
                 monthsWorked = monthsDiff(hireDate, endCalc);
                 details = `${monthsWorked.toFixed(1)} mois depuis embauche = `;
             } else {
-                // CDD termine avant la periode precedente
+                // CDD termine avant la période precedente
                 return { acquired: 0, bonus: 0, total: 0, details: 'Contrat termine' };
             }
 
-            // 2.5 jours ouvrables par mois (30j/an)
-            const acquiredDays = Math.min(Math.round(monthsWorked * 2.5), 30);
+            // 2.5 jours ouvrables par mois (30j/an) — pas d'arrondi, valeur exacte
+            const acquiredDays = Math.min(parseFloat((monthsWorked * 2.5).toFixed(1)), 30);
 
-            // Bonus anciennete: +2 jours apres 6 ans (convention pharmacie)
+            // Bonus ancienneté: +2 jours après 6 ans (convention pharmacie)
             const yearsOfService = yearsDiff(hireDate, today);
             const seniorityBonus = yearsOfService >= 6 ? 2 : 0;
 
@@ -5950,7 +6255,7 @@ Connectez-vous a l'application Planning pour traiter cette demande.
 
             details += `${acquiredDays}j`;
             if (seniorityBonus > 0) {
-                details += ` + ${seniorityBonus}j (${yearsOfService} ans anciennete)`;
+                details += ` + ${seniorityBonus}j (${yearsOfService} ans ancienneté)`;
             }
 
             return { acquired: acquiredDays, bonus: seniorityBonus, total, details, monthsWorked, yearsOfService };
@@ -5962,6 +6267,46 @@ Connectez-vous a l'application Planning pour traiter cette demande.
             const daysInEndMonth = new Date(endDate.getFullYear(), endDate.getMonth() + 1, 0).getDate();
             const dayFraction = (endDate.getDate() - startDate.getDate()) / daysInEndMonth;
             return Math.max(0, fullMonths + dayFraction);
+        }
+
+        // Calcule les jours de vacances supplementaires que l'employe aura acquis entre aujourd'hui et une date future
+        // Basé sur l'acquisition en cours dans la période de reference actuelle (2.5j/mois)
+        function calculateProjectedExtraDays(employeeName, futureDate) {
+            const contracts = getContracts();
+            const contract = contracts[employeeName];
+            if (!contract || !contract.hireDate) return 0;
+
+            const today = getNowFrance();
+            const target = parseLocalDate(futureDate);
+            if (target <= today) return 0;
+
+            const hireDate = parseLocalDate(contract.hireDate);
+
+            // Periode de reference actuelle
+            let curRefStart;
+            if (today.getMonth() >= 5) {
+                curRefStart = new Date(today.getFullYear(), 5, 1);
+            } else {
+                curRefStart = new Date(today.getFullYear() - 1, 5, 1);
+            }
+
+            // Fin de la période de reference actuelle (31 mai)
+            let curRefEnd;
+            if (today.getMonth() >= 5) {
+                curRefEnd = new Date(today.getFullYear() + 1, 4, 31);
+            } else {
+                curRefEnd = new Date(today.getFullYear(), 4, 31);
+            }
+
+            // Point de depart : le plus tardif entre embauche, debut periode ref, et aujourd'hui
+            const accrualStart = new Date(Math.max(hireDate.getTime(), curRefStart.getTime(), today.getTime()));
+            // Point d'arrivee : le plus tot entre la date cible et la fin de la période de reference
+            const accrualEnd = new Date(Math.min(target.getTime(), curRefEnd.getTime()));
+
+            if (accrualEnd <= accrualStart) return 0;
+
+            const extraMonths = monthsDiff(accrualStart, accrualEnd);
+            return Math.min(Math.round(extraMonths * 2.5), 30);
         }
 
         function yearsDiff(startDate, endDate) {
@@ -6006,11 +6351,15 @@ Connectez-vous a l'application Planning pour traiter cette demande.
                 const badgeClass = contract.contractType.toLowerCase().replace(' ', '_');
                 const typeLabel = contract.contractType === 'CDI' ? 'CDI' :
                                  contract.contractType === 'CDD' ? 'CDD' :
-                                 contract.contractType === 'freelance' ? 'Freelance' : 'Periode d\'essai';
+                                 contract.contractType === 'freelance' ? 'Freelance' : 'Période d\'essai';
 
                 // Format dates for display
                 const hireDate = contract.hireDate ? parseLocalDate(contract.hireDate).toLocaleDateString('fr-FR', { timeZone: 'Europe/Paris' }) : 'N/A';
                 const endDate = contract.endDate ? parseLocalDate(contract.endDate).toLocaleDateString('fr-FR', { timeZone: 'Europe/Paris' }) : 'N/A';
+
+                const workArr = contract.workArrangement || 'normal';
+                const workArrSince = contract.workArrangementSince || '';
+                const workArrSinceDisplay = workArrSince ? parseLocalDate(workArrSince).toLocaleDateString('fr-FR', { timeZone: 'Europe/Paris' }) : '';
 
                 html += `
                     <div class="contract-card">
@@ -6018,6 +6367,7 @@ Connectez-vous a l'application Planning pour traiter cette demande.
                         <div class="contract-card-header">
                             <div>
                                 <h3 class="contract-name">${sanitize(name)}</h3>
+                                ${workArr === 'mi_temps_therapeutique' ? `<span class="work-arrangement-badge">Mi-temps thérapeutique${workArrSinceDisplay ? ' depuis ' + workArrSinceDisplay : ''}</span>` : ''}
                             </div>
                             <span class="contract-badge ${badgeClass}">${typeLabel}</span>
                         </div>
@@ -6045,15 +6395,15 @@ Connectez-vous a l'application Planning pour traiter cette demande.
                                 <div class="contract-card-vacances">
                                     <div class="contract-card-vacances-row">
                                         <span class="contract-card-vacances-label">Acquis:</span>
-                                        <span class="contract-card-vacances-value">${vacCalc.total}j ${vacCalc.bonus > 0 ? `(+${vacCalc.bonus}j)` : ''}</span>
+                                        <span class="contract-card-vacances-value">${fmtDays(vacCalc.total)}j ${vacCalc.bonus > 0 ? `(+${vacCalc.bonus}j)` : ''}</span>
                                     </div>
                                     <div class="contract-card-vacances-row">
                                         <span class="contract-card-vacances-label">Pris:</span>
-                                        <span class="contract-card-vacances-value">${daysTaken}j</span>
+                                        <span class="contract-card-vacances-value">${fmtDays(daysTaken)}j</span>
                                     </div>
                                     <div class="contract-card-vacances-row" style="border-top: 1px solid rgba(0,0,0,0.1); padding-top: 0.5rem; margin-top: 0.5rem;">
                                         <span class="contract-card-vacances-label"><strong>Restant:</strong></span>
-                                        <span class="contract-card-vacances-value"><strong>${remaining}j</strong></span>
+                                        <span class="contract-card-vacances-value"><strong>${fmtDays(remaining)}j</strong></span>
                                     </div>
                                 </div>
                             </div>
@@ -6082,13 +6432,26 @@ Connectez-vous a l'application Planning pour traiter cette demande.
                                 <select id="contract-type-${sanitize(name)}" onchange="toggleEndDateField('${sanitize(name)}')">
                                     <option value="CDI" ${contract.contractType === 'CDI' ? 'selected' : ''}>CDI</option>
                                     <option value="CDD" ${contract.contractType === 'CDD' ? 'selected' : ''}>CDD</option>
-                                    <option value="periode_essai" ${contract.contractType === 'periode_essai' ? 'selected' : ''}>Periode d'essai</option>
+                                    <option value="periode_essai" ${contract.contractType === 'periode_essai' ? 'selected' : ''}>Période d'essai</option>
                                     <option value="freelance" ${contract.contractType === 'freelance' ? 'selected' : ''}>Freelance</option>
                                 </select>
                             </div>
                             <div class="contract-field">
+                                <label>Aménagement</label>
+                                <select id="contract-arrangement-${sanitize(name)}" onchange="toggleArrangementDate('${sanitize(name)}')">
+                                    <option value="normal" ${workArr === 'normal' ? 'selected' : ''}>Temps plein</option>
+                                    <option value="mi_temps_therapeutique" ${workArr === 'mi_temps_therapeutique' ? 'selected' : ''}>Mi-temps thérapeutique</option>
+                                </select>
+                            </div>
+                            <div class="contract-field" id="contract-arrangement-date-field-${sanitize(name)}" style="${workArr !== 'mi_temps_therapeutique' ? 'display: none;' : ''}">
+                                <label>Depuis le</label>
+                                <input type="date" id="contract-arrangement-since-${sanitize(name)}" value="${workArrSince}">
+                            </div>
+                            <div class="contract-field">
                                 <label>Date d'embauche</label>
-                                <input type="date" id="contract-hire-${sanitize(name)}" value="${contract.hireDate || ''}">
+                                <div style="display: flex; gap: 0.4rem;" id="contract-hire-wrap-${sanitize(name)}">
+                                    ${buildDateDropdowns('contract-hire', sanitize(name), contract.hireDate || '')}
+                                </div>
                             </div>
                             <div class="contract-field" id="contract-end-field-${sanitize(name)}" style="${(contract.contractType === 'CDI' || contract.contractType === 'freelance') ? 'display: none;' : ''}">
                                 <label>Fin de contrat</label>
@@ -6126,13 +6489,21 @@ Connectez-vous a l'application Planning pour traiter cette demande.
 
         async function deleteEmployee(name) {
             try {
-                // Remove from VACANCES_EMPLOYEES
-                const idx = VACANCES_EMPLOYEES.indexOf(name);
-                if (idx > -1) VACANCES_EMPLOYEES.splice(idx, 1);
+                // Persist deletion in Firebase so it survives page reloads
+                const deletedDoc = await db.collection('config').doc('deleted_employees').get();
+                const deletedList = deletedDoc.exists ? (deletedDoc.data().list || []) : [];
+                if (!deletedList.includes(name)) {
+                    deletedList.push(name);
+                    await db.collection('config').doc('deleted_employees').set({ list: deletedList });
+                }
 
-                // Remove from ROLES and STAFF
-                delete ROLES[name];
-                delete STAFF[name];
+                // Update local cache so listeners don't re-add
+                if (!deletedEmployeesCache.includes(name)) {
+                    deletedEmployeesCache.push(name);
+                }
+
+                // Remove from in-memory lists
+                removeDeletedEmployee(name);
 
                 // Remove from contracts (Firestore)
                 const contracts = getContracts();
@@ -6161,7 +6532,7 @@ Connectez-vous a l'application Planning pour traiter cette demande.
                 const activeWeekBtn = document.querySelector('.week-btn.active');
                 renderPlanning(activeWeekBtn ? activeWeekBtn.dataset.week : 'paire');
 
-                alert(`${name} a ete supprime(e) avec succes.`);
+                alert(`${name} a été supprimé(e) avec succès.`);
             } catch (e) {
                 console.error('Erreur suppression employe:', e);
                 alert('Erreur lors de la suppression. Voir la console.');
@@ -6178,18 +6549,68 @@ Connectez-vous a l'application Planning pour traiter cette demande.
             }
         }
 
+        function buildDateDropdowns(prefix, name, dateStr) {
+            const parts = dateStr ? dateStr.split('-') : ['', '', ''];
+            const y = parts[0] || '';
+            const m = parts[1] || '';
+            const d = parts[2] || '';
+            const currentYear = new Date().getFullYear();
+
+            let yearOpts = '<option value="">--</option>';
+            for (let yr = currentYear; yr >= 2000; yr--) {
+                yearOpts += `<option value="${yr}" ${y == yr ? 'selected' : ''}>${yr}</option>`;
+            }
+
+            const moisNoms = ['Jan','Fev','Mar','Avr','Mai','Jun','Jul','Aou','Sep','Oct','Nov','Dec'];
+            let monthOpts = '<option value="">--</option>';
+            for (let mo = 1; mo <= 12; mo++) {
+                const moStr = String(mo).padStart(2, '0');
+                monthOpts += `<option value="${moStr}" ${m === moStr ? 'selected' : ''}>${moisNoms[mo-1]}</option>`;
+            }
+
+            let dayOpts = '<option value="">--</option>';
+            for (let dy = 1; dy <= 31; dy++) {
+                const dyStr = String(dy).padStart(2, '0');
+                dayOpts += `<option value="${dyStr}" ${d === dyStr ? 'selected' : ''}>${dy}</option>`;
+            }
+
+            return `
+                <select id="${prefix}-y-${name}" style="flex: 1; padding: 0.4rem;">${yearOpts}</select>
+                <select id="${prefix}-m-${name}" style="flex: 1; padding: 0.4rem;">${monthOpts}</select>
+                <select id="${prefix}-d-${name}" style="flex: 0.7; padding: 0.4rem;">${dayOpts}</select>
+            `;
+        }
+
+        function readDateDropdowns(prefix, name) {
+            const y = document.getElementById(`${prefix}-y-${name}`)?.value;
+            const m = document.getElementById(`${prefix}-m-${name}`)?.value;
+            const d = document.getElementById(`${prefix}-d-${name}`)?.value;
+            if (y && m && d) return `${y}-${m}-${d}`;
+            return '';
+        }
+
+        function toggleArrangementDate(name) {
+            const select = document.getElementById(`contract-arrangement-${name}`);
+            const dateField = document.getElementById(`contract-arrangement-date-field-${name}`);
+            dateField.style.display = select.value === 'mi_temps_therapeutique' ? 'block' : 'none';
+        }
+
         async function saveContract(name) {
             const contractType = document.getElementById(`contract-type-${name}`).value;
-            const hireDate = document.getElementById(`contract-hire-${name}`).value;
+            const hireDate = readDateDropdowns('contract-hire', name);
             const endDate = document.getElementById(`contract-end-${name}`).value || null;
             const daysTaken = parseInt(document.getElementById(`contract-taken-${name}`).value) || 0;
+            const workArrangement = document.getElementById(`contract-arrangement-${name}`).value;
+            const workArrangementSince = document.getElementById(`contract-arrangement-since-${name}`).value || null;
 
             const contracts = getContracts();
             contracts[name] = {
                 contractType,
                 hireDate,
                 endDate: (contractType === 'CDI' || contractType === 'freelance') ? null : endDate,
-                daysTaken
+                daysTaken,
+                workArrangement: workArrangement === 'normal' ? null : workArrangement,
+                workArrangementSince: workArrangement === 'normal' ? null : workArrangementSince
             };
 
             await saveContracts(contracts);
@@ -6204,7 +6625,7 @@ Connectez-vous a l'application Planning pour traiter cette demande.
             }
 
             const remaining = Math.max(0, vacCalc.total + (solde[name]?.report || 0) - daysTaken);
-            alert(`Contrat de ${name} enregistre.\nDroits: ${vacCalc.total}j | Pris: ${daysTaken}j | Restant: ${remaining}j`);
+            alert(`Contrat de ${name} enregistré.\nDroits: ${fmtDays(vacCalc.total)}j | Pris: ${fmtDays(daysTaken)}j | Restant: ${fmtDays(remaining)}j`);
         }
 
         // Synchroniser le calcul des vacances avec les contrats
@@ -6390,6 +6811,12 @@ Connectez-vous a l'application Planning pour traiter cette demande.
             });
 
             // Initialize vacances solde and contracts if needed
+            // Remove deleted employees before initializing anything
+            await applyDeletedEmployees();
+
+            // One-time cleanup: purge Melanie from all Firebase collections
+            await purgeEmployeeFromFirebase('Melanie');
+
             await initVacancesSolde();
             await initContracts();
 
@@ -6399,6 +6826,9 @@ Connectez-vous a l'application Planning pour traiter cette demande.
             // Synchroniser les soldes vacances avec les contrats (calcul 2.5j/mois)
             await syncVacationsWithContracts();
 
+            // One-time migration: set correct pris values from payroll PDF
+            await migratePrisFromPDF();
+
             // Load custom schedules from Firebase
             await loadStaffSchedule();
 
@@ -6406,8 +6836,9 @@ Connectez-vous a l'application Planning pour traiter cette demande.
             db.collection('config').doc('staff_schedule').onSnapshot((doc) => {
                 if (doc.exists) {
                     const customSchedules = doc.data();
-                    // Merge with base STAFF
+                    // Merge with base STAFF (skip deleted employees)
                     Object.keys(customSchedules).forEach(name => {
+                        if (isDeletedEmployee(name)) return;
                         STAFF[name] = customSchedules[name];
                         ROLES[name] = customSchedules[name].role || 'preparatrice';
                         if (!VACANCES_EMPLOYEES.includes(name)) {
@@ -6445,6 +6876,7 @@ Connectez-vous a l'application Planning pour traiter cette demande.
                 if (doc.exists) {
                     const customSchedules = doc.data();
                     Object.keys(customSchedules).forEach(name => {
+                        if (isDeletedEmployee(name)) return;
                         STAFF[name] = customSchedules[name];
                         ROLES[name] = customSchedules[name].role || 'preparatrice';
                         if (!VACANCES_EMPLOYEES.includes(name)) {

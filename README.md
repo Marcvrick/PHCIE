@@ -708,6 +708,12 @@ Les deux fichiers sont complémentaires et doivent rester à jour.
 - Rewrites pour servir les bons `.html` depuis les URLs aplaties
 - Section "Déploiement Vercel" ajoutée au README
 
+### 5 Avril 2026
+
+**planning.html — Fix samedi vacances:**
+- Warning dynamique dans le formulaire vacances : quand la date de fin tombe un vendredi et que l'employée travaille le samedi matin, un bandeau orange s'affiche avec lien "Inclure le samedi →" pour auto-étendre la date de fin au samedi
+- Ajout de `employeeTravailleSamedi(employee)` — détecte les employées concernées selon le planning paire/impaire (Laure, Claire, Sandrine, Titia, Melanie)
+
 ### 29 Mars 2026
 
 **Homepage — Réorganisation sections:**
@@ -763,6 +769,6 @@ Les deux fichiers sont complémentaires et doivent rester à jour.
 
 ---
 
-**Dernière mise à jour**: 11 Avril 2026
+**Dernière mise à jour**: 19 Avril 2026
 **Version du site**: Production (main branch) - Migration style-v2.css en cours
 **Statut**: ✅ En ligne sur www.pharmaciecharnal.com
