@@ -30,14 +30,22 @@ git add [fichiers] && git commit -m "Message" && git push origin main
 
 L'app de planning RH n'est PLUS dans ce repo depuis le 19 avril 2026.
 
-- **Ancien emplacement:** `planning.html` à la racine du site (DEPRECATED)
-- **Nouveau repo:** `https://github.com/Marcvrick/pharmacie-charnal-planning`
-- **Nouvelle URL:** `https://marcvrick.github.io/pharmacie-charnal-planning/`
-- **Local:** `/Users/mc/git-repos/pharmacie-charnal-planning/`
+- **Ancien emplacement:** `planning.html` à la racine du site (SUPPRIMÉ)
+- **Repo dédié:** `https://github.com/Marcvrick/PLPH` (renommé depuis `pharmacie-charnal-planning` pour ne pas exposer "planning" dans l'URL publique du repo)
+- **URL de production:** `https://marcvrick.github.io/PLPH/`
+- **Local:** `/Users/mc/git-repos/PLPH/`
 
 **Raison:** un force-push sur le repo site pour modifier planning.html avait écrasé tout l'historique du site public (incident 19 avril). La séparation prévient ce scénario.
 
 Si on te demande de modifier le planning, l'app RH, ou les vacances, **va travailler dans l'autre repo**. Ne touche jamais au site pour ces demandes.
+
+### Redirection `/planning` → PLPH
+
+Pour préserver l'ancienne URL publique `https://www.pharmaciecharnal.com/planning`, le site sert un fichier `planning/index.html` qui contient un meta-refresh + JS redirect vers `https://marcvrick.github.io/PLPH/`.
+
+- **Fichier:** `planning/index.html` (ne PAS supprimer)
+- **Comportement:** GitHub Pages sert le dossier sur `/planning` → meta refresh `0s` → `window.location.replace` vers PLPH
+- **Note:** `vercel.json` contient aussi une règle `/planning`, mais GitHub Pages l'ignore — elle est conservée au cas où le site migrerait un jour vers Vercel
 
 ---
 

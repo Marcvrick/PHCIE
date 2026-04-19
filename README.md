@@ -39,6 +39,8 @@ website-pharmacie-charnal/
 │   ├── quiz-soin-peau.html           # Quiz soin de la peau ✅
 │   ├── quiz-produits-naturels.html   # Quiz produits naturels ✅
 │   └── quiz-coming-soon.html         # Placeholder (compléments alimentaires)
+├── planning/               # Redirection vers l'app planning RH (repo PLPH séparé)
+│   └── index.html          # Meta-refresh → https://marcvrick.github.io/PLPH/
 ├── blog/                   # Articles de blog (8 articles)
 │   ├── GUIDE-REDACTION-BLOG.md            # Guide rédactionnel Laure
 │   ├── PLANNING-BLOG-PHARMACIE.md         # Planning éditorial
