@@ -11,6 +11,11 @@
       "source": "/blog/Peau%20Seche/:slug",
       "destination": "/blog/:slug",
       "permanent": true
+    },
+    {
+      "source": "/planning",
+      "destination": "https://marcvrick.github.io/PLPH/",
+      "permanent": false
     }
   ],
   "rewrites": [
