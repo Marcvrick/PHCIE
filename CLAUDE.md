@@ -21,8 +21,23 @@
 **Workflow Git:**
 ```bash
 # Seule branche active: main (deploiement automatique GitHub Pages)
+# Avant toute session: git fetch && git pull --rebase
+# JAMAIS de git push --force sur main (branch protection activée 19 avril 2026)
 git add [fichiers] && git commit -m "Message" && git push origin main
 ```
+
+## App Planning RH — Repo SÉPARÉ
+
+L'app de planning RH n'est PLUS dans ce repo depuis le 19 avril 2026.
+
+- **Ancien emplacement:** `planning.html` à la racine du site (DEPRECATED)
+- **Nouveau repo:** `https://github.com/Marcvrick/pharmacie-charnal-planning`
+- **Nouvelle URL:** `https://marcvrick.github.io/pharmacie-charnal-planning/`
+- **Local:** `/Users/mc/git-repos/pharmacie-charnal-planning/`
+
+**Raison:** un force-push sur le repo site pour modifier planning.html avait écrasé tout l'historique du site public (incident 19 avril). La séparation prévient ce scénario.
+
+Si on te demande de modifier le planning, l'app RH, ou les vacances, **va travailler dans l'autre repo**. Ne touche jamais au site pour ces demandes.
 
 ---
 
@@ -66,7 +81,7 @@ index.html, histoire.html, services.html, blog.html, contact.html
 mentions-legales.html, donnees-personnelles.html
 pharmacie-de-garde-queven-hennebont-lorient.html
 recrutement-preparatrice-pharmacie-queven.html
-annuaire-sante.html, planning.html
+annuaire-sante.html
 ```
 
 **Blog:** `blog/*.html` (13 articles). Sources .md organisees dans des dossiers numerotes (`01-prevenir-maux-hiver/`, `04-detox-apres-fetes/`, ..., `12-troubles-sommeil/`) — numerotation alignee sur les posts GMB. Les .html restent a la racine de `blog/` (URLs live du site).

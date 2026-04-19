@@ -8,7 +8,6 @@ Allow: /
 Disallow: /blog/07-gastro-enterite/infographie-gastro-enterite.html
 Disallow: /blog/09-mars-bleu/infographie-mars-bleu.html
 Disallow: /Nos-marques/TEMPLATE-marque.html
-Disallow: /planning.html
 
 # Sitemap XML
 Sitemap: https://www.pharmaciecharnal.com/sitemap.xml
