@@ -220,3 +220,5 @@ Consultez. Une douleur qui résiste aux antalgiques courants sur plusieurs jours
 ---
 
 **Article précédent:** [Compléments alimentaires: pharmacie ou internet? Ce que votre pharmacien vérifie pour vous](../13-complements-alimentaires/complements-alimentaires-pharmacie-internet-queven.html)
+
+**Article suivant:** [Jambes lourdes: comprendre d'où elles viennent et comment les soulager](../15-jambes-lourdes/jambes-lourdes-circulation-veineuse-queven.html)

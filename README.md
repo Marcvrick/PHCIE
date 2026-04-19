@@ -281,6 +281,53 @@ Chaque page de marque (`Nos-marques/*-page.html`) peut avoir sa propre palette d
 
 ---
 
+## 🌐 Déploiement Vercel (Clean URLs)
+
+### Configuration `vercel.json`
+
+Le fichier `vercel.json` à la racine active les URLs propres (sans `.html`) sur Vercel.
+
+**Ce que ça change :**
+
+| Avant (GitHub Pages) | Après (Vercel) |
+|----------------------|----------------|
+| `/histoire.html` | `/histoire` |
+| `/services.html` | `/services` |
+| `/blog/detox-apres-fetes-mythe-realite-queven.html` | `/blog/detox-apres-fetes-mythe-realite-queven` |
+| `/Nos-marques/biogaran-page.html` | `/Nos-marques/biogaran-page` |
+| `/Quizzes/quiz-automedication.html` | `/Quizzes/quiz-automedication` |
+
+**Options actives :**
+- `cleanUrls: true` — sert les `.html` sans extension
+- `trailingSlash: false` — pas de slash final (`/histoire` pas `/histoire/`)
+
+**Cas spéciaux — articles dans des sous-dossiers avec espaces :**
+
+Les deux articles stockés dans des sous-dossiers (`Moral en berne/`, `Peau Seche/`) sont aplatis via rewrites + redirects :
+
+| URL encodée (moche) | URL servie (propre) |
+|---------------------|---------------------|
+| `/blog/Moral%20en%20berne/fatigue-...` | `/blog/fatigue-moral-fin-hiver-queven` |
+| `/blog/Peau%20Seche/proteger-...` | `/blog/proteger-peau-seche-hiver-breton-queven` |
+
+Le redirect (301) assure que les anciennes URLs redirigent vers les propres ; le rewrite sert le bon fichier .html.
+
+### Déployer sur Vercel
+
+```bash
+# Installer CLI Vercel (une fois)
+npm i -g vercel
+
+# Déployer (depuis la racine du projet)
+vercel --prod
+```
+
+Ou connecter le repo GitHub sur [vercel.com](https://vercel.com) → déploiement automatique à chaque push `main`.
+
+**Note domaine :** Pointer `www.pharmaciecharnal.com` vers Vercel dans le DNS (supprimer le CNAME GitHub Pages actuel, ajouter le CNAME Vercel fourni dans le dashboard).
+
+---
+
 ## 🌐 Déploiement GitHub Pages
 
 ### Configuration actuelle
@@ -355,22 +402,38 @@ git push origin main
 
 ## 📝 Articles de Blog Publiés
 
-**8 articles actuellement en ligne:**
+**14 articles en ligne + 2 en préparation** — publication hebdomadaire, chaque lundi. Voir [`blog/`](blog/) pour les sources `.md` organisées en dossiers numérotés (alignés sur les posts GMB).
 
-1. **Détox après les fêtes** - `detox-apres-fetes-mythe-realite-queven.html`
-2. **Humidité et douleurs articulaires** - `humidite-douleurs-articulaires-queven.html`
-3. **Prévenir les maux d'hiver** - `prevenir-maux-hiver-queven.html`
-4. **Professionnels de santé à Quéven** - `professionnels-sante-queven-2026.html` (carte Leaflet)
-5. **Protéger sa peau sèche** - `Peau Seche/proteger-peau-seche-hiver-breton-queven.html`
-6. **Vaccination adulte** - `vaccination-adulte-guide-pratique.html`
-7. **Fatigue et moral en fin d'hiver** - `Moral en berne/fatigue-moral-fin-hiver-queven.html` (pub 16 fév)
-8. **Gastro-entérite : prévention et bons réflexes** - `gastro-enterite-prevention-bons-reflexes-queven.html` (pub 21 fév)
+| # | Date | Article | Source |
+|---|------|---------|--------|
+| 14 | 14 avr 2026 | Paracétamol, ibuprofène, aspirine : lequel choisir ? | [`14-paracetamol-ibuprofene-aspirine/`](blog/14-paracetamol-ibuprofene-aspirine/) |
+| 13 | 8 avr 2026 | Compléments alimentaires : pharmacie ou internet ? | [`13-complements-alimentaires/`](blog/13-complements-alimentaires/) |
+| 12 | 31 mars 2026 | Troubles du sommeil : solutions naturelles | [`12-troubles-sommeil/`](blog/12-troubles-sommeil/) |
+| 11 | 24 mars 2026 | Premiers soleils : protéger sa peau dès le printemps | [`11-protection-solaire/`](blog/11-protection-solaire/) |
+| 10 | 16 mars 2026 | Allergie au pollen en Bretagne | [`10-allergie-pollen/`](blog/10-allergie-pollen/) |
+| 09 | 10 mars 2026 | Mars Bleu : dépistage cancer colorectal | [`09-mars-bleu/`](blog/09-mars-bleu/) |
+| 07 | 3 mars 2026 | Gastro-entérite : prévention et bons réflexes | [`07-gastro-enterite/`](blog/07-gastro-enterite/) |
+| 08 | 22 fév 2026 | Crampes abdominales : comprendre et soulager | `crampes-abdominales-comprendre-soulager-queven.html` |
+| 06 | 16 fév 2026 | Fatigue et moral en fin d'hiver | [`06-fatigue-moral-fin-hiver/`](blog/06-fatigue-moral-fin-hiver/) |
+| 05 | hiver 2026 | Humidité et douleurs articulaires | [`05-humidite-douleurs-articulaires/`](blog/05-humidite-douleurs-articulaires/) |
+| 04 | 12 jan 2026 | Détox après les fêtes : mythe ou réalité ? | [`04-detox-apres-fetes/`](blog/04-detox-apres-fetes/) |
+| 03 | déc 2025 | Guide santé Quéven (carte Leaflet) | `professionnels-sante-queven-2026.html` |
+| 02 | déc 2025 | Vaccination adulte : guide pratique | `vaccination-adulte-guide-pratique.html` |
+| 01 | 31 déc 2025 | Prévenir les maux de l'hiver à Quéven | [`01-prevenir-maux-hiver/`](blog/01-prevenir-maux-hiver/) |
 
-**Stratégie éditoriale**:
-- Ton: Voix de Laure (pharmacienne pédagogue, professionnelle accessible)
-- SEO local: Quéven, Bretagne, Morbihan, climat océanique
-- E-E-A-T médical: Expertise + sources + mécanismes biologiques
-- Optimisé pour AI Search (FAQ, questions naturelles)
+**Articles rédigés en attente de publication :**
+
+| # | Date cible | Article | Source |
+|---|------------|---------|--------|
+| 15 | **Lundi 21 avril 2026** | Jambes lourdes : comprendre et soulager | [`15-jambes-lourdes/`](blog/15-jambes-lourdes/) |
+| 25 | Début juillet 2026 | Tiques en Bretagne : prévention et réaction | [`25-tiques-bretagne/`](blog/25-tiques-bretagne/) |
+
+**Stratégie éditoriale** :
+- Ton : Voix de Laure (pharmacienne pédagogue, professionnelle accessible) — voir [`blog/README.md`](blog/README.md) pour le guide complet
+- SEO local : Quéven, Bretagne, Morbihan, climat océanique
+- E-E-A-T médical : expertise + sources (HAS, ANSM, VIDAL, EMA, Cochrane) + mécanismes biologiques
+- Optimisé pour AI Search (FAQ Schema.org, H2 en questions, paragraphes answer-first 40-60 mots)
+- Pipeline blog + GMB multi-canal : skill [`pharmacie-charnal-blog`](../../../Claude-skills/pharmacie-charnal-blog/) (article + 6 sections GMB/Instagram/Facebook/LinkedIn/Photo/Timing)
 
 ---
 
@@ -625,6 +688,39 @@ Les deux fichiers sont complémentaires et doivent rester à jour.
 
 ## 📝 Changelog Récent
 
+### 17 Avril 2026
+
+**Blog — Article #15 Jambes lourdes prêt pour publication (lundi 21 avril) :**
+- Article source : [`blog/15-jambes-lourdes/jambes-lourdes-circulation-veineuse-queven.md`](blog/15-jambes-lourdes/) — ~1900 mots lisibles, 8 H2 (75% en questions), answer-first 40-60 mots après chaque H2, infographie HTML 4 classes de compression, 9 références (HAS, SFMV, EMA, Ameli, DREES, VIDAL, IFOP, Cochrane, Framingham)
+- Vérification médicale Perplexity : 8/10 confirmées; 2 nuancées sur les classes de compression (article utilise la norme française LPPR, pertinente pour le public; la norme européenne RAL-GZ 387 est différente mais non applicable ici)
+- Post GMB multi-canal : [`GMB/POST-GMB-15-jambes-lourdes.md`](../GMB/POST-GMB-15-jambes-lourdes.md) (6 sections : GMB, Instagram, Facebook, LinkedIn, Photo, Timing)
+- URL raccourcie : `https://is.gd/ghWTHi`
+- Image hero + OG : `blog-15-jambes-lourdes.jpg` (1204x803) + `og-15-jambes-lourdes.jpg` (1200x630, face-aware crop) — commitées sur branche feature `blog-15-jambes-lourdes` (pas encore mergées dans main, donc non publiques)
+- Article précédent (paracétamol #14) mis à jour avec lien "Article suivant" → jambes lourdes
+- Navigation inter-articles : à finaliser dans le HTML lors du passage en publication le 21 avril
+- [`GMB/INDEX-POSTS-GMB.md`](../GMB/INDEX-POSTS-GMB.md) : post #15 ajouté, nouvelle catégorie "Circulation veineuse" créée
+
+### 11 Avril 2026
+
+**Vercel + Clean URLs :**
+- Ajout de `vercel.json` à la racine (`cleanUrls: true`, `trailingSlash: false`)
+- Redirects 301 pour aplatir les sous-dossiers avec espaces (`Moral en berne/`, `Peau Seche/`) vers URLs propres
+- Rewrites pour servir les bons `.html` depuis les URLs aplaties
+- Section "Déploiement Vercel" ajoutée au README
+
+### 29 Mars 2026
+
+**Homepage — Réorganisation sections:**
+- Section "On s'occupe de Vous" (services) remontée au-dessus des cartes quiz couleur
+- Nouveau titre "Quel soin vous correspond?" ajouté à la section quiz, aligné à gauche (même layout que "On s'occupe de Vous" — titre à gauche, grille à droite sur desktop)
+
+### 27 Février 2026
+
+**Homepage Hero:**
+- Suppression du `::before` opaque (fond `pastel-teal`) derrière l'image hero — remplacé par un `box-shadow` subtil deux couches
+- Image hero visible dès 768px (au lieu de 1024px) avec taille réduite (360px), taille complète (540px) à 1024px+
+- Breakpoints hero-container et hero-cta alignés à 768px
+
 ### 20 Février 2026
 
 **Quizzes:**
@@ -667,6 +763,6 @@ Les deux fichiers sont complémentaires et doivent rester à jour.
 
 ---
 
-**Dernière mise à jour**: 20 Février 2026
+**Dernière mise à jour**: 11 Avril 2026
 **Version du site**: Production (main branch) - Migration style-v2.css en cours
 **Statut**: ✅ En ligne sur www.pharmaciecharnal.com

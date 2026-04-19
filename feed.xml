@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Blog Pharmacie Charnal - Au comptoir</title>
+    <link>https://www.pharmaciecharnal.com</link>
+    <description>Au comptoir de la Pharmacie Charnal a Queven : conseils sante, prevention hiver, vaccinations, phytotherapie, dermatologie. Articles rediges par nos pharmaciens.</description>
+    <language>fr-FR</language>
+    <lastBuildDate>Sun, 22 Mar 2026 12:00:00 +0100</lastBuildDate>
+    <atom:link href="https://www.pharmaciecharnal.com/feed.xml" rel="self" type="application/rss+xml"/>
+    <image>
+      <url>https://www.pharmaciecharnal.com/images/pharmacie-charnal-logo.png</url>
+      <title>Blog Pharmacie Charnal - Au comptoir</title>
+      <link>https://www.pharmaciecharnal.com</link>
+    </image>
+
+    <item>
+      <title>Allergie au pollen : comment bien vivre la saison en Bretagne?</title>
+      <link>https://www.pharmaciecharnal.com/blog/allergie-pollen-bretagne-queven.html</link>
+      <guid>https://www.pharmaciecharnal.com/blog/allergie-pollen-bretagne-queven.html</guid>
+      <pubDate>Mon, 16 Mar 2026 00:00:00 +0100</pubDate>
+      <description>Pollens, symptomes et traitements en pharmacie a Queven. Conseils pratiques pour gerer les allergies saisonnieres en Bretagne cette annee.</description>
+    </item>
+
+    <item>
+      <title>Mars Bleu : un test simple peut vous sauver la vie</title>
+      <link>https://www.pharmaciecharnal.com/blog/mars-bleu-depistage-cancer-colorectal-queven.html</link>
+      <guid>https://www.pharmaciecharnal.com/blog/mars-bleu-depistage-cancer-colorectal-queven.html</guid>
+      <pubDate>Tue, 10 Mar 2026 00:00:00 +0100</pubDate>
+      <description>Cancer colorectal : pourquoi se faire depister entre 50 et 74 ans. Le kit est gratuit, disponible en pharmacie, et le test se fait chez soi en 5 minutes.</description>
+    </item>
+
+    <item>
+      <title>Gastro-enterite : comment s'en proteger et bien reagir?</title>
+      <link>https://www.pharmaciecharnal.com/blog/gastro-enterite-prevention-bons-reflexes-queven.html</link>
+      <guid>https://www.pharmaciecharnal.com/blog/gastro-enterite-prevention-bons-reflexes-queven.html</guid>
+      <pubDate>Tue, 03 Mar 2026 00:00:00 +0100</pubDate>
+      <description>Pourquoi le savon bat le gel hydroalcoolique contre la gastro, quels traitements privilegier, et les bons reflexes pour toute la famille.</description>
+    </item>
+
+    <item>
+      <title>Crampes abdominales : comprendre pour mieux soulager</title>
+      <link>https://www.pharmaciecharnal.com/blog/crampes-abdominales-comprendre-soulager-queven.html</link>
+      <guid>https://www.pharmaciecharnal.com/blog/crampes-abdominales-comprendre-soulager-queven.html</guid>
+      <pubDate>Sun, 22 Feb 2026 00:00:00 +0100</pubDate>
+      <description>D'ou viennent ces spasmes au ventre? Stress, alimentation, cycle feminin : les causes frequentes et les bons reflexes pour se soulager au quotidien.</description>
+    </item>
+
+    <item>
+      <title>Fatigue, moral en berne : comment tenir le coup en fin d'hiver?</title>
+      <link>https://www.pharmaciecharnal.com/blog/Moral%20en%20berne/fatigue-moral-fin-hiver-queven.html</link>
+      <guid>https://www.pharmaciecharnal.com/blog/Moral%20en%20berne/fatigue-moral-fin-hiver-queven.html</guid>
+      <pubDate>Mon, 16 Feb 2026 00:00:00 +0100</pubDate>
+      <description>Pourquoi la fin d'hiver en Bretagne nous epuise et plombe le moral. Vitamine D, luminotherapie, magnesium, safran : des solutions concretes pour retrouver l'energie.</description>
+    </item>
+
+    <item>
+      <title>L'humidite et les douleurs articulaires par temps de pluie</title>
+      <link>https://www.pharmaciecharnal.com/blog/humidite-douleurs-articulaires-queven.html</link>
+      <guid>https://www.pharmaciecharnal.com/blog/humidite-douleurs-articulaires-queven.html</guid>
+      <pubDate>Thu, 29 Jan 2026 00:00:00 +0100</pubDate>
+      <description>Pourquoi l'humidite aggrave-t-elle les douleurs articulaires? Decouvrez les mecanismes et nos conseils pour soulager vos articulations par temps de pluie.</description>
+    </item>
+
+    <item>
+      <title>Detox apres les fetes : mythe ou realite?</title>
+      <link>https://www.pharmaciecharnal.com/blog/detox-apres-fetes-mythe-realite-queven.html</link>
+      <guid>https://www.pharmaciecharnal.com/blog/detox-apres-fetes-mythe-realite-queven.html</guid>
+      <pubDate>Mon, 12 Jan 2026 00:00:00 +0100</pubDate>
+      <description>Apres les fetes, les promesses de detox miracle fleurissent partout. Mais que dit vraiment la science? Laure vous explique ce qui fonctionne reellement pour aider votre corps.</description>
+    </item>
+
+    <item>
+      <title>Prevenir les maux de l'hiver a Queven</title>
+      <link>https://www.pharmaciecharnal.com/blog/prevenir-maux-hiver-queven.html</link>
+      <guid>https://www.pharmaciecharnal.com/blog/prevenir-maux-hiver-queven.html</guid>
+      <pubDate>Wed, 31 Dec 2025 00:00:00 +0100</pubDate>
+      <description>Avec le froid qui s'installe en Bretagne, decouvrez les conseils de votre pharmacien pour renforcer vos defenses immunitaires et eviter rhume, grippe et infections hivernales.</description>
+    </item>
+
+    <item>
+      <title>Vaccination adulte : le guide pratique</title>
+      <link>https://www.pharmaciecharnal.com/blog/vaccination-adulte-guide-pratique.html</link>
+      <guid>https://www.pharmaciecharnal.com/blog/vaccination-adulte-guide-pratique.html</guid>
+      <pubDate>Sat, 20 Dec 2025 00:00:00 +0100</pubDate>
+      <description>Rappels a 25, 45 et 65 ans, vaccin HPV, vaccination grossesse... Decouvrez quand et pourquoi se faire vacciner a l'age adulte.</description>
+    </item>
+
+    <item>
+      <title>Guide Sante Queven : Tous les Professionnels Medicaux</title>
+      <link>https://www.pharmaciecharnal.com/blog/professionnels-sante-queven-2026.html</link>
+      <guid>https://www.pharmaciecharnal.com/blog/professionnels-sante-queven-2026.html</guid>
+      <pubDate>Wed, 10 Dec 2025 09:00:00 +0100</pubDate>
+      <description>Medecins, laboratoires, dentistes... Decouvrez tous les professionnels de sante de Queven avec carte interactive, adresses et coordonnees.</description>
+    </item>
+
+  </channel>
+</rss>

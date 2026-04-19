@@ -199,19 +199,22 @@ Nos pharmaciens sont la pour vous conseiller.
 
 | Sem. | Date | Article | Type | Statut |
 |---|---|---|---|---|
-| S14 | Mer 1 avr | Fatigue de printemps : retrouver son energie | Long editorial | A rediger |
-| S15 | Mer 8 avr | Complements alimentaires : pharmacie ou internet ? | Buying-intent | A rediger |
-| S16 | Mer 15 avr | Tiques en Bretagne : prevention et reaction | Long editorial | A rediger |
-| S17 | Mer 22 avr | Paracetamol, ibuprofene, aspirine : lequel choisir ? | Court mode d'emploi | A rediger |
+| S14 | Lun 6 avr | ~~Fatigue de printemps : retrouver son energie~~ | Long editorial | ⛔ Reporter apres mi-mai (sujet fatigue deja traite x2) |
+| S15 | Lun 7 avr | Complements alimentaires : pharmacie ou internet ? | Buying-intent | ✅ Redige — article #13 |
+| S16 | **Lun 14 avr** | **Paracetamol, ibuprofene, aspirine : lequel choisir ?** | Court mode d'emploi | ✍️ A publier demain |
+| S17 | Lun 21 avr | Jambes lourdes : comprendre et soulager | Long editorial | A rediger |
+
+> **Regle fatigue** : ne pas traiter un sujet "fatigue" avant mi-mai (articles #6 Fatigue/moral et S14 Fatigue printemps couvrent deja ce terrain)
+> **Tiques** : article #14 redige, reserve pour la 1re semaine de juillet (voir S27 ci-dessous)
 
 ### MAI 2026
 
 | Sem. | Date | Article | Type | Statut |
 |---|---|---|---|---|
-| S18 | Mer 29 avr | Jambes lourdes : comprendre et soulager | Long editorial | A rediger |
-| S19 | Mer 6 mai | Protection solaire : quel SPF choisir en pharmacie ? | Buying-intent | A rediger |
-| S20 | Mer 13 mai | Creme hydratante : laquelle pour votre type de peau ? | Court mode d'emploi | A rediger |
-| S21 | Mer 20 mai | Trousse de vacances : l'essentiel a emporter | Long editorial | A rediger |
+| S18 | Lun 4 mai | Fatigue de printemps : retrouver son energie | Long editorial | A rediger (reporter depuis S14) |
+| S19 | Lun 11 mai | Protection solaire : quel SPF choisir en pharmacie ? | Buying-intent | A rediger |
+| S20 | Lun 18 mai | Creme hydratante : laquelle pour votre type de peau ? | Court mode d'emploi | A rediger |
+| S21 | Lun 25 mai | Trousse de vacances : l'essentiel a emporter | Long editorial | A rediger |
 
 ### JUIN 2026
 
@@ -226,10 +229,11 @@ Nos pharmaciens sont la pour vous conseiller.
 
 | Sem. | Date | Article | Type | Statut |
 |---|---|---|---|---|
-| S26 | Mer 24 juin | Probiotiques : guide pratique pour bien choisir | Buying-intent | A rediger |
-| S27 | Mer 1 juil | Meduses plages bretonnes : que faire ? | Long editorial | A rediger |
-| S28 | Mer 8 juil | Voyager avec ses medicaments : le guide | Long editorial | A rediger |
-| S29 | Mer 15 juil | Premiers secours ete : les gestes essentiels | Court mode d'emploi | A rediger |
+| S26 | Lun 22 juin | Probiotiques : guide pratique pour bien choisir | Buying-intent | A rediger |
+| S27 | **Lun 6 juil** | **Tiques en Bretagne : prevention et reaction** | Long editorial | ✍️ Article #14 redige — pret a publier |
+| S28 | Lun 13 juil | Meduses plages bretonnes : que faire ? | Long editorial | A rediger |
+| S29 | Lun 20 juil | Voyager avec ses medicaments : le guide | Long editorial | A rediger |
+| S30 | Lun 27 juil | Premiers secours ete : les gestes essentiels | Court mode d'emploi | A rediger |
 
 ---
 

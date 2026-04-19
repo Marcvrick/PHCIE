@@ -1,0 +1,26 @@
+{
+  "cleanUrls": true,
+  "trailingSlash": false,
+  "redirects": [
+    {
+      "source": "/blog/Moral%20en%20berne/:slug",
+      "destination": "/blog/:slug",
+      "permanent": true
+    },
+    {
+      "source": "/blog/Peau%20Seche/:slug",
+      "destination": "/blog/:slug",
+      "permanent": true
+    }
+  ],
+  "rewrites": [
+    {
+      "source": "/blog/fatigue-moral-fin-hiver-queven",
+      "destination": "/blog/Moral en berne/fatigue-moral-fin-hiver-queven.html"
+    },
+    {
+      "source": "/blog/proteger-peau-seche-hiver-breton-queven",
+      "destination": "/blog/Peau Seche/proteger-peau-seche-hiver-breton-queven.html"
+    }
+  ]
+}

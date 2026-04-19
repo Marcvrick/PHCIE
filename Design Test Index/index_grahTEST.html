@@ -1,0 +1,1583 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <title>Pharmacie Charnal - Quéven | TEST Redesign</title>
+    <link rel="icon" type="image/x-icon" href="favicon/favicon.ico">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --teal: #2D5F5D;
+            --teal-dark: #1E4644;
+            --sage: #7C9885;
+            --sage-dark: #5A7563;
+            --cream: #FAF8F5;
+            --cream-warm: #F5F0E8;
+            --charcoal: #1A1A1A;
+            --white: #FFFFFF;
+            --gray-400: #9CA3AF;
+            --gray-500: #6B7280;
+            --gray-600: #4B5563;
+            --copper: #B0732B;
+            --lavender: #b4a6d7;
+            --peach: #F2E0D0;
+
+            --font-display: 'Fraunces', Georgia, serif;
+            --font-body: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+        html {
+            scroll-behavior: smooth;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        body {
+            font-family: var(--font-body);
+            color: var(--charcoal);
+            background: var(--cream);
+            overflow-x: hidden;
+        }
+
+        img { max-width: 100%; height: auto; display: block; }
+        a { text-decoration: none; color: inherit; }
+
+        /* =============================================
+           NAV — minimal, confident
+           ============================================= */
+        .nav {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 100;
+            padding: 0 24px;
+            transition: background 0.4s, box-shadow 0.4s;
+        }
+
+        .nav.scrolled {
+            background: rgba(250, 248, 245, 0.95);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            box-shadow: 0 1px 0 rgba(0,0,0,0.06);
+        }
+
+        .nav-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            height: 64px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .nav-brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .nav-brand img {
+            width: 36px;
+            height: 36px;
+            border-radius: 8px;
+        }
+
+        .nav-brand span {
+            font-family: var(--font-display);
+            font-weight: 600;
+            font-size: 1.1rem;
+            color: var(--teal);
+        }
+
+        .nav-links {
+            display: none;
+            list-style: none;
+            gap: 32px;
+            align-items: center;
+        }
+
+        .nav-links a {
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: var(--gray-600);
+            transition: color 0.2s;
+            letter-spacing: -0.01em;
+        }
+
+        .nav-links a:hover { color: var(--charcoal); }
+
+        .nav-links .nav-blog {
+            background: var(--lavender);
+            color: var(--white);
+            padding: 6px 16px;
+            border-radius: 999px;
+            font-weight: 600;
+            font-size: 0.82rem;
+        }
+
+        .nav-links .nav-blog:hover { background: #9b8bc4; }
+
+        .nav-hamburger {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 8px;
+        }
+
+        .nav-hamburger span {
+            width: 22px;
+            height: 2px;
+            background: var(--charcoal);
+            border-radius: 2px;
+            transition: 0.3s;
+        }
+
+        @media (min-width: 768px) {
+            .nav-links { display: flex; }
+            .nav-hamburger { display: none; }
+        }
+
+        /* Mobile menu */
+        .nav-links.open {
+            display: flex;
+            flex-direction: column;
+            position: fixed;
+            top: 64px; right: 0;
+            background: var(--white);
+            width: 280px;
+            padding: 32px;
+            gap: 20px;
+            box-shadow: -4px 0 24px rgba(0,0,0,0.08);
+            z-index: 99;
+        }
+
+        .nav-links.open .nav-dropdown-menu {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            padding-left: 16px;
+            margin-top: 8px;
+        }
+
+        /* Desktop dropdown */
+        .nav-dropdown { position: relative; }
+        .nav-dropdown-menu {
+            display: none;
+            position: absolute;
+            top: calc(100% + 8px);
+            left: -12px;
+            background: var(--white);
+            border-radius: 12px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+            padding: 8px;
+            min-width: 200px;
+            list-style: none;
+            z-index: 50;
+        }
+        .nav-dropdown:hover .nav-dropdown-menu { display: flex; flex-direction: column; }
+        .nav-dropdown-menu a {
+            padding: 8px 12px;
+            border-radius: 8px;
+            font-size: 0.85rem;
+        }
+        .nav-dropdown-menu a:hover { background: var(--cream); }
+
+        /* =============================================
+           HERO — editorial, photo-driven
+           ============================================= */
+        .hero {
+            min-height: 100vh;
+            min-height: 100svh;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            position: relative;
+            overflow: hidden;
+            background: var(--cream-warm);
+        }
+
+        .hero-photo {
+            position: absolute;
+            inset: 0;
+            z-index: 1;
+        }
+
+        .hero-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center 20%;
+        }
+
+        .hero-photo::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(
+                to bottom,
+                rgba(250, 248, 245, 0.1) 0%,
+                rgba(250, 248, 245, 0.3) 40%,
+                rgba(250, 248, 245, 0.85) 70%,
+                rgba(250, 248, 245, 1) 100%
+            );
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            padding: 0 24px 64px;
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        .hero-eyebrow {
+            font-size: 0.78rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: var(--teal);
+            margin-bottom: 16px;
+        }
+
+        .hero h1 {
+            font-family: var(--font-display);
+            font-size: clamp(2.4rem, 7vw, 4.2rem);
+            font-weight: 400;
+            line-height: 1.08;
+            color: var(--charcoal);
+            letter-spacing: -0.03em;
+            max-width: 600px;
+            margin-bottom: 24px;
+        }
+
+        .hero h1 em {
+            font-style: italic;
+            color: var(--teal);
+        }
+
+        .hero-sub {
+            font-size: 1.05rem;
+            line-height: 1.6;
+            color: var(--gray-600);
+            max-width: 440px;
+            margin-bottom: 32px;
+        }
+
+        .hero-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--teal);
+            color: var(--white);
+            padding: 14px 32px;
+            border-radius: 999px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            transition: background 0.3s, transform 0.2s;
+        }
+
+        .hero-cta:hover {
+            background: var(--teal-dark);
+            transform: translateY(-1px);
+        }
+
+        .hero-cta svg {
+            width: 16px; height: 16px;
+            transition: transform 0.3s;
+        }
+
+        .hero-cta:hover svg { transform: translateX(3px); }
+
+        @media (min-width: 768px) {
+            .hero-content { padding: 0 48px 80px; }
+        }
+
+        @media (min-width: 1024px) {
+            .hero-photo::after {
+                background: linear-gradient(
+                    to right,
+                    rgba(250, 248, 245, 0.95) 0%,
+                    rgba(250, 248, 245, 0.8) 35%,
+                    rgba(250, 248, 245, 0.2) 60%,
+                    transparent 100%
+                );
+            }
+            .hero-content { padding: 0 48px 100px; }
+        }
+
+        /* =============================================
+           MARQUEE — subtle, not loud
+           ============================================= */
+        .marquee {
+            background: var(--teal);
+            padding: 14px 0;
+            overflow: hidden;
+        }
+
+        .marquee-track {
+            display: flex;
+            width: max-content;
+            animation: scroll 35s linear infinite;
+        }
+
+        .marquee-track:hover { animation-play-state: paused; }
+
+        .marquee-item {
+            display: inline-flex;
+            align-items: center;
+            gap: 24px;
+            padding: 0 24px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            color: rgba(255,255,255,0.85);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            white-space: nowrap;
+        }
+
+        .marquee-item::before {
+            content: '';
+            width: 4px; height: 4px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.4);
+            flex-shrink: 0;
+        }
+
+        @keyframes scroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        /* =============================================
+           SECTION UTILITY
+           ============================================= */
+        .section { padding: 100px 24px; }
+        .section-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        @media (min-width: 768px) {
+            .section { padding: 120px 48px; }
+        }
+
+        /* =============================================
+           CATEGORIES — photo-first, not icon grids
+           Like hims product cards
+           ============================================= */
+        .categories { background: var(--cream); }
+
+        .cat-header {
+            margin-bottom: 48px;
+        }
+
+        .cat-header h2 {
+            font-family: var(--font-display);
+            font-size: clamp(1.8rem, 4vw, 2.8rem);
+            font-weight: 400;
+            line-height: 1.15;
+            letter-spacing: -0.02em;
+            color: var(--charcoal);
+        }
+
+        .cat-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+        }
+
+        @media (min-width: 768px) {
+            .cat-grid { grid-template-columns: repeat(4, 1fr); gap: 16px; }
+        }
+
+        .cat-card {
+            position: relative;
+            border-radius: 16px;
+            overflow: hidden;
+            aspect-ratio: 3/4;
+            cursor: pointer;
+            display: block;
+        }
+
+        .cat-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .cat-card:hover img { transform: scale(1.05); }
+
+        .cat-card-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.55) 0%, transparent 60%);
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 20px;
+            transition: background 0.4s;
+        }
+
+        .cat-card:hover .cat-card-overlay {
+            background: linear-gradient(to top, rgba(45,95,93,0.7) 0%, transparent 70%);
+        }
+
+        .cat-card-title {
+            font-family: var(--font-display);
+            font-size: clamp(1rem, 2.5vw, 1.3rem);
+            font-weight: 500;
+            color: var(--white);
+            line-height: 1.2;
+        }
+
+        .cat-card-arrow {
+            width: 28px; height: 28px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 10px;
+            transition: background 0.3s, transform 0.3s;
+        }
+
+        .cat-card:hover .cat-card-arrow {
+            background: var(--white);
+            transform: translateX(3px);
+        }
+
+        .cat-card-arrow svg {
+            width: 14px; height: 14px;
+            color: var(--white);
+            transition: color 0.3s;
+        }
+
+        .cat-card:hover .cat-card-arrow svg { color: var(--teal); }
+
+        /* =============================================
+           STATEMENT — one big idea, like hims
+           "Fight your edge back" equivalent
+           ============================================= */
+        .statement {
+            background: var(--teal);
+            color: var(--white);
+            text-align: center;
+        }
+
+        .statement h2 {
+            font-family: var(--font-display);
+            font-size: clamp(1.8rem, 5vw, 3.2rem);
+            font-weight: 400;
+            line-height: 1.15;
+            letter-spacing: -0.02em;
+            max-width: 680px;
+            margin: 0 auto 24px;
+        }
+
+        .statement h2 em {
+            font-style: italic;
+            color: var(--peach);
+        }
+
+        .statement p {
+            font-size: 1.05rem;
+            line-height: 1.7;
+            color: rgba(255,255,255,0.75);
+            max-width: 500px;
+            margin: 0 auto 36px;
+        }
+
+        .statement-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--white);
+            color: var(--teal);
+            padding: 14px 32px;
+            border-radius: 999px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            transition: transform 0.2s, box-shadow 0.3s;
+        }
+
+        .statement-cta:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+        }
+
+        /* =============================================
+           EDITORIAL — split image + text
+           One idea per section. Asymmetric.
+           ============================================= */
+        .editorial {
+            display: grid;
+            grid-template-columns: 1fr;
+            min-height: 0;
+        }
+
+        @media (min-width: 768px) {
+            .editorial { grid-template-columns: 1fr 1fr; min-height: 560px; }
+        }
+
+        .editorial-photo {
+            position: relative;
+            min-height: 320px;
+            overflow: hidden;
+        }
+
+        .editorial-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .editorial:hover .editorial-photo img {
+            transform: scale(1.03);
+        }
+
+        .editorial-text {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 48px 24px;
+        }
+
+        @media (min-width: 768px) {
+            .editorial-text { padding: 64px 56px; }
+        }
+
+        .editorial-text .label {
+            font-size: 0.72rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: var(--teal);
+            margin-bottom: 16px;
+        }
+
+        .editorial-text h2 {
+            font-family: var(--font-display);
+            font-size: clamp(1.6rem, 3.5vw, 2.4rem);
+            font-weight: 400;
+            line-height: 1.15;
+            letter-spacing: -0.02em;
+            color: var(--charcoal);
+            margin-bottom: 16px;
+        }
+
+        .editorial-text p {
+            font-size: 1rem;
+            line-height: 1.7;
+            color: var(--gray-500);
+            margin-bottom: 28px;
+            max-width: 420px;
+        }
+
+        .editorial-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--teal);
+            transition: gap 0.3s;
+        }
+
+        .editorial-link:hover { gap: 14px; }
+        .editorial-link svg { width: 16px; height: 16px; }
+
+        .editorial--reversed .editorial-photo { order: 2; }
+        .editorial--reversed .editorial-text { order: 1; }
+
+        @media (max-width: 767px) {
+            .editorial--reversed .editorial-photo { order: 0; }
+            .editorial--reversed .editorial-text { order: 0; }
+        }
+
+        .editorial--sage { background: #E8F0EA; }
+        .editorial--peach { background: #FEF0E6; }
+        .editorial--lavender { background: #EDE8F5; }
+        .editorial--cream { background: var(--cream-warm); }
+
+        /* =============================================
+           NUMBERS — confident, not a grid of icons
+           Like hims "Test 50+ biomarkers"
+           ============================================= */
+        .numbers { background: var(--white); }
+
+        .numbers-row {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 0;
+            border-top: 1px solid rgba(0,0,0,0.08);
+        }
+
+        @media (min-width: 768px) {
+            .numbers-row { grid-template-columns: repeat(4, 1fr); }
+        }
+
+        .number-item {
+            padding: 40px 0;
+            border-bottom: 1px solid rgba(0,0,0,0.08);
+            text-align: center;
+        }
+
+        @media (min-width: 768px) {
+            .number-item {
+                border-bottom: none;
+                border-right: 1px solid rgba(0,0,0,0.08);
+                padding: 48px 24px;
+            }
+            .number-item:last-child { border-right: none; }
+        }
+
+        .number-value {
+            font-family: var(--font-display);
+            font-size: clamp(2.4rem, 5vw, 3.2rem);
+            font-weight: 400;
+            color: var(--teal);
+            letter-spacing: -0.03em;
+            margin-bottom: 8px;
+        }
+
+        .number-label {
+            font-size: 0.85rem;
+            color: var(--gray-500);
+            letter-spacing: 0.02em;
+        }
+
+        /* =============================================
+           SERVICES — horizontal scroll on mobile,
+           clean grid on desktop. NOT 6 identical cards.
+           ============================================= */
+        .services-section { background: var(--cream); }
+
+        .services-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            margin-bottom: 40px;
+            gap: 16px;
+        }
+
+        .services-header h2 {
+            font-family: var(--font-display);
+            font-size: clamp(1.8rem, 4vw, 2.8rem);
+            font-weight: 400;
+            line-height: 1.15;
+            letter-spacing: -0.02em;
+        }
+
+        .services-header a {
+            font-size: 0.88rem;
+            font-weight: 600;
+            color: var(--teal);
+            white-space: nowrap;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            flex-shrink: 0;
+            transition: gap 0.3s;
+        }
+
+        .services-header a:hover { gap: 10px; }
+        .services-header a svg { width: 14px; height: 14px; }
+
+        .services-scroll {
+            display: flex;
+            gap: 16px;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            -webkit-overflow-scrolling: touch;
+            padding-bottom: 8px;
+            scrollbar-width: none;
+        }
+
+        .services-scroll::-webkit-scrollbar { display: none; }
+
+        @media (min-width: 768px) {
+            .services-scroll {
+                display: grid;
+                grid-template-columns: repeat(3, 1fr);
+                gap: 16px;
+                overflow: visible;
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .services-scroll { grid-template-columns: repeat(3, 1fr); gap: 20px; }
+        }
+
+        .svc-card {
+            min-width: 260px;
+            scroll-snap-align: start;
+            background: var(--white);
+            border-radius: 16px;
+            padding: 28px 24px;
+            border: 1px solid rgba(0,0,0,0.06);
+            transition: transform 0.3s, box-shadow 0.3s;
+            display: flex;
+            flex-direction: column;
+        }
+
+        @media (min-width: 768px) {
+            .svc-card { min-width: 0; }
+        }
+
+        .svc-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.06);
+        }
+
+        .svc-icon {
+            width: 40px; height: 40px;
+            border-radius: 10px;
+            background: var(--cream);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            color: var(--teal);
+        }
+
+        .svc-icon svg { width: 20px; height: 20px; }
+
+        .svc-card h3 {
+            font-family: var(--font-display);
+            font-size: 1.1rem;
+            font-weight: 500;
+            color: var(--charcoal);
+            margin-bottom: 8px;
+            line-height: 1.3;
+        }
+
+        .svc-card p {
+            font-size: 0.88rem;
+            line-height: 1.6;
+            color: var(--gray-500);
+            flex-grow: 1;
+        }
+
+        /* =============================================
+           TESTIMONIALS — real words, not a carousel
+           ============================================= */
+        .reviews-section { background: var(--white); }
+
+        .reviews-header {
+            text-align: center;
+            margin-bottom: 48px;
+        }
+
+        .reviews-header h2 {
+            font-family: var(--font-display);
+            font-size: clamp(1.8rem, 4vw, 2.8rem);
+            font-weight: 400;
+            letter-spacing: -0.02em;
+            line-height: 1.15;
+            margin-bottom: 12px;
+        }
+
+        .reviews-header p {
+            font-size: 0.95rem;
+            color: var(--gray-500);
+        }
+
+        .reviews-header .stars {
+            display: flex;
+            justify-content: center;
+            gap: 3px;
+            margin-bottom: 16px;
+        }
+
+        .reviews-header .stars svg {
+            width: 20px; height: 20px;
+            fill: var(--copper);
+            color: var(--copper);
+        }
+
+        .reviews-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 16px;
+        }
+
+        @media (min-width: 768px) {
+            .reviews-grid { grid-template-columns: repeat(3, 1fr); gap: 20px; }
+        }
+
+        .review-card {
+            background: var(--cream);
+            border-radius: 16px;
+            padding: 32px 28px;
+        }
+
+        .review-card blockquote {
+            font-size: 1rem;
+            line-height: 1.7;
+            color: var(--gray-600);
+            margin-bottom: 20px;
+            font-style: normal;
+        }
+
+        .review-card blockquote::before {
+            content: '\201C';
+            font-family: var(--font-display);
+            font-size: 2.4rem;
+            color: var(--teal);
+            line-height: 0;
+            display: block;
+            margin-bottom: 12px;
+        }
+
+        .review-author {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--charcoal);
+        }
+
+        .review-source {
+            font-size: 0.78rem;
+            color: var(--gray-400);
+            margin-top: 2px;
+        }
+
+        /* =============================================
+           BRAND BAR — horizontal logo strip
+           ============================================= */
+        .brand-bar {
+            padding: 48px 24px;
+            background: var(--white);
+            border-top: 1px solid rgba(0,0,0,0.06);
+        }
+
+        .brand-bar-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .brand-bar-label {
+            text-align: center;
+            font-size: 0.72rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: var(--gray-400);
+            margin-bottom: 28px;
+        }
+
+        .brand-logos {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 32px 40px;
+        }
+
+        .brand-logos img {
+            height: 28px;
+            width: auto;
+            object-fit: contain;
+            opacity: 0.45;
+            filter: grayscale(100%);
+            transition: opacity 0.3s, filter 0.3s;
+        }
+
+        .brand-logos img:hover {
+            opacity: 1;
+            filter: grayscale(0%);
+        }
+
+        @media (min-width: 768px) {
+            .brand-logos img { height: 32px; }
+            .brand-logos { gap: 40px 56px; }
+        }
+
+        /* =============================================
+           VISIT — the "come see us" close
+           Full-bleed photo with overlay
+           ============================================= */
+        .visit {
+            position: relative;
+            min-height: 480px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .visit-photo {
+            position: absolute;
+            inset: 0;
+        }
+
+        .visit-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .visit-photo::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: rgba(30, 70, 68, 0.72);
+        }
+
+        .visit-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            padding: 64px 24px;
+            max-width: 560px;
+        }
+
+        .visit-content h2 {
+            font-family: var(--font-display);
+            font-size: clamp(1.8rem, 4vw, 2.8rem);
+            font-weight: 400;
+            color: var(--white);
+            line-height: 1.15;
+            letter-spacing: -0.02em;
+            margin-bottom: 16px;
+        }
+
+        .visit-content p {
+            font-size: 1rem;
+            line-height: 1.7;
+            color: rgba(255,255,255,0.8);
+            margin-bottom: 12px;
+        }
+
+        .visit-content .visit-hours {
+            font-size: 0.88rem;
+            color: rgba(255,255,255,0.6);
+            margin-bottom: 28px;
+        }
+
+        .visit-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--white);
+            color: var(--teal);
+            padding: 14px 32px;
+            border-radius: 999px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            transition: transform 0.2s, box-shadow 0.3s;
+        }
+
+        .visit-cta:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+        }
+
+        /* =============================================
+           FOOTER — clean, restrained
+           ============================================= */
+        .footer {
+            background: var(--charcoal);
+            color: var(--white);
+            padding: 64px 24px 32px;
+        }
+
+        @media (min-width: 768px) {
+            .footer { padding: 80px 48px 32px; }
+        }
+
+        .footer-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 40px;
+            margin-bottom: 48px;
+        }
+
+        @media (min-width: 768px) {
+            .footer-grid { grid-template-columns: 2fr 1fr 1fr 1fr; }
+        }
+
+        .footer-brand p {
+            font-size: 0.9rem;
+            color: rgba(255,255,255,0.55);
+            line-height: 1.7;
+            margin-top: 12px;
+            max-width: 280px;
+        }
+
+        .footer-brand-name {
+            font-family: var(--font-display);
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 12px;
+            margin-top: 20px;
+        }
+
+        .footer-social a {
+            width: 36px; height: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid rgba(255,255,255,0.15);
+            border-radius: 50%;
+            color: rgba(255,255,255,0.7);
+            transition: 0.2s;
+        }
+
+        .footer-social a:hover {
+            background: var(--white);
+            color: var(--charcoal);
+            border-color: var(--white);
+        }
+
+        .footer-social svg { width: 16px; height: 16px; }
+
+        .footer-col h4 {
+            font-size: 0.72rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            color: rgba(255,255,255,0.35);
+            margin-bottom: 16px;
+        }
+
+        .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+        .footer-col li { font-size: 0.88rem; color: rgba(255,255,255,0.5); }
+        .footer-col a { font-size: 0.88rem; color: rgba(255,255,255,0.65); transition: color 0.2s; }
+        .footer-col a:hover { color: var(--white); }
+
+        .footer-bottom {
+            padding-top: 24px;
+            border-top: 1px solid rgba(255,255,255,0.08);
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            align-items: center;
+        }
+
+        @media (min-width: 768px) {
+            .footer-bottom { flex-direction: row; justify-content: space-between; }
+        }
+
+        .footer-copy {
+            font-size: 0.78rem;
+            color: rgba(255,255,255,0.35);
+        }
+
+        .footer-legal { display: flex; gap: 20px; }
+        .footer-legal a { font-size: 0.78rem; color: rgba(255,255,255,0.35); }
+        .footer-legal a:hover { color: rgba(255,255,255,0.7); }
+
+        /* Mobile footer */
+        @media (max-width: 767px) {
+            .footer-grid {
+                grid-template-columns: 1fr 1fr;
+                grid-template-areas: "brand brand" "contact hours";
+                gap: 24px;
+            }
+            .footer-brand { grid-area: brand; }
+            .footer-contact { grid-area: contact; }
+            .footer-hours { grid-area: hours; }
+            .footer-nav-col { display: none; }
+        }
+
+        /* =============================================
+           SCROLL REVEAL
+           ============================================= */
+        .reveal {
+            opacity: 0;
+            transform: translateY(24px);
+            transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+                        transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .reveal-d1 { transition-delay: 0.1s; }
+        .reveal-d2 { transition-delay: 0.2s; }
+        .reveal-d3 { transition-delay: 0.3s; }
+        .reveal-d4 { transition-delay: 0.4s; }
+        .reveal-d5 { transition-delay: 0.5s; }
+    </style>
+</head>
+<body>
+
+    <!-- NAV -->
+    <nav class="nav" id="nav">
+        <div class="nav-inner">
+            <a href="index.html" class="nav-brand">
+                <img src="images/pharmacie-charnal-logo.png" alt="Pharmacie Charnal">
+                <span>Pharmacie Charnal</span>
+            </a>
+            <button class="nav-hamburger" aria-label="Menu" aria-expanded="false">
+                <span></span><span></span><span></span>
+            </button>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html">Accueil</a></li>
+                <li class="nav-dropdown">
+                    <a href="services.html">Services</a>
+                    <ul class="nav-dropdown-menu">
+                        <li><a href="histoire.html">Notre Histoire</a></li>
+                        <li><a href="Nos-marques/nosmarques.html">Nos Marques</a></li>
+                        <li><a href="pharmacie-de-garde-queven-hennebont-lorient.html">Pharmacie de garde</a></li>
+                        <li><a href="annuaire-sante.html">Annuaire Santé</a></li>
+                        <li><a href="Quizzes/guide-quizzes-sante-pharmacie-queven.html">Quiz santé</a></li>
+                    </ul>
+                </li>
+                <li><a href="blog.html" class="nav-blog">Au comptoir</a></li>
+                <li class="nav-dropdown">
+                    <a href="contact.html">Contact</a>
+                    <ul class="nav-dropdown-menu">
+                        <li><a href="recrutement-preparatrice-pharmacie-queven.html">Recrutement</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- HERO — Laure's photo, editorial-grade -->
+    <section class="hero">
+        <div class="hero-photo">
+            <img src="images/Laure CNL.jpeg" alt="Laure, pharmacienne titulaire">
+        </div>
+        <div class="hero-content">
+            <div class="hero-eyebrow">Pharmacie familiale depuis 1984</div>
+            <h1>Des soins pensés <em>pour vous</em></h1>
+            <p class="hero-sub">Pas un guichet. Une pharmacie où l'on prend le temps de vous écouter, de vous conseiller, de vous connaitre.</p>
+            <a href="Quizzes/quiz-automedication.html" class="hero-cta">
+                Trouver mon soin
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+        </div>
+    </section>
+
+    <!-- MARQUEE -->
+    <div class="marquee">
+        <div class="marquee-track">
+            <span class="marquee-item">Ordonnances</span>
+            <span class="marquee-item">Vaccinations</span>
+            <span class="marquee-item">Produits naturels</span>
+            <span class="marquee-item">Livraison à domicile</span>
+            <span class="marquee-item">Dermocosmétique</span>
+            <span class="marquee-item">Automédication</span>
+            <span class="marquee-item">Conseil personnalisé</span>
+            <span class="marquee-item">Phytothérapie</span>
+            <span class="marquee-item">Ordonnances</span>
+            <span class="marquee-item">Vaccinations</span>
+            <span class="marquee-item">Produits naturels</span>
+            <span class="marquee-item">Livraison à domicile</span>
+            <span class="marquee-item">Dermocosmétique</span>
+            <span class="marquee-item">Automédication</span>
+            <span class="marquee-item">Conseil personnalisé</span>
+            <span class="marquee-item">Phytothérapie</span>
+        </div>
+    </div>
+
+    <!-- CATEGORIES — photo cards, not icons -->
+    <section class="section categories">
+        <div class="section-inner">
+            <div class="cat-header reveal">
+                <h2>Explorez nos univers</h2>
+            </div>
+            <div class="cat-grid">
+                <a href="Quizzes/quiz-soin-peau.html" class="cat-card reveal reveal-d1">
+                    <img src="images/produits-cosmetiques.jpg" alt="Soins dermocosmétiques">
+                    <div class="cat-card-overlay">
+                        <span class="cat-card-title">Dermocosmétique</span>
+                        <div class="cat-card-arrow">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                        </div>
+                    </div>
+                </a>
+                <a href="Quizzes/quiz-produits-naturels.html" class="cat-card reveal reveal-d2">
+                    <img src="images/complements-alimentaires.jpg" alt="Compléments et produits naturels">
+                    <div class="cat-card-overlay">
+                        <span class="cat-card-title">Naturel & Phyto</span>
+                        <div class="cat-card-arrow">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                        </div>
+                    </div>
+                </a>
+                <a href="Quizzes/quiz-automedication.html" class="cat-card reveal reveal-d3">
+                    <img src="images/medicaments.jpg" alt="Médicaments et automédication">
+                    <div class="cat-card-overlay">
+                        <span class="cat-card-title">Automédication</span>
+                        <div class="cat-card-arrow">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                        </div>
+                    </div>
+                </a>
+                <a href="Quizzes/quiz-coming-soon.html" class="cat-card reveal reveal-d4">
+                    <img src="images/produits-bebe.jpg" alt="Soins bébé et maternité">
+                    <div class="cat-card-overlay">
+                        <span class="cat-card-title">Bébé & Famille</span>
+                        <div class="cat-card-arrow">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- STATEMENT — one single bold message -->
+    <section class="section statement">
+        <div class="section-inner">
+            <h2 class="reveal">La santé, ce n'est pas <em>que des médicaments</em></h2>
+            <p class="reveal reveal-d1">C'est quelqu'un qui vous écoute. Qui connait votre historique. Qui prend cinq minutes de plus quand il le faut.</p>
+            <a href="histoire.html" class="statement-cta reveal reveal-d2">
+                Découvrir notre histoire
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+        </div>
+    </section>
+
+    <!-- EDITORIAL 1 — Latest article -->
+    <div class="editorial editorial--sage" id="latest-article-section">
+        <div class="editorial-photo">
+            <a id="latest-article-image-link" href="blog/detox-apres-fetes-mythe-realite-queven.html">
+                <img id="latest-article-img" src="images/Blog photos/Detox en Janvier.jpeg" alt="Bien-être après les fêtes">
+            </a>
+        </div>
+        <div class="editorial-text">
+            <span class="label">Dernier article</span>
+            <h2 id="latest-article-title" class="reveal">Détox après les fêtes: mythe ou réalité?</h2>
+            <p id="latest-article-excerpt" class="reveal reveal-d1">Après les fêtes, les promesses de détox miracle fleurissent partout. Mais que dit vraiment la science? Laure vous explique ce qui fonctionne réellement.</p>
+            <a href="blog/detox-apres-fetes-mythe-realite-queven.html" class="editorial-link reveal reveal-d2" id="latest-article-link">
+                Lire l'article
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+        </div>
+    </div>
+
+    <!-- EDITORIAL 2 — Brand spotlight (random) -->
+    <div class="editorial editorial--reversed editorial--lavender" id="brand-spotlight">
+        <div class="editorial-photo" style="display:flex;align-items:center;justify-content:center;background:var(--white);padding:48px;">
+            <a id="brand-logo-link" href="Nos-marques/nosmarques.html">
+                <img id="brand-logo-img" src="" alt="" style="max-width:200px;max-height:100px;object-fit:contain;width:auto;height:auto;">
+            </a>
+        </div>
+        <div class="editorial-text">
+            <span class="label" id="brand-category">Marque à découvrir</span>
+            <h2 id="brand-title" class="reveal"></h2>
+            <p id="brand-description" class="reveal reveal-d1"></p>
+            <a href="Nos-marques/nosmarques.html" class="editorial-link reveal reveal-d2" id="brand-link">
+                Découvrir la marque
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+        </div>
+    </div>
+
+    <!-- NUMBERS -->
+    <section class="section numbers">
+        <div class="section-inner">
+            <div class="numbers-row">
+                <div class="number-item reveal">
+                    <div class="number-value">40+</div>
+                    <div class="number-label">années à Quéven</div>
+                </div>
+                <div class="number-item reveal reveal-d1">
+                    <div class="number-value">4.9</div>
+                    <div class="number-label">sur Google</div>
+                </div>
+                <div class="number-item reveal reveal-d2">
+                    <div class="number-value">6j/7</div>
+                    <div class="number-label">à votre service</div>
+                </div>
+                <div class="number-item reveal reveal-d3">
+                    <div class="number-value">100%</div>
+                    <div class="number-label">conseil humain</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SERVICES -->
+    <section class="section services-section">
+        <div class="section-inner">
+            <div class="services-header">
+                <h2 class="reveal">Ce qu'on fait pour vous</h2>
+                <a href="services.html" class="reveal">
+                    Tous nos services
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                </a>
+            </div>
+            <div class="services-scroll">
+                <a href="services.html#ordonnances" class="svc-card reveal">
+                    <div class="svc-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/></svg>
+                    </div>
+                    <h3>Ordonnances</h3>
+                    <p>Délivrance, suivi pharmaceutique et conseils personnalisés pour chaque traitement.</p>
+                </a>
+                <a href="services.html#parapharmacie" class="svc-card reveal reveal-d1">
+                    <div class="svc-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg>
+                    </div>
+                    <h3>Parapharmacie</h3>
+                    <p>Dermocosmétique, soins du visage et du corps avec des marques de confiance.</p>
+                </a>
+                <a href="services.html#vaccinations" class="svc-card reveal reveal-d2">
+                    <div class="svc-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                    </div>
+                    <h3>Vaccinations</h3>
+                    <p>Grippe, Covid, rappels. Vaccination sur rendez-vous par nos pharmaciens.</p>
+                </a>
+                <a href="services.html#produits-naturels" class="svc-card reveal reveal-d3">
+                    <div class="svc-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20.24 12.24a6 6 0 00-8.49-8.49L5 10.5V19h8.5z"/><line x1="16" y1="8" x2="2" y2="22"/></svg>
+                    </div>
+                    <h3>Produits naturels</h3>
+                    <p>Phytothérapie, aromathérapie et compléments alimentaires sélectionnés.</p>
+                </a>
+                <a href="services.html#materiel-medical" class="svc-card reveal reveal-d4">
+                    <div class="svc-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+                    </div>
+                    <h3>Matériel médical</h3>
+                    <p>Location et vente de béquilles, lits médicalisés, équipements d'assistance.</p>
+                </a>
+                <a href="services.html#livraison" class="svc-card reveal reveal-d5">
+                    <div class="svc-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="1" y="6" width="15" height="10" rx="1"/><path d="M16 10h4l3 3v3h-7V10z"/><circle cx="6" cy="18" r="2"/><circle cx="18" cy="18" r="2"/></svg>
+                    </div>
+                    <h3>Livraison à domicile</h3>
+                    <p>Livraison le jour même sur Quéven et les communes voisines.</p>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- REVIEWS -->
+    <section class="section reviews-section">
+        <div class="section-inner">
+            <div class="reviews-header reveal">
+                <div class="stars">
+                    <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                    <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                    <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                    <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                    <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                </div>
+                <h2>Ce que disent nos patients</h2>
+                <p>4.9/5 sur Google, 20+ avis</p>
+            </div>
+            <div class="reviews-grid">
+                <div class="review-card reveal">
+                    <blockquote>La meilleure pharmacie de la région. Toujours aimable, absolument fiable et compétente.</blockquote>
+                    <div class="review-author">Christian O.</div>
+                    <div class="review-source">Google</div>
+                </div>
+                <div class="review-card reveal reveal-d1">
+                    <blockquote>Super pharmacie avec du personnel avenant et très professionnel. La patronne Laure a de bons conseils.</blockquote>
+                    <div class="review-author">Sophie A.</div>
+                    <div class="review-source">Google</div>
+                </div>
+                <div class="review-card reveal reveal-d2">
+                    <blockquote>C'est toujours un plaisir de retrouver Laure et son équipe... accueil, conseils et services au top.</blockquote>
+                    <div class="review-author">Allannic R.</div>
+                    <div class="review-source">Google</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- BRAND LOGOS BAR -->
+    <div class="brand-bar">
+        <div class="brand-bar-inner">
+            <div class="brand-bar-label">Nos marques partenaires</div>
+            <div class="brand-logos">
+                <img src="Nos-marques/logos/Bioderma.png" alt="Bioderma">
+                <img src="Nos-marques/logos/La-roche-posay.png" alt="La Roche-Posay">
+                <img src="Nos-marques/logos/Avene.jpeg" alt="Avène">
+                <img src="Nos-marques/logos/Nuxe.jpeg" alt="Nuxe">
+                <img src="Nos-marques/logos/Klorane.png" alt="Klorane">
+                <img src="Nos-marques/logos/Pileje-Logo.jpg" alt="PiLeJe">
+                <img src="Nos-marques/logos/logo-arkopharma-2.png" alt="Arkopharma">
+                <img src="Nos-marques/logos/boiron-logo-png-transparent.png" alt="Boiron">
+            </div>
+        </div>
+    </div>
+
+    <!-- VISIT — facade photo, come see us -->
+    <section class="visit">
+        <div class="visit-photo">
+            <img src="images/pharmacie-charnal-facade.jpeg" alt="Façade Pharmacie Charnal, Quéven">
+        </div>
+        <div class="visit-content">
+            <h2 class="reveal">Passez nous voir</h2>
+            <p class="reveal reveal-d1">32 Place de Toulouse, 56530 Quéven</p>
+            <p class="visit-hours reveal reveal-d2">Lun-Ven 9h-12h30 / 14h-19h15 &middot; Sam 9h-12h30</p>
+            <a href="contact.html" class="visit-cta reveal reveal-d3">
+                Nous trouver
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            </a>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="footer-inner">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <div class="footer-brand-name">Pharmacie Charnal</div>
+                    <p>Votre pharmacie familiale depuis plus de 40 ans. Une tradition de soins personnalisés à Quéven.</p>
+                    <div class="footer-social">
+                        <a href="https://www.instagram.com/pharmaciecharnalqueven/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1.5" fill="currentColor"/></svg>
+                        </a>
+                        <a href="https://www.facebook.com/pharmaciecharnal/" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
+                        </a>
+                    </div>
+                </div>
+                <div class="footer-col footer-nav-col">
+                    <h4>Navigation</h4>
+                    <ul>
+                        <li><a href="index.html">Accueil</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="histoire.html">Notre Histoire</a></li>
+                        <li><a href="blog.html">Au Comptoir</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col footer-contact">
+                    <h4>Contact</h4>
+                    <ul>
+                        <li>32 Place de Toulouse</li>
+                        <li>56530 Quéven</li>
+                        <li><a href="tel:0297050931">02 97 05 09 31</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col footer-hours">
+                    <h4>Horaires</h4>
+                    <ul>
+                        <li>Lun-Ven: 9h-12h30 / 14h-19h15</li>
+                        <li>Samedi: 9h-12h30</li>
+                        <li>Dimanche: Fermé</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <span class="footer-copy">&copy; 2026 Pharmacie Charnal. Tous droits réservés.</span>
+                <div class="footer-legal">
+                    <a href="mentions-legales.html">Mentions légales</a>
+                    <a href="donnees-personnelles.html">Confidentialité</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+    // Nav scroll
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => {
+        nav.classList.toggle('scrolled', window.scrollY > 40);
+    });
+
+    // Mobile menu
+    const hamburger = document.querySelector('.nav-hamburger');
+    const navLinks = document.getElementById('navLinks');
+    hamburger.addEventListener('click', () => {
+        const open = navLinks.classList.toggle('open');
+        hamburger.setAttribute('aria-expanded', open);
+    });
+    document.addEventListener('click', (e) => {
+        if (!navLinks.contains(e.target) && !hamburger.contains(e.target)) {
+            navLinks.classList.remove('open');
+            hamburger.setAttribute('aria-expanded', 'false');
+        }
+    });
+
+    // Scroll reveal
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+                observer.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    // Auto-fetch latest article
+    (function() {
+        fetch('blog.html')
+            .then(r => { if (!r.ok) throw new Error(); return r.text(); })
+            .then(html => {
+                const doc = new DOMParser().parseFromString(html, 'text/html');
+                const card = doc.querySelector('.blog-card');
+                if (!card) return;
+                const title = card.querySelector('.blog-title');
+                const excerpt = card.querySelector('.blog-excerpt');
+                const img = card.querySelector('.blog-image-placeholder img');
+                const link = card.querySelector('a');
+                const url = link ? link.getAttribute('href') : 'blog.html';
+                if (title) document.getElementById('latest-article-title').textContent = title.textContent;
+                if (excerpt) document.getElementById('latest-article-excerpt').textContent = excerpt.textContent.trim();
+                if (img) {
+                    const el = document.getElementById('latest-article-img');
+                    el.alt = img.getAttribute('alt') || '';
+                    el.src = img.getAttribute('src');
+                }
+                if (url) {
+                    document.getElementById('latest-article-link').href = url;
+                    document.getElementById('latest-article-image-link').href = url;
+                }
+            })
+            .catch(() => {});
+    })();
+
+    // Brand spotlight rotation
+    (function() {
+        const brands = [
+            { name:'Bioderma', cat:'Dermocosmétique', title:'La biologie au service de votre peau', desc:'Laboratoire français pionnier de l\'eau micellaire. Des soins qui respectent la biologie naturelle de votre peau.', logo:'Nos-marques/logos/Bioderma.png', page:'Nos-marques/bioderma-page.html' },
+            { name:'Nuxe', cat:'Cosmétique naturelle', title:'Le luxe naturel à la française', desc:'Des formules sensorielles à base de plantes, créées à Paris. L\'Huile Prodigieuse, vendue toutes les 6 secondes dans le monde.', logo:'Nos-marques/logos/Nuxe.jpeg', page:'Nos-marques/nuxe-page.html' },
+            { name:'Avène', cat:'Dermocosmétique', title:'L\'eau thermale des peaux sensibles', desc:'Les vertus apaisantes de l\'eau thermale d\'Avène pour les peaux les plus sensibles et réactives.', logo:'Nos-marques/logos/Avene.jpeg', page:'Nos-marques/avene-page.html' },
+            { name:'La Roche-Posay', cat:'Dermocosmétique', title:'L\'expertise dermatologique pour tous', desc:'Marque n\u00b01 recommandée par les dermatologues. Formulée avec l\'eau thermale naturellement apaisante.', logo:'Nos-marques/logos/La-roche-posay.png', page:'Nos-marques/la-roche-posay-page.html' },
+            { name:'Klorane', cat:'Soins capillaires', title:'Le pouvoir des plantes pour vos cheveux', desc:'Depuis 1966, chaque gamme est construite autour d\'une plante emblématique, de la pivoine au quinine.', logo:'Nos-marques/logos/Klorane.png', page:'Nos-marques/klorane-page.html' },
+            { name:'La Rosée', cat:'Cosmétique naturelle', title:'Ultra-naturel, créé par des pharmaciennes', desc:'98% d\'ingrédients naturels, certifiée B Corp, fabriquée en France. La cosmétique responsable accessible.', logo:'Nos-marques/logos/la-rosee.svg', page:'Nos-marques/larosee-page.html' },
+            { name:'PiLeJe', cat:'Micronutrition', title:'La science des micronutriments', desc:'Leader en micronutrition et probiotiques. Des formulations basées sur la recherche clinique.', logo:'Nos-marques/logos/Pileje-Logo.jpg', page:'Nos-marques/nosmarques.html' },
+            { name:'Mustela', cat:'Bébé & Famille', title:'Expert de la peau des tout-petits', desc:'Depuis 1950, des soins dédiés aux bébés et futures mamans, formulés avec des ingrédients d\'origine naturelle.', logo:'Nos-marques/logos/Mustella.93ejXIozyf171udveJDY7QHaEK', page:'Nos-marques/nosmarques.html' },
+            { name:'Biocanina', cat:'Santé animale', title:'Prendre soin de vos compagnons', desc:'Antiparasitaires, soins d\'hygiène et compléments adaptés aux besoins de vos animaux.', logo:'Nos-marques/logos/Biocanina.png', page:'Nos-marques/biocanina-page.html' },
+            { name:'Biogaran', cat:'Génériques & OTC', title:'L\'essentiel, accessible à tous', desc:'N\u00b01 du médicament générique en France. Des solutions santé efficaces et accessibles.', logo:'Nos-marques/logos/biogaran_logo.jpg', page:'Nos-marques/nosmarques.html' }
+        ];
+        const b = brands[Math.floor(Math.random() * brands.length)];
+        document.getElementById('brand-category').textContent = b.cat;
+        document.getElementById('brand-title').textContent = b.title;
+        document.getElementById('brand-description').textContent = b.desc;
+        const logoImg = document.getElementById('brand-logo-img');
+        logoImg.src = b.logo;
+        logoImg.alt = b.name;
+        document.getElementById('brand-logo-link').href = b.page;
+        document.getElementById('brand-link').href = b.page;
+    })();
+    </script>
+
+</body>
+</html>

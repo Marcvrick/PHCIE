@@ -69,7 +69,7 @@ recrutement-preparatrice-pharmacie-queven.html
 annuaire-sante.html, planning.html
 ```
 
-**Blog:** `blog/*.html` (8 articles)
+**Blog:** `blog/*.html` (13 articles). Sources .md organisees dans des dossiers numerotes (`01-prevenir-maux-hiver/`, `04-detox-apres-fetes/`, ..., `12-troubles-sommeil/`) — numerotation alignee sur les posts GMB. Les .html restent a la racine de `blog/` (URLs live du site).
 **Marques:** `Nos-marques/*.html` (16 pages + nosmarques.html index + TEMPLATE-marque.html)
 **Quiz:** `Quizzes/*.html` (quiz-automedication, quiz-soin-peau, quiz-produits-naturels, quiz-coming-soon, guide-quizzes-sante)
 **Assets:** `images/`, `style.css`, `style-v2.css`, `animations.js`
@@ -87,6 +87,15 @@ annuaire-sante.html, planning.html
 **Compléments:** PiLeJe, Arkopharma, Boiron, Aragan, Nat&Form, Bion 3, Biogaran
 
 **❌ Ne JAMAIS inventer de marques**
+
+### Vérification Vidal (OBLIGATOIRE)
+
+**Toute information médicamenteuse doit être vérifiée avec le Vidal avant publication** : contre-indications, âges limites, posologies, conditions de délivrance (OTC vs prescription). Ne jamais écrire une recommandation médicale approximative — la précision est non négociable sur un site de pharmacie.
+
+Exemples de pièges courants :
+- ❌ "Le lopéramide est contre-indiqué chez l'enfant" → trop vague (CI absolue < 2 ans, prescription 2-8 ans, OTC variable selon forme)
+- ❌ "Pas d'anti-vomitif sans avis médical" → inexact (Vogalib OTC dès 6 ans, max 2 jours)
+- ✅ Toujours préciser : l'âge, la forme galénique, OTC ou prescription, la durée max sans avis médical
 
 ### CTAs (Calls-to-Action)
 
@@ -188,9 +197,10 @@ Code à insérer dans `<head>`:
 
 ### Fichiers CSS
 
-- `style-v2.css`: Pages principales (index, services, histoire, contact, pharmacie-de-garde, recrutement, annuaire-sante, nosmarques index)
-- `style.css`: Blog, mentions-legales, donnees-personnelles
+- `style-v2.css`: Pages principales (index, services, histoire, contact, pharmacie-de-garde, recrutement, annuaire-sante, nosmarques index, blog.html)
+- `style.css`: Articles blog individuels (`blog/*.html`), mentions-legales, donnees-personnelles
 - **Pages marques (Nos-marques/*-page.html):** CSS inline (pas de stylesheet externe). Chaque page contient ~3400 lignes de `<style>` avec variables CSS propres + couleurs de la marque.
+- **IMPORTANT:** La navbar doit etre visuellement identique entre `style.css` et `style-v2.css`. Le bouton "Au comptoir" (`.nav-link-blog`) doit toujours rester lavande `#b4a6d7` — ne PAS ajouter de `.nav-link-blog.active` qui assombrit la couleur.
 
 ---
 
