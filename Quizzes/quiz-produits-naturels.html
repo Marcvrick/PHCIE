@@ -51,33 +51,54 @@
 
     <style>
         /* ============================================
-           HIMS-INSPIRED DESIGN SYSTEM
-           Quiz Produits Naturels — Pharmacie Charnal
+           PHARMACIE CHARNAL — Quiz Produits Naturels
+           Design refonte : moins HIMS, plus officine
            ============================================ */
 
         :root {
-            --pastel-sage: #E8F0EA;
-            --pastel-mint: #D4E8E0;
-            --pastel-teal: #D0E5E4;
-            --pastel-cream: #FBF9F6;
-            --pastel-peach: #FEF0E6;
-            --pastel-lavender: #EDE8F5;
-
+            /* Palette principale Charnal */
             --teal-pro: #2D5F5D;
+            --teal-dark: #1E4644;
             --sage-natural: #7C9885;
             --sage-dark: #5A7563;
+            --sage-deep: #4A6955;
             --bleu-confiance: #4A7C8E;
+            --lavande: #b4a6d7;
 
-            --white: #FFFFFF;
+            /* Tons chaleureux (fond papier) */
+            --paper: #FBF8F2;
+            --paper-warm: #F5EFE3;
             --cream: #FFFEF9;
-            --beige: #F5F3EF;
-            --gray-100: #F7F7F7;
-            --gray-200: #E5E7EB;
-            --gray-300: #D1D5DB;
-            --gray-500: #6B7280;
-            --gray-600: #4B5563;
-            --charcoal: #1F2121;
+            --beige: #F0EADF;
+            --beige-dark: #E4DCCD;
 
+            /* Neutres */
+            --white: #FFFFFF;
+            --gray-100: #F7F5F1;
+            --gray-200: #E7E2D9;
+            --gray-300: #D1C9BC;
+            --gray-500: #7A736A;
+            --gray-600: #4F4A42;
+            --charcoal: #1F1C17;
+
+            /* Accents programmes (résultats) */
+            --c-sommeil: #3E5C7E;         /* bleu nuit */
+            --c-sommeil-bg: #E8EEF5;
+            --c-stress: #7C6091;          /* violet apaisant */
+            --c-stress-bg: #EFE9F3;
+            --c-immunite: #B56B4B;        /* terracotta */
+            --c-immunite-bg: #F6E8DF;
+            --c-digestion: #68966F;       /* vert frais */
+            --c-digestion-bg: #E6EFE4;
+            --c-respiration: #4A8CA0;     /* bleu océan */
+            --c-respiration-bg: #E0EDF1;
+
+            /* Thème dynamique (défini par .step[data-theme]) */
+            --theme-ink: var(--teal-pro);
+            --theme-tint: var(--beige);
+            --theme-soft: var(--paper-warm);
+
+            /* Espacement 8pt */
             --space-4: 4px;
             --space-8: 8px;
             --space-12: 12px;
@@ -88,6 +109,7 @@
             --space-64: 64px;
             --space-96: 96px;
 
+            /* Typographie */
             --font-display: 'Fraunces', Georgia, serif;
             --font-body: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
             --text-xs: 0.75rem;
@@ -97,23 +119,26 @@
             --text-xl: 1.25rem;
             --text-2xl: 1.5rem;
             --text-3xl: 1.875rem;
+            --text-4xl: 2.25rem;
 
+            /* Rayons */
             --radius-sm: 6px;
-            --radius-base: 8px;
-            --radius-lg: 12px;
-            --radius-xl: 16px;
-            --radius-2xl: 20px;
+            --radius-base: 10px;
+            --radius-lg: 14px;
+            --radius-xl: 20px;
+            --radius-2xl: 28px;
             --radius-full: 9999px;
 
-            --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.04);
-            --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.06);
-            --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.08);
-            --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.10);
+            /* Ombres plus douces, papier */
+            --shadow-xs: 0 1px 2px rgba(60, 48, 30, 0.04);
+            --shadow-sm: 0 2px 10px rgba(60, 48, 30, 0.06);
+            --shadow-md: 0 8px 24px rgba(60, 48, 30, 0.08);
+            --shadow-lg: 0 16px 40px rgba(60, 48, 30, 0.10);
 
             --ease-standard: cubic-bezier(0.16, 1, 0.3, 1);
             --duration-fast: 150ms;
-            --duration-normal: 250ms;
-            --duration-slow: 400ms;
+            --duration-normal: 280ms;
+            --duration-slow: 450ms;
         }
 
         *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
@@ -124,7 +149,11 @@
             font-size: var(--text-base);
             line-height: 1.6;
             color: var(--charcoal);
-            background-color: var(--cream);
+            background-color: var(--paper);
+            background-image:
+                radial-gradient(ellipse 800px 400px at 20% 0%, rgba(124, 152, 133, 0.08), transparent 60%),
+                radial-gradient(ellipse 600px 300px at 80% 20%, rgba(180, 166, 215, 0.06), transparent 60%);
+            background-attachment: fixed;
             min-height: 100vh;
             display: flex;
             flex-direction: column;
@@ -137,7 +166,7 @@
         /* === NAVBAR === */
         .navbar {
             position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
-            background: rgba(255, 255, 254, 0.92);
+            background: rgba(251, 248, 242, 0.92);
             backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
             border-bottom: 1px solid rgba(0, 0, 0, 0.06);
         }
@@ -156,7 +185,7 @@
         .nav-links li { list-style: none; }
         @media (min-width: 768px) { .nav-links { display: flex; } }
         .nav-link { font-size: var(--text-base); font-weight: 500; color: var(--gray-600); text-decoration: none; padding: var(--space-8) var(--space-16); border-radius: var(--radius-full); transition: all var(--duration-fast) var(--ease-standard); cursor: pointer; display: block; }
-        .nav-link:hover { color: var(--teal-pro); background-color: var(--pastel-mint); }
+        .nav-link:hover { color: var(--teal-pro); background-color: var(--paper-warm); }
         .nav-link-blog { background: #b4a6d7; color: white !important; }
         .nav-link-blog:hover { background: #a090c7; }
         .nav-dropdown { position: relative; }
@@ -168,7 +197,7 @@
         .nav-dropdown:hover .nav-dropdown-menu { display: block; }
         .nav-dropdown-menu li { list-style: none; }
         .nav-dropdown-menu .nav-link { display: block; padding: var(--space-8) var(--space-16); font-size: var(--text-sm); white-space: nowrap; border-radius: 0; }
-        .nav-dropdown-menu .nav-link:hover { background: var(--pastel-sage); }
+        .nav-dropdown-menu .nav-link:hover { background: var(--paper-warm); }
         .mobile-menu-toggle { display: flex; flex-direction: column; justify-content: center; gap: 5px; width: 44px; height: 44px; background: none; border: none; cursor: pointer; padding: var(--space-8); }
         @media (min-width: 768px) { .mobile-menu-toggle { display: none; } }
         .hamburger-line { width: 24px; height: 2px; background: var(--charcoal); border-radius: 2px; transition: all var(--duration-normal) var(--ease-standard); }
@@ -182,91 +211,138 @@
             .nav-links li { width: 100%; }
             .nav-link { width: 100%; text-align: left; padding: var(--space-12) var(--space-16); font-size: var(--text-lg); }
             .nav-dropdown { flex-direction: column; width: 100%; }
-            .nav-dropdown-menu { position: static; transform: none; box-shadow: none; background: transparent; border: none; padding: 0; min-width: 100%; display: flex; flex-direction: column; gap: var(--space-8); padding-left: var(--space-16); border-left: 2px solid var(--pastel-mint); margin-top: var(--space-8); }
+            .nav-dropdown-menu { position: static; transform: none; box-shadow: none; background: transparent; border: none; padding: 0; min-width: 100%; display: flex; flex-direction: column; gap: var(--space-8); padding-left: var(--space-16); border-left: 2px solid var(--paper-warm); margin-top: var(--space-8); }
             .nav-dropdown-toggle::after { display: none; }
             .nav-dropdown-menu .nav-link { padding: var(--space-8) var(--space-16); font-size: var(--text-base); color: var(--gray-500); }
         }
 
-        /* === PROGRESS BAR === */
+        /* === PROGRESS BAR — dots + fluid fill === */
         .progress-container { width: 100%; max-width: 640px; padding: var(--space-24) var(--space-24) 0; }
-        .progress-bar-wrapper { display: flex; align-items: center; gap: var(--space-12); }
-        .progress-track { flex: 1; height: 4px; background: var(--gray-200); border-radius: var(--radius-full); overflow: hidden; }
-        .progress-fill { height: 100%; background: var(--teal-pro); border-radius: var(--radius-full); transition: width 0.5s var(--ease-standard); width: 0%; }
-        .progress-label { font-size: var(--text-xs); font-weight: 500; color: var(--gray-500); white-space: nowrap; }
+        .progress-bar-wrapper { display: flex; align-items: center; gap: var(--space-16); }
+        .progress-dots { display: flex; gap: 6px; flex: 1; }
+        .progress-dot { flex: 1; height: 6px; background: var(--gray-200); border-radius: var(--radius-full); transition: background var(--duration-normal) var(--ease-standard); position: relative; overflow: hidden; }
+        .progress-dot.active { background: var(--theme-ink); }
+        .progress-dot.done { background: var(--theme-ink); opacity: 0.45; }
+        .progress-label { font-family: var(--font-display); font-size: var(--text-xs); font-weight: 500; color: var(--gray-500); white-space: nowrap; letter-spacing: 0.04em; text-transform: uppercase; }
 
         /* === QUIZ CONTAINER === */
         .quiz-container { width: 100%; max-width: 640px; padding: 0 var(--space-24); flex: 1; display: flex; flex-direction: column; }
 
         /* === STEPS === */
-        .step { display: none; flex-direction: column; opacity: 0; transform: translateY(30px); }
-        .step.active { display: flex; animation: fadeInUp 0.6s var(--ease-standard) forwards; }
-        @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+        .step { display: none; flex-direction: column; opacity: 0; transform: translateY(24px); }
+        .step.active { display: flex; animation: fadeInUp 0.5s var(--ease-standard) forwards; }
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* Thèmes par question */
+        .step[data-theme="intro"]       { --theme-ink: var(--teal-pro); --theme-tint: var(--paper-warm); --theme-soft: #F5EFE3; }
+        .step[data-theme="besoin"]      { --theme-ink: var(--sage-deep); --theme-tint: #EDF2E8; --theme-soft: #F5F9F1; }
+        .step[data-theme="quotidien"]   { --theme-ink: #8F6A4E; --theme-tint: #F4E9DC; --theme-soft: #F9F1E5; }
+        .step[data-theme="duree"]       { --theme-ink: var(--teal-pro); --theme-tint: #DEEAE8; --theme-soft: #EAF2F0; }
+        .step[data-theme="approche"]    { --theme-ink: #7C6091; --theme-tint: #E8E1EE; --theme-soft: #F1EBF5; }
+        .step[data-theme="moment"]      { --theme-ink: #4A7C8E; --theme-tint: #DEEAEF; --theme-soft: #EBF3F6; }
 
         /* === INTRO === */
-        .intro { text-align: center; padding: var(--space-64) 0 var(--space-48); }
-        .intro-badge { display: inline-flex; align-items: center; gap: var(--space-8); padding: var(--space-8) var(--space-16); background: var(--white); border-radius: var(--radius-full); font-size: var(--text-sm); font-weight: 500; color: var(--teal-pro); box-shadow: var(--shadow-sm); margin-bottom: var(--space-32); }
-        .intro h1 { font-family: var(--font-display); font-size: clamp(2rem, 5vw, var(--text-3xl)); font-weight: 500; line-height: 1.15; color: var(--charcoal); letter-spacing: -0.02em; margin-bottom: var(--space-16); }
-        .intro h1 .highlight { color: var(--teal-pro); font-style: italic; }
-        .intro p { font-size: var(--text-lg); line-height: 1.7; color: var(--gray-600); max-width: 440px; margin: 0 auto var(--space-48); }
-        .intro-features { display: flex; flex-direction: column; gap: var(--space-12); text-align: left; margin-bottom: var(--space-48); }
-        .intro-feature { display: flex; align-items: center; gap: var(--space-16); padding: var(--space-16) var(--space-24); background: var(--white); border: 1px solid var(--gray-200); border-radius: var(--radius-lg); transition: all var(--duration-normal) var(--ease-standard); }
-        .intro-feature:hover { transform: translateY(-2px); box-shadow: var(--shadow-sm); }
-        .feat-icon { width: 40px; height: 40px; min-width: 40px; border-radius: var(--radius-base); background: var(--pastel-mint); display: flex; align-items: center; justify-content: center; font-size: var(--text-lg); }
-        .feat-label { font-weight: 600; font-size: var(--text-base); color: var(--charcoal); }
-        .feat-desc { font-size: var(--text-sm); color: var(--gray-500); margin-top: 2px; }
+        .intro { text-align: center; padding: var(--space-48) 0 var(--space-48); position: relative; }
+        .intro-eyebrow { display: inline-flex; align-items: center; gap: var(--space-8); padding: 6px var(--space-16) 6px 12px; background: var(--white); border: 1px solid var(--gray-200); border-radius: var(--radius-full); font-size: var(--text-xs); font-weight: 600; color: var(--sage-deep); letter-spacing: 0.08em; text-transform: uppercase; box-shadow: var(--shadow-xs); margin-bottom: var(--space-24); }
+        .intro-eyebrow svg { width: 14px; height: 14px; color: var(--sage-natural); }
+
+        .intro-sprig { width: 64px; height: 64px; margin: 0 auto var(--space-24); color: var(--sage-natural); opacity: 0.85; }
+        .intro-sprig svg { width: 100%; height: 100%; }
+
+        .intro h1 { font-family: var(--font-display); font-size: clamp(2rem, 5.5vw, var(--text-4xl)); font-weight: 400; line-height: 1.1; color: var(--charcoal); letter-spacing: -0.025em; margin-bottom: var(--space-16); }
+        .intro h1 .highlight { color: var(--teal-pro); font-style: italic; font-weight: 500; }
+        .intro-lede { font-size: var(--text-lg); line-height: 1.65; color: var(--gray-600); max-width: 460px; margin: 0 auto var(--space-32); }
+
+        .intro-signature { display: flex; align-items: center; justify-content: center; gap: var(--space-12); margin-bottom: var(--space-48); font-family: var(--font-display); font-style: italic; font-size: var(--text-sm); color: var(--gray-500); }
+        .intro-signature-line { width: 32px; height: 1px; background: var(--gray-300); }
+
+        .intro-features { display: grid; gap: var(--space-12); text-align: left; margin-bottom: var(--space-32); }
+        @media (min-width: 560px) { .intro-features { grid-template-columns: repeat(3, 1fr); gap: var(--space-12); } }
+
+        .intro-feature { display: flex; align-items: flex-start; gap: var(--space-12); padding: var(--space-16) var(--space-16); background: var(--white); border: 1px solid var(--gray-200); border-radius: var(--radius-lg); transition: all var(--duration-normal) var(--ease-standard); }
+        .intro-feature:hover { transform: translateY(-2px); box-shadow: var(--shadow-sm); border-color: var(--sage-natural); }
+        .feat-icon { width: 36px; height: 36px; min-width: 36px; border-radius: 50%; background: var(--paper-warm); display: flex; align-items: center; justify-content: center; color: var(--sage-deep); }
+        .feat-icon svg { width: 18px; height: 18px; }
+        .feat-body { flex: 1; min-width: 0; }
+        .feat-label { font-weight: 600; font-size: var(--text-sm); color: var(--charcoal); line-height: 1.3; }
+        .feat-desc { font-size: var(--text-xs); color: var(--gray-500); margin-top: 2px; line-height: 1.5; }
+
+        @media (min-width: 560px) {
+            .intro-feature { flex-direction: column; text-align: center; align-items: center; padding: var(--space-24) var(--space-16); }
+            .feat-body { text-align: center; }
+        }
+
+        .intro-footnote { font-size: var(--text-xs); color: var(--gray-500); margin-top: var(--space-24); font-style: italic; }
 
         /* === BUTTONS === */
-        .btn { display: inline-flex; align-items: center; justify-content: center; gap: var(--space-8); font-family: var(--font-body); font-size: var(--text-base); font-weight: 600; line-height: 1; padding: var(--space-16) var(--space-32); border-radius: var(--radius-base); border: none; cursor: pointer; transition: all var(--duration-normal) var(--ease-standard); text-decoration: none; width: 100%; }
+        .btn { display: inline-flex; align-items: center; justify-content: center; gap: var(--space-8); font-family: var(--font-body); font-size: var(--text-base); font-weight: 600; line-height: 1; padding: var(--space-16) var(--space-32); border-radius: var(--radius-full); border: none; cursor: pointer; transition: all var(--duration-normal) var(--ease-standard); text-decoration: none; width: 100%; }
         .btn-primary { background: var(--teal-pro); color: var(--white); }
-        .btn-primary:hover { transform: scale(1.02); box-shadow: 0 8px 24px rgba(45, 95, 93, 0.25); background: #245250; }
-        .btn-primary:active { transform: scale(0.98); }
+        .btn-primary:hover { transform: translateY(-1px); box-shadow: 0 10px 28px rgba(45, 95, 93, 0.28); background: var(--teal-dark); }
+        .btn-primary:active { transform: translateY(0); }
         .btn-primary:disabled { opacity: 0.35; cursor: not-allowed; transform: none; box-shadow: none; }
-        .btn-secondary { background: transparent; color: var(--charcoal); border: 2px solid var(--gray-300); }
-        .btn-secondary:hover { background: var(--gray-100); border-color: var(--gray-500); }
-        .btn-start { font-size: var(--text-lg); padding: var(--space-16) var(--space-48); }
+        .btn-secondary { background: var(--white); color: var(--charcoal); border: 1.5px solid var(--gray-300); }
+        .btn-secondary:hover { background: var(--paper-warm); border-color: var(--sage-natural); color: var(--teal-pro); }
+        .btn-start { font-size: var(--text-lg); padding: 18px var(--space-48); }
+        .btn svg { width: 16px; height: 16px; transition: transform var(--duration-fast) var(--ease-standard); }
+        .btn-primary:hover svg { transform: translateX(3px); }
         .btn-group { display: flex; gap: var(--space-12); margin-top: var(--space-32); }
-        .btn-group .btn-secondary { width: auto; min-width: 52px; padding: var(--space-16) var(--space-16); }
+        .btn-group .btn-secondary { width: auto; min-width: 56px; padding: var(--space-16); border-radius: var(--radius-full); }
         .btn-group .btn-primary { flex: 1; }
 
         /* === QUESTION === */
-        .question-header { padding: var(--space-48) 0 var(--space-24); }
-        .question-number { font-size: var(--text-xs); font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--sage-natural); margin-bottom: var(--space-8); }
-        .question-title { font-family: var(--font-display); font-size: clamp(1.35rem, 3.5vw, var(--text-2xl)); font-weight: 500; line-height: 1.2; color: var(--charcoal); letter-spacing: -0.01em; }
-        .question-subtitle { font-size: var(--text-sm); color: var(--gray-500); margin-top: var(--space-8); }
+        .question-header { padding: var(--space-48) 0 var(--space-24); display: flex; flex-direction: column; align-items: flex-start; gap: var(--space-12); }
+        .question-chip { display: inline-flex; align-items: center; gap: 6px; padding: 5px var(--space-12) 5px 8px; background: var(--theme-tint); color: var(--theme-ink); border-radius: var(--radius-full); font-size: var(--text-xs); font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; }
+        .question-chip-num { display: inline-flex; align-items: center; justify-content: center; width: 20px; height: 20px; background: var(--theme-ink); color: var(--white); border-radius: 50%; font-size: 0.7rem; font-weight: 700; }
+        .question-title { font-family: var(--font-display); font-size: clamp(1.5rem, 4vw, 1.75rem); font-weight: 400; line-height: 1.2; color: var(--charcoal); letter-spacing: -0.015em; }
+        .question-subtitle { font-size: var(--text-sm); color: var(--gray-500); font-style: italic; }
 
         /* === OPTIONS === */
-        .options { display: flex; flex-direction: column; gap: var(--space-12); }
-        .option { display: flex; align-items: center; gap: var(--space-16); padding: var(--space-16) var(--space-24); background: var(--white); border: 2px solid var(--gray-200); border-radius: var(--radius-lg); cursor: pointer; transition: all var(--duration-normal) var(--ease-standard); user-select: none; }
-        .option:hover { border-color: var(--gray-300); transform: translateY(-2px); box-shadow: var(--shadow-sm); }
-        .option.selected { border-color: var(--teal-pro); background: var(--pastel-teal); box-shadow: none; }
-        .option-icon { width: 44px; height: 44px; min-width: 44px; border-radius: var(--radius-base); background: var(--beige); display: flex; align-items: center; justify-content: center; font-size: var(--text-xl); transition: all var(--duration-normal) var(--ease-standard); }
-        .option.selected .option-icon { background: var(--teal-pro); }
-        .option-content { flex: 1; }
+        .options { display: flex; flex-direction: column; gap: 10px; }
+        .option { display: flex; align-items: center; gap: var(--space-16); padding: var(--space-16) var(--space-24); background: var(--white); border: 1.5px solid var(--gray-200); border-radius: var(--radius-lg); cursor: pointer; transition: all var(--duration-normal) var(--ease-standard); user-select: none; position: relative; }
+        .option:hover { border-color: var(--theme-ink); transform: translateX(2px); box-shadow: var(--shadow-sm); }
+        .option.selected { border-color: var(--theme-ink); background: var(--theme-soft); }
+        .option-icon {
+            width: 44px; height: 44px; min-width: 44px; border-radius: 50%;
+            background: var(--theme-tint);
+            display: flex; align-items: center; justify-content: center;
+            font-size: var(--text-lg);
+            transition: all var(--duration-normal) var(--ease-standard);
+            filter: saturate(0.85);
+        }
+        .option:hover .option-icon { transform: scale(1.06); }
+        .option.selected .option-icon { background: var(--theme-ink); filter: saturate(1); }
+        .option-content { flex: 1; min-width: 0; }
         .option-label { font-weight: 600; font-size: var(--text-sm); color: var(--charcoal); line-height: 1.3; }
-        .option-desc { font-size: var(--text-xs); color: var(--gray-500); margin-top: 2px; line-height: 1.4; }
-        .option-check { width: 20px; height: 20px; min-width: 20px; border-radius: 50%; border: 2px solid var(--gray-300); display: flex; align-items: center; justify-content: center; transition: all var(--duration-normal) var(--ease-standard); }
-        .option.selected .option-check { border-color: var(--teal-pro); background: var(--teal-pro); }
-        .option.selected .option-check::after { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--white); }
+        .option-desc { font-size: var(--text-xs); color: var(--gray-500); margin-top: 3px; line-height: 1.5; }
+        .option-check { width: 22px; height: 22px; min-width: 22px; border-radius: 50%; border: 1.5px solid var(--gray-300); display: flex; align-items: center; justify-content: center; transition: all var(--duration-normal) var(--ease-standard); background: var(--white); }
+        .option.selected .option-check { border-color: var(--theme-ink); background: var(--theme-ink); }
+        .option.selected .option-check::after { content: ''; width: 8px; height: 8px; border-radius: 50%; background: var(--white); }
 
         /* === INTERLUDE === */
         .interlude { display: none; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: var(--space-96) var(--space-24); }
-        .interlude.active { display: flex; animation: fadeInUp 0.6s var(--ease-standard) forwards; }
-        .interlude-icon { font-size: 2.5rem; margin-bottom: var(--space-16); animation: pulse 1.5s ease-in-out infinite; }
-        @keyframes pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.08); } }
-        .interlude-text { font-family: var(--font-display); font-size: var(--text-xl); font-weight: 500; color: var(--charcoal); }
-        .interlude-sub { font-size: var(--text-sm); color: var(--gray-500); margin-top: var(--space-8); }
+        .interlude.active { display: flex; animation: fadeInUp 0.5s var(--ease-standard) forwards; }
+        .interlude-orbit { width: 72px; height: 72px; margin-bottom: var(--space-24); position: relative; }
+        .interlude-orbit svg { width: 100%; height: 100%; color: var(--sage-natural); animation: orbit 1.8s linear infinite; }
+        @keyframes orbit { to { transform: rotate(360deg); } }
+        .interlude-text { font-family: var(--font-display); font-size: var(--text-xl); font-weight: 500; color: var(--charcoal); letter-spacing: -0.01em; }
+        .interlude-sub { font-size: var(--text-sm); color: var(--gray-500); margin-top: var(--space-8); font-style: italic; max-width: 320px; }
         .loading-dots::after { content: ''; animation: dots 1.5s steps(4, end) infinite; }
         @keyframes dots { 0% { content: ''; } 25% { content: '.'; } 50% { content: '..'; } 75% { content: '...'; } }
 
         /* === RESULT === */
-        .result-container { padding-top: var(--space-48); padding-bottom: var(--space-64); }
-        .result-badge { display: inline-flex; align-items: center; gap: var(--space-8); padding: var(--space-8) var(--space-16); background: var(--teal-pro); color: var(--white); font-size: var(--text-xs); font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; border-radius: var(--radius-full); margin-bottom: var(--space-24); }
-        .result-title { font-family: var(--font-display); font-size: clamp(1.5rem, 4vw, var(--text-3xl)); font-weight: 500; line-height: 1.15; color: var(--charcoal); letter-spacing: -0.02em; margin-bottom: var(--space-12); }
-        .result-title .highlight { color: var(--teal-pro); font-style: italic; }
-        .result-subtitle { font-size: var(--text-base); line-height: 1.7; color: var(--gray-600); margin-bottom: var(--space-32); }
+        .result-container { padding-top: var(--space-32); padding-bottom: var(--space-64); }
+        .result-kicker { display: inline-flex; align-items: center; gap: var(--space-8); font-family: var(--font-display); font-style: italic; font-size: var(--text-sm); color: var(--result-accent, var(--teal-pro)); margin-bottom: var(--space-12); }
+        .result-kicker-line { width: 24px; height: 1px; background: var(--result-accent, var(--teal-pro)); opacity: 0.4; }
+        .result-title { font-family: var(--font-display); font-size: clamp(1.75rem, 5vw, 2.25rem); font-weight: 400; line-height: 1.1; color: var(--charcoal); letter-spacing: -0.025em; margin-bottom: var(--space-16); }
+        .result-title .highlight { color: var(--result-accent, var(--teal-pro)); font-style: italic; font-weight: 500; }
+        .result-subtitle { font-size: var(--text-base); line-height: 1.7; color: var(--gray-600); margin-bottom: var(--space-24); }
 
-        /* Protocol grid — 3 product cards */
-        .protocol-label { font-size: var(--text-xs); font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--sage-natural); margin-bottom: var(--space-16); }
+        .stock-badge { display: inline-flex; align-items: center; gap: var(--space-8); margin-bottom: var(--space-32); padding: 8px var(--space-16); background: var(--white); border: 1px solid var(--result-accent, var(--sage-natural)); border-radius: var(--radius-full); font-size: var(--text-xs); font-weight: 600; color: var(--result-accent, var(--teal-pro)); }
+        .stock-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--result-accent, var(--sage-natural)); box-shadow: 0 0 0 4px color-mix(in srgb, var(--result-accent, var(--sage-natural)) 22%, transparent); }
+
+        /* Protocol grid */
+        .protocol-label { font-family: var(--font-display); font-style: italic; font-size: var(--text-base); color: var(--gray-600); margin-bottom: var(--space-16); display: flex; align-items: center; gap: var(--space-12); }
+        .protocol-label::before, .protocol-label::after { content: ''; flex: 1; height: 1px; background: var(--gray-200); }
         .protocol-grid { display: flex; flex-direction: column; gap: var(--space-16); }
 
         .protocol-card {
@@ -274,73 +350,76 @@
             border: 1px solid var(--gray-200);
             border-radius: var(--radius-xl);
             overflow: hidden;
-            box-shadow: var(--shadow-sm);
+            box-shadow: var(--shadow-xs);
             transition: all var(--duration-normal) var(--ease-standard);
         }
-        .protocol-card:hover { box-shadow: var(--shadow-md); transform: translateY(-2px); }
+        .protocol-card:hover { box-shadow: var(--shadow-md); transform: translateY(-2px); border-color: var(--result-accent, var(--sage-natural)); }
 
         .protocol-card-top {
-            padding: var(--space-24) var(--space-24) var(--space-16);
+            padding: var(--space-20, 20px) var(--space-24) var(--space-16);
             display: flex;
             align-items: center;
             gap: var(--space-16);
             position: relative;
         }
-        .protocol-card-top.bg-sage { background: var(--pastel-sage); }
-        .protocol-card-top.bg-teal { background: var(--pastel-teal); }
-        .protocol-card-top.bg-peach { background: var(--pastel-peach); }
+        .protocol-card-top.bg-sage { background: linear-gradient(135deg, #EDF2E8 0%, #E3EBDD 100%); }
+        .protocol-card-top.bg-teal { background: linear-gradient(135deg, #DEEAE8 0%, #D0E0DD 100%); }
+        .protocol-card-top.bg-peach { background: linear-gradient(135deg, #F6E8DF 0%, #EEDBCB 100%); }
 
-        .protocol-emoji { font-size: 2rem; width: 56px; height: 56px; min-width: 56px; display: flex; align-items: center; justify-content: center; background: rgba(255,255,255,0.6); border-radius: var(--radius-lg); }
-        .protocol-card-top-info { flex: 1; }
-        .protocol-product-name { font-family: var(--font-display); font-size: var(--text-lg); font-weight: 500; color: var(--charcoal); letter-spacing: -0.01em; }
-        .protocol-brand-tag { font-size: var(--text-xs); font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; color: var(--teal-pro); margin-top: 2px; }
-        .protocol-approach { position: absolute; top: var(--space-12); right: var(--space-16); font-size: 0.65rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; color: var(--gray-500); background: rgba(255,255,255,0.85); padding: var(--space-4) var(--space-8); border-radius: var(--radius-full); }
+        .protocol-emoji { font-size: 1.75rem; width: 52px; height: 52px; min-width: 52px; display: flex; align-items: center; justify-content: center; background: rgba(255,255,255,0.7); border-radius: 50%; box-shadow: 0 2px 6px rgba(0,0,0,0.04); }
+        .protocol-card-top-info { flex: 1; min-width: 0; }
+        .protocol-product-name { font-family: var(--font-display); font-size: var(--text-lg); font-weight: 500; color: var(--charcoal); letter-spacing: -0.01em; line-height: 1.2; }
+        .protocol-brand-tag { font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--teal-pro); margin-top: 4px; }
+        .protocol-approach { position: absolute; top: var(--space-12); right: var(--space-16); font-size: 0.65rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--gray-600); background: rgba(255,255,255,0.9); padding: 4px 10px; border-radius: var(--radius-full); }
 
         .protocol-card-body { padding: var(--space-16) var(--space-24) var(--space-24); }
-        .protocol-desc { font-size: var(--text-sm); color: var(--gray-600); line-height: 1.6; margin-bottom: var(--space-16); }
+        .protocol-desc { font-size: var(--text-sm); color: var(--gray-600); line-height: 1.65; margin-bottom: var(--space-16); }
         .protocol-benefits { display: flex; flex-direction: column; gap: var(--space-8); margin-bottom: var(--space-16); }
-        .protocol-benefit { display: flex; align-items: flex-start; gap: var(--space-8); font-size: var(--text-sm); color: var(--charcoal); line-height: 1.4; }
-        .benefit-check { width: 18px; height: 18px; min-width: 18px; border-radius: 50%; background: var(--pastel-mint); display: flex; align-items: center; justify-content: center; margin-top: 1px; }
-        .benefit-check svg { width: 10px; height: 10px; color: var(--teal-pro); }
-        .protocol-meta { display: flex; align-items: center; justify-content: space-between; padding-top: var(--space-12); border-top: 1px solid var(--gray-200); }
+        .protocol-benefit { display: flex; align-items: flex-start; gap: var(--space-8); font-size: var(--text-sm); color: var(--charcoal); line-height: 1.45; }
+        .benefit-check { width: 18px; height: 18px; min-width: 18px; border-radius: 50%; background: var(--paper-warm); display: flex; align-items: center; justify-content: center; margin-top: 1px; color: var(--sage-deep); }
+        .benefit-check svg { width: 10px; height: 10px; }
+        .protocol-meta { display: flex; align-items: center; justify-content: space-between; padding-top: var(--space-12); border-top: 1px dashed var(--gray-200); }
         .protocol-price { font-family: var(--font-display); font-size: var(--text-lg); font-weight: 500; color: var(--teal-pro); }
         .protocol-price span { font-family: var(--font-body); font-size: var(--text-xs); font-weight: 400; color: var(--gray-500); margin-left: var(--space-4); }
-        .protocol-format { font-size: var(--text-xs); color: var(--gray-500); background: var(--beige); padding: var(--space-4) var(--space-12); border-radius: var(--radius-full); }
+        .protocol-format { font-size: var(--text-xs); color: var(--gray-600); background: var(--paper-warm); padding: 5px var(--space-12); border-radius: var(--radius-full); font-weight: 500; }
 
-        /* Tip */
-        .tip-box { margin-top: var(--space-32); padding: var(--space-24); background: var(--pastel-sage); border-radius: var(--radius-lg); border-left: 4px solid var(--sage-natural); }
-        .tip-title { font-family: var(--font-display); font-size: var(--text-base); font-weight: 600; color: var(--charcoal); margin-bottom: var(--space-8); }
+        /* Tip — Notre conseil */
+        .tip-box { margin-top: var(--space-32); padding: var(--space-24) var(--space-24); background: var(--white); border-radius: var(--radius-xl); border: 1px solid var(--gray-200); position: relative; overflow: hidden; }
+        .tip-box::before { content: ''; position: absolute; top: 0; left: 0; width: 4px; height: 100%; background: var(--result-accent, var(--sage-natural)); }
+        .tip-header { display: flex; align-items: center; gap: var(--space-12); margin-bottom: var(--space-12); }
+        .tip-icon { width: 36px; height: 36px; min-width: 36px; border-radius: 50%; background: var(--result-soft, var(--paper-warm)); display: flex; align-items: center; justify-content: center; color: var(--result-accent, var(--sage-deep)); }
+        .tip-icon svg { width: 18px; height: 18px; }
+        .tip-title { font-family: var(--font-display); font-style: italic; font-size: var(--text-lg); font-weight: 500; color: var(--charcoal); line-height: 1.2; }
+        .tip-subtitle { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--gray-500); font-weight: 700; margin-top: 2px; }
         .tip-text { font-size: var(--text-sm); color: var(--gray-600); line-height: 1.7; }
-
-        /* Stock badge */
-        .stock-badge { display: inline-flex; align-items: center; gap: var(--space-8); margin-top: var(--space-24); padding: var(--space-8) var(--space-16); background: var(--pastel-mint); border-radius: var(--radius-full); font-size: var(--text-xs); font-weight: 500; color: var(--teal-pro); }
-        .stock-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--sage-natural); }
 
         /* CTA */
         .result-cta { margin-top: var(--space-32); display: flex; flex-direction: column; gap: var(--space-12); }
         .result-cta .btn { font-size: var(--text-sm); }
 
         /* Alternatives */
-        .alternatives-section { margin-top: var(--space-48); }
-        .alternatives-title { font-family: var(--font-display); font-size: var(--text-xl); font-weight: 500; margin-bottom: var(--space-16); color: var(--charcoal); }
-        .alternative-card { display: flex; align-items: center; gap: var(--space-16); padding: var(--space-16) var(--space-24); background: var(--white); border: 1px solid var(--gray-200); border-radius: var(--radius-lg); margin-bottom: var(--space-12); transition: all var(--duration-normal) var(--ease-standard); cursor: pointer; }
-        .alternative-card:hover { border-color: var(--gray-300); transform: translateY(-2px); box-shadow: var(--shadow-sm); }
-        .alt-icon { width: 48px; height: 48px; min-width: 48px; border-radius: var(--radius-base); display: flex; align-items: center; justify-content: center; font-size: var(--text-xl); background: var(--beige); }
-        .alt-info { flex: 1; }
+        .alternatives-section { margin-top: var(--space-48); padding-top: var(--space-32); border-top: 1px dashed var(--gray-200); }
+        .alternatives-title { font-family: var(--font-display); font-size: var(--text-xl); font-weight: 400; margin-bottom: var(--space-8); color: var(--charcoal); letter-spacing: -0.01em; }
+        .alternatives-sub { font-size: var(--text-sm); color: var(--gray-500); margin-bottom: var(--space-16); font-style: italic; }
+        .alternative-card { display: flex; align-items: center; gap: var(--space-16); padding: var(--space-12) var(--space-20, 20px); background: var(--white); border: 1px solid var(--gray-200); border-radius: var(--radius-lg); margin-bottom: var(--space-8); transition: all var(--duration-normal) var(--ease-standard); cursor: pointer; }
+        .alternative-card:hover { border-color: var(--teal-pro); transform: translateX(4px); box-shadow: var(--shadow-sm); }
+        .alt-icon { width: 40px; height: 40px; min-width: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: var(--text-lg); background: var(--paper-warm); }
+        .alt-info { flex: 1; min-width: 0; }
         .alt-name { font-weight: 600; font-size: var(--text-sm); color: var(--charcoal); }
-        .alt-brand { font-size: var(--text-xs); color: var(--gray-500); }
-        .alt-arrow { color: var(--gray-500); transition: transform var(--duration-fast) var(--ease-standard); }
-        .alternative-card:hover .alt-arrow { transform: translateX(4px); }
+        .alt-brand { font-size: var(--text-xs); color: var(--gray-500); margin-top: 2px; }
+        .alt-arrow { color: var(--gray-500); transition: all var(--duration-fast) var(--ease-standard); }
+        .alternative-card:hover .alt-arrow { transform: translateX(4px); color: var(--teal-pro); }
         .alt-arrow svg { width: 16px; height: 16px; }
 
         /* Disclaimer */
-        .disclaimer { margin-top: var(--space-48); padding: var(--space-24); background: var(--beige); border-radius: var(--radius-lg); font-size: var(--text-xs); color: var(--gray-500); line-height: 1.6; text-align: center; }
-        .disclaimer strong { color: var(--charcoal); }
+        .disclaimer { margin-top: var(--space-48); padding: var(--space-16) var(--space-24); background: transparent; border-top: 1px solid var(--gray-200); border-bottom: 1px solid var(--gray-200); font-size: var(--text-xs); color: var(--gray-500); line-height: 1.7; text-align: center; }
+        .disclaimer strong { color: var(--gray-600); font-weight: 700; }
 
         /* Restart */
         .restart-section { text-align: center; margin-top: var(--space-32); padding-bottom: var(--space-48); }
-        .restart-link { font-size: var(--text-sm); color: var(--gray-500); font-weight: 500; cursor: pointer; text-decoration: none; border: none; background: none; font-family: var(--font-body); transition: color var(--duration-fast) var(--ease-standard); }
+        .restart-link { display: inline-flex; align-items: center; gap: var(--space-8); font-size: var(--text-sm); color: var(--gray-500); font-weight: 500; cursor: pointer; text-decoration: none; border: none; background: none; font-family: var(--font-body); transition: color var(--duration-fast) var(--ease-standard); padding: var(--space-8) var(--space-16); }
         .restart-link:hover { color: var(--teal-pro); }
+        .restart-link svg { width: 14px; height: 14px; }
 
         /* === FOOTER === */
         .footer { background: var(--charcoal); color: var(--white); padding: var(--space-64) 0 var(--space-32); width: 100%; margin-top: auto; }
@@ -358,14 +437,65 @@
 
         /* === RESPONSIVE === */
         @media (max-width: 640px) {
-            .intro h1 { font-size: 1.75rem; }
-            .intro { padding: var(--space-48) 0 var(--space-32); }
+            .intro h1 { font-size: 1.85rem; }
+            .intro { padding: var(--space-32) 0 var(--space-32); }
             .question-header { padding: var(--space-32) 0 var(--space-16); }
+            .option { padding: var(--space-12) var(--space-16); }
+            .option-icon { width: 40px; height: 40px; min-width: 40px; }
         }
     </style>
     <link rel="alternate" type="application/rss+xml" title="Blog Pharmacie Charnal" href="https://www.pharmaciecharnal.com/feed.xml">
 </head>
 <body>
+
+    <!-- SVG sprite (reusable) -->
+    <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+        <defs>
+            <symbol id="i-leaf" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M4 20c5-1 9-4 11-8 2-4 2-7 2-9-3 0-6 1-9 3-4 3-5 7-5 11l1 3z"/>
+                <path d="M4 20c4-4 8-6 12-9"/>
+            </symbol>
+            <symbol id="i-clock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="9"/>
+                <path d="M12 7v5l3 2"/>
+            </symbol>
+            <symbol id="i-mortar" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M4 10h16l-2 6a3 3 0 0 1-3 2H9a3 3 0 0 1-3-2L4 10z"/>
+                <path d="M8 10v-2a4 4 0 0 1 8 0v2"/>
+                <path d="M16 4l4-1"/>
+            </symbol>
+            <symbol id="i-sparkle" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 3v3M12 18v3M3 12h3M18 12h3M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M5.6 18.4l2.1-2.1M16.3 7.7l2.1-2.1"/>
+                <circle cx="12" cy="12" r="2.5"/>
+            </symbol>
+            <symbol id="i-arrow-right" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M5 12h14M13 5l7 7-7 7"/>
+            </symbol>
+            <symbol id="i-arrow-left" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M19 12H5M11 5l-7 7 7 7"/>
+            </symbol>
+            <symbol id="i-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="20 6 9 17 4 12"/>
+            </symbol>
+            <symbol id="i-rotate" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M3 12a9 9 0 1 1 3 6.7"/>
+                <path d="M3 22v-5h5"/>
+            </symbol>
+            <symbol id="i-loader" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                <circle cx="24" cy="24" r="18" opacity="0.2"/>
+                <path d="M24 6a18 18 0 0 1 18 18" stroke-dasharray="0 1"/>
+            </symbol>
+            <!-- Grand sprig botanique pour hero -->
+            <symbol id="i-sprig" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M32 58V14"/>
+                <path d="M32 44c-8 0-12-4-14-10 6 0 10 2 14 6"/>
+                <path d="M32 36c8 0 12-4 14-10-6 0-10 2-14 6"/>
+                <path d="M32 28c-6 0-10-3-12-8 5 0 9 2 12 5"/>
+                <path d="M32 22c6 0 10-3 12-8-5 0-9 2-12 5"/>
+                <path d="M32 14a4 4 0 0 1 4-4 4 4 0 0 1-4 4 4 4 0 0 1-4-4 4 4 0 0 1 4 4z"/>
+            </symbol>
+        </defs>
+    </svg>
 
     <!-- Navigation -->
     <nav class="navbar">
@@ -412,10 +542,14 @@
     <!-- PROGRESS -->
     <div class="progress-container" id="progressContainer" style="display:none;">
         <div class="progress-bar-wrapper">
-            <div class="progress-track">
-                <div class="progress-fill" id="progressFill"></div>
+            <div class="progress-dots" id="progressDots">
+                <div class="progress-dot" data-step="1"></div>
+                <div class="progress-dot" data-step="2"></div>
+                <div class="progress-dot" data-step="3"></div>
+                <div class="progress-dot" data-step="4"></div>
+                <div class="progress-dot" data-step="5"></div>
             </div>
-            <div class="progress-label" id="progressLabel">1/5</div>
+            <div class="progress-label" id="progressLabel">Question 1</div>
         </div>
     </div>
 
@@ -423,46 +557,61 @@
     <div class="quiz-container">
 
         <!-- INTRO -->
-        <div class="step active" id="step-intro">
+        <div class="step active" id="step-intro" data-theme="intro">
             <div class="intro">
-                <div class="intro-badge">&#x1F33F; Essayez le Quiz!</div>
+                <div class="intro-eyebrow">
+                    <svg><use href="#i-leaf"/></svg>
+                    Bilan bien-&ecirc;tre naturel
+                </div>
+
+                <div class="intro-sprig"><svg><use href="#i-sprig"/></svg></div>
+
                 <h1>Quel programme naturel est <span class="highlight">fait pour vous</span>&nbsp;?</h1>
-                <p>5 questions pour des recommandations personnalis&eacute;es en phytoth&eacute;rapie, aromath&eacute;rapie et micronutrition.</p>
+                <p class="intro-lede">Cinq questions, un programme personnalis&eacute;. Phytoth&eacute;rapie, aromath&eacute;rapie et micronutrition&nbsp;— choisies parmi nos marques de confiance.</p>
+
+                <div class="intro-signature">
+                    <span class="intro-signature-line"></span>
+                    S&eacute;lectionn&eacute; par l&rsquo;&eacute;quipe de la Pharmacie Charnal &agrave; Qu&eacute;ven
+                    <span class="intro-signature-line"></span>
+                </div>
 
                 <div class="intro-features">
                     <div class="intro-feature">
-                        <div class="feat-icon">&#x23F1;</div>
-                        <div>
-                            <div class="feat-label">30s chrono</div>
-                            <div class="feat-desc">5 questions simples et visuelles</div>
+                        <div class="feat-icon"><svg><use href="#i-clock"/></svg></div>
+                        <div class="feat-body">
+                            <div class="feat-label">30 secondes</div>
+                            <div class="feat-desc">5 questions simples</div>
                         </div>
                     </div>
                     <div class="intro-feature">
-                        <div class="feat-icon">&#x1F3AF;</div>
-                        <div>
+                        <div class="feat-icon"><svg><use href="#i-mortar"/></svg></div>
+                        <div class="feat-body">
                             <div class="feat-label">3 marques expertes</div>
-                            <div class="feat-desc">Nat&amp;Form, Phytosun Ar&ocirc;ms, Aragan</div>
+                            <div class="feat-desc">Nat&amp;Form, Phytosun, Aragan</div>
                         </div>
                     </div>
                     <div class="intro-feature">
-                        <div class="feat-icon">&#x1F331;</div>
-                        <div>
-                            <div class="feat-label">Programme personnalis&eacute;</div>
-                            <div class="feat-desc">Un protocole naturel adapt&eacute; &agrave; vos besoins</div>
+                        <div class="feat-icon"><svg><use href="#i-sparkle"/></svg></div>
+                        <div class="feat-body">
+                            <div class="feat-label">Protocole cibl&eacute;</div>
+                            <div class="feat-desc">Adapt&eacute; &agrave; votre besoin</div>
                         </div>
                     </div>
                 </div>
 
                 <button class="btn btn-primary btn-start" onclick="startQuiz()">
-                    Commencer le bilan &rarr;
+                    Commencer le bilan
+                    <svg><use href="#i-arrow-right"/></svg>
                 </button>
+
+                <p class="intro-footnote">Conseils &agrave; titre indicatif &mdash; un pharmacien reste disponible en officine pour personnaliser.</p>
             </div>
         </div>
 
         <!-- Q1 -->
-        <div class="step" id="step-1">
+        <div class="step" id="step-1" data-theme="besoin">
             <div class="question-header">
-                <div class="question-number">Question 1 / 5</div>
+                <div class="question-chip"><span class="question-chip-num">1</span> Votre besoin</div>
                 <div class="question-title">Quel est votre besoin principal en ce moment&nbsp;?</div>
                 <div class="question-subtitle">Choisissez celui qui vous parle le plus.</div>
             </div>
@@ -471,7 +620,7 @@
                     <div class="option-icon">&#x1F319;</div>
                     <div class="option-content">
                         <div class="option-label">Mieux dormir</div>
-                        <div class="option-desc">Difficult&eacute;s d'endormissement, r&eacute;veils nocturnes, sommeil l&eacute;ger</div>
+                        <div class="option-desc">Difficult&eacute;s d&rsquo;endormissement, r&eacute;veils nocturnes, sommeil l&eacute;ger</div>
                     </div>
                     <div class="option-check"></div>
                 </div>
@@ -509,15 +658,15 @@
                 </div>
             </div>
             <div class="btn-group">
-                <button class="btn btn-secondary" onclick="goBack()">&larr;</button>
+                <button class="btn btn-secondary" onclick="goBack()" aria-label="Retour"><svg><use href="#i-arrow-left"/></svg></button>
             </div>
         </div>
 
         <!-- Q2 -->
-        <div class="step" id="step-2">
+        <div class="step" id="step-2" data-theme="quotidien">
             <div class="question-header">
-                <div class="question-number">Question 2 / 5</div>
-                <div class="question-title">Quelle situation d&eacute;crit le mieux votre quotidien&nbsp;?</div>
+                <div class="question-chip"><span class="question-chip-num">2</span> Votre quotidien</div>
+                <div class="question-title">Quelle situation d&eacute;crit le mieux vos journ&eacute;es&nbsp;?</div>
                 <div class="question-subtitle">Ce qui vous affecte le plus au jour le jour.</div>
             </div>
             <div class="options">
@@ -525,7 +674,7 @@
                     <div class="option-icon">&#x1F634;</div>
                     <div class="option-content">
                         <div class="option-label">Fatigu&eacute;(e) malgr&eacute; le sommeil</div>
-                        <div class="option-desc">Manque d'&eacute;nergie m&ecirc;me apr&egrave;s une nuit compl&egrave;te</div>
+                        <div class="option-desc">Manque d&rsquo;&eacute;nergie m&ecirc;me apr&egrave;s une nuit compl&egrave;te</div>
                     </div>
                     <div class="option-check"></div>
                 </div>
@@ -563,14 +712,14 @@
                 </div>
             </div>
             <div class="btn-group">
-                <button class="btn btn-secondary" onclick="goBack()">&larr;</button>
+                <button class="btn btn-secondary" onclick="goBack()" aria-label="Retour"><svg><use href="#i-arrow-left"/></svg></button>
             </div>
         </div>
 
         <!-- Q3 -->
-        <div class="step" id="step-3">
+        <div class="step" id="step-3" data-theme="duree">
             <div class="question-header">
-                <div class="question-number">Question 3 / 5</div>
+                <div class="question-chip"><span class="question-chip-num">3</span> La dur&eacute;e</div>
                 <div class="question-title">Depuis combien de temps ressentez-vous ce besoin&nbsp;?</div>
                 <div class="question-subtitle">Cela nous aide &agrave; adapter notre conseil.</div>
             </div>
@@ -579,7 +728,7 @@
                     <div class="option-icon">&#x26A1;</div>
                     <div class="option-content">
                         <div class="option-label">Quelques jours</div>
-                        <div class="option-desc">C'est r&eacute;cent, je cherche un soulagement rapide</div>
+                        <div class="option-desc">C&rsquo;est r&eacute;cent, je cherche un soulagement rapide</div>
                     </div>
                     <div class="option-check"></div>
                 </div>
@@ -587,7 +736,7 @@
                     <div class="option-icon">&#x1F4C5;</div>
                     <div class="option-content">
                         <div class="option-label">Quelques semaines</div>
-                        <div class="option-desc">&Ccedil;a s'installe, je veux agir maintenant</div>
+                        <div class="option-desc">&Ccedil;a s&rsquo;installe, je veux agir maintenant</div>
                     </div>
                     <div class="option-check"></div>
                 </div>
@@ -595,22 +744,22 @@
                     <div class="option-icon">&#x1F4C6;</div>
                     <div class="option-content">
                         <div class="option-label">Plusieurs mois ou plus</div>
-                        <div class="option-desc">C'est devenu chronique, je cherche une solution de fond</div>
+                        <div class="option-desc">C&rsquo;est devenu chronique, je cherche une solution de fond</div>
                     </div>
                     <div class="option-check"></div>
                 </div>
             </div>
             <div class="btn-group">
-                <button class="btn btn-secondary" onclick="goBack()">&larr;</button>
+                <button class="btn btn-secondary" onclick="goBack()" aria-label="Retour"><svg><use href="#i-arrow-left"/></svg></button>
             </div>
         </div>
 
         <!-- Q4 -->
-        <div class="step" id="step-4">
+        <div class="step" id="step-4" data-theme="approche">
             <div class="question-header">
-                <div class="question-number">Question 4 / 5</div>
+                <div class="question-chip"><span class="question-chip-num">4</span> Votre pr&eacute;f&eacute;rence</div>
                 <div class="question-title">Quelle approche naturelle vous attire le plus&nbsp;?</div>
-                <div class="question-subtitle">Il n'y a pas de mauvaise r&eacute;ponse.</div>
+                <div class="question-subtitle">Il n&rsquo;y a pas de mauvaise r&eacute;ponse.</div>
             </div>
             <div class="options">
                 <div class="option" onclick="selectOption(this, 4)" data-scores='{"sommeil":1,"stress":1,"immunite":1,"digestion":1,"respiration":0}'>
@@ -647,14 +796,14 @@
                 </div>
             </div>
             <div class="btn-group">
-                <button class="btn btn-secondary" onclick="goBack()">&larr;</button>
+                <button class="btn btn-secondary" onclick="goBack()" aria-label="Retour"><svg><use href="#i-arrow-left"/></svg></button>
             </div>
         </div>
 
         <!-- Q5 -->
-        <div class="step" id="step-5">
+        <div class="step" id="step-5" data-theme="moment">
             <div class="question-header">
-                <div class="question-number">Question 5 / 5</div>
+                <div class="question-chip"><span class="question-chip-num">5</span> Votre rythme</div>
                 <div class="question-title">&Agrave; quel moment de la journ&eacute;e ressentez-vous le plus ce besoin&nbsp;?</div>
                 <div class="question-subtitle">Votre rythme quotidien influence nos recommandations.</div>
             </div>
@@ -671,7 +820,7 @@
                     <div class="option-icon">&#x1F3E2;</div>
                     <div class="option-content">
                         <div class="option-label">En journ&eacute;e, au travail</div>
-                        <div class="option-desc">Baisse d'&eacute;nergie, concentration difficile, stress</div>
+                        <div class="option-desc">Baisse d&rsquo;&eacute;nergie, concentration difficile, stress</div>
                     </div>
                     <div class="option-check"></div>
                 </div>
@@ -687,21 +836,21 @@
                     <div class="option-icon">&#x1F504;</div>
                     <div class="option-content">
                         <div class="option-label">Tout au long de la journ&eacute;e</div>
-                        <div class="option-desc">C'est constant, pas de moment pr&eacute;cis</div>
+                        <div class="option-desc">C&rsquo;est constant, pas de moment pr&eacute;cis</div>
                     </div>
                     <div class="option-check"></div>
                 </div>
             </div>
             <div class="btn-group">
-                <button class="btn btn-secondary" onclick="goBack()">&larr;</button>
+                <button class="btn btn-secondary" onclick="goBack()" aria-label="Retour"><svg><use href="#i-arrow-left"/></svg></button>
             </div>
         </div>
 
         <!-- INTERLUDE -->
         <div class="interlude" id="interlude">
-            <div class="interlude-icon">&#x1F33F;</div>
-            <div class="interlude-text">Analyse de votre profil bien-&ecirc;tre<span class="loading-dots"></span></div>
-            <div class="interlude-sub">Nos pharmaciens comparent vos r&eacute;ponses avec nos solutions naturelles en stock.</div>
+            <div class="interlude-orbit"><svg><use href="#i-loader"/></svg></div>
+            <div class="interlude-text">Analyse de votre profil<span class="loading-dots"></span></div>
+            <div class="interlude-sub">Nous comparons vos r&eacute;ponses avec nos solutions naturelles en stock &agrave; l&rsquo;officine.</div>
         </div>
 
         <!-- RESULT -->
@@ -728,15 +877,24 @@
     <script>
     /* ============================================
        QUIZ LOGIC — Produits Naturels
-       5 cat\u00e9gories : sommeil, stress, immunite, digestion, respiration
+       5 catégories : sommeil, stress, immunite, digestion, respiration
        ============================================ */
 
     const scores = { sommeil: 0, stress: 0, immunite: 0, digestion: 0, respiration: 0 };
     let currentStep = 0;
     const totalQuestions = 5;
 
-    const checkSvg = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>';
-    const arrowSvg = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>';
+    const checkSvg = '<svg><use href="#i-check"/></svg>';
+    const arrowSvg = '<svg><use href="#i-arrow-right"/></svg>';
+
+    /* --- ACCENTS COULEURS PAR PROGRAMME --- */
+    const accents = {
+        sommeil:     { ink: '#3E5C7E', soft: '#E8EEF5' },
+        stress:      { ink: '#7C6091', soft: '#EFE9F3' },
+        immunite:    { ink: '#B56B4B', soft: '#F6E8DF' },
+        digestion:   { ink: '#68966F', soft: '#E6EFE4' },
+        respiration: { ink: '#4A8CA0', soft: '#E0EDF1' }
+    };
 
     /* --- PROGRAMMES (3 produits par besoin) --- */
     const programmes = {
@@ -744,34 +902,27 @@
             title: 'Sommeil & Relaxation',
             icon: '\ud83c\udf19',
             subtitle: 'Vos r\u00e9ponses indiquent des difficult\u00e9s li\u00e9es au sommeil. Un programme naturel associant phytoth\u00e9rapie, aromath\u00e9rapie et micronutrition peut vous aider \u00e0 retrouver des nuits sereines.',
-            tip: 'La val\u00e9riane est utilis\u00e9e depuis l\u2019Antiquit\u00e9 romaine pour favoriser l\u2019endormissement. Associ\u00e9e aux huiles essentielles de lavande, elle offre une approche compl\u00e8te du sommeil naturel.',
+            tipKicker: 'Notre conseil d\u2019officine',
+            tipTitle: 'La val\u00e9riane, une racine qui a fait ses preuves',
+            tip: 'La val\u00e9riane est utilis\u00e9e depuis l\u2019Antiquit\u00e9 romaine pour favoriser l\u2019endormissement. Associ\u00e9e aux huiles essentielles de lavande, elle offre une approche compl\u00e8te du sommeil naturel&nbsp;&mdash; sans accoutumance.',
             products: [
                 {
-                    brand: 'NAT&FORM',
-                    name: 'Val\u00e9riane Bio',
-                    approach: 'Phytoth\u00e9rapie',
-                    emoji: '\ud83c\udf3f',
-                    bgClass: 'bg-sage',
+                    brand: 'NAT&FORM', name: 'Val\u00e9riane Bio', approach: 'Phytoth\u00e9rapie',
+                    emoji: '\ud83c\udf3f', bgClass: 'bg-sage',
                     description: 'La val\u00e9riane contribue \u00e0 un sommeil de qualit\u00e9 et aide \u00e0 retrouver calme et s\u00e9r\u00e9nit\u00e9. G\u00e9lules d\u2019origine v\u00e9g\u00e9tale, formule bio.',
                     benefits: ['Favorise l\u2019endormissement naturel', 'Am\u00e9liore la qualit\u00e9 du sommeil', 'Sans accoutumance'],
                     price: '~8\u00a0\u20ac', format: '200 g\u00e9lules'
                 },
                 {
-                    brand: 'PHYTOSUN AR\u00d4MS',
-                    name: 'Sommeil Triple Action',
-                    approach: 'Aromath\u00e9rapie',
-                    emoji: '\ud83d\udca7',
-                    bgClass: 'bg-teal',
+                    brand: 'PHYTOSUN AR\u00d4MS', name: 'Sommeil Triple Action', approach: 'Aromath\u00e9rapie',
+                    emoji: '\ud83d\udca7', bgClass: 'bg-teal',
                     description: 'Complexe d\u2019huiles essentielles formul\u00e9 pour favoriser l\u2019endormissement et un sommeil profond et r\u00e9parateur.',
                     benefits: ['Action en 30 \u00e0 45 minutes', 'Sommeil profond et r\u00e9parateur', '100% naturel, sans d\u00e9pendance'],
                     price: '~11\u00a0\u20ac', format: '30 comprim\u00e9s'
                 },
                 {
-                    brand: 'ARAGAN',
-                    name: 'SOM\u2022ACTIFS',
-                    approach: 'Micronutrition',
-                    emoji: '\ud83d\udd2c',
-                    bgClass: 'bg-peach',
+                    brand: 'ARAGAN', name: 'SOM\u2022ACTIFS', approach: 'Micronutrition',
+                    emoji: '\ud83d\udd2c', bgClass: 'bg-peach',
                     description: 'Formule synergique associant m\u00e9latonine, plantes (passiflore, eschscholtzia) et magn\u00e9sium pour agir sur toutes les phases du sommeil.',
                     benefits: ['Synergie plantes + m\u00e9latonine + magn\u00e9sium', 'Agit sur endormissement ET maintien du sommeil', 'Technologie microencapsulation'],
                     price: '~15\u00a0\u20ac', format: '30 g\u00e9lules'
@@ -782,34 +933,27 @@
             title: 'Stress & S\u00e9r\u00e9nit\u00e9',
             icon: '\ud83e\uddd8',
             subtitle: 'Vos r\u00e9ponses r\u00e9v\u00e8lent un quotidien sous tension. Un programme naturel peut vous aider \u00e0 retrouver calme et \u00e9quilibre sans d\u00e9pendance.',
+            tipKicker: 'Notre conseil d\u2019officine',
+            tipTitle: 'La rhodiola, la plante des peuples du Nord',
             tip: 'La rhodiola rosea est une plante adaptog\u00e8ne utilis\u00e9e par les peuples scandinaves depuis des si\u00e8cles. Elle aide l\u2019organisme \u00e0 s\u2019adapter au stress et \u00e0 r\u00e9sister \u00e0 la fatigue nerveuse.',
             products: [
                 {
-                    brand: 'NAT&FORM',
-                    name: 'Rhodiola Bio',
-                    approach: 'Phytoth\u00e9rapie',
-                    emoji: '\ud83c\udf3f',
-                    bgClass: 'bg-sage',
+                    brand: 'NAT&FORM', name: 'Rhodiola Bio', approach: 'Phytoth\u00e9rapie',
+                    emoji: '\ud83c\udf3f', bgClass: 'bg-sage',
                     description: 'La rhodiola est une plante adaptog\u00e8ne qui aide l\u2019organisme \u00e0 s\u2019adapter au stress \u00e9motionnel et physique. Formule bio, g\u00e9lules v\u00e9g\u00e9tales.',
                     benefits: ['Plante adaptog\u00e8ne reconnue', 'R\u00e9duit la fatigue li\u00e9e au stress', '\u00c9quilibre \u00e9motionnel'],
                     price: '~9\u00a0\u20ac', format: '200 g\u00e9lules'
                 },
                 {
-                    brand: 'PHYTOSUN AR\u00d4MS',
-                    name: 'Stress Triple Action',
-                    approach: 'Aromath\u00e9rapie',
-                    emoji: '\ud83d\udca7',
-                    bgClass: 'bg-teal',
+                    brand: 'PHYTOSUN AR\u00d4MS', name: 'Stress Triple Action', approach: 'Aromath\u00e9rapie',
+                    emoji: '\ud83d\udca7', bgClass: 'bg-teal',
                     description: 'Complexe d\u2019huiles essentielles (lavande, petit grain bigarade, camomille) pour un apaisement rapide d\u00e8s 15 \u00e0 30 minutes.',
                     benefits: ['Action rapide en 15-30 minutes', 'Apaisement profond et durable', 'Sans somnolence'],
                     price: '~9\u00a0\u20ac', format: '30 capsules'
                 },
                 {
-                    brand: 'ARAGAN',
-                    name: 'SEREN\u2022ACTIFS',
-                    approach: 'Micronutrition',
-                    emoji: '\ud83d\udd2c',
-                    bgClass: 'bg-peach',
+                    brand: 'ARAGAN', name: 'SEREN\u2022ACTIFS', approach: 'Micronutrition',
+                    emoji: '\ud83d\udd2c', bgClass: 'bg-peach',
                     description: 'Formule synergique associant safran, magn\u00e9sium, vitamines B et plantes pour r\u00e9\u00e9quilibrer l\u2019humeur et r\u00e9duire le stress.',
                     benefits: ['Synergie 5 sciences (plantes + vitamines + oligo\u00e9l\u00e9ments)', '\u00c9quilibre \u00e9motionnel et humeur', 'Magn\u00e9sium haute absorption'],
                     price: '~17\u00a0\u20ac', format: '30 g\u00e9lules'
@@ -820,34 +964,27 @@
             title: 'Immunit\u00e9 & Vitalit\u00e9',
             icon: '\ud83d\udee1\ufe0f',
             subtitle: 'Vos r\u00e9ponses indiquent un besoin de renforcer vos d\u00e9fenses naturelles. Un programme naturel complet peut soutenir votre syst\u00e8me immunitaire au quotidien.',
+            tipKicker: 'Notre conseil d\u2019officine',
+            tipTitle: '70% de l\u2019immunit\u00e9 se joue dans l\u2019intestin',
             tip: '70% de notre syst\u00e8me immunitaire se situe dans l\u2019intestin. C\u2019est pourquoi une approche combinant plantes immunostimulantes, huiles essentielles antivirales et micronutrition cibl\u00e9e est particuli\u00e8rement efficace.',
             products: [
                 {
-                    brand: 'NAT&FORM',
-                    name: '\u00c9chinac\u00e9e Bio',
-                    approach: 'Phytoth\u00e9rapie',
-                    emoji: '\ud83c\udf3f',
-                    bgClass: 'bg-sage',
+                    brand: 'NAT&FORM', name: '\u00c9chinac\u00e9e Bio', approach: 'Phytoth\u00e9rapie',
+                    emoji: '\ud83c\udf3f', bgClass: 'bg-sage',
                     description: 'L\u2019\u00e9chinac\u00e9e stimule les d\u00e9fenses naturelles de l\u2019organisme. Utilis\u00e9e en pr\u00e9vention ou d\u00e8s les premiers signes de faiblesse immunitaire.',
                     benefits: ['Stimule les d\u00e9fenses naturelles', 'Id\u00e9al en pr\u00e9vention hivernale', 'Formule Bio certifi\u00e9e'],
                     price: '~8\u00a0\u20ac', format: '200 g\u00e9lules'
                 },
                 {
-                    brand: 'PHYTOSUN AR\u00d4MS',
-                    name: 'Aromadoses D\u00e9fenses Naturelles',
-                    approach: 'Aromath\u00e9rapie',
-                    emoji: '\ud83d\udca7',
-                    bgClass: 'bg-teal',
+                    brand: 'PHYTOSUN AR\u00d4MS', name: 'Aromadoses D\u00e9fenses Naturelles', approach: 'Aromath\u00e9rapie',
+                    emoji: '\ud83d\udca7', bgClass: 'bg-teal',
                     description: 'Capsules d\u2019huiles essentielles (ravintsara, tea tree, thym) pr\u00eates \u00e0 l\u2019emploi pour renforcer l\u2019immunit\u00e9 en p\u00e9riode hivernale.',
                     benefits: ['Huiles essentielles antivirales et antibact\u00e9riennes', 'Capsules pr\u00eates \u00e0 l\u2019emploi, dosage s\u00e9curis\u00e9', 'Efficacit\u00e9 d\u00e8s 24-48h'],
                     price: '~9\u00a0\u20ac', format: '30 capsules'
                 },
                 {
-                    brand: 'ARAGAN',
-                    name: 'IMMUN\u2022ACTIFS',
-                    approach: 'Micronutrition',
-                    emoji: '\ud83d\udd2c',
-                    bgClass: 'bg-peach',
+                    brand: 'ARAGAN', name: 'IMMUN\u2022ACTIFS', approach: 'Micronutrition',
+                    emoji: '\ud83d\udd2c', bgClass: 'bg-peach',
                     description: 'Formule compl\u00e8te associant \u00e9chinac\u00e9e, propolis, ravintsara microencapsul\u00e9, vitamines C, D3, zinc et cuivre pour une action \u00e0 360\u00b0.',
                     benefits: ['Action 360\u00b0 : imm\u00e9diate + prolong\u00e9e + de fond', '10+ actifs synergiques', 'Ravintsara microencapsul\u00e9 (lib\u00e9ration contr\u00f4l\u00e9e)'],
                     price: '~15\u00a0\u20ac', format: '30 g\u00e9lules'
@@ -858,34 +995,27 @@
             title: 'Digestion & Confort',
             icon: '\ud83c\udf43',
             subtitle: 'Vos r\u00e9ponses indiquent un inconfort digestif r\u00e9current. Un programme naturel peut aider \u00e0 r\u00e9\u00e9quilibrer votre flore intestinale et faciliter la digestion.',
+            tipKicker: 'Notre conseil d\u2019officine',
+            tipTitle: 'L\u2019artichaut, alli\u00e9 du foie et de la digestion',
             tip: 'L\u2019artichaut stimule la production de bile et facilite la digestion des graisses. Associ\u00e9 \u00e0 des probiotiques de qualit\u00e9, il aide \u00e0 restaurer un \u00e9quilibre digestif durable.',
             products: [
                 {
-                    brand: 'NAT&FORM',
-                    name: 'Artichaut Bio',
-                    approach: 'Phytoth\u00e9rapie',
-                    emoji: '\ud83c\udf3f',
-                    bgClass: 'bg-sage',
+                    brand: 'NAT&FORM', name: 'Artichaut Bio', approach: 'Phytoth\u00e9rapie',
+                    emoji: '\ud83c\udf3f', bgClass: 'bg-sage',
                     description: 'L\u2019artichaut favorise le confort digestif et contribue au fonctionnement normal du foie. Formule bio, g\u00e9lules d\u2019origine v\u00e9g\u00e9tale.',
                     benefits: ['Stimule la digestion et la fonction h\u00e9patique', 'R\u00e9duit les ballonnements', 'Formule Bio, v\u00e9g\u00e9tale'],
                     price: '~8\u00a0\u20ac', format: '200 g\u00e9lules'
                 },
                 {
-                    brand: 'PHYTOSUN AR\u00d4MS',
-                    name: 'Aromadoses Digestion Transit',
-                    approach: 'Aromath\u00e9rapie',
-                    emoji: '\ud83d\udca7',
-                    bgClass: 'bg-teal',
+                    brand: 'PHYTOSUN AR\u00d4MS', name: 'Aromadoses Digestion Transit', approach: 'Aromath\u00e9rapie',
+                    emoji: '\ud83d\udca7', bgClass: 'bg-teal',
                     description: 'Capsules d\u2019huiles essentielles (menthe poivr\u00e9e, basilic, carvi) pour faciliter la digestion et r\u00e9guler le transit.',
-                    benefits: ['Soulage l\u2019inconfort apr\u00e8s les repas', 'R\u00e9gule le transit intestinal', 'Capsules pratiqu\u00e9s, 1 matin et soir'],
+                    benefits: ['Soulage l\u2019inconfort apr\u00e8s les repas', 'R\u00e9gule le transit intestinal', 'Capsules pratiques, 1 matin et soir'],
                     price: '~8\u00a0\u20ac', format: '30 capsules'
                 },
                 {
-                    brand: 'ARAGAN',
-                    name: 'BIOTIC\u2022P7 ENT\u00c9RO',
-                    approach: 'Micronutrition',
-                    emoji: '\ud83d\udd2c',
-                    bgClass: 'bg-peach',
+                    brand: 'ARAGAN', name: 'BIOTIC\u2022P7 ENT\u00c9RO', approach: 'Micronutrition',
+                    emoji: '\ud83d\udd2c', bgClass: 'bg-peach',
                     description: '7 souches de ferments lactiques (12 milliards d\u2019UFC) pour r\u00e9\u00e9quilibrer la flore intestinale. Conservation au frais pour une viabilit\u00e9 maximale.',
                     benefits: ['12 milliards d\u2019UFC (7 souches compl\u00e9mentaires)', 'Conservation au frais = viabilit\u00e9 garantie', 'Souches ROSELL\u00ae gastro-r\u00e9sistantes'],
                     price: '~28\u00a0\u20ac', format: '30 g\u00e9lules'
@@ -896,34 +1026,27 @@
             title: 'Respiration & Confort ORL',
             icon: '\ud83d\udca8',
             subtitle: 'Vos r\u00e9ponses r\u00e9v\u00e8lent une g\u00eane respiratoire ou une sensibilit\u00e9 ORL. Un programme naturel peut vous aider \u00e0 d\u00e9gager vos voies respiratoires et renforcer votre r\u00e9sistance.',
+            tipKicker: 'Notre conseil d\u2019officine',
+            tipTitle: 'L\u2019eucalyptus radi\u00e9, bien tol\u00e9r\u00e9 d\u00e8s l\u2019enfant',
             tip: 'L\u2019eucalyptus radi\u00e9 est l\u2019huile essentielle de r\u00e9f\u00e9rence pour le confort respiratoire. Contrairement \u00e0 l\u2019eucalyptus globuleux, il ne contient pas de camphre et est bien tol\u00e9r\u00e9.',
             products: [
                 {
-                    brand: 'NAT&FORM',
-                    name: 'Thym Bio',
-                    approach: 'Phytoth\u00e9rapie',
-                    emoji: '\ud83c\udf3f',
-                    bgClass: 'bg-sage',
+                    brand: 'NAT&FORM', name: 'Thym Bio', approach: 'Phytoth\u00e9rapie',
+                    emoji: '\ud83c\udf3f', bgClass: 'bg-sage',
                     description: 'Le thym soutient le confort respiratoire et les d\u00e9fenses naturelles. Utilis\u00e9 traditionnellement pour adoucir la gorge et faciliter la respiration.',
                     benefits: ['Soutient le confort respiratoire', 'Adoucit la gorge', 'Propri\u00e9t\u00e9s antiseptiques naturelles'],
                     price: '~8\u00a0\u20ac', format: '200 g\u00e9lules'
                 },
                 {
-                    brand: 'PHYTOSUN AR\u00d4MS',
-                    name: 'Aromadoses Nez & Gorge',
-                    approach: 'Aromath\u00e9rapie',
-                    emoji: '\ud83d\udca7',
-                    bgClass: 'bg-teal',
+                    brand: 'PHYTOSUN AR\u00d4MS', name: 'Aromadoses Nez & Gorge', approach: 'Aromath\u00e9rapie',
+                    emoji: '\ud83d\udca7', bgClass: 'bg-teal',
                     description: 'Capsules de 5 huiles essentielles (thym, lavande aspic, eucalyptus, laurier, romarin) pour d\u00e9gager le nez et apaiser la gorge.',
                     benefits: ['D\u00e9congestion rapide en 24-48h', 'Complexe de 5 HE synergiques', 'Convient d\u00e8s 6 ans'],
                     price: '~8\u00a0\u20ac', format: '30 capsules'
                 },
                 {
-                    brand: 'ARAGAN',
-                    name: 'RHIN\u2022ACTIFS BIO',
-                    approach: 'Micronutrition',
-                    emoji: '\ud83d\udd2c',
-                    bgClass: 'bg-peach',
+                    brand: 'ARAGAN', name: 'RHIN\u2022ACTIFS BIO', approach: 'Micronutrition',
+                    emoji: '\ud83d\udd2c', bgClass: 'bg-peach',
                     description: 'Formule bio pour le confort respiratoire associant plantes, propolis et oligo\u00e9l\u00e9ments pour une action compl\u00e8te nez-gorge.',
                     benefits: ['Formule Bio certifi\u00e9e', 'Action confort nez et gorge', 'Id\u00e9al aux changements de saison'],
                     price: '~10\u00a0\u20ac', format: '15 g\u00e9lules'
@@ -952,7 +1075,7 @@
             } else {
                 showResult();
             }
-        }, 300);
+        }, 280);
     }
 
     function recalcScores() {
@@ -994,8 +1117,13 @@
     }
 
     function updateProgress() {
-        document.getElementById('progressFill').style.width = (currentStep / totalQuestions * 100) + '%';
-        document.getElementById('progressLabel').textContent = currentStep + '/' + totalQuestions;
+        document.querySelectorAll('.progress-dot').forEach(function(d) {
+            var n = parseInt(d.dataset.step, 10);
+            d.classList.remove('active', 'done');
+            if (n < currentStep) d.classList.add('done');
+            else if (n === currentStep) d.classList.add('active');
+        });
+        document.getElementById('progressLabel').textContent = 'Question ' + currentStep + '/' + totalQuestions;
     }
 
     function showResult() {
@@ -1008,7 +1136,7 @@
             renderResult();
             document.getElementById('step-result').classList.add('active');
             window.scrollTo({ top: 0, behavior: 'smooth' });
-        }, 2500);
+        }, 2200);
     }
 
     function getWinner() {
@@ -1020,7 +1148,12 @@
     function renderResult(force) {
         var winner = force || getWinner();
         var prog = programmes[winner];
+        var acc = accents[winner];
         var alts = Object.keys(programmes).filter(function(k) { return k !== winner; });
+
+        var container = document.getElementById('resultContainer');
+        container.style.setProperty('--result-accent', acc.ink);
+        container.style.setProperty('--result-soft', acc.soft);
 
         var productsHtml = prog.products.map(function(p) {
             return '<div class="protocol-card">' +
@@ -1056,34 +1189,41 @@
             '</div>';
         }).join('');
 
-        document.getElementById('resultContainer').innerHTML =
-            '<div class="result-badge">&#x2714; Votre programme naturel</div>' +
-            '<div class="result-title">Notre conseil pour vous\u00a0: <span class="highlight">' + prog.title + '</span></div>' +
+        container.innerHTML =
+            '<div class="result-kicker"><span class="result-kicker-line"></span>Votre r&eacute;sultat</div>' +
+            '<div class="result-title">Nous recommandons le programme <span class="highlight">' + prog.title + '</span></div>' +
             '<div class="result-subtitle">' + prog.subtitle + '</div>' +
 
-            '<div class="protocol-label">Votre protocole en 3 approches compl\u00e9mentaires</div>' +
+            '<div class="stock-badge"><div class="stock-dot"></div>Disponible en stock &mdash; Pharmacie Charnal, Qu&eacute;ven</div>' +
+
+            '<div class="protocol-label">Un protocole en 3 approches compl&eacute;mentaires</div>' +
             '<div class="protocol-grid">' + productsHtml + '</div>' +
 
-            '<div class="stock-badge"><div class="stock-dot"></div>Ces produits sont disponibles en stock \u00e0 la pharmacie</div>' +
-
             '<div class="tip-box">' +
-                '<div class="tip-title">&#x1F4A1; Le saviez-vous\u00a0?</div>' +
+                '<div class="tip-header">' +
+                    '<div class="tip-icon"><svg><use href="#i-leaf"/></svg></div>' +
+                    '<div>' +
+                        '<div class="tip-subtitle">' + prog.tipKicker + '</div>' +
+                        '<div class="tip-title">' + prog.tipTitle + '</div>' +
+                    '</div>' +
+                '</div>' +
                 '<div class="tip-text">' + prog.tip + '</div>' +
             '</div>' +
 
             '<div class="result-cta">' +
-                '<a href="../contact.html" class="btn btn-primary">Passez nous voir en pharmacie &rarr;</a>' +
-                '<a href="../Nos-marques/nosmarques.html" class="btn btn-secondary">D\u00e9couvrir nos marques</a>' +
+                '<a href="../contact.html" class="btn btn-primary">Passez nous voir en pharmacie <svg><use href="#i-arrow-right"/></svg></a>' +
+                '<a href="../Nos-marques/nosmarques.html" class="btn btn-secondary">D&eacute;couvrir nos marques</a>' +
             '</div>' +
 
             '<div class="alternatives-section">' +
                 '<div class="alternatives-title">Les autres programmes naturels</div>' +
+                '<div class="alternatives-sub">Vous pouvez aussi consulter&nbsp;:</div>' +
                 altsHtml +
             '</div>' +
 
-            '<div class="disclaimer"><strong>Information</strong> \u2014 Ce bilan personnalis\u00e9 est propos\u00e9 \u00e0 titre indicatif par la Pharmacie Charnal. Il ne remplace en aucun cas un avis m\u00e9dical ou pharmaceutique. Certains produits naturels sont d\u00e9conseill\u00e9s aux femmes enceintes, allaitantes et aux enfants de moins de 6 ans. N\u2019h\u00e9sitez pas \u00e0 nous consulter en officine pour un conseil adapt\u00e9.</div>' +
+            '<div class="disclaimer"><strong>Information</strong> &mdash; Ce bilan est propos&eacute; &agrave; titre indicatif par la Pharmacie Charnal. Il ne remplace en aucun cas un avis m&eacute;dical ou pharmaceutique. Certains produits naturels sont d&eacute;conseill&eacute;s aux femmes enceintes, allaitantes et aux enfants de moins de 6 ans. N&rsquo;h&eacute;sitez pas &agrave; nous consulter en officine pour un conseil adapt&eacute;.</div>' +
 
-            '<div class="restart-section"><button class="restart-link" onclick="restartQuiz()">&#x21BB; Recommencer le bilan</button></div>';
+            '<div class="restart-section"><button class="restart-link" onclick="restartQuiz()"><svg><use href="#i-rotate"/></svg> Recommencer le bilan</button></div>';
     }
 
     function switchResult(k) { renderResult(k); window.scrollTo({ top: 0, behavior: 'smooth' }); }
