@@ -108,14 +108,14 @@
         html { font-size: 24px; scroll-behavior: smooth; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
         @media (max-width: 640px) { html { font-size: 22px; } }
 
-        /* Navbar — pin to homepage sizes (px absolu, indépendant du html root) */
-        .logo-name { font-size: 18px; }
-        .logo-tagline { font-size: 12px; }
-        .nav-link { font-size: 16px; }
-        .nav-dropdown-menu .nav-link { font-size: 14px; }
+        /* Navbar — pin to homepage sizes (px absolu, spécificité renforcée pour battre la cascade) */
+        .navbar .logo-name { font-size: 18px; }
+        .navbar .logo-tagline { font-size: 12px; }
+        .navbar .nav-link { font-size: 16px; }
+        .navbar .nav-dropdown-menu .nav-link { font-size: 14px; }
         @media (max-width: 767px) {
-            .nav-links .nav-link { font-size: 18px; }
-            .nav-dropdown-menu .nav-link { font-size: 16px; }
+            .navbar .nav-links .nav-link { font-size: 18px; }
+            .navbar .nav-dropdown-menu .nav-link { font-size: 16px; }
         }
 
         body {
