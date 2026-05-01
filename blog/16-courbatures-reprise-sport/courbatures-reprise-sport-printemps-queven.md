@@ -249,4 +249,4 @@ Tant que la douleur au toucher est présente, on reste sur de l'intensité modé
 
 ---
 
-**Article précédent:** [Jambes lourdes: comprendre d'où elles viennent et comment les soulager](../15-jambes-lourdes/jambes-lourdes-circulation-veineuse-queven.html)
+**Article précédent:** [Jambes lourdes: comprendre d'où elles viennent et comment les soulager](../15-jambes-lourdes/jambes-lourdes-circulation-veineuse-queven.html) | **Article suivant:** [Stress des examens : comment aider les ados →](../17-stress-examens-ados/stress-examens-ados-queven.html)
