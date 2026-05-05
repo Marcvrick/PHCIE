@@ -125,7 +125,9 @@ Exemples de pièges courants :
 **✅ Autorisé:** "Passez nous voir", "Venez en pharmacie", "N'hésitez pas à venir"
 **❌ Interdit:** "Contactez-nous", "Appelez-nous", "Prenez rendez-vous"
 
-**Maillage interne dans les CTAs (OBLIGATOIRE quand pertinent):** Chaque CTA mid-article doit, autant que possible, contenir un lien vers un autre article du blog qui approfondit un sujet mentionné dans le CTA ou dans le paragraphe alentour. Exemple: un CTA qui parle de sommeil → lien vers `troubles-sommeil-solutions-naturelles-queven.html`. Pas de lien forcé si aucun article existant n'est pertinent. Pas de bandeau "★ 4,9/5 Google" ou autre social proof dans les CTAs — on garde le CTA centré sur l'invitation + l'article connexe + l'adresse.
+**Maillage interne — choix par contexte, pas par chronologie (OBLIGATOIRE):** Tout lien interne dans un article (CTA mid-article, "À lire aussi" en intro, navigation bas d'article) doit pointer vers l'article qui **complète le mieux le sujet traité**, pas vers le dernier article publié. Exemple: pour un article "Stress des examens des ados", le lien pertinent est l'article sommeil ou l'article fatigue/moral, pas l'article courbatures juste parce qu'il a été publié juste avant. Si aucun article existant n'est pertinent, ne pas forcer le lien. Pas de bandeau "★ 4,9/5 Google" ou autre social proof dans les CTAs.
+
+**Navigation bas d'article:** Renommer le bloc "Article précédent" → "Pour aller plus loin" (ou "À lire aussi") et y placer l'article le plus complémentaire au sujet, choisi par contexte. Le tri chronologique (article précédent / suivant) est interdit — il génère des liens incohérents quand les sujets ne se suivent pas.
 
 ### Ton de Voix Blog (Voix de Laure — OBLIGATOIRE)
 
