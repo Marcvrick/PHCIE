@@ -125,6 +125,8 @@ Exemples de pièges courants :
 **✅ Autorisé:** "Passez nous voir", "Venez en pharmacie", "N'hésitez pas à venir"
 **❌ Interdit:** "Contactez-nous", "Appelez-nous", "Prenez rendez-vous"
 
+**Maillage interne dans les CTAs (OBLIGATOIRE quand pertinent):** Chaque CTA mid-article doit, autant que possible, contenir un lien vers un autre article du blog qui approfondit un sujet mentionné dans le CTA ou dans le paragraphe alentour. Exemple: un CTA qui parle de sommeil → lien vers `troubles-sommeil-solutions-naturelles-queven.html`. Pas de lien forcé si aucun article existant n'est pertinent. Pas de bandeau "★ 4,9/5 Google" ou autre social proof dans les CTAs — on garde le CTA centré sur l'invitation + l'article connexe + l'adresse.
+
 ### Ton de Voix Blog (Voix de Laure — OBLIGATOIRE)
 
 **Chaque article de blog doit être écrit dans la voix de Laure.** Référence: article "Moral en berne".
