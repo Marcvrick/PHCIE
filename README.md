@@ -690,6 +690,52 @@ Les deux fichiers sont complémentaires et doivent rester à jour.
 
 ## 📝 Changelog Récent
 
+### 6 Mai 2026
+
+**SEO — Audit Google Search Console + optimisations majeures :**
+
+Diagnostic GSC :
+- 18 pages indexées sur 50 soumises (32 en "Discovered/Crawled — currently not indexed")
+- Position 9.8 sur "pharmacie queven" (207 impressions / 90j, seulement 2 clics)
+- 95% des clics viennent de requêtes de marque (pharmacie charnal, charnal, etc.)
+- Mobile = 63% des impressions mais CTR 4× inférieur au desktop (Local Pack capte les clics mobiles)
+- Aucun problème non-critique signalé
+
+Quick wins appliqués sur `index.html` (homepage) :
+- **Title** : `Pharmacie Charnal — Pharmacie à Quéven (56) | Vaccination, conseil, parapharmacie`
+- **Meta description** : enrichie avec Quéven (56) + Lorient + services + téléphone
+- **H1** : conservé `Votre santé, notre priorité` (préférence Dany) — mot-clé "Quéven" déplacé dans la hero description
+- **Canonical** : `/index.html` → `/` (corrige le "Duplicate canonical" GSC)
+- **og:url, twitter:url** : alignés sur `/`
+- **sitemap.xml** : home pointe sur `/`, `lastmod` actualisé
+
+Page Pharmacie de garde — boost SEO complet :
+- H1 : `Pharmacie de garde à Quéven, Hennebont & Lorient Sud`
+- Title enrichi : `... — Nuit, dimanche, jour férié 2026`
+- Section intro de 250+ mots ajoutée (service expliqué, 19 communes listées, callout 3237)
+- Schema **Pharmacy** avec `areaServed` (8 villes : Quéven, Hennebont, Lorient, Guidel, Lanester, Caudan, Ploemeur, Pont-Scorff)
+- Section "Aussi à la Pharmacie Charnal" en bas (4 cartes vers home, services, annuaire, contact)
+
+Homepage — section blog magazine-style :
+- Layout 2 colonnes : article featured (grande image + texte/CTA) à gauche, **4 mini-cartes horizontales** d'articles précédents à droite (thumbnail 120×90 + date + titre)
+- Auto-population JS depuis `blog.html` (cards #1 à #5) — quand un nouvel article est publié, la home se met à jour seule
+- Responsive : empilement vertical <900px, thumbs réduits <480px
+- Style aligné sur les cartes services (background `--gray-100`, hover `--pastel-sage` + slide droite)
+
+Brands strip — CTA :
+- `Voir toutes nos marques` → `Découvrez leurs histoires` (pluriel, plus engageant)
+
+Pages marques enrichies (par Dany) :
+- ✅ Avène, Biocanina, Biogaran, Caudalie, La Rosée, Pileje — contenu unique par marque, schema Product, narratif local
+- Sitemap `lastmod` mis à jour pour ces 6 pages
+
+Search Console — actions manuelles :
+- ✅ Réindexation demandée pour `/` + 7 pages stratégiques (pharmacie-de-garde, services, annuaire-sante, recrutement, histoire, blog, nosmarques)
+- Suivi mensuel : position "pharmacie queven" (cible <5 sous 30j), pages indexées (cible 25+/50 sous 60j)
+
+Documentation source :
+- Audit complet sauvegardé dans `Pharma/Pharma online/SEO TO DO/SEO-Analysis-2026-05-06.md`
+
 ### 17 Avril 2026
 
 **Blog — Article #15 Jambes lourdes prêt pour publication (lundi 21 avril) :**
@@ -771,6 +817,6 @@ Les deux fichiers sont complémentaires et doivent rester à jour.
 
 ---
 
-**Dernière mise à jour**: 19 Avril 2026
+**Dernière mise à jour**: 6 Mai 2026
 **Version du site**: Production (main branch) - Migration style-v2.css en cours
 **Statut**: ✅ En ligne sur www.pharmaciecharnal.com
