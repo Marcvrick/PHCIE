@@ -1106,8 +1106,8 @@
 
         @media (min-width: 768px) {
             .product-cards {
-                grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-                gap: var(--space-32);
+                grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+                gap: var(--space-20);
             }
         }
 
@@ -1130,33 +1130,19 @@
             box-shadow: var(--shadow-xl);
         }
 
+        /* Bloc photo masqué — pas de visuels réels, on garde une bande colorée fine en haut de carte */
         .product-image {
-            position: relative;
-            height: 120px;
-            overflow: hidden;
+            display: none;
         }
 
-        @media (min-width: 768px) {
-            .product-image {
-                height: 220px;
-            }
+        .product-card {
+            border-top: 6px solid var(--biocanina-red);
         }
-
-        .product-image-bg {
-            position: absolute;
-            inset: 0;
-            transition: transform var(--duration-slow) var(--ease-out);
-        }
-
-        .product-card:hover .product-image-bg {
-            transform: scale(1.05);
-        }
-
-        .product-image-bg.antiparasitaires { background: linear-gradient(135deg, #FF9A8B 0%, #E31837 100%); }
-        .product-image-bg.vermifuges { background: linear-gradient(135deg, #A8E6CF 0%, #50A686 100%); }
-        .product-image-bg.hygiene { background: linear-gradient(135deg, #A8D8EA 0%, #4A7C8E 100%); }
-        .product-image-bg.complements { background: linear-gradient(135deg, #FFD89B 0%, #E6A23C 100%); }
-        .product-image-bg.comportement { background: linear-gradient(135deg, #D4A5D4 0%, #9B59B6 100%); }
+        .product-card[data-category="antiparasitaires"] { border-top-color: #E31837; }
+        .product-card[data-category="vermifuges"] { border-top-color: #50A686; }
+        .product-card[data-category="hygiene"] { border-top-color: #4A7C8E; }
+        .product-card[data-category="complements"] { border-top-color: #E6A23C; }
+        .product-card[data-category="complements"]:nth-of-type(5) { border-top-color: #9B59B6; } /* Comportement */
 .product-content {
             padding: var(--space-12);
         }
