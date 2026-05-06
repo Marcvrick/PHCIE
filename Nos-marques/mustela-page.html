@@ -877,8 +877,8 @@
 
         @media (min-width: 768px) {
             .product-cards {
-                grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-                gap: var(--space-32);
+                grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+                gap: var(--space-20);
             }
         }
 
@@ -901,28 +901,17 @@
             box-shadow: var(--shadow-xl);
         }
 
+        /* Bloc photo masqué — pas de visuels réels, bande colorée fine en haut de carte */
         .product-image {
-            position: relative;
-            height: 120px;
-            overflow: hidden;
+            display: none;
         }
 
-        @media (min-width: 768px) {
-            .product-image {
-                height: 220px;
-            }
+        .product-card {
+            border-top: 6px solid var(--teal-pro);
         }
-
-        .product-image-bg {
-            position: absolute;
-            inset: 0;
-            transition: transform var(--duration-slow) var(--ease-out);
-        }
-
-        .product-card:hover .product-image-bg { transform: scale(1.05); }
 
         .product-image-bg.normale { background: linear-gradient(135deg, #B5E0D4 0%, #7CB9A8 100%); }
-        .product-image-bg.seche { background: linear-gradient(135deg, #FFE4EC 0%, #FFC0CB 100%); }
+        .product-image-bg.sèche { background: linear-gradient(135deg, #FFE4EC 0%, #FFC0CB 100%); }
         .product-image-bg.atopique { background: linear-gradient(135deg, #E8D4F5 0%, #C5A3E0 100%); }
         .product-image-bg.change { background: linear-gradient(135deg, #A8E6CF 0%, #88D8B0 100%); }
         .product-image-bg.maternite { background: linear-gradient(135deg, #FFD8E8 0%, #FFAEC9 100%); }
@@ -1394,8 +1383,8 @@
                         <li><a href="../histoire.html" class="nav-link">Notre Histoire</a></li>
                         <li><a href="nosmarques.html" class="nav-link active">Nos Marques</a></li>
                         <li><a href="../pharmacie-de-garde-queven-hennebont-lorient.html" class="nav-link">Pharmacie de garde</a></li>
-                        <li><a href="../annuaire-sante.html" class="nav-link">Annuaire Santé</a></li>
-                        <li><a href="../Quizzes/guide-quizzes-sante-pharmacie-queven.html" class="nav-link">Quiz santé</a></li>
+                        <li><a href="../annuaire-santé.html" class="nav-link">Annuaire Santé</a></li>
+                        <li><a href="../Quizzes/guide-quizzes-santé-pharmacie-queven.html" class="nav-link">Quiz santé</a></li>
                     </ul>
                 </li>
                 <li><a href="../blog.html" class="nav-link nav-link-blog" style="background: #b4a6d7; color: white; border-radius: 9999px;">Au comptoir</a></li>
@@ -1623,7 +1612,7 @@
             <div class="products-tabs reveal reveal-delay-2">
                 <button class="tab-btn active" data-category="all">Toutes</button>
                 <button class="tab-btn" data-category="normale">Peau Normale</button>
-                <button class="tab-btn" data-category="seche">Peau Sèche</button>
+                <button class="tab-btn" data-category="sèche">Peau Sèche</button>
                 <button class="tab-btn" data-category="atopique">Peau Atopique</button>
                 <button class="tab-btn" data-category="change">Change</button>
                 <button class="tab-btn" data-category="maternite">Maternité</button>
@@ -1653,9 +1642,9 @@
                     </div>
                 </article>
 
-                <article class="product-card reveal reveal-delay-2" data-category="seche">
+                <article class="product-card reveal reveal-delay-2" data-category="sèche">
                     <div class="product-image">
-                        <div class="product-image-bg seche"></div>
+                        <div class="product-image-bg sèche"></div>
                     </div>
                     <div class="product-content">
                         <h3>Peau Sèche</h3>
@@ -1664,7 +1653,7 @@
                         <ul class="product-list">
                             <li>Cold Cream (nutrition intense)</li>
                             <li>Stick Lèvres et Joues</li>
-                            <li>Huile de Bain nourrissante</li>
+                            <li>Huile de Bain nourrissanté</li>
                         </ul>
                         <a href="#contact" class="product-link">
                             Demander conseil
@@ -1771,6 +1760,273 @@
             </div>
             </div>
         </div>
+        <!-- ═══════════════════════════════════════════════════════════
+             SECTIONS UNIQUES MUSTELA (SEO + AEO)
+             1. Innovations 2024-2025
+             2. FAQ Mustela + Schema FAQPage
+             3. Le conseil de Laure
+        ═══════════════════════════════════════════════════════════ -->
+
+        <!-- Innovations 2024-2025 -->
+        <section class="mustela-innovations" style="padding: var(--space-64) 0; background: #F2F8FD;">
+            <div class="container">
+                <div class="section-header" style="text-align: center; margin-bottom: var(--space-48); max-width: 760px; margin-left: auto; margin-right: auto;">
+                    <span class="section-badge" style="display: inline-block; padding: 6px 18px; background: #E5F0FA; color: #2A6BAE; border-radius: 999px; font-size: var(--text-sm); font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; margin-bottom: var(--space-16);">Nouveautés 2024-2025</span>
+                    <h2 class="reveal" style="font-family: var(--font-display); font-size: 2.5rem; line-height: 1.15; color: var(--charcoal); margin-bottom: var(--space-16);">Les dernières innovations Mustela</h2>
+                    <p class="reveal reveal-delay-1" style="color: var(--gray); font-size: var(--text-lg); line-height: 1.6;">75 ans de recherche en dermo-pédiatrie, <strong style="color: var(--charcoal);">1&nbsp;101 brevets déposés</strong> et un site de production 100&nbsp;% français à Épernon : Mustela continue d'innover pour les tout-petits et les futures mamans.</p>
+                </div>
+
+                <div class="innovations-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: var(--space-24); max-width: 1100px; margin: 0 auto;">
+                    <article class="innovation-card reveal" style="background: var(--white); border-radius: 16px; padding: var(--space-32) var(--space-24); border-left: 4px solid #5C9CD9; box-shadow: 0 4px 20px rgba(92, 156, 217, 0.08);">
+                        <div style="font-size: var(--text-xs); font-weight: 700; color: #5C9CD9; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: var(--space-12);">Atopie · 2024-2025</div>
+                        <h3 style="font-family: var(--font-display); font-size: 1.5rem; line-height: 1.2; margin-bottom: var(--space-12); color: var(--charcoal);">Stelatopia : croissance record</h3>
+                        <p style="color: var(--gray); line-height: 1.6; margin: 0;">La gamme pour peaux atopiques affiche +14&nbsp;% de croissance en 2024, surperformant le marché atopie (+12&nbsp;%). Les nouveaux formats économiques et le baume relipidant concentré renforcent l'observance chez les tout-petits sujets à l'eczéma.</p>
+                    </article>
+
+                    <article class="innovation-card reveal reveal-delay-1" style="background: var(--white); border-radius: 16px; padding: var(--space-32) var(--space-24); border-left: 4px solid #5C9CD9; box-shadow: 0 4px 20px rgba(92, 156, 217, 0.08);">
+                        <div style="font-size: var(--text-xs); font-weight: 700; color: #5C9CD9; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: var(--space-12);">Clean Beauty · 2024</div>
+                        <h3 style="font-family: var(--font-display); font-size: 1.5rem; line-height: 1.2; margin-bottom: var(--space-12); color: var(--charcoal);">Hydra Bébé reformulée</h3>
+                        <p style="color: var(--gray); line-height: 1.6; margin: 0;">La crème visage et le lait corps best-sellers adoptent des formules encore plus courtes, enrichies en Perséose d'avocat bio breveté et jojoba bio. Résultat&nbsp;: un score Yuka moyen de 92,7/100 sur l'ensemble de la gamme Mustela et 96&nbsp;% des produits bien notés.</p>
+                    </article>
+
+                    <article class="innovation-card reveal reveal-delay-2" style="background: var(--white); border-radius: 16px; padding: var(--space-32) var(--space-24); border-left: 4px solid #5C9CD9; box-shadow: 0 4px 20px rgba(92, 156, 217, 0.08);">
+                        <div style="font-size: var(--text-xs); font-weight: 700; color: #5C9CD9; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: var(--space-12);">Maternité · 2024-2025</div>
+                        <h3 style="font-family: var(--font-display); font-size: 1.5rem; line-height: 1.2; margin-bottom: var(--space-12); color: var(--charcoal);">Gamme 9 Mois enrichie</h3>
+                        <p style="color: var(--gray); line-height: 1.6; margin: 0;">La crème vergetures double action, l'huile vergetures et le soin restructurant post-accouchement complètent une gamme maternité de référence en pharmacie. Prévention et correction, de la grossesse au post-partum.</p>
+                    </article>
+
+                    <article class="innovation-card reveal reveal-delay-3" style="background: var(--white); border-radius: 16px; padding: var(--space-32) var(--space-24); border-left: 4px solid #5C9CD9; box-shadow: 0 4px 20px rgba(92, 156, 217, 0.08);">
+                        <div style="font-size: var(--text-xs); font-weight: 700; color: #5C9CD9; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: var(--space-12);">Solaire · 2025</div>
+                        <h3 style="font-family: var(--font-display); font-size: 1.5rem; line-height: 1.2; margin-bottom: var(--space-12); color: var(--charcoal);">Solaire bébé SPF 50+ minéral</h3>
+                        <p style="color: var(--gray); line-height: 1.6; margin: 0;">Le segment solaire bébé Mustela bondit de +33&nbsp;% en 2024, contre +23&nbsp;% pour le marché. Spray, lait et stick SPF 50+ à filtres haute tolérance, spécialement formulés pour les peaux fragiles des nourrissons. En Bretagne, les UV sont souvent sous-estimés malgré l'exposition littorale.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ Mustela -->
+        <section class="mustela-faq" style="padding: var(--space-64) 0; background: var(--white);">
+            <div class="container" style="max-width: 860px;">
+                <div class="section-header" style="text-align: center; margin-bottom: var(--space-48);">
+                    <span class="section-badge" style="display: inline-block; padding: 6px 18px; background: #E5F0FA; color: #2A6BAE; border-radius: 999px; font-size: var(--text-sm); font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; margin-bottom: var(--space-16);">Vos questions fréquentes</span>
+                    <h2 class="reveal" style="font-family: var(--font-display); font-size: 2.5rem; line-height: 1.15; color: var(--charcoal);">Questions fréquentes sur Mustela</h2>
+                </div>
+
+                <div class="faq-list">
+                    <details class="faq-item">
+                        <summary>Mustela est-elle vraiment leader sur les soins bébé en pharmacie ?</summary>
+                        <div class="faq-answer">
+                            <p>Oui. Mustela détient environ <strong>27&nbsp;% de part de marché en Europe</strong> sur le segment des soins bébé en pharmacie, ce qui en fait le leader incontesté. En France, la marque est référencée dans plus de 10&nbsp;000 officines. Ce leadership repose sur 75 ans de recherche en dermo-pédiatrie, 1&nbsp;101 brevets déposés et une fabrication intégralement française sur le site d'Épernon (Eure-et-Loir).</p>
+                        </div>
+                    </details>
+
+                    <details class="faq-item">
+                        <summary>La gamme Stelatopia est-elle adaptée à l'eczéma atopique ?</summary>
+                        <div class="faq-answer">
+                            <p>Stelatopia est la gamme Mustela spécifiquement formulée pour les <strong>peaux à tendance atopique</strong> (eczéma, sécheresse sévère). Elle contient le Sunflower Oil Distillate, un actif breveté par Expanscience qui aide à restructurer la barrière cutanée. La gamme comprend crème émolliente, baume relipidant, crème lavante, huile de bain lactée et shampooing mousse. Elle est sans parfum et a enregistré +14&nbsp;% de croissance en 2024, signe de la confiance des professionnels de santé et des parents.</p>
+                        </div>
+                    </details>
+
+                    <details class="faq-item">
+                        <summary>Les produits Mustela sont-ils sûrs dès la naissance ?</summary>
+                        <div class="faq-answer">
+                            <p>La majorité des soins Mustela sont formulés pour être utilisés <strong>dès la naissance</strong>, avec une haute tolérance validée sous contrôle dermatologique et pédiatrique. La marque s'appuie sur une étude publiée dans le <em>British Journal of Dermatology</em> (2012) sur l'immaturité de la barrière cutanée avant 2 ans. 96&nbsp;% des produits sont bien notés sur Yuka (score moyen 92,7/100), et 100&nbsp;% sont évalués "sans risque" par QuelCosmetic (UFC-Que Choisir).</p>
+                        </div>
+                    </details>
+
+                    <details class="faq-item">
+                        <summary>Mustela 9 Mois prévient-elle vraiment les vergetures ?</summary>
+                        <div class="faq-answer">
+                            <p>La gamme 9 Mois est la référence historique de Mustela en maternité. La <strong>crème vergetures double action</strong> et l'huile vergetures sont conçues pour prévenir et atténuer les vergetures pendant la grossesse et en post-partum. L'application doit commencer dès le début de la grossesse et être régulière pour une efficacité optimale. La gamme inclut également un soin restructurant corps et un gel jambes lourdes, pour un accompagnement complet de la future maman.</p>
+                        </div>
+                    </details>
+
+                    <details class="faq-item">
+                        <summary>Mustela appartient à quel groupe ?</summary>
+                        <div class="faq-answer">
+                            <p>Mustela est la marque phare des <strong>Laboratoires Expanscience</strong>, une entreprise familiale indépendante fondée en 1950 et détenue par la famille Berthomé sur trois générations. Le groupe, dont le siège est à Courbevoie, a réalisé un chiffre d'affaires de <strong>364,3&nbsp;millions d'euros en 2024</strong> avec 1&nbsp;299 salariés. Expanscience est le premier laboratoire pharmaceutique et dermo-cosmétique au monde certifié <strong>B Corp</strong> (depuis 2018) et a obtenu le statut de société à mission en 2022.</p>
+                        </div>
+                    </details>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ Schema JSON-LD -->
+        <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            "mainEntity": [
+                {
+                    "@type": "Question",
+                    "name": "Mustela est-elle vraiment leader sur les soins bébé en pharmacie ?",
+                    "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "Oui. Mustela détient environ 27 % de part de marché en Europe sur le segment des soins bébé en pharmacie, ce qui en fait le leader incontesté. En France, la marque est référencée dans plus de 10 000 officines. Ce leadership repose sur 75 ans de recherche en dermo-pédiatrie, 1 101 brevets déposés et une fabrication intégralement française sur le site d'Épernon (Eure-et-Loir)."
+                    }
+                },
+                {
+                    "@type": "Question",
+                    "name": "La gamme Stelatopia est-elle adaptée à l'eczéma atopique ?",
+                    "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "Stelatopia est la gamme Mustela spécifiquement formulée pour les peaux à tendance atopique (eczéma, sécheresse sévère). Elle contient le Sunflower Oil Distillate, un actif breveté par Expanscience qui aide à restructurer la barrière cutanée. La gamme comprend crème émolliente, baume relipidant, crème lavante, huile de bain lactée et shampooing mousse. Elle est sans parfum et a enregistré +14 % de croissance en 2024."
+                    }
+                },
+                {
+                    "@type": "Question",
+                    "name": "Les produits Mustela sont-ils sûrs dès la naissance ?",
+                    "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "La majorité des soins Mustela sont formulés pour être utilisés dès la naissance, avec une haute tolérance validée sous contrôle dermatologique et pédiatrique. 96 % des produits sont bien notés sur Yuka (score moyen 92,7/100), et 100 % sont évalués sans risque par QuelCosmetic (UFC-Que Choisir)."
+                    }
+                },
+                {
+                    "@type": "Question",
+                    "name": "Mustela 9 Mois prévient-elle vraiment les vergetures ?",
+                    "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "La gamme 9 Mois est la référence historique de Mustela en maternité. La crème vergetures double action et l'huile vergetures sont conçues pour prévenir et atténuer les vergetures pendant la grossesse et en post-partum. L'application doit commencer dès le début de la grossesse et être régulière pour une efficacité optimale."
+                    }
+                },
+                {
+                    "@type": "Question",
+                    "name": "Mustela appartient à quel groupe ?",
+                    "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "Mustela est la marque phare des Laboratoires Expanscience, une entreprise familiale indépendante fondée en 1950 et détenue par la famille Berthomé sur trois générations. Le groupe a réalisé un chiffre d'affaires de 364,3 millions d'euros en 2024 avec 1 299 salariés. Expanscience est le premier laboratoire pharmaceutique et dermo-cosmétique au monde certifié B Corp (depuis 2018) et a obtenu le statut de société à mission en 2022."
+                    }
+                }
+            ]
+        }
+        </script>
+
+        <!-- Le conseil de Laure -->
+        <section class="mustela-laure" style="padding: var(--space-64) 0; background: linear-gradient(135deg, #F2F8FD 0%, var(--cream) 100%);">
+            <div class="container" style="max-width: 880px;">
+                <div class="laure-block" style="display: grid; grid-template-columns: 140px 1fr; gap: var(--space-32); align-items: start;">
+                    <div style="width: 140px; height: 140px; border-radius: 50%; overflow: hidden; box-shadow: 0 8px 24px rgba(92, 156, 217, 0.15); border: 4px solid var(--white);">
+                        <img src="../images/Laure%20CNL.jpeg" alt="Laure Charnal, pharmacienne titulaire à Quéven" style="width: 100%; height: 100%; object-fit: cover; display: block;">
+                    </div>
+                    <div>
+                        <span style="display: inline-block; font-size: var(--text-xs); font-weight: 700; color: #5C9CD9; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: var(--space-12);">Le conseil de Laure</span>
+                        <h2 style="font-family: var(--font-display); font-size: 2rem; line-height: 1.2; color: var(--charcoal); margin-bottom: var(--space-20);">Mustela à la pharmacie de Quéven : mes recommandations par profil</h2>
+                        <p style="color: var(--charcoal); line-height: 1.8; margin-bottom: var(--space-16);"><strong>Futures mamans</strong> : commencez la crème vergetures 9 Mois dès le premier trimestre. En complément, l'huile vergetures s'applique le soir sur ventre, hanches et poitrine. Les sages-femmes du secteur Lorient-Quéven la recommandent régulièrement, et c'est aussi mon conseil en priorité quand une future maman pousse la porte de la pharmacie.</p>
+                        <p style="color: var(--charcoal); line-height: 1.8; margin-bottom: var(--space-16);"><strong>Parents de nouveau-né</strong> : le trio gel lavant doux + Hydra Bébé crème visage + crème change 1.2.3 couvre 90&nbsp;% des besoins quotidiens. Pour les sorties au bord de mer ou en forêt de Quéven, le spray solaire SPF 50+ est indispensable même par temps couvert. Les UV en Bretagne sont souvent sous-estimés, surtout sur le littoral.</p>
+                        <p style="color: var(--charcoal); line-height: 1.8;">Pour les <strong>enfants à peau atopique</strong>, et ils sont nombreux dans notre climat humide breton, je recommande la gamme Stelatopia sans hésiter. La crème lavante pour la toilette, le baume relipidant matin et soir sur les zones sèches. Si les plaques persistent, on en parle ensemble pour adapter le protocole. C'est justement l'avantage de venir en pharmacie plutôt que de commander en ligne : on ajuste, on suit, on accompagne.</p>
+                        <p style="margin-top: var(--space-24); color: var(--gray); font-style: italic; font-size: var(--text-sm);">— Laure Charnal, pharmacienne titulaire à Quéven</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CSS dédié sections SEO Mustela (FAQ + responsive Laure) -->
+        <style>
+            /* FAQ — texte aéré, indicateur +/−, hover & open states */
+            .mustela-faq .faq-list {
+                margin-top: var(--space-32);
+            }
+            .mustela-faq .faq-item {
+                border: 1px solid var(--beige);
+                border-radius: 12px;
+                padding: var(--space-24) var(--space-32);
+                margin-bottom: var(--space-32);
+                background: var(--cream);
+                transition: border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+            }
+            .mustela-faq .faq-item:last-child {
+                margin-bottom: 0;
+            }
+            .mustela-faq .faq-item:hover {
+                border-color: #5C9CD9;
+                box-shadow: 0 2px 12px rgba(92, 156, 217, 0.08);
+            }
+            .mustela-faq .faq-item[open] {
+                border-color: #5C9CD9;
+                background: var(--white);
+                box-shadow: 0 4px 16px rgba(92, 156, 217, 0.1);
+            }
+            .mustela-faq .faq-item summary {
+                font-family: var(--font-display);
+                font-weight: 600;
+                font-size: 1.35rem;
+                line-height: 1.4;
+                color: var(--charcoal);
+                cursor: pointer;
+                list-style: none;
+                padding-right: 36px;
+                position: relative;
+            }
+            .mustela-faq .faq-item summary::-webkit-details-marker {
+                display: none;
+            }
+            .mustela-faq .faq-item summary::after {
+                content: "+";
+                position: absolute;
+                right: 0;
+                top: 50%;
+                transform: translateY(-50%);
+                width: 28px;
+                height: 28px;
+                line-height: 26px;
+                text-align: center;
+                font-size: 1.5rem;
+                font-weight: 400;
+                color: #5C9CD9;
+                border: 1.5px solid #5C9CD9;
+                border-radius: 50%;
+                transition: transform 0.3s ease;
+            }
+            .mustela-faq .faq-item[open] summary::after {
+                content: "\2212";
+                background: #5C9CD9;
+                color: var(--white);
+            }
+            .mustela-faq .faq-answer {
+                margin-top: var(--space-20);
+                color: var(--charcoal);
+                font-size: var(--text-lg);
+                line-height: 1.8;
+            }
+            .mustela-faq .faq-answer p {
+                margin: 0;
+            }
+
+            /* Mobile : empile la photo de Laure et réduit les tailles */
+            @media (max-width: 640px) {
+                .mustela-laure .laure-block {
+                    grid-template-columns: 1fr !important;
+                    text-align: center;
+                }
+                .mustela-laure .laure-block > div:first-child {
+                    margin: 0 auto var(--space-16);
+                }
+                .mustela-innovations h2,
+                .mustela-faq h2,
+                .mustela-laure h2 {
+                    font-size: 1.75rem !important;
+                }
+                .mustela-faq .faq-item {
+                    padding: var(--space-20) var(--space-24);
+                    margin-bottom: var(--space-24);
+                }
+                .mustela-faq .faq-item summary {
+                    font-size: 1.15rem;
+                    padding-right: 32px;
+                }
+                .mustela-faq .faq-item summary::after {
+                    width: 24px;
+                    height: 24px;
+                    line-height: 22px;
+                    font-size: 1.25rem;
+                }
+                .mustela-faq .faq-answer {
+                    font-size: var(--text-base);
+                    line-height: 1.7;
+                }
+            }
+        </style>
+
         <!-- Découvrir une autre marque -->
     <section class="next-brand-section" style="padding: var(--space-64) 0; background: var(--cream);">
         <div class="container" style="max-width: 500px; margin: 0 auto; text-align: center;">
@@ -1814,7 +2070,7 @@
                         <li><a href="../services.html">Services</a></li>
                         <li><a href="../histoire.html">Notre Histoire</a></li>
                         <li><a href="../blog.html">Au Comptoir</a></li>
-                        <li><a href="../Quizzes/guide-quizzes-sante-pharmacie-queven.html">Quiz santé</a></li>
+                        <li><a href="../Quizzes/guide-quizzes-santé-pharmacie-queven.html">Quiz santé</a></li>
                         <li><a href="../contact.html">Contact</a></li>
                     </ul>
                 </div>
@@ -1839,7 +2095,7 @@
                 <p class="footer-copyright">© 2026 Pharmacie Charnal. Tous droits réservés.</p>
                 <div class="footer-legal">
                     <a href="../mentions-legales.html">Mentions légales</a>
-                    <a href="../donnees-personnelles.html">Confidentialité</a>
+                    <a href="../données-personnelles.html">Confidentialité</a>
                     <a href="/feed.xml" title="Flux RSS">RSS</a>
                 </div>
             </div>

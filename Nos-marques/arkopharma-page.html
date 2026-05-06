@@ -888,8 +888,8 @@
 
         @media (min-width: 768px) {
             .product-cards {
-                grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-                gap: var(--space-32);
+                grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+                gap: var(--space-20);
             }
         }
 
@@ -906,25 +906,14 @@
             box-shadow: var(--shadow-xl);
         }
 
+        /* Bloc photo masqué — pas de visuels réels, bande colorée fine en haut de carte */
         .product-image {
-            position: relative;
-            height: 120px;
-            overflow: hidden;
+            display: none;
         }
 
-        @media (min-width: 768px) {
-            .product-image {
-                height: 220px;
-            }
+        .product-card {
+            border-top: 6px solid var(--teal-pro);
         }
-
-        .product-image-bg {
-            position: absolute;
-            inset: 0;
-            transition: transform var(--duration-slow) var(--ease-out);
-        }
-
-        .product-card:hover .product-image-bg { transform: scale(1.05); }
 
         .product-image-bg.arkogelules { background: linear-gradient(135deg, #C8E6C9 0%, #A5D6A7 100%); }
         .product-image-bg.arkofluides { background: linear-gradient(135deg, #DCEDC8 0%, #AED581 100%); }
@@ -1330,8 +1319,8 @@
                         <li><a href="../histoire.html" class="nav-link">Notre Histoire</a></li>
                         <li><a href="nosmarques.html" class="nav-link">Nos Marques</a></li>
                         <li><a href="../pharmacie-de-garde-queven-hennebont-lorient.html" class="nav-link">Pharmacie de garde</a></li>
-                        <li><a href="../annuaire-sante.html" class="nav-link">Annuaire Santé</a></li>
-                        <li><a href="../Quizzes/guide-quizzes-sante-pharmacie-queven.html" class="nav-link">Quiz santé</a></li>
+                        <li><a href="../annuaire-santé.html" class="nav-link">Annuaire Santé</a></li>
+                        <li><a href="../Quizzes/guide-quizzes-santé-pharmacie-queven.html" class="nav-link">Quiz santé</a></li>
                     </ul>
                 </li>
                 <li><a href="../blog.html" class="nav-link nav-link-blog" style="background: #b4a6d7; color: white; border-radius: 9999px;">Au comptoir</a></li>
@@ -1695,6 +1684,273 @@
             </div>
             </div>
         </div>
+        <!-- ═══════════════════════════════════════════════════════════
+             SECTIONS UNIQUES ARKOPHARMA (SEO + AEO)
+             1. Innovations 2024-2025
+             2. FAQ Arkopharma + Schema FAQPage
+             3. Le conseil de Laure
+        ═══════════════════════════════════════════════════════════ -->
+
+        <!-- Innovations 2024-2025 -->
+        <section class="arkopharma-innovations" style="padding: var(--space-64) 0; background: #F2F8F0;">
+            <div class="container">
+                <div class="section-header" style="text-align: center; margin-bottom: var(--space-48); max-width: 760px; margin-left: auto; margin-right: auto;">
+                    <span class="section-badge" style="display: inline-block; padding: 6px 18px; background: #E8F2E5; color: #356630; border-radius: 999px; font-size: var(--text-sm); font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; margin-bottom: var(--space-16);">Nouveautés 2024-2025</span>
+                    <h2 class="reveal" style="font-family: var(--font-display); font-size: 2.5rem; line-height: 1.15; color: var(--charcoal); margin-bottom: var(--space-16);">Les dernières innovations Arkopharma</h2>
+                    <p class="reveal reveal-delay-1" style="color: var(--gray); font-size: var(--text-lg); line-height: 1.6;">Avec <strong style="color: var(--charcoal);">337 références actives et 3 sites de production</strong>, Arkopharma continue d'innover en phytothérapie, micronutrition et galénique.</p>
+                </div>
+
+                <div class="innovations-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: var(--space-24); max-width: 1100px; margin: 0 auto;">
+                    <article class="innovation-card reveal" style="background: var(--white); border-radius: 16px; padding: var(--space-32) var(--space-24); border-left: 4px solid #4A8C42; box-shadow: 0 4px 20px rgba(74, 140, 66, 0.08);">
+                        <div style="font-size: var(--text-xs); font-weight: 700; color: #4A8C42; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: var(--space-12);">Capillaire · 2024-2025</div>
+                        <h3 style="font-family: var(--font-display); font-size: 1.5rem; line-height: 1.2; margin-bottom: var(--space-12); color: var(--charcoal);">Forcapil Age Protect</h3>
+                        <p style="color: var(--gray); line-height: 1.6; margin: 0;">Premier complément anti-âge capillaire de la gamme Forcapil. Formule enrichie en vitamines B6, B8, B9, D3 et zinc pour réduire l'apparition des cheveux blancs dès 2 mois de cure. Une innovation qui complète le best-seller Forcapil Cheveux &amp; Ongles.</p>
+                    </article>
+
+                    <article class="innovation-card reveal reveal-delay-1" style="background: var(--white); border-radius: 16px; padding: var(--space-32) var(--space-24); border-left: 4px solid #4A8C42; box-shadow: 0 4px 20px rgba(74, 140, 66, 0.08);">
+                        <div style="font-size: var(--text-xs); font-weight: 700; color: #4A8C42; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: var(--space-12);">Galénique · 2024</div>
+                        <h3 style="font-family: var(--font-display); font-size: 1.5rem; line-height: 1.2; margin-bottom: var(--space-12); color: var(--charcoal);">Gynocontrol Probiotiques</h3>
+                        <p style="color: var(--gray); line-height: 1.6; margin: 0;">Innovation galénique majeure pour la sphère intime féminine. La technologie de libération ciblée garantit la survie des souches probiotiques jusqu'à leur site d'action, une avancée significative sur le segment des probiotiques intimes en pharmacie.</p>
+                    </article>
+
+                    <article class="innovation-card reveal reveal-delay-2" style="background: var(--white); border-radius: 16px; padding: var(--space-32) var(--space-24); border-left: 4px solid #4A8C42; box-shadow: 0 4px 20px rgba(74, 140, 66, 0.08);">
+                        <div style="font-size: var(--text-xs); font-weight: 700; color: #4A8C42; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: var(--space-12);">Sommeil · 2024-2025</div>
+                        <h3 style="font-family: var(--font-display); font-size: 1.5rem; line-height: 1.2; margin-bottom: var(--space-12); color: var(--charcoal);">Arkorelax Sommeil Fort 8h</h3>
+                        <p style="color: var(--gray); line-height: 1.6; margin: 0;">Comprimé à libération prolongée associant mélatonine et extraits de plantes pour couvrir la nuit entière. En Bretagne, où les journées courtes d'hiver perturbent le rythme circadien, cette formule 8 heures répond à une demande forte en officine.</p>
+                    </article>
+
+                    <article class="innovation-card reveal reveal-delay-3" style="background: var(--white); border-radius: 16px; padding: var(--space-32) var(--space-24); border-left: 4px solid #4A8C42; box-shadow: 0 4px 20px rgba(74, 140, 66, 0.08);">
+                        <div style="font-size: var(--text-xs); font-weight: 700; color: #4A8C42; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: var(--space-12);">Drainage · 2024</div>
+                        <h3 style="font-family: var(--font-display); font-size: 1.5rem; line-height: 1.2; margin-bottom: var(--space-12); color: var(--charcoal);">Arkofluides Détox Bio</h3>
+                        <p style="color: var(--gray); line-height: 1.6; margin: 0;">Nouvelle formule bio en ampoules buvables, associant radis noir, artichaut et bouleau pour une détox hépatique complète. Le format liquide offre une biodisponibilité améliorée par rapport aux gélules, idéal pour les cures de changement de saison.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ Arkopharma -->
+        <section class="arkopharma-faq" style="padding: var(--space-64) 0; background: var(--white);">
+            <div class="container" style="max-width: 860px;">
+                <div class="section-header" style="text-align: center; margin-bottom: var(--space-48);">
+                    <span class="section-badge" style="display: inline-block; padding: 6px 18px; background: #E8F2E5; color: #356630; border-radius: 999px; font-size: var(--text-sm); font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; margin-bottom: var(--space-16);">Vos questions fréquentes</span>
+                    <h2 class="reveal" style="font-family: var(--font-display); font-size: 2.5rem; line-height: 1.15; color: var(--charcoal);">Questions fréquentes sur Arkopharma</h2>
+                </div>
+
+                <div class="faq-list">
+                    <details class="faq-item">
+                        <summary>Qu'est-ce qu'une Arkogélule exactement ?</summary>
+                        <div class="faq-answer">
+                            <p>Une Arkogélule est une gélule contenant de la <strong>poudre de plante totale</strong> (le "Totum"), c'est-à-dire la plante entière broyée à froid, sans extraction chimique ni excipient superflu. Ce procédé breveté par Arkopharma en 1980 préserve l'ensemble des principes actifs de la plante dans leurs proportions naturelles. C'est la première gamme de phytothérapie à avoir été commercialisée en pharmacie en France, avec aujourd'hui plus de 100&nbsp;plantes disponibles.</p>
+                        </div>
+                    </details>
+
+                    <details class="faq-item">
+                        <summary>Forcapil ralentit-il vraiment la chute de cheveux ?</summary>
+                        <div class="faq-answer">
+                            <p>Forcapil contient de la vitamine B8 (biotine), du zinc et de la vitamine B6 qui contribuent au maintien de cheveux normaux. Les résultats varient selon les individus : une <strong>cure de 3 mois minimum</strong> est nécessaire pour observer un effet sur la chute, et 6 mois pour la repousse. Les avis consommateurs sont positifs sur Forcapil Cheveux &amp; Ongles classique (cure d'entretien), mais plus mitigés sur la formule Anti-chute en cas d'alopécie installée. En cas de chute importante ou prolongée, consultez votre médecin pour identifier la cause (carence en fer, thyroïde, stress).</p>
+                        </div>
+                    </details>
+
+                    <details class="faq-item">
+                        <summary>Arkopharma est-elle 100 % made in France ?</summary>
+                        <div class="faq-answer">
+                            <p>Pas exclusivement. Arkopharma dispose de <strong>3 sites de production</strong> : l'usine principale et le siège social à <strong>Carros</strong> (Alpes-Maritimes), une usine à <strong>Waterford</strong> (Irlande) et une à <strong>Ventimiglia</strong> (Italie), soit environ 100 lignes de production au total. La majorité de la gamme vendue en France est fabriquée à Carros. Le groupe est présent dans plus de 60 pays, avec 41&nbsp;% de son chiffre d'affaires réalisé à l'international. Depuis janvier 2023, Arkopharma est une filiale du groupe allemand <strong>Dermapharm Holding SE</strong>, qui l'a acquise pour 450&nbsp;millions d'euros.</p>
+                        </div>
+                    </details>
+
+                    <details class="faq-item">
+                        <summary>Quelle plante Arkogélule choisir pour quel besoin ?</summary>
+                        <div class="faq-answer">
+                            <p>Voici les principales correspondances plante-besoin dans la gamme Arkogélules : <strong>Valériane</strong> pour le sommeil et la détente, <strong>Millepertuis</strong> pour l'humeur et l'équilibre émotionnel (attention : interactions médicamenteuses importantes avec la pilule, les anticoagulants et les antidépresseurs), <strong>Harpagophytum</strong> pour le confort articulaire, <strong>Charbon végétal</strong> pour les ballonnements et la digestion, <strong>Queue de cerise</strong> pour le drainage, <strong>Vigne rouge</strong> pour la circulation veineuse, et <strong>Plantain</strong> en période d'allergies polliniques. N'hésitez pas à demander conseil à l'équipe pour adapter le choix à votre situation.</p>
+                        </div>
+                    </details>
+
+                    <details class="faq-item">
+                        <summary>Arkopharma a-t-elle changé de propriétaire récemment ?</summary>
+                        <div class="faq-answer">
+                            <p>Oui. En <strong>janvier 2023</strong>, le groupe allemand <strong>Dermapharm Holding SE</strong> (1,1&nbsp;milliard d'euros de CA) a racheté Arkopharma pour 450&nbsp;millions d'euros auprès de Montagu Private Equity, qui détenait le laboratoire depuis 2014. Fondé en 1980 par le Dr&nbsp;Max Rombi à Carros, Arkopharma reste opéré depuis son siège historique des Alpes-Maritimes. L'intégration dans Dermapharm ouvre l'accès au réseau de distribution européen du groupe (Allemagne, Autriche, Europe de l'Est) tout en conservant l'identité et l'expertise phytothérapie françaises.</p>
+                        </div>
+                    </details>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ Schema JSON-LD -->
+        <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            "mainEntity": [
+                {
+                    "@type": "Question",
+                    "name": "Qu'est-ce qu'une Arkogélule exactement ?",
+                    "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "Une Arkogélule est une gélule contenant de la poudre de plante totale (le \"Totum\"), c'est-à-dire la plante entière broyée à froid, sans extraction chimique ni excipient superflu. Ce procédé breveté par Arkopharma en 1980 préserve l'ensemble des principes actifs de la plante dans leurs proportions naturelles. C'est la première gamme de phytothérapie commercialisée en pharmacie en France, avec aujourd'hui plus de 100 plantes disponibles."
+                    }
+                },
+                {
+                    "@type": "Question",
+                    "name": "Forcapil ralentit-il vraiment la chute de cheveux ?",
+                    "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "Forcapil contient de la vitamine B8 (biotine), du zinc et de la vitamine B6 qui contribuent au maintien de cheveux normaux. Les résultats varient selon les individus : une cure de 3 mois minimum est nécessaire pour observer un effet sur la chute, et 6 mois pour la repousse. En cas de chute importante ou prolongée, consultez votre médecin pour identifier la cause (carence en fer, thyroïde, stress)."
+                    }
+                },
+                {
+                    "@type": "Question",
+                    "name": "Arkopharma est-elle 100 % made in France ?",
+                    "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "Pas exclusivement. Arkopharma dispose de 3 sites de production : l'usine principale à Carros (Alpes-Maritimes), une usine à Waterford (Irlande) et une à Ventimiglia (Italie), soit environ 100 lignes de production. La majorité de la gamme vendue en France est fabriquée à Carros. Depuis janvier 2023, Arkopharma est une filiale du groupe allemand Dermapharm Holding SE, acquise pour 450 millions d'euros. Le groupe réalise 41 % de son CA à l'international."
+                    }
+                },
+                {
+                    "@type": "Question",
+                    "name": "Quelle plante Arkogélule choisir pour quel besoin ?",
+                    "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "Principales correspondances : Valériane pour le sommeil, Millepertuis pour l'humeur (attention aux interactions médicamenteuses avec la pilule, les anticoagulants et les antidépresseurs), Harpagophytum pour les articulations, Charbon végétal pour la digestion, Queue de cerise pour le drainage, Vigne rouge pour la circulation veineuse, Plantain pour les allergies polliniques."
+                    }
+                },
+                {
+                    "@type": "Question",
+                    "name": "Arkopharma a-t-elle changé de propriétaire récemment ?",
+                    "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "Oui. En janvier 2023, le groupe allemand Dermapharm Holding SE (1,1 milliard d'euros de CA) a racheté Arkopharma pour 450 millions d'euros auprès de Montagu Private Equity. Fondé en 1980 par le Dr Max Rombi à Carros, Arkopharma reste opéré depuis son siège historique des Alpes-Maritimes. L'intégration dans Dermapharm ouvre l'accès au réseau de distribution européen du groupe."
+                    }
+                }
+            ]
+        }
+        </script>
+
+        <!-- Le conseil de Laure -->
+        <section class="arkopharma-laure" style="padding: var(--space-64) 0; background: linear-gradient(135deg, #F2F8F0 0%, var(--cream) 100%);">
+            <div class="container" style="max-width: 880px;">
+                <div class="laure-block" style="display: grid; grid-template-columns: 140px 1fr; gap: var(--space-32); align-items: start;">
+                    <div style="width: 140px; height: 140px; border-radius: 50%; overflow: hidden; box-shadow: 0 8px 24px rgba(74, 140, 66, 0.15); border: 4px solid var(--white);">
+                        <img src="../images/Laure%20CNL.jpeg" alt="Laure Charnal, pharmacienne titulaire à Quéven" style="width: 100%; height: 100%; object-fit: cover; display: block;">
+                    </div>
+                    <div>
+                        <span style="display: inline-block; font-size: var(--text-xs); font-weight: 700; color: #4A8C42; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: var(--space-12);">Le conseil de Laure</span>
+                        <h2 style="font-family: var(--font-display); font-size: 2rem; line-height: 1.2; color: var(--charcoal); margin-bottom: var(--space-20);">La phytothérapie au fil des saisons bretonnes</h2>
+                        <p style="color: var(--charcoal); line-height: 1.8; margin-bottom: var(--space-16);">En Bretagne, notre climat océanique crée des besoins très marqués selon les saisons, et la gamme Arkopharma permet d'y répondre tout au long de l'année. <strong>Dès octobre, quand les journées raccourcissent et que l'humidité s'installe</strong>, je recommande une cure d'Arkoroyal Gelée Royale Bio associée à Azinc Vitalité pour soutenir les défenses immunitaires. Pour les patients qui dorment mal en hiver (luminosité faible, moral en berne), Arkorelax Sommeil Fort 8h est devenu un incontournable.</p>
+                        <p style="color: var(--charcoal); line-height: 1.8; margin-bottom: var(--space-16);">Au printemps, c'est la saison des pollens de graminées autour de Lorient et Quéven. Les Arkogélules Plantain aident à soulager l'inconfort respiratoire, et j'en profite pour proposer une cure détox hépatique avec les Arkofluides Détox Bio après l'hiver. En été, Phytobronz prépare les peaux claires bretonnes au soleil, et les Arkogélules Vigne rouge soulagent les jambes lourdes quand la chaleur arrive.</p>
+                        <p style="color: var(--charcoal); line-height: 1.8;">Un conseil important : le <strong>Millepertuis</strong> (humeur, équilibre émotionnel) est une plante efficace, mais elle interagit avec de nombreux médicaments (pilule contraceptive, anticoagulants, antidépresseurs). Passez toujours nous voir avec votre ordonnance avant de commencer une cure. C'est tout l'avantage du conseil en pharmacie.</p>
+                        <p style="margin-top: var(--space-24); color: var(--gray); font-style: italic; font-size: var(--text-sm);">— Laure Charnal, pharmacienne titulaire à Quéven</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CSS dédié sections SEO Arkopharma (FAQ + responsive Laure) -->
+        <style>
+            /* FAQ — texte aéré, indicateur +/−, hover & open states */
+            .arkopharma-faq .faq-list {
+                margin-top: var(--space-32);
+            }
+            .arkopharma-faq .faq-item {
+                border: 1px solid var(--beige);
+                border-radius: 12px;
+                padding: var(--space-24) var(--space-32);
+                margin-bottom: var(--space-32);
+                background: var(--cream);
+                transition: border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+            }
+            .arkopharma-faq .faq-item:last-child {
+                margin-bottom: 0;
+            }
+            .arkopharma-faq .faq-item:hover {
+                border-color: #4A8C42;
+                box-shadow: 0 2px 12px rgba(74, 140, 66, 0.08);
+            }
+            .arkopharma-faq .faq-item[open] {
+                border-color: #4A8C42;
+                background: var(--white);
+                box-shadow: 0 4px 16px rgba(74, 140, 66, 0.1);
+            }
+            .arkopharma-faq .faq-item summary {
+                font-family: var(--font-display);
+                font-weight: 600;
+                font-size: 1.35rem;
+                line-height: 1.4;
+                color: var(--charcoal);
+                cursor: pointer;
+                list-style: none;
+                padding-right: 36px;
+                position: relative;
+            }
+            .arkopharma-faq .faq-item summary::-webkit-details-marker {
+                display: none;
+            }
+            .arkopharma-faq .faq-item summary::after {
+                content: "+";
+                position: absolute;
+                right: 0;
+                top: 50%;
+                transform: translateY(-50%);
+                width: 28px;
+                height: 28px;
+                line-height: 26px;
+                text-align: center;
+                font-size: 1.5rem;
+                font-weight: 400;
+                color: #4A8C42;
+                border: 1.5px solid #4A8C42;
+                border-radius: 50%;
+                transition: transform 0.3s ease;
+            }
+            .arkopharma-faq .faq-item[open] summary::after {
+                content: "\2212";
+                background: #4A8C42;
+                color: var(--white);
+            }
+            .arkopharma-faq .faq-answer {
+                margin-top: var(--space-20);
+                color: var(--charcoal);
+                font-size: var(--text-lg);
+                line-height: 1.8;
+            }
+            .arkopharma-faq .faq-answer p {
+                margin: 0;
+            }
+
+            /* Mobile : empile la photo de Laure et réduit les tailles */
+            @media (max-width: 640px) {
+                .arkopharma-laure .laure-block {
+                    grid-template-columns: 1fr !important;
+                    text-align: center;
+                }
+                .arkopharma-laure .laure-block > div:first-child {
+                    margin: 0 auto var(--space-16);
+                }
+                .arkopharma-innovations h2,
+                .arkopharma-faq h2,
+                .arkopharma-laure h2 {
+                    font-size: 1.75rem !important;
+                }
+                .arkopharma-faq .faq-item {
+                    padding: var(--space-20) var(--space-24);
+                    margin-bottom: var(--space-24);
+                }
+                .arkopharma-faq .faq-item summary {
+                    font-size: 1.15rem;
+                    padding-right: 32px;
+                }
+                .arkopharma-faq .faq-item summary::after {
+                    width: 24px;
+                    height: 24px;
+                    line-height: 22px;
+                    font-size: 1.25rem;
+                }
+                .arkopharma-faq .faq-answer {
+                    font-size: var(--text-base);
+                    line-height: 1.7;
+                }
+            }
+        </style>
+
         <!-- Découvrir une autre marque -->
     <section class="next-brand-section" style="padding: var(--space-64) 0; background: var(--cream);">
         <div class="container" style="max-width: 500px; margin: 0 auto; text-align: center;">
@@ -1744,7 +2000,7 @@
                         <li><a href="../histoire.html">Notre Histoire</a></li>
                         <li><a href="../services.html">Services</a></li>
                         <li><a href="../blog.html">Au comptoir</a></li>
-                        <li><a href="../Quizzes/guide-quizzes-sante-pharmacie-queven.html">Quiz santé</a></li>
+                        <li><a href="../Quizzes/guide-quizzes-santé-pharmacie-queven.html">Quiz santé</a></li>
                         <li><a href="../contact.html">Contact</a></li>
                     </ul>
                 </div>
@@ -1769,7 +2025,7 @@
                 <p class="footer-copyright">&copy; 2026 Pharmacie Charnal. Tous droits réservés.</p>
                 <div class="footer-legal">
                     <a href="../mentions-legales.html">Mentions légales</a>
-                    <a href="../donnees-personnelles.html">Confidentialité</a>
+                    <a href="../données-personnelles.html">Confidentialité</a>
                     <a href="/feed.xml" title="Flux RSS">RSS</a>
                 </div>
             </div>

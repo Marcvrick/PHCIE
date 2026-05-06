@@ -892,8 +892,8 @@
 
         @media (min-width: 768px) {
             .product-cards {
-                grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-                gap: var(--space-32);
+                grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+                gap: var(--space-20);
             }
         }
         }
@@ -917,25 +917,14 @@
             box-shadow: var(--shadow-xl);
         }
 
+        /* Bloc photo masqué — pas de visuels réels, bande colorée fine en haut de carte */
         .product-image {
-            position: relative;
-            height: 120px;
-            overflow: hidden;
+            display: none;
         }
 
-        @media (min-width: 768px) {
-            .product-image {
-                height: 220px;
-            }
+        .product-card {
+            border-top: 6px solid var(--teal-pro);
         }
-
-        .product-image-bg {
-            position: absolute;
-            inset: 0;
-            transition: transform var(--duration-slow) var(--ease-out);
-        }
-
-        .product-card:hover .product-image-bg { transform: scale(1.05); }
 
         .product-image-bg.defense { background: linear-gradient(135deg, #BBDEFB 0%, #90CAF9 100%); }
         .product-image-bg.senior { background: linear-gradient(135deg, #B3E5FC 0%, #4FC3F7 100%); }
@@ -1441,8 +1430,8 @@
                         <li><a href="../histoire.html" class="nav-link">Notre Histoire</a></li>
                         <li><a href="nosmarques.html" class="nav-link">Nos Marques</a></li>
                         <li><a href="../pharmacie-de-garde-queven-hennebont-lorient.html" class="nav-link">Pharmacie de garde</a></li>
-                        <li><a href="../annuaire-sante.html" class="nav-link">Annuaire Santé</a></li>
-                        <li><a href="../Quizzes/guide-quizzes-sante-pharmacie-queven.html" class="nav-link">Quiz santé</a></li>
+                        <li><a href="../annuaire-santé.html" class="nav-link">Annuaire Santé</a></li>
+                        <li><a href="../Quizzes/guide-quizzes-santé-pharmacie-queven.html" class="nav-link">Quiz santé</a></li>
                     </ul>
                 </li>
                 <li><a href="../blog.html" class="nav-link nav-link-blog" style="background: #b4a6d7; color: white; border-radius: 9999px;">Au comptoir</a></li>
@@ -1832,6 +1821,273 @@
             </div>
             </div>
         </div>
+        <!-- ═══════════════════════════════════════════════════════════
+             SECTIONS UNIQUES BION3 (SEO + AEO)
+             1. Innovations 2024-2025
+             2. FAQ Bion3 + Schema FAQPage
+             3. Le conseil de Laure
+        ═══════════════════════════════════════════════════════════ -->
+
+        <!-- Innovations 2024-2025 -->
+        <section class="bion3-innovations" style="padding: var(--space-64) 0; background: #FFF7E8;">
+            <div class="container">
+                <div class="section-header" style="text-align: center; margin-bottom: var(--space-48); max-width: 760px; margin-left: auto; margin-right: auto;">
+                    <span class="section-badge" style="display: inline-block; padding: 6px 18px; background: #FDEFD8; color: #C97400; border-radius: 999px; font-size: var(--text-sm); font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; margin-bottom: var(--space-16);">Nouveaut&eacute;s 2024-2025</span>
+                    <h2 class="reveal" style="font-family: var(--font-display); font-size: 2.5rem; line-height: 1.15; color: var(--charcoal); margin-bottom: var(--space-16);">Les derni&egrave;res innovations Bion3</h2>
+                    <p class="reveal reveal-delay-1" style="color: var(--gray); font-size: var(--text-lg); line-height: 1.6;">Depuis son rachat par P&amp;G Health en 2018 (3,4&nbsp;milliards d'euros), Bion3 acc&eacute;l&egrave;re : <strong style="color: var(--charcoal);">nouvelles gal&eacute;niques, gammes sp&eacute;cifiques et ambassadeur olympique</strong> pour rester leader des multivitamines en pharmacie.</p>
+                </div>
+
+                <div class="innovations-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: var(--space-24); max-width: 1100px; margin: 0 auto;">
+                    <article class="innovation-card reveal" style="background: var(--white); border-radius: 16px; padding: var(--space-32) var(--space-24); border-left: 4px solid #F39200; box-shadow: 0 4px 20px rgba(243, 146, 0, 0.08);">
+                        <div style="font-size: var(--text-xs); font-weight: 700; color: #F39200; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: var(--space-12);">S&eacute;nior &middot; 2024</div>
+                        <h3 style="font-family: var(--font-display); font-size: 1.5rem; line-height: 1.2; margin-bottom: var(--space-12); color: var(--charcoal);">Bion3 &Eacute;nergie 50+ reformul&eacute;</h3>
+                        <p style="color: var(--gray); line-height: 1.6; margin: 0;">Formule enrichie en ginseng et lut&eacute;ine pour les seniors actifs, en plus des 12&nbsp;vitamines, 7&nbsp;min&eacute;raux et 3&nbsp;probiotiques Tri-Bion. Particuli&egrave;rement adapt&eacute;e aux 60+ apr&egrave;s un &eacute;pisode grippal ou une fatigue hivernale prolong&eacute;e.</p>
+                    </article>
+
+                    <article class="innovation-card reveal reveal-delay-1" style="background: var(--white); border-radius: 16px; padding: var(--space-32) var(--space-24); border-left: 4px solid #F39200; box-shadow: 0 4px 20px rgba(243, 146, 0, 0.08);">
+                        <div style="font-size: var(--text-xs); font-weight: 700; color: #F39200; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: var(--space-12);">Gummies &middot; 2024</div>
+                        <h3 style="font-family: var(--font-display); font-size: 1.5rem; line-height: 1.2; margin-bottom: var(--space-12); color: var(--charcoal);">Bion3 Gommes &Eacute;nergie &amp; D&eacute;fense</h3>
+                        <p style="color: var(--gray); line-height: 1.6; margin: 0;">Nouvelle gal&eacute;nique en gommes &agrave; m&acirc;cher (ar&ocirc;mes orange et fruits rouges), contenant 150&nbsp;millions de Bacillus coagulans SNZ&nbsp;1969. Version v&eacute;g&eacute;tarienne (ou vegan pour D&eacute;fense), sans gluten ni lactose. 61&nbsp;% des consommateurs jugent les gommes &laquo;&nbsp;tr&egrave;s attractives&nbsp;&raquo; (P&amp;G Health/Toluna, 2023).</p>
+                    </article>
+
+                    <article class="innovation-card reveal reveal-delay-2" style="background: var(--white); border-radius: 16px; padding: var(--space-32) var(--space-24); border-left: 4px solid #F39200; box-shadow: 0 4px 20px rgba(243, 146, 0, 0.08);">
+                        <div style="font-size: var(--text-xs); font-weight: 700; color: #F39200; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: var(--space-12);">Omega-3 &middot; 2025</div>
+                        <h3 style="font-family: var(--font-display); font-size: 1.5rem; line-height: 1.2; margin-bottom: var(--space-12); color: var(--charcoal);">Bion3 Multi &amp; Omega&nbsp;3</h3>
+                        <p style="color: var(--gray); line-height: 1.6; margin: 0;">La formule la plus compl&egrave;te de la gamme : duo comprim&eacute;s + capsules associant probiotiques Tri-Bion, vitamines, min&eacute;raux et om&eacute;ga-3 (DHA + EPA) pour le c&oelig;ur, le cerveau et la vision. Positionnement premium pour les adultes exigeants.</p>
+                    </article>
+
+                    <article class="innovation-card reveal reveal-delay-3" style="background: var(--white); border-radius: 16px; padding: var(--space-32) var(--space-24); border-left: 4px solid #F39200; box-shadow: 0 4px 20px rgba(243, 146, 0, 0.08);">
+                        <div style="font-size: var(--text-xs); font-weight: 700; color: #F39200; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: var(--space-12);">Marketing &middot; 2024</div>
+                        <h3 style="font-family: var(--font-display); font-size: 1.5rem; line-height: 1.2; margin-bottom: var(--space-12); color: var(--charcoal);">&laquo;&nbsp;3 actions, 1 comprim&eacute;&nbsp;&raquo; avec Teddy Riner</h3>
+                        <p style="color: var(--gray); line-height: 1.6; margin: 0;">Le triple champion olympique de judo est ambassadeur Bion3 depuis 2024. Campagne TV, digital et PLV officinale autour de la promesse fondatrice de la marque : probiotiques + vitamines + min&eacute;raux dans un seul comprim&eacute;. Un levier de notori&eacute;t&eacute; majeur en pharmacie.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ Bion3 -->
+        <section class="bion3-faq" style="padding: var(--space-64) 0; background: var(--white);">
+            <div class="container" style="max-width: 860px;">
+                <div class="section-header" style="text-align: center; margin-bottom: var(--space-48);">
+                    <span class="section-badge" style="display: inline-block; padding: 6px 18px; background: #FDEFD8; color: #C97400; border-radius: 999px; font-size: var(--text-sm); font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; margin-bottom: var(--space-16);">Vos questions fr&eacute;quentes</span>
+                    <h2 class="reveal" style="font-family: var(--font-display); font-size: 2.5rem; line-height: 1.15; color: var(--charcoal);">Questions fr&eacute;quentes sur Bion3</h2>
+                </div>
+
+                <div class="faq-list">
+                    <details class="faq-item">
+                        <summary>Bion3 est-il vraiment efficace contre la fatigue&nbsp;?</summary>
+                        <div class="faq-answer">
+                            <p>Bion3 associe <strong>12&nbsp;vitamines</strong> (dont B1, B6, B12, C et D), <strong>8&nbsp;min&eacute;raux</strong> (dont fer, zinc et magn&eacute;sium) et <strong>3&nbsp;souches probiotiques brevet&eacute;es Tri-Bion</strong> prot&eacute;g&eacute;es par triple enrobage gastro-r&eacute;sistant. Les vitamines B et C contribuent &agrave; r&eacute;duire la fatigue (all&eacute;gation sant&eacute; autoris&eacute;e par l'EFSA), le fer soutient le transport de l'oxyg&egrave;ne, et les probiotiques participent &agrave; l'&eacute;quilibre de la flore intestinale. La majorit&eacute; des utilisateurs rapportent une am&eacute;lioration apr&egrave;s 2&nbsp;&agrave;&nbsp;4&nbsp;semaines de prise r&eacute;guli&egrave;re, &agrave; raison d'un comprim&eacute; par jour.</p>
+                        </div>
+                    </details>
+
+                    <details class="faq-item">
+                        <summary>Bion3 est-il leader sur le march&eacute; des multivitamines en pharmacie&nbsp;?</summary>
+                        <div class="faq-answer">
+                            <p>Oui. Selon les donn&eacute;es <strong>IQVIA Pharmastat (septembre 2025)</strong>, P&amp;G Health (Bion3) d&eacute;tient <strong>10,5&nbsp;% de part de march&eacute; en valeur</strong> sur le segment immunit&eacute;-vitalit&eacute; en pharmacie, devant Bayer/Berocca (9,2&nbsp;%) et UPSA (6,6&nbsp;%). Le march&eacute; global repr&eacute;sente 440&nbsp;millions d'euros en France. Bion3 est la seule grande marque grand public &agrave; combiner probiotiques, vitamines et min&eacute;raux dans une m&ecirc;me formule.</p>
+                        </div>
+                    </details>
+
+                    <details class="faq-item">
+                        <summary>Quelle gamme Bion3 choisir : D&eacute;fense, &Eacute;nergie ou S&eacute;nior&nbsp;?</summary>
+                        <div class="faq-answer">
+                            <p><strong>Bion3 D&eacute;fense</strong> est centr&eacute; sur le soutien immunitaire (vitamines C, D, zinc + probiotiques) : c'est le r&eacute;flexe de pr&eacute;vention hivernale, d&egrave;s 12&nbsp;ans. <strong>Bion3 &Eacute;nergie</strong> (ex-Vitalit&eacute;) ajoute du fer et un spectre &eacute;largi de min&eacute;raux pour combattre la fatigue chronique : id&eacute;al pour les &eacute;tudiants en p&eacute;riode d'examens ou les jeunes actifs surmen&eacute;s. <strong>Bion3 &Eacute;nergie 50+</strong> enrichit la formule en ginseng (tonus) et en lut&eacute;ine (vision) pour les seniors. Le choix d&eacute;pend de votre besoin prioritaire. En cas de doute, demandez conseil &agrave; l'&eacute;quipe.</p>
+                        </div>
+                    </details>
+
+                    <details class="faq-item">
+                        <summary>Bion3 Junior est-il adapt&eacute; aux enfants &agrave; partir de quel &acirc;ge&nbsp;?</summary>
+                        <div class="faq-answer">
+                            <p><strong>Bion3 D&eacute;fense Junior</strong> se pr&eacute;sente en comprim&eacute;s &agrave; croquer go&ucirc;t framboise, formul&eacute;s avec des dosages r&eacute;duits adapt&eacute;s aux enfants <strong>d&egrave;s 4&nbsp;ans</strong>. Il contient des vitamines C et D, du zinc et des ferments lactiques pour soutenir les d&eacute;fenses naturelles de l'enfant. La posologie est d'un comprim&eacute; par jour, &agrave; croquer de pr&eacute;f&eacute;rence au petit-d&eacute;jeuner. Pour les adolescents &agrave; partir de 12&nbsp;ans, les formules adultes (D&eacute;fense ou &Eacute;nergie) peuvent &ecirc;tre utilis&eacute;es.</p>
+                        </div>
+                    </details>
+
+                    <details class="faq-item">
+                        <summary>Bion3 fait-il partie d'un grand groupe pharmaceutique&nbsp;?</summary>
+                        <div class="faq-answer">
+                            <p>Oui. Bion3 a &eacute;t&eacute; cr&eacute;&eacute; en 2002 par <strong>Merck KGaA</strong> (Darmstadt, Allemagne), un groupe pharmaceutique et chimique fond&eacute; en 1668. En 2018, <strong>Procter &amp; Gamble</strong> a rachet&eacute; l'ensemble de la division Consumer Health de Merck pour <strong>3,4&nbsp;milliards d'euros</strong>. Le portefeuille incluait Bion3, Femibion, Nasivin et Seven Seas. Bion3 b&eacute;n&eacute;ficie d&eacute;sormais de la puissance marketing et de la force de vente de P&amp;G Health, tout en conservant son h&eacute;ritage scientifique allemand. La marque est commercialis&eacute;e dans plus de 40&nbsp;pays.</p>
+                        </div>
+                    </details>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ Schema JSON-LD -->
+        <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            "mainEntity": [
+                {
+                    "@type": "Question",
+                    "name": "Bion3 est-il vraiment efficace contre la fatigue ?",
+                    "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "Bion3 associe 12 vitamines (dont B1, B6, B12, C et D), 8 minéraux (dont fer, zinc et magnésium) et 3 souches probiotiques brevetées Tri-Bion protégées par triple enrobage gastro-résistant. Les vitamines B et C contribuent à réduire la fatigue (allégation santé autorisée par l'EFSA), le fer soutient le transport de l'oxygène, et les probiotiques participent à l'équilibre de la flore intestinale. La majorité des utilisateurs rapportent une amélioration après 2 à 4 semaines de prise régulière."
+                    }
+                },
+                {
+                    "@type": "Question",
+                    "name": "Bion3 est-il leader sur le marché des multivitamines en pharmacie ?",
+                    "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "Oui. Selon les données IQVIA Pharmastat (septembre 2025), P&G Health (Bion3) détient 10,5 % de part de marché en valeur sur le segment immunité-vitalité en pharmacie, devant Bayer/Berocca (9,2 %) et UPSA (6,6 %). Le marché global représente 440 millions d'euros en France."
+                    }
+                },
+                {
+                    "@type": "Question",
+                    "name": "Quelle gamme Bion3 choisir : Défense, Énergie ou Sénior ?",
+                    "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "Bion3 Défense est centré sur le soutien immunitaire (vitamines C, D, zinc + probiotiques) dès 12 ans. Bion3 Énergie ajoute du fer et un spectre élargi de minéraux pour combattre la fatigue chronique. Bion3 Énergie 50+ enrichit la formule en ginseng et en lutéine pour les seniors. Le choix dépend de votre besoin prioritaire."
+                    }
+                },
+                {
+                    "@type": "Question",
+                    "name": "Bion3 Junior est-il adapté aux enfants à partir de quel âge ?",
+                    "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "Bion3 Défense Junior se présente en comprimés à croquer goût framboise, formulés avec des dosages réduits adaptés aux enfants dès 4 ans. Il contient des vitamines C et D, du zinc et des ferments lactiques. La posologie est d'un comprimé par jour. Pour les adolescents à partir de 12 ans, les formules adultes peuvent être utilisées."
+                    }
+                },
+                {
+                    "@type": "Question",
+                    "name": "Bion3 fait-il partie d'un grand groupe pharmaceutique ?",
+                    "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "Oui. Bion3 a été créé en 2002 par Merck KGaA (Darmstadt, Allemagne). En 2018, Procter & Gamble a racheté l'ensemble de la division Consumer Health de Merck pour 3,4 milliards d'euros. Bion3 bénéficie désormais de la puissance marketing de P&G Health tout en conservant son héritage scientifique allemand. La marque est commercialisée dans plus de 40 pays."
+                    }
+                }
+            ]
+        }
+        </script>
+
+        <!-- Le conseil de Laure -->
+        <section class="bion3-laure" style="padding: var(--space-64) 0; background: linear-gradient(135deg, #FFF7E8 0%, var(--cream) 100%);">
+            <div class="container" style="max-width: 880px;">
+                <div class="laure-block" style="display: grid; grid-template-columns: 140px 1fr; gap: var(--space-32); align-items: start;">
+                    <div style="width: 140px; height: 140px; border-radius: 50%; overflow: hidden; box-shadow: 0 8px 24px rgba(243, 146, 0, 0.15); border: 4px solid var(--white);">
+                        <img src="../images/Laure%20CNL.jpeg" alt="Laure Charnal, pharmacienne titulaire &agrave; Qu&eacute;ven" style="width: 100%; height: 100%; object-fit: cover; display: block;">
+                    </div>
+                    <div>
+                        <span style="display: inline-block; font-size: var(--text-xs); font-weight: 700; color: #F39200; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: var(--space-12);">Le conseil de Laure</span>
+                        <h2 style="font-family: var(--font-display); font-size: 2rem; line-height: 1.2; color: var(--charcoal); margin-bottom: 20px;">Fatigue hivernale en Bretagne&nbsp;: mes recommandations Bion3</h2>
+                        <p style="color: var(--charcoal); line-height: 1.8; margin-bottom: var(--space-16);">En Bretagne, entre octobre et mars, le manque de lumi&egrave;re et l'humidit&eacute; constante cr&eacute;ent un terrain id&eacute;al pour la fatigue chronique. C'est une r&eacute;alit&eacute; que je vois chaque jour &agrave; la pharmacie&nbsp;: seniors qui peinent &agrave; se remettre d'une grippe, jeunes parents &eacute;puis&eacute;s par les virus de cr&egrave;che, &eacute;tudiants en plein partiels. Dans ces cas-l&agrave;, Bion3 est souvent ma premi&egrave;re recommandation, parce que c'est <strong>la seule marque qui combine probiotiques, vitamines et min&eacute;raux en un seul comprim&eacute;</strong>.</p>
+                        <p style="color: var(--charcoal); line-height: 1.8; margin-bottom: var(--space-16);">Concr&egrave;tement&nbsp;: pour un &eacute;tudiant ou un jeune actif fatigu&eacute;, je conseille <strong>Bion3 &Eacute;nergie</strong> en cure de 30&nbsp;&agrave;&nbsp;90&nbsp;jours (le fer et le magn&eacute;sium font la diff&eacute;rence sur la fatigue persistante). Pour les plus de 60&nbsp;ans, surtout apr&egrave;s un &eacute;pisode grippal ou un Covid, <strong>Bion3 &Eacute;nergie 50+</strong> avec son ginseng et sa lut&eacute;ine est plus adapt&eacute;. Et d&egrave;s septembre, en pr&eacute;vention de l'hiver, <strong>Bion3 D&eacute;fense</strong> avec ses vitamines C, D et zinc aide &agrave; pr&eacute;parer les d&eacute;fenses immunitaires avant le pic &eacute;pid&eacute;mique.</p>
+                        <p style="color: var(--charcoal); line-height: 1.8;">Ce que j'appr&eacute;cie avec Bion3, c'est la r&eacute;gularit&eacute; des retours positifs&nbsp;: la plupart des patients constatent un mieux apr&egrave;s deux &agrave; trois semaines. Passe nous voir, on regarde ensemble quelle gamme correspond &agrave; ta situation.</p>
+                        <p style="margin-top: var(--space-24); color: var(--gray); font-style: italic; font-size: var(--text-sm);">&mdash; Laure Charnal, pharmacienne titulaire &agrave; Qu&eacute;ven</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CSS dédié sections SEO Bion3 (FAQ + responsive Laure) -->
+        <style>
+            /* FAQ — texte aéré, indicateur +/−, hover & open states */
+            .bion3-faq .faq-list {
+                margin-top: var(--space-32);
+            }
+            .bion3-faq .faq-item {
+                border: 1px solid var(--beige);
+                border-radius: 12px;
+                padding: var(--space-24) var(--space-32);
+                margin-bottom: var(--space-32);
+                background: var(--cream);
+                transition: border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+            }
+            .bion3-faq .faq-item:last-child {
+                margin-bottom: 0;
+            }
+            .bion3-faq .faq-item:hover {
+                border-color: #F39200;
+                box-shadow: 0 2px 12px rgba(243, 146, 0, 0.08);
+            }
+            .bion3-faq .faq-item[open] {
+                border-color: #F39200;
+                background: var(--white);
+                box-shadow: 0 4px 16px rgba(243, 146, 0, 0.1);
+            }
+            .bion3-faq .faq-item summary {
+                font-family: var(--font-display);
+                font-weight: 600;
+                font-size: 1.35rem;
+                line-height: 1.4;
+                color: var(--charcoal);
+                cursor: pointer;
+                list-style: none;
+                padding-right: 36px;
+                position: relative;
+            }
+            .bion3-faq .faq-item summary::-webkit-details-marker {
+                display: none;
+            }
+            .bion3-faq .faq-item summary::after {
+                content: "+";
+                position: absolute;
+                right: 0;
+                top: 50%;
+                transform: translateY(-50%);
+                width: 28px;
+                height: 28px;
+                line-height: 26px;
+                text-align: center;
+                font-size: 1.5rem;
+                font-weight: 400;
+                color: #F39200;
+                border: 1.5px solid #F39200;
+                border-radius: 50%;
+                transition: transform 0.3s ease;
+            }
+            .bion3-faq .faq-item[open] summary::after {
+                content: "−";
+                background: #F39200;
+                color: var(--white);
+            }
+            .bion3-faq .faq-answer {
+                margin-top: 20px;
+                color: var(--charcoal);
+                font-size: var(--text-lg);
+                line-height: 1.8;
+            }
+            .bion3-faq .faq-answer p {
+                margin: 0;
+            }
+
+            /* Mobile : empile la photo de Laure et réduit les tailles */
+            @media (max-width: 640px) {
+                .bion3-laure .laure-block {
+                    grid-template-columns: 1fr !important;
+                    text-align: center;
+                }
+                .bion3-laure .laure-block > div:first-child {
+                    margin: 0 auto var(--space-16);
+                }
+                .bion3-innovations h2,
+                .bion3-faq h2,
+                .bion3-laure h2 {
+                    font-size: 1.75rem !important;
+                }
+                .bion3-faq .faq-item {
+                    padding: 20px var(--space-24);
+                    margin-bottom: var(--space-24);
+                }
+                .bion3-faq .faq-item summary {
+                    font-size: 1.15rem;
+                    padding-right: 32px;
+                }
+                .bion3-faq .faq-item summary::after {
+                    width: 24px;
+                    height: 24px;
+                    line-height: 22px;
+                    font-size: 1.25rem;
+                }
+                .bion3-faq .faq-answer {
+                    font-size: var(--text-base);
+                    line-height: 1.7;
+                }
+            }
+        </style>
+
         <!-- Découvrir une autre marque -->
     <section class="next-brand-section" style="padding: var(--space-64) 0; background: var(--cream);">
         <div class="container" style="max-width: 500px; margin: 0 auto; text-align: center;">
@@ -1875,7 +2131,7 @@
                         <li><a href="../services.html">Services</a></li>
                         <li><a href="../histoire.html">Notre Histoire</a></li>
                         <li><a href="../blog.html">Au Comptoir</a></li>
-                        <li><a href="../Quizzes/guide-quizzes-sante-pharmacie-queven.html">Quiz santé</a></li>
+                        <li><a href="../Quizzes/guide-quizzes-santé-pharmacie-queven.html">Quiz santé</a></li>
                         <li><a href="../contact.html">Contact</a></li>
                     </ul>
                 </div>
@@ -1900,7 +2156,7 @@
                 <p class="footer-copyright">© 2026 Pharmacie Charnal. Tous droits réservés.</p>
                 <div class="footer-legal">
                     <a href="../mentions-legales.html">Mentions légales</a>
-                    <a href="../donnees-personnelles.html">Confidentialité</a>
+                    <a href="../données-personnelles.html">Confidentialité</a>
                     <a href="/feed.xml" title="Flux RSS">RSS</a>
                 </div>
             </div>

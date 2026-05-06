@@ -1122,8 +1122,8 @@
 
         @media (min-width: 768px) {
             .product-cards {
-                grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-                gap: var(--space-32);
+                grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+                gap: var(--space-20);
             }
         }
         }
@@ -1147,26 +1147,13 @@
             box-shadow: var(--shadow-xl);
         }
 
+        /* Bloc photo masqué — pas de visuels réels, bande colorée fine en haut de carte */
         .product-image {
-            position: relative;
-            height: 120px;
-            overflow: hidden;
+            display: none;
         }
 
-        @media (min-width: 768px) {
-            .product-image {
-                height: 220px;
-            }
-        }
-
-        .product-image-bg {
-            position: absolute;
-            inset: 0;
-            transition: transform var(--duration-slow) var(--ease-out);
-        }
-
-        .product-card:hover .product-image-bg {
-            transform: scale(1.05);
+        .product-card {
+            border-top: 6px solid var(--bioderma-blue);
         }
 
         /* Bioderma product line colors */
