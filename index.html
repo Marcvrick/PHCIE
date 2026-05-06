@@ -2747,20 +2747,143 @@
     <!-- Blog Highlight - Dernier article (auto-fetched from blog.html) -->
     <section class="blog-highlight" id="latest-article-section">
         <div class="blog-highlight-container">
-            <div class="blog-highlight-grid">
-                <div class="blog-highlight-image" id="latest-article-image">
-                    <a id="latest-article-image-link" href="blog/13-complements-alimentaires/complements-alimentaires-pharmacie-internet-queven.html">
+            <style>
+                .blog-magazine-grid {
+                    display: grid;
+                    grid-template-columns: 1.4fr 1fr;
+                    gap: var(--space-48);
+                    align-items: stretch;
+                }
+                .blog-featured-card {
+                    display: flex;
+                    flex-direction: column;
+                }
+                .blog-featured-image {
+                    width: 100%;
+                    aspect-ratio: 16 / 10;
+                    overflow: hidden;
+                    border-radius: var(--radius-xl);
+                    margin-bottom: var(--space-24);
+                    background: var(--gray-100);
+                }
+                .blog-featured-image img {
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
+                    transition: transform 0.5s var(--ease-standard);
+                }
+                .blog-featured-image:hover img { transform: scale(1.03); }
+                .blog-featured-text { display: flex; flex-direction: column; gap: var(--space-12); }
+                .blog-secondary-list {
+                    display: flex;
+                    flex-direction: column;
+                    gap: var(--space-16);
+                    justify-content: space-between;
+                }
+                .blog-mini-card {
+                    display: grid;
+                    grid-template-columns: 120px 1fr;
+                    gap: var(--space-16);
+                    align-items: center;
+                    padding: var(--space-12);
+                    border-radius: var(--radius-lg);
+                    background: var(--white);
+                    border: 1px solid var(--gray-200);
+                    text-decoration: none;
+                    color: var(--charcoal);
+                    transition: all 0.25s var(--ease-standard);
+                    flex: 1;
+                    min-height: 100px;
+                }
+                .blog-mini-card:hover {
+                    transform: translateY(-2px);
+                    box-shadow: var(--shadow-md);
+                    border-color: var(--teal-pro);
+                }
+                .blog-mini-img {
+                    width: 120px;
+                    height: 90px;
+                    object-fit: cover;
+                    border-radius: var(--radius-base);
+                    background: var(--gray-100);
+                }
+                .blog-mini-text { display: flex; flex-direction: column; gap: var(--space-4); }
+                .blog-mini-date {
+                    font-size: var(--text-xs);
+                    color: var(--gray-500);
+                    text-transform: uppercase;
+                    letter-spacing: 0.05em;
+                }
+                .blog-mini-title {
+                    font-family: var(--font-display);
+                    font-size: var(--text-base);
+                    font-weight: 500;
+                    color: var(--charcoal);
+                    line-height: 1.35;
+                    margin: 0;
+                    display: -webkit-box;
+                    -webkit-line-clamp: 3;
+                    -webkit-box-orient: vertical;
+                    overflow: hidden;
+                }
+                @media (max-width: 900px) {
+                    .blog-magazine-grid { grid-template-columns: 1fr; gap: var(--space-32); }
+                    .blog-mini-card { grid-template-columns: 100px 1fr; }
+                    .blog-mini-img { width: 100px; height: 75px; }
+                }
+                @media (max-width: 480px) {
+                    .blog-mini-card { grid-template-columns: 80px 1fr; padding: var(--space-8); }
+                    .blog-mini-img { width: 80px; height: 60px; }
+                    .blog-mini-title { font-size: var(--text-sm); }
+                }
+            </style>
+            <div class="blog-magazine-grid">
+                <!-- Featured article (left) -->
+                <article class="blog-featured-card">
+                    <a id="latest-article-image-link" href="blog/13-complements-alimentaires/complements-alimentaires-pharmacie-internet-queven.html" class="blog-featured-image">
                         <img id="latest-article-img" src="images/Blog%20photos/blog-13-complements-alimentaires-internet.jpg" alt="Femme lisant l'étiquette d'un complément alimentaire — pharmacie ou internet, conseils pharmacien Quéven">
                     </a>
-                </div>
-                <div class="blog-highlight-text">
-                    <span class="blog-highlight-label">Blog</span>
-                    <span class="blog-highlight-date" id="latest-article-date">8 Avril 2026</span>
-                    <h2 class="blog-highlight-title" id="latest-article-title">Compléments alimentaires: pharmacie ou internet?</h2>
-                    <p class="blog-highlight-excerpt" id="latest-article-excerpt">Risques des achats en ligne, formes biodisponibles, interactions médicamenteuses: ce que votre pharmacien vérifie avant de vous remettre un complément.</p>
-                    <a href="blog/13-complements-alimentaires/complements-alimentaires-pharmacie-internet-queven.html" class="link-arrow" id="latest-article-link">
-                        Lire l'article
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                    <div class="blog-featured-text">
+                        <span class="blog-highlight-label">Au comptoir</span>
+                        <span class="blog-highlight-date" id="latest-article-date">8 Avril 2026</span>
+                        <h2 class="blog-highlight-title" id="latest-article-title">Compléments alimentaires: pharmacie ou internet?</h2>
+                        <p class="blog-highlight-excerpt" id="latest-article-excerpt">Risques des achats en ligne, formes biodisponibles, interactions médicamenteuses: ce que votre pharmacien vérifie avant de vous remettre un complément.</p>
+                        <a href="blog/13-complements-alimentaires/complements-alimentaires-pharmacie-internet-queven.html" class="link-arrow" id="latest-article-link">
+                            Lire l'article
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                        </a>
+                    </div>
+                </article>
+
+                <!-- Secondary articles (right) — populated by JS -->
+                <div class="blog-secondary-list" id="blog-secondary-list">
+                    <a class="blog-mini-card" id="mini-card-1" href="blog.html">
+                        <img class="blog-mini-img" id="mini-img-1" src="images/Blog%20photos/blog-16-courbatures-reprise-sport.jpg" alt="">
+                        <div class="blog-mini-text">
+                            <span class="blog-mini-date" id="mini-date-1">28 Avril 2026</span>
+                            <h3 class="blog-mini-title" id="mini-title-1">Courbatures et reprise du sport au printemps</h3>
+                        </div>
+                    </a>
+                    <a class="blog-mini-card" id="mini-card-2" href="blog.html">
+                        <img class="blog-mini-img" id="mini-img-2" src="images/Blog%20photos/blog-15-jambes-lourdes.jpg" alt="">
+                        <div class="blog-mini-text">
+                            <span class="blog-mini-date" id="mini-date-2">21 Avril 2026</span>
+                            <h3 class="blog-mini-title" id="mini-title-2">Jambes lourdes: comprendre et soulager</h3>
+                        </div>
+                    </a>
+                    <a class="blog-mini-card" id="mini-card-3" href="blog.html">
+                        <img class="blog-mini-img" id="mini-img-3" src="images/Blog%20photos/blog-14-paracetamol-ibuprofene-aspirine.jpg" alt="">
+                        <div class="blog-mini-text">
+                            <span class="blog-mini-date" id="mini-date-3">14 Avril 2026</span>
+                            <h3 class="blog-mini-title" id="mini-title-3">Paracétamol, ibuprofène, aspirine : lequel choisir ?</h3>
+                        </div>
+                    </a>
+                    <a class="blog-mini-card" id="mini-card-4" href="blog.html">
+                        <img class="blog-mini-img" id="mini-img-4" src="images/Blog%20photos/blog-13-complements-alimentaires-internet.jpg" alt="">
+                        <div class="blog-mini-text">
+                            <span class="blog-mini-date" id="mini-date-4">8 Avril 2026</span>
+                            <h3 class="blog-mini-title" id="mini-title-4">Compléments alimentaires : pharmacie ou internet ?</h3>
+                        </div>
                     </a>
                 </div>
             </div>
@@ -2946,22 +3069,19 @@
                     var parser = new DOMParser();
                     var doc = parser.parseFromString(html, 'text/html');
 
-                    // Get the first (most recent) blog card
-                    var firstCard = doc.querySelector('.blog-card');
-                    if (!firstCard) return;
+                    // Get the first 5 blog cards (1 featured + 4 secondary)
+                    var cards = doc.querySelectorAll('.blog-card');
+                    if (!cards.length) return;
 
-                    // Extract data from the blog card
+                    // === Featured (card #1) ===
+                    var firstCard = cards[0];
                     var titleEl = firstCard.querySelector('.blog-title');
                     var excerptEl = firstCard.querySelector('.blog-excerpt');
                     var dateEl = firstCard.querySelector('.blog-date');
-                    var linkEl = firstCard.querySelector('.blog-link');
                     var imgEl = firstCard.querySelector('.blog-image-placeholder img');
-
-                    // Get the article link (from the first <a> inside the card)
                     var articleLink = firstCard.querySelector('a');
                     var articleUrl = articleLink ? articleLink.getAttribute('href') : 'blog.html';
 
-                    // Inject into homepage
                     if (titleEl) {
                         document.getElementById('latest-article-title').textContent = titleEl.textContent;
                     }
@@ -2980,6 +3100,31 @@
                     if (articleUrl) {
                         document.getElementById('latest-article-link').setAttribute('href', articleUrl);
                         document.getElementById('latest-article-image-link').setAttribute('href', articleUrl);
+                    }
+
+                    // === Secondary articles (cards #2 to #5) ===
+                    for (var i = 1; i <= 4; i++) {
+                        var card = cards[i];
+                        if (!card) {
+                            var emptyCard = document.getElementById('mini-card-' + i);
+                            if (emptyCard) emptyCard.style.display = 'none';
+                            continue;
+                        }
+                        var miniTitle = card.querySelector('.blog-title');
+                        var miniDate = card.querySelector('.blog-date');
+                        var miniImg = card.querySelector('.blog-image-placeholder img');
+                        var miniLinkEl = card.querySelector('a');
+                        var miniUrl = miniLinkEl ? miniLinkEl.getAttribute('href') : 'blog.html';
+
+                        var miniCardEl = document.getElementById('mini-card-' + i);
+                        if (miniCardEl && miniUrl) miniCardEl.setAttribute('href', miniUrl);
+                        if (miniTitle) document.getElementById('mini-title-' + i).textContent = miniTitle.textContent;
+                        if (miniDate) document.getElementById('mini-date-' + i).textContent = miniDate.textContent;
+                        if (miniImg) {
+                            var miniImgEl = document.getElementById('mini-img-' + i);
+                            miniImgEl.src = miniImg.getAttribute('src');
+                            miniImgEl.alt = miniImg.getAttribute('alt') || '';
+                        }
                     }
                 })
                 .catch(function(err) {
