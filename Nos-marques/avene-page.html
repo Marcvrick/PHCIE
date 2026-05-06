@@ -1108,8 +1108,8 @@
 
         @media (min-width: 768px) {
             .product-cards {
-                grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-                gap: var(--space-32);
+                grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+                gap: var(--space-20);
             }
         }
 
@@ -1132,26 +1132,13 @@
             box-shadow: var(--shadow-xl);
         }
 
+        /* Bloc photo masqué — pas de visuels réels, bande colorée fine en haut de carte */
         .product-image {
-            position: relative;
-            height: 120px;
-            overflow: hidden;
+            display: none;
         }
 
-        @media (min-width: 768px) {
-            .product-image {
-                height: 220px;
-            }
-        }
-
-        .product-image-bg {
-            position: absolute;
-            inset: 0;
-            transition: transform var(--duration-slow) var(--ease-out);
-        }
-
-        .product-card:hover .product-image-bg {
-            transform: scale(1.05);
+        .product-card {
+            border-top: 6px solid var(--avene-orange);
         }
 
         .product-image-bg.cicalfate { background: linear-gradient(135deg, #A8D8EA 0%, #79C2D0 100%); }
@@ -2122,6 +2109,273 @@
             </div>
             </div>
         </div>
+        <!-- ═══════════════════════════════════════════════════════════
+             SECTIONS UNIQUES AVENE (SEO + AEO)
+             1. Innovations 2024-2025
+             2. FAQ Avene + Schema FAQPage
+             3. Le conseil de Laure
+        ═══════════════════════════════════════════════════════════ -->
+
+        <!-- Innovations 2024-2025 -->
+        <section class="avene-innovations" style="padding: var(--space-64) 0; background: var(--avene-pastel-1);">
+            <div class="container">
+                <div class="section-header" style="text-align: center; margin-bottom: var(--space-48); max-width: 760px; margin-left: auto; margin-right: auto;">
+                    <span class="section-badge" style="display: inline-block; padding: 6px 18px; background: var(--avene-pastel-2); color: var(--avene-dark); border-radius: 999px; font-size: var(--text-sm); font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; margin-bottom: var(--space-16);">Nouveautes 2024-2025</span>
+                    <h2 class="reveal" style="font-family: var(--font-display); font-size: 2.5rem; line-height: 1.15; color: var(--charcoal); margin-bottom: var(--space-16);">Les dernieres innovations Avene</h2>
+                    <p class="reveal reveal-delay-1" style="color: var(--gray); font-size: var(--text-lg); line-height: 1.6;">En 2023, Avene a franchi le cap du <strong style="color: var(--charcoal);">milliard d'euros de chiffre d'affaires</strong>, une premiere pour une marque du groupe Pierre Fabre. Derriere ce seuil, une R&amp;D qui ne s'arrete jamais.</p>
+                </div>
+
+                <div class="innovations-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: var(--space-24); max-width: 1100px; margin: 0 auto;">
+                    <article class="innovation-card reveal" style="background: var(--white); border-radius: 16px; padding: var(--space-32) var(--space-24); border-left: 4px solid var(--avene-orange); box-shadow: 0 4px 20px rgba(244, 121, 32, 0.08);">
+                        <div style="font-size: var(--text-xs); font-weight: 700; color: var(--avene-orange); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: var(--space-12);">Acne &middot; 2025</div>
+                        <h3 style="font-family: var(--font-display); font-size: 1.5rem; line-height: 1.2; margin-bottom: var(--space-12); color: var(--charcoal);">Cleanance Comedomed+</h3>
+                        <p style="color: var(--gray); line-height: 1.6; margin: 0;">Soin intensif anti-imperfections qui cible les causes profondes de l'acne et ameliore l'apparence des cicatrices. Pierre Fabre insiste sur l'impact psychologique de l'acne chez les adolescents. A Queven, les ados qui surfent ou pratiquent en exterieur beneficient d'une routine complete nettoyant + Comedomed+ + solaire Cleanance SPF&nbsp;50+.</p>
+                    </article>
+
+                    <article class="innovation-card reveal reveal-delay-1" style="background: var(--white); border-radius: 16px; padding: var(--space-32) var(--space-24); border-left: 4px solid var(--avene-orange); box-shadow: 0 4px 20px rgba(244, 121, 32, 0.08);">
+                        <div style="font-size: var(--text-xs); font-weight: 700; color: var(--avene-orange); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: var(--space-12);">Reparation &middot; 2024-2025</div>
+                        <h3 style="font-family: var(--font-display); font-size: 1.5rem; line-height: 1.2; margin-bottom: var(--space-12); color: var(--charcoal);">Cicalfate+ SPF&nbsp;50+</h3>
+                        <p style="color: var(--gray); line-height: 1.6; margin: 0;">Extension de la gamme Cicalfate+ avec une protection solaire haute pour les cicatrices recentes, afin de prevenir l'hyperpigmentation. Le Cicalfate+ original a ete elu <strong>Meilleur Produit de la Pharmacie 2025</strong> en categorie dermatologie. Son actif postbiotique C+-Restore repare en 48&nbsp;h tout en respectant le microbiome cutane.</p>
+                    </article>
+
+                    <article class="innovation-card reveal reveal-delay-2" style="background: var(--white); border-radius: 16px; padding: var(--space-32) var(--space-24); border-left: 4px solid var(--avene-orange); box-shadow: 0 4px 20px rgba(244, 121, 32, 0.08);">
+                        <div style="font-size: var(--text-xs); font-weight: 700; color: var(--avene-orange); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: var(--space-12);">Peaux atopiques &middot; 2025</div>
+                        <h3 style="font-family: var(--font-display); font-size: 1.5rem; line-height: 1.2; margin-bottom: var(--space-12); color: var(--charcoal);">XeraCalm A.D. Gel-Lait</h3>
+                        <p style="color: var(--gray); line-height: 1.6; margin: 0;">Nouvelle galenique legere pour les peaux atopiques, concue pour ameliorer l'observance au quotidien. L'actif exclusif I-modulia, issu de 12 ans de R&amp;D sur l'eau thermale d'Avene, espace les crises d'eczema. En Bretagne, ou l'humidite favorise les poussees atopiques, c'est une reference pour les enfants comme pour les adultes.</p>
+                    </article>
+
+                    <article class="innovation-card reveal reveal-delay-3" style="background: var(--white); border-radius: 16px; padding: var(--space-32) var(--space-24); border-left: 4px solid var(--avene-orange); box-shadow: 0 4px 20px rgba(244, 121, 32, 0.08);">
+                        <div style="font-size: var(--text-xs); font-weight: 700; color: var(--avene-orange); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: var(--space-12);">Anti-age &middot; 2024-2025</div>
+                        <h3 style="font-family: var(--font-display); font-size: 1.5rem; line-height: 1.2; margin-bottom: var(--space-12); color: var(--charcoal);">Hyaluron Activ B3 Procedure</h3>
+                        <p style="color: var(--gray); line-height: 1.6; margin: 0;">Solution dermo-esthetique anti-age co-developpee avec des dermatologues esthetiques. Pierre Fabre revendique un resultat equivalent a 7 ans de rajeunissement cutane. L'acide hyaluronique fractionne et la vitamine B3 agissent en synergie. Le serum concentre (environ 30&nbsp;&euro;) est la reference la mieux notee de la gamme.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ Avene -->
+        <section class="avene-faq" style="padding: var(--space-64) 0; background: var(--white);">
+            <div class="container" style="max-width: 860px;">
+                <div class="section-header" style="text-align: center; margin-bottom: var(--space-48);">
+                    <span class="section-badge" style="display: inline-block; padding: 6px 18px; background: var(--avene-pastel-2); color: var(--avene-dark); border-radius: 999px; font-size: var(--text-sm); font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; margin-bottom: var(--space-16);">Vos questions frequentes</span>
+                    <h2 class="reveal" style="font-family: var(--font-display); font-size: 2.5rem; line-height: 1.15; color: var(--charcoal);">Questions frequentes sur Avene</h2>
+                </div>
+
+                <div class="faq-list">
+                    <details class="faq-item">
+                        <summary>Pourquoi l'eau thermale d'Avene est-elle efficace sur les peaux sensibles et la rosacee ?</summary>
+                        <div class="faq-answer">
+                            <p>L'eau thermale d'Avene jaillit de la source Sainte-Odile apres un trajet souterrain de <strong>plus de 40 ans</strong> dans les dolomies du Haut-Languedoc. Plus de 150 etudes cliniques valident ses proprietes apaisantes, anti-irritantes et restauratrices de la barriere cutanee. Sa composition minerale unique en fait une reference en dermatologie thermale depuis 1874, date de son decret d'interet public signe par le President Mac-Mahon. Le centre thermal d'Avene-les-Bains accueille encore 2&nbsp;600 curistes par an pour des cures dermatologiques.</p>
+                        </div>
+                    </details>
+
+                    <details class="faq-item">
+                        <summary>Avene est-elle adaptee aux peaux atopiques des enfants ?</summary>
+                        <div class="faq-answer">
+                            <p>Oui, c'est meme l'un des points forts de la marque. La gamme <strong>XeraCalm A.D.</strong> est concue specifiquement pour l'eczema atopique, qui touche 20&nbsp;% des enfants. Son actif exclusif I-modulia, un postbiotique issu de 12 ans de recherche sur l'eau thermale, espace les crises et restaure la barriere cutanee. La formulation est sterile, sans conservateur, avec une haute tolerance testee des la naissance. La gamme Pediatril complete l'offre pour les tout-petits (0+ mois).</p>
+                        </div>
+                    </details>
+
+                    <details class="faq-item">
+                        <summary>Quelle gamme Avene choisir pour une peau seche en hiver breton ?</summary>
+                        <div class="faq-answer">
+                            <p>Le climat oceanique de Queven et du littoral morbihannais (vent, humidite, froid) agresse la barriere cutanee et favorise la deshydratation. Pour l'hiver, nous recommandons la <strong>creme Cold Cream</strong> (formule nourrissante a la cire d'abeille blanche) pour le visage et le stick levres Cold Cream, reference en pharmacie contre les gercures. En complement, la <strong>creme Hydrance Riche</strong> offre une hydratation longue duree adaptee aux peaux seches a tres seches exposees aux conditions hivernales bretonnes.</p>
+                        </div>
+                    </details>
+
+                    <details class="faq-item">
+                        <summary>Les solaires Avene sont-ils respectueux de l'environnement marin ?</summary>
+                        <div class="faq-answer">
+                            <p>Avene s'engage a utiliser des <strong>filtres solaires non ecotoxiques</strong> pour les ecosystemes marins, un point important pour les baigneurs de la cote morbihannaise. La gamme solaire compte environ 34 references, dont le Fluide Ultra-Leger SPF&nbsp;50+ et le SunsiMed KA (dispositif medical pour la prevention de la keratose actinique). Tous les nouveaux produits Avene sont eco-socio-concus depuis 2020 et evalues par le <strong>Green Impact Index</strong>, certifie par AFNOR.</p>
+                        </div>
+                    </details>
+
+                    <details class="faq-item">
+                        <summary>Avene fait-elle partie d'un grand groupe pharmaceutique ?</summary>
+                        <div class="faq-answer">
+                            <p>Avene appartient aux <strong>Laboratoires Pierre Fabre</strong>, 2e groupe mondial de dermocosmetique et 2e groupe pharmaceutique prive francais (3,1 milliards d'euros de CA en 2024). La particularite : 86&nbsp;% du capital est detenu par la <strong>Fondation Pierre Fabre</strong>, reconnue d'utilite publique, dediee a l'acces aux medicaments dans les pays en developpement. Tous les produits Avene sont fabriques en France, a Avene-les-Bains (Herault), directement connectes a la source thermale. Le groupe est labellise "Exemplaire" par AFNOR, le plus haut niveau de certification RSE en France.</p>
+                        </div>
+                    </details>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ Schema JSON-LD -->
+        <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            "mainEntity": [
+                {
+                    "@type": "Question",
+                    "name": "Pourquoi l'eau thermale d'Avène est-elle efficace sur les peaux sensibles et la rosacée ?",
+                    "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "L'eau thermale d'Avène jaillit de la source Sainte-Odile après un trajet souterrain de plus de 40 ans dans les dolomies du Haut-Languedoc. Plus de 150 études cliniques valident ses propriétés apaisantes, anti-irritantes et restauratrices de la barrière cutanée. Sa composition minérale unique en fait une référence en dermatologie thermale depuis 1874, date de son décret d'intérêt public signé par le Président Mac-Mahon. Le centre thermal d'Avène-les-Bains accueille encore 2 600 curistes par an pour des cures dermatologiques."
+                    }
+                },
+                {
+                    "@type": "Question",
+                    "name": "Avène est-elle adaptée aux peaux atopiques des enfants ?",
+                    "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "Oui, c'est même l'un des points forts de la marque. La gamme XeraCalm A.D. est conçue spécifiquement pour l'eczéma atopique, qui touche 20 % des enfants. Son actif exclusif I-modulia, un postbiotique issu de 12 ans de recherche sur l'eau thermale, espace les crises et restaure la barrière cutanée. La formulation est stérile, sans conservateur, avec une haute tolérance testée dès la naissance. La gamme Pédiatril complète l'offre pour les tout-petits (0+ mois)."
+                    }
+                },
+                {
+                    "@type": "Question",
+                    "name": "Quelle gamme Avène choisir pour une peau sèche en hiver breton ?",
+                    "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "Le climat océanique de Quéven et du littoral morbihannais (vent, humidité, froid) agresse la barrière cutanée et favorise la déshydratation. Pour l'hiver, nous recommandons la crème Cold Cream (formule nourrissante à la cire d'abeille blanche) pour le visage et le stick lèvres Cold Cream, référence en pharmacie contre les gerçures. En complément, la crème Hydrance Riche offre une hydratation longue durée adaptée aux peaux sèches à très sèches exposées aux conditions hivernales bretonnes."
+                    }
+                },
+                {
+                    "@type": "Question",
+                    "name": "Les solaires Avène sont-ils respectueux de l'environnement marin ?",
+                    "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "Avène s'engage à utiliser des filtres solaires non écotoxiques pour les écosystèmes marins, un point important pour les baigneurs de la côte morbihannaise. La gamme solaire compte environ 34 références, dont le Fluide Ultra-Léger SPF 50+ et le SunsiMed KA (dispositif médical pour la prévention de la kératose actinique). Tous les nouveaux produits Avène sont éco-socio-conçus depuis 2020 et évalués par le Green Impact Index, certifié par AFNOR."
+                    }
+                },
+                {
+                    "@type": "Question",
+                    "name": "Avène fait-elle partie d'un grand groupe pharmaceutique ?",
+                    "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "Avène appartient aux Laboratoires Pierre Fabre, 2e groupe mondial de dermocosmétique et 2e groupe pharmaceutique privé français (3,1 milliards d'euros de CA en 2024). La particularité : 86 % du capital est détenu par la Fondation Pierre Fabre, reconnue d'utilité publique, dédiée à l'accès aux médicaments dans les pays en développement. Tous les produits Avène sont fabriqués en France, à Avène-les-Bains (Hérault), directement connectés à la source thermale. Le groupe est labellisé Exemplaire par AFNOR, le plus haut niveau de certification RSE en France."
+                    }
+                }
+            ]
+        }
+        </script>
+
+        <!-- Le conseil de Laure -->
+        <section class="avene-laure" style="padding: var(--space-64) 0; background: linear-gradient(135deg, var(--avene-pastel-1) 0%, var(--cream) 100%);">
+            <div class="container" style="max-width: 880px;">
+                <div class="laure-block" style="display: grid; grid-template-columns: 140px 1fr; gap: var(--space-32); align-items: start;">
+                    <div style="width: 140px; height: 140px; border-radius: 50%; overflow: hidden; box-shadow: 0 8px 24px rgba(244, 121, 32, 0.15); border: 4px solid var(--white);">
+                        <img src="../images/Laure%20CNL.jpeg" alt="Laure Charnal, pharmacienne titulaire a Queven" style="width: 100%; height: 100%; object-fit: cover; display: block;">
+                    </div>
+                    <div>
+                        <span style="display: inline-block; font-size: var(--text-xs); font-weight: 700; color: var(--avene-orange); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: var(--space-12);">Le conseil de Laure</span>
+                        <h2 style="font-family: var(--font-display); font-size: 2rem; line-height: 1.2; color: var(--charcoal); margin-bottom: var(--space-20);">Pourquoi je recommande Avene a Queven</h2>
+                        <p style="color: var(--charcoal); line-height: 1.8; margin-bottom: var(--space-16);">Avene est l'une des marques que je conseille le plus a la pharmacie. En Bretagne, entre le vent de la rade de Lorient, l'air marin et les changements brusques de temperature, les peaux sensibles et deshydratees sont tres frequentes. L'eau thermale d'Avene, validee par plus de <strong>150 etudes cliniques</strong>, repond a ce besoin fondamental d'apaisement et de reparation de la barriere cutanee.</p>
+                        <p style="color: var(--charcoal); line-height: 1.8; margin-bottom: var(--space-16);">Concretement, voici ce que je recommande selon le profil. Pour une <strong>peau sensible et reactive</strong> : la routine Tolerance Control (creme + nettoyant), sterile et sans conservateur. Pour une <strong>peau seche en hiver</strong> : Cold Cream le matin, Hydrance Riche le soir, et le stick levres dans la poche, surtout entre Hennebont et Quiberon ou le vent ne fait pas de cadeau. Pour un <strong>enfant a peau atopique</strong> : XeraCalm A.D. Baume en emollient quotidien et l'huile lavante relipidante pour le bain. Beaucoup de parents de Queven et Lorient viennent avec l'ordonnance du dermato mentionnant Avene, et on elargit ensuite vers la routine complete.</p>
+                        <p style="color: var(--charcoal); line-height: 1.8;">N'hesitez pas a passer avec votre ordonnance ou simplement pour un conseil : on prend le temps de regarder votre type de peau, vos habitudes, et on construit ensemble une routine adaptee. C'est l'avantage d'une pharmacie de proximite.</p>
+                        <p style="margin-top: var(--space-24); color: var(--gray); font-style: italic; font-size: var(--text-sm);">&mdash; Laure Charnal, pharmacienne titulaire a Queven</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CSS dedie sections SEO Avene (FAQ + responsive Laure) -->
+        <style>
+            /* FAQ — texte aere, indicateur +/−, hover & open states */
+            .avene-faq .faq-list {
+                margin-top: var(--space-32);
+            }
+            .avene-faq .faq-item {
+                border: 1px solid var(--beige);
+                border-radius: 12px;
+                padding: var(--space-24) var(--space-32);
+                margin-bottom: var(--space-32);
+                background: var(--cream);
+                transition: border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+            }
+            .avene-faq .faq-item:last-child {
+                margin-bottom: 0;
+            }
+            .avene-faq .faq-item:hover {
+                border-color: var(--avene-orange);
+                box-shadow: 0 2px 12px rgba(244, 121, 32, 0.08);
+            }
+            .avene-faq .faq-item[open] {
+                border-color: var(--avene-orange);
+                background: var(--white);
+                box-shadow: 0 4px 16px rgba(244, 121, 32, 0.1);
+            }
+            .avene-faq .faq-item summary {
+                font-family: var(--font-display);
+                font-weight: 600;
+                font-size: 1.35rem;
+                line-height: 1.4;
+                color: var(--charcoal);
+                cursor: pointer;
+                list-style: none;
+                padding-right: 36px;
+                position: relative;
+            }
+            .avene-faq .faq-item summary::-webkit-details-marker {
+                display: none;
+            }
+            .avene-faq .faq-item summary::after {
+                content: "+";
+                position: absolute;
+                right: 0;
+                top: 50%;
+                transform: translateY(-50%);
+                width: 28px;
+                height: 28px;
+                line-height: 26px;
+                text-align: center;
+                font-size: 1.5rem;
+                font-weight: 400;
+                color: var(--avene-orange);
+                border: 1.5px solid var(--avene-orange);
+                border-radius: 50%;
+                transition: transform 0.3s ease;
+            }
+            .avene-faq .faq-item[open] summary::after {
+                content: "\2212";
+                background: var(--avene-orange);
+                color: var(--white);
+            }
+            .avene-faq .faq-answer {
+                margin-top: var(--space-20);
+                color: var(--charcoal);
+                font-size: var(--text-lg);
+                line-height: 1.8;
+            }
+            .avene-faq .faq-answer p {
+                margin: 0;
+            }
+
+            /* Mobile : empile la photo de Laure et reduit les tailles */
+            @media (max-width: 640px) {
+                .avene-laure .laure-block {
+                    grid-template-columns: 1fr !important;
+                    text-align: center;
+                }
+                .avene-laure .laure-block > div:first-child {
+                    margin: 0 auto var(--space-16);
+                }
+                .avene-innovations h2,
+                .avene-faq h2,
+                .avene-laure h2 {
+                    font-size: 1.75rem !important;
+                }
+                .avene-faq .faq-item {
+                    padding: var(--space-20) var(--space-24);
+                    margin-bottom: var(--space-24);
+                }
+                .avene-faq .faq-item summary {
+                    font-size: 1.15rem;
+                    padding-right: 32px;
+                }
+                .avene-faq .faq-item summary::after {
+                    width: 24px;
+                    height: 24px;
+                    line-height: 22px;
+                    font-size: 1.25rem;
+                }
+                .avene-faq .faq-answer {
+                    font-size: var(--text-base);
+                    line-height: 1.7;
+                }
+            }
+        </style>
+
         <!-- Découvrir une autre marque -->
     <section class="next-brand-section" style="padding: var(--space-64) 0; background: var(--cream);">
         <div class="container" style="max-width: 500px; margin: 0 auto; text-align: center;">
