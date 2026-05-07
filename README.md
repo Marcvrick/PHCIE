@@ -698,6 +698,25 @@ Les deux fichiers sont complémentaires et doivent rester à jour.
 - Fix : remplacement par `padding: 20px 24px` hardcodé sur les 9 pages concernées (aragan, arkopharma, avene, bioderma, la-roche-posay, larosee, natform, nuxe, pileje)
 - Commit : `fe9252a`
 
+**Homepage — Section "Quel soin vous correspond?" (4 quiz) :**
+- Layout desktop passe de **3 colonnes × 2 rangées (bento asymétrique)** à **4 colonnes × 1 rangée**
+- Toutes les cartes deviennent carrées et de même taille (`aspect-ratio: 1`)
+- Suppression des règles spéciales `card--big` (Naturels qui s'étirait sur 2 rangées) et `card--wide` (Automédication qui s'étirait sur 2 colonnes)
+- Section divisée par 2 en hauteur sur desktop. Mobile inchangé (2×2 carré)
+- Commit : `2d3306d`
+
+**Homepage — Hero mobile restructuré (< 768px uniquement) :**
+- Nouveau layout sur téléphone : **H1 → photo → CTA** (à la place de : badge + H1 + description + CTA, sans photo)
+- Photo `hp PC.jpg` désormais visible sur mobile (max 360px, centrée, coins arrondis), entre le titre et le bouton — apporte l'émotion qui manquait
+- Masqués sur mobile : badge "Depuis 40 ans à Quéven", paragraphe de description, pills 40+/6j/7/4.9
+- iPad et desktop (≥ 768px) **strictement inchangés** : badge + H1 + description + CTA à gauche, photo à droite
+- Mécanisme : `display: contents` sur `.hero-content` libère ses enfants dans le flex column de `.hero-container`, puis `order: 1/2/3` pour intercaler `.hero-image`
+- Commit : `6d6d7ea`
+
+**Hero pills (40+/6j/7/4.9) — espacement :**
+- `margin-top` passe de `12px` à `var(--space-24)` (24px) — les pills étaient collées sous la photo, manquaient d'air
+- Commit : `41f12fc`
+
 ### 6 Mai 2026
 
 **SEO — Audit Google Search Console + optimisations majeures :**
