@@ -647,10 +647,9 @@
 
         @media (min-width: 768px) {
             .product-features-grid {
-                grid-template-columns: 1.4fr 1fr 1fr;
-                grid-template-rows: 1fr 1fr;
+                grid-template-columns: repeat(4, 1fr);
                 gap: 16px;
-                max-width: 900px;
+                max-width: 1100px;
                 margin: 0 auto;
             }
         }
@@ -684,17 +683,9 @@
 
         @media (min-width: 768px) {
             .product-feature-card {
-                aspect-ratio: auto;
-                min-height: 200px;
-                padding: 24px 20px 18px;
-            }
-        }
-
-        /* First card spans 2 rows on desktop for asymmetry */
-        @media (min-width: 768px) {
-            .product-feature-card.card--big {
-                grid-row: 1 / 3;
-                min-height: 100%;
+                aspect-ratio: 1;
+                min-height: 0;
+                padding: 20px 16px 16px;
             }
         }
 
@@ -744,12 +735,6 @@
             transform: scale(1.08) translateY(-4px);
         }
 
-        @media (min-width: 768px) {
-            .product-feature-card.card--big .product-feature-img-wrap {
-                width: 75%;
-                max-width: 400px;
-            }
-        }
 
         .product-feature-title {
             font-family: Georgia, 'Fraunces', serif;
@@ -763,18 +748,6 @@
             margin-top: auto;
         }
 
-        @media (min-width: 768px) {
-            .product-feature-card.card--big .product-feature-title {
-                font-size: 1.4rem;
-            }
-        }
-
-        /* Wide card spans 2 columns */
-        @media (min-width: 768px) {
-            .product-feature-card.card--wide {
-                grid-column: 2 / 4;
-            }
-        }
 
         .product-feature-arrow {
             position: absolute;
@@ -2735,7 +2708,7 @@
                     <span class="product-feature-title">Automédication</span>
                 </a>
             </div>
-            <div style="grid-column: -2 / -1; text-align: center; margin-top: var(--space-16);">
+            <div style="text-align: center; margin-top: var(--space-16);">
                 <a href="Quizzes/guide-quizzes-sante-pharmacie-queven.html" style="color: var(--teal); font-weight: 600; font-size: var(--text-base); text-decoration: none; display: inline-flex; align-items: center; gap: 6px; transition: gap 0.3s ease;" onmouseover="this.style.gap='10px'" onmouseout="this.style.gap='6px'">
                     Voir tous nos quiz
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
