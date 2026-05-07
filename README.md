@@ -690,9 +690,19 @@ Les deux fichiers sont complémentaires et doivent rester à jour.
 
 ---
 
----
-
 ## 📝 Changelog Récent
+
+### 7 Mai 2026 (suite — soir, alignement titres homepage)
+
+**Homepage — Section "Les marques qu'on aime" (commits `4e5ffaf` + `e995ce9`) :**
+- Titre `.brands-strip-title` était plus petit que les autres titres de section : `clamp(var(--text-xl), 2vw, var(--text-2xl))` → aligné sur le pattern `.services-v2-title` : `clamp(1.8rem, 3vw, 2.4rem)`, `line-height: 1.15`, `margin: 0`
+- Mot "aime" passé en `<em>` italique teal (`var(--teal-pro)`) — même traitement visuel que "correspond?" dans le titre quiz et "Vous" dans "On s'occupe de Vous"
+
+**Homepage — Section "Quel soin vous correspond?" alignée verticalement (commit `22fa5d4`) :**
+- Le titre apparaissait plus indenté que les sections "On s'occupe de Vous" (au-dessus) et "Au comptoir / Les marques qu'on aime" (en-dessous) sur desktop
+- Cause : `.product-features .container` héritait des paddings globaux de `.container` qui passent à `var(--space-48)` (≥1024px) puis `var(--space-64)` (≥1440px), alors que `.services-v2-container` et `.blog-highlight-container` restent à `var(--space-24)` constant
+- Fix : pin `.product-features .container { padding: 0 var(--space-24); }` à tous les breakpoints (768px, 1024px, 1440px)
+- Résultat : les 3 titres de section partagent la même gouttière gauche au pixel près
 
 ### 7 Mai 2026 (suite — fin de journée)
 
@@ -877,6 +887,6 @@ Documentation source :
 
 ---
 
-**Dernière mise à jour**: 7 Mai 2026
+**Dernière mise à jour**: 7 Mai 2026 (soir — alignement titres homepage)
 **Version du site**: Production (main branch) - Migration style-v2.css en cours
 **Statut**: ✅ En ligne sur www.pharmaciecharnal.com
