@@ -690,6 +690,14 @@ Les deux fichiers sont complémentaires et doivent rester à jour.
 
 ## 📝 Changelog Récent
 
+### 7 Mai 2026
+
+**Fix CSS — Bloc "Pour aller plus loin sur le blog" (9 pages marques) :**
+- Symptôme : sur `larosee-page.html` (et 8 autres), le texte du bloc "POUR ALLER PLUS LOIN SUR LE BLOG" se collait au border-left coloré, sans aucun padding visible
+- Cause : la div `.laure-blog-link` utilisait `padding: var(--space-20) var(--space-24)` en inline, mais `--space-20` n'est défini **nulle part** dans le projet (ni dans le `<style>` inline des pages marques, ni dans `style.css` / `style-v2.css`). Une `var()` non définie sans fallback dans une shorthand rend la déclaration invalide à la résolution → `padding` retombe à `0` sur les 4 côtés
+- Fix : remplacement par `padding: 20px 24px` hardcodé sur les 9 pages concernées (aragan, arkopharma, avene, bioderma, la-roche-posay, larosee, natform, nuxe, pileje)
+- Commit : `fe9252a`
+
 ### 6 Mai 2026
 
 **SEO — Audit Google Search Console + optimisations majeures :**
