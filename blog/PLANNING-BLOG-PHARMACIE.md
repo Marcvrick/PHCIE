@@ -1,7 +1,26 @@
 # PLANNING BLOG PHARMACIE CHARNAL
 
 Planning éditorial 2025-2026 - Pharmacie Charnal à Quéven
-**Dernière mise à jour** : 26 Janvier 2026
+**Dernière mise à jour** : 7 Mai 2026
+
+> **Voir aussi** : [BRAND-BLOG-MAPPING.md](BRAND-BLOG-MAPPING.md) pour la correspondance article → page marque (chaque page marque doit être liée à un article blog).
+
+---
+
+## 🎯 PROCHAINS ARTICLES À PUBLIER (Mai-Juin 2026)
+
+**Logique :** chaque article doit pouvoir être lié depuis une page marque (block "Pour aller plus loin sur le blog" dans la section Conseil de Laure). Les marques sans article blog actuellement : Biocanina, Biogaran, Bion3, Boiron, Mustela.
+
+| # | Date cible | Article | Marque ciblée | Statut |
+|---|------------|---------|---------------|--------|
+| 18 | **Lun 11 mai 2026** | Quel shampoing pharmacie choisir? Klorane, Nuxe, Bioderma, Avène | Klorane + Nuxe | 🟡 .md prêt, photo OK, HTML à générer |
+| 19 | **Lun 18 mai 2026** | Chien et chat : les essentiels santé en pharmacie pour le printemps | Biocanina | 🟡 .md prêt, HTML + photo à faire |
+| 20 | Lun 25 mai 2026 | Bébé 0-3 ans : la routine soin essentielle (et la grossesse aussi) | Mustela | 📝 À RÉDIGER |
+| 21 | Lun 1 juin 2026 | Génériques : pourquoi votre boîte change parfois (et c'est OK) | Biogaran | 📝 À RÉDIGER |
+| 22 | Lun automne (oct) | Probiotiques et multivitamines : à quoi ça sert vraiment? | Bion3 | 📝 À RÉDIGER |
+| 23 | Lun automne (nov) | L'homéopathie au comptoir : pour qui, pour quoi, quand? | Boiron | 📝 À RÉDIGER |
+
+**Note Tiques (#25)** : article déjà rédigé, réservé pour début juillet 2026 (règle éditoriale figée — saison réelle pic Lyme).
 
 ---
 

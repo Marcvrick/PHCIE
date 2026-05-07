@@ -404,10 +404,13 @@ git push origin main
 
 ## 📝 Articles de Blog Publiés
 
-**14 articles en ligne + 2 en préparation** — publication hebdomadaire, chaque lundi. Voir [`blog/`](blog/) pour les sources `.md` organisées en dossiers numérotés (alignés sur les posts GMB).
+**17 articles en ligne + 2 en préparation** — publication hebdomadaire, chaque lundi. Voir [`blog/`](blog/) pour les sources `.md` organisées en dossiers numérotés (alignés sur les posts GMB). Mapping article → page marque dans [`blog/BRAND-BLOG-MAPPING.md`](blog/BRAND-BLOG-MAPPING.md).
 
 | # | Date | Article | Source |
 |---|------|---------|--------|
+| 17 | 5 mai 2026 | Stress des examens : comment aider les ados | [`17-stress-examens-ados/`](blog/17-stress-examens-ados/) |
+| 16 | 28 avr 2026 | Courbatures et reprise du sport au printemps | [`16-courbatures-reprise-sport/`](blog/16-courbatures-reprise-sport/) |
+| 15 | 21 avr 2026 | Jambes lourdes : comprendre et soulager | [`15-jambes-lourdes/`](blog/15-jambes-lourdes/) |
 | 14 | 14 avr 2026 | Paracétamol, ibuprofène, aspirine : lequel choisir ? | [`14-paracetamol-ibuprofene-aspirine/`](blog/14-paracetamol-ibuprofene-aspirine/) |
 | 13 | 8 avr 2026 | Compléments alimentaires : pharmacie ou internet ? | [`13-complements-alimentaires/`](blog/13-complements-alimentaires/) |
 | 12 | 31 mars 2026 | Troubles du sommeil : solutions naturelles | [`12-troubles-sommeil/`](blog/12-troubles-sommeil/) |
@@ -425,10 +428,11 @@ git push origin main
 
 **Articles rédigés en attente de publication :**
 
-| # | Date cible | Article | Source |
-|---|------------|---------|--------|
-| 15 | **Lundi 21 avril 2026** | Jambes lourdes : comprendre et soulager | [`15-jambes-lourdes/`](blog/15-jambes-lourdes/) |
-| 25 | Début juillet 2026 | Tiques en Bretagne : prévention et réaction | [`25-tiques-bretagne/`](blog/25-tiques-bretagne/) |
+| # | Date cible | Article | Marque ciblée | Source |
+|---|------------|---------|---------------|--------|
+| 18 | **Lundi 11 mai 2026** | Quel shampoing pharmacie choisir? Klorane, Nuxe, Bioderma, Avène | Klorane + Nuxe | [`18-shampoings-pharmacie/`](blog/18-shampoings-pharmacie/) |
+| 19 | **Lundi 18 mai 2026** | Chien et chat : les essentiels santé en pharmacie pour le printemps | Biocanina | [`19-chiens-chats-pharmacie/`](blog/19-chiens-chats-pharmacie/) |
+| 25 | Début juillet 2026 | Tiques en Bretagne : prévention et réaction | — | [`25-tiques-bretagne/`](blog/25-tiques-bretagne/) |
 
 **Stratégie éditoriale** :
 - Ton : Voix de Laure (pharmacienne pédagogue, professionnelle accessible) — voir [`blog/README.md`](blog/README.md) pour le guide complet
@@ -690,6 +694,35 @@ Les deux fichiers sont complémentaires et doivent rester à jour.
 
 ## 📝 Changelog Récent
 
+### 7 Mai 2026 (suite — fin de journée)
+
+**Fix logos hero pages marques (6 pages) :**
+- Symptôme : sur `avene-page.html`, le logo Avène n'apparaissait pas dans le hero. Audit étendu : 5 autres pages avaient un problème similaire (placeholder texte ou nom de fichier erroné)
+- Pages corrigées :
+  - `avene-page.html` : `__KEEP_AVÈNE_FILE__.jpeg` (placeholder jamais remplacé) → `Avene.jpeg`
+  - `pileje-page.html` : `Pileje.jpg` (mauvais nom) → `Pileje-Logo.jpg`
+  - `aragan-page.html` : `<!-- PLACEHOLDER -->` (vide) → `<img src="logos/aragan_logo.jpg">`
+  - `arkopharma-page.html` : `<!-- PLACEHOLDER -->` (vide) → `<img src="logos/logo-arkopharma-2.png">`
+  - `mustela-page.html` : texte serif "mustela" → `<img src="logos/Mustela.jpg">` (fichier renommé depuis `Mustella.93ej...`)
+  - `boiron-page.html` : texte serif "BOIRON" → `<img src="logos/boiron-logo-png-transparent.png">`
+- Commit : `6192b3f`
+
+**Brands strip homepage : +25% logos Nuxe, Avène, Klorane (desktop) :**
+- Logos Nuxe, Avène et Klorane apparaissaient visuellement plus petits que les autres dans la section "Les marques qu'on aime" sur desktop
+- Règle CSS ajoutée dans un `@media (min-width: 768px)` ciblant via attribute selector `[alt="Nuxe"]`, `[alt="Avène"]`, `[alt="Klorane"]` : `max-width: 150px; max-height: 60px` (vs 120×48 par défaut)
+- Mobile inchangé. Commit : `cdeb39d`
+
+**Article #19 Chiens & chats rédigé + système de mapping marque→article :**
+- Source : [`blog/19-chiens-chats-pharmacie/chiens-chats-pharmacie-queven.md`](blog/19-chiens-chats-pharmacie/) — ~2400 mots, voix de Laure, 6 H2 (66% en questions), 7 FAQ, sources : ANSES, ANMV, ESCCAP, ECDC, VIDAL Vétérinaire, CAPAE-Ouest, monographie Permetrix Biocanina
+- Cible : page marque [Biocanina](Nos-marques/biocanina-page.html) (mention Fiprocat, Permetrix, vermifuges Biocanina, soins yeux/oreilles)
+- Couvre : saisonnalité Bretagne (ESCCAP "pas d'interruption hivernale"), perméthrine toxique chat (mécanisme glucuronosyltransférase + risque indirect par léchage), maladies vectorielles (Lyme, piroplasmose, ehrlichiose), tableau fréquence vermifuge par profil
+- Publication cible : lundi 18 mai 2026
+
+**Mapping marque → article blog :**
+- Nouveau fichier [`blog/BRAND-BLOG-MAPPING.md`](blog/BRAND-BLOG-MAPPING.md) — référence pour le maillage SEO interne (chaque page marque doit être liée à un article blog)
+- État au 7 mai : 9 marques liées (commit `be69f98`), 3 en cours (Klorane, Nuxe, Biocanina via #18 et #19), 4 à lier (Mustela, Biogaran, Bion3, Boiron)
+- 6 articles supplémentaires planifiés (mai-novembre 2026) pour atteindre 16/16 marques liées : voir [`blog/PLANNING-BLOG-PHARMACIE.md`](blog/PLANNING-BLOG-PHARMACIE.md)
+
 ### 7 Mai 2026
 
 **Fix CSS — Bloc "Pour aller plus loin sur le blog" (9 pages marques) :**
@@ -844,6 +877,6 @@ Documentation source :
 
 ---
 
-**Dernière mise à jour**: 6 Mai 2026
+**Dernière mise à jour**: 7 Mai 2026
 **Version du site**: Production (main branch) - Migration style-v2.css en cours
 **Statut**: ✅ En ligne sur www.pharmaciecharnal.com
