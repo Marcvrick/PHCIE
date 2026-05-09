@@ -30,7 +30,7 @@
 |---|---|---|
 | **Klorane** | #18 Quel shampoing pharmacie choisir? Klorane, Nuxe, Bioderma, Avène (lundi 11 mai) | 🟡 Article .md prêt, lien à ajouter sur klorane-page.html |
 | **Nuxe** (lien complémentaire) | #18 Shampoings (lien secondaire en plus du lien solaire) | 🟡 Optionnel — la page Nuxe a déjà un lien solaire |
-| **Biocanina** | #19 Chien et chat : les essentiels santé en pharmacie pour le printemps (lundi 18 mai) | 🟡 Article .md prêt, lien à ajouter sur biocanina-page.html |
+| **Biocanina** | #19 Chien et chat : les essentiels santé en pharmacie pour le printemps (**mardi 12 mai 2026**) | ✅ Encart "Marque coup de cœur" ajouté dans l'article + 3 liens texte. À publier en .html avant mardi |
 
 ### 📝 Marques à lier (article à rédiger)
 

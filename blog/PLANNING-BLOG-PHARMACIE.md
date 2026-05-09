@@ -14,7 +14,7 @@ Planning éditorial 2025-2026 - Pharmacie Charnal à Quéven
 | # | Date cible | Article | Marque ciblée | Statut |
 |---|------------|---------|---------------|--------|
 | 18 | **Lun 11 mai 2026** | Quel shampoing pharmacie choisir? Klorane, Nuxe, Bioderma, Avène | Klorane + Nuxe | 🟡 .md prêt, photo OK, HTML à générer |
-| 19 | **Lun 18 mai 2026** | Chien et chat : les essentiels santé en pharmacie pour le printemps | Biocanina | 🟡 .md prêt, HTML + photo à faire |
+| 19 | **Mar 12 mai 2026** | Chien et chat : les essentiels santé en pharmacie pour le printemps | Biocanina | 🟡 .md prêt + encart Biocanina, HTML + photo à faire avant mardi |
 | 20 | Lun 25 mai 2026 | Bébé 0-3 ans : la routine soin essentielle (et la grossesse aussi) | Mustela | 📝 À RÉDIGER |
 | 21 | Lun 1 juin 2026 | Génériques : pourquoi votre boîte change parfois (et c'est OK) | Biogaran | 📝 À RÉDIGER |
 | 22 | Lun automne (oct) | Probiotiques et multivitamines : à quoi ça sert vraiment? | Bion3 | 📝 À RÉDIGER |
