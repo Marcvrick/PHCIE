@@ -298,6 +298,11 @@
                     rgba(252, 245, 240, 0.65) 60%,
                     rgba(252, 245, 240, 0.55) 100%);
             }
+            /* Flip the background photo horizontally on mobile so the apothecary bottle moves
+               from right to center-left and stays visible in the cropped portrait view.
+               Children are un-flipped so text and CTAs read normally. */
+            .hero { transform: scaleX(-1); }
+            .hero > * { transform: scaleX(-1); }
         }
 
         /* Hide decorative bubbles — the photo carries the visual */
