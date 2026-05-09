@@ -368,7 +368,7 @@ photography, sophisticated and serene.
 
 ### 14. S.I.D Nutrition — *Phytothérapie pharmaceutique française accessible*
 
-> ⚠️ **Photo déjà générée et intégrée** : `Nos-marques/logos/sid-hero-bg.jpg` (apothicaire still life). Prompt original conservé ci-dessous.
+> ⚠️ **Photo déjà générée et intégrée** : `Nos-marques/logos/SID-Nutrition-hero.jpg` (apothicaire still life). Prompt original conservé ci-dessous.
 
 ```
 Editorial photograph in the iconic Air France poster aesthetic — French 
@@ -448,11 +448,11 @@ dynamic yet refined.
 
 ## 🎯 Pattern d'intégration sur la page
 
-Pattern final validé sur SID Nutrition, Biocanina, Klorane (mai 2026). Une fois la photo générée, optimisée et sauvée en `Nos-marques/logos/{slug}-hero-bg.jpg`, copier-coller ce CSS dans la page de la marque :
+Pattern final validé sur SID Nutrition, Biocanina, Klorane, Nuxe, Avène, Bioderma, La Rosée, La Roche-Posay (mai 2026). Une fois la photo générée, optimisée et sauvée en `Nos-marques/logos/{BrandName}-hero.jpg`, copier-coller ce CSS dans la page de la marque :
 
 ```css
 .hero {
-    background: url('logos/{slug}-hero-bg.jpg') center/cover no-repeat;
+    background: url('logos/{BrandName}-hero.jpg') center/cover no-repeat;
 }
 
 /* Desktop : overlay cream à GAUCHE pour lisibilité texte (gradient horizontal) */
@@ -527,8 +527,27 @@ La valeur `65% center` fonctionne pour la majorité des photos avec sujet à dro
 - ❌ Overlay mobile trop fort (`0.92 → 0.65 → 0.55`) : écrase la photo, le sujet n'est plus visible "en arrière-plan"
 - ❌ Ne pas réduire `.hero-content grid-template-columns` à 1 colonne : le texte reste comprimé à gauche au lieu de profiter de la largeur disponible
 
-**Convention de nommage** : `Nos-marques/logos/{slug}-hero-bg.jpg`
-- `bioderma-hero-bg.jpg`, `la-roche-posay-hero-bg.jpg`, `avene-hero-bg.jpg`, `nuxe-hero-bg.jpg`, `larosee-hero-bg.jpg`, `klorane-hero-bg.jpg`, `biocanina-hero-bg.jpg`, `biogaran-hero-bg.jpg`, `natform-hero-bg.jpg`, `pileje-hero-bg.jpg`, `boiron-hero-bg.jpg`, `mustela-hero-bg.jpg`, `aragan-hero-bg.jpg`, `sid-hero-bg.jpg` ✓ (déjà en place), `bion3-hero-bg.jpg`
+**Convention de nommage** : `Nos-marques/logos/{BrandName}-hero.jpg` (depuis 2026-05-09)
+
+Le `BrandName` reprend la casse officielle de la marque, hyphens pour les espaces, sans accents (cross-platform safety) :
+
+| Slug (script) | Nom de fichier |
+|---|---|
+| `bioderma` | `Bioderma-hero.jpg` ✅ |
+| `la-roche-posay` | `La-Roche-Posay-hero.jpg` ✅ |
+| `avene` | `Avene-hero.jpg` ✅ |
+| `nuxe` | `Nuxe-hero.jpg` ✅ |
+| `larosee` | `La-Rosee-hero.jpg` ✅ |
+| `klorane` | `Klorane-hero.jpg` ✅ |
+| `biocanina` | `Biocanina-hero.jpg` ✅ |
+| `sid-nutrition` | `SID-Nutrition-hero.jpg` ✅ |
+| `biogaran` | `Biogaran-hero.jpg` (à venir) |
+| `natform` | `NatForm-hero.jpg` (à venir) |
+| `pileje` | `PiLeJe-hero.jpg` (à venir) |
+| `boiron` | `Boiron-hero.jpg` (à venir) |
+| `mustela` | `Mustela-hero.jpg` (à venir) |
+| `aragan` | `Aragan-hero.jpg` (à venir) |
+| `bion3` | `Bion-3-hero.jpg` (à venir) |
 
 **Format de sortie cible** :
 - JPEG progressif qualité 82
@@ -547,14 +566,14 @@ Ce que ça fait automatiquement :
 1. **Resize** à max 2400px de largeur (`sips`, préserve l'aspect ratio)
 2. **Strip metadata** (EXIF, ICC, GPS — gain de poids et privacy)
 3. **Re-encode** en JPEG progressif qualité 82 (`djpeg | cjpeg -progressive -optimize`)
-4. **Sauvegarde** directement dans `Nos-marques/logos/{slug}-hero-bg.jpg`
+4. **Sauvegarde** directement dans `Nos-marques/logos/{BrandName}-hero.jpg` (le script convertit le slug → BrandName automatiquement)
 
 Le script affiche le rapport :
 ```
 Source: ~/Downloads/Bioderma-hd.jpg — 2880x1234, 1452 KB
 → Resizing to 2400 wide…
 → Re-encoding as progressive JPEG q=82…
-✅ Output: Nos-marques/logos/bioderma-hero-bg.jpg
+✅ Output: Nos-marques/logos/Bioderma-hero.jpg
    Dimensions: 2400x1029
    Size: 234 KB
    Saved: 1218 KB (84% smaller)

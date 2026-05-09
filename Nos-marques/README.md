@@ -22,9 +22,14 @@ Nos-marques/
 │   └── optimize-hero.sh         # 🎯 Pipeline d'optimisation photos hero (sips + cjpeg)
 ├── logos/                       # Logos + photos hero (source unique)
 │   ├── {brand-logos}.{png,jpg,svg,avif}
-│   ├── sid-hero-bg.jpg          # 📷 Hero photo S.I.D Nutrition
-│   ├── biocanina-hero-bg.jpg    # 📷 Hero photo Biocanina
-│   └── klorane-hero-bg.jpg      # 📷 Hero photo Klorane (autres marques à venir)
+│   ├── SID-Nutrition-hero.jpg   # 📷 Hero photo S.I.D Nutrition
+│   ├── Biocanina-hero.jpg       # 📷 Hero photo Biocanina
+│   ├── Klorane-hero.jpg         # 📷 Hero photo Klorane
+│   ├── La-Rosee-hero.jpg        # 📷 Hero photo La Rosée
+│   ├── Nuxe-hero.jpg            # 📷 Hero photo Nuxe
+│   ├── Avene-hero.jpg           # 📷 Hero photo Avène
+│   ├── Bioderma-hero.jpg        # 📷 Hero photo Bioderma
+│   └── La-Roche-Posay-hero.jpg  # 📷 Hero photo La Roche-Posay (autres à venir)
 ├── la-roche-posay-page.html     # 🎯 TEMPLATE OFFICIEL - Copier pour nouvelles marques
 ├── bioderma-page.html           # ✅ Page dédiée Bioderma
 ├── avene-page.html              # ✅ Page dédiée Avène
@@ -86,7 +91,7 @@ Nos-marques/
 **Outil d'optimisation photos** :
 - 📄 [`scripts/optimize-hero.sh`](scripts/optimize-hero.sh) : pipeline `sips` + `cjpeg` libjpeg-turbo
 - Resize max 2400px, strip metadata, JPEG progressif q=82
-- Usage : `./scripts/optimize-hero.sh INPUT_FILE SLUG` → sauve direct dans `logos/{slug}-hero-bg.jpg`
+- Usage : `./scripts/optimize-hero.sh INPUT_FILE SLUG` → sauve direct dans `logos/{BrandName}-hero.jpg` (le script convertit le slug → BrandName automatiquement)
 - Gain typique : 85-92% de réduction sur PNG sources HD
 
 **Marque remplacée** :
@@ -568,15 +573,15 @@ Le script automatise :
 - Resize à max 2400px wide (préserve l'aspect)
 - Strip metadata EXIF/ICC
 - Re-encode JPEG progressif qualité 82 (libjpeg-turbo)
-- Sauve dans `Nos-marques/logos/{slug}-hero-bg.jpg`
+- Sauve dans `Nos-marques/logos/{BrandName}-hero.jpg` (slug → BrandName converti auto)
 
-**Slugs supportés** : `aragan`, `avene`, `biocanina`, `biogaran`, `bion3`, `bioderma`, `boiron`, `klorane`, `la-roche-posay`, `larosee`, `mustela`, `natform`, `nuxe`, `pileje`, `sid`
+**Slugs → BrandName supportés** : `aragan`→`Aragan`, `avene`→`Avene`, `biocanina`→`Biocanina`, `biogaran`→`Biogaran`, `bion3`→`Bion-3`, `bioderma`→`Bioderma`, `boiron`→`Boiron`, `klorane`→`Klorane`, `la-roche-posay`→`La-Roche-Posay`, `larosee`→`La-Rosee`, `mustela`→`Mustela`, `natform`→`NatForm`, `nuxe`→`Nuxe`, `pileje`→`PiLeJe`, `sid-nutrition`→`SID-Nutrition`
 
 ### 3. Pattern CSS à appliquer dans `{slug}-page.html`
 
 ```css
 .hero {
-    background: url('logos/{slug}-hero-bg.jpg') center/cover no-repeat;
+    background: url('logos/{BrandName}-hero.jpg') center/cover no-repeat;
 }
 
 /* Overlay cream à gauche pour lisibilité texte sur desktop */
