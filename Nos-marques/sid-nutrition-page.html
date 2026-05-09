@@ -1093,28 +1093,10 @@
                     "contact horaires";
                 gap: var(--space-32);
             }
-        }
-
-        .footer-brand {
-            grid-area: brand;
-        }
-
-        .footer-nav {
-            grid-area: nav;
-        }
-
-        @media (max-width: 767px) {
-            .footer-col.footer-nav {
-                display: none;
-            }
-        }
-
-        .footer-contact {
-            grid-area: contact;
-        }
-
-        .footer-horaires {
-            grid-area: horaires;
+            .footer-brand { grid-area: brand; }
+            .footer-contact { grid-area: contact; }
+            .footer-horaires { grid-area: horaires; }
+            .footer-col.footer-nav { display: none; }
         }
 
         .footer-logo {
