@@ -109,25 +109,33 @@ Photorealistic editorial photography, southern French light.
 
 ### 4. Nuxe — *Cosmétique naturelle de luxe, Huile Prodigieuse iconique*
 
-> **Identité visuelle** : la marque française du beau geste sensuel. Huile sèche multi-usage qui shimmer sur la peau. Identité = peau dorée, naturelle, luxueusement subtile.
+> **Identité visuelle** : la marque française du beau geste sensuel. **L'iconique flacon ambré de l'Huile Prodigieuse** (verre couleur miel doré, étiquette beige minimaliste, bouchon noir) est LE héros visuel de la marque depuis 1991. La photo doit le faire reconnaître au premier regard. Identité = peau dorée, lumineuse, naturelle, luxueusement subtile.
 
 ```
 Editorial photograph, French refined poster aesthetic in the spirit of 
-classic Air France advertising. Close-up of a woman's bare collarbone 
-and neckline glistening in the soft afternoon Provence light, her skin 
-catching a faint golden shimmer from a freshly-applied dry oil. A single 
-small amber-glass bottle with a black pump rests on warm marble in the 
-lower-right corner of the frame, just out of central focus. Her hair 
-falls in loose natural waves over one shoulder, suggesting a relaxed 
-post-bath moment.
+classic Air France advertising. A young woman in her late twenties with 
+sun-warmed skin and natural loose waves of hair, photographed at golden 
+hour on a Provence terrace. She tilts her head slightly to one side, 
+eyes softly closed in a peaceful moment, holding the iconic Nuxe-style 
+amber-glass oil bottle (warm honey-gold transparent glass, black pump 
+cap, beige minimalist label, ~150ml apothecary shape) confidently in 
+her right hand at chest level. The bottle is clearly the visual hero 
+of the composition — large, sharp, catching the late afternoon golden 
+light beautifully. Drops of golden dry oil glisten on her bare collarbone 
+and shoulder, where she has just applied it. She wears a simple ivory 
+silk camisole. Soft warm Provence stone-and-vineyard background in 
+gentle blur.
 
-Color palette: warm cream (#FCF5F0) dominant with golden honey tones, 
-a strong single accent of rich golden amber (#C9A227) in the oil shimmer 
-on skin and bottle reflection. Generous empty space on the upper-left 
-for text overlay. No clothing visible (just collarbone), no makeup, no 
-text, no logos, no faces clearly visible (suggested only). French 
-sensual luxury restraint, golden hour glow. Aspect ratio 21:9. 
-Photorealistic editorial beauty photography.
+Color palette: warm cream (#FCF5F0) and golden-hour honey tones 
+dominant, with a strong single accent of rich golden amber (#C9A227) 
+in the oil bottle, the shimmer on her skin, and the overall lighting. 
+Generous empty space on the upper-left of the frame (sky / blurred 
+background) for text overlay. No makeup visible, no jewelry, no text, 
+no logos, no smile. French sensual luxury, golden-hour glow, the 
+sacred ritual of the daily oil. Aspect ratio 21:9. Photorealistic 
+editorial beauty campaign photography in the spirit of Nuxe Huile 
+Prodigieuse advertising — the bottle is the hero, the woman is the 
+embodiment of its promise.
 ```
 
 ---
@@ -180,7 +188,7 @@ Aspect ratio 21:9. Photorealistic editorial family lifestyle photography.
 
 ---
 
-### 7. Biocanina — *Santé naturelle pour animaux de compagnie*
+### 7. Biocanina — *Santé naturelle pour animaux de compagnie* . done
 
 > **Identité visuelle** : la marque animale française. Identité = lien affectif entre l'humain et son animal, élégance discrète. Couleur signature = rouge.
 
@@ -426,13 +434,14 @@ dynamic yet refined.
 ## 🚫 Règles anti-clichés communes (pour tous les prompts)
 
 À ajouter ou vérifier en sortie :
-- ❌ **Pas de visage entièrement visible et photogénique** — préférer profil, dos, mains, ou flou. Plus français, moins stock-photo
-- ❌ **Pas de stock-photo smile** — les personnes doivent être en gestures naturelles, pas en train de sourire vers le caméra
-- ❌ **Pas de produit central monumental** — le produit, s'il y en a un, est un détail discret (en bas, en focus doux)
-- ❌ **Pas de fond stérile blanc cliniques** — toujours du linen, du bois, de la pierre, du jardin
+- ❌ **Pas de stock-photo smile** — les expressions doivent être naturelles, intériorisées (yeux doux ou fermés, regard hors-champ, demi-sourire), pas en train de sourire largement vers la caméra
+- ❌ **Pas de pose stock-photo figée** — les gestes doivent être surpris dans leur naturel
+- ❌ **Pas de fond stérile blanc clinique** — toujours du linen, du bois, de la pierre, du jardin, du tissu
 - ❌ **Pas de bijoux flashy** — discret ou rien
 - ❌ **Pas de couleurs hors palette de la marque**
 - ❌ **Pas de texte, watermarks, logos** visibles
+- ✅ **Le produit iconique de la marque peut être prominent** s'il s'agit d'un héros visuel reconnaissable (ex : Huile Prodigieuse Nuxe, Sensibio H2O Bioderma, Eau Thermale Avène en spray) — il ne doit pas être caché par fausse pudeur
+- ✅ **Visages et expressions** : entiers, profils, 3/4, ou cropés — selon ce qui sert le mieux la marque. Privilégier l'authenticité au mannequinat
 
 ---
 
@@ -486,10 +495,9 @@ Une fois la photo générée, validée, et sauvée en `Nos-marques/logos/{slug}-
 - [ ] Espace de respiration à gauche pour overlay texte
 - [ ] Lumière naturelle douce (pas de studio dur)
 - [ ] Palette respectée (cream + accent couleur de la marque uniquement)
-- [ ] Pas de personnes visage entier face-caméra
-- [ ] Pas de stock-photo smile
+- [ ] Pas de stock-photo smile, pas de pose figée
 - [ ] Pas de texte, logos, watermarks
-- [ ] Le produit (s'il est visible) est un détail discret, pas le centre
+- [ ] Si le produit emblématique de la marque est dans la photo, il est **clairement reconnaissable** (taille, sharpness, position)
 - [ ] La photo se "lit" dans 1 seconde, esprit affiche
 
 ---
