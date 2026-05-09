@@ -411,71 +411,40 @@
             display: flex;
             align-items: center;
             padding-top: var(--space-48);
-            background: linear-gradient(165deg, var(--bioderma-light) 0%, var(--cream) 50%, var(--bioderma-pale) 100%);
+            background: url('logos/bioderma-hero-bg.jpg') center/cover no-repeat;
             overflow: hidden;
         }
 
-        /* Water ripple background effect */
+        /* Soft cream overlay on the left for text readability over the photo */
         .hero::before {
             content: '';
             position: absolute;
-            top: -50%;
-            right: -30%;
-            width: 100%;
-            height: 200%;
-            background:
-                radial-gradient(ellipse 80% 50% at 70% 40%, rgba(0, 163, 224, 0.15) 0%, transparent 50%),
-                radial-gradient(ellipse 60% 40% at 30% 60%, rgba(0, 130, 180, 0.08) 0%, transparent 40%);
-            animation: floatBg 20s ease-in-out infinite;
-        }
-
-        @keyframes floatBg {
-            0%, 100% { transform: translate(0, 0) rotate(0deg); }
-            33% { transform: translate(2%, 3%) rotate(1deg); }
-            66% { transform: translate(-1%, -2%) rotate(-0.5deg); }
-        }
-
-        /* Micellar bubbles */
-        .hero-bubbles {
-            position: absolute;
             inset: 0;
-            overflow: hidden;
+            background: linear-gradient(90deg,
+                rgba(252, 245, 240, 0.92) 0%,
+                rgba(252, 245, 240, 0.75) 30%,
+                rgba(252, 245, 240, 0.35) 55%,
+                transparent 75%);
             pointer-events: none;
         }
 
-        .bubble {
-            position: absolute;
-            border-radius: 50%;
-            background: linear-gradient(135deg, rgba(255,255,255,0.8) 0%, rgba(0, 163, 224, 0.2) 100%);
-            box-shadow: inset 0 0 20px rgba(255,255,255,0.5);
-            animation: rise linear infinite;
-        }
-
-        .bubble:nth-child(1) { width: 20px; height: 20px; left: 10%; animation-duration: 12s; animation-delay: 0s; }
-        .bubble:nth-child(2) { width: 35px; height: 35px; left: 25%; animation-duration: 15s; animation-delay: 2s; }
-        .bubble:nth-child(3) { width: 15px; height: 15px; left: 45%; animation-duration: 10s; animation-delay: 4s; }
-        .bubble:nth-child(4) { width: 25px; height: 25px; left: 65%; animation-duration: 18s; animation-delay: 1s; }
-        .bubble:nth-child(5) { width: 40px; height: 40px; left: 80%; animation-duration: 14s; animation-delay: 3s; }
-        .bubble:nth-child(6) { width: 18px; height: 18px; left: 90%; animation-duration: 11s; animation-delay: 5s; }
-
-        @keyframes rise {
-            0% {
-                bottom: -10%;
-                opacity: 0;
-                transform: translateX(0) scale(0.8);
+        @media (max-width: 1023px) {
+            .hero::before {
+                background: linear-gradient(180deg,
+                    rgba(252, 245, 240, 0.85) 0%,
+                    rgba(252, 245, 240, 0.55) 50%,
+                    rgba(252, 245, 240, 0.45) 100%);
             }
-            10% {
-                opacity: 0.6;
-            }
-            90% {
-                opacity: 0.4;
-            }
-            100% {
-                bottom: 110%;
-                opacity: 0;
-                transform: translateX(30px) scale(1.1);
+            /* Subject (woman + cotton pad on cheek) is at right of photo (~70%) */
+            .hero {
+                background-position: 70% center;
             }
         }
+
+        /* Hide decorative elements — the photo carries the visual */
+        .hero-bubbles { display: none; }
+        .bubble { display: none; }
+        .hero-visual { display: none !important; }
 
         .hero-content {
             position: relative;
@@ -488,13 +457,14 @@
 
         @media (min-width: 1024px) {
             .hero-content {
-                grid-template-columns: 1fr 1fr;
+                /* Single column: photo carries the visual */
+                grid-template-columns: minmax(0, 620px);
                 gap: var(--space-80);
             }
         }
 
         .hero-text {
-            max-width: 560px;
+            max-width: 620px;
         }
 
         .hero-badge {
@@ -522,12 +492,13 @@
         .hero h1 {
             margin-bottom: var(--space-24);
             animation: fadeInUp 0.8s var(--ease-out) 0.1s backwards;
+            color: var(--charcoal);
         }
 
         .hero h1 span {
             display: block;
             font-style: italic;
-            color: var(--bioderma-blue);
+            color: var(--gray);
         }
 
         .hero .lead {
@@ -2166,6 +2137,12 @@
                         <div style="font-size: var(--text-xs); font-weight: 700; color: #005EB8; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: var(--space-12);">Eau micellaire &middot; leadership mondial</div>
                         <h3 style="font-family: var(--font-display); font-size: 1.5rem; line-height: 1.2; margin-bottom: var(--space-12); color: var(--charcoal);">Sensibio H2O : n&deg;1 mondial</h3>
                         <p style="color: var(--gray); line-height: 1.6; margin: 0;">Une Sensibio H2O est vendue toutes les 2&nbsp;secondes dans le monde. Inventée par Bioderma en 1995, cette eau micellaire reste le produit de beauté le plus recommandé par les dermatologues, avec 72&nbsp;% de part de marché en France sur le segment des eaux micellaires.</p>
+                    </article>
+
+                    <!-- Brand logo card — visual reminder of the brand identity -->
+                    <article class="innovation-card brand-logo-card reveal reveal-delay-4" style="background: var(--white); border-radius: 16px; padding: var(--space-32) var(--space-24); border-left: 4px solid #005EB8; box-shadow: 0 4px 20px rgba(0, 94, 184, 0.08); display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; min-height: 240px;">
+                        <img src="logos/Bioderma.png" alt="Logo Bioderma" style="max-width: 70%; max-height: 100px; object-fit: contain; margin-bottom: var(--space-16);">
+                        <div style="font-family: var(--font-display); font-size: 1.05rem; line-height: 1.4; color: var(--gray); font-style: italic;">L'écobiologie au service des peaux sensibles, depuis 1977.</div>
                     </article>
                 </div>
             </div>
