@@ -164,7 +164,8 @@ soft and romantic.
 
 ---
 
-### 6. Klorane — *Soins capillaires aux extraits botaniques (avoine, camomille, mangue)*
+### 6. Klorane — *Soins capillaires aux extraits botaniques (avoine, camomille, mangue)* - done 
+
 
 > **Identité visuelle** : marque famille — soins capillaires pour tous, des bébés aux adultes. Sensibilité du cuir chevelu. Iconique = chevelure brillante après le shampoing, parfois avec un enfant aux longs cheveux.
 
@@ -188,7 +189,7 @@ Aspect ratio 21:9. Photorealistic editorial family lifestyle photography.
 
 ---
 
-### 7. Biocanina — *Santé naturelle pour animaux de compagnie* . done
+### 7. Biocanina — *Santé naturelle pour animaux de compagnie* - done
 
 > **Identité visuelle** : la marque animale française. Identité = lien affectif entre l'humain et son animal, élégance discrète. Couleur signature = rouge.
 
@@ -480,10 +481,37 @@ Une fois la photo générée, validée, et sauvée en `Nos-marques/logos/{slug}-
 **Convention de nommage** : `Nos-marques/logos/{slug}-hero-bg.jpg`
 - `bioderma-hero-bg.jpg`, `la-roche-posay-hero-bg.jpg`, `avene-hero-bg.jpg`, `nuxe-hero-bg.jpg`, `larosee-hero-bg.jpg`, `klorane-hero-bg.jpg`, `biocanina-hero-bg.jpg`, `biogaran-hero-bg.jpg`, `natform-hero-bg.jpg`, `pileje-hero-bg.jpg`, `boiron-hero-bg.jpg`, `mustela-hero-bg.jpg`, `aragan-hero-bg.jpg`, `sid-hero-bg.jpg` ✓ (déjà en place), `bion3-hero-bg.jpg`
 
-**Format de sortie** :
-- JPEG qualité 85
-- Dimension cible : 2400×1029 (21:9 retina) ou 2400×1350 (16:9 retina)
-- Poids cible : < 250 KB après optimisation (utiliser TinyJPG ou Squoosh)
+**Format de sortie cible** :
+- JPEG progressif qualité 82
+- Dimension cible : **2400×1029** (21:9 retina-friendly)
+- Poids cible : **150-280 KB** par photo
+
+**Workflow d'optimisation automatisé** :
+
+Quand vous générez une photo en haute résolution (idéalement ≥ 2880 wide depuis nano banana / Midjourney / DALL-E), déposez-la dans `~/Downloads/` et lancez le script :
+
+```bash
+/tmp/claude/optimize-hero.sh ~/Downloads/Bioderma-hd.jpg bioderma
+```
+
+Ce que ça fait automatiquement :
+1. **Resize** à max 2400px de largeur (`sips`, préserve l'aspect ratio)
+2. **Strip metadata** (EXIF, ICC, GPS — gain de poids et privacy)
+3. **Re-encode** en JPEG progressif qualité 82 (`djpeg | cjpeg -progressive -optimize`)
+4. **Sauvegarde** directement dans `Nos-marques/logos/{slug}-hero-bg.jpg`
+
+Le script affiche le rapport :
+```
+Source: ~/Downloads/Bioderma-hd.jpg — 2880x1234, 1452 KB
+→ Resizing to 2400 wide…
+→ Re-encoding as progressive JPEG q=82…
+✅ Output: Nos-marques/logos/bioderma-hero-bg.jpg
+   Dimensions: 2400x1029
+   Size: 234 KB
+   Saved: 1218 KB (84% smaller)
+```
+
+**Slugs disponibles** : `aragan`, `avene`, `biocanina`, `biogaran`, `bion3`, `bioderma`, `boiron`, `klorane`, `la-roche-posay`, `larosee`, `mustela`, `natform`, `nuxe`, `pileje`, `sid`
 
 ---
 
