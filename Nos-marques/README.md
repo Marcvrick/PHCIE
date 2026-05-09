@@ -3,9 +3,10 @@
 Ce guide documente le processus de création des pages dédiées aux marques pour le site Pharmacie Charnal.
 
 > **📅 Dernière mise à jour majeure : 2026-05-09**
-> Nouveau standard : **3 sections SEO/AEO** ajoutées au template (Innovations + FAQ + **Le conseil de Laure**)
+> Nouveau standard : **3 sections SEO/AEO** (Innovations + FAQ + **Le conseil de Laure**) + **navigation 3-button** (prev/catalog/next) + **photos hero éditoriales** style Air France
 > 15 pages harmonisées avec le design system officiel (template `la-roche-posay-page.html`)
-> Derniers changements : Arkopharma remplacée par S.I.D Nutrition (mai 2026), Ducray et Caudalie retirées, La Rosée ajoutée
+> Marques : Arkopharma remplacée par S.I.D Nutrition (mai 2026), Ducray et Caudalie retirées, La Rosée ajoutée
+> Nouveaux fichiers : [`HERO-IMAGE-PROMPTS.md`](HERO-IMAGE-PROMPTS.md) + [`scripts/optimize-hero.sh`](scripts/optimize-hero.sh)
 
 ---
 
@@ -14,39 +15,31 @@ Ce guide documente le processus de création des pages dédiées aux marques pou
 ```
 Nos-marques/
 ├── README.md                    # Ce fichier
-├── TEMPLATE-marque.html         # Template avec placeholders (mis à jour 2026-02-11)
+├── HERO-IMAGE-PROMPTS.md        # 🎯 Prompts photos hero (style Air France) — 1 par marque
+├── TEMPLATE-marque.html         # Template placeholders (mis à jour 2026-05-09 avec Innovations + FAQ + Laure)
 ├── nosmarques.html              # 🎯 Page catalogue officielle (harmonisée avec index-redesign)
-├── logos/                       # Logos des marques (source unique)
-│   ├── Avene.jpeg
-│   ├── Biocanina.png
-│   ├── Bioderma.png
-│   ├── biogaran_logo.jpg
-│   ├── Bion3_logo.png
-│   ├── boiron-logo-png-transparent.png
-│   ├── Klorane.png
-│   ├── La-roche-posay.png
-│   ├── la-rosee.svg
-│   ├── sid-nutrition.png
-│   ├── Mustella.*
-│   ├── NatForm.avif
-│   ├── Nuxe.jpeg
-│   ├── Pileje-Logo.jpg
-│   ├── aragan_logo.jpg
+├── scripts/                     # Scripts utilitaires
+│   └── optimize-hero.sh         # 🎯 Pipeline d'optimisation photos hero (sips + cjpeg)
+├── logos/                       # Logos + photos hero (source unique)
+│   ├── {brand-logos}.{png,jpg,svg,avif}
+│   ├── sid-hero-bg.jpg          # 📷 Hero photo S.I.D Nutrition
+│   ├── biocanina-hero-bg.jpg    # 📷 Hero photo Biocanina
+│   └── klorane-hero-bg.jpg      # 📷 Hero photo Klorane (autres marques à venir)
 ├── la-roche-posay-page.html     # 🎯 TEMPLATE OFFICIEL - Copier pour nouvelles marques
-├── bioderma-page.html           # ✅ Page dédiée Bioderma (harmonisée 2026-02-06)
-├── avene-page.html              # ✅ Page dédiée Avène (harmonisée 2026-02-06)
-├── nuxe-page.html               # ✅ Page dédiée Nuxe (harmonisée 2026-02-06)
+├── bioderma-page.html           # ✅ Page dédiée Bioderma
+├── avene-page.html              # ✅ Page dédiée Avène
+├── nuxe-page.html               # ✅ Page dédiée Nuxe
 ├── larosee-page.html            # ✅ Page dédiée La Rosée (créée 2026-02-11)
-├── klorane-page.html            # ✅ Page dédiée Klorane (harmonisée 2026-02-06)
-├── biogaran-page.html           # ✅ Page dédiée Biogaran (harmonisée 2026-02-06)
-├── bion3-page.html              # ✅ Page dédiée Bion 3 (harmonisée 2026-02-06)
-├── boiron-page.html             # ✅ Page dédiée Boiron (harmonisée 2026-02-06)
-├── biocanina-page.html          # ✅ Page dédiée Biocanina (harmonisée 2026-02-06)
-├── sid-nutrition-page.html      # ✅ Page dédiée S.I.D Nutrition (créée 2026-05-09, remplace Arkopharma)
-├── pileje-page.html             # ✅ Page dédiée PiLeJe (harmonisée 2026-02-06)
-├── mustela-page.html            # ✅ Page dédiée Mustela (harmonisée 2026-02-06)
-├── natform-page.html            # ✅ Page dédiée Nat&Form (harmonisée 2026-02-06)
-├── aragan-page.html             # ✅ Page dédiée Aragan (harmonisée 2026-02-06)
+├── klorane-page.html            # ✅ Page dédiée Klorane (+ hero photo 2026-05-09)
+├── biogaran-page.html           # ✅ Page dédiée Biogaran
+├── bion3-page.html              # ✅ Page dédiée Bion 3
+├── boiron-page.html             # ✅ Page dédiée Boiron
+├── biocanina-page.html          # ✅ Page dédiée Biocanina (+ hero photo 2026-05-09)
+├── sid-nutrition-page.html      # ✅ Page dédiée S.I.D Nutrition (créée 2026-05-09, remplace Arkopharma, hero photo)
+├── pileje-page.html             # ✅ Page dédiée PiLeJe
+├── mustela-page.html            # ✅ Page dédiée Mustela
+├── natform-page.html            # ✅ Page dédiée Nat&Form
+├── aragan-page.html             # ✅ Page dédiée Aragan
 ├── caudalie-page.html           # ❌ DÉPRÉCIÉ - Non lié (remplacée par La Rosée)
 └── *.md                         # Briefs/contenus pour futures pages
 ```
@@ -63,9 +56,46 @@ Nos-marques/
 - **Tous les liens fonctionnels** entre le catalogue et les pages individuelles
 - **✅ 15 pages harmonisées** avec le nouveau design system
 
-### Dernières mises à jour (2026-02-11)
+### Dernières mises à jour
 
-**Changements récents :**
+#### 2026-05-09 — Nouveau standard sections + photos hero éditoriales
+
+**Sections SEO/AEO ajoutées au template** (sections 7-9, voir détail plus bas) :
+- ✅ **Innovations 2024-2025** : grille 4 cartes nouveautés produit, border-left couleur marque
+- ✅ **FAQ avec Schema FAQPage** : 5 questions/réponses avec JSON-LD pour Google AI Overviews / GEO
+- ✅ **Le conseil de Laure** : photo ronde de Laure + 3 paragraphes voix Laure + signature + lien blog (OBLIGATOIRE)
+
+**Navigation 3-button entre marques** (toutes les pages) :
+- ✅ Remplacement du bouton unique "Découvrez une autre marque" par un menu 3 colonnes : Marque précédente · Toutes les marques · Marque suivante
+- ✅ Navigation circulaire (Bioderma prev = Bion 3, Bion 3 next = Bioderma)
+- ✅ Mobile : prev+next côte à côte, catalogue full-width en dessous
+
+**Photos éditoriales en hero** *(en cours de déploiement)* :
+- ✅ S.I.D Nutrition : apothicaire still-life + romarin (Provence)
+- ✅ Biocanina : femme + golden retriever (jardin Provence, oliviers, lavandes)
+- ✅ Klorane : maman + fille (salle de bain Provence, bouquet avoine+camomille)
+- 🟡 Reste à faire : Bioderma, La Roche-Posay, Avène, Nuxe, La Rosée, Biogaran, Nat&Form, PiLeJe, Boiron, Mustela, Aragan, Bion 3
+- 📄 Voir [`HERO-IMAGE-PROMPTS.md`](HERO-IMAGE-PROMPTS.md) pour les 15 prompts (style Air France, 1 par marque, incarnation de l'identité)
+
+**Pattern d'intégration hero photo** (CSS appliqué) :
+- Background `cover` + overlay cream gradient à gauche (lisibilité texte)
+- Mobile : flip horizontal (`scaleX(-1)`) pour garder les sujets visibles dans le crop portrait
+- Logo right-card hidden (`.hero-visual { display: none !important }`) — la photo porte le branding
+- Logo réintégré dans une 5e card de la section Innovations (rappel identité visuelle)
+
+**Outil d'optimisation photos** :
+- 📄 [`scripts/optimize-hero.sh`](scripts/optimize-hero.sh) : pipeline `sips` + `cjpeg` libjpeg-turbo
+- Resize max 2400px, strip metadata, JPEG progressif q=82
+- Usage : `./scripts/optimize-hero.sh INPUT_FILE SLUG` → sauve direct dans `logos/{slug}-hero-bg.jpg`
+- Gain typique : 85-92% de réduction sur PNG sources HD
+
+**Marque remplacée** :
+- ❌ **Arkopharma** retirée (rachetée par Dermapharm 2023, plus en cohérence avec positionnement français accessible)
+- ✅ **S.I.D Nutrition** ajoutée (laboratoire Allauch, phytothérapie pharmaceutique française accessible)
+
+#### 2026-02-11 — Refresh design system
+
+**Changements :**
 - ❌ **Ducray** retirée (marque non vendue en pharmacie)
 - ❌ **Caudalie** retirée (remplacée par La Rosée)
 - ❌ **Vichy** retirée (marque non vendue en pharmacie)
@@ -151,6 +181,15 @@ Nos-marques/
 2. **Remplacer les contenus** La Roche-Posay par ceux de la nouvelle marque
 3. **Adapter les couleurs** dans `:root` selon l'identité de la marque (voir Palette des Marques)
 4. **Vérifier le responsive** mobile (grilles 2 colonnes, footer compact)
+5. **Personnaliser les 3 nouvelles sections SEO/AEO** (depuis 2026-05-09) :
+   - Innovations 2024-2025 (4 cards de nouveautés produit propres à la marque)
+   - FAQ : 5 questions/réponses spécifiques + Schema JSON-LD FAQPage
+   - **Le conseil de Laure** : 3 paragraphes dans la voix de Laure, signature, lien blog complémentaire (cf [`HERO-IMAGE-PROMPTS.md`](HERO-IMAGE-PROMPTS.md) pour le ton)
+6. **Mettre à jour les liens de navigation 3-button** : prev/next selon ordre catalogue (circulaire)
+7. **Générer la photo hero** (optionnel mais recommandé) :
+   - Suivre le prompt brand-spécifique dans [`HERO-IMAGE-PROMPTS.md`](HERO-IMAGE-PROMPTS.md)
+   - Optimiser : `./scripts/optimize-hero.sh ~/Downloads/photo.jpg slug`
+   - Appliquer le pattern CSS hero-photo (cf section "Hero photo intégration" plus bas)
 
 ### Étape 3 : Mettre à jour le catalogue
 
@@ -499,13 +538,108 @@ python3 update_brand_pages.py \
 
 ## Fichiers de Référence
 
-- **🎯 TEMPLATE OFFICIEL** : `la-roche-posay-page.html` — À copier pour chaque nouvelle marque
-- **🎯 PAGE CATALOGUE** : `nosmarques.html` — Page principale avec grille 2 colonnes mobile
-- **Template placeholders** : `TEMPLATE-marque.html` — Template avec `{{PLACEHOLDERS}}` à remplacer (mis à jour 2026-02-11)
+- **🎯 TEMPLATE OFFICIEL** : [`la-roche-posay-page.html`](la-roche-posay-page.html) — À copier pour chaque nouvelle marque (inclut les 3 sections SEO/AEO depuis 2026-05-09 + nav 3-button)
+- **🎯 PAGE CATALOGUE** : [`nosmarques.html`](nosmarques.html) — Page principale avec grille 2 colonnes mobile
+- **Template placeholders** : [`TEMPLATE-marque.html`](TEMPLATE-marque.html) — Template avec `{{PLACEHOLDERS}}` à remplacer (mis à jour 2026-05-09 avec Innovations + FAQ + Laure)
+- **🎯 PROMPTS PHOTOS HERO** : [`HERO-IMAGE-PROMPTS.md`](HERO-IMAGE-PROMPTS.md) — 15 prompts uniques (style Air France, 1 par marque) pour générer les hero backgrounds avec nano banana / Midjourney / DALL-E
+- **🛠️ SCRIPT D'OPTIMISATION** : [`scripts/optimize-hero.sh`](scripts/optimize-hero.sh) — Pipeline `sips` + `cjpeg` pour resize 2400px + JPEG progressif q=82
 - **Page dépréciée** : `caudalie-page.html` — Non liée, à supprimer éventuellement
-- **Design system** : `../index-redesign/README.md` (documentation complète du design HIMS)
-- **Index redesign** : `../index-redesign/index-redesign.html` (référence design system)
+- **Design system** : [`../index-redesign/README.md`](../index-redesign/README.md) (documentation complète du design HIMS)
+- **Index redesign** : [`../index-redesign/index-redesign.html`](../index-redesign/index-redesign.html) (référence design system)
 - **Fiches marques** : `/Users/mc/Documents/MarcOS/Pharma/GESTION/1-RESSOURCES/Fiche par Marque/`
+
+---
+
+## Hero Photo : Intégration
+
+> **Pattern adopté depuis 2026-05-09** : remplacer le gradient pastel + bubbles + logo card par une photo éditoriale style Air France (cohérence visuelle de série, identité marque renforcée).
+
+### 1. Générer la photo
+
+Utiliser le prompt brand-spécifique de [`HERO-IMAGE-PROMPTS.md`](HERO-IMAGE-PROMPTS.md) avec nano banana (Imagen 3) en HD (idéalement ≥ 2400px wide).
+
+### 2. Optimiser
+
+```bash
+./scripts/optimize-hero.sh ~/Downloads/Photo-HD.png slug
+```
+
+Le script automatise :
+- Resize à max 2400px wide (préserve l'aspect)
+- Strip metadata EXIF/ICC
+- Re-encode JPEG progressif qualité 82 (libjpeg-turbo)
+- Sauve dans `Nos-marques/logos/{slug}-hero-bg.jpg`
+
+**Slugs supportés** : `aragan`, `avene`, `biocanina`, `biogaran`, `bion3`, `bioderma`, `boiron`, `klorane`, `la-roche-posay`, `larosee`, `mustela`, `natform`, `nuxe`, `pileje`, `sid`
+
+### 3. Pattern CSS à appliquer dans `{slug}-page.html`
+
+```css
+.hero {
+    background: url('logos/{slug}-hero-bg.jpg') center/cover no-repeat;
+}
+
+/* Overlay cream à gauche pour lisibilité texte sur desktop */
+.hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg,
+        rgba(252, 245, 240, 0.92) 0%,
+        rgba(252, 245, 240, 0.75) 30%,
+        rgba(252, 245, 240, 0.35) 55%,
+        transparent 75%);
+    pointer-events: none;
+}
+
+/* Mobile : overlay vertical + flip horizontal pour garder les sujets visibles */
+@media (max-width: 1023px) {
+    .hero::before {
+        background: linear-gradient(180deg,
+            rgba(252, 245, 240, 0.92) 0%,
+            rgba(252, 245, 240, 0.65) 60%,
+            rgba(252, 245, 240, 0.55) 100%);
+    }
+    .hero { transform: scaleX(-1); }
+    .hero > * { transform: scaleX(-1); }
+}
+
+/* Hide decorative elements - the photo carries the visual */
+.hero-bubbles { display: none; }
+.bubble { display: none; }
+.hero-visual { display: none !important; }
+
+/* Hero text colors for contrast over the photo */
+.hero h1 { color: var(--charcoal); }
+.hero h1 span { color: var(--gray); }
+
+/* Single-column hero content (the photo is the right-side visual) */
+@media (min-width: 1024px) {
+    .hero-content {
+        grid-template-columns: minmax(0, 620px);
+    }
+}
+.hero-text { max-width: 620px; }
+```
+
+### 4. Réintégrer le logo dans la section Innovations (rappel d'identité visuelle)
+
+Comme la card logo a été masquée du hero, ajouter une 5e card dans la grille `.{slug}-innovations .innovations-grid` :
+
+```html
+<article class="innovation-card brand-logo-card reveal reveal-delay-4" style="background: var(--white); border-radius: 16px; padding: var(--space-32) var(--space-24); border-left: 4px solid var(--{slug}-color); box-shadow: 0 4px 20px rgba(0,0,0,0.05); display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; min-height: 240px;">
+    <img src="logos/{LOGO_FILE}" alt="Logo {Brand}" style="max-width: 70%; max-height: 100px; object-fit: contain; margin-bottom: var(--space-16);">
+    <div style="font-family: var(--font-display); font-size: 1.05rem; line-height: 1.4; color: var(--gray); font-style: italic;">{Brand baseline}</div>
+</article>
+```
+
+### Pages déjà migrées (référence)
+
+| Page | Photo | Logo card | Statut |
+|---|---|---|---|
+| [`sid-nutrition-page.html`](sid-nutrition-page.html) | apothicaire + romarin | ❌ pas de section Innovations à compléter | ✅ |
+| [`biocanina-page.html`](biocanina-page.html) | femme + golden retriever | 🟡 logo card à ajouter | 🟡 partiel |
+| [`klorane-page.html`](klorane-page.html) | maman + fille bain Provence | ✅ logo dans 5e card Innovations | ✅ |
 
 ---
 
