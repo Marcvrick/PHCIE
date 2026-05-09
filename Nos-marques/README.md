@@ -347,7 +347,7 @@ Chaque page de marque a sa propre palette de couleurs basée sur l'identité vis
 - **3 paragraphes** dans la voix de Laure (« je recommande », « chez nous », références produits concrets, ancrage local)
 - Signature italique : `— Laure Charnal, pharmacienne titulaire à Quéven`
 - **Article blog associé** dans une card en bas (border-left couleur marque) avec titre du blog complémentaire
-- Background : gradient `pastel-sage → cream`
+- Background : pastel de la marque (solid, **PAS de cream gradient** — depuis 2026-05-09 pour éviter les zones jaune-cream qui rompent le rythme blue/white de chaque page)
 - **Mobile (< 640px)** : photo passe au-dessus du texte (`grid-template-columns: 1fr`, `text-align: center`)
 - **Class CSS** : `.brand-laure` (ou `.{marque}-laure`)
 
