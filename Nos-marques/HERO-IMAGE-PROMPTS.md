@@ -1,292 +1,365 @@
 ---
 title: "Brand Hero Backgrounds — Image Generation Prompts"
-description: "Série éditoriale Air France style pour les hero backgrounds des 15 pages marques de la Pharmacie Charnal."
+description: "15 photos éditoriales unique-à-la-marque, style français raffiné (esprit Air France), pour les hero backgrounds des pages marques."
 created: 2026-05-09
+updated: 2026-05-09
 author: Pharmacie Charnal
 generator_recommandé: nano banana (Google Imagen 3) | DALL-E 3 | Midjourney v6
 ---
 
 # Hero Backgrounds — Pages Marques Pharmacie Charnal
 
-> Photos éditoriales **style Air France** pour servir de background hero sur chaque page marque (`Nos-marques/{slug}-page.html`). L'objectif : une série visuelle cohérente, française, élégante, avec beaucoup de respiration.
+> Photos éditoriales servant de background hero. **Chaque photo incarne l'identité spécifique de la marque** (cosmétique = beauté, soin capillaire = chevelure, bébé = tendresse maternelle, etc.) dans un style français raffiné inspiré des affiches Air France (lumière douce, espace de respiration, élégance restreinte).
 
 ---
 
-## 🎨 Framework de style commun (à appliquer à tous les prompts)
+## 🎨 Framework de style commun
 
-**Tous les visuels suivent les mêmes règles :**
+Les 15 photos forment une **série cohérente** grâce à ces règles partagées :
 
-| Élément | Spécification |
+| Élément | Règle commune |
 |---|---|
-| Format | **21:9 ultra-wide** (hero banner) — ou 16:9 |
-| Espace négatif | **60-75% du cadre vide** (cream/beige uniforme avec léger gradient) |
-| Sujet | **Un seul élément iconique** placé en bas-droite ou bas-gauche |
-| Lumière | Naturelle, douce, latérale haute (Provence golden hour) — ombres longues |
-| Palette de base | Cream `#FCF5F0` dominant + Provence beige `#DABEA6` + un seul accent couleur de la marque |
-| Texture fond | Lin froissé naturel, papier japonais, ou drapé tissu cream |
-| Style | Editorial poster, photoréaliste avec simplicité graphique d'affiche |
-| À éviter | Personnes, texte, logos, ambiance clinique stérile, surcharge décorative |
-| Références | Affiches Air France (Bernard Villemot, école française classique), Kinfolk magazine, Cereal magazine |
+| Format | **21:9 ultra-wide** (hero banner) |
+| Composition | Sujet placé à **droite ou centre-droit** du cadre (pour laisser respirer la gauche → overlay texte) |
+| Espace négatif | **30-50% du cadre vide ou doux**, en haut ou à gauche du sujet |
+| Lumière | **Naturelle, douce, latérale haute** — golden hour Provence ou matin frais. Jamais de flash, jamais de studio dur |
+| Palette de fond | **Cream `#FCF5F0`** ou tons chauds neutres dominants → cohérence série + lisibilité texte cream sur la gauche |
+| Accent couleur | **Couleur de la marque** présente dans le sujet (un vêtement, un produit, un détail) |
+| Texte/logos | **Aucun** texte, watermark, ou logo de marque visible |
+| Style | **Photoréalisme éditorial français** — affiche Air France, magazine *Madame Figaro*, *Marie Claire* éditorial |
+| Mood | Élégant, calme, français, intemporel — pas de stock photo, pas de stock smile, pas de pose surfaite |
 
-**Phrase à inclure systématiquement dans chaque prompt :**
+**Phrase à coller en début/fin de chaque prompt :**
 
-> *"Editorial photograph in the iconic Air France poster aesthetic — French minimalism, vast negative space, refined restraint. Aspect ratio 21:9 ultra-wide hero banner. No people, no text, no logos. Photorealistic with poster-simple composition."*
-
----
-
-## 📸 Prompts par marque
-
-### 1. Bioderma — *Dermocosmétique, eau micellaire Sensibio*
-
-```
-Editorial photograph in the iconic Air France poster aesthetic. A single 
-crystal-clear glass dropper bottle stands in the lower-right third of the 
-frame on smooth warm cream linen. From its tip, a single perfectly round 
-water droplet is suspended mid-fall, catching the soft afternoon light. 
-The upper two-thirds of the composition is vast empty cream-beige space 
-with a subtle warm gradient. A single soft shadow extends from the bottle.
-
-Color palette: warm cream (#FCF5F0) dominant background, Provence beige 
-(#DABEA6) gradient, a faintest hint of clear sky-blue (#00A3E0) in the 
-water droplet only. No text, no logos, no people. Aspect ratio 21:9 
-ultra-wide hero banner. Photorealistic with refined French poster simplicity.
-```
+> *"Editorial photograph, French refined poster aesthetic in the spirit of classic Air France advertising. Wide cinematic 21:9 aspect ratio. Soft natural light, warm cream-tone palette dominant on the left side of the frame for text overlay readability. Photorealistic, no text, no logos, no watermarks."*
 
 ---
 
-### 2. La Roche-Posay — *Eau thermale apaisante, peaux sensibles*
+## 📸 Prompts par marque (incarnation de l'identité)
+
+### 1. Bioderma — *Sensibio H2O, eau micellaire iconique, peaux sensibles*
+
+> **Identité visuelle** : la marque est portée par son packaging bleu transparent et ses millions de cotons imbibés d'eau micellaire. Geste iconique = démaquillage tendre.
 
 ```
-Editorial photograph in the iconic Air France poster aesthetic. A single 
-smooth white river-pebble rests on cream linen in the lower-left quadrant 
-of the frame, with three concentric ripples of crystal-clear water 
-spreading gently outward from where a droplet has just fallen. The upper 
-75% of the composition is empty cream space with a subtle warm-to-cool 
-gradient.
+Editorial photograph, French refined poster aesthetic in the spirit of 
+classic Air France advertising. Close-up of a young woman's serene face 
+in three-quarter profile, eyes gently closed, holding a soft white cotton 
+pad against her cheek. Her skin is fresh, makeup-free, glowing in the 
+soft natural morning light from a north-facing window. The cotton pad 
+is glistening slightly with clear micellar water. A simple white-tiled 
+bathroom in soft focus behind her, generous empty cream-toned wall 
+filling the left third of the frame for text overlay.
 
-Color palette: warm cream (#FCF5F0) dominant, Provence beige (#DABEA6) 
-gradient, a single accent of deep navy blue (#003D7D) in the water's 
-reflection. No text, no logos, no people. Aspect ratio 21:9 ultra-wide 
-hero banner. Photorealistic, French editorial restraint, calm and 
-hydrating mood.
+Color palette: warm cream (#FCF5F0) and soft skin tones dominant, with 
+a single accent of clear sky-blue (#00A3E0) suggested in the cotton pad's 
+luminous reflection. No makeup visible, no jewelry, no text, no logos. 
+French quiet morning intimacy. Aspect ratio 21:9 ultra-wide hero. 
+Photorealistic editorial beauty photography, restrained and luminous.
 ```
 
 ---
 
-### 3. Avène — *Eau thermale Pyrénées, peaux sensibles*
+### 2. La Roche-Posay — *Eau thermale apaisante, peaux sensibles & atopiques*
+
+> **Identité visuelle** : la marque dermato française recommandée par les dermatologues. Géographie : la commune de La Roche-Posay (Vienne). Geste iconique = brume thermale apaisante sur peau réactive.
 
 ```
-Editorial photograph in the iconic Air France poster aesthetic. A single 
-delicate cluster of fresh wild lavender sprigs rests in the lower-right 
-corner of the frame on smooth warm cream linen, beside a tiny clear glass 
-of pure water. A single beam of late-afternoon Pyrénées sunlight cuts 
-diagonally from upper-left, casting long elegant shadows. The upper 
-two-thirds of the composition is vast empty cream-beige space.
+Editorial photograph, French refined poster aesthetic in the spirit of 
+classic Air France advertising. Close-up of a young woman's bare luminous 
+shoulder and neck in three-quarter view, her face partially visible. A 
+fine cool mist of thermal water hovers in the air around her skin, 
+catching morning light in tiny suspended droplets. Her skin is clear, 
+dewy, beautifully calm. Soft minimal background of pale stone-grey 
+gradient. Generous empty space on the left for text overlay.
 
-Color palette: warm cream (#FCF5F0) dominant, Provence beige (#DABEA6) 
-gradient, a single accent of warm orange-terracotta (#F47920) in the light 
-warmth and shadow tones. Subtle pale lavender hint in the sprig. No text, 
-no logos, no people. Aspect ratio 21:9. Photorealistic, French southern 
-light, mineral serenity.
-```
-
----
-
-### 4. Nuxe — *Cosmétique naturelle de luxe, miel & huiles précieuses*
-
-```
-Editorial photograph in the iconic Air France poster aesthetic. A single 
-amber-glass flacon with a vintage cork stopper rests in the lower-right 
-third of the frame on cream linen. Beside it, a single golden honey dipper 
-with one perfect amber drop suspended at its tip mid-fall. The upper 
-70% of the composition is vast empty warm cream space with a soft 
-golden-hour gradient.
-
-Color palette: warm cream (#FCF5F0) dominant, Provence beige (#DABEA6) 
-gradient, a single accent of rich golden amber (#C9A227) in the bottle 
-and honey. No text, no logos, no people. Aspect ratio 21:9 ultra-wide 
-hero banner. Photorealistic, French luxury restraint, golden hour warmth.
+Color palette: warm cream (#FCF5F0) and pale pearlescent skin tones 
+dominant, with a single accent of cool deep navy (#003D7D) in the 
+suggested mist reflection and shadow tones. No clothing visible (just 
+shoulder), no makeup, no text, no logos. Mood: clinical serenity meets 
+thermal spring stillness. Aspect ratio 21:9 ultra-wide hero. 
+Photorealistic editorial dermatology photography, refined and pure.
 ```
 
 ---
 
-### 5. La Rosée — *Cosmétique naturelle française, douceur*
+### 3. Avène — *Eau thermale Pyrénées, brume soothing pour peaux ultra-sensibles*
+
+> **Identité visuelle** : marque issue de la station thermale d'Avène (Hérault). Identité chaleureuse, méditerranéenne. Couleur signature = orange terracotta. Geste iconique = vaporisation d'eau thermale en aérosol.
 
 ```
-Editorial photograph in the iconic Air France poster aesthetic. A single 
-fresh-cut pale-pink rose lies diagonally across the lower-left quadrant 
-of the frame on smooth warm cream linen, with three perfect dewdrops 
-suspended on its petals catching the morning light. The upper 75% of 
-the composition is vast empty cream-blush space with a subtle gradient.
+Editorial photograph, French refined poster aesthetic in the spirit of 
+classic Air France advertising. A young woman with sun-kissed skin and 
+natural windswept hair sits on a stone terrace in southern France, eyes 
+gently closed, face turned toward the warm afternoon sun. A fine cool 
+mist of thermal water has just been sprayed onto her face, with 
+suspended droplets catching the golden light. She wears a simple linen 
+top in soft beige. The Pyrénées countryside is suggested in soft blur 
+behind her — warm stone walls, a hint of cypress trees.
 
-Color palette: warm cream (#FCF5F0) dominant background, the faintest 
-pale rose-pink (#F57EB6) in the rose petals only, Provence beige 
-(#DABEA6) in the linen folds. No text, no logos, no people. Aspect 
-ratio 21:9. Photorealistic, French romantic minimalism, dewy soft 
-morning light.
-```
-
----
-
-### 6. Klorane — *Soins capillaires aux extraits de plantes*
-
-```
-Editorial photograph in the iconic Air France poster aesthetic. A single 
-small bundle of fresh oat stalks tied with natural twine rests in the 
-lower-right corner of the frame on cream linen. A few stray oat grains 
-and one chamomile flower lie nearby. Soft natural side-light from upper-
-left, casting long delicate shadows across the linen. The upper two-thirds 
-of the composition is vast empty cream-beige space.
-
-Color palette: warm cream (#FCF5F0) dominant, Provence beige (#DABEA6) 
-in the linen, a single accent of fresh forest green (#00843D) in the 
-oat stalks, with golden honey tones in the grain. No text, no logos, 
-no people. Aspect ratio 21:9. Photorealistic, French botanical heritage, 
-harvest-time stillness.
+Color palette: warm cream (#FCF5F0) dominant with terracotta golden-
+hour tones, single accent of warm orange (#F47920) in the sunset light 
+on her skin and the stone. Generous empty space on the upper-left of 
+the frame for text overlay. No makeup visible, no jewelry, no text, no 
+logos. Mediterranean French warmth, calm and grounded. Aspect ratio 21:9. 
+Photorealistic editorial photography, southern French light.
 ```
 
 ---
 
-### 7. Biocanina — *Santé naturelle pour animaux*
+### 4. Nuxe — *Cosmétique naturelle de luxe, Huile Prodigieuse iconique*
+
+> **Identité visuelle** : la marque française du beau geste sensuel. Huile sèche multi-usage qui shimmer sur la peau. Identité = peau dorée, naturelle, luxueusement subtile.
 
 ```
-Editorial photograph in the iconic Air France poster aesthetic. A single 
-worn natural leather collar with a small brass tag rests in a soft coil 
-in the lower-right corner of the frame on cream linen. Beside it, a 
-single small wooden grooming brush with natural bristles. Long elegant 
-shadow extending from upper-left light. The upper 70% of the composition 
-is vast empty cream space with a warm gradient.
+Editorial photograph, French refined poster aesthetic in the spirit of 
+classic Air France advertising. Close-up of a woman's bare collarbone 
+and neckline glistening in the soft afternoon Provence light, her skin 
+catching a faint golden shimmer from a freshly-applied dry oil. A single 
+small amber-glass bottle with a black pump rests on warm marble in the 
+lower-right corner of the frame, just out of central focus. Her hair 
+falls in loose natural waves over one shoulder, suggesting a relaxed 
+post-bath moment.
 
-Color palette: warm cream (#FCF5F0) dominant background, Provence beige 
-(#DABEA6) in the linen, warm tan-brown leather tones, a single small 
-accent of brand red (#E31837) in the brass tag detail. No text, no logos, 
-no people, NO animals visible. Aspect ratio 21:9. Photorealistic, French 
-artisan tenderness, refined pet-care heritage.
-```
-
----
-
-### 8. Biogaran — *Médicaments génériques accessibles*
-
-```
-Editorial photograph in the iconic Air France poster aesthetic. A small 
-ceramic mortar with a smooth pestle rests in the lower-right third of 
-the frame on smooth warm cream linen. Inside the mortar, two crisp white 
-pharmaceutical capsules. Beside it, a single sprig of dried medicinal 
-herb in soft focus. Soft natural side-light from upper-left, casting 
-long elegant shadows. The upper two-thirds of the composition is vast 
-empty cream-white space.
-
-Color palette: warm cream (#FCF5F0) dominant, Provence beige (#DABEA6) 
-gradient, a single accent of clean blue (#0066CC) on a small detail of 
-the capsule rim. No text, no logos, no people. Aspect ratio 21:9. 
-Photorealistic, French pharmaceutical heritage, clean and accessible 
-serenity.
+Color palette: warm cream (#FCF5F0) dominant with golden honey tones, 
+a strong single accent of rich golden amber (#C9A227) in the oil shimmer 
+on skin and bottle reflection. Generous empty space on the upper-left 
+for text overlay. No clothing visible (just collarbone), no makeup, no 
+text, no logos, no faces clearly visible (suggested only). French 
+sensual luxury restraint, golden hour glow. Aspect ratio 21:9. 
+Photorealistic editorial beauty photography.
 ```
 
 ---
 
-### 9. Nat&Form — *Compléments alimentaires naturels accessibles*
+### 5. La Rosée — *Cosmétique naturelle française fondée par 2 pharmaciennes, romantique*
+
+> **Identité visuelle** : marque romantique née en 2017, "fondée par des pharmaciennes". Couleur signature = rose poudré. Identité = douceur naturelle, fraîcheur, jeune femme parisienne.
 
 ```
-Editorial photograph in the iconic Air France poster aesthetic. A small 
-glass apothecary jar containing dried medicinal botanicals (echinacea 
-flowers, rosehips, chamomile) rests in the lower-right corner of the 
-frame on cream linen. A single dried wild flower and a few scattered 
-seeds lie elegantly nearby. Soft warm Provence afternoon light from 
-upper-left, casting long delicate shadows. The upper 70% of the 
-composition is vast empty cream-beige space.
+Editorial photograph, French refined poster aesthetic in the spirit of 
+classic Air France advertising. A young woman in her early thirties, 
+fresh-faced and minimally adorned, gently brushes her long natural-
+texture hair while looking softly out of a Paris apartment window in 
+the morning light. She wears a simple white linen camisole. A small 
+glass jar of cream and a single fresh-cut pale-pink rose rest on the 
+windowsill in soft focus. Her hand is delicate, her gesture unhurried.
 
-Color palette: warm cream (#FCF5F0) dominant, Provence beige (#DABEA6) 
-in the linen, a single accent of natural sage green (#7C9885) in the 
-botanicals, with subtle dried rose-pink tones. No text, no logos, no 
-people. Aspect ratio 21:9. Photorealistic, French rural herbalism, 
-generous abundance with restraint.
-```
-
----
-
-### 10. PiLeJe — *Micronutrition scientifique, microbiote*
-
-```
-Editorial photograph in the iconic Air France poster aesthetic. A single 
-slender clear-glass test tube rests at a slight diagonal in a small 
-wooden holder, lower-right of the frame on cream linen. The tube contains 
-a soft layer of fresh green herbal extract powder. Beside it, a single 
-sprig of fresh rosemary in shallow focus. Soft single shaft of late-
-afternoon light from upper-left, casting long elegant shadows. The 
-upper two-thirds of the composition is vast empty cream-beige space.
-
-Color palette: warm cream (#FCF5F0) dominant, Provence beige (#DABEA6) 
-gradient, a single accent of deep teal (#1B5E5A) in the glass-tube 
-reflections, fresh leaf greens in the rosemary and powder. No text, no 
-logos, no people. Aspect ratio 21:9. Photorealistic, French scientific 
-elegance, premium phytomicronutrition mood.
+Color palette: warm cream (#FCF5F0) dominant with rosy morning light, 
+a single accent of pale rose-pink (#F57EB6) in the rose petals and 
+suggested skincare jar lid. Generous empty space on the left of the 
+frame for text overlay. No makeup, no jewelry, no text, no logos. 
+French Parisian quiet morning intimacy, natural beauty unhurried. 
+Aspect ratio 21:9. Photorealistic editorial lifestyle photography, 
+soft and romantic.
 ```
 
 ---
 
-### 11. Boiron — *Homéopathie française traditionnelle*
+### 6. Klorane — *Soins capillaires aux extraits botaniques (avoine, camomille, mangue)*
+
+> **Identité visuelle** : marque famille — soins capillaires pour tous, des bébés aux adultes. Sensibilité du cuir chevelu. Iconique = chevelure brillante après le shampoing, parfois avec un enfant aux longs cheveux.
 
 ```
-Editorial photograph in the iconic Air France poster aesthetic. Three 
-small clear-glass homeopathic tubes rest aligned in the lower-right 
-third of the frame on cream linen, each containing tiny white granules. 
-Their delicate cork stoppers catch a soft beam of light. Beside them, 
-a single dried herb sprig in shallow focus. The upper two-thirds of 
-the composition is vast empty cream-beige space with a warm gradient.
+Editorial photograph, French refined poster aesthetic in the spirit of 
+classic Air France advertising. A young mother and her 6-year-old 
+daughter sit together on the floor of a sun-drenched Provence bathroom, 
+the mother gently towel-drying the child's long blonde hair after a 
+bath. The daughter's eyes are closed in contentment, her hair shining 
+healthy in the warm light. A small bouquet of fresh oat stalks and 
+chamomile flowers rests on a wooden stool beside them. They both wear 
+simple white cotton.
 
-Color palette: warm cream (#FCF5F0) dominant background, Provence beige 
-(#DABEA6) gradient, a single accent of deep brand-blue (#003C71) in 
-the cork detail and shadow tones. No text, no logos, no people. Aspect 
-ratio 21:9. Photorealistic, French homeopathic heritage, quiet 
-traditional precision.
-```
-
----
-
-### 12. Mustela — *Soins bébé & maternité, douceur*
-
-```
-Editorial photograph in the iconic Air France poster aesthetic. A single 
-folded soft cotton baby fabric (pale natural color) rests neatly in the 
-lower-left quadrant of the frame on cream linen. Beside it, half of a 
-fresh ripe avocado with its smooth deep-green skin and golden flesh 
-visible, gently laid open. Soft warm morning light from upper-right, 
-casting tender long shadows. The upper 70% of the composition is vast 
-empty cream space with a warm pastel gradient.
-
-Color palette: warm cream (#FCF5F0) dominant background, Provence beige 
-(#DABEA6) in the linen, a single accent of soft baby-blue (#A8D5E2) in 
-the fabric weave with warm avocado-flesh golden hint. No text, no logos, 
-no people, no babies. Aspect ratio 21:9. Photorealistic, French maternal 
-tenderness, soft golden morning warmth.
+Color palette: warm cream (#FCF5F0) dominant with golden afternoon light, 
+single accent of fresh forest green (#00843D) in the oat stalks and 
+suggested packaging. Generous empty space on the upper-left of the frame 
+for text overlay. No makeup, no jewelry, no text, no logos. French 
+maternal tenderness, botanical heritage, sun-drenched bathroom intimacy. 
+Aspect ratio 21:9. Photorealistic editorial family lifestyle photography.
 ```
 
 ---
 
-### 13. Aragan — *Micronutrition premium, huile d'argan, sciences naturelles*
+### 7. Biocanina — *Santé naturelle pour animaux de compagnie*
+
+> **Identité visuelle** : la marque animale française. Identité = lien affectif entre l'humain et son animal, élégance discrète. Couleur signature = rouge.
 
 ```
-Editorial photograph in the iconic Air France poster aesthetic. A single 
-small amber-glass bottle of pure argan oil rests in the lower-right 
-corner of the frame on cream linen. Beside it, two fresh argan kernels 
-(small, golden, almond-like) and a single drop of golden oil suspended 
-mid-fall from a glass dropper above the bottle. Long elegant shadows 
-extending from upper-left light. The upper two-thirds of the composition 
-is vast empty cream-beige space with a warm golden gradient.
+Editorial photograph, French refined poster aesthetic in the spirit of 
+classic Air France advertising. A young French woman in a simple cream 
+linen shirt kneels in soft profile in a Provence garden, gently 
+embracing her medium-sized golden-coated dog. Her face is in soft focus, 
+turned toward the dog with quiet affection. The dog is calm, eyes 
+half-closed in contentment. Late afternoon sunlight filters through 
+olive trees behind them, casting dappled warm light. A simple worn 
+leather leash with a small brass tag rests on the stone path beside them.
 
-Color palette: warm cream (#FCF5F0) dominant, Provence beige (#DABEA6) 
-gradient, a single accent of rich golden amber (#B8860B) in the oil 
-and bottle. No text, no logos, no people. Aspect ratio 21:9. 
-Photorealistic, French-Moroccan scientific luxury, sun-warmed restraint.
+Color palette: warm cream (#FCF5F0) dominant with golden-hour Provence 
+light, single accent of deep brand-red (#E31837) in the brass tag detail 
+on the leather collar. Generous empty space on the upper-left of the 
+frame for text overlay. No makeup, no jewelry beyond the suggested tag, 
+no text, no logos. French companion-animal tenderness, southern garden 
+serenity. Aspect ratio 21:9. Photorealistic editorial lifestyle 
+photography, the bond between owner and animal.
+```
+
+---
+
+### 8. Biogaran — *Médicaments génériques français accessibles, leader pharmacie*
+
+> **Identité visuelle** : la marque #1 des génériques en France. Identité = pharmacie de confiance, simple, accessible. Pas de glamour — la pharmacie de quartier.
+
+```
+Editorial photograph, French refined poster aesthetic in the spirit of 
+classic Air France advertising. Close-up over-the-shoulder view of a 
+French pharmacist's hands gently handing a small white pharmaceutical 
+box to a customer's hand across a polished wooden pharmacy counter. 
+Both hands are partially visible, gestures unhurried and reassuring. 
+Behind the pharmacist, soft-focus rows of pharmacy shelving with 
+neutral-colored boxes catch the warm light from a window. The 
+pharmacy is intimate, French neighborhood scale.
+
+Color palette: warm cream (#FCF5F0) dominant with soft amber-wood 
+tones, single accent of clean medicinal blue (#0066CC) in the 
+suggested box detail. Generous empty space on the upper-left of the 
+frame for text overlay. No faces visible, no jewelry, no text, no 
+logos. French neighborhood pharmacy heritage, the trusted moment of 
+care. Aspect ratio 21:9. Photorealistic editorial documentary 
+photography, intimate and warm.
+```
+
+---
+
+### 9. Nat&Form — *Compléments alimentaires naturels accessibles, phytothérapie*
+
+> **Identité visuelle** : marque de phytothérapie accessible. Identité = matin tranquille, ritual de bien-être quotidien, pas de chichi.
+
+```
+Editorial photograph, French refined poster aesthetic in the spirit of 
+classic Air France advertising. A young woman in a soft natural-linen 
+robe stands at her sunlit Provence kitchen counter at morning, mid-
+gesture of taking a herbal capsule with a tall glass of water. Beside 
+her on the wooden counter: a small white ceramic plate with two capsules, 
+a fresh sprig of rosemary, and a bowl of dried medicinal flowers. 
+Soft golden morning light streams through a partially-curtained window 
+behind her.
+
+Color palette: warm cream (#FCF5F0) dominant with golden morning Provence 
+tones, single accent of natural sage green (#7C9885) in the herbs and 
+suggested packaging. Generous empty space on the upper-left of the frame 
+for text overlay. No makeup, no jewelry, no text, no logos. French rural 
+morning ritual, accessible herbalism, unhurried wellness. Aspect ratio 
+21:9. Photorealistic editorial lifestyle photography.
+```
+
+---
+
+### 10. PiLeJe — *Micronutrition scientifique française, Lactibiane (microbiote)*
+
+> **Identité visuelle** : marque haut-de-gamme française. Identité = science + bien-être. Cible = adultes informés cherchant approche scientifique du bien-être.
+
+```
+Editorial photograph, French refined poster aesthetic in the spirit of 
+classic Air France advertising. A composed woman in her early forties, 
+in a soft white cashmere sweater, sits cross-legged on a pale-grey 
+linen meditation cushion in a sun-drenched minimalist Provence room, 
+calmly drinking from a small glass of pale herbal liquid. Her eyes are 
+open, focused softly inward. On the wooden floor beside her: a small 
+clear glass test tube on a wooden holder, a single sprig of fresh 
+rosemary, and a leather-bound notebook. The room is sparse, with one 
+large window letting in afternoon light.
+
+Color palette: warm cream (#FCF5F0) dominant with cool morning-light 
+tones, single accent of deep teal (#1B5E5A) in the glass test tube 
+and suggested packaging. Generous empty space on the upper-left of 
+the frame for text overlay. No makeup, no jewelry, no text, no logos. 
+French scientific elegance meets premium wellness ritual. Aspect ratio 
+21:9. Photorealistic editorial lifestyle photography, refined and 
+intentional.
+```
+
+---
+
+### 11. Boiron — *Homéopathie française traditionnelle, Oscillococcinum*
+
+> **Identité visuelle** : marque homéopathique française historique. Identité = pharmacie traditionnelle, tubes blancs avec étiquettes vintage, granules sous la langue. Geste iconique = ouvrir le tube, laisser tomber les granules dans la main.
+
+```
+Editorial photograph, French refined poster aesthetic in the spirit of 
+classic Air France advertising. Close-up of a French grandmother's 
+gentle hands at a wooden kitchen table, opening a small clear-glass 
+homeopathic tube with a cork stopper. A few tiny white granules are 
+suspended mid-fall toward her open palm below. Beside her on the table: 
+a worn leather pharmacy book, two more aligned tubes, and a delicate 
+porcelain teacup of warm tea. Soft afternoon light from a French 
+country-kitchen window catches the granules in a brief glint.
+
+Color palette: warm cream (#FCF5F0) dominant with soft amber wood tones, 
+single accent of deep traditional blue (#003C71) in the tube label 
+detail and shadow tones. Generous empty space on the upper-left of the 
+frame for text overlay. No face visible (just hands), no jewelry, no 
+text, no logos. French homeopathic heritage, traditional gesture, 
+quiet kitchen-table moment. Aspect ratio 21:9. Photorealistic editorial 
+documentary photography, French heritage warmth.
+```
+
+---
+
+### 12. Mustela — *Soins bébé & maternité, douceur, ingrédient avocat*
+
+> **Identité visuelle** : marque française de soin bébé. Identité = tendresse mère-bébé, douceur extrême, peau de bébé. Couleurs = pastels (bleu/rose).
+
+```
+Editorial photograph, French refined poster aesthetic in the spirit of 
+classic Air France advertising. Close-up of a young French mother's 
+forearms holding her newborn baby's tiny bare feet, the baby's body 
+out of frame above. The mother's hands are gentle, the baby's feet 
+soft and pink. Both are bathed in the warm soft morning light from a 
+nearby window. A folded soft pastel-blue cotton swaddle and a small 
+glass jar of cream rest on a cream-linen-covered table beside them, 
+all in shallow focus.
+
+Color palette: warm cream (#FCF5F0) dominant with soft pastel morning 
+tones, single accent of soft baby-blue (#A8D5E2) in the swaddle and 
+suggested cream jar. Generous empty space on the upper-left of the 
+frame for text overlay. No mother's face visible (just arms and hands), 
+no baby's face visible (just feet), no jewelry, no text, no logos. 
+French maternal tenderness, the quiet sacred morning with a newborn. 
+Aspect ratio 21:9. Photorealistic editorial maternity photography, 
+soft and pure.
+```
+
+---
+
+### 13. Aragan — *Micronutrition premium française, Synactifs, femme active*
+
+> **Identité visuelle** : marque française premium de micronutrition. Cible = femme active 35-55 ans soucieuse de son bien-être global.
+
+```
+Editorial photograph, French refined poster aesthetic in the spirit of 
+classic Air France advertising. A graceful French woman in her late 
+forties, in profile, sits on the cream-tiled terrace of a Provence 
+villa at golden hour, sipping from a small cup of herbal infusion. She 
+wears a simple cream-colored silk shirt, hair pulled back loosely. Her 
+eyes are softly closed, her expression peaceful. Behind her: a row of 
+old olive trees casts long shadows; a small notebook and a single 
+amber-glass supplement bottle rest on a wrought-iron table beside her. 
+The Mediterranean light is rich gold.
+
+Color palette: warm cream (#FCF5F0) dominant with golden-hour Provence 
+tones, single accent of rich golden amber (#B8860B) in the supplement 
+bottle and the suggested oil tones. Generous empty space on the 
+upper-left of the frame for text overlay. No makeup, no jewelry, no 
+text, no logos. French Provençal grace, the quiet ritual of midlife 
+self-care. Aspect ratio 21:9. Photorealistic editorial lifestyle 
+photography, sophisticated and serene.
 ```
 
 ---
 
 ### 14. S.I.D Nutrition — *Phytothérapie pharmaceutique française accessible*
 
-> ⚠️ Photo déjà générée et intégrée : `Nos-marques/logos/sid-hero-bg.jpg`. Voir prompt utilisé ci-dessous pour référence/régénération.
+> ⚠️ **Photo déjà générée et intégrée** : `Nos-marques/logos/sid-hero-bg.jpg` (apothicaire still life). Prompt original conservé ci-dessous.
 
 ```
 Editorial photograph in the iconic Air France poster aesthetic — French 
@@ -303,24 +376,32 @@ beige (#DABEA6), fresh leaf green (#62BD26 in the herbs only). No people,
 no text, no logos, no other props. Aspect ratio 21:9 ultra-wide hero.
 ```
 
+> ⚠️ **Note** : SID est la seule marque où l'apothicaire still-life est sémantiquement juste (le brand parle littéralement de tradition phytothérapeutique pharmaceutique). Pour les autres marques, l'identité doit être incarnée différemment.
+
 ---
 
-### 15. Bion 3 — *Probiotiques, vitamines, énergie quotidienne*
+### 15. Bion 3 — *Probiotiques, vitamines, minéraux — vitalité quotidienne*
+
+> **Identité visuelle** : marque dynamique française. Identité = trois actions complémentaires, énergie, vitalité, adultes actifs busy. Couleur signature = orange/rouge énergie.
 
 ```
-Editorial photograph in the iconic Air France poster aesthetic. A small 
-clear-glass bowl filled with fresh wild berries (a few blueberries, a 
-single raspberry, two cranberries) rests in the lower-right corner of 
-the frame on cream linen. Beside it, three crisp pharmaceutical-style 
-capsules in soft focus. A single drop of clear liquid catches the light 
-nearby. The upper two-thirds of the composition is vast empty cream 
-space with a subtle warm gradient.
+Editorial photograph, French refined poster aesthetic in the spirit of 
+classic Air France advertising. A French woman in her thirties, in 
+running attire (simple white tank, neutral leggings), is captured in a 
+quiet pause moment on a sun-drenched Provence path at sunrise. She 
+stands with one hand on her hip, her back partly to camera, looking 
+out toward warm rolling hills. Her hair is tied up loosely. Behind her 
+on a low stone wall: a glass water bottle and a small white pill 
+container in soft focus. The light is fresh, energetic, French 
+countryside morning.
 
-Color palette: warm cream (#FCF5F0) dominant, Provence beige (#DABEA6) 
-gradient, a single accent of energizing red-orange (#E94E1B) in the 
-berries with soft natural fruit tones. No text, no logos, no people. 
-Aspect ratio 21:9. Photorealistic, French dynamic vitality, fresh-
-morning energy with refined restraint.
+Color palette: warm cream (#FCF5F0) dominant with golden-pink sunrise 
+tones, single accent of energizing red-orange (#E94E1B) in her running 
+top trim or the suggested packaging. Generous empty space on the 
+upper-left of the frame for text overlay. No makeup, no jewelry, no 
+text, no logos. French active vitality, sunrise countryside fresh start. 
+Aspect ratio 21:9. Photorealistic editorial lifestyle photography, 
+dynamic yet refined.
 ```
 
 ---
@@ -328,38 +409,42 @@ morning energy with refined restraint.
 ## 🛠️ Conseils de génération
 
 ### Pour nano banana (Google Imagen 3)
-- Insister 2-3 fois sur l'espace négatif (« vast empty », « 75% empty », « breathing room »)
-- Ajouter explicitement `wide cinematic horizontal banner format` si l'aspect ratio 21:9 n'est pas respecté
-- Demander 4 variantes et choisir la plus minimaliste
+- Forcer le format en finissant : *"wide cinematic horizontal banner format, 21:9 aspect ratio, hero website background"*
+- Insister sur l'espace de respiration à gauche : *"with generous empty space on the left third for overlay text"*
+- Demander 4 variantes par prompt et choisir
 
 ### Pour Midjourney v6
-- Ajouter à la fin : `--ar 21:9 --style raw --v 6 --s 250 --q 2`
-- Utiliser `--niji` à éviter (style anime)
+- Ajouter en suffixe : `--ar 21:9 --style raw --v 6 --s 250 --q 2`
+- Éviter `--niji` (style anime)
 
-### Pour DALL-E 3
-- Les prompts ci-dessus marchent tels quels (DALL-E aime la prose)
-- Ajouter en début si besoin : *"Generate a photorealistic editorial photograph in landscape 16:9 format. The image should be:"*
-
-### Anti-clichés à éviter dans tous les prompts
-- ❌ Stock photography aesthetic
-- ❌ Sterile white laboratory background
-- ❌ Overcrowded composition
-- ❌ People (mains, visages, silhouettes)
-- ❌ Text, logos, watermarks
-- ❌ Colors not in the palette (no blue if pas dans la palette de la marque)
+### Pour DALL-E 3 / ChatGPT
+- Préfixer : *"Generate a photorealistic editorial photograph, landscape 21:9 format. The image should depict:"*
+- DALL-E aime la prose narrative, donc les prompts ci-dessus marchent tels quels
 
 ---
 
-## 🎯 Intégration sur la page
+## 🚫 Règles anti-clichés communes (pour tous les prompts)
 
-Une fois la photo générée et validée, le pattern d'intégration (déjà appliqué sur `sid-nutrition-page.html`) :
+À ajouter ou vérifier en sortie :
+- ❌ **Pas de visage entièrement visible et photogénique** — préférer profil, dos, mains, ou flou. Plus français, moins stock-photo
+- ❌ **Pas de stock-photo smile** — les personnes doivent être en gestures naturelles, pas en train de sourire vers le caméra
+- ❌ **Pas de produit central monumental** — le produit, s'il y en a un, est un détail discret (en bas, en focus doux)
+- ❌ **Pas de fond stérile blanc cliniques** — toujours du linen, du bois, de la pierre, du jardin
+- ❌ **Pas de bijoux flashy** — discret ou rien
+- ❌ **Pas de couleurs hors palette de la marque**
+- ❌ **Pas de texte, watermarks, logos** visibles
+
+---
+
+## 🎯 Pattern d'intégration sur la page
+
+Une fois la photo générée, validée, et sauvée en `Nos-marques/logos/{slug}-hero-bg.jpg` :
 
 ```css
 .hero {
     background: url('logos/{slug}-hero-bg.jpg') center/cover no-repeat;
 }
 .hero::before {
-    /* Overlay cream à gauche pour lisibilité texte */
     content: '';
     position: absolute;
     inset: 0;
@@ -383,26 +468,35 @@ Une fois la photo générée et validée, le pattern d'intégration (déjà appl
 .hero h1 span { color: var(--gray); }
 ```
 
-**Nommage des fichiers** : `Nos-marques/logos/{slug}-hero-bg.jpg`
-- `bioderma-hero-bg.jpg`
-- `la-roche-posay-hero-bg.jpg`
-- `avene-hero-bg.jpg`
-- … etc.
+**Convention de nommage** : `Nos-marques/logos/{slug}-hero-bg.jpg`
+- `bioderma-hero-bg.jpg`, `la-roche-posay-hero-bg.jpg`, `avene-hero-bg.jpg`, `nuxe-hero-bg.jpg`, `larosee-hero-bg.jpg`, `klorane-hero-bg.jpg`, `biocanina-hero-bg.jpg`, `biogaran-hero-bg.jpg`, `natform-hero-bg.jpg`, `pileje-hero-bg.jpg`, `boiron-hero-bg.jpg`, `mustela-hero-bg.jpg`, `aragan-hero-bg.jpg`, `sid-hero-bg.jpg` ✓ (déjà en place), `bion3-hero-bg.jpg`
 
-**Format recommandé** : JPEG, qualité 85, dimension 2400×1200 (résolution 2x pour displays Retina), poids cible < 200 KB après optimisation.
+**Format de sortie** :
+- JPEG qualité 85
+- Dimension cible : 2400×1029 (21:9 retina) ou 2400×1350 (16:9 retina)
+- Poids cible : < 250 KB après optimisation (utiliser TinyJPG ou Squoosh)
 
 ---
 
-## 📋 Checklist de validation par image
+## ✅ Checklist par image avant intégration
 
-Avant d'intégrer une photo générée :
-
+- [ ] Le sujet **incarne immédiatement** la marque (test : fermez les yeux 5 sec, ouvrez sur la photo, est-ce que le brand est reconnaissable sans lire le titre ?)
 - [ ] Aspect ratio respecté (21:9 ou 16:9)
-- [ ] 60-75% du cadre est espace négatif cream
-- [ ] Sujet unique placé en bas-droite ou bas-gauche
-- [ ] Lumière naturelle douce (pas de flash, pas d'ambiance studio dure)
-- [ ] Palette respectée (cream + beige + accent couleur de la marque)
-- [ ] Pas de personnes, texte, logos
-- [ ] Pas d'objet hors-marque (ex : pas de stéthoscope sur Bioderma)
-- [ ] Le sujet est immédiatement reconnaissable comme représentatif de la marque
-- [ ] L'overlay cream sur la gauche n'écrase pas un détail important de la photo
+- [ ] Sujet placé à droite ou centre-droit du cadre
+- [ ] Espace de respiration à gauche pour overlay texte
+- [ ] Lumière naturelle douce (pas de studio dur)
+- [ ] Palette respectée (cream + accent couleur de la marque uniquement)
+- [ ] Pas de personnes visage entier face-caméra
+- [ ] Pas de stock-photo smile
+- [ ] Pas de texte, logos, watermarks
+- [ ] Le produit (s'il est visible) est un détail discret, pas le centre
+- [ ] La photo se "lit" dans 1 seconde, esprit affiche
+
+---
+
+## 📝 Évolution future
+
+Quand toutes les photos seront générées et intégrées, on pourra :
+- Générer des **micro-variantes saisonnières** (printemps/automne)
+- Décliner en formats **Instagram square** (1:1) pour les posts marque
+- Décliner en **bannières blog** pour les articles citant la marque
