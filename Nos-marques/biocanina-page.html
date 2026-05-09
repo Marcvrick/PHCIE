@@ -429,15 +429,15 @@
         @media (max-width: 1023px) {
             .hero::before {
                 background: linear-gradient(180deg,
-                    rgba(252, 245, 240, 0.92) 0%,
-                    rgba(252, 245, 240, 0.65) 60%,
-                    rgba(252, 245, 240, 0.55) 100%);
+                    rgba(252, 245, 240, 0.85) 0%,
+                    rgba(252, 245, 240, 0.55) 50%,
+                    rgba(252, 245, 240, 0.45) 100%);
             }
-            /* Flip the background photo horizontally so subjects move from right to center-left,
-               making them visible in the cropped mobile portrait view. Children are un-flipped
-               so text and CTAs read normally. */
-            .hero { transform: scaleX(-1); }
-            .hero > * { transform: scaleX(-1); }
+            /* Shift the photo crop on mobile so the subjects (woman+dog, around 65% across
+               the photo) appear centered behind the text rather than cropped at the right edge. */
+            .hero {
+                background-position: 65% center;
+            }
         }
 
         /* Hide decorative elements — the photo carries the visual */
