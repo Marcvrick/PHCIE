@@ -348,12 +348,15 @@
         .hero h1 {
             margin-bottom: var(--space-24);
             animation: fadeInUp 0.8s var(--ease-out) 0.1s backwards;
+            /* Override the global --teal-pro heading color: needs strong contrast over the photo */
+            color: var(--charcoal);
         }
 
         .hero h1 span {
             display: block;
             font-style: italic;
-            color: var(--sage-natural);
+            /* Slightly muted charcoal for the tagline (lighter weight visual hierarchy) */
+            color: var(--gray);
         }
 
         .hero .lead {
