@@ -448,12 +448,14 @@ dynamic yet refined.
 
 ## 🎯 Pattern d'intégration sur la page
 
-Une fois la photo générée, validée, et sauvée en `Nos-marques/logos/{slug}-hero-bg.jpg` :
+Pattern final validé sur SID Nutrition, Biocanina, Klorane (mai 2026). Une fois la photo générée, optimisée et sauvée en `Nos-marques/logos/{slug}-hero-bg.jpg`, copier-coller ce CSS dans la page de la marque :
 
 ```css
 .hero {
     background: url('logos/{slug}-hero-bg.jpg') center/cover no-repeat;
 }
+
+/* Desktop : overlay cream à GAUCHE pour lisibilité texte (gradient horizontal) */
 .hero::before {
     content: '';
     position: absolute;
@@ -463,20 +465,67 @@ Une fois la photo générée, validée, et sauvée en `Nos-marques/logos/{slug}-
         rgba(252, 245, 240, 0.75) 30%,
         rgba(252, 245, 240, 0.35) 55%,
         transparent 75%);
+    pointer-events: none;
 }
+
+/* Mobile/tablet (≤ 1023px) : overlay vertical PLUS DOUX + repositionnement de la photo
+   pour centrer le sujet derrière le texte */
 @media (max-width: 1023px) {
     .hero::before {
         background: linear-gradient(180deg,
-            rgba(252, 245, 240, 0.92) 0%,
-            rgba(252, 245, 240, 0.65) 60%,
-            rgba(252, 245, 240, 0.55) 100%);
+            rgba(252, 245, 240, 0.85) 0%,
+            rgba(252, 245, 240, 0.55) 50%,
+            rgba(252, 245, 240, 0.45) 100%);
+    }
+    .hero {
+        /* Adapter le % en fonction de l'emplacement du sujet dans la photo :
+           - Sujet à droite (~65% de la largeur du photo) → 65% center
+           - Sujet plus à droite (~70%) → 70% center
+           - Sujet centré → garder center (50%) */
+        background-position: 65% center;
     }
 }
+
+/* Hide decorative elements — la photo porte tout le visuel */
 .hero-bubbles, .bubble { display: none; }
 .hero-visual { display: none !important; }
+
+/* Hero text colors for contrast over the photo */
 .hero h1 { color: var(--charcoal); }
 .hero h1 span { color: var(--gray); }
+
+/* Single-column hero content (la photo est le visuel à droite, pas une carte logo) */
+@media (min-width: 1024px) {
+    .hero-content {
+        grid-template-columns: minmax(0, 620px);
+        gap: var(--space-80);
+    }
+}
+.hero-text { max-width: 620px; }
 ```
+
+### 🎚️ Ajuster `background-position` mobile par photo
+
+La valeur `65% center` fonctionne pour la majorité des photos avec sujet à droite-centre. Ajuster si nécessaire :
+
+| Position du sujet dans la photo | `background-position` mobile |
+|---|---|
+| Centre exact (50%) | `center` (50% center) |
+| Centre-droit léger (~60%) | `60% center` |
+| **Centre-droit (~65%) — défaut recommandé** | `65% center` |
+| Droit prononcé (~70%) | `70% center` |
+| Bord droit (~80%) | `80% center` ou `right center` |
+
+**Exemples concrets** :
+- Biocanina (femme + golden retriever, sujets à ~65%) → `65% center`
+- Klorane (mère + fille, sujets à ~65%) → `65% center`
+- S.I.D Nutrition (flacon apothicaire à ~70%) → `70% center`
+
+### 🚫 Ce qui NE marche PAS (pour mémoire)
+
+- ❌ `transform: scaleX(-1)` (flip horizontal) sur mobile : déplace les sujets vers la gauche, même problème de cropping mais sur l'autre bord
+- ❌ Overlay mobile trop fort (`0.92 → 0.65 → 0.55`) : écrase la photo, le sujet n'est plus visible "en arrière-plan"
+- ❌ Ne pas réduire `.hero-content grid-template-columns` à 1 colonne : le texte reste comprimé à gauche au lieu de profiter de la largeur disponible
 
 **Convention de nommage** : `Nos-marques/logos/{slug}-hero-bg.jpg`
 - `bioderma-hero-bg.jpg`, `la-roche-posay-hero-bg.jpg`, `avene-hero-bg.jpg`, `nuxe-hero-bg.jpg`, `larosee-hero-bg.jpg`, `klorane-hero-bg.jpg`, `biocanina-hero-bg.jpg`, `biogaran-hero-bg.jpg`, `natform-hero-bg.jpg`, `pileje-hero-bg.jpg`, `boiron-hero-bg.jpg`, `mustela-hero-bg.jpg`, `aragan-hero-bg.jpg`, `sid-hero-bg.jpg` ✓ (déjà en place), `bion3-hero-bg.jpg`

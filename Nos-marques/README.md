@@ -79,7 +79,7 @@ Nos-marques/
 
 **Pattern d'intégration hero photo** (CSS appliqué) :
 - Background `cover` + overlay cream gradient à gauche (lisibilité texte)
-- Mobile : flip horizontal (`scaleX(-1)`) pour garder les sujets visibles dans le crop portrait
+- Mobile : `background-position: 65% center` (ajustable par photo) pour centrer le sujet derrière le texte + overlay cream adouci pour laisser respirer la photo
 - Logo right-card hidden (`.hero-visual { display: none !important }`) — la photo porte le branding
 - Logo réintégré dans une 5e card de la section Innovations (rappel identité visuelle)
 
@@ -592,16 +592,20 @@ Le script automatise :
     pointer-events: none;
 }
 
-/* Mobile : overlay vertical + flip horizontal pour garder les sujets visibles */
+/* Mobile : overlay vertical PLUS DOUX + repositionnement de la photo
+   pour centrer le sujet derrière le texte (et non le cropper sur le bord) */
 @media (max-width: 1023px) {
     .hero::before {
         background: linear-gradient(180deg,
-            rgba(252, 245, 240, 0.92) 0%,
-            rgba(252, 245, 240, 0.65) 60%,
-            rgba(252, 245, 240, 0.55) 100%);
+            rgba(252, 245, 240, 0.85) 0%,
+            rgba(252, 245, 240, 0.55) 50%,
+            rgba(252, 245, 240, 0.45) 100%);
     }
-    .hero { transform: scaleX(-1); }
-    .hero > * { transform: scaleX(-1); }
+    .hero {
+        /* Ajuster selon position du sujet dans la photo :
+           65% center (centre-droit défaut), 70% (droit prononcé), center (centré) */
+        background-position: 65% center;
+    }
 }
 
 /* Hide decorative elements - the photo carries the visual */
