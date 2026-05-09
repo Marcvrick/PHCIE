@@ -101,7 +101,7 @@ Pour les allergies polliniques légères à modérées, plusieurs traitements so
 
 **Mon conseil :** commencez le traitement antihistaminique **dès les premières alertes polliniques**, avant même l'apparition des symptômes. L'antihistaminique est beaucoup plus efficace en prévention qu'en rattrapage.
 
-Nous avons aussi en rayon de la **quercétine** (PiLeJe, Arkopharma), un flavonoïde qui stabilise les mastocytes et réduit la libération d'histamine. À commencer idéalement 2 semaines avant la saison.
+Nous avons aussi en rayon de la **quercétine** (PiLeJe, S.I.D Nutrition), un flavonoïde qui stabilise les mastocytes et réduit la libération d'histamine. À commencer idéalement 2 semaines avant la saison.
 
 ---
 

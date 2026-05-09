@@ -57,7 +57,7 @@ Règle pratique: froid d'abord, chaleur ensuite. Appliquer le froid 10 à 15 min
 
 Nous avons trois familles de solutions en libre accès: les **gels révulsifs** (camphre, menthol, eucalyptus — effet contra-irritant et vasodilatateur), les **gels à l'arnica**, et les **roll-on décontractants** à base d'huiles essentielles. Les gels anti-inflammatoires à base de diclofénac ou kétoprofène sont soit OTC en faible dosage, soit sur ordonnance selon la formulation.
 
-L'arnica mérite une mention spéciale: une étude publiée dans *Phytotherapy Research* en 2013 a montré qu'une application topique immédiate après un exercice excentrique intense, poursuivie pendant 96 h, **réduit significativement la douleur à 72 h** par rapport au placebo (évaluation sur échelle VAS et douleur à la palpation). Pas d'effet sur les marqueurs biologiques d'inflammation (CPK, CRP), mais l'effet antalgique local est bien réel. Je recommande les gels combinant arnica, gaulthérie et eucalyptus citronné, chez <a href="../../Nos-marques/boiron-page.html">Boiron</a> ou <a href="../../Nos-marques/arkopharma-page.html">Arkopharma</a>.
+L'arnica mérite une mention spéciale: une étude publiée dans *Phytotherapy Research* en 2013 a montré qu'une application topique immédiate après un exercice excentrique intense, poursuivie pendant 96 h, **réduit significativement la douleur à 72 h** par rapport au placebo (évaluation sur échelle VAS et douleur à la palpation). Pas d'effet sur les marqueurs biologiques d'inflammation (CPK, CRP), mais l'effet antalgique local est bien réel. Je recommande les gels combinant arnica, gaulthérie et eucalyptus citronné, chez <a href="../../Nos-marques/boiron-page.html">Boiron</a> ou <a href="../../Nos-marques/sid-nutrition-page.html">S.I.D Nutrition</a>.
 
 ---
 

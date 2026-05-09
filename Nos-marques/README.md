@@ -2,9 +2,10 @@
 
 Ce guide documente le processus de création des pages dédiées aux marques pour le site Pharmacie Charnal.
 
-> **📅 Dernière mise à jour majeure : 2026-02-11**
+> **📅 Dernière mise à jour majeure : 2026-05-09**
+> Nouveau standard : **3 sections SEO/AEO** ajoutées au template (Innovations + FAQ + **Le conseil de Laure**)
 > 15 pages harmonisées avec le design system officiel (template `la-roche-posay-page.html`)
-> Derniers changements : Ducray et Caudalie retirées, La Rosée ajoutée
+> Derniers changements : Arkopharma remplacée par S.I.D Nutrition (mai 2026), Ducray et Caudalie retirées, La Rosée ajoutée
 
 ---
 
@@ -25,7 +26,7 @@ Nos-marques/
 │   ├── Klorane.png
 │   ├── La-roche-posay.png
 │   ├── la-rosee.svg
-│   ├── logo-arkopharma-2.png
+│   ├── sid-nutrition.png
 │   ├── Mustella.*
 │   ├── NatForm.avif
 │   ├── Nuxe.jpeg
@@ -41,7 +42,7 @@ Nos-marques/
 ├── bion3-page.html              # ✅ Page dédiée Bion 3 (harmonisée 2026-02-06)
 ├── boiron-page.html             # ✅ Page dédiée Boiron (harmonisée 2026-02-06)
 ├── biocanina-page.html          # ✅ Page dédiée Biocanina (harmonisée 2026-02-06)
-├── arkopharma-page.html         # ✅ Page dédiée Arkopharma (harmonisée 2026-02-06)
+├── sid-nutrition-page.html      # ✅ Page dédiée S.I.D Nutrition (créée 2026-05-09, remplace Arkopharma)
 ├── pileje-page.html             # ✅ Page dédiée PiLeJe (harmonisée 2026-02-06)
 ├── mustela-page.html            # ✅ Page dédiée Mustela (harmonisée 2026-02-06)
 ├── natform-page.html            # ✅ Page dédiée Nat&Form (harmonisée 2026-02-06)
@@ -86,7 +87,7 @@ Nos-marques/
 10. pileje-page.html
 11. boiron-page.html
 13. mustela-page.html
-14. arkopharma-page.html
+14. sid-nutrition-page.html *(remplace arkopharma-page.html, mai 2026)*
 15. natform-page.html
 16. aragan-page.html
 
@@ -280,7 +281,33 @@ Chaque page de marque a sa propre palette de couleurs basée sur l'identité vis
 - Encart avec produit coup de cœur
 - **Important** : `<strong>` dans cette section doit avoir `color: var(--white)` pour contraster avec le fond sombre
 
-### 7. Footer (standard Charnal)
+### 7. Innovations 2024-2025 *(standard depuis 2026-05-09)*
+- Section avec badge "Nouveautés 2024-2025"
+- Grille de **4 cartes innovation** (`auto-fit minmax(260px)`)
+- Chaque carte : catégorie (uppercase) + titre + description courte
+- Border-left 4px de la couleur dominante de la marque
+- Background : `var(--pastel-sage)` ou pastel marque
+- **Class CSS** : `.brand-innovations` (ou `.{marque}-innovations`)
+
+### 8. FAQ avec Schema FAQPage *(standard depuis 2026-05-09)*
+- 5 questions/réponses sur la marque (`<details><summary>`)
+- Background blanc, items en cards avec hover
+- **Schema JSON-LD `FAQPage`** dupliquant les Q&A en plain text (sans HTML tags) — important pour Google AI Overviews / GEO
+- **Class CSS** : `.brand-faq` (ou `.{marque}-faq`)
+
+### 9. Le conseil de Laure *(standard depuis 2026-05-09 — OBLIGATOIRE)*
+- **Photo de Laure** (140x140 ronde, bordure blanche 4px, ombre douce) → `images/Laure CNL.jpeg`
+- Layout : grid `140px 1fr`, gap 32px, `align-items: start`
+- Tagline label "Le conseil de Laure" en small caps + couleur marque
+- **Titre** : H2 dans la voix de Laure (ex: "{Marque} à la pharmacie : mes recommandations par profil")
+- **3 paragraphes** dans la voix de Laure (« je recommande », « chez nous », références produits concrets, ancrage local)
+- Signature italique : `— Laure Charnal, pharmacienne titulaire à Quéven`
+- **Article blog associé** dans une card en bas (border-left couleur marque) avec titre du blog complémentaire
+- Background : gradient `pastel-sage → cream`
+- **Mobile (< 640px)** : photo passe au-dessus du texte (`grid-template-columns: 1fr`, `text-align: center`)
+- **Class CSS** : `.brand-laure` (ou `.{marque}-laure`)
+
+### 10. Footer (standard Charnal)
 
 ---
 
@@ -294,7 +321,7 @@ Chaque page de marque a sa propre palette de couleurs basée sur l'identité vis
 | `bebe` | Bébé & Maman | Mustela |
 | `homeopathie` | Homéopathie | Boiron |
 | `animaux` | Santé Animale | Biocanina |
-| `complements` | Compléments | Biogaran, Nat&Form, PiLeJe, Aragan, Arkopharma, Bion 3 |
+| `complements` | Compléments | Biogaran, Nat&Form, PiLeJe, Aragan, S.I.D Nutrition, Bion 3 |
 
 ---
 

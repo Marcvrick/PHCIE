@@ -22,7 +22,7 @@
 | **Aragan** | Détox après les fêtes : mythe ou réalité? | ✅ Lié |
 | **Natform** | Compléments alimentaires : pharmacie ou internet? | ✅ Lié |
 | **Pileje** | Compléments alimentaires : pharmacie ou internet? | ✅ Lié |
-| **Arkopharma** | Troubles du sommeil : solutions naturelles | ✅ Lié |
+| **S.I.D Nutrition** | Troubles du sommeil : solutions naturelles | ✅ Lié |
 
 ### 🟡 Marques en cours de liaison (article rédigé, lien à poser au moment de la mise en ligne du HTML)
 

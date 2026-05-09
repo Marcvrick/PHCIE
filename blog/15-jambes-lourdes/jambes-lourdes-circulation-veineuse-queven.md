@@ -77,7 +77,7 @@ Trois leviers fonctionnent et ont fait leurs preuves: la **compression médicale
 Ce que nous proposons concrètement:
 
 - **Bas, chaussettes et collants de contention**: toutes les classes médicales (1 à 3), avec prise de mesures gratuite en pharmacie
-- **Phytothérapie veinotonique**: gammes Arkopharma et Nat&Form (vigne rouge, marron d'Inde, hamamélis) sous forme de gélules ou de teintures mères
+- **Phytothérapie veinotonique**: gammes S.I.D Nutrition et Nat&Form (vigne rouge, marron d'Inde, hamamélis) sous forme de gélules ou de teintures mères
 - **Gels fraîcheur**: pour un soulagement immédiat en fin de journée, à garder au réfrigérateur pour décupler l'effet
 - **Conseils sur les voyages longs**: avion, voiture, train au-delà de 4 heures: la compression est indiquée même sans symptômes antérieurs
 

@@ -137,7 +137,7 @@ Ces gestes sont à intégrer dès mars-avril, bien avant les grandes chaleurs es
 5. **Se couvrir avec des vêtements légers** : la protection vestimentaire reste supérieure à la crème solaire
 6. **Préférer l'ombre** pour les activités prolongées, surtout avec les enfants
 
-Et un conseil complémentaire : une cure d'antioxydants au printemps (bêta-carotène, vitamine E) peut renforcer la résistance naturelle de la peau aux UV. Nous avons des formules adaptées en pharmacie, notamment chez Arkopharma et PiLeJe.
+Et un conseil complémentaire : une cure d'antioxydants au printemps (bêta-carotène, vitamine E) peut renforcer la résistance naturelle de la peau aux UV. Nous avons des formules adaptées en pharmacie, notamment chez S.I.D Nutrition et PiLeJe.
 
 ## L'essentiel à retenir
 

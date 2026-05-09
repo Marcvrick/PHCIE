@@ -84,7 +84,7 @@ Le magnésium est l'option la plus documentée pour le stress chronique. Le méc
 
 Deux à trois semaines sont nécessaires pour que les effets soient ressentis. Ce n'est pas un produit "d'urgence" à prendre la veille du bac.
 
-Sur la forme: le magnésium marin (oxyde et chlorure de magnésium) est moins bien absorbé et plus laxatif à doses élevées. Je recommande le magnésium bisglycinate ou glycérophosphate pour les ados — mieux toléré, meilleure biodisponibilité. Nous proposons des formules adaptées chez PiLeJe, Nat&Form et Arkopharma.
+Sur la forme: le magnésium marin (oxyde et chlorure de magnésium) est moins bien absorbé et plus laxatif à doses élevées. Je recommande le magnésium bisglycinate ou glycérophosphate pour les ados — mieux toléré, meilleure biodisponibilité. Nous proposons des formules adaptées chez PiLeJe, Nat&Form et S.I.D Nutrition.
 
 Sur les plantes:
 - **Rhodiola rosea**: l'EMA reconnaît son usage traditionnel pour le stress et la fatigue mentale temporaires. Généralement bien tolérée à partir de 12 ans. À éviter en cas d'anxiété sévère ou de trouble bipolaire

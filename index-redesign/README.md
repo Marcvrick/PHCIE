@@ -322,5 +322,5 @@ Les images sont referencees depuis le dossier parent `images/` (relatif a l'empl
 - [ ] Tester sur tous les navigateurs (Safari, Firefox, Chrome, Edge)
 - [ ] Tester le mode sombre (pas implemente, a considerer)
 - [ ] Ajouter des micro-interactions sur les categories cards (ex: icone animee)
-- [ ] Ajouter les marques sans logo au brand spotlight (Arkopharma, PiLeJe, Boiron, Mustela, etc.)
+- [ ] Ajouter les marques sans logo au brand spotlight (S.I.D Nutrition, PiLeJe, Boiron, Mustela, etc.)
 - [ ] Envisager un systeme de blog JSON au lieu du fetch HTML si le site grandit

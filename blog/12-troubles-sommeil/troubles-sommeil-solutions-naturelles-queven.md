@@ -59,7 +59,7 @@ Voici les plantes que je recommande le plus :
 | **Eschscholtzia** (pavot de Californie) | Favorise le maintien du sommeil | Gélules, pour les réveils nocturnes |
 | **Aubépine** | Calme le rythme cardiaque et le système nerveux | Comprimés, tisane composée |
 
-On retrouve ces plantes en pharmacie sous forme de spécialités prêtes à l'emploi. Parmi les marques que nous avons : **Arkopharma** propose des gélules de plantes unitaires et des complexes nuit, **PiLeJe** avec sa gamme Phytostandard offre des extraits standardisés de haute qualité. Pour une approche douce, les tisanes composées (mélisse-tilleul-verveine) restent un excellent rituel du soir.
+On retrouve ces plantes en pharmacie sous forme de spécialités prêtes à l'emploi. Parmi les marques que nous avons : **S.I.D Nutrition** propose la gamme Phytoclassics (plantes unitaires) et des complexes Sommeil Complet, **PiLeJe** avec sa gamme Phytostandard offre des extraits standardisés de haute qualité. Pour une approche douce, les tisanes composées (mélisse-tilleul-verveine) restent un excellent rituel du soir.
 
 L'effet se construit avec la régularité. Une gélule de valériane prise une seule fois ne fera pas grand-chose. C'est la prise quotidienne sur 2 à 4 semaines qui installe un sommeil plus profond.
 
@@ -85,7 +85,7 @@ Or les carences en magnésium sont fréquentes. Stress, alimentation déséquili
 
 Le **magnésium bisglycinate** est la forme que je privilégie : mieux tolérée sur le plan digestif que l'oxyde ou le citrate, avec une bonne biodisponibilité. La glycine qu'il contient possède elle-même des propriétés relaxantes. En cure de 1 à 2 mois, pris le soir, il complète parfaitement une approche phytothérapie.
 
-Chez **Arkopharma** et **PiLeJe**, nous avons des formules associant magnésium et vitamine B6, qui optimise son absorption.
+Chez **S.I.D Nutrition** et **PiLeJe**, nous avons des formules associant magnésium et vitamine B6, qui optimise son absorption.
 
 ---
 
