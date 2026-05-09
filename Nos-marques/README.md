@@ -307,7 +307,17 @@ Chaque page de marque a sa propre palette de couleurs basée sur l'identité vis
 - **Mobile (< 640px)** : photo passe au-dessus du texte (`grid-template-columns: 1fr`, `text-align: center`)
 - **Class CSS** : `.brand-laure` (ou `.{marque}-laure`)
 
-### 10. Footer (standard Charnal)
+### 10. Navigation entre marques *(standard depuis 2026-05-09)*
+- **3 boutons** dans une grille `1fr auto 1fr`:
+  - **← Marque précédente** (carte blanche, hover border-color marque)
+  - **Toutes les marques** (CTA central, fond `var(--teal-pro)` couleur marque)
+  - **Marque suivante →** (carte blanche, hover border-color marque)
+- **Navigation circulaire** (Bioderma prev = Bion 3, Bion 3 next = Bioderma)
+- **Mobile (< 640px)**: prev + next côte à côte sur une ligne, "Toutes les marques" full-width en dessous (`grid-template-areas: "prev next" / "all all"`)
+- **Class CSS**: `.brand-nav-section` (wrapper) + `.brand-nav-link` + `.brand-nav-prev/all/next`
+- Ordre des marques = ordre dans `nosmarques.html` (Bioderma → ... → Bion 3, circulaire)
+
+### 11. Footer (standard Charnal)
 
 ---
 
