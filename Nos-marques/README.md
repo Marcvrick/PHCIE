@@ -75,12 +75,19 @@ Nos-marques/
 - ✅ Navigation circulaire (Bioderma prev = Bion 3, Bion 3 next = Bioderma)
 - ✅ Mobile : prev+next côte à côte, catalogue full-width en dessous
 
-**Photos éditoriales en hero** *(en cours de déploiement)* :
+**Photos éditoriales en hero** *(9/15 déployées)* :
 - ✅ S.I.D Nutrition : apothicaire still-life + romarin (Provence)
 - ✅ Biocanina : femme + golden retriever (jardin Provence, oliviers, lavandes)
 - ✅ Klorane : maman + fille (salle de bain Provence, bouquet avoine+camomille)
-- 🟡 Reste à faire : Bioderma, La Roche-Posay, Avène, Nuxe, La Rosée, Biogaran, Nat&Form, PiLeJe, Boiron, Mustela, Aragan, Bion 3
+- ✅ La Rosée : Parisienne brossant ses cheveux à la fenêtre, jar + rose poudrée
+- ✅ Nuxe : femme + flacon Huile Prodigieuse iconique, golden hour Provence
+- ✅ Avène : femme + spray eau thermale, terrasse Pyrénées golden hour
+- ✅ Bioderma : femme + coton imbibé Sensibio H2O, salle de bain matin
+- ✅ La Roche-Posay : épaule + brume thermale, gradient stone-grey
+- ✅ Bion 3 : femme 40+ verre d'eau cuisine française, walnuts + thyme
+- 🟡 Reste à faire (6) : Biogaran, Nat&Form, PiLeJe, Boiron, Mustela, Aragan
 - 📄 Voir [`HERO-IMAGE-PROMPTS.md`](HERO-IMAGE-PROMPTS.md) pour les 15 prompts (style Air France, 1 par marque, incarnation de l'identité)
+- 📷 Convention : `Nos-marques/logos/{BrandName}-hero.jpg` (ex: `Bioderma-hero.jpg`, `La-Roche-Posay-hero.jpg`)
 
 **Pattern d'intégration hero photo** (CSS appliqué) :
 - Background `cover` + overlay cream gradient à gauche (lisibilité texte)
@@ -97,6 +104,19 @@ Nos-marques/
 **Marque remplacée** :
 - ❌ **Arkopharma** retirée (rachetée par Dermapharm 2023, plus en cohérence avec positionnement français accessible)
 - ✅ **S.I.D Nutrition** ajoutée (laboratoire Allauch, phytothérapie pharmaceutique française accessible)
+
+**Cohérence des couleurs sections (RÈGLE GLOBALE 2026-05-09)** :
+- ❌ **Plus de gradient cream sur la section Laure** : remplacement systématique de `linear-gradient(135deg, {pastel} 0%, var(--cream) 100%)` par le pastel solid de la marque sur les 15 pages
+- 💡 Raison : `var(--cream)` (#FAF8F5) crée une zone jaune-cream qui rompt le rythme blue/white/pastel-marque de chaque page
+- 📐 Règle : chaque page marque doit avoir un rythme visuel cohérent du haut au bas — alternance white / pastel-marque / pastel-couleur-secondaire / blue (advice). Pas de cream chaud entre deux blocs froids
+- 🛠 Bion 3 cas spécial : labels Innovations + FAQ + Laure passés du orange (#F39200) au bleu marque (#1976D2) pour cohérence avec hero/CTA/badges
+
+**Fichiers hero renommés (2026-05-09)** :
+Convention `{BrandName}-hero.jpg` adoptée :
+- `sid-hero-bg.jpg` → `SID-Nutrition-hero.jpg`
+- `bioderma-hero-bg.jpg` → `Bioderma-hero.jpg`
+- … etc. pour les 7 hero existants
+- Le script `scripts/optimize-hero.sh` mappe automatiquement le slug → BrandName
 
 #### 2026-02-11 — Refresh design system
 
@@ -281,6 +301,41 @@ Chaque page de marque a sa propre palette de couleurs basée sur l'identité vis
 | **La Rosée** | `#F57EB6` (rose) | `#D4609A` | `#FDF0F6`, `#F5E0EC` |
 | **Klorane** | `#00843D` (vert) | `#006830` | `#E8F5ED`, `#F0FAF4` |
 | **Biocanina** | `#E31837` (rouge) | `#B81430` | `#FCE8EB`, `#FFF0F2` |
+
+---
+
+## Cohérence des Couleurs des Sections *(règle globale depuis 2026-05-09)*
+
+### Principe
+
+**Chaque page marque doit avoir un rythme visuel cohérent du haut au bas.** Les couleurs de fond des sections alternent entre `white` / `pastel-marque` / `pastel-couleur-secondaire` / `blue/teal-pro` (section advice) — sans rupture chaude.
+
+### ❌ À éviter absolument
+
+- **Pas de `var(--cream)` (`#FAF8F5`) dans les sections lower-page** (Innovations, Laure) si le reste de la page est en blue/white/pastel-froid : le cream introduit une zone jaune-cream qui casse le rythme
+- **Pas de gradient cream sur la section Laure** : `linear-gradient(135deg, {pastel} 0%, var(--cream) 100%)` est interdit. Toujours utiliser un solid color
+- **Pas de couleur orange/jaune sur une page bleue** (cas Bion 3 résolu mai 2026) : si la couleur primaire de la marque est bleue, les accents Innovations/FAQ/Laure doivent être bleus aussi, pas orange par défaut
+
+### ✅ Pattern recommandé
+
+| Section | Background | Pourquoi |
+|---|---|---|
+| Hero | photo background + cream overlay gauche | Identité forte de la marque |
+| Histoire (intro) | `var(--white)` | Respiration |
+| Expertise (water) | `var(--white)` ou gradient subtil | Transition |
+| Pourquoi cette marque (why-brand) | `var(--white)` | Cards stand out |
+| Gammes (products) | `var(--cream)` ou `var(--white)` | OK car break visuel autorisé en milieu de page |
+| When-section (si présente) | `var(--white)` avec cards en pastel-marque | Cards = focus |
+| Conseil (advice) | gradient solid `{brand-primary} → {brand-dark}` | CTA fort |
+| **Innovations** | **pastel-marque solide** (`#F0F7FC`, `var(--klorane-pastel-light)`, etc.) | Continuité branding |
+| **FAQ** | `var(--white)` | Lisibilité Q&R |
+| **Laure** | **pastel-marque solide** (PAS de gradient cream) | Continuité |
+| Brand nav | `var(--cream)` | OK car proche du footer dark |
+| Footer | `#1F2121` (charcoal) | Standard Charnal |
+
+### Test de cohérence
+
+Avant de commit une page marque, faire un screenshot full-page et vérifier qu'il n'y a **aucune zone visuelle qui sort du rythme** (ex: pas de bande jaune-cream entre deux bandes pastel-bleues).
 
 ---
 
