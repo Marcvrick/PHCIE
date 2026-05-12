@@ -20,7 +20,6 @@
     <meta name="description" content="Nuxe, cosmétique naturelle parisienne aux formules sensorielles. Huile Prodigieuse, Nuxe Bio, Rêve de Miel disponibles à la Pharmacie Charnal de Quéven.">
     <link rel="canonical" href="https://www.pharmaciecharnal.com/Nos-marques/nuxe-page.html">
     <meta name="robots" content="index, follow">
-    <link rel="preload" as="image" href="logos/Nuxe-hero.webp" fetchpriority="high" type="image/webp">
 
     <!-- Open Graph -->
     <meta property="og:type" content="website">
@@ -421,14 +420,28 @@
             display: flex;
             align-items: center;
             padding-top: var(--space-48);
-            background: url('logos/Nuxe-hero.webp') center/cover no-repeat;
             overflow: hidden;
         }
+        .hero-img {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+            z-index: 0;
+        }
+
+        @media (max-width: 1023px) {
+            .hero-img { object-position: 65% center; }
+        }
+
 
         /* Soft cream overlay on the left for text readability over the photo */
         .hero::before {
             content: '';
             position: absolute;
+            z-index: 1;
             inset: 0;
             background: linear-gradient(90deg,
                 rgba(252, 245, 240, 0.92) 0%,
@@ -444,10 +457,6 @@
                     rgba(252, 245, 240, 0.85) 0%,
                     rgba(252, 245, 240, 0.55) 50%,
                     rgba(252, 245, 240, 0.45) 100%);
-            }
-            /* Subject (woman + Huile Prodigieuse bottle) is at right of photo (~70% across) */
-            .hero {
-                background-position: 65% center;
             }
         }
 
@@ -1777,6 +1786,7 @@
 
     <!-- Hero -->
     <section class="hero">
+        <img src="logos/Nuxe-hero.webp" alt="" class="hero-img" fetchpriority="high" loading="eager" decoding="async" aria-hidden="true">
         <div class="hero-bubbles">
             <div class="bubble"></div>
             <div class="bubble"></div>
