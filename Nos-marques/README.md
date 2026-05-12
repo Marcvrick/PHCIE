@@ -86,7 +86,8 @@ Nos-marques/
 - ✅ La Roche-Posay : épaule + brume thermale, gradient stone-grey
 - ✅ Bion 3 : femme 40+ verre d'eau cuisine française, walnuts + thyme
 - ✅ Aragan : couple cuisine moderne, boîte Synactifs + verre d'eau
-- 🟡 Reste à faire (5) : Biogaran, Nat&Form, PiLeJe, Boiron, Mustela
+- ✅ Mustela : maman enceinte + enfant, produits Mustela, chambre blanche
+- 🟡 Reste à faire (4) : Biogaran, Nat&Form, PiLeJe, Boiron
 - 📄 Voir [`HERO-IMAGE-PROMPTS.md`](HERO-IMAGE-PROMPTS.md) pour les 15 prompts (style Air France, 1 par marque, incarnation de l'identité)
 - 📷 Convention : `Nos-marques/logos/{BrandName}-hero.jpg` (ex: `Bioderma-hero.jpg`, `La-Roche-Posay-hero.jpg`)
 
