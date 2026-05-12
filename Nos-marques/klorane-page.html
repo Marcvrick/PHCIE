@@ -2458,8 +2458,9 @@
         </div>
     </footer>
 
-    <!-- Scripts -->
+    <!-- Scripts — deferred to idle time to avoid TBT -->
     <script>
+      function initPage() {
         // Scroll reveal animations
         const observerOptions = {
             root: null,
@@ -2572,6 +2573,13 @@
                 }
             });
         }
+    } // end initPage
+
+    if ('requestIdleCallback' in window) {
+        requestIdleCallback(initPage, { timeout: 2000 });
+    } else {
+        setTimeout(initPage, 200);
+    }
     </script>
 </body>
 </html>
