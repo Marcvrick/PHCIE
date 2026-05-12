@@ -89,7 +89,8 @@ Nos-marques/
 - ✅ Mustela : maman enceinte + enfant, produits Mustela, chambre blanche
 - ✅ Biogaran : couple senior, ballon tricolore, plein air
 - ✅ PiLeJe : maman + nouveau-né, chambre blanche
-- 🟡 Reste à faire (2) : Nat&Form, Boiron
+- ✅ Boiron : femme sportive, coucher de soleil Provence, oliviers
+- 🟡 Reste à faire (1) : Nat&Form
 - 📄 Voir [`HERO-IMAGE-PROMPTS.md`](HERO-IMAGE-PROMPTS.md) pour les 15 prompts (style Air France, 1 par marque, incarnation de l'identité)
 - 📷 Convention : `Nos-marques/logos/{BrandName}-hero.jpg` (ex: `Bioderma-hero.jpg`, `La-Roche-Posay-hero.jpg`)
 
