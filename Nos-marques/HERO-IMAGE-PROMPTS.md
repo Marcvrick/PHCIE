@@ -216,25 +216,27 @@ photography, the bond between owner and animal.
 
 ### 8. Biogaran — *Médicaments génériques français accessibles, leader pharmacie*
 
-> **Identité visuelle** : la marque #1 des génériques en France. Identité = pharmacie de confiance, simple, accessible. Pas de glamour — la pharmacie de quartier.
+> **Identité visuelle** : la marque #1 des génériques en France. Tagline : "Acting for health, everyday." Identité = santé accessible à tous, au quotidien. La marque utilise des scènes multigénérationnelles et diversifiées — familles réelles, joie spontanée, toutes origines confondues. Pas de glamour, pas de Provence — la vie française réelle, lumineuse.
 
 ```
 Editorial photograph, French refined poster aesthetic in the spirit of 
-classic Air France advertising. Close-up over-the-shoulder view of a 
-French pharmacist's hands gently handing a small white pharmaceutical 
-box to a customer's hand across a polished wooden pharmacy counter. 
-Both hands are partially visible, gestures unhurried and reassuring. 
-Behind the pharmacist, soft-focus rows of pharmacy shelving with 
-neutral-colored boxes catch the warm light from a window. The 
-pharmacy is intimate, French neighborhood scale.
+classic Air France advertising. A warm multigenerational scene in a 
+bright, modern French home: a grandmother in her sixties (Black French) 
+sits in a sunlit living room, her granddaughter of about 7 climbing 
+joyfully into her lap with arms wide open. The grandmother is laughing — 
+genuinely, eyes crinkling — and catching the child. In soft focus behind 
+them, the child's mother (30s) leans in the doorway, smiling naturally. 
+The room is bright and simply furnished, morning light flooding in from 
+a large window. No products, no props — just three generations in a 
+spontaneous moment of everyday joy and connection.
 
-Color palette: warm cream (#FCF5F0) dominant with soft amber-wood 
-tones, single accent of clean medicinal blue (#0066CC) in the 
-suggested box detail. Generous empty space on the upper-left of the 
-frame for text overlay. No faces visible, no jewelry, no text, no 
-logos. French neighborhood pharmacy heritage, the trusted moment of 
-care. Aspect ratio 21:9. Photorealistic editorial documentary 
-photography, intimate and warm.
+Color palette: warm cream (#FCF5F0) dominant with bright morning light 
+tones, single accent of clean medicinal blue (#0066CC) in a small 
+clothing detail (a shirt collar, a hairband). Generous empty space on 
+the upper-left of the frame for text overlay. Natural expressions only — 
+no posed smiles, genuine laughter. No jewelry, no text, no logos. 
+Health as everyday joy, for every family. Aspect ratio 21:9. 
+Photorealistic editorial lifestyle photography, warm and luminous.
 ```
 
 ---
@@ -265,26 +267,26 @@ morning ritual, accessible herbalism, unhurried wellness. Aspect ratio
 
 ### 10. PiLeJe — *Micronutrition scientifique française, Lactibiane (microbiote)*
 
-> **Identité visuelle** : marque haut-de-gamme française. Identité = science + bien-être. Cible = adultes informés cherchant approche scientifique du bien-être.
+> **Identité visuelle** : marque française de micronutrition, connue pour Lactibiane (microbiote intestinal). Identité = science accessible, bien-être pour toute la famille au quotidien. Cible large : adultes 25-55 ans, toutes origines. La photo doit montrer la chaleur d'une famille réelle dans un moment de bien-être partagé — pas une femme seule sur un coussin de méditation.
 
 ```
 Editorial photograph, French refined poster aesthetic in the spirit of 
-classic Air France advertising. A composed woman in her early forties, 
-in a soft white cashmere sweater, sits cross-legged on a pale-grey 
-linen meditation cushion in a sun-drenched minimalist Provence room, 
-calmly drinking from a small glass of pale herbal liquid. Her eyes are 
-open, focused softly inward. On the wooden floor beside her: a small 
-clear glass test tube on a wooden holder, a single sprig of fresh 
-rosemary, and a leather-bound notebook. The room is sparse, with one 
-large window letting in afternoon light.
+classic Air France advertising. A French couple in their late thirties — 
+he is of North African descent, she is mixed-race — share a relaxed 
+breakfast at a bright kitchen table in a modern Parisian apartment. 
+They are mid-conversation, both genuinely laughing about something. 
+On the table: two large glasses of water, a bowl of fresh fruit, 
+simple white dishes. Morning light fills the room from a wide window 
+behind them. Their body language is easy and close — two people who 
+feel genuinely well and at ease together.
 
-Color palette: warm cream (#FCF5F0) dominant with cool morning-light 
-tones, single accent of deep teal (#1B5E5A) in the glass test tube 
-and suggested packaging. Generous empty space on the upper-left of 
-the frame for text overlay. No makeup, no jewelry, no text, no logos. 
-French scientific elegance meets premium wellness ritual. Aspect ratio 
-21:9. Photorealistic editorial lifestyle photography, refined and 
-intentional.
+Color palette: warm cream (#FCF5F0) dominant with fresh morning light 
+tones, single accent of deep teal (#1B5E5A) in a small detail (a mug, 
+a tile backsplash, a shirt). Generous empty space on the upper-left of 
+the frame for text overlay. Natural expressions only, no posed smiles. 
+No jewelry, no text, no logos. Everyday health as shared vitality and 
+connection. Aspect ratio 21:9. Photorealistic editorial lifestyle 
+photography, warm and genuine.
 ```
 
 ---
@@ -342,26 +344,27 @@ soft and pure.
 
 ### 13. Aragan — *Micronutrition premium française, Synactifs, femme active*
 
-> **Identité visuelle** : marque française premium de micronutrition. Cible = femme active 35-55 ans soucieuse de son bien-être global.
+> **Identité visuelle** : marque française premium de micronutrition, gamme Synactifs. Cible = femme active 35-55 ans. Mais l'identité est chaleur et vitalité partagée — pas une femme seule en Provence. La photo montre deux femmes d'âges différents (mère et fille adulte, ou deux amies) dans un moment de bien-être quotidien partagé, diverse, réel et lumineux.
 
 ```
 Editorial photograph, French refined poster aesthetic in the spirit of 
-classic Air France advertising. A graceful French woman in her late 
-forties, in profile, sits on the cream-tiled terrace of a Provence 
-villa at golden hour, sipping from a small cup of herbal infusion. She 
-wears a simple cream-colored silk shirt, hair pulled back loosely. Her 
-eyes are softly closed, her expression peaceful. Behind her: a row of 
-old olive trees casts long shadows; a small notebook and a single 
-amber-glass supplement bottle rest on a wrought-iron table beside her. 
-The Mediterranean light is rich gold.
+classic Air France advertising. Two women at a bright kitchen table in 
+a warm French apartment — one in her late forties (Black French, 
+natural hair, linen shirt), the other in her early twenties (her 
+daughter). They are both mid-laugh, leaning slightly toward each other, 
+hands wrapped around ceramic mugs of tea or warm water. The table 
+between them is simple: two mugs, a small bowl of almonds, morning 
+light from a window catching the steam rising from the cups. Their 
+energy is easy, close, genuinely warm — two women who take care of 
+themselves and each other.
 
-Color palette: warm cream (#FCF5F0) dominant with golden-hour Provence 
-tones, single accent of rich golden amber (#B8860B) in the supplement 
-bottle and the suggested oil tones. Generous empty space on the 
-upper-left of the frame for text overlay. No makeup, no jewelry, no 
-text, no logos. French Provençal grace, the quiet ritual of midlife 
-self-care. Aspect ratio 21:9. Photorealistic editorial lifestyle 
-photography, sophisticated and serene.
+Color palette: warm cream (#FCF5F0) dominant with gentle golden morning 
+tones, single accent of rich warm amber (#B8860B) in the ceramic mugs 
+and the window light. Generous empty space on the upper-left of the 
+frame for text overlay. Natural expressions only — genuine laughter, 
+not posed. No jewelry, no text, no logos. Premium wellbeing as 
+something you share, not perform alone. Aspect ratio 21:9. 
+Photorealistic editorial lifestyle photography, luminous and real.
 ```
 
 ---
@@ -389,28 +392,30 @@ no text, no logos, no other props. Aspect ratio 21:9 ultra-wide hero.
 
 ---
 
-### 15. Bion 3 — *Probiotiques, vitamines, minéraux — vitalité quotidienne*
+### 15. Bion 3 — *Comprimé tri-couche breveté : 3 ferments probiotiques + 12 vitamines + 7 minéraux*
 
-> **Identité visuelle** : marque dynamique française. Identité = trois actions complémentaires, énergie, vitalité, adultes actifs busy. Couleur signature = orange/rouge énergie.
+> **Identité visuelle** : le signe distinctif de la marque est son **comprimé tri-couche** — un seul comprimé aux trois bandes de couleurs visibles, chaque couche représentant une action distincte (libération immédiate / ferments probiotiques protégés / libération prolongée). C'est le seul complément en pharmacie avec cette technologie visible à l'œil nu. Tagline : **"forts de l'intérieur"**. La photo doit incarner cette idée d'intériorité et de profondeur, pas l'effort physique externe. Couleur signature packaging = bleu nuit + blanc. La cible principale est l'adulte 30-50 ans, prise quotidienne toute l'année.
 
 ```
 Editorial photograph, French refined poster aesthetic in the spirit of 
-classic Air France advertising. A French woman in her thirties, in 
-running attire (simple white tank, neutral leggings), is captured in a 
-quiet pause moment on a sun-drenched Provence path at sunrise. She 
-stands with one hand on her hip, her back partly to camera, looking 
-out toward warm rolling hills. Her hair is tied up loosely. Behind her 
-on a low stone wall: a glass water bottle and a small white pill 
-container in soft focus. The light is fresh, energetic, French 
-countryside morning.
+classic Air France advertising. A French woman in her early forties 
+stands at a large sun-filled kitchen window in the morning, eyes open 
+and softly alert, her expression one of quiet, grounded energy — not 
+athletic effort, but deep inner vitality. She holds a tall glass of 
+water loosely at her side, mid-sip. She wears a simple off-white 
+linen shirt, sleeves rolled. On the wooden counter beside her: a small 
+ceramic bowl with three walnuts, a sprig of fresh thyme, and a neat 
+stack of two books. The morning light from the window falls clean and 
+cool-warm across her face and shoulder.
 
-Color palette: warm cream (#FCF5F0) dominant with golden-pink sunrise 
-tones, single accent of energizing red-orange (#E94E1B) in her running 
-top trim or the suggested packaging. Generous empty space on the 
-upper-left of the frame for text overlay. No makeup, no jewelry, no 
-text, no logos. French active vitality, sunrise countryside fresh start. 
-Aspect ratio 21:9. Photorealistic editorial lifestyle photography, 
-dynamic yet refined.
+Color palette: warm cream (#FCF5F0) dominant with fresh morning light 
+tones — not golden hour, but the clear bright light of 8am. Single 
+accent of deep navy blue (#003D7A) in a small detail (a book spine, a 
+ceramic glaze, or the shadow gradient on the linen). Generous empty 
+space on the upper-left of the frame for text overlay. No makeup, no 
+jewelry, no text, no logos. The feeling is: this woman is quietly, 
+deeply well — strength from within, not performance. Aspect ratio 21:9. 
+Photorealistic editorial lifestyle photography, composed and luminous.
 ```
 
 ---
@@ -531,23 +536,23 @@ La valeur `65% center` fonctionne pour la majorité des photos avec sujet à dro
 
 Le `BrandName` reprend la casse officielle de la marque, hyphens pour les espaces, sans accents (cross-platform safety) :
 
-| Slug (script) | Nom de fichier |
-|---|---|
-| `bioderma` | `Bioderma-hero.jpg` ✅ |
-| `la-roche-posay` | `La-Roche-Posay-hero.jpg` ✅ |
-| `avene` | `Avene-hero.jpg` ✅ |
-| `nuxe` | `Nuxe-hero.jpg` ✅ |
-| `larosee` | `La-Rosee-hero.jpg` ✅ |
-| `klorane` | `Klorane-hero.jpg` ✅ |
-| `biocanina` | `Biocanina-hero.jpg` ✅ |
-| `sid-nutrition` | `SID-Nutrition-hero.jpg` ✅ |
-| `biogaran` | `Biogaran-hero.jpg` (à venir) |
-| `natform` | `NatForm-hero.jpg` (à venir) |
-| `pileje` | `PiLeJe-hero.jpg` (à venir) |
-| `boiron` | `Boiron-hero.jpg` (à venir) |
-| `mustela` | `Mustela-hero.jpg` (à venir) |
-| `aragan` | `Aragan-hero.jpg` (à venir) |
-| `bion3` | `Bion-3-hero.jpg` (à venir) |
+| Slug (script)    | Nom de fichier                |
+| ---------------- | ----------------------------- |
+| `bioderma`       | `Bioderma-hero.jpg` ✅         |
+| `la-roche-posay` | `La-Roche-Posay-hero.jpg` ✅   |
+| `avene`          | `Avene-hero.jpg` ✅            |
+| `nuxe`           | `Nuxe-hero.jpg` ✅             |
+| `larosee`        | `La-Rosee-hero.jpg` ✅         |
+| `klorane`        | `Klorane-hero.jpg` ✅          |
+| `biocanina`      | `Biocanina-hero.jpg` ✅        |
+| `sid-nutrition`  | `SID-Nutrition-hero.jpg` ✅    |
+| `biogaran`       | `Biogaran-hero.jpg` (à venir) |
+| `natform`        | `NatForm-hero.jpg` (à venir)  |
+| `pileje`         | `PiLeJe-hero.jpg` (à venir)   |
+| `boiron`         | `Boiron-hero.jpg` (à venir)   |
+| `mustela`        | `Mustela-hero.jpg` (à venir)  |
+| `aragan`         | `Aragan-hero.jpg` (à venir)   |
+| `bion3`          | `Bion-3-hero.jpg` (à venir)   |
 
 **Format de sortie cible** :
 - JPEG progressif qualité 82
