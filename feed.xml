@@ -5,13 +5,21 @@
     <link>https://www.pharmaciecharnal.com</link>
     <description>Au comptoir de la Pharmacie Charnal a Queven : conseils sante, prevention hiver, vaccinations, phytotherapie, dermatologie. Articles rediges par nos pharmaciens.</description>
     <language>fr-FR</language>
-    <lastBuildDate>Sun, 22 Mar 2026 12:00:00 +0100</lastBuildDate>
+    <lastBuildDate>Mon, 11 May 2026 09:00:00 +0200</lastBuildDate>
     <atom:link href="https://www.pharmaciecharnal.com/feed.xml" rel="self" type="application/rss+xml"/>
     <image>
       <url>https://www.pharmaciecharnal.com/images/pharmacie-charnal-logo.png</url>
       <title>Blog Pharmacie Charnal - Au comptoir</title>
       <link>https://www.pharmaciecharnal.com</link>
     </image>
+
+    <item>
+      <title>Quel shampoing pharmacie choisir en 2026? Klorane, Nuxe, Bioderma, Avène</title>
+      <link>https://www.pharmaciecharnal.com/blog/quel-shampoing-pharmacie-choisir-queven.html</link>
+      <guid>https://www.pharmaciecharnal.com/blog/quel-shampoing-pharmacie-choisir-queven.html</guid>
+      <pubDate>Mon, 11 May 2026 09:00:00 +0200</pubDate>
+      <description>Klorane, Bioderma, Avène, Nuxe : 4 marques, 4 profils capillaires differents. Notre guide pour choisir le shampoing pharmacie adapte a votre cuir chevelu a Queven, Bretagne.</description>
+    </item>
 
     <item>
       <title>Allergie au pollen : comment bien vivre la saison en Bretagne?</title>

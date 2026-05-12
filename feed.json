@@ -16,6 +16,37 @@
   "language": "fr-FR",
   "items": [
     {
+      "id": "https://www.pharmaciecharnal.com/blog/quel-shampoing-pharmacie-choisir-queven.html",
+      "url": "https://www.pharmaciecharnal.com/blog/quel-shampoing-pharmacie-choisir-queven.html",
+      "title": "Quel shampoing pharmacie choisir en 2026? Klorane, Nuxe, Bioderma, Avène",
+      "content_html": "Klorane, Bioderma, Avène, Nuxe : quatre marques, quatre profils capillaires différents. Notre guide pour choisir le shampoing pharmacie adapté à votre cuir chevelu.",
+      "summary": "Klorane, Bioderma, Avène, Nuxe : 4 marques, 4 profils. Notre guide 2026 pour choisir le shampoing pharmacie adapté à votre cuir chevelu. Quéven, Bretagne.",
+      "date_published": "2026-05-11T09:00:00+02:00",
+      "date_modified": "2026-05-11T09:00:00+02:00",
+      "image": "https://www.pharmaciecharnal.com/images/Blog%20photos/blog-18-shampoings-pharmacie.jpg",
+      "authors": [
+        {
+          "name": "Laure Charnal"
+        }
+      ],
+      "tags": [
+        "shampoing",
+        "Klorane",
+        "Bioderma",
+        "Avène",
+        "Nuxe",
+        "cuir chevelu",
+        "parapharmacie",
+        "capillaire"
+      ],
+      "language": "fr-FR",
+      "_medical_topic": {
+        "conditions": ["Chute de cheveux", "Cuir chevelu sensible", "Eczéma séborrhéique", "Psoriasis"],
+        "audience": "Patient",
+        "specialty": "Pharmacie"
+      }
+    },
+    {
       "id": "https://www.pharmaciecharnal.com/blog/14-paracetamol-ibuprofene-aspirine/paracetamol-ibuprofene-aspirine-lequel-choisir-queven.html",
       "url": "https://www.pharmaciecharnal.com/blog/14-paracetamol-ibuprofene-aspirine/paracetamol-ibuprofene-aspirine-lequel-choisir-queven.html",
       "title": "Paracétamol, ibuprofène, aspirine : lequel choisir et pourquoi ?",
