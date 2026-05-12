@@ -87,7 +87,8 @@ Nos-marques/
 - ✅ Bion 3 : femme 40+ verre d'eau cuisine française, walnuts + thyme
 - ✅ Aragan : couple cuisine moderne, boîte Synactifs + verre d'eau
 - ✅ Mustela : maman enceinte + enfant, produits Mustela, chambre blanche
-- 🟡 Reste à faire (4) : Biogaran, Nat&Form, PiLeJe, Boiron
+- ✅ Biogaran : couple senior, ballon tricolore, plein air
+- 🟡 Reste à faire (3) : Nat&Form, PiLeJe, Boiron
 - 📄 Voir [`HERO-IMAGE-PROMPTS.md`](HERO-IMAGE-PROMPTS.md) pour les 15 prompts (style Air France, 1 par marque, incarnation de l'identité)
 - 📷 Convention : `Nos-marques/logos/{BrandName}-hero.jpg` (ex: `Bioderma-hero.jpg`, `La-Roche-Posay-hero.jpg`)
 
