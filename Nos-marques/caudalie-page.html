@@ -1775,6 +1775,59 @@
     ]
     </script>
     <link rel="alternate" type="application/rss+xml" title="Blog Pharmacie Charnal" href="https://www.pharmaciecharnal.com/feed.xml">
+    <style>
+        /* Mobile nav — slide depuis droite (identique index.html) */
+        .hamburger-line { transition: all 0.3s ease; }
+        .mobile-menu-toggle[aria-expanded="true"] .hamburger-line:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+        .mobile-menu-toggle[aria-expanded="true"] .hamburger-line:nth-child(2) { opacity: 0; }
+        .mobile-menu-toggle[aria-expanded="true"] .hamburger-line:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+        @media (max-width: 767px) {
+            .nav-links {
+                position: fixed !important;
+                top: 72px !important;
+                right: 0 !important;
+                left: auto !important;
+                background: #ffffff !important;
+                width: 100% !important;
+                max-width: 280px !important;
+                flex-direction: column !important;
+                padding: 32px !important;
+                gap: 24px !important;
+                box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1) !important;
+                transform: translateX(100%) !important;
+                transition: transform 0.3s ease-in-out !important;
+                overflow-y: auto !important;
+                border-bottom: none !important;
+                z-index: 1001 !important;
+            }
+            .nav-links.active {
+                display: flex !important;
+                transform: translateX(0) !important;
+            }
+            .nav-dropdown-menu {
+                position: static !important;
+                display: flex !important;
+                flex-direction: column !important;
+                gap: 8px !important;
+                padding-left: 16px !important;
+                border-left: 2px solid #D4E8E0 !important;
+                margin-top: 8px !important;
+                box-shadow: none !important;
+                background: transparent !important;
+                border-radius: 0 !important;
+                border-right: none !important;
+                border-top: none !important;
+                border-bottom: none !important;
+                list-style: none !important;
+                opacity: 1 !important;
+                visibility: visible !important;
+                transform: none !important;
+                transition: none !important;
+            }
+            .nav-dropdown-toggle::after { display: none !important; }
+        }
+    </style>
 </head>
 <body>
     <!-- Navigation -->
