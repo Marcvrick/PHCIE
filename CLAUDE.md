@@ -197,19 +197,40 @@ Autoriser: GPTBot, PerplexityBot, Claude-Web, Google-Extended
 
 Appliqué sur les 15 pages marques le 2026-05-12.
 
-### Hero photo — preload obligatoire
+### Hero photo — `<img>` obligatoire, PAS de CSS background
 
-Toute page marque avec photo hero doit avoir dans `<head>` (avant les fonts) :
-```html
-<link rel="preload" as="image" href="logos/{BrandName}-hero.jpg" fetchpriority="high" type="image/jpeg">
+**JAMAIS `background: url(...)` pour le hero photo** — le browser preload scanner ne trouve pas les CSS backgrounds pendant le parse HTML. Résultat : LCP +1–2s vs un `<img>`.
+
+**Pattern obligatoire (appliqué sur les 15 pages marques le 2026-05-12) :**
+
+```css
+/* CSS : pas de background sur .hero */
+.hero { position: relative; min-height: calc(100vh - 120px); ... overflow: hidden; }
+
+.hero-img {
+    position: absolute; inset: 0;
+    width: 100%; height: 100%;
+    object-fit: cover; object-position: center; z-index: 0;
+}
+@media (max-width: 1023px) { .hero-img { object-position: 65% center; } }
+
+.hero::before { ...; z-index: 1; /* overlay doit être au-dessus de l'img */ }
+.hero-content { position: relative; z-index: 2; }
 ```
-Si le format est WebP : `type="image/webp"`. L'URL doit correspondre exactement à celle du CSS (`background: url(...)`) sinon le preload ne s'applique pas.
+
+```html
+<!-- HTML : premier enfant de <section class="hero"> -->
+<img src="logos/{BrandName}-hero.jpg" alt="" class="hero-img"
+     fetchpriority="high" loading="eager" decoding="async" aria-hidden="true">
+```
+
+- **Pas de `<link rel="preload" as="image">`** — le `fetchpriority="high"` sur l'`<img>` suffit et est plus fiable.
+- `object-position` remplace `background-position` pour le recadrage mobile (ajuster % selon position du sujet dans la photo).
 
 ### Goulots restants (non résolus — info)
 
-- **LCP** : le hero en CSS `background-image` est moins optimal qu'un `<img fetchpriority="high">` — à refactoriser si LCP reste > 4s après le fix fonts
-- **TBT** : ~1 000 lignes de CSS inline par page + 40 éléments `.reveal` — à résoudre en externalisant le CSS (nécessite migration vers Vercel ou build step)
-- **TTFB** : GitHub Pages CDN sans contrôle des cache headers — Vercel (`vercel.json` déjà présent) résoudrait ça
+- **TBT ~150ms** : ~1 000 lignes de CSS inline par page + 40 éléments `.reveal` — externaliser le CSS (nécessite build step ou migration Vercel)
+- **TTFB / FCP floor ~2.5s** : GitHub Pages CDN sans contrôle des cache headers — Vercel (`vercel.json` déjà présent) résoudrait ça avec edge caching
 
 ---
 
@@ -429,8 +450,7 @@ Chaque page marque doit contenir dans cet ordre :
 5. `<meta name="description">` : unique par marque, mentionner Queven
 6. `<link rel="canonical">` : `https://www.pharmaciecharnal.com/Nos-marques/nom-page.html`
 7. OG tags (type, url, title, description, image, locale)
-8. **Hero photo preload** (si page avec photo hero) : `<link rel="preload" as="image" href="logos/{BrandName}-hero.jpg" fetchpriority="high" type="image/jpeg">`
-9. Google Fonts — **pattern async obligatoire** (voir section Performance Mobile) — JAMAIS `rel="stylesheet"` synchrone
+8. Google Fonts — **pattern async obligatoire** (voir section Performance Mobile) — JAMAIS `rel="stylesheet"` synchrone
 10. `<style>` inline avec variables CSS de la marque
 
 ### Hero Photo — Workflow d'intégration (standard 2026-05-12)
@@ -438,21 +458,30 @@ Chaque page marque doit contenir dans cet ordre :
 1. **Optimiser** : `./scripts/optimize-hero.sh ~/Downloads/photo.png {slug}` → sauve dans `logos/{BrandName}-hero.jpg`
 2. **CSS hero** (remplace le gradient) :
 ```css
-.hero { background: url('logos/{BrandName}-hero.jpg') center/cover no-repeat; }
-.hero::before { content:''; position:absolute; inset:0;
-    background: linear-gradient(90deg, rgba(252,245,240,0.93) 0%, rgba(252,245,240,0.76) 30%, rgba(252,245,240,0.36) 55%, transparent 75%);
-    pointer-events: none; }
+/* Supprimer background: url(...) du .hero */
+.hero-img {
+    position: absolute; inset: 0; width: 100%; height: 100%;
+    object-fit: cover; object-position: center; z-index: 0;
+}
+@media (max-width: 1023px) { .hero-img { object-position: 65% center; } }
+/* Ajuster % selon la position du sujet dans la photo */
+
+.hero::before { ...; z-index: 1; } /* overlay au-dessus de l'img */
 .hero-bubbles, .bubble { display: none; }
 .hero-visual { display: none !important; }
-@media (min-width:1024px) { .hero-content { grid-template-columns: minmax(0,620px); } }
-@media (max-width:1023px) {
-    .hero { background-position: 65% center; }
+@media (min-width: 1024px) { .hero-content { grid-template-columns: minmax(0, 620px); } }
+@media (max-width: 1023px) {
     .hero::before { background: linear-gradient(180deg, rgba(252,245,240,0.86) 0%, rgba(252,245,240,0.56) 50%, rgba(252,245,240,0.46) 100%); }
 }
 ```
-3. **h1 couleurs** : `color: var(--charcoal)` + span `color: var(--teal-dark)`
-4. **Preload** dans `<head>` : `<link rel="preload" as="image" href="logos/{BrandName}-hero.jpg" fetchpriority="high">`
-5. **Commit** : `git add {slug}-page.html logos/{BrandName}-hero.jpg && git commit -m "feat({slug}): add hero photo background"`
+3. **HTML** — premier enfant de `<section class="hero">` :
+```html
+<img src="logos/{BrandName}-hero.jpg" alt="" class="hero-img"
+     fetchpriority="high" loading="eager" decoding="async" aria-hidden="true">
+```
+4. **h1 couleurs** : `color: var(--charcoal)` + span `color: var(--teal-dark)`
+5. **Pas de `<link rel="preload" as="image">`** — le `fetchpriority="high"` sur l'`<img>` est suffisant
+6. **Commit** : `git add {slug}-page.html logos/{BrandName}-hero.jpg && git commit -m "feat({slug}): add hero photo background"`
 
 ### Template
 
