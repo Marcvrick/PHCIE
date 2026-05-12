@@ -88,7 +88,8 @@ Nos-marques/
 - ✅ Aragan : couple cuisine moderne, boîte Synactifs + verre d'eau
 - ✅ Mustela : maman enceinte + enfant, produits Mustela, chambre blanche
 - ✅ Biogaran : couple senior, ballon tricolore, plein air
-- 🟡 Reste à faire (3) : Nat&Form, PiLeJe, Boiron
+- ✅ PiLeJe : maman + nouveau-né, chambre blanche
+- 🟡 Reste à faire (2) : Nat&Form, Boiron
 - 📄 Voir [`HERO-IMAGE-PROMPTS.md`](HERO-IMAGE-PROMPTS.md) pour les 15 prompts (style Air France, 1 par marque, incarnation de l'identité)
 - 📷 Convention : `Nos-marques/logos/{BrandName}-hero.jpg` (ex: `Bioderma-hero.jpg`, `La-Roche-Posay-hero.jpg`)
 
