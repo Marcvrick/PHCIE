@@ -703,13 +703,25 @@ Comme la card logo a été masquée du hero, ajouter une 5e card dans la grille 
 </article>
 ```
 
-### Pages déjà migrées (référence)
+### Pages déjà migrées (référence) — 15/15 ✅ (2026-05-12)
 
-| Page | Photo | Logo card | Statut |
-|---|---|---|---|
-| [`sid-nutrition-page.html`](sid-nutrition-page.html) | apothicaire + romarin | ❌ pas de section Innovations à compléter | ✅ |
-| [`biocanina-page.html`](biocanina-page.html) | femme + golden retriever | 🟡 logo card à ajouter | 🟡 partiel |
-| [`klorane-page.html`](klorane-page.html) | maman + fille bain Provence | ✅ logo dans 5e card Innovations | ✅ |
+| Page | Photo | Statut |
+|---|---|---|
+| [`la-roche-posay-page.html`](la-roche-posay-page.html) | épaule + brume thermale, gradient stone-grey | ✅ |
+| [`avene-page.html`](avene-page.html) | femme + spray eau thermale, terrasse Pyrénées | ✅ |
+| [`bioderma-page.html`](bioderma-page.html) | femme + coton Sensibio H2O, salle de bain | ✅ |
+| [`nuxe-page.html`](nuxe-page.html) | femme + flacon Huile Prodigieuse, golden hour | ✅ |
+| [`klorane-page.html`](klorane-page.html) | maman + fille, salle de bain Provence | ✅ |
+| [`larosee-page.html`](larosee-page.html) | Parisienne, fenêtre, rose poudrée | ✅ |
+| [`biocanina-page.html`](biocanina-page.html) | femme + golden retriever, jardin Provence | ✅ |
+| [`bion3-page.html`](bion3-page.html) | femme 40+, verre d'eau, cuisine française | ✅ |
+| [`sid-nutrition-page.html`](sid-nutrition-page.html) | apothicaire still-life + romarin, Provence | ✅ |
+| [`aragan-page.html`](aragan-page.html) | couple cuisine moderne, boîte Synactifs | ✅ |
+| [`mustela-page.html`](mustela-page.html) | maman enceinte + enfant, produits Mustela | ✅ |
+| [`biogaran-page.html`](biogaran-page.html) | couple senior, ballon tricolore, plein air | ✅ |
+| [`pileje-page.html`](pileje-page.html) | maman + nouveau-né, chambre blanche | ✅ |
+| [`boiron-page.html`](boiron-page.html) | femme sportive, coucher de soleil Provence | ✅ |
+| [`natform-page.html`](natform-page.html) | coureur trail, nature (source nat-form.com) | ✅ |
 
 ---
 

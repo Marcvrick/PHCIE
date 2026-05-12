@@ -180,6 +180,39 @@ Autoriser: GPTBot, PerplexityBot, Claude-Web, Google-Extended
 
 ---
 
+## Performance Mobile (RÈGLE OBLIGATOIRE — pages marques)
+
+### Google Fonts — chargement non-bloquant
+
+**JAMAIS `<link rel="stylesheet">` synchrone pour Google Fonts** — c'est un render-blocker qui retarde FCP/LCP de 1–2s sur mobile (Lighthouse 69 → cible 85+).
+
+**Pattern obligatoire sur toutes les pages marques :**
+```html
+<!-- Fonts — non-render-blocking -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap" onload="this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap"></noscript>
+```
+
+Appliqué sur les 15 pages marques le 2026-05-12.
+
+### Hero photo — preload obligatoire
+
+Toute page marque avec photo hero doit avoir dans `<head>` (avant les fonts) :
+```html
+<link rel="preload" as="image" href="logos/{BrandName}-hero.jpg" fetchpriority="high" type="image/jpeg">
+```
+Si le format est WebP : `type="image/webp"`. L'URL doit correspondre exactement à celle du CSS (`background: url(...)`) sinon le preload ne s'applique pas.
+
+### Goulots restants (non résolus — info)
+
+- **LCP** : le hero en CSS `background-image` est moins optimal qu'un `<img fetchpriority="high">` — à refactoriser si LCP reste > 4s après le fix fonts
+- **TBT** : ~1 000 lignes de CSS inline par page + 40 éléments `.reveal` — à résoudre en externalisant le CSS (nécessite migration vers Vercel ou build step)
+- **TTFB** : GitHub Pages CDN sans contrôle des cache headers — Vercel (`vercel.json` déjà présent) résoudrait ça
+
+---
+
 ## Spécifications Techniques
 
 ### Google Analytics
@@ -396,8 +429,30 @@ Chaque page marque doit contenir dans cet ordre :
 5. `<meta name="description">` : unique par marque, mentionner Queven
 6. `<link rel="canonical">` : `https://www.pharmaciecharnal.com/Nos-marques/nom-page.html`
 7. OG tags (type, url, title, description, image, locale)
-8. Google Fonts (Cormorant Garamond + DM Sans)
-9. `<style>` inline avec variables CSS de la marque
+8. **Hero photo preload** (si page avec photo hero) : `<link rel="preload" as="image" href="logos/{BrandName}-hero.jpg" fetchpriority="high" type="image/jpeg">`
+9. Google Fonts — **pattern async obligatoire** (voir section Performance Mobile) — JAMAIS `rel="stylesheet"` synchrone
+10. `<style>` inline avec variables CSS de la marque
+
+### Hero Photo — Workflow d'intégration (standard 2026-05-12)
+
+1. **Optimiser** : `./scripts/optimize-hero.sh ~/Downloads/photo.png {slug}` → sauve dans `logos/{BrandName}-hero.jpg`
+2. **CSS hero** (remplace le gradient) :
+```css
+.hero { background: url('logos/{BrandName}-hero.jpg') center/cover no-repeat; }
+.hero::before { content:''; position:absolute; inset:0;
+    background: linear-gradient(90deg, rgba(252,245,240,0.93) 0%, rgba(252,245,240,0.76) 30%, rgba(252,245,240,0.36) 55%, transparent 75%);
+    pointer-events: none; }
+.hero-bubbles, .bubble { display: none; }
+.hero-visual { display: none !important; }
+@media (min-width:1024px) { .hero-content { grid-template-columns: minmax(0,620px); } }
+@media (max-width:1023px) {
+    .hero { background-position: 65% center; }
+    .hero::before { background: linear-gradient(180deg, rgba(252,245,240,0.86) 0%, rgba(252,245,240,0.56) 50%, rgba(252,245,240,0.46) 100%); }
+}
+```
+3. **h1 couleurs** : `color: var(--charcoal)` + span `color: var(--teal-dark)`
+4. **Preload** dans `<head>` : `<link rel="preload" as="image" href="logos/{BrandName}-hero.jpg" fetchpriority="high">`
+5. **Commit** : `git add {slug}-page.html logos/{BrandName}-hero.jpg && git commit -m "feat({slug}): add hero photo background"`
 
 ### Template
 
