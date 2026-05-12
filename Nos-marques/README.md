@@ -85,7 +85,8 @@ Nos-marques/
 - ✅ Bioderma : femme + coton imbibé Sensibio H2O, salle de bain matin
 - ✅ La Roche-Posay : épaule + brume thermale, gradient stone-grey
 - ✅ Bion 3 : femme 40+ verre d'eau cuisine française, walnuts + thyme
-- 🟡 Reste à faire (6) : Biogaran, Nat&Form, PiLeJe, Boiron, Mustela, Aragan
+- ✅ Aragan : couple cuisine moderne, boîte Synactifs + verre d'eau
+- 🟡 Reste à faire (5) : Biogaran, Nat&Form, PiLeJe, Boiron, Mustela
 - 📄 Voir [`HERO-IMAGE-PROMPTS.md`](HERO-IMAGE-PROMPTS.md) pour les 15 prompts (style Air France, 1 par marque, incarnation de l'identité)
 - 📷 Convention : `Nos-marques/logos/{BrandName}-hero.jpg` (ex: `Bioderma-hero.jpg`, `La-Roche-Posay-hero.jpg`)
 
