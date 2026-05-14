@@ -129,6 +129,12 @@ Exemples de pièges courants :
 
 **Navigation bas d'article:** Renommer le bloc "Article précédent" → "Pour aller plus loin" (ou "À lire aussi") et y placer l'article le plus complémentaire au sujet, choisi par contexte. Le tri chronologique (article précédent / suivant) est interdit — il génère des liens incohérents quand les sujets ne se suivent pas.
 
+**Liens contextuels sur mots-clés dans le corps du texte (OBLIGATOIRE sur chaque nouvel article):** En plus des blocs "À lire aussi" et de la navigation bas d'article, identifier dans le corps du texte 1 à 2 mots-clés qui renvoient naturellement vers un autre article existant. Les insérer sous forme de `<a href="...">mot-clé</a>` directement dans la phrase, sans modifier le texte. Règles:
+- Cibler la **première occurrence** du mot-clé dans le body (pas dans les meta, schémas ou nav)
+- Le lien doit être naturel: "paracétamol" → article paracétamol/ibuprofène, "compléments alimentaires" → article 13-compléments, "fatigue" → article fatigue hivernale, "troubles du sommeil" → article sommeil, "stress" → article stress examens ou crampes, "douleurs articulaires" → article humidité/arthrose, "tiques" → article tiques Bretagne
+- Ne jamais forcer: si aucun mot-clé pertinent n'apparaît naturellement, ne pas ajouter de lien
+- Ne pas dupliquer un lien déjà présent dans le même article (vérifier les blocs "À lire aussi" existants)
+
 ### Ton de Voix Blog (Voix de Laure — OBLIGATOIRE)
 
 **Chaque article de blog doit être écrit dans la voix de Laure.** Référence: article "Moral en berne".
@@ -412,6 +418,10 @@ Quand Claude cree une nouvelle page HTML :
 - [ ] CTAs → venir en pharmacie
 - [ ] Footer complet avec mentions legales
 - [ ] Accents francais corrects
+
+**5. Performance — articles blog uniquement :**
+- [ ] Hero image : `<img loading="eager" fetchpriority="high">` + `<link rel="preload" as="image">` dans `<head>`
+- [ ] `<script src="../animations.js" defer></script>` — JAMAIS sans `defer`
 
 ---
 
