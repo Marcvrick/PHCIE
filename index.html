@@ -3077,24 +3077,28 @@
             });
         }
 
-        // Scroll animations
-        const observerOptions = {
-            root: null,
-            rootMargin: '0px',
-            threshold: 0.1
-        };
+        const idleCallback = window.requestIdleCallback || (cb => setTimeout(cb, 200));
 
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                    observer.unobserve(entry.target);
-                }
+        // Scroll animations — deferred to idle (visual only, not interaction-critical)
+        idleCallback(() => {
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.1
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            document.querySelectorAll('.fade-up').forEach(el => {
+                observer.observe(el);
             });
-        }, observerOptions);
-
-        document.querySelectorAll('.fade-up').forEach(el => {
-            observer.observe(el);
         });
 
         // ==========================================
@@ -3103,7 +3107,7 @@
         // Fetches blog.html, parses the FIRST .blog-card,
         // and injects its content into the homepage editorial section.
         // When a new article is added to blog.html, this updates automatically.
-        (function loadLatestArticle() {
+        idleCallback(() => {
             fetch('blog.html')
                 .then(function(response) {
                     if (!response.ok) throw new Error('Blog fetch failed');
@@ -3175,7 +3179,7 @@
                     // Fallback: keep the default content (already in HTML)
                     console.log('Latest article auto-fetch: using fallback content', err);
                 });
-        })();
+        });
 
         // Brand spotlight removed — replaced by static brands-strip logos
     </script>
