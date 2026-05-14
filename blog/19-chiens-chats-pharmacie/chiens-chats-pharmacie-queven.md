@@ -18,8 +18,8 @@ tags:
   - Quéven
   - Bretagne
   - parapharmacie
-image: "blog-19-chiens-chats-pharmacie.jpg"
-og_image: "og-19-chiens-chats-pharmacie.jpg"
+image: "blog-20-chiens-chats-pharmacie.jpg"
+og_image: "og-20-chiens-chats-pharmacie.jpg"
 ---
 
 **L'essentiel en 3 points :**
@@ -95,7 +95,6 @@ Petit rappel local : autour de Quéven, les zones les plus à risque sont les bo
 
 **Vous hésitez sur le bon produit pour votre chien ou votre chat?**
 Passez nous voir avec le poids et l'âge de l'animal. Quelques questions suffisent à orienter le choix avant l'achat.
-★ 4,9/5 sur Google · 40 ans au service de Quéven
 32 Place de Toulouse, Quéven
 
 ---

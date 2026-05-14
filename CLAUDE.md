@@ -420,7 +420,7 @@ Quand Claude cree une nouvelle page HTML :
 - [ ] Accents francais corrects
 
 **5. Performance — articles blog uniquement :**
-- [ ] Hero image : `<img loading="eager" fetchpriority="high">` + `<link rel="preload" as="image">` dans `<head>`
+- [ ] Hero image : `<img loading="eager" fetchpriority="high">` — PAS de `<link rel="preload" as="image">` (redondant quand `fetchpriority="high"` est sur l'`<img>`)
 - [ ] `<script src="../animations.js" defer></script>` — JAMAIS sans `defer`
 
 ---
