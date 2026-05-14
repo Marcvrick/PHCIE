@@ -404,10 +404,12 @@ git push origin main
 
 ## 📝 Articles de Blog Publiés
 
-**17 articles en ligne + 2 en préparation** — publication hebdomadaire, chaque lundi. Voir [`blog/`](blog/) pour les sources `.md` organisées en dossiers numérotés (alignés sur les posts GMB). Mapping article → page marque dans [`blog/BRAND-BLOG-MAPPING.md`](blog/BRAND-BLOG-MAPPING.md).
+**19 articles en ligne + 2 en préparation** — publication hebdomadaire, chaque lundi. Voir [`blog/`](blog/) pour les sources `.md` organisées en dossiers numérotés (alignés sur les posts GMB). Mapping article → page marque dans [`blog/BRAND-BLOG-MAPPING.md`](blog/BRAND-BLOG-MAPPING.md).
 
 | # | Date | Article | Source |
 |---|------|---------|--------|
+| 20 | 25 mai 2026 | Peau de bébé (0-3 ans) : la routine de soin essentielle | [`20-routine-soin-bebe/`](blog/20-routine-soin-bebe/) |
+| 19 | 18 mai 2026 | Chiens et chats : les essentiels santé en pharmacie | [`19-chiens-chats-pharmacie/`](blog/19-chiens-chats-pharmacie/) |
 | 17 | 5 mai 2026 | Stress des examens : comment aider les ados | [`17-stress-examens-ados/`](blog/17-stress-examens-ados/) |
 | 16 | 28 avr 2026 | Courbatures et reprise du sport au printemps | [`16-courbatures-reprise-sport/`](blog/16-courbatures-reprise-sport/) |
 | 15 | 21 avr 2026 | Jambes lourdes : comprendre et soulager | [`15-jambes-lourdes/`](blog/15-jambes-lourdes/) |
@@ -430,8 +432,7 @@ git push origin main
 
 | # | Date cible | Article | Marque ciblée | Source |
 |---|------------|---------|---------------|--------|
-| 18 | **Lundi 11 mai 2026** | Quel shampoing pharmacie choisir? Klorane, Nuxe, Bioderma, Avène | Klorane + Nuxe | [`18-shampoings-pharmacie/`](blog/18-shampoings-pharmacie/) |
-| 19 | **Lundi 18 mai 2026** | Chien et chat : les essentiels santé en pharmacie pour le printemps | Biocanina | [`19-chiens-chats-pharmacie/`](blog/19-chiens-chats-pharmacie/) |
+| 18 | **Lundi 11 mai 2026** | Quel shampoing pharmacie choisir? Klorane, Nuxe, Bioderma, Avène | Klorane + Nuxe | [`18-shampoings-pharmacie/`](blog/18-shampoings-pharmacie/) — source .md prête, HTML à créer |
 | 25 | Début juillet 2026 | Tiques en Bretagne : prévention et réaction | — | [`25-tiques-bretagne/`](blog/25-tiques-bretagne/) |
 
 **Stratégie éditoriale** :
@@ -692,6 +693,24 @@ Les deux fichiers sont complémentaires et doivent rester à jour.
 
 ## 📝 Changelog Récent
 
+### 14 Mai 2026
+
+**Articles publiés : #19 Chiens & chats, #20 Peau de bébé 0-3 ans**
+- Article #19 — "Chiens et chats : les essentiels santé en pharmacie" ([`19-chiens-chats-pharmacie/`](blog/19-chiens-chats-pharmacie/)) — ~2200 mots, sources ANSES/ANMV/ESCCAP/VIDAL/CAPAE-Ouest. GMB post #20.
+- Article #20 — "Peau de bébé (0-3 ans) : la routine de soin essentielle" ([`20-routine-soin-bebe/`](blog/20-routine-soin-bebe/)) — ~1900 mots, sources SFP/HAS/ANSM/SFD. GMB post #21. Corrections médicales post-fact-check : érythème fessier (formulation qualitative), eczéma atopique (10-25% <5 ans), phénoxyéthanol ANSM 2012 précisé.
+- Source .md article #18 shampoings créée : [`18-shampoings-pharmacie/`](blog/18-shampoings-pharmacie/). HTML à générer.
+- Suppression `blog/chiens-chats-pharmacie-queven.html` (doublon racine stale).
+
+**Page Speed — Audit complet (toutes pages principales) :**
+- Fix #1 : `<link rel="preload" as="image">` redondant supprimé sur 19 articles blog
+- Fix #2 : titles ≤60 chars — compléments alimentaires, paracétamol, annuaire-sante, recrutement
+- Fix #7 : références hyperlinkées dans `allergie-pollen` (ANSES, VIDAL, HAS, Atmo France, Air Breizh, ScienceDirect)
+- Fix #10 : `--gray-light: #A8A8A8` → `#767676` dans `style.css` (WCAG AA 4.54:1)
+- Fix #12 : Google Fonts async (preload+onload+noscript) sur 10 pages principales
+- OG/meta : `og:site_name`, `og:image:alt`, `defer animations.js` ajoutés sur recrutement, histoire, contact, annuaire-sante
+- histoire : Laure image `width="700" height="831" loading="lazy"` ajouté
+- `CLAUDE.md` checklist article blog : `<link rel="preload" as="image">` marqué redondant quand `fetchpriority="high"` est sur l'`<img>`
+
 ### 7 Mai 2026 (suite — soir, alignement titres homepage)
 
 **Homepage — Section "Les marques qu'on aime" (commits `4e5ffaf` + `e995ce9`) :**
@@ -887,6 +906,6 @@ Documentation source :
 
 ---
 
-**Dernière mise à jour**: 7 Mai 2026 (soir — alignement titres homepage)
+**Dernière mise à jour**: 14 Mai 2026 (articles #19-20 + page speed audit)
 **Version du site**: Production (main branch) - Migration style-v2.css en cours
 **Statut**: ✅ En ligne sur www.pharmaciecharnal.com
