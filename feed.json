@@ -16,6 +16,37 @@
   "language": "fr-FR",
   "items": [
     {
+      "id": "https://www.pharmaciecharnal.com/blog/19-chiens-chats-pharmacie/chiens-chats-pharmacie-queven.html",
+      "url": "https://www.pharmaciecharnal.com/blog/19-chiens-chats-pharmacie/chiens-chats-pharmacie-queven.html",
+      "title": "Chien et chat : les essentiels santé en pharmacie pour le printemps",
+      "content_html": "Antiparasitaires, vermifuges, hygiène : tout ce que la pharmacie fait pour votre chien ou chat. Guide pratique pour le printemps en Bretagne, vigilance perméthrine et conseils Biocanina.",
+      "summary": "Antiparasitaires, vermifuges, hygiène : tout ce que la pharmacie fait pour votre chien ou chat. Guide pratique, printemps en Bretagne, Quéven.",
+      "date_published": "2026-05-18T09:00:00+02:00",
+      "date_modified": "2026-05-18T09:00:00+02:00",
+      "image": "https://www.pharmaciecharnal.com/images/Blog%20photos/blog-20-chiens-chats-pharmacie.jpg",
+      "authors": [
+        {
+          "name": "Laure Charnal"
+        }
+      ],
+      "tags": [
+        "chien",
+        "chat",
+        "antiparasitaire",
+        "vermifuge",
+        "Biocanina",
+        "puces",
+        "tiques",
+        "santé animale"
+      ],
+      "language": "fr-FR",
+      "_medical_topic": {
+        "conditions": ["Puces", "Tiques", "Vers intestinaux", "Hygiène animale"],
+        "audience": "Patient",
+        "specialty": "Pharmacie"
+      }
+    },
+    {
       "id": "https://www.pharmaciecharnal.com/blog/quel-shampoing-pharmacie-choisir-queven.html",
       "url": "https://www.pharmaciecharnal.com/blog/quel-shampoing-pharmacie-choisir-queven.html",
       "title": "Quel shampoing pharmacie choisir? Klorane, Nuxe, Bioderma, Avène",
