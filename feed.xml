@@ -5,13 +5,21 @@
     <link>https://www.pharmaciecharnal.com</link>
     <description>Au comptoir de la Pharmacie Charnal a Queven : conseils sante, prevention hiver, vaccinations, phytotherapie, dermatologie. Articles rediges par nos pharmaciens.</description>
     <language>fr-FR</language>
-    <lastBuildDate>Mon, 18 May 2026 09:00:00 +0200</lastBuildDate>
+    <lastBuildDate>Mon, 25 May 2026 09:00:00 +0200</lastBuildDate>
     <atom:link href="https://www.pharmaciecharnal.com/feed.xml" rel="self" type="application/rss+xml"/>
     <image>
       <url>https://www.pharmaciecharnal.com/images/pharmacie-charnal-logo.png</url>
       <title>Blog Pharmacie Charnal - Au comptoir</title>
       <link>https://www.pharmaciecharnal.com</link>
     </image>
+
+    <item>
+      <title>Peau de bebe (0-3 ans) : la routine de soin essentielle</title>
+      <link>https://www.pharmaciecharnal.com/blog/20-routine-soin-bebe/routine-soin-bebe-0-3-ans-queven.html</link>
+      <guid>https://www.pharmaciecharnal.com/blog/20-routine-soin-bebe/routine-soin-bebe-0-3-ans-queven.html</guid>
+      <pubDate>Mon, 25 May 2026 09:00:00 +0200</pubDate>
+      <description>Serum physiologique, gel lavant doux, creme barriere : trois produits suffisent a couvrir 90% des besoins de la peau de bebe. Conseils pharmacienne, Queven, Bretagne.</description>
+    </item>
 
     <item>
       <title>Chien et chat : les essentiels sante en pharmacie pour le printemps</title>

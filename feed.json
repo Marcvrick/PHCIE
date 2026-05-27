@@ -16,6 +16,38 @@
   "language": "fr-FR",
   "items": [
     {
+      "id": "https://www.pharmaciecharnal.com/blog/20-routine-soin-bebe/routine-soin-bebe-0-3-ans-queven.html",
+      "url": "https://www.pharmaciecharnal.com/blog/20-routine-soin-bebe/routine-soin-bebe-0-3-ans-queven.html",
+      "title": "Peau de bébé (0-3 ans) : la routine de soin essentielle",
+      "content_html": "Toilette, change, érythème fessier, croûtes de lait : les bons gestes et les bons produits pour bébé 0-3 ans. Trois produits couvrent 90% des besoins quotidiens — sérum physiologique, gel lavant sans savon, crème barrière à l'oxyde de zinc.",
+      "summary": "Sérum physiologique, gel lavant doux, crème barrière : trois produits suffisent à couvrir 90% des besoins de la peau de bébé. Conseils de pharmacienne à Quéven, Bretagne.",
+      "date_published": "2026-05-25T09:00:00+02:00",
+      "date_modified": "2026-05-25T09:00:00+02:00",
+      "image": "https://www.pharmaciecharnal.com/images/Blog%20photos/blog-21-routine-soin-bebe.jpg",
+      "authors": [
+        {
+          "name": "Laure Charnal"
+        }
+      ],
+      "tags": [
+        "bébé",
+        "nourrisson",
+        "soins peau",
+        "érythème fessier",
+        "croûtes de lait",
+        "Mustela",
+        "La Roche-Posay",
+        "Bioderma",
+        "dermatologie pédiatrique"
+      ],
+      "language": "fr-FR",
+      "_medical_topic": {
+        "conditions": ["Érythème fessier", "Croûtes de lait", "Peau atopique nourrisson"],
+        "audience": "Patient",
+        "specialty": "Pharmacie"
+      }
+    },
+    {
       "id": "https://www.pharmaciecharnal.com/blog/19-chiens-chats-pharmacie/chiens-chats-pharmacie-queven.html",
       "url": "https://www.pharmaciecharnal.com/blog/19-chiens-chats-pharmacie/chiens-chats-pharmacie-queven.html",
       "title": "Chien et chat : les essentiels santé en pharmacie pour le printemps",
