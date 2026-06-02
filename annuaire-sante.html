@@ -49,8 +49,9 @@
     <!-- Shared Design System -->
     <link rel="stylesheet" href="style-v2.css">
 
+    <script>document.documentElement.classList.add('js');</script>
     <style>
-        /* Critical navbar (inline fallback if style-v2.css fails to load) */
+        /* Critical navbar fallback (inline if style-v2.css fails to load) */
         .navbar{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(255,255,254,.95);border-bottom:1px solid rgba(0,0,0,.06)}
         .nav-container{display:flex;align-items:center;justify-content:space-between;height:72px;max-width:1280px;margin:0 auto;padding:0 24px}
         .nav-logo-link,.nav-logo{display:flex;align-items:center;gap:12px}
@@ -65,521 +66,116 @@
         @media(min-width:768px){.nav-links{display:flex;gap:32px;align-items:center}.mobile-menu-toggle{display:none}}
         @media(max-width:767px){.nav-links{position:fixed;top:72px;right:0;background:#fff;width:100%;max-width:280px;flex-direction:column;padding:32px;gap:24px;box-shadow:0 8px 24px rgba(0,0,0,.1);transform:translateX(100%);transition:transform .3s ease;overflow-y:auto}.nav-links.active{display:flex;transform:translateX(0)}.nav-dropdown-menu{position:static;display:flex;flex-direction:column;gap:8px;padding-left:16px;border-left:2px solid #D4E8E0;margin-top:8px;box-shadow:none;background:transparent;list-style:none;opacity:1;border-radius:0;border-right:none;border-top:none;border-bottom:none}.nav-dropdown-toggle::after{display:none}}
 
-        /* === PAGE ANNUAIRE - HIMS-STYLE OVERRIDES === */
-
-        /* Hero Section */
-        .annuaire-hero {
-            background: linear-gradient(135deg, var(--pastel-sage) 0%, var(--pastel-mint) 100%);
-            color: var(--charcoal);
-            padding: var(--space-64) 0 var(--space-80);
-            text-align: center;
-            position: relative;
-            overflow: hidden;
+        /* ============================================================
+           ANNUAIRE SANTÉ — layout de répertoire (clair, scannable)
+           ============================================================ */
+        :root{
+            --teal-pro:#2D5F5D; --teal-deep:#234d4b; --sage-natural:#7C9885;
+            --pastel-sage:#E8F0EA; --pastel-mint:#D4E8E0; --cream:#FFFEF9;
+            --white:#fff; --beige-dark:#E8E3DA; --charcoal:#1F2121;
+            --gray-500:#6B7280; --gray-600:#4B5563;
+            --cat-urgent:#C0392B; --cat-urgent-soft:#fcecec;
+            --text-xs:.78rem; --text-sm:.9rem; --text-base:1rem; --text-lg:1.125rem;
+            --radius-md:12px; --radius-lg:16px; --radius-full:9999px;
+            --shadow-md:0 6px 18px rgba(31,33,33,.08);
+            --ease:cubic-bezier(.16,1,.3,1);
+            --wrap:1100px;
         }
 
-        .annuaire-hero::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            right: -20%;
-            width: 80%;
-            height: 200%;
-            background: radial-gradient(ellipse at center, rgba(45, 95, 93, 0.08) 0%, transparent 70%);
-            pointer-events: none;
+        body{background:var(--cream);color:var(--charcoal);font-family:'DM Sans',-apple-system,BlinkMacSystemFont,sans-serif}
+        .an-wrap{max-width:var(--wrap);margin:0 auto;padding:0 24px}
+
+        /* ---- Hero ---- */
+        .an-hero{background:linear-gradient(180deg,var(--pastel-sage) 0%,var(--pastel-mint) 55%,var(--cream) 100%);padding:calc(72px + 56px) 0 48px;text-align:center}
+        .an-hero h1{font-family:'Fraunces',Georgia,serif;font-weight:500;font-size:clamp(2.4rem,6vw,4rem);letter-spacing:-.02em;line-height:1.05;color:var(--charcoal);margin:0 0 14px;text-wrap:balance}
+        .an-hero p{font-size:var(--text-lg);color:var(--gray-600);max-width:600px;margin:0 auto;line-height:1.6}
+
+        /* ---- One consolidated sticky toolbar (search + filters) ---- */
+        .an-toolbar{position:sticky;top:72px;z-index:100;background:rgba(255,254,249,.92);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);border-bottom:1px solid var(--beige-dark)}
+        .an-toolbar-inner{max-width:900px;margin:0 auto;padding:14px 24px;display:flex;flex-direction:column;gap:12px}
+        .an-search{position:relative;display:flex}
+        .an-search>svg{position:absolute;left:16px;top:50%;transform:translateY(-50%);width:18px;height:18px;color:var(--gray-500);pointer-events:none}
+        .search-input{width:100%;box-sizing:border-box;padding:12px 18px 12px 44px;border:1px solid var(--beige-dark);border-radius:var(--radius-full);font-family:inherit;font-size:var(--text-base);background:var(--white);color:var(--charcoal)}
+        .search-input::placeholder{color:var(--gray-500)}
+        .search-input:focus{outline:none;border-color:var(--teal-pro);box-shadow:0 0 0 3px rgba(45,95,93,.13)}
+        .an-filters{display:flex;flex-wrap:wrap;gap:8px;justify-content:center}
+        .filter-tag{padding:6px 14px;border:1px solid var(--beige-dark);background:var(--white);border-radius:var(--radius-full);font-family:inherit;font-size:var(--text-sm);font-weight:500;color:var(--gray-600);cursor:pointer;transition:background .2s var(--ease),color .2s var(--ease),border-color .2s var(--ease)}
+        .filter-tag:hover{border-color:var(--sage-natural)}
+        .filter-tag.active{background:var(--teal-pro);border-color:var(--teal-pro);color:#fff}
+        .filter-tag[data-category="urgences"].active{background:var(--cat-urgent);border-color:var(--cat-urgent)}
+
+        /* ---- Section ---- */
+        .annuaire-section{padding:56px 0;scroll-margin-top:160px}
+        .an-head{display:flex;align-items:center;gap:12px;max-width:var(--wrap);margin:0 auto 6px;padding:0 24px}
+        .an-dot{width:11px;height:11px;border-radius:50%;background:var(--teal-pro);flex-shrink:0}
+        .annuaire-section[data-section="urgences"] .an-dot{background:var(--cat-urgent)}
+        .an-head h2{font-family:'Fraunces',Georgia,serif;font-weight:500;font-size:clamp(1.55rem,3vw,2.1rem);letter-spacing:-.01em;line-height:1.15;color:var(--charcoal);margin:0}
+        .an-sub{max-width:var(--wrap);margin:0 auto 28px;padding:0 24px;color:var(--gray-600);font-size:var(--text-base);line-height:1.6}
+
+        /* ---- Grid (breakpoint-free) ---- */
+        .an-grid{max-width:var(--wrap);margin:0 auto;padding:0 24px;display:grid;grid-template-columns:repeat(auto-fill,minmax(248px,1fr));gap:16px}
+
+        /* ---- Emergency number card (number IS the content) ---- */
+        .num-card{display:flex;flex-direction:column;gap:6px;padding:22px;background:var(--white);border:1px solid var(--beige-dark);border-radius:var(--radius-md);text-decoration:none;color:inherit;transition:transform .2s var(--ease),box-shadow .2s var(--ease),border-color .2s var(--ease)}
+        .num-card:hover{transform:translateY(-3px);box-shadow:var(--shadow-md)}
+        .num-card .num{font-family:'Fraunces',Georgia,serif;font-weight:600;font-size:2.1rem;line-height:1;color:var(--teal-pro);letter-spacing:-.01em}
+        .num-card .num.num-sm{font-size:1.15rem;letter-spacing:0}
+        .num-card.vital{background:var(--cat-urgent-soft);border-color:#f3d6d6}
+        .num-card.vital .num{color:var(--cat-urgent)}
+        .num-card h3{font-family:inherit;font-size:var(--text-base);font-weight:600;color:var(--charcoal);margin:0}
+        .num-card p{font-size:var(--text-sm);color:var(--gray-600);line-height:1.45;margin:0}
+
+        /* ---- Resource card ---- */
+        .res-card{display:flex;flex-direction:column;gap:8px;padding:22px;background:var(--white);border:1px solid var(--beige-dark);border-radius:var(--radius-md);transition:transform .2s var(--ease),box-shadow .2s var(--ease)}
+        .res-card:hover{transform:translateY(-3px);box-shadow:var(--shadow-md)}
+        .res-card h3{display:flex;align-items:flex-start;gap:9px;font-size:var(--text-base);font-weight:600;color:var(--charcoal);margin:0;line-height:1.3}
+        .res-card h3 .emoji{font-size:1.25em;line-height:1.1;flex-shrink:0}
+        .res-card p{font-size:var(--text-sm);color:var(--gray-600);line-height:1.55;margin:0;flex-grow:1}
+        /* Contact area: anchored to card bottom, two fixed rows so phone chips
+           align on one line and website chips on the next, across the whole grid row. */
+        .res-contact{margin-top:auto;display:grid;grid-template-rows:minmax(34px,auto) minmax(34px,auto);gap:8px;justify-items:start;align-items:start}
+        .res-contact .chip-phone{grid-row:1}
+        .res-contact .chip-web{grid-row:2}
+        /* Cards with no phone collapse to a single bottom row (no wasted phone slot);
+           their website chip still lands on the shared bottom line. */
+        .res-card:not(:has(.chip-phone)) .res-contact{grid-template-rows:auto}
+        .res-card:not(:has(.chip-phone)) .res-contact .chip-web{grid-row:1}
+        .chip{display:inline-flex;align-items:center;gap:6px;padding:7px 12px;border-radius:var(--radius-full);font-size:var(--text-xs);font-weight:600;text-decoration:none;transition:background .2s var(--ease),color .2s var(--ease),border-color .2s var(--ease)}
+        .chip svg{width:14px;height:14px;flex-shrink:0}
+        .chip-phone{background:var(--pastel-mint);color:var(--teal-pro)}
+        .chip-phone:hover{background:var(--teal-pro);color:#fff}
+        .chip-web{background:transparent;border:1px solid var(--beige-dark);color:var(--gray-600)}
+        .chip-web:hover{border-color:var(--teal-pro);color:var(--teal-pro)}
+
+        /* ---- Closing CTA ---- */
+        .local-box{max-width:var(--wrap);margin:48px auto;padding:44px 24px;background:var(--pastel-sage);border-radius:var(--radius-lg);text-align:center}
+        .local-box h2{font-family:'Fraunces',Georgia,serif;font-weight:500;font-size:clamp(1.4rem,2.5vw,1.9rem);color:var(--charcoal);margin:0 0 10px}
+        .local-box p{color:var(--gray-600);margin:0 0 22px;font-size:var(--text-base)}
+        .local-btn{display:inline-flex;align-items:center;gap:8px;background:var(--teal-pro);color:#fff;font-weight:600;font-size:var(--text-base);padding:14px 28px;border-radius:10px;text-decoration:none;transition:background .2s var(--ease),transform .2s var(--ease)}
+        .local-btn:hover{background:var(--teal-deep);transform:translateY(-2px)}
+
+        .no-results{display:none;text-align:center;padding:48px 24px;color:var(--gray-600)}
+        .no-results.show{display:block}
+        .no-results h3{font-family:'Fraunces',Georgia,serif;font-weight:500;color:var(--charcoal);margin:0 0 8px}
+
+        /* ---- Reveal + reduced motion ---- */
+        .js .card-animate{opacity:0;transform:translateY(16px);transition:opacity .5s var(--ease),transform .5s var(--ease)}
+        .card-animate.visible{opacity:1;transform:none}
+        @media (prefers-reduced-motion:reduce){
+            *{animation:none !important;transition:none !important}
+            html{scroll-behavior:auto}
+            .js .card-animate{opacity:1;transform:none}
         }
 
-        .annuaire-hero h1 {
-            font-family: var(--font-display);
-            font-size: clamp(2.5rem, 6vw, var(--text-6xl));
-            font-weight: 500;
-            color: var(--charcoal);
-            margin-bottom: var(--space-16);
-            position: relative;
+        @media (max-width:767px){
+            .an-hero{padding:calc(72px + 36px) 0 36px}
+            .annuaire-section{padding:40px 0}
+            .an-grid{grid-template-columns:1fr 1fr;gap:12px}
+            .num-card,.res-card{padding:16px}
+            .num-card .num{font-size:1.8rem}
         }
-
-        .annuaire-hero p {
-            color: var(--gray-600);
-            font-size: var(--text-xl);
-            max-width: 700px;
-            margin: 0 auto;
-            position: relative;
-        }
-
-        /* Search Container */
-        .search-container {
-            background: var(--white);
-            padding: var(--space-32);
-            border-radius: var(--radius-xl);
-            box-shadow: var(--shadow-lg);
-            margin-top: calc(-1 * var(--space-48));
-            position: relative;
-            z-index: 10;
-            max-width: 900px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .search-box {
-            display: flex;
-            gap: var(--space-16);
-            flex-wrap: wrap;
-        }
-
-        .search-input {
-            flex: 1;
-            min-width: 250px;
-            padding: var(--space-16) var(--space-24);
-            border: 2px solid var(--beige-dark);
-            border-radius: var(--radius-full);
-            font-size: var(--text-lg);
-            font-family: var(--font-body);
-            transition: all var(--duration-normal) var(--ease-standard);
-        }
-
-        .search-input:focus {
-            outline: none;
-            border-color: var(--teal-pro);
-            box-shadow: 0 0 0 3px rgba(45, 95, 93, 0.15);
-        }
-
-        .search-input::placeholder {
-            color: var(--gray-500);
-        }
-
-        /* Filter Tags */
-        .filter-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: var(--space-12);
-            margin-top: var(--space-16);
-            justify-content: center;
-        }
-
-        .filter-tag {
-            padding: var(--space-8) var(--space-16);
-            background: var(--cream);
-            border: 2px solid var(--beige-dark);
-            border-radius: var(--radius-full);
-            font-size: var(--text-sm);
-            font-weight: 500;
-            color: var(--gray-600);
-            cursor: pointer;
-            transition: all var(--duration-normal) var(--ease-standard);
-        }
-
-        .filter-tag:hover,
-        .filter-tag.active {
-            background: var(--teal-pro);
-            border-color: var(--teal-pro);
-            color: var(--white);
-        }
-
-        .filter-tag[data-category="urgences"] {
-            border-color: #E63946;
-        }
-        .filter-tag[data-category="urgences"].active,
-        .filter-tag[data-category="urgences"]:hover {
-            background: #E63946;
-            border-color: #E63946;
-        }
-
-        /* Quick Navigation */
-        .quick-nav {
-            background: var(--cream);
-            padding: var(--space-24) 0;
-            border-bottom: 1px solid var(--beige-dark);
-            position: sticky;
-            top: 72px;
-            z-index: 100;
-        }
-
-        .quick-nav-list {
-            display: flex;
-            flex-wrap: wrap;
-            gap: var(--space-12);
-            justify-content: center;
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-
-        .quick-nav-link {
-            padding: var(--space-8) var(--space-16);
-            background: var(--white);
-            border-radius: var(--radius-full);
-            font-size: var(--text-sm);
-            font-weight: 500;
-            color: var(--gray-600);
-            text-decoration: none;
-            transition: all var(--duration-normal) var(--ease-standard);
-            border: 1px solid var(--beige-dark);
-        }
-
-        .quick-nav-link:hover {
-            background: var(--teal-pro);
-            color: var(--white);
-            border-color: var(--teal-pro);
-        }
-
-        /* Sections */
-        .annuaire-section {
-            padding: var(--space-80) 0;
-            scroll-margin-top: 150px;
-        }
-
-        .annuaire-section:nth-child(even) {
-            background: var(--white);
-        }
-
-        .section-intro {
-            text-align: center;
-            max-width: 700px;
-            margin: 0 auto var(--space-48);
-        }
-
-        .section-intro p {
-            font-size: var(--text-lg);
-            color: var(--gray-600);
-        }
-
-        /* Urgency Cards Grid */
-        .urgence-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: var(--space-24);
-            align-items: stretch;
-        }
-
-        @media (max-width: 1200px) {
-            .urgence-grid { grid-template-columns: repeat(3, 1fr); }
-        }
-
-        @media (max-width: 900px) {
-            .urgence-grid { grid-template-columns: repeat(2, 1fr); }
-        }
-
-        @media (max-width: 600px) {
-            .urgence-grid { grid-template-columns: 1fr; }
-        }
-
-        .urgence-card {
-            background: var(--white);
-            border-radius: var(--radius-lg);
-            padding: var(--space-24);
-            border: 1px solid var(--beige-dark);
-            transition: all var(--duration-normal) var(--ease-standard);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-            height: 100%;
-        }
-
-        .urgence-card:hover {
-            transform: translateY(-4px);
-            box-shadow: var(--shadow-lg);
-            border-color: var(--sage-light);
-        }
-
-        .urgence-card.critical {
-            border-color: #E63946;
-            background: linear-gradient(135deg, #fff 0%, #fff5f5 100%);
-        }
-
-        .urgence-card.critical:hover {
-            border-color: #c92a37;
-        }
-
-        .urgence-icon {
-            width: 56px;
-            height: 56px;
-            background: linear-gradient(135deg, var(--teal-pro) 0%, var(--sage-natural) 100%);
-            border-radius: var(--radius-lg);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: var(--space-16);
-            font-size: var(--text-lg);
-            font-weight: 700;
-            color: var(--white);
-        }
-
-        .urgence-card.critical .urgence-icon {
-            background: linear-gradient(135deg, #E63946 0%, #c92a37 100%);
-        }
-
-        .urgence-card h3 {
-            font-family: var(--font-display);
-            font-size: var(--text-lg);
-            font-weight: 500;
-            margin-bottom: var(--space-8);
-            color: var(--charcoal);
-        }
-
-        .urgence-card p {
-            font-size: var(--text-sm);
-            color: var(--gray-600);
-            margin-bottom: var(--space-16);
-            line-height: 1.5;
-            flex-grow: 1;
-            display: flex;
-            align-items: center;
-        }
-
-        .urgence-number {
-            display: inline-flex;
-            align-items: center;
-            gap: var(--space-8);
-            padding: var(--space-8) var(--space-16);
-            background: linear-gradient(135deg, var(--teal-pro) 0%, var(--sage-natural) 100%);
-            color: var(--white);
-            border-radius: var(--radius-full);
-            font-size: var(--text-base);
-            font-weight: 600;
-            text-decoration: none;
-            transition: all var(--duration-normal) var(--ease-standard);
-        }
-
-        .urgence-card.critical .urgence-number {
-            background: linear-gradient(135deg, #E63946 0%, #c92a37 100%);
-        }
-
-        /* Non-critical urgence cards: same style as resource-phone */
-        .urgence-card:not(.critical) .urgence-number {
-            background: var(--pastel-mint);
-            color: var(--teal-pro);
-        }
-
-        .urgence-number:hover {
-            transform: scale(1.03);
-            box-shadow: var(--shadow-md);
-        }
-
-        /* Resource Cards Grid */
-        .resource-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: var(--space-24);
-            align-items: stretch;
-        }
-
-        @media (max-width: 1200px) {
-            .resource-grid { grid-template-columns: repeat(3, 1fr); }
-        }
-
-        @media (max-width: 900px) {
-            .resource-grid { grid-template-columns: repeat(2, 1fr); }
-        }
-
-        @media (max-width: 600px) {
-            .resource-grid { grid-template-columns: 1fr; }
-        }
-
-        .resource-card {
-            background: var(--white);
-            border-radius: var(--radius-lg);
-            padding: var(--space-24);
-            border: 1px solid var(--beige-dark);
-            transition: all var(--duration-normal) var(--ease-standard);
-            display: flex;
-            flex-direction: column;
-            height: 100%;
-        }
-
-        .resource-card:hover {
-            transform: translateY(-4px);
-            box-shadow: var(--shadow-lg);
-        }
-
-        .resource-card h3 {
-            font-family: var(--font-display);
-            font-size: var(--text-base);
-            font-weight: 500;
-            color: var(--charcoal);
-            margin-bottom: var(--space-8);
-            display: flex;
-            align-items: flex-start;
-            gap: var(--space-8);
-            line-height: 1.3;
-        }
-
-        .resource-card h3 .emoji {
-            font-size: 1.2em;
-            flex-shrink: 0;
-        }
-
-        .resource-card p {
-            font-size: var(--text-sm);
-            color: var(--gray-600);
-            margin-bottom: var(--space-16);
-            line-height: 1.6;
-            flex-grow: 1;
-        }
-
-        .resource-contact {
-            display: flex;
-            flex-wrap: wrap;
-            gap: var(--space-8);
-            margin-top: auto;
-        }
-
-        .resource-phone, .resource-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 4px;
-            padding: var(--space-8) var(--space-12);
-            background: var(--pastel-mint);
-            border-radius: var(--radius-full);
-            font-size: var(--text-xs);
-            font-weight: 600;
-            text-decoration: none;
-            transition: all var(--duration-normal) var(--ease-standard);
-        }
-
-        .resource-phone {
-            color: var(--teal-pro);
-        }
-
-        .resource-link {
-            color: var(--sage-natural);
-        }
-
-        .resource-phone:hover, .resource-link:hover {
-            background: var(--teal-pro);
-            color: var(--white);
-        }
-
-        /* Theme colors for left border */
-        .resource-card[data-theme="mental"] { border-left: 4px solid #9B59B6; }
-        .resource-card[data-theme="addiction"] { border-left: 4px solid #E67E22; }
-        .resource-card[data-theme="violence"] { border-left: 4px solid #E74C3C; }
-        .resource-card[data-theme="enfance"] { border-left: 4px solid #3498DB; }
-        .resource-card[data-theme="cancer"] { border-left: 4px solid #E91E63; }
-        .resource-card[data-theme="chronique"] { border-left: 4px solid #00BCD4; }
-        .resource-card[data-theme="handicap"] { border-left: 4px solid #4CAF50; }
-        .resource-card[data-theme="senior"] { border-left: 4px solid #FF9800; }
-        .resource-card[data-theme="solidarite"] { border-left: 4px solid #F44336; }
-        .resource-card[data-theme="service"] { border-left: 4px solid #2196F3; }
-
-        /* Local Link Box */
-        .local-link-box {
-            background: linear-gradient(135deg, var(--pastel-sage) 0%, var(--pastel-mint) 100%);
-            padding: var(--space-48);
-            border-radius: var(--radius-xl);
-            text-align: center;
-            margin: var(--space-64) 0;
-        }
-
-        .local-link-box h3 {
-            font-family: var(--font-display);
-            color: var(--charcoal);
-            margin-bottom: var(--space-16);
-        }
-
-        .local-link-box p {
-            color: var(--gray-600);
-            margin-bottom: var(--space-24);
-        }
-
-        .local-link-box .btn {
-            display: inline-flex;
-        }
-
-        /* Responsive */
-        @media (max-width: 767px) {
-            .annuaire-hero {
-                padding: var(--space-64) 0 var(--space-48);
-            }
-
-            .annuaire-hero h1 {
-                font-size: var(--text-3xl);
-            }
-
-            .annuaire-hero p {
-                font-size: var(--text-lg);
-            }
-
-            .search-container {
-                margin: var(--space-16);
-                margin-top: calc(-1 * var(--space-32));
-                padding: var(--space-24);
-                box-sizing: border-box;
-                max-width: calc(100% - 2 * var(--space-16));
-            }
-
-            .search-box {
-                flex-direction: column;
-            }
-
-            .search-input {
-                min-width: 0;
-                width: 100%;
-                box-sizing: border-box;
-            }
-
-            .quick-nav {
-                padding: var(--space-16) 0;
-            }
-
-            .quick-nav-list {
-                gap: var(--space-8);
-            }
-
-            .quick-nav-link {
-                font-size: var(--text-xs);
-                padding: var(--space-8) var(--space-12);
-            }
-
-            .annuaire-section {
-                padding: var(--space-48) 0;
-            }
-
-            .urgence-grid {
-                grid-template-columns: repeat(2, 1fr);
-                gap: var(--space-16);
-            }
-
-            .resource-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        /* Card Animations */
-        .card-animate {
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.5s ease, transform 0.5s ease;
-        }
-
-        .card-animate.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* No Results Message */
-        .no-results {
-            text-align: center;
-            padding: var(--space-64);
-            color: var(--gray-600);
-            display: none;
-        }
-
-        .no-results.show {
-            display: block;
-        }
-
-        /* SEO Intro */
-        .seo-intro {
-            max-width: 900px;
-            margin: var(--space-48) auto;
-            text-align: center;
-            padding: 0 var(--space-24);
-        }
-
-        .seo-intro p {
-            font-size: var(--text-base);
-            color: var(--gray-600);
-            line-height: 1.7;
+        @media (max-width:430px){
+            .an-grid{grid-template-columns:1fr}
         }
     </style>
 
@@ -697,13 +293,20 @@
     <link rel="alternate" type="application/rss+xml" title="Blog Pharmacie Charnal" href="https://www.pharmaciecharnal.com/feed.xml">
 </head>
 <body>
+    <!-- icon sprite -->
+    <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+        <symbol id="ic-search" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></symbol>
+        <symbol id="ic-phone" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></symbol>
+        <symbol id="ic-web" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></symbol>
+    </svg>
+
     <!-- Navigation -->
     <nav class="navbar">
         <div class="nav-container">
             <a href="index.html" class="nav-logo-link">
                 <div class="nav-logo">
                     <div class="logo-icon">
-                        <img src="images/pharmacie-charnal-logo.png" alt="Logo Pharmacie Charnal" style="width: 100%; height: 100%; object-fit: contain;">
+                        <img src="images/pharmacie-charnal-logo.png" alt="Logo Pharmacie Charnal" style="width:100%;height:100%;object-fit:contain;">
                     </div>
                     <div class="logo-text">
                         <span class="logo-name">Pharmacie Charnal</span>
@@ -716,7 +319,6 @@
                 <span class="hamburger-line"></span>
                 <span class="hamburger-line"></span>
             </button>
-
             <ul class="nav-links">
                 <li><a href="index.html" class="nav-link">Accueil</a></li>
                 <li class="nav-dropdown">
@@ -744,34 +346,29 @@
     <nav class="breadcrumb" aria-label="Fil d'Ariane">
         <div class="container">
             <ol class="breadcrumb-list">
-                <li>
-                    <a href="index.html">Accueil</a>
-                </li>
-                <li>
-                    <a href="services.html">Services</a>
-                </li>
-                <li>
-                    Annuaire Santé
-                </li>
+                <li><a href="index.html">Accueil</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li>Annuaire Santé</li>
             </ol>
         </div>
     </nav>
 
     <!-- Hero -->
-    <section class="annuaire-hero">
-        <div class="container">
+    <section class="an-hero">
+        <div class="an-wrap">
             <h1>Annuaire Santé</h1>
-            <p>Urgences, Associations & Services Publics</p>
+            <p>Numéros d'urgence, lignes d'écoute gratuites, associations de patients et services publics de santé. Réunis et à portée de clic.</p>
         </div>
     </section>
 
-    <!-- Recherche -->
-    <div class="container">
-        <div class="search-container">
-            <div class="search-box">
-                <input type="text" class="search-input" id="searchInput" placeholder="Urgences, lignes d'écoute et associations">
-            </div>
-            <div class="filter-tags">
+    <!-- Sticky toolbar: search + category filters (one bar) -->
+    <div class="an-toolbar">
+        <div class="an-toolbar-inner">
+            <label class="an-search">
+                <svg aria-hidden="true"><use href="#ic-search"/></svg>
+                <input type="text" class="search-input" id="searchInput" placeholder="Rechercher un numéro, une ligne d'écoute, une association…" aria-label="Rechercher dans l'annuaire">
+            </label>
+            <div class="an-filters">
                 <button class="filter-tag active" data-category="all">Tout</button>
                 <button class="filter-tag" data-category="urgences">Urgences</button>
                 <button class="filter-tag" data-category="ecoute">Lignes d'écoute</button>
@@ -782,606 +379,342 @@
         </div>
     </div>
 
-    <!-- Navigation rapide -->
-    <nav class="quick-nav">
-        <div class="container">
-            <ul class="quick-nav-list">
-                <li><a href="#urgences" class="quick-nav-link">Urgences</a></li>
-                <li><a href="#ecoute" class="quick-nav-link">Lignes d'écoute</a></li>
-                <li><a href="#addiction" class="quick-nav-link">Addictions</a></li>
-                <li><a href="#cancer" class="quick-nav-link">Cancer</a></li>
-                <li><a href="#chroniques" class="quick-nav-link">Maladies chroniques</a></li>
-                <li><a href="#handicap" class="quick-nav-link">Handicap</a></li>
-                <li><a href="#services-publics" class="quick-nav-link">Services publics</a></li>
-                <li><a href="#prevention" class="quick-nav-link">Prévention</a></li>
-                <li><a href="#solidarite" class="quick-nav-link">Solidarité</a></li>
-            </ul>
-        </div>
-    </nav>
-
-    <!-- SEO Intro -->
-    <div class="seo-intro">
-        <p>Retrouvez dans cet annuaire santé tous les <strong>numéros d'urgence</strong> (SAMU 15, pompiers 18, police 17), les <strong>lignes d'écoute gratuites</strong> pour le soutien psychologique, les <strong>associations de patients</strong> pour les maladies chroniques (cancer, diabète, Alzheimer, Parkinson, asthme), ainsi que les <strong>services publics de santé</strong> (Ameli, Mon Espace Santé).</p>
-    </div>
-
-    <!-- SECTION URGENCES -->
+    <!-- ===== URGENCES ===== -->
     <section id="urgences" class="annuaire-section" data-section="urgences">
-        <div class="container">
-            <div class="section-header">
-                <span class="section-badge" style="background: linear-gradient(135deg, #E63946 0%, #c92a37 100%);">Urgences vitales</span>
-                <h2 class="section-title">Numéros d'urgence en France</h2>
-            </div>
-            <div class="section-intro">
-                <p>En cas d'urgence vitale, appelez immédiatement. Ces services sont gratuits et disponibles 24h/24, 7j/7.</p>
-            </div>
-
-            <div class="urgence-grid">
-                <div class="urgence-card critical card-animate" data-searchable="samu urgence médicale médecin 15">
-                    <div class="urgence-icon">15</div>
-                    <h3>SAMU</h3>
-                    <p>Urgences médicales, malaise, accident grave, détresse vitale</p>
-                </div>
-
-                <div class="urgence-card critical card-animate" data-searchable="pompiers incendie secours accident 18">
-                    <div class="urgence-icon">18</div>
-                    <h3>Pompiers</h3>
-                    <p>Incendie, accident de la route, secours aux personnes</p>
-                </div>
-
-                <div class="urgence-card critical card-animate" data-searchable="police gendarmerie secours agression vol 17">
-                    <div class="urgence-icon">17</div>
-                    <h3>Police Secours</h3>
-                    <p>Agression, vol, trouble à l'ordre public</p>
-                </div>
-
-                <div class="urgence-card critical card-animate" data-searchable="urgence europe européen 112">
-                    <div class="urgence-icon">112</div>
-                    <h3>Urgences européennes</h3>
-                    <p>Numéro unique d'urgence dans toute l'Europe</p>
-                </div>
-
-                <div class="urgence-card card-animate" data-searchable="centre antipoison intoxication empoisonnement">
-                    <div class="urgence-icon" style="font-size: 14px;">Poison</div>
-                    <h3>Centre antipoison</h3>
-                    <p>Intoxication, ingestion de produits toxiques</p>
-                    <a href="tel:0140054848" class="urgence-number">01 40 05 48 48</a>
-                </div>
-
-                <div class="urgence-card card-animate" data-searchable="urgences dentaires dent mal">
-                    <div class="urgence-icon" style="font-size: 28px;">🦷</div>
-                    <h3>Urgences dentaires</h3>
-                    <p>Douleur dentaire, week-ends et jours fériés</p>
-                    <a href="tel:0970050556" class="urgence-number">09 70 05 05 56</a>
-                </div>
-
-                <div class="urgence-card card-animate" data-searchable="médecin garde soir nuit 116117">
-                    <div class="urgence-icon" style="font-size: 14px;">116 117</div>
-                    <h3>Médecin de garde</h3>
-                    <p>Soins non programmés soir, nuit, week-end</p>
-                </div>
-
-                <div class="urgence-card card-animate" data-searchable="sourds muets sms urgence 114">
-                    <div class="urgence-icon">114</div>
-                    <h3>Urgences sourds/muets</h3>
-                    <p>Urgences par SMS ou fax</p>
-                </div>
-            </div>
+        <div class="an-head"><span class="an-dot"></span><h2>Numéros d'urgence</h2></div>
+        <p class="an-sub">Gratuits et disponibles 24h/24, 7j/7. En cas d'urgence vitale, appelez immédiatement.</p>
+        <div class="an-grid">
+            <a href="tel:15" class="num-card vital card-animate" data-searchable="samu urgence médicale médecin 15">
+                <span class="num">15</span><h3>SAMU</h3><p>Urgences médicales, malaise, accident grave, détresse vitale.</p>
+            </a>
+            <a href="tel:18" class="num-card vital card-animate" data-searchable="pompiers incendie secours accident 18">
+                <span class="num">18</span><h3>Pompiers</h3><p>Incendie, accident de la route, secours aux personnes.</p>
+            </a>
+            <a href="tel:17" class="num-card vital card-animate" data-searchable="police gendarmerie secours agression vol 17">
+                <span class="num">17</span><h3>Police Secours</h3><p>Agression, vol, trouble à l'ordre public.</p>
+            </a>
+            <a href="tel:112" class="num-card vital card-animate" data-searchable="urgence europe européen 112">
+                <span class="num">112</span><h3>Urgences européennes</h3><p>Numéro unique d'urgence dans toute l'Europe.</p>
+            </a>
+            <a href="tel:116117" class="num-card card-animate" data-searchable="médecin garde soir nuit 116117">
+                <span class="num num-sm">116 117</span><h3>Médecin de garde</h3><p>Soins non programmés le soir, la nuit, le week-end.</p>
+            </a>
+            <a href="tel:114" class="num-card card-animate" data-searchable="sourds muets sms urgence 114">
+                <span class="num">114</span><h3>Urgences sourds / muets</h3><p>Urgences accessibles par SMS ou fax.</p>
+            </a>
+            <a href="tel:0140054848" class="num-card card-animate" data-searchable="centre antipoison intoxication empoisonnement">
+                <span class="num num-sm">01 40 05 48 48</span><h3>Centre antipoison</h3><p>Intoxication, ingestion de produits toxiques.</p>
+            </a>
+            <a href="tel:0970050556" class="num-card card-animate" data-searchable="urgences dentaires dent mal">
+                <span class="num num-sm">09 70 05 05 56</span><h3>Urgences dentaires</h3><p>Douleur dentaire, week-ends et jours fériés.</p>
+            </a>
         </div>
     </section>
 
-    <!-- SECTION LIGNES D'ÉCOUTE -->
+    <!-- ===== LIGNES D'ÉCOUTE ===== -->
     <section id="ecoute" class="annuaire-section" data-section="ecoute">
-        <div class="container">
-            <div class="section-header">
-                <span class="section-badge" style="background: linear-gradient(135deg, #9B59B6 0%, #8e44ad 100%);">Aide & Soutien</span>
-                <h2 class="section-title">Lignes d'écoute</h2>
+        <div class="an-head"><span class="an-dot"></span><h2>Lignes d'écoute</h2></div>
+        <p class="an-sub">Gratuites, anonymes et confidentielles. N'hésitez pas à appeler.</p>
+        <div class="an-grid">
+            <div class="res-card card-animate" data-searchable="suicide prévention écoute détresse 3114">
+                <h3><span class="emoji">🆘</span> Prévention du suicide</h3>
+                <p>Vous êtes en détresse ou inquiet pour un proche. Des professionnels répondent 24h/24.</p>
+                <div class="res-contact"><a href="tel:3114" class="chip chip-phone"><svg aria-hidden="true"><use href="#ic-phone"/></svg>3114 · 24h/24</a></div>
             </div>
-            <div class="section-intro">
-                <p>Ces lignes sont gratuites, anonymes et confidentielles. N'hésitez pas à appeler.</p>
+            <div class="res-card card-animate" data-searchable="sos amitié solitude isolement dépression">
+                <h3><span class="emoji">💚</span> SOS Amitié</h3>
+                <p>Écoute 24h/24 pour les personnes en mal-être, solitude ou détresse psychologique.</p>
+                <div class="res-contact"><a href="tel:0972394050" class="chip chip-phone"><svg aria-hidden="true"><use href="#ic-phone"/></svg>09 72 39 40 50</a><a href="https://www.sos-amitie.com" target="_blank" rel="noopener" class="chip chip-web"><svg aria-hidden="true"><use href="#ic-web"/></svg>Site</a></div>
             </div>
-
-            <div class="resource-grid">
-                <div class="resource-card card-animate" data-theme="mental" data-searchable="suicide prévention écoute détresse 3114">
-                    <h3><span class="emoji">🆘</span> Numéro national de prévention du suicide</h3>
-                    <p>Vous êtes en détresse ou inquiet pour un proche. Des professionnels sont là 24h/24.</p>
-                    <div class="resource-contact">
-                        <a href="tel:3114" class="resource-phone">3114 (gratuit, 24h/24)</a>
-                    </div>
-                </div>
-
-                <div class="resource-card card-animate" data-theme="mental" data-searchable="sos amitié solitude isolement dépression">
-                    <h3><span class="emoji">💚</span> SOS Amitié</h3>
-                    <p>Écoute 24h/24 pour les personnes en mal-être, solitude ou détresse psychologique.</p>
-                    <div class="resource-contact">
-                        <a href="tel:0972394050" class="resource-phone">09 72 39 40 50</a>
-                        <a href="https://www.sos-amitie.com" target="_blank" rel="noopener" class="resource-link">Site web</a>
-                    </div>
-                </div>
-
-                <div class="resource-card card-animate" data-theme="mental" data-searchable="fil santé jeunes adolescent 12-25 ans">
-                    <h3><span class="emoji">🧑‍🤝‍🧑</span> Fil Santé Jeunes</h3>
-                    <p>Écoute, information et orientation pour les 12-25 ans sur toutes les questions de santé.</p>
-                    <div class="resource-contact">
-                        <a href="tel:0800235236" class="resource-phone">0 800 235 236 (gratuit)</a>
-                        <a href="https://www.filsantejeunes.com" target="_blank" rel="noopener" class="resource-link">Site web</a>
-                    </div>
-                </div>
-
-                <div class="resource-card card-animate" data-theme="violence" data-searchable="violence femme conjugale 3919">
-                    <h3><span class="emoji">🛡️</span> Violences Femmes Info</h3>
-                    <p>Écoute, information et orientation pour les femmes victimes de violences.</p>
-                    <div class="resource-contact">
-                        <a href="tel:3919" class="resource-phone">3919 (gratuit, anonyme)</a>
-                    </div>
-                </div>
-
-                <div class="resource-card card-animate" data-theme="enfance" data-searchable="enfance maltraitance danger 119">
-                    <h3><span class="emoji">👶</span> Enfance en danger</h3>
-                    <p>Signalement et écoute pour enfants en danger ou témoins de maltraitance.</p>
-                    <div class="resource-contact">
-                        <a href="tel:119" class="resource-phone">119 (gratuit, 24h/24)</a>
-                        <a href="https://www.allo119.gouv.fr" target="_blank" rel="noopener" class="resource-link">Site web</a>
-                    </div>
-                </div>
-
-                <div class="resource-card card-animate" data-theme="violence" data-searchable="homophobie lgbt discrimination">
-                    <h3><span class="emoji">🏳️‍🌈</span> SOS Homophobie</h3>
-                    <p>Écoute et soutien pour les victimes d'actes ou discriminations LGBTphobes.</p>
-                    <div class="resource-contact">
-                        <a href="tel:0148067342" class="resource-phone">01 48 06 42 41</a>
-                        <a href="https://www.sos-homophobie.org" target="_blank" rel="noopener" class="resource-link">Site web</a>
-                    </div>
-                </div>
+            <div class="res-card card-animate" data-searchable="fil santé jeunes adolescent 12-25 ans">
+                <h3><span class="emoji">🧑‍🤝‍🧑</span> Fil Santé Jeunes</h3>
+                <p>Écoute et orientation pour les 12-25 ans sur toutes les questions de santé.</p>
+                <div class="res-contact"><a href="tel:0800235236" class="chip chip-phone"><svg aria-hidden="true"><use href="#ic-phone"/></svg>0 800 235 236 · gratuit</a><a href="https://www.filsantejeunes.com" target="_blank" rel="noopener" class="chip chip-web"><svg aria-hidden="true"><use href="#ic-web"/></svg>Site</a></div>
+            </div>
+            <div class="res-card card-animate" data-searchable="violence femme conjugale 3919">
+                <h3><span class="emoji">🛡️</span> Violences Femmes Info</h3>
+                <p>Écoute, information et orientation pour les femmes victimes de violences.</p>
+                <div class="res-contact"><a href="tel:3919" class="chip chip-phone"><svg aria-hidden="true"><use href="#ic-phone"/></svg>3919 · anonyme</a></div>
+            </div>
+            <div class="res-card card-animate" data-searchable="enfance maltraitance danger 119">
+                <h3><span class="emoji">👶</span> Enfance en danger</h3>
+                <p>Signalement et écoute pour enfants en danger ou témoins de maltraitance.</p>
+                <div class="res-contact"><a href="tel:119" class="chip chip-phone"><svg aria-hidden="true"><use href="#ic-phone"/></svg>119 · 24h/24</a><a href="https://www.allo119.gouv.fr" target="_blank" rel="noopener" class="chip chip-web"><svg aria-hidden="true"><use href="#ic-web"/></svg>Site</a></div>
+            </div>
+            <div class="res-card card-animate" data-searchable="homophobie lgbt discrimination">
+                <h3><span class="emoji">🏳️‍🌈</span> SOS Homophobie</h3>
+                <p>Écoute et soutien pour les victimes d'actes ou de discriminations LGBTphobes.</p>
+                <div class="res-contact"><a href="tel:0148064241" class="chip chip-phone"><svg aria-hidden="true"><use href="#ic-phone"/></svg>01 48 06 42 41</a><a href="https://www.sos-homophobie.org" target="_blank" rel="noopener" class="chip chip-web"><svg aria-hidden="true"><use href="#ic-web"/></svg>Site</a></div>
             </div>
         </div>
     </section>
 
-    <!-- SECTION ADDICTIONS -->
+    <!-- ===== ADDICTIONS ===== -->
     <section id="addiction" class="annuaire-section" data-section="ecoute">
-        <div class="container">
-            <div class="section-header">
-                <span class="section-badge" style="background: linear-gradient(135deg, #E67E22 0%, #d35400 100%);">Addictions</span>
-                <h2 class="section-title">Aide aux addictions</h2>
+        <div class="an-head"><span class="an-dot"></span><h2>Aide aux addictions</h2></div>
+        <div class="an-grid">
+            <div class="res-card card-animate" data-searchable="drogue cannabis cocaïne addiction">
+                <h3><span class="emoji">🚫</span> Drogues Info Service</h3>
+                <p>Information et aide pour toutes les questions liées aux drogues et addictions.</p>
+                <div class="res-contact"><a href="tel:0800231313" class="chip chip-phone"><svg aria-hidden="true"><use href="#ic-phone"/></svg>0 800 23 13 13 · gratuit</a><a href="https://www.drogues-info-service.fr" target="_blank" rel="noopener" class="chip chip-web"><svg aria-hidden="true"><use href="#ic-web"/></svg>Site</a></div>
             </div>
-
-            <div class="resource-grid">
-                <div class="resource-card card-animate" data-theme="addiction" data-searchable="drogue cannabis cocaïne addiction">
-                    <h3><span class="emoji">🚫</span> Drogues Info Service</h3>
-                    <p>Information et aide pour toutes les questions liées aux drogues et addictions.</p>
-                    <div class="resource-contact">
-                        <a href="tel:0800231313" class="resource-phone">0 800 23 13 13 (gratuit)</a>
-                        <a href="https://www.drogues-info-service.fr" target="_blank" rel="noopener" class="resource-link">Site web</a>
-                    </div>
-                </div>
-
-                <div class="resource-card card-animate" data-theme="addiction" data-searchable="alcool dépendance écoute">
-                    <h3><span class="emoji">🍷</span> Alcool Info Service</h3>
-                    <p>Écoute et conseils pour les personnes concernées par l'alcool.</p>
-                    <div class="resource-contact">
-                        <a href="tel:0980980930" class="resource-phone">0 980 980 930</a>
-                        <a href="https://www.alcool-info-service.fr" target="_blank" rel="noopener" class="resource-link">Site web</a>
-                    </div>
-                </div>
-
-                <div class="resource-card card-animate" data-theme="addiction" data-searchable="tabac arrêter fumer sevrage">
-                    <h3><span class="emoji">🚬</span> Tabac Info Service</h3>
-                    <p>Accompagnement personnalisé pour arrêter de fumer.</p>
-                    <div class="resource-contact">
-                        <a href="tel:3989" class="resource-phone">39 89 (0,15€/min)</a>
-                        <a href="https://www.tabac-info-service.fr" target="_blank" rel="noopener" class="resource-link">Site web</a>
-                    </div>
-                </div>
-
-                <div class="resource-card card-animate" data-theme="addiction" data-searchable="jeu addiction paris joueur">
-                    <h3><span class="emoji">🎰</span> Joueurs Info Service</h3>
-                    <p>Aide aux joueurs et à leur entourage face à l'addiction aux jeux.</p>
-                    <div class="resource-contact">
-                        <a href="tel:0974751313" class="resource-phone">09 74 75 13 13</a>
-                        <a href="https://www.joueurs-info-service.fr" target="_blank" rel="noopener" class="resource-link">Site web</a>
-                    </div>
-                </div>
+            <div class="res-card card-animate" data-searchable="alcool dépendance écoute">
+                <h3><span class="emoji">🍷</span> Alcool Info Service</h3>
+                <p>Écoute et conseils pour les personnes concernées par l'alcool.</p>
+                <div class="res-contact"><a href="tel:0980980930" class="chip chip-phone"><svg aria-hidden="true"><use href="#ic-phone"/></svg>0 980 980 930</a><a href="https://www.alcool-info-service.fr" target="_blank" rel="noopener" class="chip chip-web"><svg aria-hidden="true"><use href="#ic-web"/></svg>Site</a></div>
+            </div>
+            <div class="res-card card-animate" data-searchable="tabac arrêter fumer sevrage">
+                <h3><span class="emoji">🚬</span> Tabac Info Service</h3>
+                <p>Accompagnement personnalisé pour arrêter de fumer.</p>
+                <div class="res-contact"><a href="tel:3989" class="chip chip-phone"><svg aria-hidden="true"><use href="#ic-phone"/></svg>39 89 · 0,15€/min</a><a href="https://www.tabac-info-service.fr" target="_blank" rel="noopener" class="chip chip-web"><svg aria-hidden="true"><use href="#ic-web"/></svg>Site</a></div>
+            </div>
+            <div class="res-card card-animate" data-searchable="jeu addiction paris joueur">
+                <h3><span class="emoji">🎰</span> Joueurs Info Service</h3>
+                <p>Aide aux joueurs et à leur entourage face à l'addiction aux jeux.</p>
+                <div class="res-contact"><a href="tel:0974751313" class="chip chip-phone"><svg aria-hidden="true"><use href="#ic-phone"/></svg>09 74 75 13 13</a><a href="https://www.joueurs-info-service.fr" target="_blank" rel="noopener" class="chip chip-web"><svg aria-hidden="true"><use href="#ic-web"/></svg>Site</a></div>
             </div>
         </div>
     </section>
 
-    <!-- SECTION CANCER -->
+    <!-- ===== CANCER ===== -->
     <section id="cancer" class="annuaire-section" data-section="maladies">
-        <div class="container">
-            <div class="section-header">
-                <span class="section-badge" style="background: linear-gradient(135deg, #E91E63 0%, #c2185b 100%);">Cancer</span>
-                <h2 class="section-title">Cancer: information et soutien</h2>
+        <div class="an-head"><span class="an-dot"></span><h2>Cancer : information et soutien</h2></div>
+        <div class="an-grid">
+            <div class="res-card card-animate" data-searchable="cancer ligue soutien patient">
+                <h3><span class="emoji">🎗️</span> Ligue contre le cancer</h3>
+                <p>Écoute et accompagnement des personnes touchées par le cancer et leurs proches.</p>
+                <div class="res-contact"><a href="tel:0800940939" class="chip chip-phone"><svg aria-hidden="true"><use href="#ic-phone"/></svg>0 800 940 939 · gratuit</a><a href="https://www.ligue-cancer.net" target="_blank" rel="noopener" class="chip chip-web"><svg aria-hidden="true"><use href="#ic-web"/></svg>Site</a></div>
             </div>
-
-            <div class="resource-grid">
-                <div class="resource-card card-animate" data-theme="cancer" data-searchable="cancer ligue soutien patient">
-                    <h3><span class="emoji">🎗️</span> Ligue contre le cancer</h3>
-                    <p>Écoute, accompagnement et soutien des personnes touchées par le cancer et leurs proches.</p>
-                    <div class="resource-contact">
-                        <a href="tel:0800940939" class="resource-phone">0 800 940 939 (gratuit)</a>
-                        <a href="https://www.ligue-cancer.net" target="_blank" rel="noopener" class="resource-link">Site web</a>
-                    </div>
-                </div>
-
-                <div class="resource-card card-animate" data-theme="cancer" data-searchable="cancer sein rose">
-                    <h3><span class="emoji">🌸</span> Cancer du sein, parlons-en!</h3>
-                    <p>Information, prévention et sensibilisation au dépistage du cancer du sein.</p>
-                    <div class="resource-contact">
-                        <a href="https://www.cancerdusein.org" target="_blank" rel="noopener" class="resource-link">Site web</a>
-                    </div>
-                </div>
-
-                <div class="resource-card card-animate" data-theme="cancer" data-searchable="institut national cancer inca">
-                    <h3><span class="emoji">🔬</span> Institut National du Cancer</h3>
-                    <p>Information officielle sur les cancers, traitements et recherche.</p>
-                    <div class="resource-contact">
-                        <a href="tel:0805123124" class="resource-phone">0 805 123 124 (gratuit)</a>
-                        <a href="https://www.e-cancer.fr" target="_blank" rel="noopener" class="resource-link">Site web</a>
-                    </div>
-                </div>
+            <div class="res-card card-animate" data-searchable="cancer sein rose">
+                <h3><span class="emoji">🌸</span> Cancer du sein, parlons-en !</h3>
+                <p>Information, prévention et sensibilisation au dépistage du cancer du sein.</p>
+                <div class="res-contact"><a href="https://www.cancerdusein.org" target="_blank" rel="noopener" class="chip chip-web"><svg aria-hidden="true"><use href="#ic-web"/></svg>Site</a></div>
+            </div>
+            <div class="res-card card-animate" data-searchable="institut national cancer inca">
+                <h3><span class="emoji">🔬</span> Institut National du Cancer</h3>
+                <p>Information officielle sur les cancers, les traitements et la recherche.</p>
+                <div class="res-contact"><a href="tel:0805123124" class="chip chip-phone"><svg aria-hidden="true"><use href="#ic-phone"/></svg>0 805 123 124 · gratuit</a><a href="https://www.e-cancer.fr" target="_blank" rel="noopener" class="chip chip-web"><svg aria-hidden="true"><use href="#ic-web"/></svg>Site</a></div>
             </div>
         </div>
     </section>
 
-    <!-- SECTION MALADIES CHRONIQUES -->
+    <!-- ===== MALADIES CHRONIQUES ===== -->
     <section id="chroniques" class="annuaire-section" data-section="maladies">
-        <div class="container">
-            <div class="section-header">
-                <span class="section-badge">Maladies chroniques</span>
-                <h2 class="section-title">Associations de patients</h2>
+        <div class="an-head"><span class="an-dot"></span><h2>Associations de patients</h2></div>
+        <p class="an-sub">Accompagnement des patients et de leurs proches face aux maladies chroniques.</p>
+        <div class="an-grid">
+            <div class="res-card card-animate" data-searchable="diabète association fédération diabétiques glycémie insuline">
+                <h3><span class="emoji">🩸</span> Fédération Française des Diabétiques</h3>
+                <p>Accompagnement des personnes diabétiques : information, prévention, défense des droits.</p>
+                <div class="res-contact"><a href="tel:0143254950" class="chip chip-phone"><svg aria-hidden="true"><use href="#ic-phone"/></svg>01 43 25 49 50</a><a href="https://www.federationdesdiabetiques.org" target="_blank" rel="noopener" class="chip chip-web"><svg aria-hidden="true"><use href="#ic-web"/></svg>Site</a></div>
             </div>
-            <div class="section-intro">
-                <p>Ces associations accompagnent les patients et leurs proches face aux maladies chroniques.</p>
+            <div class="res-card card-animate" data-searchable="alzheimer mémoire maladie proche aidant démence">
+                <h3><span class="emoji">🧠</span> France Alzheimer</h3>
+                <p>Soutien aux malades et aux aidants face à la maladie d'Alzheimer et aux maladies apparentées.</p>
+                <div class="res-contact"><a href="tel:0811112112" class="chip chip-phone"><svg aria-hidden="true"><use href="#ic-phone"/></svg>0 811 112 112</a><a href="https://www.francealzheimer.org" target="_blank" rel="noopener" class="chip chip-web"><svg aria-hidden="true"><use href="#ic-web"/></svg>Site</a></div>
             </div>
-
-            <div class="resource-grid">
-                <div class="resource-card card-animate" data-theme="chronique" data-searchable="diabète association fédération diabétiques glycémie insuline">
-                    <h3><span class="emoji">🩸</span> Fédération Française des Diabétiques</h3>
-                    <p>Accompagnement des personnes diabétiques et de leurs proches. Information, prévention, défense des droits.</p>
-                    <div class="resource-contact">
-                        <a href="tel:0143254950" class="resource-phone">01 43 25 49 50</a>
-                        <a href="https://www.federationdesdiabetiques.org" target="_blank" rel="noopener" class="resource-link">Site web</a>
-                    </div>
-                </div>
-
-                <div class="resource-card card-animate" data-theme="chronique" data-searchable="alzheimer mémoire maladie proche aidant démence">
-                    <h3><span class="emoji">🧠</span> France Alzheimer</h3>
-                    <p>Soutien aux malades et aux aidants face à la maladie d'Alzheimer et maladies apparentées.</p>
-                    <div class="resource-contact">
-                        <a href="tel:0811112112" class="resource-phone">0 811 112 112</a>
-                        <a href="https://www.francealzheimer.org" target="_blank" rel="noopener" class="resource-link">Site web</a>
-                    </div>
-                </div>
-
-                <div class="resource-card card-animate" data-theme="chronique" data-searchable="asthme allergie respiratoire">
-                    <h3><span class="emoji">🌬️</span> Asthme & Allergies</h3>
-                    <p>Information et soutien pour les personnes asthmatiques et allergiques.</p>
-                    <div class="resource-contact">
-                        <a href="tel:0800192021" class="resource-phone">0 800 19 20 21 (gratuit)</a>
-                        <a href="https://asthme-allergies.org" target="_blank" rel="noopener" class="resource-link">Site web</a>
-                    </div>
-                </div>
-
-                <div class="resource-card card-animate" data-theme="chronique" data-searchable="coeur cardiaque infarctus AVC">
-                    <h3><span class="emoji">❤️</span> Fédération Française de Cardiologie</h3>
-                    <p>Prévention et accompagnement des maladies cardiovasculaires.</p>
-                    <div class="resource-contact">
-                        <a href="https://www.fedecardio.org" target="_blank" rel="noopener" class="resource-link">Site web</a>
-                    </div>
-                </div>
-
-                <div class="resource-card card-animate" data-theme="chronique" data-searchable="parkinson maladie neurologique">
-                    <h3><span class="emoji">🤲</span> France Parkinson</h3>
-                    <p>Accompagnement des malades de Parkinson et de leurs proches.</p>
-                    <div class="resource-contact">
-                        <a href="tel:0800005006" class="resource-phone">0 800 005 006 (gratuit)</a>
-                        <a href="https://www.franceparkinson.fr" target="_blank" rel="noopener" class="resource-link">Site web</a>
-                    </div>
-                </div>
-
-                <div class="resource-card card-animate" data-theme="chronique" data-searchable="sclérose plaque sep neurologique">
-                    <h3><span class="emoji">🧬</span> Fondation ARSEP</h3>
-                    <p>Recherche et accompagnement sur la sclérose en plaques.</p>
-                    <div class="resource-contact">
-                        <a href="tel:0800854976" class="resource-phone">0 800 854 976 (gratuit)</a>
-                        <a href="https://www.arsep.org" target="_blank" rel="noopener" class="resource-link">Site web</a>
-                    </div>
-                </div>
-
-                <div class="resource-card card-animate" data-theme="chronique" data-searchable="rein insuffisance rénale dialyse">
-                    <h3><span class="emoji">🫘</span> France Rein</h3>
-                    <p>Accompagnement des personnes atteintes de maladies rénales.</p>
-                    <div class="resource-contact">
-                        <a href="https://www.francerein.org" target="_blank" rel="noopener" class="resource-link">Site web</a>
-                    </div>
-                </div>
-
-                <div class="resource-card card-animate" data-theme="chronique" data-searchable="épilepsie crise neurologique">
-                    <h3><span class="emoji">⚡</span> Épilepsie France</h3>
-                    <p>Information et soutien aux personnes épileptiques et leurs proches.</p>
-                    <div class="resource-contact">
-                        <a href="tel:0142469100" class="resource-phone">01 42 46 91 00</a>
-                        <a href="https://www.epilepsie-france.com" target="_blank" rel="noopener" class="resource-link">Site web</a>
-                    </div>
-                </div>
+            <div class="res-card card-animate" data-searchable="asthme allergie respiratoire">
+                <h3><span class="emoji">🌬️</span> Asthme &amp; Allergies</h3>
+                <p>Information et soutien pour les personnes asthmatiques et allergiques.</p>
+                <div class="res-contact"><a href="tel:0800192021" class="chip chip-phone"><svg aria-hidden="true"><use href="#ic-phone"/></svg>0 800 19 20 21 · gratuit</a><a href="https://asthme-allergies.org" target="_blank" rel="noopener" class="chip chip-web"><svg aria-hidden="true"><use href="#ic-web"/></svg>Site</a></div>
+            </div>
+            <div class="res-card card-animate" data-searchable="coeur cardiaque infarctus avc">
+                <h3><span class="emoji">❤️</span> Fédération Française de Cardiologie</h3>
+                <p>Prévention et accompagnement des maladies cardiovasculaires.</p>
+                <div class="res-contact"><a href="https://www.fedecardio.org" target="_blank" rel="noopener" class="chip chip-web"><svg aria-hidden="true"><use href="#ic-web"/></svg>Site</a></div>
+            </div>
+            <div class="res-card card-animate" data-searchable="parkinson maladie neurologique">
+                <h3><span class="emoji">🤲</span> France Parkinson</h3>
+                <p>Accompagnement des malades de Parkinson et de leurs proches.</p>
+                <div class="res-contact"><a href="tel:0800005006" class="chip chip-phone"><svg aria-hidden="true"><use href="#ic-phone"/></svg>0 800 005 006 · gratuit</a><a href="https://www.franceparkinson.fr" target="_blank" rel="noopener" class="chip chip-web"><svg aria-hidden="true"><use href="#ic-web"/></svg>Site</a></div>
+            </div>
+            <div class="res-card card-animate" data-searchable="sclérose plaque sep neurologique">
+                <h3><span class="emoji">🧬</span> Fondation ARSEP</h3>
+                <p>Recherche et accompagnement sur la sclérose en plaques.</p>
+                <div class="res-contact"><a href="tel:0800854976" class="chip chip-phone"><svg aria-hidden="true"><use href="#ic-phone"/></svg>0 800 854 976 · gratuit</a><a href="https://www.arsep.org" target="_blank" rel="noopener" class="chip chip-web"><svg aria-hidden="true"><use href="#ic-web"/></svg>Site</a></div>
+            </div>
+            <div class="res-card card-animate" data-searchable="rein insuffisance rénale dialyse">
+                <h3><span class="emoji">🫘</span> France Rein</h3>
+                <p>Accompagnement des personnes atteintes de maladies rénales.</p>
+                <div class="res-contact"><a href="https://www.francerein.org" target="_blank" rel="noopener" class="chip chip-web"><svg aria-hidden="true"><use href="#ic-web"/></svg>Site</a></div>
+            </div>
+            <div class="res-card card-animate" data-searchable="épilepsie crise neurologique">
+                <h3><span class="emoji">⚡</span> Épilepsie France</h3>
+                <p>Information et soutien aux personnes épileptiques et à leurs proches.</p>
+                <div class="res-contact"><a href="tel:0142469100" class="chip chip-phone"><svg aria-hidden="true"><use href="#ic-phone"/></svg>01 42 46 91 00</a><a href="https://www.epilepsie-france.com" target="_blank" rel="noopener" class="chip chip-web"><svg aria-hidden="true"><use href="#ic-web"/></svg>Site</a></div>
             </div>
         </div>
     </section>
 
-    <!-- SECTION HANDICAP -->
+    <!-- ===== HANDICAP ===== -->
     <section id="handicap" class="annuaire-section" data-section="maladies">
-        <div class="container">
-            <div class="section-header">
-                <span class="section-badge" style="background: linear-gradient(135deg, #4CAF50 0%, #388e3c 100%);">Handicap</span>
-                <h2 class="section-title">Handicap et accessibilité</h2>
+        <div class="an-head"><span class="an-dot"></span><h2>Handicap et accessibilité</h2></div>
+        <div class="an-grid">
+            <div class="res-card card-animate" data-searchable="handicap mdph droits allocation">
+                <h3><span class="emoji">♿</span> Info Handicap</h3>
+                <p>Droits des personnes handicapées, MDPH et aides disponibles.</p>
+                <div class="res-contact"><a href="tel:0800112347" class="chip chip-phone"><svg aria-hidden="true"><use href="#ic-phone"/></svg>0 800 11 23 47 · gratuit</a><a href="https://www.monparcourshandicap.gouv.fr" target="_blank" rel="noopener" class="chip chip-web"><svg aria-hidden="true"><use href="#ic-web"/></svg>Site</a></div>
             </div>
-
-            <div class="resource-grid">
-                <div class="resource-card card-animate" data-theme="handicap" data-searchable="handicap mdph droits allocation">
-                    <h3><span class="emoji">♿</span> Info Handicap</h3>
-                    <p>Information sur les droits des personnes handicapées, la MDPH et les aides disponibles.</p>
-                    <div class="resource-contact">
-                        <a href="tel:0800112347" class="resource-phone">0 800 11 23 47 (gratuit)</a>
-                        <a href="https://www.monparcourshandicap.gouv.fr" target="_blank" rel="noopener" class="resource-link">Site web</a>
-                    </div>
-                </div>
-
-                <div class="resource-card card-animate" data-theme="handicap" data-searchable="APF handicap moteur">
-                    <h3><span class="emoji">🦽</span> APF France handicap</h3>
-                    <p>Défense et accompagnement des personnes en situation de handicap.</p>
-                    <div class="resource-contact">
-                        <a href="https://www.apf-francehandicap.org" target="_blank" rel="noopener" class="resource-link">Site web</a>
-                    </div>
-                </div>
-
-                <div class="resource-card card-animate" data-theme="handicap" data-searchable="autisme spectre trouble">
-                    <h3><span class="emoji">🧩</span> Autisme France</h3>
-                    <p>Accompagnement des personnes autistes et de leurs familles.</p>
-                    <div class="resource-contact">
-                        <a href="tel:0800714040" class="resource-phone">0 800 71 40 40 (gratuit)</a>
-                        <a href="https://www.autisme-france.fr" target="_blank" rel="noopener" class="resource-link">Site web</a>
-                    </div>
-                </div>
+            <div class="res-card card-animate" data-searchable="apf handicap moteur">
+                <h3><span class="emoji">🦽</span> APF France handicap</h3>
+                <p>Défense et accompagnement des personnes en situation de handicap.</p>
+                <div class="res-contact"><a href="https://www.apf-francehandicap.org" target="_blank" rel="noopener" class="chip chip-web"><svg aria-hidden="true"><use href="#ic-web"/></svg>Site</a></div>
+            </div>
+            <div class="res-card card-animate" data-searchable="autisme spectre trouble">
+                <h3><span class="emoji">🧩</span> Autisme France</h3>
+                <p>Accompagnement des personnes autistes et de leurs familles.</p>
+                <div class="res-contact"><a href="tel:0800714040" class="chip chip-phone"><svg aria-hidden="true"><use href="#ic-phone"/></svg>0 800 71 40 40 · gratuit</a><a href="https://www.autisme-france.fr" target="_blank" rel="noopener" class="chip chip-web"><svg aria-hidden="true"><use href="#ic-web"/></svg>Site</a></div>
             </div>
         </div>
     </section>
 
-    <!-- SECTION SERVICES PUBLICS EN LIGNE -->
+    <!-- ===== SERVICES PUBLICS ===== -->
     <section id="services-publics" class="annuaire-section" data-section="services">
-        <div class="container">
-            <div class="section-header">
-                <span class="section-badge" style="background: linear-gradient(135deg, #2196F3 0%, #1565C0 100%);">Services publics</span>
-                <h2 class="section-title">Services de santé en ligne</h2>
+        <div class="an-head"><span class="an-dot"></span><h2>Services de santé en ligne</h2></div>
+        <p class="an-sub">Les sites officiels pour vos démarches : remboursements, dossier médical, trouver un professionnel.</p>
+        <div class="an-grid">
+            <div class="res-card card-animate" data-searchable="ameli assurance maladie remboursement carte vitale cpam">
+                <h3><span class="emoji">🏛️</span> Ameli.fr · Assurance Maladie</h3>
+                <p>Remboursements, attestations, déclarations, arrêts maladie. Le site santé le plus consulté en France.</p>
+                <div class="res-contact"><a href="tel:3646" class="chip chip-phone"><svg aria-hidden="true"><use href="#ic-phone"/></svg>36 46</a><a href="https://www.ameli.fr" target="_blank" rel="noopener" class="chip chip-web"><svg aria-hidden="true"><use href="#ic-web"/></svg>Site</a></div>
             </div>
-            <div class="section-intro">
-                <p>Les sites officiels pour gérer votre santé en ligne: remboursements, dossier médical, trouver un professionnel.</p>
+            <div class="res-card card-animate" data-searchable="mon espace santé dossier médical carnet ordonnance">
+                <h3><span class="emoji">📱</span> Mon Espace Santé</h3>
+                <p>Votre carnet de santé numérique : dossier médical, ordonnances, résultats, messagerie sécurisée.</p>
+                <div class="res-contact"><a href="https://www.monespacesante.fr" target="_blank" rel="noopener" class="chip chip-web"><svg aria-hidden="true"><use href="#ic-web"/></svg>Site</a></div>
             </div>
-
-            <div class="resource-grid">
-                <div class="resource-card card-animate" data-theme="service" data-searchable="ameli assurance maladie remboursement carte vitale cpam">
-                    <h3><span class="emoji">🏛️</span> Ameli.fr - Assurance Maladie</h3>
-                    <p>Votre compte personnel: remboursements, attestations, déclarations, arrêts maladie. Le site le plus visité en France pour la santé.</p>
-                    <div class="resource-contact">
-                        <a href="tel:3646" class="resource-phone">36 46 (gratuit)</a>
-                        <a href="https://www.ameli.fr" target="_blank" rel="noopener" class="resource-link">Accéder à Ameli</a>
-                    </div>
-                </div>
-
-                <div class="resource-card card-animate" data-theme="service" data-searchable="mon espace santé dossier médical carnet ordonnance">
-                    <h3><span class="emoji">📱</span> Mon Espace Santé</h3>
-                    <p>Votre carnet de santé numérique: dossier médical, ordonnances, résultats d'examens, messagerie sécurisée avec les professionnels.</p>
-                    <div class="resource-contact">
-                        <a href="https://www.monespacesante.fr" target="_blank" rel="noopener" class="resource-link">Accéder</a>
-                    </div>
-                </div>
-
-                <div class="resource-card card-animate" data-theme="service" data-searchable="sante.fr annuaire médecin pharmacie hôpital recherche">
-                    <h3><span class="emoji">🔍</span> Sante.fr - Annuaire national</h3>
-                    <p>Trouvez un professionnel de santé parmi 460 000 praticiens: médecins, pharmacies, hôpitaux, laboratoires...</p>
-                    <div class="resource-contact">
-                        <a href="https://www.sante.fr" target="_blank" rel="noopener" class="resource-link">Rechercher</a>
-                    </div>
-                </div>
-
-                <div class="resource-card card-animate" data-theme="service" data-searchable="service public droits santé démarches">
-                    <h3><span class="emoji">📋</span> Service-Public.fr - Santé</h3>
-                    <p>Vos droits et démarches santé: carte vitale, remboursements, handicap, vaccinations, décès...</p>
-                    <div class="resource-contact">
-                        <a href="https://www.service-public.fr/particuliers/vosdroits/N16" target="_blank" rel="noopener" class="resource-link">Consulter</a>
-                    </div>
-                </div>
+            <div class="res-card card-animate" data-searchable="sante.fr annuaire médecin pharmacie hôpital recherche">
+                <h3><span class="emoji">🔍</span> Sante.fr · Annuaire national</h3>
+                <p>Trouvez un professionnel parmi 460 000 praticiens : médecins, pharmacies, hôpitaux, laboratoires.</p>
+                <div class="res-contact"><a href="https://www.sante.fr" target="_blank" rel="noopener" class="chip chip-web"><svg aria-hidden="true"><use href="#ic-web"/></svg>Site</a></div>
+            </div>
+            <div class="res-card card-animate" data-searchable="service public droits santé démarches">
+                <h3><span class="emoji">📋</span> Service-Public.fr · Santé</h3>
+                <p>Vos droits et démarches : carte vitale, remboursements, handicap, vaccinations.</p>
+                <div class="res-contact"><a href="https://www.service-public.fr/particuliers/vosdroits/N16" target="_blank" rel="noopener" class="chip chip-web"><svg aria-hidden="true"><use href="#ic-web"/></svg>Site</a></div>
             </div>
         </div>
     </section>
 
-    <!-- SECTION AGENCES NATIONALES -->
+    <!-- ===== AGENCES NATIONALES ===== -->
     <section id="agences" class="annuaire-section" data-section="services">
-        <div class="container">
-            <div class="section-header">
-                <span class="section-badge" style="background: linear-gradient(135deg, #607D8B 0%, #455A64 100%);">Institutions</span>
-                <h2 class="section-title">Agences nationales de santé</h2>
+        <div class="an-head"><span class="an-dot"></span><h2>Agences nationales de santé</h2></div>
+        <div class="an-grid">
+            <div class="res-card card-animate" data-searchable="santé publique france épidémie prévention vaccination grippe covid">
+                <h3><span class="emoji">🏥</span> Santé Publique France</h3>
+                <p>Surveillance des épidémies, prévention, bulletins épidémiologiques, campagnes de vaccination.</p>
+                <div class="res-contact"><a href="https://www.santepubliquefrance.fr" target="_blank" rel="noopener" class="chip chip-web"><svg aria-hidden="true"><use href="#ic-web"/></svg>Site</a></div>
             </div>
-
-            <div class="resource-grid">
-                <div class="resource-card card-animate" data-theme="service" data-searchable="santé publique france épidémie prévention vaccination grippe covid">
-                    <h3><span class="emoji">🏥</span> Santé Publique France</h3>
-                    <p>Agence nationale de santé publique: surveillance des épidémies, prévention, bulletins épidémiologiques, campagnes de vaccination.</p>
-                    <div class="resource-contact">
-                        <a href="https://www.santepubliquefrance.fr" target="_blank" rel="noopener" class="resource-link">Site web</a>
-                    </div>
-                </div>
-
-                <div class="resource-card card-animate" data-theme="service" data-searchable="HAS haute autorité santé recommandations médicaments">
-                    <h3><span class="emoji">⚖️</span> Haute Autorité de Santé (HAS)</h3>
-                    <p>Évaluation des médicaments, recommandations de bonnes pratiques, certification des établissements de santé.</p>
-                    <div class="resource-contact">
-                        <a href="https://www.has-sante.fr" target="_blank" rel="noopener" class="resource-link">Site web</a>
-                    </div>
-                </div>
-
-                <div class="resource-card card-animate" data-theme="service" data-searchable="ARS bretagne agence régionale santé">
-                    <h3><span class="emoji">🗺️</span> ARS Bretagne</h3>
-                    <p>Agence Régionale de Santé: pilotage du système de santé en Bretagne, autorisations, politiques de santé territoriales.</p>
-                    <div class="resource-contact">
-                        <a href="https://www.bretagne.ars.sante.fr" target="_blank" rel="noopener" class="resource-link">Site web</a>
-                    </div>
-                </div>
-
-                <div class="resource-card card-animate" data-theme="service" data-searchable="ministère santé gouvernement lois">
-                    <h3><span class="emoji">🇫🇷</span> Ministère de la Santé</h3>
-                    <p>Politique nationale de santé publique, calendrier vaccinal, plans nationaux, actualités santé.</p>
-                    <div class="resource-contact">
-                        <a href="https://sante.gouv.fr" target="_blank" rel="noopener" class="resource-link">Site web</a>
-                    </div>
-                </div>
+            <div class="res-card card-animate" data-searchable="has haute autorité santé recommandations médicaments">
+                <h3><span class="emoji">⚖️</span> Haute Autorité de Santé (HAS)</h3>
+                <p>Évaluation des médicaments, recommandations de bonnes pratiques, certification des établissements.</p>
+                <div class="res-contact"><a href="https://www.has-sante.fr" target="_blank" rel="noopener" class="chip chip-web"><svg aria-hidden="true"><use href="#ic-web"/></svg>Site</a></div>
+            </div>
+            <div class="res-card card-animate" data-searchable="ars bretagne agence régionale santé">
+                <h3><span class="emoji">🗺️</span> ARS Bretagne</h3>
+                <p>Pilotage du système de santé en Bretagne : autorisations, politiques de santé territoriales.</p>
+                <div class="res-contact"><a href="https://www.bretagne.ars.sante.fr" target="_blank" rel="noopener" class="chip chip-web"><svg aria-hidden="true"><use href="#ic-web"/></svg>Site</a></div>
+            </div>
+            <div class="res-card card-animate" data-searchable="ministère santé gouvernement lois">
+                <h3><span class="emoji">🇫🇷</span> Ministère de la Santé</h3>
+                <p>Politique nationale de santé publique, calendrier vaccinal, plans nationaux.</p>
+                <div class="res-contact"><a href="https://sante.gouv.fr" target="_blank" rel="noopener" class="chip chip-web"><svg aria-hidden="true"><use href="#ic-web"/></svg>Site</a></div>
             </div>
         </div>
     </section>
 
-    <!-- SECTION PRÉVENTION -->
+    <!-- ===== PRÉVENTION ===== -->
     <section id="prevention" class="annuaire-section" data-section="services">
-        <div class="container">
-            <div class="section-header">
-                <span class="section-badge" style="background: linear-gradient(135deg, #8BC34A 0%, #689F38 100%);">Prévention</span>
-                <h2 class="section-title">Prévention et bien-être</h2>
+        <div class="an-head"><span class="an-dot"></span><h2>Prévention et bien-être</h2></div>
+        <div class="an-grid">
+            <div class="res-card card-animate" data-searchable="manger bouger nutrition alimentation recette menu">
+                <h3><span class="emoji">🥗</span> Manger Bouger</h3>
+                <p>Recommandations alimentaires, fabrique à menus, recettes équilibrées, Nutri-Score.</p>
+                <div class="res-contact"><a href="https://www.mangerbouger.fr" target="_blank" rel="noopener" class="chip chip-web"><svg aria-hidden="true"><use href="#ic-web"/></svg>Site</a></div>
             </div>
-
-            <div class="resource-grid">
-                <div class="resource-card card-animate" data-theme="service" data-searchable="manger bouger nutrition alimentation recette menu">
-                    <h3><span class="emoji">🥗</span> Manger Bouger</h3>
-                    <p>Programme National Nutrition Santé: recommandations alimentaires, fabrique à menus, recettes équilibrées, Nutri-Score.</p>
-                    <div class="resource-contact">
-                        <a href="https://www.mangerbouger.fr" target="_blank" rel="noopener" class="resource-link">Site web</a>
-                    </div>
-                </div>
-
-                <div class="resource-card card-animate" data-theme="service" data-searchable="vaccination calendrier vaccin rappel">
-                    <h3><span class="emoji">💉</span> Calendrier vaccinal</h3>
-                    <p>Calendrier officiel des vaccinations 2025: vaccins obligatoires, recommandés, rappels selon l'âge.</p>
-                    <div class="resource-contact">
-                        <a href="https://www.service-public.fr/particuliers/vosdroits/F724" target="_blank" rel="noopener" class="resource-link">Consulter</a>
-                    </div>
-                </div>
-
-                <div class="resource-card card-animate" data-theme="service" data-searchable="dépistage cancer sein colorectal col utérus">
-                    <h3><span class="emoji">🔬</span> Dépistages organisés</h3>
-                    <p>Programmes nationaux de dépistage: cancer du sein, cancer colorectal, cancer du col de l'utérus.</p>
-                    <div class="resource-contact">
-                        <a href="https://www.e-cancer.fr/Comprendre-prevenir-depister/Se-faire-depister" target="_blank" rel="noopener" class="resource-link">En savoir plus</a>
-                    </div>
-                </div>
+            <div class="res-card card-animate" data-searchable="vaccination calendrier vaccin rappel">
+                <h3><span class="emoji">💉</span> Calendrier vaccinal</h3>
+                <p>Calendrier officiel des vaccinations : vaccins obligatoires, recommandés, rappels selon l'âge.</p>
+                <div class="res-contact"><a href="https://www.service-public.fr/particuliers/vosdroits/F724" target="_blank" rel="noopener" class="chip chip-web"><svg aria-hidden="true"><use href="#ic-web"/></svg>Consulter</a></div>
+            </div>
+            <div class="res-card card-animate" data-searchable="dépistage cancer sein colorectal col utérus">
+                <h3><span class="emoji">🔬</span> Dépistages organisés</h3>
+                <p>Programmes nationaux : cancer du sein, cancer colorectal, cancer du col de l'utérus.</p>
+                <div class="res-contact"><a href="https://www.e-cancer.fr/Comprendre-prevenir-depister/Se-faire-depister" target="_blank" rel="noopener" class="chip chip-web"><svg aria-hidden="true"><use href="#ic-web"/></svg>En savoir plus</a></div>
             </div>
         </div>
     </section>
 
-    <!-- SECTION AIDES FINANCIÈRES -->
+    <!-- ===== AIDES FINANCIÈRES ===== -->
     <section id="aides" class="annuaire-section" data-section="solidarite">
-        <div class="container">
-            <div class="section-header">
-                <span class="section-badge" style="background: linear-gradient(135deg, #FF9800 0%, #F57C00 100%);">Aides</span>
-                <h2 class="section-title">Aides financières santé</h2>
+        <div class="an-head"><span class="an-dot"></span><h2>Aides financières santé</h2></div>
+        <div class="an-grid">
+            <div class="res-card card-animate" data-searchable="complémentaire santé solidaire c2s cmu mutuelle gratuite">
+                <h3><span class="emoji">💰</span> Complémentaire Santé Solidaire (C2S)</h3>
+                <p>Prise en charge à 100% des frais de santé pour les revenus modestes. Gratuite ou moins de 1€/jour.</p>
+                <div class="res-contact"><a href="https://www.complementaire-sante-solidaire.gouv.fr" target="_blank" rel="noopener" class="chip chip-web"><svg aria-hidden="true"><use href="#ic-web"/></svg>Vérifier mon éligibilité</a></div>
             </div>
-
-            <div class="resource-grid">
-                <div class="resource-card card-animate" data-theme="senior" data-searchable="complémentaire santé solidaire C2S CMU mutuelle gratuite">
-                    <h3><span class="emoji">💰</span> Complémentaire Santé Solidaire (C2S)</h3>
-                    <p>Ancienne CMU-C. Prise en charge à 100% des frais de santé pour les personnes à revenus modestes. Gratuite ou moins de 1€/jour.</p>
-                    <div class="resource-contact">
-                        <a href="https://www.complementaire-sante-solidaire.gouv.fr" target="_blank" rel="noopener" class="resource-link">Vérifier mon éligibilité</a>
-                    </div>
-                </div>
-
-                <div class="resource-card card-animate" data-theme="senior" data-searchable="aide médecine du monde mdm soins gratuits">
-                    <h3><span class="emoji">🩺</span> Médecins du Monde</h3>
-                    <p>Accès aux soins pour les personnes en situation de précarité, sans couverture sociale.</p>
-                    <div class="resource-contact">
-                        <a href="https://www.medecinsdumonde.org" target="_blank" rel="noopener" class="resource-link">Site web</a>
-                    </div>
-                </div>
-
-                <div class="resource-card card-animate" data-theme="senior" data-searchable="secours catholique aide sociale précarité">
-                    <h3><span class="emoji">🤲</span> Secours Catholique</h3>
-                    <p>Aide aux personnes en difficulté: accès aux droits, accompagnement social, aide alimentaire.</p>
-                    <div class="resource-contact">
-                        <a href="https://www.secours-catholique.org" target="_blank" rel="noopener" class="resource-link">Site web</a>
-                    </div>
-                </div>
+            <div class="res-card card-animate" data-searchable="aide médecine du monde mdm soins gratuits">
+                <h3><span class="emoji">🩺</span> Médecins du Monde</h3>
+                <p>Accès aux soins pour les personnes en situation de précarité, sans couverture sociale.</p>
+                <div class="res-contact"><a href="https://www.medecinsdumonde.org" target="_blank" rel="noopener" class="chip chip-web"><svg aria-hidden="true"><use href="#ic-web"/></svg>Site</a></div>
+            </div>
+            <div class="res-card card-animate" data-searchable="secours catholique aide sociale précarité">
+                <h3><span class="emoji">🤲</span> Secours Catholique</h3>
+                <p>Aide aux personnes en difficulté : accès aux droits, accompagnement social, aide alimentaire.</p>
+                <div class="res-contact"><a href="https://www.secours-catholique.org" target="_blank" rel="noopener" class="chip chip-web"><svg aria-hidden="true"><use href="#ic-web"/></svg>Site</a></div>
             </div>
         </div>
     </section>
 
-    <!-- SECTION SOLIDARITÉ -->
+    <!-- ===== SOLIDARITÉ ===== -->
     <section id="solidarite" class="annuaire-section" data-section="solidarite">
-        <div class="container">
-            <div class="section-header">
-                <span class="section-badge" style="background: linear-gradient(135deg, #F44336 0%, #d32f2f 100%);">Solidarité</span>
-                <h2 class="section-title">Solidarité et entraide</h2>
+        <div class="an-head"><span class="an-dot"></span><h2>Solidarité et entraide</h2></div>
+        <div class="an-grid">
+            <div class="res-card card-animate" data-searchable="croix rouge bénévole secours aide humanitaire">
+                <h3><span class="emoji">❤️</span> Croix-Rouge française</h3>
+                <p>Aide humanitaire, secourisme, action sociale, formation aux premiers secours.</p>
+                <div class="res-contact"><a href="https://www.croix-rouge.fr" target="_blank" rel="noopener" class="chip chip-web"><svg aria-hidden="true"><use href="#ic-web"/></svg>Site</a></div>
             </div>
-
-            <div class="resource-grid">
-                <div class="resource-card card-animate" data-theme="solidarite" data-searchable="croix rouge bénévole secours aide humanitaire">
-                    <h3><span class="emoji">❤️</span> Croix-Rouge française</h3>
-                    <p>Aide humanitaire, secourisme, action sociale, formation aux premiers secours.</p>
-                    <div class="resource-contact">
-                        <a href="https://www.croix-rouge.fr" target="_blank" rel="noopener" class="resource-link">Site web</a>
-                    </div>
-                </div>
-
-                <div class="resource-card card-animate" data-theme="solidarite" data-searchable="don organe greffe agence biomédecine">
-                    <h3><span class="emoji">💝</span> Don d'organes</h3>
-                    <p>Information sur le don d'organes et de tissus. Parlez-en à vos proches.</p>
-                    <div class="resource-contact">
-                        <a href="tel:0800202224" class="resource-phone">0 800 20 22 24 (gratuit)</a>
-                        <a href="https://www.dondorganes.fr" target="_blank" rel="noopener" class="resource-link">Site web</a>
-                    </div>
-                </div>
-
-                <div class="resource-card card-animate" data-theme="solidarite" data-searchable="don sang efs établissement français">
-                    <h3><span class="emoji">🩸</span> Don du sang</h3>
-                    <p>Donnez votre sang pour sauver des vies. Trouvez une collecte près de chez vous.</p>
-                    <div class="resource-contact">
-                        <a href="https://dondesang.efs.sante.fr" target="_blank" rel="noopener" class="resource-link">Site web</a>
-                    </div>
-                </div>
-
-                <div class="resource-card card-animate" data-theme="senior" data-searchable="aidant proche famille solitude senior">
-                    <h3><span class="emoji">👴</span> Allo Solitude Personnes Âgées</h3>
-                    <p>Écoute et soutien pour les personnes âgées isolées.</p>
-                    <div class="resource-contact">
-                        <a href="tel:0800474788" class="resource-phone">0 800 47 47 88 (gratuit)</a>
-                    </div>
-                </div>
-
-                <div class="resource-card card-animate" data-theme="senior" data-searchable="aidant proche famille soutien">
-                    <h3><span class="emoji">🤝</span> Association Française des Aidants</h3>
-                    <p>Soutien et reconnaissance des aidants familiaux.</p>
-                    <div class="resource-contact">
-                        <a href="https://www.aidants.fr" target="_blank" rel="noopener" class="resource-link">Site web</a>
-                    </div>
-                </div>
+            <div class="res-card card-animate" data-searchable="don organe greffe agence biomédecine">
+                <h3><span class="emoji">💝</span> Don d'organes</h3>
+                <p>Information sur le don d'organes et de tissus. Parlez-en à vos proches.</p>
+                <div class="res-contact"><a href="tel:0800202224" class="chip chip-phone"><svg aria-hidden="true"><use href="#ic-phone"/></svg>0 800 20 22 24 · gratuit</a><a href="https://www.dondorganes.fr" target="_blank" rel="noopener" class="chip chip-web"><svg aria-hidden="true"><use href="#ic-web"/></svg>Site</a></div>
+            </div>
+            <div class="res-card card-animate" data-searchable="don sang efs établissement français">
+                <h3><span class="emoji">🩸</span> Don du sang</h3>
+                <p>Donnez votre sang pour sauver des vies. Trouvez une collecte près de chez vous.</p>
+                <div class="res-contact"><a href="https://dondesang.efs.sante.fr" target="_blank" rel="noopener" class="chip chip-web"><svg aria-hidden="true"><use href="#ic-web"/></svg>Site</a></div>
+            </div>
+            <div class="res-card card-animate" data-searchable="aidant proche famille solitude senior">
+                <h3><span class="emoji">👴</span> Allo Solitude Personnes Âgées</h3>
+                <p>Écoute et soutien pour les personnes âgées isolées.</p>
+                <div class="res-contact"><a href="tel:0800474788" class="chip chip-phone"><svg aria-hidden="true"><use href="#ic-phone"/></svg>0 800 47 47 88 · gratuit</a></div>
+            </div>
+            <div class="res-card card-animate" data-searchable="aidant proche famille soutien">
+                <h3><span class="emoji">🤝</span> Association Française des Aidants</h3>
+                <p>Soutien et reconnaissance des aidants familiaux.</p>
+                <div class="res-contact"><a href="https://www.aidants.fr" target="_blank" rel="noopener" class="chip chip-web"><svg aria-hidden="true"><use href="#ic-web"/></svg>Site</a></div>
             </div>
         </div>
     </section>
 
-    <!-- Lien vers professionnels locaux -->
-    <section class="annuaire-section">
-        <div class="container">
-            <div class="local-link-box">
-                <h3>Vous cherchez un professionnel de santé à Quéven?</h3>
-                <p>Médecins, dentistes, laboratoire, infirmiers... Consultez notre guide local.</p>
-                <a href="blog/professionnels-sante-queven-2026.html" class="btn btn-primary">
-                    <span>Voir les professionnels à Quéven</span>
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Message aucun résultat -->
-    <div class="container">
+    <!-- No results -->
+    <div class="an-wrap">
         <div class="no-results" id="noResults">
-            <h3>Aucun résultat trouvé</h3>
-            <p>Essayez avec d'autres mots-clés ou consultez les différentes catégories.</p>
+            <h3>Aucun résultat</h3>
+            <p>Essayez d'autres mots-clés, ou parcourez les catégories ci-dessus.</p>
         </div>
     </div>
+
+    <!-- Closing CTA -->
+    <section class="annuaire-section" style="padding-top:0">
+        <div class="local-box">
+            <h2>Un professionnel de santé à Quéven ?</h2>
+            <p>Médecins, dentistes, laboratoire, infirmiers : consultez notre guide local.</p>
+            <a href="blog/professionnels-sante-queven-2026.html" class="local-btn">Voir les professionnels à Quéven</a>
+        </div>
+    </section>
 
     <!-- Footer -->
     <footer class="footer">
@@ -1390,7 +723,7 @@
                 <div class="footer-col footer-about">
                     <div class="footer-logo">
                         <div class="logo-icon">
-                            <img src="images/pharmacie-charnal-logo.png" alt="Logo Pharmacie Charnal" style="width: 100%; height: 100%; object-fit: contain;">
+                            <img src="images/pharmacie-charnal-logo.png" alt="Logo Pharmacie Charnal" style="width:100%;height:100%;object-fit:contain;">
                         </div>
                         <div>
                             <div class="footer-logo-name">Pharmacie Charnal</div>
@@ -1398,23 +731,6 @@
                         </div>
                     </div>
                     <p>Votre pharmacie familiale depuis plus de 40 ans. Une tradition de soins personnalisés et attentifs.</p>
-                    <div class="footer-social">
-                        <h4>Suivez-nous</h4>
-                        <div class="social-links">
-                            <a href="https://www.instagram.com/pharmaciecharnalqueven/" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Instagram">
-                                <svg width="30" height="30" viewBox="0 0 24 24" fill="none">
-                                    <rect x="2" y="2" width="20" height="20" rx="5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                    <circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                    <circle cx="17.5" cy="6.5" r="0.5" fill="currentColor"/>
-                                </svg>
-                            </a>
-                            <a href="https://www.facebook.com/pharmaciecharnal/" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Facebook">
-                                <svg width="30" height="30" viewBox="0 0 24 24" fill="none">
-                                    <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                </svg>
-                            </a>
-                        </div>
-                    </div>
                 </div>
                 <div class="footer-col">
                     <h4>Navigation</h4>
@@ -1423,7 +739,6 @@
                         <li><a href="histoire.html">Notre Histoire</a></li>
                         <li><a href="services.html">Services</a></li>
                         <li><a href="blog.html">Au comptoir</a></li>
-                        <li><a href="Quizzes/guide-quizzes-sante-pharmacie-queven.html">Quiz santé</a></li>
                         <li><a href="contact.html">Contact</a></li>
                     </ul>
                 </div>
@@ -1438,9 +753,9 @@
                 <div class="footer-col">
                     <h4>Horaires</h4>
                     <ul>
-                        <li>Lun-Ven: 9h-12h30 / 14h-19h15</li>
-                        <li>Samedi: 9h-12h30</li>
-                        <li>Dimanche: Fermé</li>
+                        <li>Lun-Ven : 9h-12h30 / 14h-19h15</li>
+                        <li>Samedi : 9h-12h30</li>
+                        <li>Dimanche : Fermé</li>
                     </ul>
                 </div>
             </div>
@@ -1455,27 +770,22 @@
         </div>
     </footer>
 
-    <script src="animations.js" defer></script>
     <script>
-        // Menu mobile toggle
+        // Mobile menu
         const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
         const navLinks = document.querySelector('.nav-links');
-
         if (mobileMenuToggle) {
             mobileMenuToggle.addEventListener('click', () => {
                 const isExpanded = mobileMenuToggle.getAttribute('aria-expanded') === 'true';
                 mobileMenuToggle.setAttribute('aria-expanded', !isExpanded);
                 navLinks.classList.toggle('active');
             });
-
-            const links = navLinks.querySelectorAll('.nav-link');
-            links.forEach(link => {
+            navLinks.querySelectorAll('.nav-link').forEach(link => {
                 link.addEventListener('click', () => {
                     mobileMenuToggle.setAttribute('aria-expanded', 'false');
                     navLinks.classList.remove('active');
                 });
             });
-
             document.addEventListener('click', (e) => {
                 if (!navLinks.contains(e.target) && !mobileMenuToggle.contains(e.target)) {
                     mobileMenuToggle.setAttribute('aria-expanded', 'false');
@@ -1484,111 +794,61 @@
             });
         }
 
-        // Recherche et filtrage
+        // Search + category filter
         const searchInput = document.getElementById('searchInput');
         const filterTags = document.querySelectorAll('.filter-tag');
-        const sections = document.querySelectorAll('.annuaire-section');
-        const cards = document.querySelectorAll('.card-animate');
+        const sections = document.querySelectorAll('.annuaire-section[data-section]');
         const noResults = document.getElementById('noResults');
-
         let currentFilter = 'all';
 
-        // Animation des cartes au scroll
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
+        // Reveal on scroll
+        const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        if (!reduce) {
+            const io = new IntersectionObserver((entries) => {
+                entries.forEach((entry, i) => {
+                    if (entry.isIntersecting) {
+                        setTimeout(() => entry.target.classList.add('visible'), i * 40);
+                        io.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+            document.querySelectorAll('.card-animate').forEach(c => io.observe(c));
+        } else {
+            document.querySelectorAll('.card-animate').forEach(c => c.classList.add('visible'));
+        }
 
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach((entry, index) => {
-                if (entry.isIntersecting) {
-                    setTimeout(() => {
-                        entry.target.classList.add('visible');
-                    }, index * 50);
-                }
-            });
-        }, observerOptions);
-
-        cards.forEach(card => observer.observe(card));
-
-        // Filtrage par catégorie
-        filterTags.forEach(tag => {
-            tag.addEventListener('click', () => {
-                filterTags.forEach(t => t.classList.remove('active'));
-                tag.classList.add('active');
-                currentFilter = tag.dataset.category;
-                applyFilters();
-            });
-        });
-
-        // Recherche
-        searchInput.addEventListener('input', () => {
+        filterTags.forEach(tag => tag.addEventListener('click', () => {
+            filterTags.forEach(t => t.classList.remove('active'));
+            tag.classList.add('active');
+            currentFilter = tag.dataset.category;
             applyFilters();
-        });
+        }));
+        searchInput.addEventListener('input', applyFilters);
 
         function applyFilters() {
-            const searchTerm = searchInput.value.toLowerCase().trim();
-            let visibleCount = 0;
-
+            const term = searchInput.value.toLowerCase().trim();
+            let visible = 0;
             sections.forEach(section => {
-                const sectionCategory = section.dataset.section;
-                const sectionCards = section.querySelectorAll('.card-animate');
-                let sectionHasVisibleCards = false;
-
-                // Filtrer par catégorie
-                if (currentFilter !== 'all' && sectionCategory !== currentFilter) {
+                if (currentFilter !== 'all' && section.dataset.section !== currentFilter) {
                     section.style.display = 'none';
                     return;
                 }
-
                 section.style.display = '';
-
-                // Filtrer par recherche
-                sectionCards.forEach(card => {
-                    const searchableText = (card.dataset.searchable || '').toLowerCase();
-                    const cardText = card.textContent.toLowerCase();
-
-                    if (searchTerm === '' || searchableText.includes(searchTerm) || cardText.includes(searchTerm)) {
+                let sectionHas = false;
+                section.querySelectorAll('.card-animate').forEach(card => {
+                    const hay = ((card.dataset.searchable || '') + ' ' + card.textContent).toLowerCase();
+                    if (term === '' || hay.includes(term)) {
                         card.style.display = '';
-                        sectionHasVisibleCards = true;
-                        visibleCount++;
+                        sectionHas = true;
+                        visible++;
                     } else {
                         card.style.display = 'none';
                     }
                 });
-
-                // Masquer la section si aucune carte visible
-                if (!sectionHasVisibleCards && searchTerm !== '') {
-                    section.style.display = 'none';
-                }
+                if (!sectionHas && term !== '') section.style.display = 'none';
             });
-
-            // Afficher message "aucun résultat"
-            if (visibleCount === 0 && searchTerm !== '') {
-                noResults.classList.add('show');
-            } else {
-                noResults.classList.remove('show');
-            }
+            noResults.classList.toggle('show', visible === 0 && term !== '');
         }
-
-        // Navigation smooth scroll
-        document.querySelectorAll('.quick-nav-link').forEach(link => {
-            link.addEventListener('click', (e) => {
-                e.preventDefault();
-                const targetId = link.getAttribute('href').substring(1);
-                const targetSection = document.getElementById(targetId);
-                if (targetSection) {
-                    // Reset filters
-                    filterTags.forEach(t => t.classList.remove('active'));
-                    filterTags[0].classList.add('active');
-                    currentFilter = 'all';
-                    searchInput.value = '';
-                    applyFilters();
-
-                    targetSection.scrollIntoView({ behavior: 'smooth' });
-                }
-            });
-        });
     </script>
 </body>
 </html>
