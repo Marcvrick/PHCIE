@@ -1,139 +1,87 @@
 # PLANNING BLOG PHARMACIE CHARNAL
 
-Planning éditorial 2025-2026 - Pharmacie Charnal à Quéven
-**Dernière mise à jour** : 7 Mai 2026
+Planning éditorial - Pharmacie Charnal à Quéven
+**Dernière mise à jour** : 5 juin 2026
 
-> **Voir aussi** : [BRAND-BLOG-MAPPING.md](BRAND-BLOG-MAPPING.md) pour la correspondance article → page marque (chaque page marque doit être liée à un article blog).
+> ⚠️ **SOURCE UNIQUE DU PLANNING.** Ce fichier est la seule référence pour les dates, titres et statuts d'articles. La stratégie SEO (principes, checklist, banque d'idées) reste dans [SEO blog strategy.md](SEO%20blog%20strategy.md) — mais son ancien planning hebdo a été retiré pour éviter les doublons contradictoires. Ne jamais recréer un calendrier ailleurs.
+>
+> **Voir aussi** : [BRAND-BLOG-MAPPING.md](BRAND-BLOG-MAPPING.md) — correspondance article → page marque.
 
 ---
 
-## 🎯 PROCHAINS ARTICLES À PUBLIER (Mai-Juin 2026)
+## 🎯 PROCHAINS ARTICLES À PUBLIER
 
-**Logique :** chaque article doit pouvoir être lié depuis une page marque (block "Pour aller plus loin sur le blog" dans la section Conseil de Laure). Les marques sans article blog actuellement : Biocanina, Biogaran, Bion3, Boiron, Mustela.
+**Règle de publication** : 1 article/semaine, jour cible **lundi**. Mix mensuel : ~2 longs éditoriaux + 1-2 buying-intent ou mode d'emploi.
 
-| # | Date cible | Article | Marque ciblée | Statut |
-|---|------------|---------|---------------|--------|
-| 18 | **Lun 11 mai 2026** | Quel shampoing pharmacie choisir? Klorane, Nuxe, Bioderma, Avène | Klorane + Nuxe | 🟡 .md prêt, photo OK, HTML à générer |
-| 19 | **Mar 12 mai 2026** | Chien et chat : les essentiels santé en pharmacie pour le printemps | Biocanina | 🟡 .md prêt + encart Biocanina, HTML + photo à faire avant mardi |
-| 20 | Lun 25 mai 2026 | Bébé 0-3 ans : la routine soin essentielle (et la grossesse aussi) | Mustela | 📝 À RÉDIGER |
-| 21 | Lun 2 juin 2026 | Génériques : pourquoi votre boîte change parfois (et c'est OK) | Biogaran | 🟡 HTML prêt — à publier lun 2 juin |
-| 22 | Lun automne (oct) | Probiotiques et multivitamines : à quoi ça sert vraiment? | Bion3 | 📝 À RÉDIGER |
-| 23 | Lun automne (nov) | L'homéopathie au comptoir : pour qui, pour quoi, quand? | Boiron | 📝 À RÉDIGER |
+| # | Date cible | Article | Type | Marque | Statut |
+|---|------------|---------|------|--------|--------|
+| 22 | **Lun 9 juin 2026** | **Hydratation en été : au-delà de l'eau** | Long | — | 🟡 **RÉDIGÉ — HTML + GMB prêts, en attente image hero/OG** |
+| 23 | Lun 16 juin 2026 | Coups de soleil : prévenir et traiter | Long | — | 📝 À rédiger |
+| 24 | Lun 23 juin 2026 | Probiotiques : guide pratique pour bien choisir | Buying-intent | Bion3 | 📝 À rédiger |
+| 25 | **Lun 6 juil 2026** | **Tiques en Bretagne : prévention et réaction** | Long | Biocanina | 🔒 **RÉDIGÉ — réservé, ne pas avancer** |
+| 26 | Lun 13 juil 2026 | Méduses plages bretonnes : que faire ? | Long | — | 📝 À rédiger |
+| 27 | Lun 20 juil 2026 | Voyager avec ses médicaments : le guide | Long | — | 📝 À rédiger |
+| 28 | Lun 27 juil 2026 | Premiers secours été : les gestes essentiels | Court mode d'emploi | — | 📝 À rédiger |
 
-**Note Tiques (#25)** : article déjà rédigé, réservé pour début juillet 2026 (règle éditoriale figée — saison réelle pic Lyme).
+> 🔒 **RÈGLE FIGÉE — Tiques (#25)** : article déjà rédigé (`25-tiques-bretagne/`), publication **première semaine de juillet 2026 et jamais avant** (pic réel saison Lyme). Décision éditoriale ferme — ne pas le proposer comme « prochain article ».
+>
+> **Marques restant à couvrir** : Boiron (homéopathie → automne), Bion3 (couvert par #24 Probiotiques), Biogaran (couvert par #21). Voir [BRAND-BLOG-MAPPING.md](BRAND-BLOG-MAPPING.md).
 
 ---
 
 ## ✅ ARTICLES PUBLIÉS
 
-| Date | Article | Mots-clés | Notes |
-|------|---------|-----------|-------|
-| 12/01/2026 | Détox après les fêtes : mythe ou réalité ? | détox, janvier, digestion, foie | Démystification E-E-A-T |
-| 31/12/2025 | Prévenir les maux de l'hiver à Quéven | rhume, grippe, immunité, vitamine D | Référence E-E-A-T |
-| 20/12/2025 | Vaccination adulte : le guide pratique | vaccination, rappels, HPV, adulte | Guide complet |
-| 10/12/2025 | Guide Santé Quéven : Professionnels Médicaux | médecins, Quéven, carte interactive | Leaflet.js, SEO local |
+Liste dérivée de `blog.html` (le blog est publié jusqu'au #21). Numérotation = dossier réel.
+
+| # | Article | Dossier / fichier | Date | Notes |
+|---|---------|-------------------|------|-------|
+| 21 | Génériques : pourquoi votre boîte change | `21-generiques-biogaran/` | 2 juin 2026 | Marque Biogaran |
+| 20 | Bébé 0-3 ans : la routine soin essentielle | `20-routine-soin-bebe/` | mai 2026 | Marque Mustela |
+| 19 | Chien et chat : les essentiels santé printemps | `19-chiens-chats-pharmacie/` | mai 2026 | Marque Biocanina |
+| 18 | Quel shampoing pharmacie choisir ? | `quel-shampoing-pharmacie-choisir-queven.html` | mai 2026 | Klorane + Nuxe |
+| 17 | Stress des examens chez l'ado | `17-stress-examens-ados/` | printemps 2026 | — |
+| 16 | Courbatures et reprise du sport | `16-courbatures-reprise-sport/` | printemps 2026 | — |
+| 15 | Jambes lourdes : circulation veineuse | `15-jambes-lourdes/` | 21 avr 2026 | — |
+| 14 | Paracétamol, ibuprofène, aspirine : lequel choisir | `14-paracetamol-ibuprofene-aspirine/` | 14 avr 2026 | Mode d'emploi |
+| 13 | Compléments alimentaires : pharmacie ou internet | `13-complements-alimentaires/` | 7 avr 2026 | Buying-intent |
+| — | Troubles du sommeil : solutions naturelles | `troubles-sommeil-solutions-naturelles-queven.html` | 2026 | — |
+| — | Fatigue, moral en berne : fin d'hiver | `Moral en berne/fatigue-moral-fin-hiver-queven.html` | 16 fév 2026 | — |
+| — | Gastro-entérite : prévention et bons réflexes | `gastro-enterite-prevention-bons-reflexes-queven.html` | 2026 | — |
+| — | Crampes abdominales : comprendre et soulager | `crampes-abdominales-comprendre-soulager-queven.html` | 2026 | — |
+| — | Humidité et douleurs articulaires | `humidite-douleurs-articulaires-queven.html` | 29 jan 2026 | — |
+| — | Détox après les fêtes : mythe ou réalité | `detox-apres-fetes-mythe-realite-queven.html` | 12 jan 2026 | E-E-A-T |
+| — | Prévenir les maux de l'hiver à Quéven | `prevenir-maux-hiver-queven.html` | 31 déc 2025 | Référence E-E-A-T |
+| — | Guide santé Quéven : professionnels médicaux | `professionnels-sante-queven-2026.html` | 10 déc 2025 | Carte Leaflet, SEO local |
+
+**Pages autonomes (hors blog.html, indexées)** : Quiz santé (`Quizzes/`), Pharmacie de garde, Recrutement préparatrice. Vaccination adulte : `vaccination-adulte-guide-pratique.html`.
 
 ---
 
-## 🟡 ARTICLES PRÊTS (non publiés)
+## 💡 BANQUE D'IDÉES (planifiables après juillet)
 
-| Fichier | Sujet | À publier |
-|---------|-------|-----------|
-| humidite-douleurs-articulaires-queven.html | Humidité et douleurs articulaires | **Jeudi 29 jan** |
-| proteger-peau-seche-hiver-breton-queven.html | Peau sèche en hiver breton | Semaine du 10 fév |
+> Liste complète et détaillée par hub de contenu dans [SEO blog strategy.md → PARTIE 5](SEO%20blog%20strategy.md).
 
----
-
-## 📅 PLANNING 6 MOIS (Janvier → Juillet 2026)
-
-### JANVIER 2026
-
-| Semaine | Date cible | Article | Mots-clés | Statut |
-|---------|------------|---------|-----------|--------|
-| S2 | 12 jan | Détox après les fêtes | détox, digestion, foie | ✅ PUBLIÉ |
-| S5 | **Jeu 29 jan** | Humidité et douleurs articulaires | arthrose, humidité, rhumatismes, Bretagne | 🟡 PRÊT → À PUBLIER |
-
-### FÉVRIER 2026
-
-| Semaine | Date cible | Article | Mots-clés | Statut |
-|---------|------------|---------|-----------|--------|
-| S2 | 10 fév | Peau sèche en hiver breton | peau sèche, vent breton, hydratation | 🟡 PRÊT |
-| S4 | 24 fév | Allergies : se préparer au printemps | pollen, allergie, rhinite, calendrier pollinique | 📝 À RÉDIGER |
-
-### MARS 2026
-
-| Semaine | Date cible | Article | Mots-clés | Statut |
-|---------|------------|---------|-----------|--------|
-| S2 | 10 mars | Santé cardiovasculaire : les bons réflexes | cholestérol, tension, cœur, dépistage | 📝 À RÉDIGER |
-| S4 | 24 mars | Fatigue de printemps : retrouver son énergie | fatigue, vitamines, magnésium, changement saison | 📝 À RÉDIGER |
-
-### AVRIL 2026
-
-| Semaine | Date cible | Article | Mots-clés | Statut |
-|---------|------------|---------|-----------|--------|
-| S2 | 7 avril | Tiques en Bretagne : prévention et réaction | tiques, maladie de Lyme, Bretagne, randonnée | 📝 À RÉDIGER |
-| S4 | 21 avril | Jambes lourdes : comprendre et soulager | circulation, jambes lourdes, veinotoniques | 📝 À RÉDIGER |
-
-### MAI 2026
-
-| Semaine | Date cible | Article | Mots-clés | Statut |
-|---------|------------|---------|-----------|--------|
-| S2 | 5 mai | Protection solaire : guide complet | solaires, UV, SPF, peau, été | 📝 À RÉDIGER |
-| S4 | 19 mai | Trousse de vacances : l'essentiel à emporter | vacances, trousse, médicaments voyage | 📝 À RÉDIGER |
-
-### JUIN 2026
-
-| Semaine | Date cible | Article | Mots-clés | Statut |
-|---------|------------|---------|-----------|--------|
-| S2 | 2 juin | Sport et allergies : bien gérer les deux | sport, allergies, pollen, performance | 📝 À RÉDIGER |
-| S4 | 16 juin | Hydratation été : au-delà de l'eau | hydratation, canicule, minéraux, été | 📝 À RÉDIGER |
-
-### JUILLET 2026
-
-| Semaine | Date cible | Article | Mots-clés | Statut |
-|---------|------------|---------|-----------|--------|
-| S2 | 30 juin | Coups de soleil : prévenir et traiter | coups soleil, brûlures, après-soleil | 📝 À RÉDIGER |
-| S4 | 14 juillet | Méduses plages bretonnes : que faire ? | méduses, piqûres, plage, Bretagne | 📝 À RÉDIGER |
-
----
-
-## 💡 BANQUE D'IDÉES (pour la suite)
-
-### AOÛT-SEPTEMBRE 2026
-- Voyager avec ses médicaments
+### Août-Septembre 2026 (rentrée)
+- Voyager avec ses médicaments *(si non publié en juillet)*
 - Intoxications alimentaires été
 - Rentrée et poux
-- Vaccination grippe (PRIORITAIRE automne)
-- Immunité avant hiver
+- **Vaccination grippe (PRIORITAIRE automne)**
+- Immunité avant l'hiver
 
-### AUTOMNE-HIVER 2026
+### Automne-Hiver 2026
+- L'homéopathie au comptoir : pour qui, pourquoi, quand (marque **Boiron**)
 - Sommeil : retrouver un bon rythme
 - Dépression saisonnière
-- Gastro-entérite : prévention et traitement
+- Gastro-entérite (mise à jour)
 - Gerçures et engelures
 - Bronchite et toux grasse
 
-### PAR THÈME (non planifié)
+### Buying-intent à intercaler
+- Comment choisir son antihistaminique en pharmacie ?
+- Quelle protection solaire pour les enfants ?
+- Cosmétiques en pharmacie : pourquoi ça vaut le coup ?
 
-**Santé quotidienne :**
-- Stress et anxiété
-- Maux de dos
-- Troubles digestifs
-- Migraines
-- Cystites
-
-**Maladies chroniques :**
-- Diabète au quotidien
-- Hypertension : suivi à la pharmacie
-- Arthrose : vivre avec
-
-**Spécialités pharmacie :**
-- Aromathérapie : les essentiels
-- Homéopathie : pour qui, pourquoi ?
-- Phytothérapie bretonne
-- Probiotiques : guide pratique
-
-**Par public :**
+### Par public (réserve)
 - Seniors : bien vieillir à Quéven
 - Parents : fièvre chez l'enfant
 - Femmes : ménopause, accompagnement
@@ -143,72 +91,46 @@ Planning éditorial 2025-2026 - Pharmacie Charnal à Quéven
 
 ## 📋 RÈGLES ÉDITORIALES
 
-### FRÉQUENCE
-- **Objectif** : 2 articles/mois (1 tous les 15 jours)
+### Fréquence
+- **Objectif** : 1 article/semaine (jour cible **lundi**)
 - **Minimum** : 1 article/mois
-- **Maximum** : 1 article/semaine (si actualité)
+- **Mix mensuel** : ~2 longs éditoriaux + 1-2 buying-intent / mode d'emploi
 
-### JOURS PUBLICATION
-- ✅ **Mardi ou Mercredi** (meilleur engagement)
-- ❌ Lundi, Vendredi PM, Week-end
+### Trois types d'articles
+| Type | Longueur | Sur blog.html ? |
+|------|----------|-----------------|
+| Long éditorial | 1 200-1 600 mots | Oui |
+| Buying-intent | 800-1 200 mots | Oui |
+| Court mode d'emploi | 600-800 mots | **Non** (page autonome indexée) |
 
-### LONGUEUR
-- Minimum SEO : 1 000 mots
-- Standard : 1 200-1 400 mots
-- Maximum : 1 600 mots
-
-### CHECKLIST AVANT PUBLICATION
-- [ ] Ton sincère et rassurant (voix de Laure)
-- [ ] E-E-A-T respecté
+### Checklist avant publication
+- [ ] Ton sincère et rassurant (voix de Laure, comptoir, pas corporate)
+- [ ] E-E-A-T (expérience terrain, dosages précis, limites assumées)
 - [ ] Mots-clés locaux (Quéven, Bretagne, Morbihan)
-- [ ] FAQ Schema.org (3-5 questions)
-- [ ] Questions en H2 (optimisation IA)
-- [ ] CTA = "Passez nous voir" (jamais appeler/email)
-- [ ] Liens internes vers services
-- [ ] Image avec alt text
+- [ ] FAQ Schema.org (3-5 questions), questions en H2
+- [ ] CTA mid-article avec trust badges (4.9/5, 40+ ans)
+- [ ] CTA final « Passez nous voir » (jamais « appeler » / « email »)
+- [ ] Lien interne → page service + au moins 1 autre article
+- [ ] Image avec alt text + mots-clés locaux
 - [ ] Mobile responsive vérifié
 
----
-
-## 🔄 PROCESSUS PUBLICATION
-
-### 1. CRÉATION (J-7)
-- Choisir sujet dans le planning
-- Rechercher sources (études, recommandations)
-- Rédiger avec Claude (prompt dédié)
-
-### 2. VALIDATION (J-3)
-- Relecture ton/style
-- Vérification dosages/recommandations
-- Ajout FAQ Schema.org
-
-### 3. PUBLICATION (Jour J)
-- Créer HTML dans `/blog/`
-- Ajouter à `blog.html`
-- Mettre à jour ce planning
-
-### 4. DISTRIBUTION (J+1)
-- Post Instagram (repurposing)
-- Post Google My Business
-- Story Instagram
-
-### 5. SUIVI (J+7)
-- Vérifier indexation Google
-- Noter engagement Instagram
-- Ajuster stratégie si besoin
+### Après publication
+- [ ] Ajouter à `blog.html` (sauf mode d'emploi)
+- [ ] Mettre à jour CE fichier (statut → publié)
+- [ ] Post Instagram + Google Business Profile
+- [ ] Vérifier indexation Google (J+7)
 
 ---
 
-## 📊 SUIVI PERFORMANCE
+## 🔄 PROCESSUS
 
-| Article | Date | Vues | Indexé Google | Notes |
-|---------|------|------|---------------|-------|
-| Détox après les fêtes | 12/01/26 | - | À vérifier | - |
-| Prévenir maux hiver | 31/12/25 | - | À vérifier | Référence E-E-A-T |
-| Vaccination adulte | 20/12/25 | - | À vérifier | - |
-| Professionnels Quéven | 10/12/25 | - | À vérifier | Carte Leaflet |
+1. **Création (J-7)** : sujet dans ce planning → sources (HAS, ANSM, Vidal) → rédaction (voix Laure)
+2. **Validation (J-3)** : relecture ton/style, vérification dosages, FAQ Schema
+3. **Publication (jour J)** : HTML dans `/blog/`, ajout à `blog.html`, MAJ de ce planning
+4. **Distribution (J+1)** : Instagram, GMB, story
+5. **Suivi (J+7)** : indexation Google, engagement
 
 ---
 
-**Prochain article à publier** : Humidité et douleurs articulaires (jeudi 29 janvier 2026)
-**Prochain article à rédiger** : Allergies : se préparer au printemps (pour 24 février)
+**Prochain article à publier** : #22 — Hydratation en été : au-delà de l'eau (lundi 9 juin 2026)
+**Verrou** : #25 Tiques → première semaine juillet, jamais avant.

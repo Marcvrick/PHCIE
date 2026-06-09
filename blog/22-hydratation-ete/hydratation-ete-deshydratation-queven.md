@@ -1,5 +1,5 @@
 ---
-title: "Hydratation été : au-delà de l'eau"
+title: "Hydratation en été : au-delà de l'eau"
 description: "Bien s'hydrater l'été ne se résume pas à boire de l'eau. Électrolytes, aliments, populations à risque, déshydratation : les conseils de Laure à Quéven."
 date: 2026-06-09
 dateModified: 2026-06-09
@@ -27,7 +27,7 @@ image: "blog-23-hydratation-ete.jpg"
 
 ---
 
-# Hydratation été : au-delà de l'eau
+# Hydratation en été : au-delà de l'eau
 
 Premières vraies chaleurs sur le Morbihan. Le thermomètre grimpe, et avec lui une question qui revient sans cesse en pharmacie: "Faut-il vraiment boire autant?" La réponse est oui. Surtout, il faut boire mieux.
 
