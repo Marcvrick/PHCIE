@@ -16,6 +16,99 @@
   "language": "fr-FR",
   "items": [
     {
+      "id": "https://www.pharmaciecharnal.com/blog/26-coups-de-soleil/coups-de-soleil-prevenir-traiter-queven.html",
+      "url": "https://www.pharmaciecharnal.com/blog/26-coups-de-soleil/coups-de-soleil-prevenir-traiter-queven.html",
+      "title": "Coup de soleil: comment réagir et quand s'inquiéter?",
+      "content_html": "Le piège breton: ciel voilé, zéro crème, épaules brûlées le lendemain. Les bons gestes dans les premières heures, les soins après-soleil efficaces et les signes qui doivent vous amener à consulter.",
+      "summary": "Coup de soleil à Quéven: les bons gestes dans les premières heures, les soins après-soleil efficaces et les signes qui doivent vous amener à consulter.",
+      "date_published": "2026-06-17T09:00:00+02:00",
+      "date_modified": "2026-06-17T09:00:00+02:00",
+      "image": "https://www.pharmaciecharnal.com/images/Blog%20photos/blog-26-coups-de-soleil.jpg",
+      "authors": [
+        {
+          "name": "Laure Charnal"
+        }
+      ],
+      "tags": [
+        "coup de soleil",
+        "brûlure solaire",
+        "après-soleil",
+        "règle des 15",
+        "UV",
+        "SPF",
+        "aloe vera",
+        "phototype",
+        "cloque",
+        "dermatologie"
+      ],
+      "language": "fr-FR",
+      "_medical_topic": {
+        "conditions": ["Coup de soleil", "Brûlure solaire du premier degré", "Lucite estivale bénigne"],
+        "audience": "Patient",
+        "specialty": "Pharmacie"
+      }
+    },
+    {
+      "id": "https://www.pharmaciecharnal.com/blog/22-hydratation-ete/hydratation-ete-deshydratation-queven.html",
+      "url": "https://www.pharmaciecharnal.com/blog/22-hydratation-ete/hydratation-ete-deshydratation-queven.html",
+      "title": "Hydratation en été : au-delà de l'eau",
+      "content_html": "L'eau ne fait pas tout. Électrolytes, aliments riches en eau, personnes à risque : comment bien s'hydrater quand il fait chaud, sans se tromper.",
+      "summary": "Bien s'hydrater l'été ne se résume pas à boire de l'eau. Électrolytes, aliments, populations à risque, déshydratation : les conseils de Laure à Quéven.",
+      "date_published": "2026-06-09T09:00:00+02:00",
+      "date_modified": "2026-06-09T09:00:00+02:00",
+      "image": "https://www.pharmaciecharnal.com/images/Blog%20photos/blog-23-hydratation-ete.jpg",
+      "authors": [
+        {
+          "name": "Laure Charnal"
+        }
+      ],
+      "tags": [
+        "hydratation été",
+        "déshydratation",
+        "canicule",
+        "électrolytes",
+        "SRO",
+        "personnes âgées",
+        "aliments riches en eau"
+      ],
+      "language": "fr-FR",
+      "_medical_topic": {
+        "conditions": ["Déshydratation", "Coup de chaleur"],
+        "audience": "Patient",
+        "specialty": "Pharmacie"
+      }
+    },
+    {
+      "id": "https://www.pharmaciecharnal.com/blog/21-generiques-biogaran/generiques-pourquoi-boite-change-pharmacie-queven.html",
+      "url": "https://www.pharmaciecharnal.com/blog/21-generiques-biogaran/generiques-pourquoi-boite-change-pharmacie-queven.html",
+      "title": "Génériques : pourquoi votre boîte change parfois (et c'est OK)",
+      "content_html": "Même molécule, même dosage, bioéquivalence certifiée par l'ANSM. Ce que veut vraiment dire une boîte qui change à la pharmacie.",
+      "summary": "Pourquoi votre médicament a changé de boîte ? Générique ou princeps : même molécule, même dosage, bioéquivalence certifiée par l'ANSM. Laure vous explique depuis la Pharmacie Charnal à Quéven.",
+      "date_published": "2026-06-02T09:00:00+02:00",
+      "date_modified": "2026-06-02T09:00:00+02:00",
+      "image": "https://www.pharmaciecharnal.com/images/Blog%20photos/blog-22-generiques-biogaran.jpg",
+      "authors": [
+        {
+          "name": "Laure Charnal"
+        }
+      ],
+      "tags": [
+        "médicaments génériques",
+        "princeps",
+        "bioéquivalence",
+        "ANSM",
+        "Biogaran",
+        "non substituable",
+        "marge thérapeutique étroite"
+      ],
+      "language": "fr-FR",
+      "_medical_topic": {
+        "conditions": ["Substitution générique"],
+        "audience": "Patient",
+        "specialty": "Pharmacie"
+      }
+    },
+    {
       "id": "https://www.pharmaciecharnal.com/blog/20-routine-soin-bebe/routine-soin-bebe-0-3-ans-queven.html",
       "url": "https://www.pharmaciecharnal.com/blog/20-routine-soin-bebe/routine-soin-bebe-0-3-ans-queven.html",
       "title": "Peau de bébé (0-3 ans) : la routine de soin essentielle",
