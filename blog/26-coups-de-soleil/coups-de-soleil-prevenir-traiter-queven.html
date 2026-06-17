@@ -97,17 +97,43 @@
         .references li { margin-bottom: var(--space-xs); }
 
         /* ===========================
-           INFOGRAPHIE: LA RÈGLE DES 15
+           INFOGRAPHIES
            =========================== */
         .illus { background: linear-gradient(135deg, var(--cream) 0%, #f0ebe0 100%); border-radius: var(--radius-lg); padding: var(--space-xl); margin: var(--space-2xl) 0; }
         .illus-title { text-align: center; font-size: var(--text-lg); font-weight: 700; color: var(--charcoal); margin-bottom: 4px; }
         .illus-sub { text-align: center; font-size: 0.85rem; color: var(--gray); margin-bottom: var(--space-lg); }
         .illus-foot { text-align: center; font-size: 0.78rem; color: var(--gray); font-style: italic; margin-top: var(--space-md); }
-        .r15-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: var(--space-md); }
-        .r15-card { background: #FFFFFF; border: 1.5px solid var(--beige); border-top: 4px solid var(--sage); border-radius: var(--radius-md); padding: var(--space-md); text-align: center; }
-        .r15-num { font-size: 1.9rem; font-weight: 800; color: var(--teal); line-height: 1.1; }
-        .r15-lbl { font-size: 0.95rem; font-weight: 600; color: var(--charcoal); margin-top: 6px; }
-        .r15-desc { font-size: 0.78rem; color: var(--gray); margin-top: 3px; line-height: 1.4; }
+
+        /* Graphic 1 — La règle des 15 */
+        .r15-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-md); position: relative; }
+        .r15-card { background: #FFFFFF; border: 1px solid var(--beige); border-radius: var(--radius-md); padding: var(--space-lg) var(--space-md); text-align: center; box-shadow: 0 6px 18px rgba(45,95,93,0.07); position: relative; z-index: 1; }
+        .r15-icon { width: 54px; height: 54px; margin: 0 auto var(--space-sm); border-radius: 50%; background: linear-gradient(135deg, #eaf1ee 0%, #d8e6e0 100%); display: flex; align-items: center; justify-content: center; }
+        .r15-icon svg { width: 28px; height: 28px; stroke: var(--teal); fill: none; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
+        .r15-num { font-size: 2.05rem; font-weight: 800; color: var(--teal); line-height: 1; letter-spacing: -0.5px; }
+        .r15-lbl { font-size: 0.95rem; font-weight: 700; color: var(--charcoal); margin-top: 8px; }
+        .r15-desc { font-size: 0.78rem; color: var(--gray); margin-top: 4px; line-height: 1.4; }
+
+        /* Graphic 2 — À faire / À éviter */
+        .dd-grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-md); }
+        .dd-col { background: #FFFFFF; border-radius: var(--radius-md); padding: var(--space-lg); box-shadow: 0 6px 18px rgba(45,95,93,0.07); }
+        .dd-col.is-do { border-top: 4px solid var(--sage); }
+        .dd-col.is-dont { border-top: 4px solid #d98c63; }
+        .dd-head { display: flex; align-items: center; gap: 10px; font-weight: 800; font-size: 1rem; margin-bottom: var(--space-md); padding-bottom: var(--space-sm); border-bottom: 1px solid var(--beige); }
+        .dd-col.is-do .dd-head { color: var(--sage-dark); }
+        .dd-col.is-dont .dd-head { color: #c0673c; }
+        .dd-badge { width: 30px; height: 30px; border-radius: 50%; flex: 0 0 auto; display: flex; align-items: center; justify-content: center; }
+        .dd-col.is-do .dd-badge { background: #e7f0ea; }
+        .dd-col.is-dont .dd-badge { background: #f7e6dc; }
+        .dd-badge svg { width: 17px; height: 17px; fill: none; stroke-width: 2.6; stroke-linecap: round; stroke-linejoin: round; }
+        .dd-col.is-do .dd-badge svg { stroke: var(--sage-dark); }
+        .dd-col.is-dont .dd-badge svg { stroke: #c0673c; }
+        .dd-item { display: flex; align-items: flex-start; gap: 9px; font-size: 0.86rem; color: var(--charcoal); line-height: 1.45; margin-bottom: 12px; }
+        .dd-item:last-child { margin-bottom: 0; }
+        .dd-mark { flex: 0 0 auto; width: 18px; height: 18px; margin-top: 1px; }
+        .dd-mark svg { width: 18px; height: 18px; fill: none; stroke-width: 2.3; stroke-linecap: round; stroke-linejoin: round; }
+        .dd-col.is-do .dd-mark svg { stroke: var(--sage); }
+        .dd-col.is-dont .dd-mark svg { stroke: #d98c63; }
+        .dd-item b { font-weight: 700; }
 
         /* Article nav */
         .article-nav { display: flex; justify-content: space-between; gap: var(--space-md); margin-top: var(--space-2xl); padding-top: var(--space-xl); border-top: 1px solid var(--beige); }
@@ -116,6 +142,7 @@
 
         @media (max-width: 600px) {
             .r15-grid { grid-template-columns: 1fr; }
+            .dd-grid { grid-template-columns: 1fr; }
             .data-table { font-size: 0.8rem; }
             .data-table th, .data-table td { padding: 8px; }
         }
@@ -341,16 +368,19 @@
                 <div class="illus-sub">Le tout premier geste face à un coup de soleil</div>
                 <div class="r15-grid">
                     <div class="r15-card">
+                        <div class="r15-icon"><svg viewBox="0 0 24 24"><path d="M14 14.76V5a2 2 0 0 0-4 0v9.76a4 4 0 1 0 4 0z"/></svg></div>
                         <div class="r15-num">15 °C</div>
                         <div class="r15-lbl">Eau tempérée</div>
                         <div class="r15-desc">Ni glace, ni eau glacée</div>
                     </div>
                     <div class="r15-card">
+                        <div class="r15-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></svg></div>
                         <div class="r15-num">15 min</div>
                         <div class="r15-lbl">Durée</div>
                         <div class="r15-desc">Pour calmer l'inflammation</div>
                     </div>
                     <div class="r15-card">
+                        <div class="r15-icon"><svg viewBox="0 0 24 24"><path d="M4 12h16M8 8l-4 4 4 4M16 8l4 4-4 4"/></svg></div>
                         <div class="r15-num">15 cm</div>
                         <div class="r15-lbl">Distance</div>
                         <div class="r15-desc">Pommeau de douche à distance</div>
@@ -362,6 +392,31 @@
             <p>Après le refroidissement, je conseille un soin réparateur en couche généreuse. Pour une brûlure légère du premier degré, un émollient type Biafine reste une valeur sûre: il entretient un environnement humide qui favorise la cicatrisation. Les après-soleil à l'aloe vera ou au panthénol calment la sensation de tiraillement et soutiennent la régénération de la peau. Si la douleur gêne, un anti-inflammatoire comme l'ibuprofène, pris dans les premières heures, est utile chez l'adulte.</p>
 
             <p>Deux pièges à éviter: la vaseline, qui emprisonne la chaleur, et les crèmes anesthésiantes (benzocaïne, lidocaïne), qui peuvent déclencher des allergies de contact. Pensez aussi à boire: une brûlure étendue fait perdre de l'eau et favorise la <a href="../22-hydratation-ete/hydratation-ete-deshydratation-queven.html">déshydratation</a>.</p>
+
+            <!-- INFOGRAPHIE: à faire / à éviter -->
+            <div class="illus">
+                <div class="illus-title">Coup de soleil: les bons et les mauvais réflexes</div>
+                <div class="illus-sub">Ce qui apaise la peau, ce qui aggrave la brûlure</div>
+                <div class="dd-grid">
+                    <div class="dd-col is-do">
+                        <div class="dd-head"><span class="dd-badge"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></span>À faire</div>
+                        <div class="dd-item"><span class="dd-mark"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></span><span><b>Refroidir</b> à l'eau tempérée (~15 °C), une quinzaine de minutes</span></div>
+                        <div class="dd-item"><span class="dd-mark"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></span><span><b>Hydrater et apaiser</b>: émollient type Biafine, ou après-soleil à l'aloe vera ou au panthénol</span></div>
+                        <div class="dd-item"><span class="dd-mark"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></span><span><b>Boire de l'eau</b> pour compenser les pertes</span></div>
+                        <div class="dd-item"><span class="dd-mark"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></span><span><b>Soulager la douleur</b> avec de l'ibuprofène (chez l'adulte)</span></div>
+                        <div class="dd-item"><span class="dd-mark"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></span><span><b>Se mettre à l'ombre</b> et couvrir la zone brûlée</span></div>
+                    </div>
+                    <div class="dd-col is-dont">
+                        <div class="dd-head"><span class="dd-badge"><svg viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12"/></svg></span>À éviter</div>
+                        <div class="dd-item"><span class="dd-mark"><svg viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12"/></svg></span><span><b>La glace</b> ou l'eau glacée: elle resserre les vaisseaux et aggrave la lésion</span></div>
+                        <div class="dd-item"><span class="dd-mark"><svg viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12"/></svg></span><span><b>La vaseline</b>, qui emprisonne la chaleur</span></div>
+                        <div class="dd-item"><span class="dd-mark"><svg viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12"/></svg></span><span><b>Les crèmes anesthésiantes</b> (benzocaïne, lidocaïne): risque d'allergie</span></div>
+                        <div class="dd-item"><span class="dd-mark"><svg viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12"/></svg></span><span><b>Percer les cloques</b>: c'est une barrière naturelle contre l'infection</span></div>
+                        <div class="dd-item"><span class="dd-mark"><svg viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12"/></svg></span><span><b>L'aspirine</b> chez l'enfant et l'adolescent (risque de syndrome de Reye)</span></div>
+                    </div>
+                </div>
+                <div class="illus-foot">En cas de cloques étendues, de fièvre, ou chez un nourrisson: on consulte sans attendre.</div>
+            </div>
 
             <!-- CTA Mid-article -->
             <div class="cta-box">
