@@ -439,6 +439,9 @@
             z-index: 1;
             justify-items: center;
             text-align: center;
+            /* align hero text with the 24px inset used by every other section */
+            padding-left: var(--space-24);
+            padding-right: var(--space-24);
         }
 
         @media (min-width: 768px) {
@@ -1766,6 +1769,7 @@
         }
 
         .services-v2-container {
+            width: 100%;
             max-width: 1280px;
             margin: 0 auto;
             padding: 0 var(--space-24);
@@ -1807,124 +1811,169 @@
             padding-top: 4px;
         }
 
-        .services-v2-body {
+        /* Stacked card deck (Display-Cards style) */
+        .services-deck {
             display: grid;
-            grid-template-columns: 1fr;
-            gap: var(--space-24);
+            grid-template-areas: 'stack';
+            place-items: center;
+            min-height: 400px;
+            margin-top: var(--space-8, 8px);
+            animation: deck-in 0.7s ease both;
         }
 
-        @media (min-width: 768px) {
-            .services-v2-body {
-                grid-template-columns: 1fr 1fr;
-                gap: var(--space-32);
-                align-items: start;
-            }
+        @keyframes deck-in {
+            from { opacity: 0; transform: translateY(12px); }
+            to   { opacity: 1; transform: translateY(0); }
         }
 
-        /* Hero card (Ordonnances) */
-        .services-v2-hero-card {
-            background: var(--gray-100);
-            border-radius: var(--radius-xl);
-            padding: var(--space-32);
+        .dcard {
+            grid-area: stack;
+            width: 332px;
+            min-height: 116px;
+            box-sizing: border-box;
             display: flex;
             flex-direction: column;
-            justify-content: flex-start;
-            gap: var(--space-16);
+            gap: 7px;
+            padding: 15px 22px 18px;
+            border-radius: 18px;
             text-decoration: none;
             color: inherit;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            height: 100%;
+            position: relative;
+            overflow: hidden;
+            background:
+                radial-gradient(150% 140% at 0% 0%, var(--card-tint, var(--pastel-teal)) 0%, rgba(255,255,255,0) 62%),
+                var(--white);
+            border: 1.5px solid color-mix(in srgb, var(--card-accent, #2D5F5D) 20%, transparent);
+            box-shadow: 0 12px 32px -20px rgba(31, 33, 33, 0.55);
+            transform: skewY(-7deg) translate(var(--tx, 0), var(--ty, 0));
+            filter: grayscale(1);
+            transition: transform 0.6s cubic-bezier(0.2, 0.7, 0.2, 1), filter 0.6s ease,
+                        box-shadow 0.6s ease, border-color 0.6s ease;
         }
 
-        .services-v2-hero-card:hover {
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-md);
+        /* opaque dim veil on back cards (no element transparency -> no bleed-through) */
+        .dcard::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            z-index: 0;
+            pointer-events: none;
+            border-radius: inherit;
+            background: var(--pastel-lavender);
+            opacity: 0.5;
+            transition: opacity 0.6s ease;
         }
+        .dcard > * { position: relative; z-index: 1; }
 
-        .services-v2-hero-icon {
-            width: 48px;
-            height: 48px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: rgba(255,255,255,0.7);
-            border-radius: var(--radius-base);
-            color: var(--teal-pro);
+        /* diagonal staircase, front card last */
+        .dcard:nth-child(1) { --tx: -120px; --ty: -125px; z-index: 1; }
+        .dcard:nth-child(2) { --tx: -72px;  --ty: -75px;  z-index: 2; }
+        .dcard:nth-child(3) { --tx: -24px;  --ty: -25px;  z-index: 3; }
+        .dcard:nth-child(4) { --tx: 24px;   --ty: 25px;   z-index: 4; }
+        .dcard:nth-child(5) { --tx: 72px;   --ty: 75px;   z-index: 5; }
+        .dcard:nth-child(6) { --tx: 120px;  --ty: 125px;  z-index: 6; }
+
+        /* front card is always in colour */
+        .dcard:last-child { filter: grayscale(0); opacity: 1; }
+        .dcard:last-child::after { opacity: 0; }
+
+        .dcard:hover {
+            filter: grayscale(0);
+            opacity: 1;
+            z-index: 20;
+            transform: skewY(-7deg) translate(var(--tx, 0), calc(var(--ty, 0) - 30px));
+            box-shadow: 0 30px 54px -22px color-mix(in srgb, var(--card-accent, #2D5F5D) 55%, transparent);
+            border-color: color-mix(in srgb, var(--card-accent, #2D5F5D) 55%, transparent);
         }
+        .dcard:hover::after { opacity: 0; }
 
-        .services-v2-hero-icon svg {
-            width: 24px;
-            height: 24px;
+        .dcard-head { display: flex; align-items: center; gap: 11px; }
+
+        .dcard-ico {
+            width: 32px; height: 32px;
+            flex-shrink: 0;
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            background: color-mix(in srgb, var(--card-accent, #2D5F5D) 16%, var(--white));
+            color: var(--card-accent, var(--teal-pro));
         }
+        .dcard-ico svg { width: 17px; height: 17px; }
 
-        .services-v2-hero-card h3 {
+        .dcard-title {
             font-family: var(--font-display);
-            font-size: var(--text-xl);
+            font-size: 1.1rem;
             font-weight: 500;
             color: var(--charcoal);
+            margin: 0;
+            line-height: 1.15;
         }
 
-        .services-v2-hero-card p {
-            font-size: var(--text-sm);
+        .dcard-desc {
+            font-size: 0.9rem;
             color: var(--gray-600);
-            line-height: 1.6;
+            line-height: 1.45;
+            margin: 0;
         }
 
-        /* Service list items */
-        .services-v2-list {
-            display: flex;
-            flex-direction: column;
-            gap: var(--space-6, 6px);
-        }
-
-        .services-v2-list-item {
-            display: flex;
-            align-items: center;
-            gap: var(--space-16);
-            background: var(--gray-100);
-            border-radius: var(--radius-lg);
-            padding: var(--space-16) var(--space-24);
-            text-decoration: none;
-            color: inherit;
-            transition: background 0.2s ease, transform 0.2s ease;
-        }
-
-        .services-v2-list-item:hover {
-            background: var(--pastel-sage);
-            transform: translateX(4px);
-        }
-
-        .services-v2-list-icon {
-            width: 36px;
-            height: 36px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-shrink: 0;
-            color: var(--teal-pro);
-        }
-
-        .services-v2-list-icon svg {
-            width: 20px;
-            height: 20px;
-        }
-
-        .services-v2-list-text {
-            display: flex;
-            flex-direction: column;
-            gap: 2px;
-        }
-
-        .services-v2-list-text strong {
-            font-size: var(--text-base);
+        .dcard-meta {
+            margin: auto 0 0;
+            font-size: 0.82rem;
             font-weight: 600;
-            color: var(--charcoal);
+            color: var(--card-accent, var(--teal-pro));
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .dcard-meta svg { width: 13px; height: 13px; transition: transform 0.35s ease; }
+        .dcard:hover .dcard-meta svg { transform: translateX(4px); }
+
+        /* Accent palette per category */
+        .card--teal     { --card-accent: var(--teal-pro);       --card-tint: var(--pastel-teal); }
+        .card--blue     { --card-accent: var(--bleu-confiance); --card-tint: #DCEAEF; }
+        .card--lavender { --card-accent: #9b8bc4;               --card-tint: var(--pastel-lavender); }
+        .card--sage     { --card-accent: var(--sage-dark);      --card-tint: var(--pastel-sage); }
+        .card--peach    { --card-accent: var(--copper);         --card-tint: var(--pastel-peach); }
+
+        /* Desktop: text column left, deck right -> shorter section */
+        @media (min-width: 900px) {
+            .services-v2-container {
+                display: grid;
+                grid-template-columns: 0.82fr 1.18fr;
+                gap: var(--space-48);
+                align-items: start;
+            }
+            .services-v2-header {
+                grid-template-columns: 1fr;
+                gap: var(--space-16);
+                margin-bottom: 0;
+            }
+            .services-deck { margin-top: 0; }
         }
 
-        .services-v2-list-text span {
-            font-size: var(--text-sm);
-            color: var(--gray-500);
-            line-height: 1.5;
+        /* Mobile: drop the skewed deck for a clean vertical stack */
+        @media (max-width: 767px) {
+            .services-deck {
+                grid-template-areas: none;
+                display: flex;
+                flex-direction: column;
+                gap: 12px;
+                min-height: 0;
+                align-items: stretch;
+            }
+            .dcard {
+                width: 100%;
+                transform: none;
+                filter: none;
+                opacity: 1;
+                --tx: 0; --ty: 0;
+            }
+            .dcard::after { display: none; }
+            .dcard:hover { transform: translateY(-3px); }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .services-deck { animation: none; }
+            .dcard { transition: filter 0.3s ease, box-shadow 0.3s ease; }
         }
 
         @media (max-width: 767px) {
@@ -2649,92 +2698,56 @@
                 <p class="services-v2-subtitle">Bien plus qu'une pharmacie. Ordonnances, conseil, livraison, vaccination... On vous accompagne à chaque étape.</p>
             </div>
 
-            <!-- Body: hero card left, list right -->
-            <div class="services-v2-body">
-                <!-- Featured service: Ordonnances -->
-                <a href="services.html#ordonnances" class="services-v2-hero-card">
-                    <div class="services-v2-hero-icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <rect x="4" y="4" width="6" height="6" rx="1"/>
-                            <rect x="14" y="4" width="6" height="6" rx="1"/>
-                            <rect x="4" y="14" width="6" height="6" rx="1"/>
-                            <rect x="14" y="14" width="6" height="6" rx="1"/>
-                        </svg>
+            <!-- Body: stacked card deck (Display-Cards style), front card in colour -->
+            <div class="services-deck">
+                <a href="services.html#vaccinations" class="dcard card--blue">
+                    <div class="dcard-head">
+                        <span class="dcard-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></span>
+                        <h3 class="dcard-title">Vaccinations</h3>
                     </div>
-                    <h3>Délivrance d'ordonnances</h3>
-                    <p>On prend le temps de vous expliquer chaque traitement. Posologie, interactions, effets secondaires: vous repartez toujours avec des réponses claires. Envoi de l'ordonnance par photo possible.</p>
+                    <p class="dcard-desc">Grippe, Covid, rappels... sur rendez-vous, sans passer chez le médecin.</p>
+                    <span class="dcard-meta">En savoir plus <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
                 </a>
-
-                <!-- Service list: 5 items stacked -->
-                <div class="services-v2-list">
-                    <a href="services.html#vaccinations" class="services-v2-list-item">
-                        <div class="services-v2-list-icon">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
-                                <polyline points="22 4 12 14.01 9 11.01"/>
-                            </svg>
-                        </div>
-                        <div class="services-v2-list-text">
-                            <strong>Vaccinations</strong>
-                            <span>Grippe, Covid, rappels... sur rendez-vous, sans passer chez le médecin.</span>
-                        </div>
-                    </a>
-                    <a href="services.html#parapharmacie" class="services-v2-list-item">
-                        <div class="services-v2-list-icon">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <rect x="8" y="4" width="8" height="16" rx="4"/>
-                                <path d="M10 8h4M10 12h4"/>
-                                <ellipse cx="12" cy="3" rx="3" ry="2"/>
-                            </svg>
-                        </div>
-                        <div class="services-v2-list-text">
-                            <strong>Parapharmacie</strong>
-                            <span>Dermatologie, cosmétiques et soins sélectionnés par notre équipe.</span>
-                        </div>
-                    </a>
-                    <a href="services.html#produits-naturels" class="services-v2-list-item">
-                        <div class="services-v2-list-icon">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M20.24 12.24a6 6 0 0 0-8.49-8.49L5 10.5V19h8.5z"/>
-                                <line x1="16" y1="8" x2="2" y2="22"/>
-                                <line x1="17.5" y1="15" x2="9" y2="15"/>
-                            </svg>
-                        </div>
-                        <div class="services-v2-list-text">
-                            <strong>Produits naturels</strong>
-                            <span>Phytothérapie, aromathérapie, compléments. Conseil personnalisé.</span>
-                        </div>
-                    </a>
-                    <a href="services.html#materiel-medical" class="services-v2-list-item">
-                        <div class="services-v2-list-icon">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <rect x="2" y="12" width="20" height="6" rx="1"/>
-                                <line x1="2" y1="12" x2="2" y2="9" stroke-linecap="round"/>
-                                <line x1="22" y1="12" x2="22" y2="9" stroke-linecap="round"/>
-                                <line x1="2" y1="18" x2="2" y2="21" stroke-linecap="round"/>
-                                <line x1="22" y1="18" x2="22" y2="21" stroke-linecap="round"/>
-                            </svg>
-                        </div>
-                        <div class="services-v2-list-text">
-                            <strong>Matériel médical</strong>
-                            <span>Location de béquilles, lits médicalisés, équipements d'assistance</span>
-                        </div>
-                    </a>
-                    <a href="services.html#livraison" class="services-v2-list-item">
-                        <div class="services-v2-list-icon">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <rect x="1" y="6" width="15" height="10" rx="1"/>
-                                <path d="M16 10h4l3 3v3h-7V10z"/>
-                                <circle cx="6" cy="18" r="2"/>
-                                <circle cx="18" cy="18" r="2"/>
-                            </svg>
-                        </div>
-                        <div class="services-v2-list-text">
-                            <strong>Livraison à domicile</strong>
-                            <span>Livraison gratuite le jour même dans Quéven et environs.</span>
-                        </div>
-                    </a>
-                </div>
+                <a href="services.html#parapharmacie" class="dcard card--lavender">
+                    <div class="dcard-head">
+                        <span class="dcard-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="8" y="4" width="8" height="16" rx="4"/><path d="M10 8h4M10 12h4"/><ellipse cx="12" cy="3" rx="3" ry="2"/></svg></span>
+                        <h3 class="dcard-title">Parapharmacie</h3>
+                    </div>
+                    <p class="dcard-desc">Dermatologie, cosmétiques et soins sélectionnés par notre équipe.</p>
+                    <span class="dcard-meta">En savoir plus <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+                </a>
+                <a href="services.html#produits-naturels" class="dcard card--sage">
+                    <div class="dcard-head">
+                        <span class="dcard-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.24 12.24a6 6 0 0 0-8.49-8.49L5 10.5V19h8.5z"/><line x1="16" y1="8" x2="2" y2="22"/><line x1="17.5" y1="15" x2="9" y2="15"/></svg></span>
+                        <h3 class="dcard-title">Produits naturels</h3>
+                    </div>
+                    <p class="dcard-desc">Phytothérapie, aromathérapie, compléments. Conseil personnalisé.</p>
+                    <span class="dcard-meta">En savoir plus <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+                </a>
+                <a href="services.html#materiel-medical" class="dcard card--peach">
+                    <div class="dcard-head">
+                        <span class="dcard-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="12" width="20" height="6" rx="1"/><line x1="2" y1="12" x2="2" y2="9" stroke-linecap="round"/><line x1="22" y1="12" x2="22" y2="9" stroke-linecap="round"/><line x1="2" y1="18" x2="2" y2="21" stroke-linecap="round"/><line x1="22" y1="18" x2="22" y2="21" stroke-linecap="round"/></svg></span>
+                        <h3 class="dcard-title">Matériel médical</h3>
+                    </div>
+                    <p class="dcard-desc">Location de béquilles, lits médicalisés, équipements d'assistance.</p>
+                    <span class="dcard-meta">En savoir plus <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+                </a>
+                <a href="services.html#livraison" class="dcard card--sage">
+                    <div class="dcard-head">
+                        <span class="dcard-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="6" width="15" height="10" rx="1"/><path d="M16 10h4l3 3v3h-7V10z"/><circle cx="6" cy="18" r="2"/><circle cx="18" cy="18" r="2"/></svg></span>
+                        <h3 class="dcard-title">Livraison à domicile</h3>
+                    </div>
+                    <p class="dcard-desc">Livraison gratuite le jour même dans Quéven et environs.</p>
+                    <span class="dcard-meta">En savoir plus <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+                </a>
+                <a href="services.html#ordonnances" class="dcard card--teal">
+                    <div class="dcard-head">
+                        <span class="dcard-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="4" width="6" height="6" rx="1"/><rect x="14" y="4" width="6" height="6" rx="1"/><rect x="4" y="14" width="6" height="6" rx="1"/><rect x="14" y="14" width="6" height="6" rx="1"/></svg></span>
+                        <h3 class="dcard-title">Délivrance d'ordonnances</h3>
+                    </div>
+                    <p class="dcard-desc">On prend le temps de vous expliquer chaque traitement: posologie, interactions, effets secondaires. Envoi par photo possible.</p>
+                    <span class="dcard-meta">En savoir plus <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+                </a>
             </div>
         </div>
     </section>
