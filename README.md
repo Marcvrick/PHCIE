@@ -178,6 +178,16 @@ Le site migre progressivement d'un design "Wellness Minimal" vers un nouveau des
 5. Matériel médical
 6. **Livraison à domicile** (toujours en dernier)
 
+**Section "On s'occupe de Vous" — deck de cartes empilées (`.services-deck` / `.dcard`) :**
+
+Les 6 services sont présentés en **deck empilé en biais** (style « Display Cards » de 21st.dev, recréé en **CSS vanilla** — pas de React/Tailwind/shadcn, le site est statique). Tout est inline dans `index.html` (CSS `<style>` + markup `.services-deck`).
+
+- **Layout** : 2 colonnes ≥900px (texte en haut à gauche via `align-items: start`, deck à droite) ; pile verticale simple < 768px (le skew est désactivé sur mobile).
+- **Empilement** : `grid-template-areas: 'stack'` + `skewY(-7deg)` ; offsets `--tx`/`--ty` par `nth-child` (pas vertical ~50px, symétriques autour du centre pour centrer le deck). **Ne pas réduire le pas vertical** sous ~50px : les titres des cartes arrière seraient coupés.
+- **Lisibilité** : cartes **100% opaques** (pas d'`opacity` sur `.dcard`, sinon le texte des cartes du dessous transparaît) ; l'effet « atténué » des cartes arrière vient d'un **voile lavande `::after`** (`opacity: .5`), retiré sur `:last-child` et `:hover`.
+- **Couleur** : cartes arrière en `grayscale(1)` ; la **carte avant** (`:last-child` = Délivrance d'ordonnances) reste en couleur. Au survol : colorisation + lift + ombre teintée de la catégorie (classes `.card--teal/blue/lavender/sage/peach`).
+- **Inset** : `.services-v2-container` garde le padding standard 24px → s'aligne sur les autres sections (104px à 1440). Le hero a été ramené au même inset (`.hero-container` padding 24px) pour aligner toute la page.
+
 **Bouton "Au Comptoir":**
 - Couleur distinctive: `#b4a6d7` (lavande)
 - Se distingue du reste de la navigation
