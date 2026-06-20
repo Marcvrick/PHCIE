@@ -728,10 +728,11 @@
             justify-content: center;
             padding: 20px 16px 16px;
             aspect-ratio: 1;
-            transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+            transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s ease;
             cursor: pointer;
             text-decoration: none;
             color: inherit;
+            box-shadow: 0 12px 32px -18px rgba(31, 33, 33, 0.55);
         }
 
         .product-feature-card,
@@ -743,6 +744,7 @@
 
         .product-feature-card:hover {
             transform: translateY(-6px);
+            box-shadow: 0 26px 46px -22px rgba(31, 33, 33, 0.55);
         }
 
         @media (min-width: 768px) {
@@ -1950,25 +1952,28 @@
             .services-deck { margin-top: 0; }
         }
 
-        /* Mobile: drop the skewed deck for a clean vertical stack */
+        /* Mobile: top-align so each card's top edge = ty (independent of card height).
+           Uniform 50px step -> only the title of each back card peeks; the tall front
+           card sits at the same step and overflows BEHIND the next section. */
         @media (max-width: 767px) {
             .services-deck {
-                grid-template-areas: none;
-                display: flex;
-                flex-direction: column;
-                gap: 12px;
-                min-height: 0;
-                align-items: stretch;
+                justify-content: center;
+                place-items: start center;
+                min-height: 360px;
+                margin-top: 24px;
+                isolation: isolate; /* contain dcard z-index so next section can paint over */
             }
             .dcard {
-                width: 100%;
-                transform: none;
-                filter: none;
-                opacity: 1;
-                --tx: 0; --ty: 0;
+                width: clamp(240px, 70vw, 290px);
             }
-            .dcard::after { display: none; }
-            .dcard:hover { transform: translateY(-3px); }
+            .dcard:nth-child(1) { --tx: -70px; --ty:   0px; }
+            .dcard:nth-child(2) { --tx: -42px; --ty:  50px; }
+            .dcard:nth-child(3) { --tx: -14px; --ty: 100px; }
+            .dcard:nth-child(4) { --tx:  14px; --ty: 150px; }
+            .dcard:nth-child(5) { --tx:  42px; --ty: 200px; }
+            .dcard:nth-child(6) { --tx:  70px; --ty: 250px; }
+            /* next section paints above the overflowing front card */
+            .product-features { position: relative; z-index: 1; }
         }
 
         @media (prefers-reduced-motion: reduce) {
@@ -1977,9 +1982,12 @@
         }
 
         @media (max-width: 767px) {
-            .services-v2 { padding: var(--space-64) 0 var(--space-48); }
+            .services-v2 { padding: var(--space-64) 0 var(--space-16); overflow-x: clip; }
             .services-v2-header { text-align: center; }
-            .services-v2-subtitle { margin: 0 auto; }
+            .services-v2-subtitle { display: none; }
+            /* "On s'occupe de Vous" sur une seule ligne */
+            .services-v2-title { font-size: clamp(1.5rem, 6.5vw, 2rem); white-space: nowrap; }
+            .services-v2-title br { display: none; }
         }
 
         /* === BLOG HIGHLIGHT (new layout) === */
@@ -2694,7 +2702,7 @@
         <div class="services-v2-container">
             <!-- Header row: title left, subtitle right -->
             <div class="services-v2-header">
-                <h2 class="services-v2-title">On s'occupe<br>de <em>Vous</em></h2>
+                <h2 class="services-v2-title">On s'occupe <br>de <em>Vous</em></h2>
                 <p class="services-v2-subtitle">Bien plus qu'une pharmacie. Ordonnances, conseil, livraison, vaccination... On vous accompagne à chaque étape.</p>
             </div>
 
