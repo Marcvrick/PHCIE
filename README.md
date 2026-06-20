@@ -182,8 +182,11 @@ Le site migre progressivement d'un design "Wellness Minimal" vers un nouveau des
 
 Les 6 services sont présentés en **deck empilé en biais** (style « Display Cards » de 21st.dev, recréé en **CSS vanilla** — pas de React/Tailwind/shadcn, le site est statique). Tout est inline dans `index.html` (CSS `<style>` + markup `.services-deck`).
 
-- **Layout** : 2 colonnes ≥900px (texte en haut à gauche via `align-items: start`, deck à droite) ; pile verticale simple < 768px (le skew est désactivé sur mobile).
-- **Empilement** : `grid-template-areas: 'stack'` + `skewY(-7deg)` ; offsets `--tx`/`--ty` par `nth-child` (pas vertical ~50px, symétriques autour du centre pour centrer le deck). **Ne pas réduire le pas vertical** sous ~50px : les titres des cartes arrière seraient coupés.
+- **Layout** : 2 colonnes ≥900px (texte en haut à gauche via `align-items: start`, deck à droite). **Sur mobile (< 768px) le deck est conservé** (et non plus aplati en liste) : cartes plus étroites (`clamp(240px, 70vw, 290px)`), `justify-content: center`, et **alignement par le haut** (`place-items: start center`).
+- **Empilement** : `grid-template-areas: 'stack'` + `skewY(-7deg)` ; offsets `--tx`/`--ty` par `nth-child`.
+  - **Desktop** : pas vertical ~50px, symétrique autour du centre. **Ne pas réduire le pas** sous ~50px : les titres des cartes arrière seraient coupés.
+  - **Mobile** : alignement par le haut → le bord supérieur de chaque carte **= sa valeur `--ty`** (indépendant de la hauteur de la carte). Pas régulier de 50px (`--ty` : 0, 50, 100, 150, 200, 250) ⇒ seul le **titre** de chaque carte arrière dépasse (la description est masquée par la carte suivante), carte avant comprise. La carte avant (plus haute) **déborde sous la section suivante** : `isolation: isolate` sur le deck confine les `z-index` des cartes, et `.product-features` reçoit `position: relative; z-index: 1` pour passer par-dessus. Le rognage latéral est géré par `overflow-x: clip` sur `.services-v2`.
+- **Titre mobile** : « On s'occupe de Vous » sur **une seule ligne** (`<br>` masqué via `.services-v2-title br { display:none }`, espace ajouté avant le `<br>` dans le markup) ; le sous-titre est masqué (`.services-v2-subtitle { display:none }`).
 - **Lisibilité** : cartes **100% opaques** (pas d'`opacity` sur `.dcard`, sinon le texte des cartes du dessous transparaît) ; l'effet « atténué » des cartes arrière vient d'un **voile lavande `::after`** (`opacity: .5`), retiré sur `:last-child` et `:hover`.
 - **Couleur** : cartes arrière en `grayscale(1)` ; la **carte avant** (`:last-child` = Délivrance d'ordonnances) reste en couleur. Au survol : colorisation + lift + ombre teintée de la catégorie (classes `.card--teal/blue/lavender/sage/peach`).
 - **Inset** : `.services-v2-container` garde le padding standard 24px → s'aligne sur les autres sections (104px à 1440). Le hero a été ramené au même inset (`.hero-container` padding 24px) pour aligner toute la page.
@@ -702,6 +705,15 @@ Les deux fichiers sont complémentaires et doivent rester à jour.
 ---
 
 ## 📝 Changelog Récent
+
+### 20 Juin 2026
+
+**Homepage mobile — deck de services « On s'occupe de Vous » + ombres cartes quiz :**
+- Le deck de cartes empilées est désormais **conservé sur mobile** (auparavant aplati en liste verticale). Voir la doc détaillée plus haut (section "On s'occupe de Vous").
+- Alignement par le haut (`place-items: start center`) → pas régulier de 50px sur `--ty` : seul le **titre** de chaque carte dépasse ; la carte avant (Délivrance) **déborde sous la section "Quel soin"** (`isolation: isolate` + `.product-features { z-index: 1 }`).
+- Titre « On s'occupe de Vous » sur **une ligne** + sous-titre masqué sur mobile.
+- **Ombre douce ajoutée sur les 4 cartes quiz** (`.product-feature-card`) : `box-shadow: 0 12px 32px -18px rgba(31,33,33,.55)` au repos, `0 26px 46px -22px` au survol (accompagne le `translateY(-6px)`). Règle globale (desktop + mobile).
+- **Foldables / grands téléphones (480–767px)** : grille quiz plafonnée à `max-width: 440px` + `margin: 0 auto` — évite des cartes carrées surdimensionnées en 2 colonnes pleine largeur (cas observé ~1024×860 sur fold).
 
 ### 14 Mai 2026
 

@@ -709,6 +709,15 @@
             gap: 16px;
         }
 
+        /* Foldables / wide phones (e.g. ~600-760px): cap the 2-col grid so the
+           square cards don't become oversized — center it to add side margins */
+        @media (min-width: 480px) and (max-width: 767px) {
+            .product-features-grid {
+                max-width: 440px;
+                margin: 0 auto;
+            }
+        }
+
         @media (min-width: 768px) {
             .product-features-grid {
                 grid-template-columns: repeat(4, 1fr);
