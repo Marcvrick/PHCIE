@@ -1888,7 +1888,8 @@
         .dcard:last-child { filter: grayscale(0); opacity: 1; }
         .dcard:last-child::after { opacity: 0; }
 
-        .dcard:hover {
+        /* Raised state — shared by hover (pointer) and .is-raised (touch, JS-driven) */
+        .dcard.is-raised {
             filter: grayscale(0);
             opacity: 1;
             z-index: 20;
@@ -1896,7 +1897,20 @@
             box-shadow: 0 30px 54px -22px color-mix(in srgb, var(--card-accent, #2D5F5D) 55%, transparent);
             border-color: color-mix(in srgb, var(--card-accent, #2D5F5D) 55%, transparent);
         }
-        .dcard:hover::after { opacity: 0; }
+        .dcard.is-raised::after { opacity: 0; }
+
+        /* Pointer devices only: hover raises directly (no two-step needed) */
+        @media (hover: hover) {
+            .dcard:hover {
+                filter: grayscale(0);
+                opacity: 1;
+                z-index: 20;
+                transform: skewY(-7deg) translate(var(--tx, 0), calc(var(--ty, 0) - 30px));
+                box-shadow: 0 30px 54px -22px color-mix(in srgb, var(--card-accent, #2D5F5D) 55%, transparent);
+                border-color: color-mix(in srgb, var(--card-accent, #2D5F5D) 55%, transparent);
+            }
+            .dcard:hover::after { opacity: 0; }
+        }
 
         .dcard-head { display: flex; align-items: center; gap: 11px; }
 
@@ -1936,7 +1950,8 @@
             gap: 6px;
         }
         .dcard-meta svg { width: 13px; height: 13px; transition: transform 0.35s ease; }
-        .dcard:hover .dcard-meta svg { transform: translateX(4px); }
+        .dcard.is-raised .dcard-meta svg { transform: translateX(4px); }
+        @media (hover: hover) { .dcard:hover .dcard-meta svg { transform: translateX(4px); } }
 
         /* Accent palette per category */
         .card--teal     { --card-accent: var(--teal-pro);       --card-tint: var(--pastel-teal); }
@@ -3212,6 +3227,35 @@
         });
 
         // Brand spotlight removed — replaced by static brands-strip logos
+
+        // ==========================================
+        // "On s'occupe de Vous" deck — touch two-step
+        // ==========================================
+        // Sur appareil tactile (pas de hover), un 1er tap RELÈVE la vignette
+        // (sans suivre le lien) ; un 2e tap sur la vignette déjà relevée
+        // ouvre le lien. Sur appareil à pointeur, comportement normal.
+        (function () {
+            var touch = window.matchMedia('(hover: none)');
+            var cards = document.querySelectorAll('.services-deck .dcard');
+            if (!cards.length) return;
+
+            cards.forEach(function (card) {
+                card.addEventListener('click', function (e) {
+                    if (!touch.matches) return;                          // pointeur -> lien normal
+                    if (card.classList.contains('is-raised')) return;    // déjà relevée -> navigue
+                    e.preventDefault();
+                    cards.forEach(function (c) { c.classList.remove('is-raised'); });
+                    card.classList.add('is-raised');
+                });
+            });
+
+            // Tap en dehors du deck -> on redescend la vignette relevée
+            document.addEventListener('click', function (e) {
+                if (!touch.matches) return;
+                if (e.target.closest('.services-deck .dcard')) return;
+                cards.forEach(function (c) { c.classList.remove('is-raised'); });
+            });
+        })();
     </script>
 </body>
 </html>
