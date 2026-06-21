@@ -213,6 +213,34 @@
             color: var(--teal-light);
         }
 
+        /* Inline links inside card body (brand names, keywords) */
+        .service-detail-card ul li a,
+        .service-detail-card > div > p a {
+            color: var(--teal-pro);
+            font-weight: 600;
+            text-decoration: underline;
+            text-underline-offset: 2px;
+            text-decoration-thickness: 1px;
+            transition: color var(--duration-normal) var(--ease-standard);
+        }
+
+        .service-detail-card ul li a:hover,
+        .service-detail-card > div > p a:hover {
+            color: var(--teal-light);
+        }
+
+        /* Row of exit CTAs at the bottom of a card */
+        .service-links-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: var(--space-12) var(--space-24);
+            margin-top: var(--space-24);
+        }
+
+        .service-links-row .service-link {
+            margin-top: 0;
+        }
+
         /* CTA Section */
         .services-cta {
             padding: var(--space-96) 0;
@@ -531,9 +559,14 @@
                             <li><span class="check">✓</span> Rappels vaccins disponibles</li>
                             <li><span class="check">✓</span> Sans rendez-vous</li>
                         </ul>
-                        <a href="https://vaccination-info-service.fr" target="_blank" rel="noopener noreferrer" class="service-link">
-                            Calendrier vaccinal officiel →
-                        </a>
+                        <div class="service-links-row">
+                            <a href="blog/vaccination-adulte-guide-pratique.html" class="service-link">
+                                Guide vaccination adulte →
+                            </a>
+                            <a href="https://vaccination-info-service.fr" target="_blank" rel="noopener noreferrer" class="service-link">
+                                Calendrier vaccinal officiel →
+                            </a>
+                        </div>
                     </div>
                 </div>
 
@@ -552,11 +585,15 @@
                             Spécialistes des médecines douces, nous proposons une large gamme de produits naturels pour prendre soin de votre santé de façon naturelle.
                         </p>
                         <ul>
-                            <li><span class="check">✓</span> <strong>Phytothérapie</strong>: plantes médicinales, tisanes</li>
+                            <li><span class="check">✓</span> <strong>Phytothérapie</strong>: plantes médicinales et tisanes (<a href="Nos-marques/natform-page.html">Nat&amp;Form</a>, <a href="Nos-marques/sid-nutrition-page.html">S.I.D Nutrition</a>)</li>
                             <li><span class="check">✓</span> <strong>Aromathérapie</strong>: huiles essentielles de qualité</li>
-                            <li><span class="check">✓</span> <strong>Homéopathie</strong>: gamme complète</li>
-                            <li><span class="check">✓</span> <strong>Compléments alimentaires</strong>: vitamines, probiotiques</li>
+                            <li><span class="check">✓</span> <strong>Homéopathie</strong>: gamme <a href="Nos-marques/boiron-page.html">Boiron</a> complète</li>
+                            <li><span class="check">✓</span> <strong>Compléments alimentaires</strong>: vitamines et probiotiques (<a href="Nos-marques/pileje-page.html">PiLeJe</a>, <a href="Nos-marques/bion3-page.html">Bion 3</a>)</li>
                         </ul>
+                        <div class="service-links-row">
+                            <a href="Quizzes/quiz-produits-naturels.html" class="service-link">Trouver mes produits naturels →</a>
+                            <a href="blog/troubles-sommeil-solutions-naturelles-queven.html" class="service-link">À lire: sommeil &amp; solutions naturelles →</a>
+                        </div>
                     </div>
                 </div>
 
@@ -599,14 +636,15 @@
                             Une sélection de produits de parapharmacie et de grandes marques dermocosmétiques pour prendre soin de vous.
                         </p>
                         <ul>
-                            <li><span class="check">✓</span> <strong>Dermatologie</strong>: Avène, La Roche-Posay, Bioderma</li>
-                            <li><span class="check">✓</span> <strong>Cosmétiques</strong>: soins visage et corps</li>
-                            <li><span class="check">✓</span> <strong>Bébé</strong>: soins et hygiène infantile</li>
+                            <li><span class="check">✓</span> <strong>Dermatologie</strong>: <a href="Nos-marques/avene-page.html">Avène</a>, <a href="Nos-marques/la-roche-posay-page.html">La Roche-Posay</a>, <a href="Nos-marques/bioderma-page.html">Bioderma</a></li>
+                            <li><span class="check">✓</span> <strong>Cosmétiques</strong>: soins visage et corps (<a href="Nos-marques/nuxe-page.html">Nuxe</a>, <a href="Nos-marques/klorane-page.html">Klorane</a>)</li>
+                            <li><span class="check">✓</span> <strong>Bébé</strong>: soins et hygiène infantile (<a href="Nos-marques/mustela-page.html">Mustela</a>)</li>
                             <li><span class="check">✓</span> Conseils personnalisés beauté et bien-être</li>
                         </ul>
-                        <a href="Nos-marques/nosmarques.html#cosmetiques" class="service-link">
-                            Découvrir toutes nos marques →
-                        </a>
+                        <div class="service-links-row">
+                            <a href="Nos-marques/nosmarques.html" class="service-link">Découvrir toutes nos marques →</a>
+                            <a href="Quizzes/quiz-soin-peau.html" class="service-link">Quel soin pour ma peau? →</a>
+                        </div>
                     </div>
                 </div>
 
@@ -630,6 +668,10 @@
                             <li><span class="check">✓</span> <strong>Premiers soins</strong>: pansements, antiseptiques, brûlures légères</li>
                             <li><span class="check">✓</span> Conseils sur les bons réflexes et quand consulter</li>
                         </ul>
+                        <div class="service-links-row">
+                            <a href="Quizzes/quiz-automedication.html" class="service-link">Quel médicament pour mes symptômes? →</a>
+                            <a href="blog/crampes-abdominales-comprendre-soulager-queven.html" class="service-link">À lire: soulager les crampes →</a>
+                        </div>
                     </div>
                 </div>
 
