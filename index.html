@@ -2199,6 +2199,22 @@
             }
         }
 
+        /* Avène & Nuxe sont des wordmarks plus fins -> +30% de plus que le reste du trio */
+        @media (min-width: 768px) {
+            .brands-strip-logo-card img[alt="Nuxe"],
+            .brands-strip-logo-card img[alt="Avène"] {
+                max-width: 195px;
+                max-height: 78px;
+            }
+        }
+        @media (min-width: 768px) and (max-width: 1024px) {
+            .brands-strip-logo-card img[alt="Nuxe"],
+            .brands-strip-logo-card img[alt="Avène"] {
+                max-width: 254px;
+                max-height: 101px;
+            }
+        }
+
         @media (max-width: 767px) {
             .brands-strip { padding: var(--space-48) 0 var(--space-32); }
             .brands-strip-header { justify-content: center; text-align: center; flex-direction: column; align-items: center; }
