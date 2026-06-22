@@ -1,8 +1,8 @@
 ---
 title: "Trousse de pharmacie de voyage: que faut-il vraiment emporter en famille?"
 description: "Trousse de pharmacie de voyage en famille: l'essentiel à emporter cet été, des médicaments de base aux anti-moustiques. Conseils de votre pharmacie à Quéven"
-date: 2026-06-22
-dateModified: 2026-06-22
+date: 2026-06-23
+dateModified: 2026-06-23
 author: Équipe Pharmacie Charnal
 categories:
   - Conseils santé
