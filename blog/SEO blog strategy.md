@@ -3,7 +3,7 @@
 > Principes extraits d'un webinaire SEO (cabinet dentaire LA) adaptes au contexte pharmacie locale + recommandations concretes.
 > Ce document combine la theorie et son application a notre blog.
 
-**Derniere mise a jour** : 13 fevrier 2026
+**Derniere mise a jour** : 5 juin 2026 (PARTIE 3 planning deplacee vers PLANNING-BLOG-PHARMACIE.md)
 
 ---
 
@@ -167,73 +167,20 @@ Nos pharmaciens sont la pour vous conseiller.
 
 ---
 
-## PARTIE 3 : PLANNING HEBDOMADAIRE (fevrier → juillet 2026)
+## PARTIE 3 : PLANNING HEBDOMADAIRE
 
-### Regles
+> ➡️ **Le calendrier opérationnel (dates, titres, statuts) vit désormais dans un seul fichier : [PLANNING-BLOG-PHARMACIE.md](PLANNING-BLOG-PHARMACIE.md).**
+>
+> Cette section a été retirée le 5 juin 2026 : elle dupliquait le planning et les deux versions avaient divergé (titres, dates, numéros d'articles contradictoires). `SEO blog strategy.md` reste la référence **stratégie** (principes SEO, types d'articles, checklist, banque d'idées) ; le **quand/quoi publier** se gère exclusivement dans le fichier planning.
+>
+> **Rappel verrou** : l'article Tiques en Bretagne est réservé à la première semaine de juillet, jamais avant.
 
-- **Objectif** : 1 article/semaine (mercredi de preference)
-- **Mix mensuel** : 2 articles longs + 1-2 articles courts ou buying-intent
-- **Articles longs** → sur blog.html
+### Règles (conservées)
+
+- **Objectif** : 1 article/semaine (jour cible **lundi**)
+- **Mix mensuel** : ~2 articles longs + 1-2 articles courts ou buying-intent
+- **Articles longs / buying-intent** → sur blog.html
 - **Articles courts / mode d'emploi** → pages autonomes, pas sur blog.html
-
----
-
-### FEVRIER 2026
-
-| Sem. | Date | Article | Type | Statut |
-|---|---|---|---|---|
-| S7 | 10 fev | Peau seche en hiver breton | Long editorial | 🟡 HTML pret |
-| S8 | **Mer 18 fev** | **Fatigue, moral en berne : fin d'hiver** | Long editorial | 🟡 MD pret → HTML |
-| S9 | Mer 25 fev | Nos quiz sante : trouvez le bon conseil en 2 minutes | Court mode d'emploi | A rediger |
-
-### MARS 2026
-
-| Sem. | Date | Article | Type | Statut |
-|---|---|---|---|---|
-| S10 | Mer 4 mars | Allergies : se preparer au printemps a Queven | Long editorial | A rediger |
-| S11 | Mer 11 mars | Comment choisir son antihistaminique en pharmacie ? | Buying-intent | A rediger |
-| S12 | Mer 18 mars | Sante cardiovasculaire : les bons reflexes | Long editorial | A rediger |
-| S13 | Mer 25 mars | Tensiometre : comment prendre sa tension a la maison | Court mode d'emploi | A rediger |
-
-### AVRIL 2026
-
-| Sem. | Date | Article | Type | Statut |
-|---|---|---|---|---|
-| S14 | Lun 6 avr | ~~Fatigue de printemps : retrouver son energie~~ | Long editorial | ⛔ Reporter apres mi-mai (sujet fatigue deja traite x2) |
-| S15 | Lun 7 avr | Complements alimentaires : pharmacie ou internet ? | Buying-intent | ✅ Redige — article #13 |
-| S16 | **Lun 14 avr** | **Paracetamol, ibuprofene, aspirine : lequel choisir ?** | Court mode d'emploi | ✍️ A publier demain |
-| S17 | Lun 21 avr | Jambes lourdes : comprendre et soulager | Long editorial | A rediger |
-
-> **Regle fatigue** : ne pas traiter un sujet "fatigue" avant mi-mai (articles #6 Fatigue/moral et S14 Fatigue printemps couvrent deja ce terrain)
-> **Tiques** : article #14 redige, reserve pour la 1re semaine de juillet (voir S27 ci-dessous)
-
-### MAI 2026
-
-| Sem. | Date | Article | Type | Statut |
-|---|---|---|---|---|
-| S18 | Lun 4 mai | Fatigue de printemps : retrouver son energie | Long editorial | A rediger (reporter depuis S14) |
-| S19 | Lun 11 mai | Protection solaire : quel SPF choisir en pharmacie ? | Buying-intent | A rediger |
-| S20 | Lun 18 mai | Creme hydratante : laquelle pour votre type de peau ? | Court mode d'emploi | A rediger |
-| S21 | Lun 25 mai | Trousse de vacances : l'essentiel a emporter | Long editorial | A rediger |
-
-### JUIN 2026
-
-| Sem. | Date | Article | Type | Statut |
-|---|---|---|---|---|
-| S22 | Mer 27 mai | Aromatherapie : 5 huiles essentielles pour l'ete | Buying-intent | A rediger |
-| S23 | Mer 3 juin | Sport et allergies : bien gerer les deux | Long editorial | A rediger |
-| S24 | Mer 10 juin | Hydratation ete : au-dela de l'eau | Long editorial | A rediger |
-| S25 | Mer 17 juin | Coups de soleil : prevenir et traiter | Long editorial | A rediger |
-
-### JUILLET 2026
-
-| Sem. | Date | Article | Type | Statut |
-|---|---|---|---|---|
-| S26 | Lun 22 juin | Probiotiques : guide pratique pour bien choisir | Buying-intent | A rediger |
-| S27 | **Lun 6 juil** | **Tiques en Bretagne : prevention et reaction** | Long editorial | ✍️ Article #14 redige — pret a publier |
-| S28 | Lun 13 juil | Meduses plages bretonnes : que faire ? | Long editorial | A rediger |
-| S29 | Lun 20 juil | Voyager avec ses medicaments : le guide | Long editorial | A rediger |
-| S30 | Lun 27 juil | Premiers secours ete : les gestes essentiels | Court mode d'emploi | A rediger |
 
 ---
 

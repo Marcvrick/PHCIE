@@ -189,6 +189,7 @@ Les 6 services sont présentés en **deck empilé en biais** (style « Display C
 - **Titre mobile** : « On s'occupe de Vous » sur **une seule ligne** (`<br>` masqué via `.services-v2-title br { display:none }`, espace ajouté avant le `<br>` dans le markup) ; le sous-titre est masqué (`.services-v2-subtitle { display:none }`).
 - **Lisibilité** : cartes **100% opaques** (pas d'`opacity` sur `.dcard`, sinon le texte des cartes du dessous transparaît) ; l'effet « atténué » des cartes arrière vient d'un **voile lavande `::after`** (`opacity: .5`), retiré sur `:last-child` et `:hover`.
 - **Couleur** : cartes arrière en `grayscale(1)` ; la **carte avant** (`:last-child` = Délivrance d'ordonnances) reste en couleur. Au survol : colorisation + lift + ombre teintée de la catégorie (classes `.card--teal/blue/lavender/sage/peach`).
+- **Interaction tactile — tap en deux temps** (depuis le 21 juin) : sur appareil sans survol (`@media (hover: none)`), un **1er tap relève** la vignette (sans suivre le lien), un **2e tap** sur la vignette relevée ouvre le lien ; tap en dehors → elle redescend. L'état relevé = classe `.dcard.is-raised` (JS, `matchMedia('(hover: none)')`), partagée avec le style du `:hover` ; le `:hover` qui relevait la carte est **enfermé dans `@media (hover: hover)`** (sinon le tap ouvrait le lien aussitôt). Desktop inchangé.
 - **Inset** : `.services-v2-container` garde le padding standard 24px → s'aligne sur les autres sections (104px à 1440). Le hero a été ramené au même inset (`.hero-container` padding 24px) pour aligner toute la page.
 
 **Bouton "Au Comptoir":**
@@ -705,6 +706,24 @@ Les deux fichiers sont complémentaires et doivent rester à jour.
 ---
 
 ## 📝 Changelog Récent
+
+### 21 Juin 2026
+
+**Homepage — deck « On s'occupe de Vous » : tap en deux temps sur mobile (commit `17e595b`) :**
+- Sur appareil tactile (`@media (hover: none)`), un **1er tap relève** la vignette au-dessus de la pile (sans suivre le lien) ; un **2e tap** sur la vignette déjà relevée ouvre le lien. Tap en dehors → la vignette redescend.
+- L'état relevé est désormais la classe `.dcard.is-raised` (pilotée par JS), partagée avec le `:hover`. Le `:hover` qui relevait la carte est **enfermé dans `@media (hover: hover)`** → ne se déclenche plus sur tactile (c'était lui qui ouvrait le lien « aussitôt »).
+- Comportement **desktop strictement inchangé** : survol relève, clic ouvre. Le JS sort immédiatement si `matchMedia('(hover: none)')` est faux.
+
+**`services.html` — maillage interne sur les cartes de services (commit `f3b407a`) :**
+- **Marques citées rendues cliquables** vers leur page dédiée : Avène, La Roche-Posay, Bioderma, Nuxe, Klorane, Mustela (Parapharmacie) ; Boiron, Nat&Form, S.I.D Nutrition, PiLeJe, Bion 3 (Produits naturels — marques nommées + liées).
+- **CTA de sortie ajoutés** par carte (`.service-links-row`) : quiz (produits naturels, soin peau, automédication) + articles blog pertinents (vaccination, sommeil, crampes).
+- Ancre cassée corrigée : `nosmarques.html#cosmetiques` → `nosmarques.html` (la page n'a que `#toutes-marques`).
+- CSS : liens inline teal soulignés dans le corps des cartes + rangée de CTA `.service-links-row` (flex wrap).
+
+**Homepage — logos « Les marques qu'on aime » agrandis sur écrans medium (commits `48df976` + `76b6ce5`) :**
+- Nouveau palier `@media (min-width: 768px) and (max-width: 1024px)` (Samsung Fold déplié ~1024×768, tablettes) : logos standards `120×48` → `156×62` (+30%) + padding carte réduit (`space-24/16` → `space-12`) pour donner de la place.
+- **Avène & Nuxe** (wordmarks plus fins, visuellement plus petits) : +30% supplémentaire vs le reste du trio → `254×101` au palier Fold, `195×78` sur desktop large. Klorane reste à `150×60` / `195×78`.
+- Limite connue : la grille reste à 6 colonnes, donc à 1024px la largeur de carte (~125–149px) plafonne les wordmarks larges → le gain réel vient surtout du `max-height`.
 
 ### 20 Juin 2026
 
