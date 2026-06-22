@@ -20,7 +20,7 @@ Planning éditorial - Pharmacie Charnal à Quéven
 | 24 | Lun 23 juin 2026 | Probiotiques : guide pratique pour bien choisir | Buying-intent | Bion3 | 📝 À rédiger |
 | 25 | **Lun 6 juil 2026** | **Tiques en Bretagne : prévention et réaction** | Long | Biocanina | 🔒 **RÉDIGÉ — réservé, ne pas avancer** |
 | 26 | Lun 13 juil 2026 | Méduses plages bretonnes : que faire ? | Long | — | 📝 À rédiger |
-| 27 | Lun 20 juil 2026 | Voyager avec ses médicaments : le guide | Long | — | 📝 À rédiger |
+| 27 | **Lun 23 juin 2026** | **Trousse de pharmacie de voyage en famille** | Long | — | ✅ **PUBLIÉ 23 juin 2026** (hero + OG générés, carte blog.html + sitemap à jour) |
 | 28 | Lun 27 juil 2026 | Premiers secours été : les gestes essentiels | Court mode d'emploi | — | 📝 À rédiger |
 
 > 🔒 **RÈGLE FIGÉE — Tiques (#25)** : article déjà rédigé (`25-tiques-bretagne/`), publication **première semaine de juillet 2026 et jamais avant** (pic réel saison Lyme). Décision éditoriale ferme — ne pas le proposer comme « prochain article ».
