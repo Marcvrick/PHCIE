@@ -533,6 +533,68 @@
         </div>
     </section>
 
+    <!-- Bandeau dernier article de blog (auto-fetch depuis blog.html) -->
+    <section class="latest-blog-banner" aria-label="Dernier article du blog">
+        <div class="container">
+            <a id="lbb-link" href="blog.html" class="lbb-card">
+                <div class="lbb-image">
+                    <img id="lbb-img" src="images/Blog%20photos/blog-24-probiotiques.jpg" alt="Dernier article du blog de la Pharmacie Charnal" loading="lazy" decoding="async">
+                </div>
+                <div class="lbb-body">
+                    <span class="lbb-eyebrow">Au comptoir &middot; dernier article</span>
+                    <h2 id="lbb-title" class="lbb-title">Probiotiques: comment choisir le bon pour votre situation?</h2>
+                    <span class="lbb-cta">Lire l'article <span aria-hidden="true">&rarr;</span></span>
+                </div>
+            </a>
+        </div>
+    </section>
+
+    <style>
+        .latest-blog-banner { padding: 1.5rem 0 0.5rem; }
+        .latest-blog-banner .lbb-card {
+            display: flex; align-items: stretch; gap: 0;
+            background: var(--white, #fff);
+            border: 1px solid var(--beige, #E8E3DA);
+            border-radius: 16px; overflow: hidden;
+            text-decoration: none; color: inherit;
+            box-shadow: 0 6px 22px rgba(45, 95, 93, .08);
+            transition: transform .2s ease, box-shadow .2s ease;
+        }
+        .latest-blog-banner .lbb-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 30px rgba(45, 95, 93, .15);
+        }
+        .latest-blog-banner .lbb-image {
+            flex: 0 0 38%; max-width: 320px; overflow: hidden; background: var(--cream, #F5F1E8);
+        }
+        .latest-blog-banner .lbb-image img {
+            width: 100%; height: 100%; min-height: 180px;
+            object-fit: cover; display: block;
+        }
+        .latest-blog-banner .lbb-body {
+            flex: 1 1 auto; padding: 1.6rem 1.8rem;
+            display: flex; flex-direction: column; justify-content: center; gap: .5rem;
+        }
+        .latest-blog-banner .lbb-eyebrow {
+            font-size: .8rem; letter-spacing: .08em; text-transform: uppercase;
+            font-weight: 600; color: var(--accent, #b4a6d7);
+        }
+        .latest-blog-banner .lbb-title {
+            font-family: Georgia, 'Crimson Pro', serif;
+            font-size: 1.45rem; line-height: 1.25; margin: 0; color: var(--teal, #2D5F5D);
+        }
+        .latest-blog-banner .lbb-cta {
+            font-weight: 600; color: var(--blue, #4A7C8E); font-size: .95rem; margin-top: .2rem;
+        }
+        .latest-blog-banner .lbb-card:hover .lbb-cta { color: var(--teal, #2D5F5D); }
+        @media (max-width: 640px) {
+            .latest-blog-banner .lbb-card { flex-direction: column; }
+            .latest-blog-banner .lbb-image { flex-basis: auto; max-width: none; }
+            .latest-blog-banner .lbb-image img { min-height: 200px; }
+            .latest-blog-banner .lbb-title { font-size: 1.25rem; }
+        }
+    </style>
+
     <!-- FAQ -->
     <section class="faq-section">
         <div class="container">
@@ -1014,6 +1076,34 @@
                 }
             });
         }
+    </script>
+    <!-- Auto-fetch du dernier article depuis blog.html (1re carte) -->
+    <script>
+        (function () {
+            fetch('blog.html')
+                .then(function (r) { if (!r.ok) throw new Error('blog fetch failed'); return r.text(); })
+                .then(function (html) {
+                    var doc = new DOMParser().parseFromString(html, 'text/html');
+                    var card = doc.querySelector('.blog-card');
+                    if (!card) return;
+                    var titleEl = card.querySelector('.blog-title');
+                    var imgEl = card.querySelector('.blog-image-placeholder img') || card.querySelector('img');
+                    var linkEl = card.querySelector('a');
+                    var url = linkEl ? linkEl.getAttribute('href') : 'blog.html';
+
+                    if (titleEl) document.getElementById('lbb-title').textContent = titleEl.textContent.trim();
+                    if (imgEl) {
+                        var img = document.getElementById('lbb-img');
+                        img.src = imgEl.getAttribute('src');
+                        img.alt = imgEl.getAttribute('alt') || 'Dernier article du blog de la Pharmacie Charnal';
+                    }
+                    if (url) document.getElementById('lbb-link').setAttribute('href', url);
+                })
+                .catch(function (err) {
+                    // En cas d'échec, le contenu par défaut déjà présent reste affiché.
+                    console.log('Bandeau dernier article: contenu de secours', err);
+                });
+        })();
     </script>
 </body>
 </html>
