@@ -707,6 +707,16 @@ Les deux fichiers sont complémentaires et doivent rester à jour.
 
 ## 📝 Changelog Récent
 
+### 29 Juin 2026
+
+**`pharmacie-de-garde-queven-hennebont-lorient.html` — bandeau dernier article + nettoyage (commits `2b1c195`, `1fb9c23`, `b44d2ef`) :**
+- **Bandeau « dernier article de blog »** ajouté juste au-dessus de la section « Questions fréquentes » : carte cliquable photo + titre, aux couleurs de la charte (teal/lavande, responsive image-au-dessus-du-texte sur mobile).
+- **Auto-fetch** : le bandeau lit la 1ʳᵉ `.blog-card` de `blog.html` au chargement (même pattern que la homepage `#latest-article-section`) → se met à jour seul à chaque nouvel article, sans retoucher la page. Contenu en dur = filet de secours si le `fetch` échoue. Le `fetch` ne marche qu'en http(s) (prod GitHub Pages), pas en `file://`.
+- **Carte « Nous contacter » retirée** du bloc « Aussi à la Pharmacie Charnal » (reste 3 cartes : Notre pharmacie, Nos services, Annuaire santé — la grille `auto-fit` se réagence).
+- **Carte « 3237 » recentrée** sur mobile/desktop : `.info-3237` avait `max-width: 500px` sans centrage → ajout de `margin-left/right: auto`.
+
+**Dashboard SEO 6 mois (hors repo) :** `Pharma/Pharma online/SEO TO DO/SEO analysis 6M/dashboard-seo-charnal.html` — bilan Search Console (21 fév – 27 juin 2026, France 96 %) : impressions ×40, clics ×20, position 9,3 → 7,1. Verdict : trajectoire saine.
+
 ### 21 Juin 2026
 
 **Homepage — deck « On s'occupe de Vous » : tap en deux temps sur mobile (commit `17e595b`) :**
