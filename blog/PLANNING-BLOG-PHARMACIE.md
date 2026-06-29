@@ -15,12 +15,12 @@ Planning éditorial - Pharmacie Charnal à Quéven
 
 | # | Date cible | Article | Type | Marque | Statut |
 |---|------------|---------|------|--------|--------|
-| 22 | **Lun 9 juin 2026** | **Hydratation en été : au-delà de l'eau** | Long | — | 🟡 **RÉDIGÉ — HTML + GMB prêts, en attente image hero/OG** |
-| 23 | Lun 16 juin 2026 | Coups de soleil : prévenir et traiter | Long | — | 📝 À rédiger |
-| 24 | Lun 23 juin 2026 | Probiotiques : guide pratique pour bien choisir | Buying-intent | Bion3 | 📝 À rédiger |
+| 22 | Lun 9 juin 2026 | Hydratation en été : au-delà de l'eau | Long | — | ✅ **PUBLIÉ** (9 juin 2026) |
+| 23 | Lun 17 juin 2026 | Coups de soleil : prévenir et traiter | Long | — | ✅ **PUBLIÉ** (17 juin 2026, dossier 26-coups-de-soleil) |
+| 24 | Lun 30 juin 2026 | Probiotiques : guide pratique pour bien choisir | Buying-intent | Bion 3 / PiLeJe | ✅ **PUBLIÉ** (30 juin 2026, hero + OG générés, blog.html + sitemap à jour) |
 | 25 | **Lun 6 juil 2026** | **Tiques en Bretagne : prévention et réaction** | Long | Biocanina | 🔒 **RÉDIGÉ — réservé, ne pas avancer** |
 | 26 | Lun 13 juil 2026 | Méduses plages bretonnes : que faire ? | Long | — | 📝 À rédiger |
-| 27 | **Lun 23 juin 2026** | **Trousse de pharmacie de voyage en famille** | Long | — | ✅ **PUBLIÉ 23 juin 2026** (hero + OG générés, carte blog.html + sitemap à jour) |
+| 27 | Lun 23 juin 2026 | Trousse de pharmacie de voyage en famille | Long | — | ✅ **PUBLIÉ 23 juin 2026** (hero + OG générés, blog.html + sitemap à jour) |
 | 28 | Lun 27 juil 2026 | Premiers secours été : les gestes essentiels | Court mode d'emploi | — | 📝 À rédiger |
 
 > 🔒 **RÈGLE FIGÉE — Tiques (#25)** : article déjà rédigé (`25-tiques-bretagne/`), publication **première semaine de juillet 2026 et jamais avant** (pic réel saison Lyme). Décision éditoriale ferme — ne pas le proposer comme « prochain article ».
@@ -132,5 +132,6 @@ Liste dérivée de `blog.html` (le blog est publié jusqu'au #21). Numérotation
 
 ---
 
-**Prochain article à publier** : #22 — Hydratation en été : au-delà de l'eau (lundi 9 juin 2026)
+**Prochain article à publier** : #25 — Tiques en Bretagne (lundi 6 juillet 2026, déverrouillé première semaine de juillet).
 **Verrou** : #25 Tiques → première semaine juillet, jamais avant.
+**Dernière mise à jour planning** : 30 juin 2026 (publication #24 Probiotiques)
