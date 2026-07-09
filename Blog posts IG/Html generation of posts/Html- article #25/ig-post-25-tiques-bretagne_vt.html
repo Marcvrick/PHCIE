@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1080">
+<title>IG Post #25 — Tiques en Bretagne</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=DM+Sans:ital,opsz,wght@0,9..40,300..700;1,9..40,300..700&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html, body {
+    width: 1080px;
+    height: 1350px;
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+    font-family: 'DM Sans', sans-serif;
+  }
+
+  .canvas {
+    width: 1080px;
+    height: 1350px;
+    overflow: hidden;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    background: #D4E8E0;
+  }
+
+  /* ── PHOTO ZONE (top ~57%) ── */
+  .photo-zone {
+    position: relative;
+    width: 100%;
+    height: 770px;
+    flex-shrink: 0;
+    overflow: hidden;
+  }
+
+  .photo-zone img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 15%;
+    display: block;
+  }
+
+  /* ── AU COMPTOIR BADGE ── */
+  .badge {
+    position: absolute;
+    top: 36px;
+    left: 36px;
+    z-index: 10;
+    background: #b4a6d7;
+    color: #fff;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 20px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: 10px 22px 10px 18px;
+    border-radius: 9999px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .badge-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.85);
+    flex-shrink: 0;
+  }
+
+  /* ── CONTENT CARD ── */
+  .content-card {
+    position: relative;
+    flex: 1;
+    background: #E8F0EA;
+    border-radius: 28px 28px 0 0;
+    margin-top: -32px;
+    z-index: 5;
+    padding: 48px 52px 0 52px;
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+  }
+
+  /* ── CARD HEADER ROW ── */
+  .card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .card-label {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 18px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #2D5F5D;
+  }
+
+  .category-tag {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 18px;
+    font-weight: 500;
+    color: #4B5563;
+    background: rgba(255,255,255,0.7);
+    border-radius: 9999px;
+    padding: 7px 20px;
+  }
+
+  /* ── TITLE ── */
+  .article-title {
+    font-family: 'Fraunces', Georgia, serif;
+    font-size: 60px;
+    font-weight: 800;
+    line-height: 1.06;
+    color: #1F2121;
+    letter-spacing: -0.01em;
+  }
+
+  /* ── TEASER ── */
+  .teaser {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 24px;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #4B5563;
+    max-width: 760px;
+  }
+
+  /* ── CTA BUTTON ── */
+  .cta-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    background: #2D5F5D;
+    color: #fff;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 22px;
+    font-weight: 600;
+    padding: 16px 34px;
+    border-radius: 9999px;
+    letter-spacing: 0.01em;
+    align-self: flex-start;
+  }
+
+  /* ── FOOTER BAR ── */
+  .footer-bar {
+    height: 76px;
+    background: #2D5F5D;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    flex-shrink: 0;
+    margin-top: auto;
+  }
+
+  .footer-icon {
+    width: 26px;
+    height: 26px;
+    border: 2.5px solid rgba(255,255,255,0.85);
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgba(255,255,255,0.85);
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 1;
+    flex-shrink: 0;
+  }
+
+  .footer-name {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 22px;
+    font-weight: 600;
+    color: #fff;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+</style>
+</head>
+<body>
+<div class="canvas">
+
+  <!-- PHOTO TOP ZONE -->
+  <div class="photo-zone">
+    <img
+      src="../../../images/Blog photos/blog-25-tiques-bretagne-prevention.jpg"
+      alt="Jeune fille montrant calmement son avant-bras, prévention tiques"
+    >
+    <div class="badge">
+      <span class="badge-dot"></span>
+      AU COMPTOIR
+    </div>
+  </div>
+
+  <!-- CONTENT CARD -->
+  <div class="content-card">
+
+    <div class="card-header">
+      <span class="card-label">Bon réflexe</span>
+      <span class="category-tag">Prévention</span>
+    </div>
+
+    <h1 class="article-title">Tiques en Bretagne&nbsp;:<br>ce qu'il faut<br>vraiment faire</h1>
+
+    <p class="teaser">
+      L'alcool sur une tique fixée? Le geste le plus contre-productif qui soit. On vous dit le bon outil et le signe à ne jamais ignorer.
+    </p>
+
+    <span class="cta-btn">lien dans la bio &nbsp;→</span>
+
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer-bar">
+    <div class="footer-icon">+</div>
+    <span class="footer-name">Pharmacie Charnal · Quéven</span>
+  </div>
+
+</div>
+</body>
+</html>
