@@ -48,7 +48,8 @@
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap" rel="stylesheet">
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap" onload="this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap"></noscript>
 
     <style>
         /* ============================================
@@ -999,8 +1000,8 @@
                     <svg><use href="#i-leaf"/></svg>
                     Compléments alimentaires
                 </div>
-                <div class="quiz-card-title">Quel complément alimentaire vous convient&nbsp;?</div>
-                <div class="quiz-card-desc">Fatigue, stress, sommeil, digestion, articulations... Ce quiz identifie le complément le plus adapté à votre besoin du moment parmi les marques sélectionnées par nos pharmaciens&nbsp;: PiLeJe et Nat&amp;Form.</div>
+                <div class="quiz-card-title">Quel complément alimentaire vous convient?</div>
+                <div class="quiz-card-desc">Fatigue, stress, sommeil, digestion, articulations... Ce quiz identifie le complément le plus adapté à votre besoin du moment parmi les marques sélectionnées par nos pharmaciens: PiLeJe et Nat&amp;Form.</div>
                 <span class="quiz-card-cta">
                     Faire le quiz
                     <svg><use href="#i-arrow-right"/></svg>
@@ -1184,6 +1185,6 @@
             });
         }
     </script>
-    <script src="../animations.js"></script>
+    <script src="../animations.js" defer></script>
 </body>
 </html>
