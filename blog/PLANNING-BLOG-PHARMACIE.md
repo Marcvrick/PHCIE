@@ -1,7 +1,7 @@
 # PLANNING BLOG PHARMACIE CHARNAL
 
 Planning éditorial - Pharmacie Charnal à Quéven
-**Dernière mise à jour** : 5 juin 2026
+**Dernière mise à jour** : 22 juillet 2026
 
 > ⚠️ **SOURCE UNIQUE DU PLANNING.** Ce fichier est la seule référence pour les dates, titres et statuts d'articles. La stratégie SEO (principes, checklist, banque d'idées) reste dans [SEO blog strategy.md](SEO%20blog%20strategy.md) — mais son ancien planning hebdo a été retiré pour éviter les doublons contradictoires. Ne jamais recréer un calendrier ailleurs.
 >
@@ -19,7 +19,7 @@ Planning éditorial - Pharmacie Charnal à Quéven
 | 23 | Lun 17 juin 2026 | Coups de soleil : prévenir et traiter | Long | — | ✅ **PUBLIÉ** (17 juin 2026, dossier 26-coups-de-soleil) |
 | 24 | Lun 30 juin 2026 | Probiotiques : guide pratique pour bien choisir | Buying-intent | Bion 3 / PiLeJe | ✅ **PUBLIÉ** (30 juin 2026, hero + OG générés, blog.html + sitemap à jour) |
 | 25 | **Lun 6 juil 2026** | **Tiques en Bretagne : prévention et réaction** | Long | Biocanina | 🔒 **RÉDIGÉ — réservé, ne pas avancer** |
-| 26 | Lun 13 juil 2026 | Méduses plages bretonnes : que faire ? | Long | — | 📝 À rédiger |
+| 26 | Lun 14 juil 2026 | Méduses plages bretonnes : que faire ? | Long | — | ✅ **PUBLIÉ 14 juillet 2026** (dossier `28-meduses-plages-bretonnes/`, HTML + hero + OG + IG, GMB #31, da.gd/y1DGQ, blog.html + sitemap + feed.xml) |
 | 27 | Lun 23 juin 2026 | Trousse de pharmacie de voyage en famille | Long | — | ✅ **PUBLIÉ 23 juin 2026** (hero + OG générés, blog.html + sitemap à jour) |
 | 28 | Lun 27 juil 2026 | Premiers secours été : les gestes essentiels | Court mode d'emploi | — | 📝 À rédiger |
 
