@@ -127,8 +127,7 @@
         }
 
         *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-        html { font-size: 24px; scroll-behavior: smooth; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
-        @media (max-width: 640px) { html { font-size: 22px; } }
+        html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
 
         /* Navbar — pin to homepage sizes (px absolu, spécificité renforcée pour battre la cascade) */
         .navbar .logo-name { font-size: 18px; }
@@ -213,7 +212,7 @@
         /* === BREADCRUMB === */
         .breadcrumb {
             padding-top: 88px;
-            max-width: 800px;
+            max-width: 1200px;
             width: 100%;
             margin: 0 auto;
             padding-left: var(--space-24);
@@ -242,11 +241,25 @@
 
         /* === HERO / INTRO === */
         .hub-intro {
+            position: relative;
+            z-index: 0;
             text-align: center;
-            max-width: 800px;
+            width: 100%;
             margin: 0 auto;
-            padding: var(--space-48) var(--space-24) var(--space-32);
+            padding: var(--space-64) var(--space-24) var(--space-48);
         }
+        /* full-bleed pastel hero banner */
+        .hub-intro::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(180deg, #EAF3EC 0%, #F1E9F4 100%);
+            z-index: -1;
+        }
+        /* hero decorations removed — clean panel */
         .intro-eyebrow {
             display: inline-flex;
             align-items: center;
@@ -284,9 +297,9 @@
         }
         .intro-lede {
             font-size: var(--text-lg);
-            line-height: 1.65;
+            line-height: 1.7;
             color: var(--gray-600);
-            max-width: 560px;
+            max-width: 760px;
             margin: 0 auto var(--space-24);
         }
         .intro-signature {
@@ -307,7 +320,7 @@
 
         /* === MAIN CONTENT === */
         .hub-content {
-            max-width: 800px;
+            max-width: 1200px;
             width: 100%;
             margin: 0 auto;
             padding: 0 var(--space-24) var(--space-64);
@@ -320,6 +333,7 @@
             font-weight: 400;
             color: var(--charcoal);
             letter-spacing: -0.015em;
+            text-align: center;
             margin-top: var(--space-48);
             margin-bottom: var(--space-24);
         }
@@ -333,6 +347,7 @@
             font-size: var(--text-lg);
             font-weight: 500;
             color: var(--charcoal);
+            text-align: center;
             margin-top: var(--space-32);
             margin-bottom: var(--space-16);
         }
@@ -340,14 +355,16 @@
             font-size: var(--text-lg);
             line-height: 1.8;
             color: var(--gray-600);
-            margin-bottom: var(--space-16);
+            margin: 0 auto var(--space-16);
+            max-width: 760px;
         }
         .hub-content ul, .hub-content ol {
             font-size: var(--text-lg);
             line-height: 1.8;
             color: var(--gray-600);
-            margin-bottom: var(--space-24);
+            margin: 0 auto var(--space-24);
             padding-left: var(--space-32);
+            max-width: 760px;
         }
         .hub-content li {
             margin-bottom: var(--space-8);
@@ -368,29 +385,104 @@
             text-decoration-color: var(--teal-pro);
         }
 
-        /* === QUIZ CARDS === */
+        /* === QUIZ CARDS — illustrations produit (style HIMS) === */
         .quiz-cards {
             display: grid;
             grid-template-columns: 1fr;
-            gap: var(--space-16);
-            margin: var(--space-32) 0;
+            gap: var(--space-24);
+            margin: var(--space-48) 0;
+        }
+        @media (min-width: 640px) {
+            .quiz-cards { grid-template-columns: 1fr 1fr; gap: var(--space-32); }
         }
         .quiz-card {
             background: var(--white);
             border: 1.5px solid var(--gray-200);
             border-radius: var(--radius-xl);
-            padding: var(--space-24) var(--space-24);
-            transition: all var(--duration-normal) var(--ease-standard);
+            overflow: hidden;
             text-decoration: none;
-            display: block;
+            display: flex;
+            flex-direction: column;
             position: relative;
+            box-shadow: var(--shadow-sm);
+            transition: transform var(--duration-normal) var(--ease-standard),
+                        box-shadow var(--duration-normal) var(--ease-standard),
+                        border-color var(--duration-normal) var(--ease-standard);
+        }
+        .hub-content a.quiz-card,
+        .hub-content a.quiz-card * { text-decoration: none; }
+        .quiz-card:hover {
+            transform: translateY(-6px);
+            box-shadow: var(--shadow-lg);
+            border-color: transparent;
+        }
+
+        /* zone illustration pastel */
+        .quiz-card-visual {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 132px;
             overflow: hidden;
         }
-        .quiz-card:hover {
-            border-color: var(--sage-natural);
-            background: var(--paper-warm);
-            transform: translateY(-3px);
-            box-shadow: var(--shadow-md);
+        @media (min-width: 768px) { .quiz-card-visual { height: 148px; } }
+        .quiz-card-visual::before {
+            content: '';
+            position: absolute; inset: 0;
+            background-image: radial-gradient(rgba(255,255,255,0.55) 1.4px, transparent 1.4px);
+            background-size: 15px 15px;
+            opacity: 0.3;
+        }
+        .quiz-card-visual::after {
+            content: '';
+            position: absolute;
+            bottom: 16px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 50%;
+            height: 13px;
+            background: radial-gradient(ellipse at center, rgba(0,0,0,0.22) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+        .quiz-card-img {
+            position: relative;
+            z-index: 1;
+            width: 54%;
+            max-width: 138px;
+            height: auto;
+            object-fit: contain;
+            transition: transform var(--duration-slow) var(--ease-standard);
+        }
+        .quiz-card:hover .quiz-card-img { transform: scale(1.07) translateY(-4px); }
+
+        /* pastels par catégorie (alignés sur la homepage) */
+        .quiz-card.c--naturels    .quiz-card-visual { background: #DDE7B8; }
+        .quiz-card.c--dermo       .quiz-card-visual { background: #CFE5D8; }
+        .quiz-card.c--complements .quiz-card-visual { background: #F4D6A0; }
+        .quiz-card.c--medical     .quiz-card-visual { background: #D5CDEB; }
+
+        /* pastille flèche */
+        .quiz-card-arrow {
+            position: absolute;
+            top: 14px; right: 14px;
+            width: 34px; height: 34px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.6);
+            display: flex; align-items: center; justify-content: center;
+            color: var(--charcoal);
+            opacity: 0;
+            transform: translate(-4px, 0);
+            transition: opacity var(--duration-fast) var(--ease-standard),
+                        transform var(--duration-fast) var(--ease-standard);
+            z-index: 2;
+        }
+        .quiz-card:hover .quiz-card-arrow { opacity: 1; transform: none; }
+        .quiz-card-arrow svg { width: 16px; height: 16px; }
+
+        .quiz-card-body {
+            padding: var(--space-16) var(--space-24) var(--space-24);
+            display: flex; flex-direction: column; flex: 1;
         }
         .quiz-card-topic {
             display: inline-flex;
@@ -403,12 +495,12 @@
             color: var(--sage-deep);
             text-transform: uppercase;
             letter-spacing: 0.06em;
-            margin-bottom: var(--space-12);
+            margin-bottom: var(--space-8);
         }
         .quiz-card-topic svg { width: 14px; height: 14px; color: var(--sage-natural); }
         .quiz-card-title {
             font-family: var(--font-display);
-            font-size: var(--text-xl);
+            font-size: var(--text-lg);
             font-weight: 500;
             color: var(--charcoal);
             margin-bottom: var(--space-8);
@@ -420,6 +512,7 @@
             color: var(--gray-600);
             line-height: 1.7;
             margin-bottom: var(--space-16);
+            flex: 1;
         }
         .quiz-card-cta {
             display: inline-flex;
@@ -428,7 +521,6 @@
             color: var(--teal-pro);
             font-weight: 600;
             font-size: var(--text-sm);
-            transition: gap var(--duration-fast) var(--ease-standard);
         }
         .quiz-card-cta svg {
             width: 16px;
@@ -437,11 +529,6 @@
         }
         .quiz-card:hover .quiz-card-cta svg {
             transform: translateX(4px);
-        }
-
-        /* Dashed separator between card sections */
-        .quiz-card + .quiz-card {
-            border-top: none;
         }
 
         /* === STEPS GRID (How it works) === */
@@ -458,12 +545,16 @@
             border: 1px solid var(--gray-200);
             border-radius: var(--radius-xl);
             transition: all var(--duration-normal) var(--ease-standard);
+            position: relative;
         }
         .step-card:hover {
             transform: translateY(-2px);
             box-shadow: var(--shadow-sm);
-            border-color: var(--sage-natural);
         }
+        .step-card:nth-child(1) { background: #F0F7EF; border-color: #D7E6D4; }
+        .step-card:nth-child(2) { background: #FBF2E2; border-color: #EFE0C2; }
+        .step-card:nth-child(3) { background: #F1ECF7; border-color: #E0D7EE; }
+        .step-card .step-emoji { margin-right: 6px; }
         .step-number {
             display: inline-flex;
             align-items: center;
@@ -478,6 +569,9 @@
             font-weight: 600;
             margin-bottom: var(--space-16);
         }
+        .step-card:nth-child(1) .step-number { background: #5A7563; }
+        .step-card:nth-child(2) .step-number { background: #B8893E; }
+        .step-card:nth-child(3) .step-number { background: #6E5FA0; }
         .step-title {
             font-family: var(--font-display);
             font-size: var(--text-base);
@@ -942,12 +1036,6 @@
         <p class="intro-lede">Vous hésitez devant le rayon parapharmacie? Pas toujours facile de savoir quel produit correspond vraiment à votre peau, quel médicament prendre sans ordonnance, ou quelle solution naturelle essayer en premier. Ce sont des questions qu'on entend tous les jours au comptoir.</p>
 
         <p class="intro-lede">Pour vous aider à y voir plus clair — même depuis chez vous, à n'importe quelle heure — nous avons créé trois quiz santé. Quelques questions, une recommandation adaptée à votre situation, et la possibilité de venir en discuter avec nous ensuite.</p>
-
-        <div class="intro-signature">
-            <span class="intro-signature-line"></span>
-            Sélectionné par l'équipe de la Pharmacie Charnal à Quéven
-            <span class="intro-signature-line"></span>
-        </div>
     </header>
 
     <!-- Main Content -->
@@ -956,56 +1044,56 @@
         <h2>Choisissez <span class="highlight">votre quiz</span></h2>
 
         <div class="quiz-cards">
-            <a href="quiz-automedication.html" class="quiz-card">
-                <div class="quiz-card-topic">
-                    <svg><use href="#i-mortar"/></svg>
-                    Automédication
+            <a href="quiz-automedication.html" class="quiz-card c--medical">
+                <div class="quiz-card-visual">
+                    <span class="quiz-card-arrow"><svg><use href="#i-arrow-right"/></svg></span>
+                    <img src="../images/automedication-product.png" alt="Boîte de médicaments sans ordonnance" class="quiz-card-img" loading="lazy" decoding="async">
                 </div>
-                <div class="quiz-card-title">Quel médicament pour vos symptômes?</div>
-                <div class="quiz-card-desc">Mal de tête, douleurs, fièvre, rhume... Vous ne savez pas quoi prendre? Ce quiz vous oriente vers le bon médicament sans ordonnance, en tenant compte de vos antécédents et traitements en cours.</div>
-                <span class="quiz-card-cta">
-                    Faire le quiz
-                    <svg><use href="#i-arrow-right"/></svg>
-                </span>
+                <div class="quiz-card-body">
+                    <div class="quiz-card-topic"><svg><use href="#i-mortar"/></svg>Automédication</div>
+                    <div class="quiz-card-title">Quel médicament pour vos symptômes?</div>
+                    <div class="quiz-card-desc">Mal de tête, douleurs, fièvre, rhume... Vous ne savez pas quoi prendre? Ce quiz vous oriente vers le bon médicament sans ordonnance, en tenant compte de vos antécédents et traitements en cours.</div>
+                    <span class="quiz-card-cta">Faire le quiz<svg><use href="#i-arrow-right"/></svg></span>
+                </div>
             </a>
 
-            <a href="quiz-soin-peau.html" class="quiz-card">
-                <div class="quiz-card-topic">
-                    <svg><use href="#i-sparkle"/></svg>
-                    Dermocosmétique
+            <a href="quiz-soin-peau.html" class="quiz-card c--dermo">
+                <div class="quiz-card-visual">
+                    <span class="quiz-card-arrow"><svg><use href="#i-arrow-right"/></svg></span>
+                    <img src="../images/dermocosmetique-product.png" alt="Pot de crème dermocosmétique" class="quiz-card-img" loading="lazy" decoding="async">
                 </div>
-                <div class="quiz-card-title">Quelle routine pour votre peau?</div>
-                <div class="quiz-card-desc">Peau sèche, grasse, sensible, mixte? Répondez à 5 questions sur votre type de peau et vos habitudes. Vous repartirez avec une routine adaptée parmi les marques que nous connaissons et recommandons : Bioderma, La Roche-Posay, Avène, Nuxe.</div>
-                <span class="quiz-card-cta">
-                    Faire le quiz
-                    <svg><use href="#i-arrow-right"/></svg>
-                </span>
+                <div class="quiz-card-body">
+                    <div class="quiz-card-topic"><svg><use href="#i-sparkle"/></svg>Dermocosmétique</div>
+                    <div class="quiz-card-title">Quelle routine pour votre peau?</div>
+                    <div class="quiz-card-desc">Peau sèche, grasse, sensible, mixte? Répondez à 5 questions sur votre type de peau et vos habitudes. Vous repartirez avec une routine adaptée parmi les marques que nous connaissons et recommandons : Bioderma, La Roche-Posay, Avène, Nuxe.</div>
+                    <span class="quiz-card-cta">Faire le quiz<svg><use href="#i-arrow-right"/></svg></span>
+                </div>
             </a>
 
-            <a href="quiz-produits-naturels.html" class="quiz-card">
-                <div class="quiz-card-topic">
-                    <svg><use href="#i-leaf"/></svg>
-                    Produits naturels
+            <a href="quiz-produits-naturels.html" class="quiz-card c--naturels">
+                <div class="quiz-card-visual">
+                    <span class="quiz-card-arrow"><svg><use href="#i-arrow-right"/></svg></span>
+                    <img src="../images/naturels-product.png" alt="Feuilles d'eucalyptus et de menthe" class="quiz-card-img" loading="lazy" decoding="async">
                 </div>
-                <div class="quiz-card-title">Quelle solution naturelle pour vous?</div>
-                <div class="quiz-card-desc">Phytothérapie, aromathérapie, compléments alimentaires... L'offre est vaste et pas toujours lisible. Ce quiz vous aide à identifier les solutions naturelles pertinentes pour vos besoins, avec les bonnes souches et les bons dosages.</div>
-                <span class="quiz-card-cta">
-                    Faire le quiz
-                    <svg><use href="#i-arrow-right"/></svg>
-                </span>
+                <div class="quiz-card-body">
+                    <div class="quiz-card-topic"><svg><use href="#i-leaf"/></svg>Produits naturels</div>
+                    <div class="quiz-card-title">Quelle solution naturelle pour vous?</div>
+                    <div class="quiz-card-desc">Phytothérapie, aromathérapie, compléments alimentaires... L'offre est vaste et pas toujours lisible. Ce quiz vous aide à identifier les solutions naturelles pertinentes pour vos besoins, avec les bonnes souches et les bons dosages.</div>
+                    <span class="quiz-card-cta">Faire le quiz<svg><use href="#i-arrow-right"/></svg></span>
+                </div>
             </a>
 
-            <a href="quiz-complement.html" class="quiz-card">
-                <div class="quiz-card-topic">
-                    <svg><use href="#i-leaf"/></svg>
-                    Compléments alimentaires
+            <a href="quiz-complement.html" class="quiz-card c--complements">
+                <div class="quiz-card-visual">
+                    <span class="quiz-card-arrow"><svg><use href="#i-arrow-right"/></svg></span>
+                    <img src="../images/complements-product.png" alt="Gélules de compléments alimentaires" class="quiz-card-img" loading="lazy" decoding="async">
                 </div>
-                <div class="quiz-card-title">Quel complément alimentaire vous convient?</div>
-                <div class="quiz-card-desc">Fatigue, stress, sommeil, digestion, articulations... Ce quiz identifie le complément le plus adapté à votre besoin du moment parmi les marques sélectionnées par nos pharmaciens: PiLeJe et Nat&amp;Form.</div>
-                <span class="quiz-card-cta">
-                    Faire le quiz
-                    <svg><use href="#i-arrow-right"/></svg>
-                </span>
+                <div class="quiz-card-body">
+                    <div class="quiz-card-topic"><svg><use href="#i-leaf"/></svg>Compléments alimentaires</div>
+                    <div class="quiz-card-title">Quel complément alimentaire vous convient?</div>
+                    <div class="quiz-card-desc">Fatigue, stress, sommeil, digestion, articulations... Ce quiz identifie le complément le plus adapté à votre besoin du moment parmi les marques sélectionnées par nos pharmaciens: PiLeJe et Nat&amp;Form.</div>
+                    <span class="quiz-card-cta">Faire le quiz<svg><use href="#i-arrow-right"/></svg></span>
+                </div>
             </a>
         </div>
 
@@ -1015,21 +1103,21 @@
             <div class="step-card">
                 <div class="step-number">1</div>
                 <div class="step-body">
-                    <div class="step-title">Quelques questions</div>
+                    <div class="step-title"><span class="step-emoji">📝</span>Quelques questions</div>
                     <div class="step-desc">Vos symptômes, votre profil, vos habitudes. Rien de compliqué.</div>
                 </div>
             </div>
             <div class="step-card">
                 <div class="step-number">2</div>
                 <div class="step-body">
-                    <div class="step-title">Une recommandation</div>
+                    <div class="step-title"><span class="step-emoji">💡</span>Une recommandation</div>
                     <div class="step-desc">Adaptée à vos réponses, avec des produits que nous vendons et connaissons.</div>
                 </div>
             </div>
             <div class="step-card">
                 <div class="step-number">3</div>
                 <div class="step-body">
-                    <div class="step-title">Un conseil au comptoir</div>
+                    <div class="step-title"><span class="step-emoji">🌿</span>Un conseil au comptoir</div>
                     <div class="step-desc">Venez en discuter avec nous pour affiner la recommandation.</div>
                 </div>
             </div>
@@ -1073,15 +1161,6 @@
         <div class="faq-item">
             <div class="faq-question">Les recommandations sont-elles fiables?</div>
             <div class="faq-answer">Oui. Les quiz sont conçus par notre équipe de pharmaciens et basés sur les recommandations officielles. Les produits recommandés sont ceux que nous vendons et connaissons bien. Nous mettons à jour les quiz régulièrement pour suivre les bonnes pratiques.</div>
-        </div>
-
-        <div class="author-line">
-            <a href="https://fr.linkedin.com/in/laure-charnal" target="_blank" rel="noopener noreferrer" title="LinkedIn - Laure Charnal">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.475-2.236-1.986-2.236-1.081 0-1.722.731-2.004 1.437-.103.249-.129.597-.129.946v5.422h-3.554s.051-8.795 0-9.703h3.554v1.373c.43-.664 1.199-1.61 2.923-1.61 2.135 0 3.751 1.393 3.751 4.385v5.555zM5.337 8.855c-1.144 0-1.915-.762-1.915-1.715 0-.955.77-1.715 1.959-1.715 1.188 0 1.914.76 1.939 1.715 0 .953-.751 1.715-1.983 1.715zm1.946 11.597H3.392V9.749h3.891v10.703zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.225 0z"/>
-                </svg>
-            </a>
-            <span>Votre équipe officinale</span>
         </div>
 
     </div>
