@@ -22,7 +22,7 @@ Planning éditorial - Pharmacie Charnal à Quéven
 | 26 | Lun 14 juil 2026 | Méduses plages bretonnes : que faire ? | Long | — | ✅ **PUBLIÉ 14 juillet 2026** (dossier `28-meduses-plages-bretonnes/`, HTML + hero + OG + IG, GMB #31, da.gd/y1DGQ, blog.html + sitemap + feed.xml) |
 | 27 | Lun 23 juin 2026 | Trousse de pharmacie de voyage en famille | Long | — | ✅ **PUBLIÉ 23 juin 2026** (hero + OG générés, blog.html + sitemap à jour) |
 | 28 | Lun 27 juil 2026 | Premiers secours été : les gestes essentiels | Long éditorial | — | ✅ **PUBLIÉ 25 juillet 2026** (dossier `29-premiers-secours-ete/`, listé sur `blog.html` + `sitemap.xml`) |
-| 29 | Lun 3 août 2026 | Fumées de feux de forêt : quels risques pour votre santé et comment vous protéger | Long éditorial | — | ✅ **PUBLIÉ 25 juillet 2026** (dossier `30-feux-foret-fumee-sante/`, GMB #33, hero + OG générés, listé sur `blog.html` + `sitemap.xml` + `feed.xml` + `llms.txt` ; lien court https://da.gd/F9uDXw, is.gd bloque le domaine pharmaciecharnal.com) |
+| 29 | — | Fumées de feux de forêt : quels risques pour votre santé et comment vous protéger | Long éditorial | — | ❌ **RETIRÉ 25 juillet 2026** (Dany : "pas bon"). Dépublié de `blog.html` + `sitemap.xml` + `feed.xml` + `llms.txt` + lien nav depuis #28. Fichiers source conservés dans `30-feux-foret-fumee-sante/` si reprise ultérieure. Raison du rejet non précisée — à demander avant de retravailler le sujet. |
 
 > ✅ **Tiques (#25) — PUBLIÉ en juillet 2026** (`25-tiques-bretagne/`), dans la fenêtre prévue (pic saison Lyme). Ancien verrou « première semaine de juillet, jamais avant » levé : article en ligne dans `blog.html`.
 >

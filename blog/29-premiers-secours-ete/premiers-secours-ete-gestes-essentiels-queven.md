@@ -160,8 +160,6 @@ Sortir la personne du soleil, l'installer au frais en position semi-assise, reti
 
 **Pour aller plus loin :** montez votre kit avant de partir — [Trousse de pharmacie de voyage en famille](../27-trousse-de-voyage/trousse-pharmacie-voyage-famille-queven.html)
 
-**Article suivant :** [Fumées de feux de forêt: quels risques pour votre santé?](../30-feux-foret-fumee-sante/feux-foret-fumee-sante-conseils-queven.html)
-
 ---
 
 **Références :**
