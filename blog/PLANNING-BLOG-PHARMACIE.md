@@ -1,7 +1,7 @@
 # PLANNING BLOG PHARMACIE CHARNAL
 
 Planning éditorial - Pharmacie Charnal à Quéven
-**Dernière mise à jour** : 22 juillet 2026
+**Dernière mise à jour** : 23 juillet 2026
 
 > ⚠️ **SOURCE UNIQUE DU PLANNING.** Ce fichier est la seule référence pour les dates, titres et statuts d'articles. La stratégie SEO (principes, checklist, banque d'idées) reste dans [SEO blog strategy.md](SEO%20blog%20strategy.md) — mais son ancien planning hebdo a été retiré pour éviter les doublons contradictoires. Ne jamais recréer un calendrier ailleurs.
 >
@@ -18,12 +18,13 @@ Planning éditorial - Pharmacie Charnal à Quéven
 | 22 | Lun 9 juin 2026 | Hydratation en été : au-delà de l'eau | Long | — | ✅ **PUBLIÉ** (9 juin 2026) |
 | 23 | Lun 17 juin 2026 | Coups de soleil : prévenir et traiter | Long | — | ✅ **PUBLIÉ** (17 juin 2026, dossier 26-coups-de-soleil) |
 | 24 | Lun 30 juin 2026 | Probiotiques : guide pratique pour bien choisir | Buying-intent | Bion 3 / PiLeJe | ✅ **PUBLIÉ** (30 juin 2026, hero + OG générés, blog.html + sitemap à jour) |
-| 25 | **Lun 6 juil 2026** | **Tiques en Bretagne : prévention et réaction** | Long | Biocanina | 🔒 **RÉDIGÉ — réservé, ne pas avancer** |
+| 25 | Lun 6 juil 2026 | Tiques en Bretagne : prévention et réaction | Long | Biocanina | ✅ **PUBLIÉ** (juillet 2026, `25-tiques-bretagne/`) |
 | 26 | Lun 14 juil 2026 | Méduses plages bretonnes : que faire ? | Long | — | ✅ **PUBLIÉ 14 juillet 2026** (dossier `28-meduses-plages-bretonnes/`, HTML + hero + OG + IG, GMB #31, da.gd/y1DGQ, blog.html + sitemap + feed.xml) |
 | 27 | Lun 23 juin 2026 | Trousse de pharmacie de voyage en famille | Long | — | ✅ **PUBLIÉ 23 juin 2026** (hero + OG générés, blog.html + sitemap à jour) |
-| 28 | Lun 27 juil 2026 | Premiers secours été : les gestes essentiels | Court mode d'emploi | — | 📝 À rédiger |
+| 28 | Lun 27 juil 2026 | Premiers secours été : les gestes essentiels | Long éditorial | — | ✅ **PUBLIÉ 25 juillet 2026** (dossier `29-premiers-secours-ete/`, listé sur `blog.html` + `sitemap.xml`) |
+| 29 | Lun 3 août 2026 | Fumées de feux de forêt : quels risques pour votre santé et comment vous protéger | Long éditorial | — | ✅ **PUBLIÉ 25 juillet 2026** (dossier `30-feux-foret-fumee-sante/`, GMB #33, hero + OG générés, listé sur `blog.html` + `sitemap.xml` + `feed.xml` + `llms.txt` ; lien court https://da.gd/F9uDXw, is.gd bloque le domaine pharmaciecharnal.com) |
 
-> 🔒 **RÈGLE FIGÉE — Tiques (#25)** : article déjà rédigé (`25-tiques-bretagne/`), publication **première semaine de juillet 2026 et jamais avant** (pic réel saison Lyme). Décision éditoriale ferme — ne pas le proposer comme « prochain article ».
+> ✅ **Tiques (#25) — PUBLIÉ en juillet 2026** (`25-tiques-bretagne/`), dans la fenêtre prévue (pic saison Lyme). Ancien verrou « première semaine de juillet, jamais avant » levé : article en ligne dans `blog.html`.
 >
 > **Marques restant à couvrir** : Boiron (homéopathie → automne), Bion3 (couvert par #24 Probiotiques), Biogaran (couvert par #21). Voir [BRAND-BLOG-MAPPING.md](BRAND-BLOG-MAPPING.md).
 
@@ -132,6 +133,5 @@ Liste dérivée de `blog.html` (le blog est publié jusqu'au #21). Numérotation
 
 ---
 
-**Prochain article à publier** : #25 — Tiques en Bretagne (lundi 6 juillet 2026, déverrouillé première semaine de juillet).
-**Verrou** : #25 Tiques → première semaine juillet, jamais avant.
-**Dernière mise à jour planning** : 30 juin 2026 (publication #24 Probiotiques)
+**Prochain article à publier** : #28 (Premiers secours été) et #29 (Fumées de feux de forêt) publiés le 25 juillet 2026. Prochain créneau libre : lundi 10 août 2026 (banque d'idées rentrée : poux, vaccination grippe, intoxications alimentaires).
+**Dernière mise à jour planning** : 25 juillet 2026 (#28 et #29 publiés sur `blog.html` + `sitemap.xml` le même jour — #28 avait été rédigé le 23 juillet mais jamais listé, comblé à cette occasion. #29 Fumées de feux de forêt : sujet demandé par Dany suite aux feux Gironde/Sud été 2026, angle santé/prévention plutôt qu'actualité datée ; chiffre 11 000 ha sourcé Le Monde 6 juillet 2026 uniquement comme fait daté, pas comme situation "actuelle" ; sources ANSES/ARS Nouvelle-Aquitaine/Santé Canada/OMS Europe).
