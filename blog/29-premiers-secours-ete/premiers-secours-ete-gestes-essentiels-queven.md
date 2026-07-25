@@ -47,6 +47,26 @@ Quand un patient arrive avec un souci lié à la chaleur ou à une activité ext
 
 En règle générale, nous gardons trois signaux d'alerte qui font basculer systématiquement vers une consultation ou les urgences : une perte de connaissance ou une confusion, une réaction allergique généralisée (gonflement du visage, difficulté à respirer), et une aggravation ou une absence d'amélioration après 24 à 48 heures de gestes simples.
 
+<div class="illus">
+<div class="illus-title">Pharmacie ou 15 : notre triage en un coup d'œil</div>
+<div class="illus-sub">Les 3 questions qui décident, les 3 signaux qui font basculer</div>
+<div class="dd-grid">
+<div class="dd-col is-do">
+<div class="dd-head">Pharmacie</div>
+<div class="dd-item"><b>Consciente et cohérente</b></div>
+<div class="dd-item"><b>Symptômes localisés</b>, pas de signe général</div>
+<div class="dd-item"><b>Exposition récente</b>, gestes simples suffisent</div>
+</div>
+<div class="dd-col is-dont">
+<div class="dd-head">15 / Urgences</div>
+<div class="dd-item"><b>Perte de connaissance</b> ou confusion</div>
+<div class="dd-item"><b>Réaction allergique généralisée</b> : visage qui gonfle, difficulté à respirer</div>
+<div class="dd-item"><b>Pas d'amélioration</b> après 24 à 48 h</div>
+</div>
+</div>
+<div class="illus-foot">Dans le doute, on penche toujours vers la prudence.</div>
+</div>
+
 ## Coup de chaleur et insolation : quels gestes ?
 
 Face à un coup de chaleur, le premier réflexe est de sortir la personne du soleil, de l'installer dans un endroit frais et ombragé, en position semi-assise, et de retirer les vêtements superflus pour favoriser le refroidissement. On applique ensuite des compresses fraîches sur le front, la nuque, les aisselles et l'aine, et si la personne est consciente, on propose de l'eau ou une solution de réhydratation orale à petites gorgées, en évitant les boissons glacées qui peuvent provoquer des crampes d'estomac.
@@ -56,6 +76,17 @@ Face à un coup de chaleur, le premier réflexe est de sortir la personne du sol
 ## Coup de soleil : la pharmacie suffit-elle ?
 
 Pour un coup de soleil simple, la règle des « 15 » reste la référence : asperger la zone d'eau à 15 °C pendant 15 minutes, pommeau de douche à 15 cm de distance, puis appliquer un produit émollient ou une crème apaisante (type Biafine, Bepanthen ou aloe vera). En cas de peau lésée ou de risque d'infection, on désinfecte d'abord avec un antiseptique sans alcool à base de chlorhexidine, puis on applique une crème apaisante adaptée si l'inflammation est marquée.
+
+<div class="illus">
+<div class="illus-title">Coup de soleil : la règle des 15</div>
+<div class="illus-sub">Le seul chiffre à retenir, dans les premières minutes</div>
+<div class="steps-grid">
+<div class="step-card"><div class="step-num">15°C</div><div class="step-t">Température de l'eau</div><div class="step-d">Ni glacée ni tiède : de l'eau fraîche du robinet suffit.</div></div>
+<div class="step-card"><div class="step-num">15min</div><div class="step-t">Durée d'arrosage</div><div class="step-d">Sans interruption, sur toute la zone touchée.</div></div>
+<div class="step-card"><div class="step-num">15cm</div><div class="step-t">Distance du pommeau</div><div class="step-d">Pour ne pas irriter davantage une peau déjà fragilisée.</div></div>
+</div>
+<div class="illus-foot">Puis émollient ou crème apaisante. Jamais de glace directe.</div>
+</div>
 
 Nous passons systématiquement le relais au médecin dans quatre situations précises : présence de cloques (signe de brûlure au second degré), surface brûlée supérieure à 10 % de la peau pour le premier degré (ou 5 % pour le second degré superficiel), localisation sur le visage, les mains, les pieds ou les zones génitales, et douleur très intense ne cédant pas au [paracétamol ou à l'ibuprofène](../14-paracetamol-ibuprofene-aspirine/paracetamol-ibuprofene-aspirine-lequel-choisir-queven.html). On déconseille formellement de percer les cloques, d'appliquer de la glace directement (elle ralentit la cicatrisation) ou d'utiliser des remèdes maison comme le beurre.
 
