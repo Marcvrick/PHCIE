@@ -359,13 +359,16 @@ Voir section Quiz ci-dessous pour details.
 
 ## Quiz
 
+**Hub :** `Quizzes/guide-quizzes-sante-pharmacie-queven.html` — page d'accueil des quiz. Design (juillet 2026) : bannière hero plein largeur + **cartes illustrées style HIMS** (photo produit flottante par catégorie sur fond pastel : vert naturels / mint dermo / ambre compléments / lavande automédication). Conteneur 1200px, sections centrées. Base 16px (alignée sur le reste du site).
+
 **Design (HIMS-inspired):**
 - Fonts: Fraunces (display) + DM Sans (body)
 - Boutons: fond teal-pro, radius 8px
 - Variables CSS pastels + spacing 8pt
 
-**Disponibles:** quiz-soin-peau.html ✅, quiz-automedication.html ✅, quiz-produits-naturels.html ✅
-**En préparation:** Compléments alimentaires
+**Disponibles:** quiz-soin-peau.html ✅, quiz-automedication.html ✅, quiz-produits-naturels.html ✅, quiz-complement.html ✅
+
+**Inventaire photos produit :** `docs/INVENTAIRE-PRODUITS-QUIZZ.md` — liste de travail pour photographier chaque produit recommandé (PNG transparent, style badges homepage). Guide de construction des quiz : `Quizzes/README.md`.
 
 ### Badges Quiz (Style HIMS)
 
@@ -524,4 +527,4 @@ git add [fichiers] && git commit -m "Message" && git push origin main
 
 ---
 
-*Derniere mise a jour: 12 Fevrier 2026*
+*Derniere mise a jour: 23 juillet 2026*

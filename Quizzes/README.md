@@ -16,6 +16,12 @@ L'objectif est double :
 
 ---
 
+## Inventaire photos produit
+
+La liste complète des produits recommandés par chaque quiz (avec le slug de fichier photo à produire pour chacun) est tenue dans **[`docs/INVENTAIRE-PRODUITS-QUIZZ.md`](../docs/INVENTAIRE-PRODUITS-QUIZZ.md)**. C'est la liste de travail pour créer les photos produit — une par produit, PNG transparent, même style que les badges homepage (`rembg[cpu]`). À date : **0 / 65** photographiées.
+
+---
+
 ## Workflow complet
 
 ### Etape 1 — Choisir une categorie
