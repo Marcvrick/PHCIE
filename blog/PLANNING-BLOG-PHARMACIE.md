@@ -23,6 +23,7 @@ Planning éditorial - Pharmacie Charnal à Quéven
 | 27 | Lun 23 juin 2026 | Trousse de pharmacie de voyage en famille | Long | — | ✅ **PUBLIÉ 23 juin 2026** (hero + OG générés, blog.html + sitemap à jour) |
 | 28 | Lun 27 juil 2026 | Premiers secours été : les gestes essentiels | Long éditorial | — | ✅ **PUBLIÉ 25 juillet 2026** (dossier `29-premiers-secours-ete/`, listé sur `blog.html` + `sitemap.xml`) |
 | 29 | — | Fumées de feux de forêt : quels risques pour votre santé et comment vous protéger | Long éditorial | — | ❌ **RETIRÉ 25 juillet 2026** (Dany : "pas bon"). Dépublié de `blog.html` + `sitemap.xml` + `feed.xml` + `llms.txt` + lien nav depuis #28. Fichiers source conservés dans `30-feux-foret-fumee-sante/` si reprise ultérieure. Raison du rejet non précisée — à demander avant de retravailler le sujet. |
+| 30 | Lun 11 août 2026 | Intoxications alimentaires d'été : aliments à risque et bons réflexes | Long éditorial | PiLeJe (probiotiques) | ✅ **PUBLIÉ 4 août 2026** (dossier `31-intoxications-alimentaires-ete/`, hero + OG générés — photo femme tenant son ventre, GMB #33, `blog.html` + `sitemap.xml` + `feed.xml` + `llms.txt` à jour, double-lien nav avec #28 Premiers secours). |
 
 > ✅ **Tiques (#25) — PUBLIÉ en juillet 2026** (`25-tiques-bretagne/`), dans la fenêtre prévue (pic saison Lyme). Ancien verrou « première semaine de juillet, jamais avant » levé : article en ligne dans `blog.html`.
 >
@@ -133,5 +134,5 @@ Liste dérivée de `blog.html` (le blog est publié jusqu'au #21). Numérotation
 
 ---
 
-**Prochain article à publier** : #28 (Premiers secours été) et #29 (Fumées de feux de forêt) publiés le 25 juillet 2026. Prochain créneau libre : lundi 10 août 2026 (banque d'idées rentrée : poux, vaccination grippe, intoxications alimentaires).
-**Dernière mise à jour planning** : 25 juillet 2026 (#28 et #29 publiés sur `blog.html` + `sitemap.xml` le même jour — #28 avait été rédigé le 23 juillet mais jamais listé, comblé à cette occasion. #29 Fumées de feux de forêt : sujet demandé par Dany suite aux feux Gironde/Sud été 2026, angle santé/prévention plutôt qu'actualité datée ; chiffre 11 000 ha sourcé Le Monde 6 juillet 2026 uniquement comme fait daté, pas comme situation "actuelle" ; sources ANSES/ARS Nouvelle-Aquitaine/Santé Canada/OMS Europe).
+**Prochain article à publier** : #30 (Intoxications alimentaires d'été) publié le 4 août 2026, en avance sur la date cible du 11 août. Prochain créneau libre : lundi 18 août 2026 (banque d'idées rentrée : poux, vaccination grippe).
+**Dernière mise à jour planning** : 4 août 2026 (#30 Intoxications alimentaires d'été publié — sujet choisi par Dany, angle "aliments à risque + médicaments conseillers". Perplexity indisponible (quota dépassé) au moment de la rédaction : vérification médicale automatisée non effectuée, contenu basé sur connaissances établies (chaîne du froid, réhydratation, contre-indications lopéramide) sans chiffre d'incident spécifique invérifié — à revérifier via Perplexity quand le quota revient. Photo hero fournie par Dany via Gemini/Nano Banana, GMB réattribué #33 après retrait de l'article feux de forêt).
