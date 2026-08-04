@@ -387,271 +387,285 @@
             padding: var(--space-16) var(--space-48);
         }
 
-        /* === HERO SECTION === */
+        /* === HERO — bloc unifié : accroche + la pharmacie + services ===
+           Pas de badge-pilule, pas de capsules de stats, pas de blobs radiaux,
+           pas de grille de cartes : le seul événement visuel est la pharmacie
+           réelle. Tout le reste est typographique. */
         .hero {
-            min-height: auto;
-            display: flex;
-            align-items: center;
-            background: linear-gradient(180deg, var(--pastel-sage) 0%, var(--pastel-mint) 50%, var(--cream) 100%);
-            padding-top: 104px;
-            padding-bottom: var(--space-48);
             position: relative;
             overflow: hidden;
+            background: var(--pastel-sage);
+            padding: 128px 0 var(--space-64);
         }
 
-        @media (min-width: 1024px) {
-            .hero {
-                padding-top: 120px;
-                padding-bottom: var(--space-64);
-            }
-        }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 20%;
-            right: -10%;
-            width: 600px;
-            height: 600px;
-            background: radial-gradient(circle, rgba(125, 152, 133, 0.15) 0%, transparent 70%);
-            border-radius: 50%;
-            pointer-events: none;
-        }
-
-        .hero::after {
-            content: '';
-            position: absolute;
-            bottom: 10%;
-            left: -5%;
-            width: 400px;
-            height: 400px;
-            background: radial-gradient(circle, rgba(45, 95, 93, 0.1) 0%, transparent 70%);
-            border-radius: 50%;
-            pointer-events: none;
+        @media (max-width: 1023px) {
+            .hero { padding: 108px 0 var(--space-48); }
         }
 
         .hero-container {
+            position: relative;
+            z-index: 1;
+            width: 100%;
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 var(--space-24);
+            /* colonne unique : surcharge le `1fr 1fr` de style-v2.css */
+            display: grid;
+            grid-template-columns: 1fr;
+            justify-items: stretch;
+            text-align: left;
+            gap: var(--space-48);
+        }
+
+        /* --- Rangée 1 : l'accroche à gauche, la photo à droite --- */
+        .hero-top {
             display: grid;
             grid-template-columns: 1fr;
             gap: var(--space-32);
             align-items: center;
-            position: relative;
-            z-index: 1;
-            justify-items: center;
-            text-align: center;
-            /* align hero text with the 24px inset used by every other section */
-            padding-left: var(--space-24);
-            padding-right: var(--space-24);
         }
 
-        @media (min-width: 768px) {
-            .hero-container {
-                grid-template-columns: 1fr 1fr;
-                gap: var(--space-32);
-                justify-items: start;
-                text-align: left;
-            }
-        }
-
-        @media (min-width: 1024px) {
-            .hero-container {
+        @media (min-width: 900px) {
+            .hero-top {
+                grid-template-columns: minmax(0, 1fr) minmax(0, 1.02fr);
                 gap: var(--space-48);
             }
         }
 
-        .hero-content {
-            max-width: 560px;
-        }
-
-        .hero-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: var(--space-8);
-            padding: var(--space-8) var(--space-16);
-            background: var(--white);
-            border-radius: var(--radius-full);
-            font-size: var(--text-sm);
-            font-weight: 500;
-            color: var(--teal-pro);
-            box-shadow: var(--shadow-sm);
-            margin-bottom: var(--space-24);
-            opacity: 0;
-            animation: fadeInUp 0.6s var(--ease-standard) forwards;
-        }
-
-        .hero-badge svg {
-            width: 18px;
-            height: 18px;
-            color: var(--sage-natural);
+        .hero-lede {
+            max-width: 34rem;
         }
 
         .hero-title {
             font-family: var(--font-display);
-            font-size: clamp(2.5rem, 6vw, var(--text-6xl));
-            font-weight: 500;
-            line-height: 1.1;
+            font-size: clamp(2.6rem, 5.6vw, 4.1rem);
+            font-weight: 400;
+            line-height: 0.96;
             color: var(--charcoal);
-            letter-spacing: -0.02em;
-            margin-bottom: var(--space-24);
-            opacity: 0;
-            animation: fadeInUp 0.6s var(--ease-standard) 0.1s forwards;
+            letter-spacing: -0.035em;
+            text-wrap: balance;
+            margin: 0 0 var(--space-24);
         }
 
         .hero-title .highlight {
+            display: block;
             color: var(--teal-pro);
             font-style: italic;
+            letter-spacing: -0.03em;
         }
 
         .hero-description {
             font-size: var(--text-lg);
-            line-height: 1.7;
-            color: var(--gray-600);
-            margin-bottom: var(--space-32);
-            max-width: 480px;
-            opacity: 0;
-            animation: fadeInUp 0.6s var(--ease-standard) 0.2s forwards;
+            line-height: 1.55;
+            color: var(--gray-700);
+            margin: 0 0 var(--space-24);
+            max-width: 42ch;
         }
 
         .hero-cta {
             display: flex;
             flex-wrap: wrap;
-            gap: var(--space-16);
-            opacity: 0;
-            animation: fadeInUp 0.6s var(--ease-standard) 0.3s forwards;
-            justify-content: center;
-        }
-
-        @media (min-width: 768px) {
-            .hero-cta {
-                justify-content: flex-start;
-            }
-        }
-
-        .hero-image {
-            position: relative;
-            opacity: 0;
-            animation: fadeInUp 0.8s var(--ease-standard) 0.4s forwards;
-            display: flex;
             align-items: center;
-            justify-content: center;
+            gap: var(--space-24);
         }
 
-        @media (min-width: 768px) {
-            .hero-image {
-                justify-content: flex-end;
-            }
+        /* --- Les chiffres, en bandeau composé : plus de capsules de verre --- */
+        .hero-facts {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: baseline;
+            gap: 10px var(--space-24);
+            margin: 0;
+            padding-top: var(--space-24);
+            border-top: 1px solid color-mix(in srgb, var(--teal-pro) 20%, transparent);
+            font-size: var(--text-sm);
+            color: var(--gray-600);
         }
 
-        .hero-image img {
+        .hero-facts span { display: inline-flex; align-items: baseline; gap: 6px; }
+
+        .hero-facts b {
+            font-family: var(--font-display);
+            font-weight: 600;
+            font-size: 1.05rem;
+            color: var(--teal-pro);
+            letter-spacing: -0.01em;
+        }
+
+        .hero-facts i {
+            font-style: normal;
+            color: color-mix(in srgb, var(--teal-pro) 32%, transparent);
+        }
+
+        /* --- La photo : bande pleine largeur, ratio d'origine, sans recadrage --- */
+        .hero-figure {
+            margin: 0;
+            display: block;
+        }
+
+        .hero-figure img {
+            display: block;
             width: 100%;
-            max-width: 360px;
-            margin: 0 auto;
+            max-width: 620px;
+            height: auto;
+            margin-left: auto;
             border-radius: var(--radius-2xl);
-            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08), 0 1px 4px rgba(0, 0, 0, 0.05);
+            box-shadow: 0 26px 60px -34px rgba(31, 33, 33, 0.55),
+                        0 2px 6px rgba(31, 33, 33, 0.05);
         }
 
-        @media (min-width: 768px) {
-            .hero-image img {
-                max-width: 420px;
+        /* --- Rangée 2 : les services, en index composé --- */
+        .hero-services {
+            display: grid;
+            gap: var(--space-24);
+        }
+
+        .hero-services-title {
+            font-family: var(--font-display);
+            font-size: clamp(1.6rem, 2.6vw, 2.15rem);
+            font-weight: 400;
+            line-height: 1.1;
+            letter-spacing: -0.02em;
+            color: var(--charcoal);
+            margin: 0;
+        }
+
+        .hero-services-title em {
+            font-style: italic;
+            color: var(--teal-pro);
+        }
+
+        .hero-services-index {
+            display: grid;
+            grid-template-columns: 1fr;
+            column-gap: var(--space-48);
+            border-top: 1px solid color-mix(in srgb, var(--teal-pro) 16%, transparent);
+        }
+
+        @media (min-width: 900px) {
+            .hero-services-index { grid-template-columns: 1fr 1fr; }
+        }
+
+        .svc {
+            position: relative;
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) 16px;
+            align-items: baseline;
+            column-gap: var(--space-16);
+            row-gap: 4px;
+            padding: var(--space-16) var(--space-12) var(--space-16) 0;
+            border-bottom: 1px solid color-mix(in srgb, var(--teal-pro) 16%, transparent);
+            text-decoration: none;
+            color: inherit;
+        }
+
+        @media (min-width: 620px) {
+            .svc {
+                grid-template-columns: minmax(12.5rem, 1fr) minmax(0, 1.3fr) 16px;
+                align-items: baseline;
             }
         }
 
-        /* Mobile hero: H1 → photo → CTA only (badge, description, pills hidden) */
-        @media (max-width: 767px) {
+        /* voile d'accent au survol, tiré vers les marges de la ligne */
+        .svc::before {
+            content: '';
+            position: absolute;
+            inset: 0 -14px;
+            border-radius: 10px;
+            background: var(--card-accent, var(--teal-pro));
+            opacity: 0;
+            transition: opacity var(--duration-normal) var(--ease-standard);
+            pointer-events: none;
+        }
+
+        @media (hover: hover) {
+            .svc:hover::before { opacity: 0.07; }
+            .svc:hover .svc-title { color: var(--card-accent, var(--teal-pro)); }
+            .svc:hover .svc-go { transform: translateX(4px); opacity: 1; }
+        }
+
+        .svc:focus-visible {
+            outline: 2px solid var(--teal-pro);
+            outline-offset: 3px;
+            border-radius: 6px;
+        }
+
+        .svc > * { position: relative; }
+
+        .svc-title {
+            font-family: var(--font-display);
+            font-size: 1.14rem;
+            font-weight: 500;
+            line-height: 1.2;
+            letter-spacing: -0.01em;
+            color: var(--charcoal);
+            margin: 0;
+            transition: color var(--duration-normal) var(--ease-standard);
+        }
+
+        .svc-desc {
+            font-size: 0.9rem;
+            line-height: 1.45;
+            color: var(--gray-600);
+            margin: 0;
+        }
+
+        .svc-go {
+            width: 16px;
+            height: 16px;
+            align-self: center;
+            color: var(--card-accent, var(--teal-pro));
+            opacity: 0.45;
+            transition: transform var(--duration-normal) var(--ease-standard),
+                        opacity var(--duration-normal) var(--ease-standard);
+        }
+
+        @media (max-width: 619px) {
+            .svc { grid-template-columns: minmax(0, 1fr) 16px; }
+            .svc-desc { grid-column: 1 / -1; grid-row: 2; }
+            /* sans placement explicite la flèche tombait sous la description */
+            .svc-go { grid-column: 2; grid-row: 1; align-self: center; }
+        }
+
+        /* Accent par service */
+        .card--teal     { --card-accent: var(--teal-pro);       }
+        .card--blue     { --card-accent: var(--bleu-confiance); }
+        .card--lavender { --card-accent: #7c69b0;               }
+        .card--sage     { --card-accent: var(--sage-dark);      }
+        .card--peach    { --card-accent: var(--copper);         }
+
+        /* --- Mobile : la pharmacie passe juste sous le titre --- */
+        /* --- Mobile : titre, photo, puis l'amorce --- */
+        @media (max-width: 899px) {
             .hero-container {
                 display: flex;
                 flex-direction: column;
+                align-items: stretch;
+                gap: var(--space-32);
             }
-            .hero-content {
-                display: contents;
-            }
-            .hero-badge,
-            .hero-description,
-            .hero-pills {
-                display: none;
-            }
-            .hero-title {
-                order: 1;
-                margin-bottom: var(--space-24);
-            }
-            .hero-image {
-                order: 2;
-                margin-bottom: var(--space-24);
-            }
-            .hero-cta {
-                order: 3;
-            }
+            .hero-top,
+            .hero-lede { display: contents; }
+            .hero-title { order: 1; margin-bottom: 0; }
+            .hero-figure { order: 2; }
+            .hero-description { order: 3; max-width: none; margin: 0; }
+            /* style-v2.css centre .hero-cta */
+            .hero-cta { order: 4; justify-content: flex-start; }
+            .hero-facts { order: 5; }
+            .hero-services { order: 6; }
+            .hero-figure img { max-width: none; margin-left: 0; }
         }
 
-        @media (min-width: 1024px) {
-            .hero-image img {
-                max-width: 580px;
-                margin: 0;
-                margin-right: 24px;
-            }
-        }
-
-        .hero-image-inner {
-            position: relative;
-            display: inline-block;
-        }
-
-        .hero-pills {
-            position: relative;
-            bottom: auto;
-            left: auto;
-            transform: none;
-            display: flex;
-            gap: 8px;
-            z-index: 2;
-            justify-content: center;
-            margin-top: var(--space-24);
-        }
-
-        .hero-pill {
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            background: rgba(255, 255, 255, 0.92);
-            backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px);
-            padding: 10px 16px;
-            border-radius: var(--radius-full);
-            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-            white-space: nowrap;
-        }
-
-        .hero-pill strong {
-            font-family: var(--font-display);
-            font-size: 1.1rem;
-            font-weight: 600;
-            color: var(--teal-pro);
-            line-height: 1;
-        }
-
-        .hero-pill span {
-            font-size: 0.7rem;
-            font-weight: 500;
-            color: var(--gray-500);
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
+        /* Les trois chiffres ne tiennent plus sur une ligne : on les empile */
+        @media (max-width: 559px) {
+            .hero-facts { flex-direction: column; align-items: flex-start; gap: 8px; }
+            .hero-facts i { display: none; }
         }
 
         @media (max-width: 767px) {
-            .hero-pills {
-                bottom: 12px;
-                gap: 6px;
-            }
-            .hero-pill {
-                padding: 6px 10px;
-            }
-            .hero-pill strong {
-                font-size: 0.9rem;
-            }
-            .hero-pill span {
-                font-size: 0.6rem;
-            }
+            .hero-description { display: none; }
         }
+
+
 
 
         @keyframes fadeInUp {
@@ -1773,309 +1787,6 @@
             margin-bottom: var(--space-16);
         }
 
-        /* === SERVICES V2 (asymmetric: hero card + list) === */
-        .services-v2 {
-            padding: var(--space-48) 0 var(--space-64);
-            background: var(--pastel-lavender);
-            overflow-x: clip;
-        }
-
-        /* Vidéo "entrée dans la pharmacie" sous le titre */
-        .services-v2-video-wrap {
-            width: 100%;
-            max-width: 520px;
-            aspect-ratio: 4 / 3;
-            border-radius: var(--radius-xl, 18px);
-            overflow: hidden;
-            box-shadow: 0 18px 40px -18px rgba(31, 33, 33, 0.28);
-            margin-top: var(--space-24);
-        }
-
-        .services-v2-video-wrap video {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
-        }
-
-        @media (prefers-reduced-motion: reduce) {
-            .services-v2-video-wrap video { display: none; }
-            .services-v2-video-wrap {
-                background: url('Photos%20pharmacie/1.jpg') center/cover no-repeat;
-            }
-        }
-
-        .services-v2-container {
-            width: 100%;
-            max-width: 1280px;
-            margin: 0 auto;
-            padding: 0 var(--space-24);
-        }
-
-        .services-v2-header {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: var(--space-16);
-            margin-bottom: var(--space-48);
-        }
-
-        @media (min-width: 768px) {
-            .services-v2-header {
-                grid-template-columns: auto 1fr;
-                gap: var(--space-64);
-                align-items: start;
-            }
-        }
-
-        .services-v2-title {
-            font-family: var(--font-display);
-            font-size: clamp(1.8rem, 3vw, 2.4rem);
-            font-weight: 500;
-            line-height: 1.15;
-            color: var(--charcoal);
-        }
-
-        .services-v2-title em {
-            font-style: italic;
-            color: var(--teal-pro);
-        }
-
-        .services-v2-subtitle {
-            font-size: var(--text-base);
-            color: var(--gray-600);
-            line-height: 1.6;
-            max-width: 400px;
-            padding-top: 4px;
-        }
-
-        /* Stacked card deck (Display-Cards style) */
-        .services-deck {
-            display: grid;
-            grid-template-areas: 'stack';
-            place-items: center;
-            min-height: 400px;
-            margin-top: var(--space-8, 8px);
-            animation: deck-in 0.7s ease both;
-        }
-
-        @keyframes deck-in {
-            from { opacity: 0; transform: translateY(12px); }
-            to   { opacity: 1; transform: translateY(0); }
-        }
-
-        .dcard {
-            grid-area: stack;
-            width: 332px;
-            min-height: 116px;
-            box-sizing: border-box;
-            display: flex;
-            flex-direction: column;
-            gap: 7px;
-            padding: 15px 22px 18px;
-            border-radius: 18px;
-            text-decoration: none;
-            color: inherit;
-            position: relative;
-            overflow: hidden;
-            background:
-                radial-gradient(150% 140% at 0% 0%, var(--card-tint, var(--pastel-teal)) 0%, rgba(255,255,255,0) 62%),
-                var(--white);
-            border: 1.5px solid color-mix(in srgb, var(--card-accent, #2D5F5D) 20%, transparent);
-            box-shadow: 0 12px 32px -20px rgba(31, 33, 33, 0.55);
-            transform: skewY(-7deg) translate(var(--tx, 0), var(--ty, 0));
-            filter: grayscale(1);
-            transition: transform 0.6s cubic-bezier(0.2, 0.7, 0.2, 1), filter 0.6s ease,
-                        box-shadow 0.6s ease, border-color 0.6s ease;
-        }
-
-        /* opaque dim veil on back cards (no element transparency -> no bleed-through) */
-        .dcard::after {
-            content: '';
-            position: absolute;
-            inset: 0;
-            z-index: 0;
-            pointer-events: none;
-            border-radius: inherit;
-            background: var(--pastel-lavender);
-            opacity: 0.5;
-            transition: opacity 0.6s ease;
-        }
-        .dcard > * { position: relative; z-index: 1; }
-
-        /* diagonal staircase, front card last */
-        .dcard:nth-child(1) { --tx: -120px; --ty: -125px; z-index: 1; }
-        .dcard:nth-child(2) { --tx: -72px;  --ty: -75px;  z-index: 2; }
-        .dcard:nth-child(3) { --tx: -24px;  --ty: -25px;  z-index: 3; }
-        .dcard:nth-child(4) { --tx: 24px;   --ty: 25px;   z-index: 4; }
-        .dcard:nth-child(5) { --tx: 72px;   --ty: 75px;   z-index: 5; }
-        .dcard:nth-child(6) { --tx: 120px;  --ty: 125px;  z-index: 6; }
-
-        /* Liseré vert sur toutes les cartes de service */
-        .services-deck .dcard {
-            border-top: 3px solid var(--teal-pro);
-        }
-
-        .services-deck .dcard.is-raised {
-            border-top-color: var(--teal-pro);
-        }
-
-        @media (hover: hover) {
-            .services-deck .dcard:hover { border-top-color: var(--teal-pro); }
-        }
-
-        /* front card is always in colour */
-        .dcard:last-child { filter: grayscale(0); opacity: 1; }
-        .dcard:last-child::after { opacity: 0; }
-
-        /* Raised state — shared by hover (pointer) and .is-raised (touch, JS-driven) */
-        .dcard.is-raised {
-            filter: grayscale(0);
-            opacity: 1;
-            z-index: 20;
-            transform: skewY(-7deg) translate(var(--tx, 0), calc(var(--ty, 0) - 30px));
-            box-shadow: 0 30px 54px -22px color-mix(in srgb, var(--card-accent, #2D5F5D) 55%, transparent);
-            border-color: color-mix(in srgb, var(--card-accent, #2D5F5D) 55%, transparent);
-        }
-        .dcard.is-raised::after { opacity: 0; }
-
-        /* Pointer devices only: hover raises directly (no two-step needed) */
-        @media (hover: hover) {
-            .dcard:hover {
-                filter: grayscale(0);
-                opacity: 1;
-                z-index: 20;
-                transform: skewY(-7deg) translate(var(--tx, 0), calc(var(--ty, 0) - 30px));
-                box-shadow: 0 30px 54px -22px color-mix(in srgb, var(--card-accent, #2D5F5D) 55%, transparent);
-                border-color: color-mix(in srgb, var(--card-accent, #2D5F5D) 55%, transparent);
-            }
-            .dcard:hover::after { opacity: 0; }
-        }
-
-        .dcard-head { display: flex; align-items: center; gap: 11px; }
-
-        .dcard-ico {
-            width: 32px; height: 32px;
-            flex-shrink: 0;
-            border-radius: 50%;
-            display: flex; align-items: center; justify-content: center;
-            background: color-mix(in srgb, var(--card-accent, #2D5F5D) 16%, var(--white));
-            color: var(--card-accent, var(--teal-pro));
-        }
-        .dcard-ico svg { width: 17px; height: 17px; }
-
-        .dcard-title {
-            font-family: var(--font-display);
-            font-size: 1.1rem;
-            font-weight: 500;
-            color: var(--charcoal);
-            margin: 0;
-            line-height: 1.15;
-        }
-
-        .dcard-desc {
-            font-size: 0.9rem;
-            color: var(--gray-600);
-            line-height: 1.45;
-            margin: 0;
-        }
-
-        .dcard-meta {
-            margin: auto 0 0;
-            font-size: 0.82rem;
-            font-weight: 600;
-            color: var(--card-accent, var(--teal-pro));
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-        }
-        .dcard-meta svg { width: 13px; height: 13px; transition: transform 0.35s ease; }
-        .dcard.is-raised .dcard-meta svg { transform: translateX(4px); }
-        @media (hover: hover) { .dcard:hover .dcard-meta svg { transform: translateX(4px); } }
-
-        /* Accent palette per category */
-        .card--teal     { --card-accent: var(--teal-pro);       --card-tint: var(--pastel-teal); }
-        .card--blue     { --card-accent: var(--bleu-confiance); --card-tint: #DCEAEF; }
-        .card--lavender { --card-accent: #9b8bc4;               --card-tint: var(--pastel-lavender); }
-        .card--sage     { --card-accent: var(--sage-dark);      --card-tint: var(--pastel-sage); }
-        .card--peach    { --card-accent: var(--copper);         --card-tint: var(--pastel-peach); }
-
-        /* Desktop: titre en haut, vidéo et cartes côte à côte alignées */
-        @media (min-width: 900px) {
-            .services-v2-container {
-                display: grid;
-                grid-template-columns: 0.82fr 1.18fr;
-                grid-template-rows: auto auto;
-                gap: var(--space-32) var(--space-48);
-                align-items: start;
-            }
-            .services-v2-header {
-                grid-column: 1 / -1;
-                grid-row: 1;
-                margin-bottom: 0;
-            }
-            .services-v2-video-wrap {
-                grid-column: 1;
-                grid-row: 2;
-                justify-self: center;
-                align-self: start;
-                max-width: 460px;
-                margin-top: 0;
-            }
-            .services-deck {
-                grid-column: 2;
-                grid-row: 2;
-                margin-top: 0;
-            }
-            /* Centrer la pile de cartes verticalement par rapport à la vidéo */
-            .dcard:nth-child(1) { --ty: -165px; }
-            .dcard:nth-child(2) { --ty: -115px; }
-            .dcard:nth-child(3) { --ty: -65px; }
-            .dcard:nth-child(4) { --ty: -15px; }
-            .dcard:nth-child(5) { --ty: 35px; }
-            .dcard:nth-child(6) { --ty: 85px; }
-        }
-
-        /* Mobile: top-align so each card's top edge = ty (independent of card height).
-           Uniform 50px step -> only the title of each back card peeks; the tall front
-           card sits at the same step and overflows BEHIND the next section. */
-        @media (max-width: 767px) {
-            .services-deck {
-                justify-content: center;
-                place-items: start center;
-                min-height: 360px;
-                margin-top: 24px;
-                isolation: isolate; /* contain dcard z-index so next section can paint over */
-            }
-            .dcard {
-                width: clamp(240px, 70vw, 290px);
-            }
-            .dcard:nth-child(1) { --tx: -70px; --ty:   0px; }
-            .dcard:nth-child(2) { --tx: -42px; --ty:  50px; }
-            .dcard:nth-child(3) { --tx: -14px; --ty: 100px; }
-            .dcard:nth-child(4) { --tx:  14px; --ty: 150px; }
-            .dcard:nth-child(5) { --tx:  42px; --ty: 200px; }
-            .dcard:nth-child(6) { --tx:  70px; --ty: 250px; }
-            /* Hide pharmacy video on mobile */
-            .services-v2-video-wrap {
-                display: none;
-            }
-            /* next section paints above the overflowing front card */
-            .product-features { position: relative; z-index: 1; }
-        }
-
-        @media (prefers-reduced-motion: reduce) {
-            .services-deck { animation: none; }
-            .dcard { transition: filter 0.3s ease, box-shadow 0.3s ease; }
-        }
-
-        @media (max-width: 767px) {
-            .services-v2 { padding: var(--space-64) 0 var(--space-16); overflow-x: clip; }
-            .services-v2-header { text-align: center; }
-            .services-v2-subtitle { display: none; }
-            /* "On s'occupe de Vous" sur une seule ligne */
-            .services-v2-title { font-size: clamp(1.5rem, 6.5vw, 2rem); white-space: nowrap; }
-            .services-v2-title br { display: none; }
-        }
 
         /* === BLOG HIGHLIGHT (new layout) === */
         .blog-highlight {
@@ -2543,10 +2254,6 @@
                 width: 48px;
                 height: 48px;
             }
-
-            .hero-content h1 {
-                font-size: var(--text-3xl);
-            }
         }
     </style>
 
@@ -2769,47 +2476,78 @@
         </div>
     </nav>
 
-    <!-- Hero Section -->
+    <!-- Hero — bloc unifié : accroche + la pharmacie + services -->
     <section class="hero">
-        <div class="container hero-container">
-            <div class="hero-content">
-                <div class="hero-badge">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <circle cx="12" cy="12" r="10"/>
-                        <path d="M12 6v6l4 2"/>
-                    </svg>
-                    <span>Depuis plus de 40 ans à Quéven</span>
+        <div class="hero-container">
+
+            <!-- Rangée 1 : l'accroche à gauche, la photo à droite -->
+            <div class="hero-top">
+                <div class="hero-lede">
+                    <h1 class="hero-title">
+                        Votre santé,
+                        <span class="highlight">notre priorité</span>
+                    </h1>
+                    <p class="hero-description">
+                        Une pharmacie familiale où tradition et modernité se rencontrent pour vous offrir à Quéven des soins personnalisés, des conseils d'experts et une écoute attentive.
+                    </p>
+                    <div class="hero-cta">
+                        <a href="Quizzes/quiz-automedication.html" class="btn btn-primary">Quel médicament pour vos symptômes?</a>
+                    </div>
                 </div>
-                <h1 class="hero-title">
-                    Votre santé,<br>
-                    <span class="highlight">notre priorité</span>
-                </h1>
-                <p class="hero-description">
-                    Une pharmacie familiale où tradition et modernité se rencontrent pour vous offrir à Quéven des soins personnalisés, des conseils d'experts et une écoute attentive.
-                </p>
-                <div class="hero-cta">
-                    <a href="Quizzes/quiz-automedication.html" class="btn btn-secondary">Quel médicament pour vos symptômes?</a>
+
+                <div class="hero-figure">
+                    <img src="images/hp PC.jpg" width="1227" height="522"
+                         alt="Pharmacie Charnal - Des soins pour toute la famille"
+                         fetchpriority="high" loading="eager" decoding="async">
                 </div>
             </div>
-            <div class="hero-image">
-                <div class="hero-image-inner">
-                <img src="images/hp PC.jpg" alt="Pharmacie Charnal - Des soins pour toute la famille">
-                <div class="hero-pills">
-                    <div class="hero-pill">
-                        <strong>40+</strong>
-                        <span>Années</span>
-                    </div>
-                    <div class="hero-pill">
-                        <strong>6j/7</strong>
-                        <span>Ouvert</span>
-                    </div>
-                    <div class="hero-pill">
-                        <strong>4.9</strong>
-                        <span>Google</span>
-                    </div>
-                </div>
+
+            <p class="hero-facts">
+                <span>À Quéven depuis plus de <b>40 ans</b></span>
+                <i>/</i>
+                <span>Ouvert <b>6j/7</b></span>
+                <i>/</i>
+                <span><b>4,9</b> sur Google</span>
+            </p>
+
+            <!-- Rangée 2 : les services, en index -->
+            <div class="hero-services">
+                <h2 class="hero-services-title">On s'occupe de <em>Vous</em></h2>
+
+                <div class="hero-services-index">
+                    <a href="services.html#ordonnances" class="svc card--teal">
+                        <h3 class="svc-title">Délivrance d'ordonnances</h3>
+                        <p class="svc-desc">Posologie, interactions, effets secondaires expliqués. Envoi par photo possible.</p>
+                        <svg class="svc-go" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+                    </a>
+                    <a href="services.html#parapharmacie" class="svc card--lavender">
+                        <h3 class="svc-title">Parapharmacie</h3>
+                        <p class="svc-desc">Dermatologie, cosmétiques et soins sélectionnés par notre équipe.</p>
+                        <svg class="svc-go" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+                    </a>
+                    <a href="services.html#vaccinations" class="svc card--blue">
+                        <h3 class="svc-title">Vaccinations</h3>
+                        <p class="svc-desc">Grippe, Covid, rappels... sur rendez-vous, sans passer chez le médecin.</p>
+                        <svg class="svc-go" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+                    </a>
+                    <a href="services.html#produits-naturels" class="svc card--sage">
+                        <h3 class="svc-title">Produits naturels</h3>
+                        <p class="svc-desc">Phytothérapie, aromathérapie, compléments. Conseil personnalisé.</p>
+                        <svg class="svc-go" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+                    </a>
+                    <a href="services.html#materiel-medical" class="svc card--peach">
+                        <h3 class="svc-title">Matériel médical</h3>
+                        <p class="svc-desc">Location de béquilles, lits médicalisés, équipements d'assistance.</p>
+                        <svg class="svc-go" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+                    </a>
+                    <a href="services.html#livraison" class="svc card--teal">
+                        <h3 class="svc-title">Livraison à domicile</h3>
+                        <p class="svc-desc">Livraison gratuite le jour même dans Quéven et environs.</p>
+                        <svg class="svc-go" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+                    </a>
                 </div>
             </div>
+
         </div>
     </section>
 
@@ -2836,74 +2574,6 @@
         </div>
     </div>
 
-    <!-- Services Section - Asymmetric layout -->
-    <section class="services-v2">
-        <div class="services-v2-container">
-            <!-- Header row: title left, subtitle right -->
-            <div class="services-v2-header">
-                <h2 class="services-v2-title">On s'occupe <br>de <em>Vous</em></h2>
-            </div>
-
-            <!-- Vidéo d'ambiance : entrée dans la pharmacie -->
-            <div class="services-v2-video-wrap" aria-hidden="true">
-                <video autoplay muted loop playsinline poster="Photos%20pharmacie/1.jpg">
-                    <source src="videos/pharma-entry-4x3.mp4" type="video/mp4">
-                </video>
-            </div>
-
-            <!-- Body: stacked card deck (Display-Cards style), front card in colour -->
-            <div class="services-deck">
-                <a href="services.html#vaccinations" class="dcard card--blue">
-                    <div class="dcard-head">
-                        <span class="dcard-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></span>
-                        <h3 class="dcard-title">Vaccinations</h3>
-                    </div>
-                    <p class="dcard-desc">Grippe, Covid, rappels... sur rendez-vous, sans passer chez le médecin.</p>
-                    <span class="dcard-meta">En savoir plus <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
-                </a>
-                <a href="services.html#parapharmacie" class="dcard card--lavender">
-                    <div class="dcard-head">
-                        <span class="dcard-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="8" y="4" width="8" height="16" rx="4"/><path d="M10 8h4M10 12h4"/><ellipse cx="12" cy="3" rx="3" ry="2"/></svg></span>
-                        <h3 class="dcard-title">Parapharmacie</h3>
-                    </div>
-                    <p class="dcard-desc">Dermatologie, cosmétiques et soins sélectionnés par notre équipe.</p>
-                    <span class="dcard-meta">En savoir plus <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
-                </a>
-                <a href="services.html#produits-naturels" class="dcard card--sage">
-                    <div class="dcard-head">
-                        <span class="dcard-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.24 12.24a6 6 0 0 0-8.49-8.49L5 10.5V19h8.5z"/><line x1="16" y1="8" x2="2" y2="22"/><line x1="17.5" y1="15" x2="9" y2="15"/></svg></span>
-                        <h3 class="dcard-title">Produits naturels</h3>
-                    </div>
-                    <p class="dcard-desc">Phytothérapie, aromathérapie, compléments. Conseil personnalisé.</p>
-                    <span class="dcard-meta">En savoir plus <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
-                </a>
-                <a href="services.html#materiel-medical" class="dcard card--peach">
-                    <div class="dcard-head">
-                        <span class="dcard-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="12" width="20" height="6" rx="1"/><line x1="2" y1="12" x2="2" y2="9" stroke-linecap="round"/><line x1="22" y1="12" x2="22" y2="9" stroke-linecap="round"/><line x1="2" y1="18" x2="2" y2="21" stroke-linecap="round"/><line x1="22" y1="18" x2="22" y2="21" stroke-linecap="round"/></svg></span>
-                        <h3 class="dcard-title">Matériel médical</h3>
-                    </div>
-                    <p class="dcard-desc">Location de béquilles, lits médicalisés, équipements d'assistance.</p>
-                    <span class="dcard-meta">En savoir plus <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
-                </a>
-                <a href="services.html#livraison" class="dcard card--sage">
-                    <div class="dcard-head">
-                        <span class="dcard-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="6" width="15" height="10" rx="1"/><path d="M16 10h4l3 3v3h-7V10z"/><circle cx="6" cy="18" r="2"/><circle cx="18" cy="18" r="2"/></svg></span>
-                        <h3 class="dcard-title">Livraison à domicile</h3>
-                    </div>
-                    <p class="dcard-desc">Livraison gratuite le jour même dans Quéven et environs.</p>
-                    <span class="dcard-meta">En savoir plus <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
-                </a>
-                <a href="services.html#ordonnances" class="dcard card--teal">
-                    <div class="dcard-head">
-                        <span class="dcard-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="4" width="6" height="6" rx="1"/><rect x="14" y="4" width="6" height="6" rx="1"/><rect x="4" y="14" width="6" height="6" rx="1"/><rect x="14" y="14" width="6" height="6" rx="1"/></svg></span>
-                        <h3 class="dcard-title">Délivrance d'ordonnances</h3>
-                    </div>
-                    <p class="dcard-desc">On prend le temps de vous expliquer chaque traitement: posologie, interactions, effets secondaires. Envoi par photo possible.</p>
-                    <span class="dcard-meta">En savoir plus <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
-                </a>
-            </div>
-        </div>
-    </section>
 
     <!-- Product Feature Cards (Bento layout) -->
     <section class="product-features">
@@ -3349,34 +3019,6 @@
 
         // Brand spotlight removed — brands-strip logos rotate 6 random brands on load
 
-        // ==========================================
-        // "On s'occupe de Vous" deck — touch two-step
-        // ==========================================
-        // Sur appareil tactile (pas de hover), un 1er tap RELÈVE la vignette
-        // (sans suivre le lien) ; un 2e tap sur la vignette déjà relevée
-        // ouvre le lien. Sur appareil à pointeur, comportement normal.
-        (function () {
-            var touch = window.matchMedia('(hover: none)');
-            var cards = document.querySelectorAll('.services-deck .dcard');
-            if (!cards.length) return;
-
-            cards.forEach(function (card) {
-                card.addEventListener('click', function (e) {
-                    if (!touch.matches) return;                          // pointeur -> lien normal
-                    if (card.classList.contains('is-raised')) return;    // déjà relevée -> navigue
-                    e.preventDefault();
-                    cards.forEach(function (c) { c.classList.remove('is-raised'); });
-                    card.classList.add('is-raised');
-                });
-            });
-
-            // Tap en dehors du deck -> on redescend la vignette relevée
-            document.addEventListener('click', function (e) {
-                if (!touch.matches) return;
-                if (e.target.closest('.services-deck .dcard')) return;
-                cards.forEach(function (c) { c.classList.remove('is-raised'); });
-            });
-        })();
 
         // ==========================================
         // "Les marques qu'on aime" — rotation aléatoire de 6 logos
@@ -3430,6 +3072,7 @@
             renderBrands();
             window.addEventListener('resize', renderBrands);
         })();
+
     </script>
 </body>
 </html>

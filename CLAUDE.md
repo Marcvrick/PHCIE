@@ -328,25 +328,69 @@ Quand on modifie un titre d'article, mettre à jour:
 
 ## Homepage - Structure et Design
 
-### Hero Section
-- Titre : "Votre sante, notre priorite"
-- Description + **CTA bouton outline** (`btn-secondary`) : "Quel medicament pour vos symptomes?" → `Quizzes/quiz-automedication.html`
-- Le CTA utilise `.hero-cta` (animation fadeInUp 0.3s)
+### Hero Section — bloc unifie (refonte 2026-08-04)
+
+Le hero et l'ancienne section « On s'occupe de Vous » ne font plus qu'une seule
+`<section class="hero">`, sur un aplat `--pastel-sage`. L'ancienne `.services-v2`
+(deck de cartes empilees en `skewY(-7deg)`) est supprimee : CSS, HTML et le JS
+« touch two-step » associe.
+
+Structure interne, dans `.hero-container` :
+
+1. `.hero-top` — `.hero-lede` a gauche (H1 / description / CTA), photo
+   `images/hp PC.jpg` a droite dans `.hero-figure`.
+2. `.hero-facts` — les trois chiffres (40 ans / 6j-7 / 4,9 Google) en une ligne
+   composee sous un filet, pleine largeur. Ce ne sont PLUS des capsules.
+3. `.hero-services` — titre `<h2>` « On s'occupe de Vous » puis
+   `.hero-services-index` : 6 liens `.svc` en index typographique
+   (nom | description | fleche), 2 colonnes ≥900px. Ce ne sont PLUS des cartes.
+
+**Ce qui a ete retire volontairement — ne pas remettre :**
+
+- **Le badge-pilule** au-dessus du H1 (« Depuis plus de 40 ans a Queven »). Un
+  eyebrow au-dessus d'un titre est le tell le plus reconnaissable d'une page
+  generee. L'info vit maintenant dans `.hero-facts`.
+- **Les capsules de stats** en verre depoli (`backdrop-filter`).
+- **Les deux blobs radiaux** `.hero::before` / `.hero::after`.
+- **Les 6 cartes** icone + titre + texte : la carte est le conteneur par defaut,
+  et six cartes identiques comme structure de page ne disent rien.
+- **La video** `videos/pharma-entry-4x3.mp4` : elle n'a plus d'emplacement dans le
+  bloc. Le fichier reste sur disque, libre pour la page services.
+
+Breakpoints :
+- **≥ 900px** : `.hero-top` en 2 colonnes, index services en 2 colonnes.
+- **≤ 899px** : `.hero-top` et `.hero-lede` en `display: contents`, ordre
+  H1 → photo → description → CTA → chiffres → services.
+- **≤ 767px** : description masquee. **≤ 619px** : la fleche `.svc-go` doit etre
+  placee explicitement (`grid-column: 2; grid-row: 1`), sinon elle tombe sous la
+  description. **≤ 559px** : les chiffres s'empilent.
+
+Pieges :
+- `style-v2.css` definit `.hero-container { grid-template-columns: 1fr 1fr }` a
+  ≥1024px et `.hero-cta { justify-content: center }`. Le bloc inline **doit**
+  redeclarer les deux, sinon le hero et les services se retrouvent cote a cote et
+  tout se centre sur mobile.
+- Le CTA est passe de `btn-secondary` (contour delave) a `btn-primary` (aplat
+  teal). Un bouton fantome sur un aplat pale ne se voit pas.
+- Les accents de couleur des services viennent des classes
+  `.card--teal|blue|lavender|sage|peach` qui posent `--card-accent` (fleche,
+  nom au survol, voile de fond).
 
 ### Badges Quiz (sous le marquee)
 4 badges style HIMS avec images PNG transparentes flottantes + ombre elliptique.
 Voir section Quiz ci-dessous pour details.
 
 ### Sections dans l'ordre
-1. Hero + CTA
+1. Hero unifie (accroche + photo + chiffres cles + index des 6 services)
 2. Marquee banner (services defilants)
 3. Badges quiz (4 categories)
-4. Services (6 cartes)
-5. Dernier article blog (auto-fetch depuis blog.html)
-6. Marque a decouvrir (rotation aleatoire)
-7. Stats bar (40+ ans, 4.9 Google, 6j/7, 100% conseil)
+4. Dernier article blog (auto-fetch depuis blog.html)
+5. Marque a decouvrir (rotation aleatoire)
+6. Stats bar (40+ ans, 4.9 Google, 6j/7, 100% conseil)
 
 ### Ordre Services
+
+Ordre de lecture de `.hero-services-grid` (3 colonnes desktop, 2 rangees) :
 
 1. Delivrance d'ordonnances
 2. Parapharmacie
