@@ -76,6 +76,16 @@ git add [fichiers] && git commit -m "Message" && git push origin main
 
 ## Changelog
 
+### 4 Août 2026
+
+**Homepage — hero et services fusionnés en un seul bloc (commits `7a23fee`, `ea8791e`) :**
+- Le hero et la section « On s'occupe de Vous » ne forment plus qu'une seule `<section class="hero">`, sur un aplat `--pastel-sage`. Ordre des services remis sur celui documenté dans [`CLAUDE.md`](CLAUDE.md) (Ordonnances → Livraison), que le deck inversait.
+- Six marqueurs de page générée retirés : badge-pilule au-dessus du H1, capsules de stats en verre dépoli, blobs radiaux du fond, cartes icône+titre+texte, CTA `btn-secondary` délavé (→ `btn-primary` teal), deck empilé `skewY(-7deg)`.
+- Les 6 services passent en index typographique `.hero-services-index` (nom | description | flèche), 2 colonnes ≥900px.
+- Mobile (≤767px) : description et ligne de chiffres masquées, CTA centré.
+- **Supprimés :** `.services-v2`, `.dcard`, le JS « tap en deux temps », et l'emplacement de `videos/pharma-entry-4x3.mp4` (le fichier reste sur disque). ⚠️ Les entrées **21 juin** et **20 juin 2026** ci-dessous décrivent ce deck : elles ne s'appliquent plus.
+- Pièges consignés dans [`CLAUDE.md`](CLAUDE.md) § Hero Section : `style-v2.css` impose `grid-template-columns: 1fr 1fr` sur `.hero-container` et `justify-content: center` sur `.hero-cta` — les deux doivent être redéclarés dans le bloc inline.
+
 ### 1 Juillet 2026
 
 **Wiki créé :** [`../wiki/`](../wiki/) — 9 pages thématiques (site, design, blog, IG, GMB, SEO, déploiement, marques, log). README nettoyé — documentation détaillée déplacée dans le wiki.
@@ -149,5 +159,5 @@ git add [fichiers] && git commit -m "Message" && git push origin main
 
 ---
 
-**Dernière mise à jour :** 1 Juillet 2026
+**Dernière mise à jour :** 4 Août 2026
 **Statut :** En ligne sur www.pharmaciecharnal.com · Migration style-v2.css en cours
