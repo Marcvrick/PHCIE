@@ -245,7 +245,7 @@
 
         .steps-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-md); }
         .step-card { background: #FFFFFF; border: 1px solid var(--beige); border-radius: var(--radius-md); padding: var(--space-lg) var(--space-md); box-shadow: 0 6px 18px rgba(45,95,93,0.07); }
-        .step-num { width: 34px; height: 34px; border-radius: 50%; background: linear-gradient(135deg, #eaf1ee 0%, #d8e6e0 100%); color: var(--teal); font-weight: 800; font-size: 0.95rem; display: flex; align-items: center; justify-content: center; margin-bottom: 10px; }
+        .step-num { min-width: 34px; height: 34px; padding: 0 10px; border-radius: 17px; background: linear-gradient(135deg, #eaf1ee 0%, #d8e6e0 100%); color: var(--teal); font-weight: 800; font-size: 0.95rem; white-space: nowrap; display: inline-flex; align-items: center; justify-content: center; margin-bottom: 10px; }
         .step-t { font-weight: 700; color: var(--charcoal); font-size: 0.95rem; margin-bottom: 4px; }
         .step-d { font-size: 0.8rem; color: var(--gray); line-height: 1.45; }
         .step-card.is-danger .step-num { background: linear-gradient(135deg, #f7e6dc 0%, #f0d3c0 100%); color: #c0673c; }
