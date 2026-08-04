@@ -361,7 +361,7 @@ Breakpoints :
 - **≥ 900px** : `.hero-top` en 2 colonnes, index services en 2 colonnes.
 - **≤ 899px** : `.hero-top` et `.hero-lede` en `display: contents`, ordre
   H1 → photo → description → CTA → chiffres → services.
-- **≤ 767px** : description masquee. **≤ 619px** : la fleche `.svc-go` doit etre
+- **≤ 767px** : description ET ligne de chiffres masquees, CTA centre (le libelle passe sur deux lignes, `text-align: center` sur le bouton). **≤ 619px** : la fleche `.svc-go` doit etre
   placee explicitement (`grid-column: 2; grid-row: 1`), sinon elle tombe sous la
   description. **≤ 559px** : les chiffres s'empilent.
 

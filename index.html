@@ -655,14 +655,14 @@
             .hero-figure img { max-width: none; margin-left: 0; }
         }
 
-        /* Les trois chiffres ne tiennent plus sur une ligne : on les empile */
-        @media (max-width: 559px) {
-            .hero-facts { flex-direction: column; align-items: flex-start; gap: 8px; }
-            .hero-facts i { display: none; }
-        }
-
         @media (max-width: 767px) {
             .hero-description { display: none; }
+            /* Les chiffres ne tiennent pas sur une ligne et empiles ils font du bruit */
+            .hero-facts { display: none; }
+            /* Le bouton est centre ; sur les ecrans etroits le libelle passe sur
+               deux lignes, il doit rester centre lui aussi. */
+            .hero-cta { justify-content: center; }
+            .hero-cta .btn { text-align: center; }
         }
 
 
