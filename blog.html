@@ -84,50 +84,102 @@
         @media(min-width:768px){.nav-links{display:flex;gap:32px;align-items:center}.mobile-menu-toggle{display:none}}
         @media(max-width:767px){.nav-links{position:fixed;top:72px;right:0;background:#fff;width:100%;max-width:280px;flex-direction:column;padding:32px;gap:24px;box-shadow:0 8px 24px rgba(0,0,0,.1);transform:translateX(100%);transition:transform .3s ease;overflow-y:auto}.nav-links.active{display:flex;transform:translateX(0)}.nav-dropdown-menu{position:static;display:flex;flex-direction:column;gap:8px;padding-left:16px;border-left:2px solid #D4E8E0;margin-top:8px;box-shadow:none;background:transparent;list-style:none;opacity:1;border-radius:0;border-right:none;border-top:none;border-bottom:none}.nav-dropdown-toggle::after{display:none}}
 
-        /* === BLOG PAGE - HIMS-STYLE OVERRIDES === */
+        /* === BLOG « Au comptoir » — aligné sur le standard de la homepage.
+           L'accent de cette page reste la lavande #b4a6d7, la signature
+           éditoriale du blog (bouton de nav, dates, liens). === */
 
-        /* Hero overrides only */
-        .hero {
-            background: linear-gradient(180deg, var(--pastel-sage) 0%, var(--pastel-mint) 50%, var(--cream) 100%);
+        /* Tokens repris d'index.html (style-v2.css diverge sur ces valeurs) */
+        :root {
+            --cream: #FFFEF9;
+            --pastel-sage: #E8F0EA;
+            --pastel-lavender: #EDE8F5;
+            --gray-700: #374151;
+            --lavande: #b4a6d7;
+            --lavande-deep: #6E5FA0;
         }
 
-        .gradient-text {
-            background: linear-gradient(135deg, var(--teal-pro) 0%, var(--sage-natural) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+        body { background-color: var(--cream); }
+
+        /* Breadcrumb — style-v2.css n'en définit aucun, le fil d'Ariane
+           passait sous la navbar fixe et restait invisible */
+        .breadcrumb { padding-top: 88px; padding-bottom: var(--space-8); }
+        .breadcrumb-list {
+            display: flex; align-items: center; gap: var(--space-8);
+            list-style: none; padding: 0; margin: 0;
+            font-size: var(--text-sm); color: var(--gray-500);
+        }
+        .breadcrumb-list li + li::before { content: '/'; margin-right: var(--space-8); color: var(--gray-300); }
+        .breadcrumb-list a { color: var(--gray-500); text-decoration: none; transition: color var(--duration-fast) var(--ease-standard); }
+        .breadcrumb-list a:hover { color: var(--teal-pro); }
+
+        /* Hero — bandeau pastel plat, en lavande pour marquer « Au comptoir » */
+        .blog-hero {
+            background: var(--pastel-lavender);
+            padding: var(--space-48) 0 var(--space-64);
         }
 
-        /* Blog articles grid - from original style.css */
+        .blog-hero h1 {
+            font-family: var(--font-display);
+            font-size: clamp(2.6rem, 5.6vw, 4.1rem);
+            font-weight: 400;
+            line-height: 0.96;
+            letter-spacing: -0.035em;
+            text-wrap: balance;
+            color: var(--charcoal);
+            margin: 0 0 var(--space-24);
+        }
+
+        .blog-hero h1 .highlight {
+            display: block;
+            color: var(--lavande-deep);
+            font-style: italic;
+            letter-spacing: -0.03em;
+        }
+
+        .blog-hero p {
+            font-size: var(--text-lg);
+            line-height: 1.55;
+            color: var(--gray-700);
+            max-width: 46ch;
+            margin: 0;
+        }
+
+        /* Section articles */
+        .blog-section {
+            padding: var(--space-64) 0 var(--space-80);
+            background-color: var(--cream);
+        }
+
+        /* Blog articles grid */
         .blog-articles-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 48px;
+            gap: var(--space-32);
         }
 
         @media (max-width: 767px) {
             .blog-articles-grid {
                 grid-template-columns: 1fr;
-                gap: 32px;
+                gap: var(--space-24);
             }
         }
 
-        /* Blog cards - original styles preserved */
+        /* Blog cards — filets fins, plus d'ombre portée au survol */
         .blog-card {
             background-color: var(--white);
-            border: 1px solid var(--beige);
+            border: 1px solid color-mix(in srgb, var(--lavande-deep) 18%, transparent);
             border-radius: var(--radius-xl);
             overflow: hidden;
-            transition: all 0.3s ease;
+            transition: border-color var(--duration-normal) var(--ease-standard);
         }
-        .blog-card:hover {
-            transform: translateY(-8px);
-            box-shadow: var(--shadow-lg);
-            border-color: var(--sage-natural);
+        @media (hover: hover) {
+            .blog-card:hover {
+                border-color: color-mix(in srgb, var(--lavande-deep) 45%, transparent);
+            }
         }
         .blog-image-placeholder {
             height: 280px;
-            background: linear-gradient(135deg, var(--cream-warm) 0%, var(--beige) 100%);
+            background: var(--pastel-lavender);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -135,10 +187,12 @@
             cursor: pointer;
             overflow: hidden;
         }
-        .blog-card a {
+        /* Enfant DIRECT seulement : sinon ce display:block écrase le
+           inline-flex de .blog-link et la flèche tombe sous le libellé */
+        .blog-card > a {
             display: block;
         }
-        .blog-card a:hover .blog-image-placeholder img {
+        .blog-card > a:hover .blog-image-placeholder img {
             transform: scale(1.05);
             transition: transform 0.4s ease;
         }
@@ -151,20 +205,24 @@
         .blog-date {
             display: inline-block;
             padding: 6px 12px;
-            background-color: var(--cream);
-            color: var(--sage-dark);
+            background-color: var(--pastel-lavender);
+            color: var(--lavande-deep);
             border-radius: var(--radius-full);
             font-size: var(--text-sm);
             font-weight: 600;
             margin-bottom: 12px;
         }
         .blog-title {
+            font-family: var(--font-display);
             font-size: var(--text-2xl);
+            font-weight: 500;
+            line-height: 1.2;
+            letter-spacing: -0.015em;
             color: var(--charcoal);
             margin-bottom: 8px;
         }
         .blog-excerpt {
-            font-size: var(--text-lg);
+            font-size: var(--text-base);
             color: var(--gray-600);
             line-height: 1.7;
             margin-bottom: 12px;
@@ -175,10 +233,10 @@
             align-items: center;
             flex-wrap: nowrap;
             gap: 6px;
-            color: var(--teal-pro);
+            color: var(--lavande-deep);
             font-weight: 600;
             font-size: var(--text-base);
-            transition: all 0.3s ease;
+            transition: gap 0.3s ease;
         }
         .blog-link span {
             white-space: nowrap;
@@ -253,26 +311,20 @@
     </nav>
 
     <!-- Hero -->
-    <section class="hero" style="padding: 6rem 0 4rem">
-        <div class="hero-background">
-            <div class="hero-shape hero-shape-1"></div>
-            <div class="hero-shape hero-shape-2"></div>
-        </div>
+    <section class="blog-hero">
         <div class="container">
-            <div class="section-header" style="text-align: center;">
-                <span class="section-badge fade-in" style="background: #b4a6d7;">Au comptoir</span>
-                <h1 class="section-title fade-in" style="font-size: var(--text-5xl); margin-top: var(--space-16);">
-                    Conseils santé <span class="gradient-text">au comptoir</span>
-                </h1>
-                <p class="fade-in" style="font-size: var(--text-lg); color: var(--gray-600); max-width: 680px; margin: var(--space-24) auto 0;">
-                    Retrouvez nos conseils et informations pour prendre soin de votre santé au quotidien.
-                </p>
-            </div>
+            <h1>
+                Conseils santé
+                <span class="highlight">au comptoir</span>
+            </h1>
+            <p>
+                Retrouvez nos conseils et informations pour prendre soin de votre santé au quotidien.
+            </p>
         </div>
     </section>
 
     <!-- Articles -->
-    <section style="padding: var(--space-80) 0; background-color: var(--white);">
+    <section class="blog-section">
         <div class="container">
             <div class="blog-articles-grid">
 
