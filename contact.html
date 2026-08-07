@@ -61,7 +61,192 @@
         @media(min-width:768px){.nav-links{display:flex;gap:32px;align-items:center}.mobile-menu-toggle{display:none}}
         @media(max-width:767px){.nav-links{position:fixed;top:72px;right:0;background:#fff;width:100%;max-width:280px;flex-direction:column;padding:32px;gap:24px;box-shadow:0 8px 24px rgba(0,0,0,.1);transform:translateX(100%);transition:transform .3s ease;overflow-y:auto}.nav-links.active{display:flex;transform:translateX(0)}.nav-dropdown-menu{position:static;display:flex;flex-direction:column;gap:8px;padding-left:16px;border-left:2px solid #D4E8E0;margin-top:8px;box-shadow:none;background:transparent;list-style:none;opacity:1;border-radius:0;border-right:none;border-top:none;border-bottom:none}.nav-dropdown-toggle::after{display:none}}
 
-        /* === CONTACT PAGE - HIMS-STYLE OVERRIDES === */
+        /* === CONTACT — aligné sur le standard de la homepage ===
+           Fond crème, bandeau hero pastel plat, pas de badge-pilule ni de blobs,
+           filets fins, un accent de couleur par carte. */
+
+        /* Tokens repris d'index.html (style-v2.css diverge sur ces valeurs) */
+        :root {
+            --cream: #FFFEF9;
+            --pastel-sage: #E8F0EA;
+            --pastel-mint: #D4E8E0;
+            --copper: #B0732B;
+            --gray-700: #374151;
+        }
+
+        body { background-color: var(--cream); }
+
+        /* Breadcrumb — style-v2.css n'en définit aucun, le fil d'Ariane
+           passait sous la navbar fixe et restait invisible */
+        .breadcrumb { padding-top: 88px; padding-bottom: var(--space-8); }
+        .breadcrumb-list {
+            display: flex; align-items: center; gap: var(--space-8);
+            list-style: none; padding: 0; margin: 0;
+            font-size: var(--text-sm); color: var(--gray-500);
+        }
+        .breadcrumb-list li + li::before { content: '/'; margin-right: var(--space-8); color: var(--gray-300); }
+        .breadcrumb-list a { color: var(--gray-500); text-decoration: none; transition: color var(--duration-fast) var(--ease-standard); }
+        .breadcrumb-list a:hover { color: var(--teal-pro); }
+
+        /* Hero */
+        .contact-hero {
+            background: var(--pastel-sage);
+            padding: var(--space-48) 0 var(--space-64);
+        }
+
+        .contact-hero h1 {
+            font-family: var(--font-display);
+            font-size: clamp(2.6rem, 5.6vw, 4.1rem);
+            font-weight: 400;
+            line-height: 0.96;
+            letter-spacing: -0.035em;
+            text-wrap: balance;
+            color: var(--charcoal);
+            margin: 0 0 var(--space-24);
+        }
+
+        .contact-hero h1 .highlight {
+            display: block;
+            color: var(--teal-pro);
+            font-style: italic;
+            letter-spacing: -0.03em;
+        }
+
+        .contact-hero p {
+            font-size: var(--text-lg);
+            line-height: 1.55;
+            color: var(--gray-700);
+            max-width: 46ch;
+            margin: 0;
+        }
+
+        /* Section principale */
+        .contact-section {
+            padding: var(--space-64) 0 var(--space-80);
+            background-color: var(--cream);
+        }
+
+        /* Les 3 cartes d'info — un accent par carte */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: var(--space-24);
+            margin-bottom: var(--space-48);
+        }
+
+        .contact-card {
+            --card-accent: var(--teal-pro);
+            padding: var(--space-32);
+            background: var(--white);
+            border: 1px solid color-mix(in srgb, var(--card-accent) 18%, transparent);
+            border-radius: var(--radius-xl);
+            transition: border-color var(--duration-normal) var(--ease-standard);
+        }
+
+        .contact-card:nth-child(2) { --card-accent: var(--bleu-confiance); }
+        .contact-card:nth-child(3) { --card-accent: var(--copper); }
+
+        @media (hover: hover) {
+            .contact-card:hover {
+                border-color: color-mix(in srgb, var(--card-accent) 40%, transparent);
+            }
+        }
+
+        .contact-icon {
+            width: 52px;
+            height: 52px;
+            border-radius: var(--radius-lg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: var(--space-24);
+            color: var(--card-accent);
+            background: color-mix(in srgb, var(--card-accent) 12%, var(--white));
+        }
+
+        .contact-icon svg { width: 24px; height: 24px; }
+
+        .contact-title {
+            font-family: var(--font-display);
+            font-size: var(--text-xl);
+            font-weight: 500;
+            letter-spacing: -0.01em;
+            color: var(--charcoal);
+            margin-bottom: var(--space-12);
+        }
+
+        .contact-link {
+            font-family: var(--font-display);
+            font-size: var(--text-2xl);
+            font-weight: 500;
+            letter-spacing: -0.01em;
+            color: var(--card-accent);
+            text-decoration: none;
+            display: block;
+        }
+
+        .contact-text {
+            font-size: var(--text-base);
+            line-height: 1.7;
+            color: var(--gray-600);
+            margin-bottom: 0;
+        }
+
+        /* Bandeau de réassurance en pastilles */
+        .trust-bar {
+            display: flex;
+            flex-wrap: wrap;
+            gap: var(--space-8);
+            margin-bottom: var(--space-48);
+        }
+
+        .trust-bar span {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--space-8);
+            background: var(--pastel-sage);
+            border-radius: var(--radius-full);
+            padding: 8px var(--space-16);
+            font-size: var(--text-base);
+            color: var(--gray-700);
+        }
+
+        .trust-bar svg { width: 18px; height: 18px; color: var(--teal-pro); flex-shrink: 0; }
+
+        /* Carte + lien recrutement */
+        .contact-map iframe {
+            display: block;
+            border: 0;
+            border-radius: var(--radius-2xl);
+        }
+
+        .map-notice {
+            font-size: var(--text-sm);
+            line-height: 1.6;
+            color: var(--gray-600);
+            margin-top: var(--space-12);
+        }
+
+        .map-notice a { color: var(--gray-600); text-decoration: underline; }
+
+        .recrutement-cta {
+            margin-top: var(--space-32);
+            padding: var(--space-24);
+            border: 1px dashed color-mix(in srgb, var(--teal-pro) 25%, transparent);
+            border-radius: var(--radius-lg);
+            font-size: var(--text-lg);
+            color: var(--gray-700);
+        }
+
+        .recrutement-cta a {
+            color: var(--teal-pro);
+            font-weight: 600;
+            text-decoration: underline;
+            text-underline-offset: 3px;
+            text-decoration-color: color-mix(in srgb, var(--teal-pro) 35%, transparent);
+        }
+
+        .recrutement-cta a:hover { text-decoration-color: var(--teal-pro); }
 
         /* Pourquoi nous choisir - mobile only */
         .contact-bento-mobile { display: none; }
@@ -75,12 +260,16 @@
                 text-align: center;
                 margin-bottom: var(--space-32);
             }
-            .contact-bento-mobile .section-badge {
-                display: inline-block;
-                margin-bottom: var(--space-12);
-            }
             .contact-bento-mobile .section-title {
+                font-family: var(--font-display);
                 font-size: var(--text-2xl);
+                font-weight: 400;
+                line-height: 1.15;
+                letter-spacing: -0.02em;
+            }
+            .contact-bento-mobile .section-title em {
+                font-style: italic;
+                color: var(--teal-pro);
             }
             .contact-bento-grid {
                 display: grid;
@@ -90,7 +279,7 @@
             .contact-bento-featured {
                 grid-column: span 2;
                 padding: var(--space-32);
-                background: linear-gradient(135deg, var(--teal-pro) 0%, var(--sage-natural) 100%);
+                background: var(--teal-pro);
                 border-radius: var(--radius-xl);
                 color: var(--white);
                 display: flex;
@@ -100,21 +289,12 @@
                 position: relative;
                 overflow: hidden;
             }
-            .contact-bento-featured::before {
-                content: '';
-                position: absolute;
-                top: -50%;
-                right: -30%;
-                width: 200px;
-                height: 200px;
-                background: rgba(255, 255, 255, 0.12);
-                border-radius: 50%;
-            }
             .contact-bento-featured .bento-num {
                 font-family: var(--font-display);
                 font-size: 3rem;
-                font-weight: 700;
-                opacity: 0.25;
+                font-weight: 400;
+                font-style: italic;
+                opacity: 0.3;
                 position: absolute;
                 top: var(--space-12);
                 right: var(--space-32);
@@ -162,18 +342,6 @@
                 margin-bottom: 0;
                 line-height: 1.6;
             }
-        }
-
-        /* Contact Hero overrides */
-        .hero {
-            background: linear-gradient(180deg, var(--pastel-sage) 0%, var(--pastel-mint) 50%, var(--cream) 100%);
-        }
-
-        .gradient-text {
-            background: linear-gradient(135deg, var(--teal-pro) 0%, var(--sage-natural) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
         }
     </style>
 
@@ -263,68 +431,59 @@
     </nav>
 
     <!-- Hero -->
-    <section class="hero" style="padding: 6rem 0 4rem">
-        <div class="hero-background">
-            <div class="hero-shape hero-shape-1"></div>
-            <div class="hero-shape hero-shape-2"></div>
-        </div>
+    <section class="contact-hero">
         <div class="container">
-            <div class="section-header" style="text-align: center;">
-                <span class="section-badge fade-in">Contact</span>
-                <h1 class="section-title fade-in" style="font-size: var(--text-5xl); margin-top: var(--space-16);">
-                    Nous sommes là<br>
-                    <span class="gradient-text">pour vous accompagner</span>
-                </h1>
-                <p class="fade-in" style="font-size: var(--text-lg); color: var(--gray-600); max-width: 680px; margin: var(--space-24) auto 0;">
-                    Une question? un besoin particulier? Notre équipe est à votre écoute.
-                </p>
-            </div>
+            <h1>
+                Nous sommes là
+                <span class="highlight">pour vous accompagner</span>
+            </h1>
+            <p>
+                Une question? un besoin particulier? Notre équipe est à votre écoute.
+            </p>
         </div>
     </section>
 
     <!-- Contact Info -->
-    <section class="contact-section" style="padding: var(--space-80) 0; background-color: var(--white);">
+    <section class="contact-section">
         <div class="container">
-            <div class="contact-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: var(--space-48); margin-bottom: var(--space-80);">
+            <div class="contact-grid">
 
                 <!-- Téléphone -->
-                <div class="contact-card fade-up" style="padding: var(--space-32); background: var(--cream); border-radius: var(--radius-xl); text-align: center;">
-                    <div class="contact-icon" style="width: 64px; height: 64px; background: linear-gradient(135deg, var(--teal-pro) 0%, var(--sage-natural) 100%); border-radius: var(--radius-full); display: flex; align-items: center; justify-content: center; margin: 0 auto var(--space-24);">
-                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" style="color: var(--white);">
+                <div class="contact-card fade-up">
+                    <div class="contact-icon">
+                        <svg viewBox="0 0 24 24" fill="none">
                             <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                         </svg>
                     </div>
-                    <h3 class="contact-title" style="font-size: var(--text-xl); margin-bottom: var(--space-12); color: var(--charcoal);">Téléphone</h3>
-                    <a href="tel:0297050931" class="contact-link" style="font-size: var(--text-xl); font-weight: 600; color: var(--teal-pro); text-decoration: none; display: block;">
-                        02 97 05 09 31
-                    </a>
+                    <h2 class="contact-title">Téléphone</h2>
+                    <a href="tel:0297050931" class="contact-link">02 97 05 09 31</a>
                 </div>
 
                 <!-- Adresse -->
-                <div class="contact-card fade-up" style="padding: var(--space-32); background: var(--cream); border-radius: var(--radius-xl); text-align: center; animation-delay: 0.1s;">
-                    <div class="contact-icon" style="width: 64px; height: 64px; background: linear-gradient(135deg, var(--teal-pro) 0%, var(--sage-natural) 100%); border-radius: var(--radius-full); display: flex; align-items: center; justify-content: center; margin: 0 auto var(--space-24);">
-                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" style="color: var(--white);">
+                <div class="contact-card fade-up" style="animation-delay: 0.1s;">
+                    <div class="contact-icon">
+                        <svg viewBox="0 0 24 24" fill="none">
                             <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                             <circle cx="12" cy="10" r="3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                         </svg>
                     </div>
-                    <h3 class="contact-title" style="font-size: var(--text-xl); margin-bottom: var(--space-12); color: var(--charcoal);">Adresse</h3>
-                    <p class="contact-text" style="font-size: var(--text-lg); color: var(--gray-600); margin-bottom: 0; line-height: 1.6;">
+                    <h2 class="contact-title">Adresse</h2>
+                    <p class="contact-text">
                         32 Place de Toulouse<br>
                         56530 Quéven
                     </p>
                 </div>
 
                 <!-- Horaires -->
-                <div class="contact-card fade-up" style="padding: var(--space-32); background: var(--cream); border-radius: var(--radius-xl); text-align: center; animation-delay: 0.2s;">
-                    <div class="contact-icon" style="width: 64px; height: 64px; background: linear-gradient(135deg, var(--teal-pro) 0%, var(--sage-natural) 100%); border-radius: var(--radius-full); display: flex; align-items: center; justify-content: center; margin: 0 auto var(--space-24);">
-                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" style="color: var(--white);">
+                <div class="contact-card fade-up" style="animation-delay: 0.2s;">
+                    <div class="contact-icon">
+                        <svg viewBox="0 0 24 24" fill="none">
                             <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/>
                             <path d="M12 6v6l4 2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
                         </svg>
                     </div>
-                    <h3 class="contact-title" style="font-size: var(--text-xl); margin-bottom: var(--space-12); color: var(--charcoal);">Horaires</h3>
-                    <p class="contact-text" style="font-size: var(--text-lg); color: var(--gray-600); margin-bottom: 0; line-height: 1.6;">
+                    <h2 class="contact-title">Horaires</h2>
+                    <p class="contact-text">
                         Lun-Ven: 9h-12h30 / 14h-19h15<br>
                         Sam: 9h-12h30<br>
                         Dim: Fermé
@@ -332,31 +491,30 @@
                 </div>
             </div>
 
-            <!-- Trust Bar -->
-            <div class="fade-up" style="display: flex; flex-wrap: wrap; justify-content: center; gap: 14px; margin-bottom: var(--space-48);">
-                <div style="display: inline-flex; align-items: center; gap: 10px; background: rgba(255,255,255,0.7); border: 1px solid rgba(45,95,93,0.12); border-radius: 9999px; padding: 10px 22px;">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#2D5F5D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-                    <span style="font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 500; color: #1F2121;">Conseil confidentiel</span>
-                </div>
-                <div style="display: inline-flex; align-items: center; gap: 10px; background: rgba(255,255,255,0.7); border: 1px solid rgba(45,95,93,0.12); border-radius: 9999px; padding: 10px 22px;">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#2D5F5D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
-                    <span style="font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 500; color: #1F2121;">Du Lundi au Samedi</span>
-                </div>
-                <div style="display: inline-flex; align-items: center; gap: 10px; background: rgba(255,255,255,0.7); border: 1px solid rgba(45,95,93,0.12); border-radius: 9999px; padding: 10px 22px;">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#2D5F5D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-1a3 3 0 0 0-3-3H8"/><path d="M16 12h-1a3 3 0 0 0-3 3"/><circle cx="12" cy="8" r="2"/></svg>
-                    <span style="font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 500; color: #1F2121;">Accessible &agrave; tous</span>
-                </div>
-                <div style="display: inline-flex; align-items: center; gap: 10px; background: rgba(255,255,255,0.7); border: 1px solid rgba(45,95,93,0.12); border-radius: 9999px; padding: 10px 22px;">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#2D5F5D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M9 17V7h4a4 4 0 0 1 0 8H9"/></svg>
-                    <span style="font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 500; color: #1F2121;">Parking 5 places clients</span>
-                </div>
+            <!-- Réassurance -->
+            <div class="trust-bar fade-up">
+                <span>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                    Conseil confidentiel
+                </span>
+                <span>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+                    Du lundi au samedi
+                </span>
+                <span>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-1a3 3 0 0 0-3-3H8"/><path d="M16 12h-1a3 3 0 0 0-3 3"/><circle cx="12" cy="8" r="2"/></svg>
+                    Accessible &agrave; tous
+                </span>
+                <span>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M9 17V7h4a4 4 0 0 1 0 8H9"/></svg>
+                    Parking 5 places clients
+                </span>
             </div>
 
             <!-- Pourquoi nous choisir - mobile only -->
             <div class="contact-bento-mobile fade-up">
                 <div class="section-header">
-                    <span class="section-badge">Pourquoi nous choisir</span>
-                    <h2 class="section-title">Une pharmacie familiale à votre écoute</h2>
+                    <h2 class="section-title">Une pharmacie familiale <em>à votre écoute</em></h2>
                 </div>
                 <div class="contact-bento-grid">
                     <div class="contact-bento-featured">
@@ -380,26 +538,25 @@
             </div>
 
             <!-- Google Maps -->
-            <div class="fade-up" style="animation-delay: 0.25s;">
+            <div class="contact-map fade-up" style="animation-delay: 0.25s;">
                 <iframe
                     src="https://www.google.com/maps?q=Pharmacie+Charnal,10+Place+de+la+Ville+de+Toulouse,56530+Quéven&output=embed"
                     width="100%"
                     height="400"
-                    style="border:0; border-radius: var(--radius-2xl);"
                     allowfullscreen=""
                     loading="lazy"
                     referrerpolicy="no-referrer-when-downgrade"
                     title="Localisation Pharmacie Charnal - 10 Place de la Ville de Toulouse, 56530 Quéven">
                 </iframe>
                 <!-- Notice RGPD -->
-                <p style="font-size: 13px; color: var(--gray-600); margin-top: var(--space-12); text-align: center; line-height: 1.5;">
-                    La carte ci-dessous utilise Google Maps. En la consultant, votre adresse IP sera transmise à Google pour afficher la carte.
-                    <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer" style="color: var(--gray-600); text-decoration: underline;">Plus d'infos sur la politique de confidentialité Google</a>.
+                <p class="map-notice">
+                    Cette carte utilise Google Maps. En la consultant, votre adresse IP sera transmise à Google pour afficher la carte.
+                    <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">Plus d'infos sur la politique de confidentialité Google</a>.
                 </p>
 
                 <!-- Lien recrutement -->
-                <p style="text-align: center; margin-top: var(--space-32); font-size: var(--text-lg); color: var(--teal-pro);">
-                    Vous souhaitez nous envoyer votre CV? <a href="recrutement-preparatrice-pharmacie-queven.html" style="color: var(--teal-pro); text-decoration: underline;">C'est par ici</a>
+                <p class="recrutement-cta">
+                    Vous souhaitez nous envoyer votre CV? <a href="recrutement-preparatrice-pharmacie-queven.html">C'est par ici</a>
                 </p>
             </div>
         </div>

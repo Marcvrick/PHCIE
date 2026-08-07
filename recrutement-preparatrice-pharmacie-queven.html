@@ -105,99 +105,139 @@
             background-color: rgba(45, 95, 93, 0.1) !important;
         }
 
-        /* Styles spécifiques à la page recrutement */
+        /* === RECRUTEMENT — aligné sur le standard de la homepage ===
+           Fond crème, bandeau hero pastel plat, pas de badge en dégradé ni de
+           blob flouté, filets fins, un accent de couleur par section. */
+
+        /* Tokens repris d'index.html (style-v2.css diverge sur ces valeurs) */
+        :root {
+            --cream: #FFFEF9;
+            --pastel-sage: #E8F0EA;
+            --pastel-mint: #D4E8E0;
+            --copper: #B0732B;
+            --gray-700: #374151;
+        }
+
+        body { background-color: var(--cream); }
+
+        /* Breadcrumb — style-v2.css n'en définit aucun */
+        .breadcrumb { padding-top: 88px; padding-bottom: var(--space-8); }
+        .breadcrumb-list {
+            display: flex; align-items: center; gap: var(--space-8);
+            list-style: none; padding: 0; margin: 0;
+            font-size: var(--text-sm); color: var(--gray-500);
+        }
+        .breadcrumb-list li + li::before { content: '/'; margin-right: var(--space-8); color: var(--gray-300); }
+        .breadcrumb-list a { color: var(--gray-500); text-decoration: none; transition: color var(--duration-fast) var(--ease-standard); }
+        .breadcrumb-list a:hover { color: var(--teal-pro); }
+
+        /* Hero */
         .job-hero {
-            padding: var(--space-80) 0;
-            background: linear-gradient(180deg, var(--pastel-sage) 0%, var(--pastel-mint) 50%, var(--cream) 100%);
+            padding: var(--space-48) 0 var(--space-64);
+            background: var(--pastel-sage);
             position: relative;
-            overflow: hidden;
         }
 
-        .job-hero::before {
-            content: '';
-            position: absolute;
-            top: -100px;
-            right: -100px;
-            width: 400px;
-            height: 400px;
-            background: var(--sage-natural);
-            border-radius: 50%;
-            opacity: 0.08;
-            filter: blur(60px);
-        }
-
-        .job-hero-content {
-            max-width: 800px;
-            margin: 0 auto;
-            text-align: center;
-        }
-
-        .job-badge {
+        .job-eyebrow {
             display: inline-flex;
             align-items: center;
             gap: var(--space-8);
-            padding: var(--space-8) var(--space-16);
-            background: linear-gradient(135deg, var(--teal-pro) 0%, var(--sage-natural) 100%);
-            color: var(--white);
-            border-radius: var(--radius-full);
             font-size: var(--text-sm);
             font-weight: 600;
-            margin-bottom: var(--space-24);
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--teal-pro);
+            margin-bottom: var(--space-16);
         }
+
+        .job-eyebrow svg { width: 16px; height: 16px; }
 
         .job-title {
-            font-size: var(--text-4xl);
-            font-weight: 700;
+            font-family: var(--font-display);
+            font-size: clamp(2.4rem, 5.2vw, 3.6rem);
+            font-weight: 400;
+            line-height: 0.98;
+            letter-spacing: -0.035em;
+            text-wrap: balance;
+            color: var(--charcoal);
             margin-bottom: var(--space-16);
-            line-height: 1.2;
         }
+
+        .job-title em { font-style: italic; color: var(--teal-pro); }
 
         .job-subtitle {
-            font-size: var(--text-xl);
-            color: var(--gray-600);
-            max-width: 600px;
-            margin: 0 auto var(--space-24);
+            font-size: var(--text-lg);
+            line-height: 1.55;
+            color: var(--gray-700);
+            max-width: 52ch;
+            margin: 0 0 var(--space-24);
         }
 
+        /* Les conditions en pastilles */
         .job-meta {
             display: flex;
             flex-wrap: wrap;
-            justify-content: center;
-            gap: var(--space-24);
-            margin-top: var(--space-32);
+            gap: var(--space-8);
+            margin-top: var(--space-24);
         }
 
         .job-meta-item {
-            display: flex;
+            display: inline-flex;
             align-items: center;
             gap: var(--space-8);
-            color: var(--gray-600);
+            background: var(--white);
+            border-radius: var(--radius-full);
+            padding: 8px var(--space-16);
+            color: var(--gray-700);
             font-size: var(--text-base);
         }
 
         .job-meta-item svg {
-            width: 20px;
-            height: 20px;
-            color: var(--sage-natural);
+            width: 18px;
+            height: 18px;
+            color: var(--teal-pro);
+            flex-shrink: 0;
         }
 
-        /* Sections de contenu */
+        /* Contenu : 2 colonnes, la candidature reste visible à droite */
         .job-content {
-            padding: var(--space-80) 0;
+            padding: var(--space-64) 0 var(--space-80);
+        }
+
+        .job-layout {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: var(--space-48);
+            align-items: start;
+        }
+
+        @media (min-width: 960px) {
+            .job-layout {
+                grid-template-columns: minmax(0, 1fr) minmax(300px, 340px);
+                gap: var(--space-64);
+            }
+            .job-aside { position: sticky; top: 96px; }
         }
 
         .job-section {
-            max-width: 800px;
-            margin: 0 auto var(--space-80);
+            --card-accent: var(--teal-pro);
+            margin: 0 0 var(--space-48);
         }
+
+        .job-section:nth-of-type(2) { --card-accent: var(--sage-dark); }
+        .job-section:nth-of-type(3) { --card-accent: var(--bleu-confiance); }
+        .job-section:nth-of-type(4) { --card-accent: var(--copper); }
 
         .job-section:last-child {
             margin-bottom: 0;
         }
 
         .job-section-title {
+            font-family: var(--font-display);
             font-size: var(--text-2xl);
-            margin-bottom: var(--space-24);
+            font-weight: 400;
+            letter-spacing: -0.02em;
+            margin-bottom: var(--space-16);
             color: var(--charcoal);
             display: flex;
             align-items: center;
@@ -205,16 +245,17 @@
         }
 
         .job-section-title svg {
-            width: 28px;
-            height: 28px;
-            color: var(--sage-natural);
+            width: 24px;
+            height: 24px;
+            color: var(--card-accent);
+            flex-shrink: 0;
         }
 
         .job-section-content {
             background: var(--white);
             padding: var(--space-32);
             border-radius: var(--radius-xl);
-            border: 1px solid var(--beige);
+            border: 1px solid color-mix(in srgb, var(--card-accent) 18%, transparent);
         }
 
         .job-list {
@@ -240,10 +281,74 @@
             position: absolute;
             left: 0;
             top: 10px;
-            width: 8px;
-            height: 8px;
-            background: var(--sage-natural);
+            width: 7px;
+            height: 7px;
+            background: var(--card-accent, var(--teal-pro));
             border-radius: 50%;
+        }
+
+        /* Encart candidature, colonne de droite */
+        .apply-card {
+            background: var(--pastel-mint);
+            border: 1px solid color-mix(in srgb, var(--teal-pro) 20%, transparent);
+            border-radius: var(--radius-xl);
+            padding: var(--space-32) var(--space-24);
+        }
+
+        .apply-card h2 {
+            font-family: var(--font-display);
+            font-size: var(--text-xl);
+            font-weight: 500;
+            letter-spacing: -0.01em;
+            color: var(--charcoal);
+            margin-bottom: var(--space-8);
+        }
+
+        .apply-card > p {
+            font-size: var(--text-base);
+            line-height: 1.6;
+            color: var(--gray-700);
+            margin-bottom: var(--space-24);
+        }
+
+        .apply-card .btn { width: 100%; margin-bottom: var(--space-12); }
+        .apply-card .btn svg { width: 18px; height: 18px; }
+
+        .apply-visit {
+            font-size: var(--text-base);
+            line-height: 1.6;
+            color: var(--gray-700);
+            padding-top: var(--space-16);
+            border-top: 1px solid color-mix(in srgb, var(--teal-pro) 18%, transparent);
+        }
+
+        .apply-visit strong { color: var(--charcoal); }
+
+        .apply-steps {
+            list-style: none;
+            padding: 0;
+            margin: var(--space-16) 0 0;
+            font-size: var(--text-sm);
+            color: var(--gray-600);
+        }
+
+        .apply-steps li {
+            position: relative;
+            padding-left: var(--space-24);
+            margin-bottom: var(--space-8);
+            line-height: 1.5;
+        }
+
+        .apply-steps li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 7px;
+            width: 6px;
+            height: 6px;
+            background: var(--teal-pro);
+            border-radius: 50%;
+            opacity: 0.55;
         }
 
         /* Avantages avec icônes */
@@ -259,41 +364,43 @@
             gap: var(--space-16);
             padding: var(--space-16);
             background: var(--cream);
+            border: 1px solid color-mix(in srgb, var(--card-accent, var(--teal-pro)) 15%, transparent);
             border-radius: var(--radius-lg);
         }
 
         .benefit-icon {
-            width: 48px;
-            height: 48px;
-            background: linear-gradient(135deg, var(--teal-pro) 0%, var(--sage-natural) 100%);
+            width: 44px;
+            height: 44px;
+            color: var(--card-accent, var(--teal-pro));
+            background: color-mix(in srgb, var(--card-accent, var(--teal-pro)) 12%, var(--white));
             border-radius: var(--radius-base);
-            padding: 12px;
+            padding: 11px;
             flex-shrink: 0;
         }
 
         .benefit-icon svg {
             width: 100%;
             height: 100%;
-            color: var(--white);
         }
 
         .benefit-text h4 {
-            font-size: var(--text-base);
-            font-weight: 600;
+            font-family: var(--font-display);
+            font-size: var(--text-lg);
+            font-weight: 500;
             color: var(--charcoal);
             margin-bottom: var(--space-8);
         }
 
         .benefit-text p {
-            font-size: var(--text-sm);
+            font-size: var(--text-base);
             color: var(--gray-600);
             margin: 0;
-            line-height: 1.5;
+            line-height: 1.6;
         }
 
         /* Section CTA */
         .job-cta {
-            background: linear-gradient(135deg, var(--teal-pro) 0%, var(--sage-dark) 100%);
+            background: var(--teal-pro);
             padding: var(--space-80) 0;
             text-align: center;
             color: var(--white);
@@ -612,15 +719,15 @@
     <section class="job-hero">
         <div class="container">
             <div class="job-hero-content fade-in">
-                <span class="job-badge">
-                    <svg viewBox="0 0 24 24" fill="none" width="16" height="16">
+                <span class="job-eyebrow">
+                    <svg viewBox="0 0 24 24" fill="none">
                         <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
                         <circle cx="12" cy="7" r="4" stroke="currentColor" stroke-width="2"/>
                     </svg>
                     Nous recrutons
                 </span>
                 <h1 class="job-title">
-                    Préparatrice/teur en pharmacie
+                    Préparatrice/teur <em>en pharmacie</em>
                 </h1>
                 <p class="job-subtitle">
                     Rejoignez une équipe soudée et passionnée au service des patients de Quéven et du bassin lorientais.
@@ -655,6 +762,8 @@
     <!-- Contenu principal -->
     <section class="job-content">
         <div class="container">
+          <div class="job-layout">
+            <div class="job-main">
 
             <!-- Présentation de la pharmacie -->
             <div class="job-section fade-up">
@@ -853,6 +962,31 @@
                 </div>
             </div>
 
+            </div><!-- /.job-main -->
+
+            <!-- Candidature : reste visible pendant la lecture de l'annonce -->
+            <aside class="job-aside">
+                <div class="apply-card">
+                    <h2>Candidater</h2>
+                    <p>Réponse assurée sous 48h.</p>
+                    <a href="mailto:pharmacie.charnal@gmail.com" class="btn btn-primary">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg>
+                        Envoyer mon CV
+                    </a>
+                    <div class="apply-visit">
+                        Ou passez le déposer directement à la pharmacie :<br>
+                        <strong>32 Place de Toulouse, 56530 Quéven</strong>
+                        <ul class="apply-steps">
+                            <li>Réponse sous 48h</li>
+                            <li>Entretien téléphonique</li>
+                            <li>Rencontre à la pharmacie</li>
+                            <li>Décision rapide</li>
+                        </ul>
+                    </div>
+                </div>
+            </aside>
+
+          </div><!-- /.job-layout -->
         </div>
     </section>
 
