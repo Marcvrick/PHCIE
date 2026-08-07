@@ -182,19 +182,43 @@
             margin: 0;
         }
 
-        /* Today Guard Section */
-        .today-guard-section {
-            background: var(--pastel-mint);
-            padding: var(--space-80) 0;
+        /* === BLOC PRINCIPAL — 2 colonnes : l'action à gauche, l'explication à droite.
+           Remplace l'ancienne colonne de 800px centrée + la carte 3237 isolée
+           dans un bandeau pleine largeur, qui laissaient de grandes marges vides. */
+        .garde-main {
+            background: var(--cream);
+            padding: var(--space-64) 0 var(--space-80);
         }
 
+        .garde-layout {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: var(--space-48);
+            align-items: start;
+        }
+
+        @media (min-width: 900px) {
+            .garde-layout {
+                grid-template-columns: minmax(300px, 360px) minmax(0, 1fr);
+                gap: var(--space-64);
+            }
+            /* la colonne d'action suit la lecture */
+            .garde-action { position: sticky; top: 96px; }
+        }
+
+        .garde-action {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-16);
+        }
+
+        /* Carte "garde aujourd'hui" */
         .today-guard-card {
             background: var(--white);
             border: 1px solid color-mix(in srgb, var(--teal-pro) 18%, transparent);
+            border-left: 3px solid var(--teal-pro);
             border-radius: var(--radius-xl);
-            padding: var(--space-48);
-            max-width: 500px;
-            margin: 0 auto;
+            padding: var(--space-32) var(--space-24);
             text-align: center;
         }
 
@@ -239,44 +263,140 @@
             letter-spacing: 0.02em;
         }
 
-        /* 3237 Info Box */
-        .info-3237 {
-            background: var(--white);
+        /* Carte d'appel 3237 — l'action principale de la page */
+        .call-card {
+            background: var(--pastel-mint);
+            border: 1px solid color-mix(in srgb, var(--teal-pro) 20%, transparent);
             border-radius: var(--radius-xl);
-            padding: var(--space-48);
-            max-width: 600px;
-            margin: 0 auto;
+            padding: var(--space-32) var(--space-24);
             text-align: center;
-            border: 1px solid color-mix(in srgb, var(--teal-pro) 18%, transparent);
         }
 
-        .info-3237 p {
+        .call-card-label {
+            font-size: var(--text-base);
+            color: var(--gray-700);
+            margin-bottom: var(--space-8);
+        }
+
+        .call-card-number {
+            display: block;
+            font-family: var(--font-display);
+            font-size: 3.4rem;
+            font-weight: 500;
+            line-height: 1;
+            letter-spacing: -0.02em;
+            color: var(--teal-pro);
+            text-decoration: none;
+        }
+
+        .call-card-note {
+            font-size: var(--text-sm);
             color: var(--gray-600);
+            margin-top: var(--space-8);
+            margin-bottom: var(--space-24);
+        }
+
+        .call-card-btn { width: 100%; }
+        .call-card-btn svg { width: 18px; height: 18px; }
+
+        /* Rappel urgence vitale */
+        .urgence-note {
+            font-size: var(--text-sm);
+            line-height: 1.6;
+            color: var(--gray-600);
+            padding: var(--space-16);
+            border: 1px dashed color-mix(in srgb, var(--teal-pro) 25%, transparent);
+            border-radius: var(--radius-lg);
+        }
+
+        .urgence-note strong { color: var(--charcoal); }
+
+        /* Colonne explication */
+        .garde-lede {
             font-size: var(--text-lg);
+            line-height: 1.7;
+            color: var(--gray-700);
+            margin-bottom: var(--space-32);
+        }
+
+        /* auto-fit plutôt qu'un media query : la colonne de droite se rétrécit
+           avant le viewport, les cartes doivent se réempiler sur SA largeur */
+        .garde-modes {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: var(--space-24);
+            margin-bottom: var(--space-48);
+        }
+
+        .garde-mode {
+            --card-accent: var(--copper);
+            background: var(--white);
+            border: 1px solid color-mix(in srgb, var(--card-accent) 20%, transparent);
+            border-radius: var(--radius-xl);
+            padding: var(--space-24);
+        }
+
+        .garde-mode--nuit { --card-accent: var(--bleu-confiance); }
+
+        .garde-mode-title {
+            font-family: var(--font-display);
+            font-size: var(--text-xl);
+            font-weight: 500;
+            color: var(--card-accent);
+            margin-bottom: 2px;
+        }
+
+        .garde-mode-hours {
+            font-size: var(--text-sm);
+            font-weight: 600;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+            color: var(--gray-500);
+            margin-bottom: var(--space-12);
+        }
+
+        .garde-mode p {
+            font-size: var(--text-base);
+            line-height: 1.65;
+            color: var(--gray-600);
+            margin: 0;
+        }
+
+        .garde-communes-title {
+            font-family: var(--font-display);
+            font-size: clamp(1.4rem, 2.2vw, 1.75rem);
+            font-weight: 400;
+            line-height: 1.1;
+            letter-spacing: -0.02em;
+            color: var(--charcoal);
             margin-bottom: var(--space-16);
         }
 
-        .info-3237 .number-3237 {
-            font-family: var(--font-display);
-            font-size: var(--text-5xl);
-            font-weight: 500;
-            color: var(--teal-pro);
+        .garde-communes-title em { font-style: italic; color: var(--teal-pro); }
+
+        /* Les communes en pastilles : scannable, et ça occupe la largeur */
+        .communes-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: var(--space-8);
+            list-style: none;
+            padding: 0;
+            margin: 0 0 var(--space-24);
         }
 
-        .info-3237 .number-3237 a {
-            color: inherit;
-            text-decoration: none;
-            transition: color var(--duration-normal) var(--ease-standard);
-        }
-
-        .info-3237 .number-3237 a:hover {
-            color: var(--teal-light);
-        }
-
-        .info-3237 .note {
+        .communes-list li {
             font-size: var(--text-base);
-            color: var(--gray-500);
-            margin-top: var(--space-16);
+            color: var(--gray-700);
+            background: var(--pastel-sage);
+            border-radius: var(--radius-full);
+            padding: 6px var(--space-16);
+        }
+
+        .communes-note {
+            font-size: var(--text-base);
+            line-height: 1.7;
+            color: var(--gray-600);
+            margin: 0;
         }
 
         /* FAQ Section */
@@ -298,16 +418,21 @@
 
         .faq-section h2 em { font-style: italic; color: var(--teal-pro); }
 
+        /* 2 colonnes sur large écran : une colonne de 700px centrée laissait
+           de grandes marges vides de chaque côté */
         .faq-list {
-            max-width: 700px;
+            max-width: 1100px;
             margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: var(--space-12);
+            align-items: start;
         }
 
         .faq-item {
             background: var(--white);
             border: 1px solid color-mix(in srgb, var(--teal-pro) 16%, transparent);
             border-radius: var(--radius-lg);
-            margin-bottom: var(--space-12);
             overflow: hidden;
             transition: border-color var(--duration-normal) var(--ease-standard);
         }
@@ -371,20 +496,15 @@
         /* Responsive */
         @media (max-width: 768px) {
             .gardes-hero {
-                padding: var(--space-64) 0 var(--space-48);
+                padding: var(--space-32) 0 var(--space-48);
             }
 
-            .today-guard-section {
-                padding: var(--space-48) var(--space-16);
+            .garde-main {
+                padding: var(--space-48) 0 var(--space-64);
             }
 
-            .info-3237 {
-                margin: 0 var(--space-16);
-                padding: var(--space-32);
-            }
-
-            .today-guard-card {
-                padding: var(--space-32);
+            .call-card-number {
+                font-size: 3rem;
             }
 
             .today-guard-pharmacie {
@@ -525,42 +645,68 @@
         </div>
     </section>
 
-    <!-- Intro Section -->
-    <section style="background: var(--cream); padding: var(--space-64) 0;">
-        <div class="container" style="max-width: 800px;">
-            <p style="font-size: var(--text-lg); color: var(--gray-700); line-height: 1.7; margin-bottom: var(--space-24);">
-                Vous cherchez une <strong>pharmacie de garde près de Quéven, Hennebont, Lorient, Guidel ou Lanester</strong> ? Notre secteur de garde, le N°561021, regroupe 19 communes du sud-Morbihan et propose une permanence pharmaceutique 24h/24, 7j/7.
-            </p>
-            <p style="font-size: var(--text-base); color: var(--gray-600); line-height: 1.7; margin-bottom: var(--space-24);">
-                <strong>Pour la garde de jour</strong> (dimanches et jours fériés, 9h-19h) : la pharmacie désignée est ouverte normalement. <strong>Pour la garde de nuit</strong> (19h-9h) : l'accès se fait sur sonnette ou interphone, et seuls les médicaments urgents sont délivrés.
-            </p>
-            <p style="font-size: var(--text-base); color: var(--gray-600); line-height: 1.7; margin-bottom: var(--space-32);">
-                <strong>Communes couvertes :</strong> Quéven, Hennebont, Guidel, Lanester, Gestel, Caudan, Cléguer, Inzinzac-Lochrist, Languidic, Pont-Scorff, Plouay, Ploemeur, Riantec, Locmiquélic, Port-Louis, Kervignac, Merlevenez, Plouhinec, Branderion. Les habitants de Lorient, dont la commune dispose de son propre secteur, peuvent également faire appel à notre garde lorsque celle-ci est plus proche.
-            </p>
-            <div style="background: var(--pastel-sage); padding: var(--space-24); border-radius: var(--radius-lg); border-left: 4px solid var(--teal-pro);">
-                <p style="font-size: var(--text-base); color: var(--charcoal); margin: 0;">
-                    <strong>📞 Numéro officiel 24h/24 :</strong> appelez le <a href="tel:3237" style="color: var(--teal-pro); font-weight: 600;">3237</a> (0,35€/min) — service national qui vous indique la pharmacie de garde la plus proche.
-                </p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Guard & 3237 Section -->
-    <section class="today-guard-section">
+    <!-- Trouver la garde : l'action d'abord, l'explication à côté -->
+    <section class="garde-main">
         <div class="container">
-            <div id="todayGuardSection" style="display: none; margin-bottom: var(--space-32);">
-                <div class="today-guard-card">
-                    <div class="today-guard-date" id="todayDate"></div>
-                    <div class="today-guard-pharmacie" id="todayPharmacie"></div>
-                    <div class="today-guard-ville" id="todayVille"></div>
-                    <div class="today-guard-type" id="todayType"></div>
-                    <div class="today-guard-secteur">Secteur de garde N°561021</div>
+            <div class="garde-layout">
+
+                <!-- Colonne action -->
+                <div class="garde-action">
+                    <div id="todayGuardSection" class="today-guard-card" style="display: none;">
+                        <div class="today-guard-date" id="todayDate"></div>
+                        <div class="today-guard-pharmacie" id="todayPharmacie"></div>
+                        <div class="today-guard-ville" id="todayVille"></div>
+                        <div class="today-guard-type" id="todayType"></div>
+                        <div class="today-guard-secteur">Secteur de garde N°561021</div>
+                    </div>
+
+                    <div class="call-card">
+                        <div class="call-card-label">Pour connaître la pharmacie de garde</div>
+                        <a href="tel:3237" class="call-card-number">3237</a>
+                        <div class="call-card-note">0,35&euro;/min + prix appel &middot; 24h/24, 7j/7</div>
+                        <a href="tel:3237" class="btn btn-primary call-card-btn">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                            Appeler le 3237
+                        </a>
+                    </div>
+
+                    <div class="urgence-note">
+                        En cas d'urgence vitale, appelez le <strong>15</strong> (SAMU) ou le <strong>112</strong>.
+                    </div>
                 </div>
-            </div>
-            <div class="info-3237" style="background: var(--white); max-width: 500px; margin-left: auto; margin-right: auto;">
-                <p style="font-size: var(--text-lg);">Pour connaître la pharmacie de garde, appelez le:</p>
-                <div class="number-3237" style="font-size: var(--text-4xl);"><a href="tel:3237">3237</a></div>
-                <p class="note" style="font-size: var(--text-base);">0,35€/min + prix appel</p>
+
+                <!-- Colonne explication -->
+                <div class="garde-explain">
+                    <p class="garde-lede">
+                        Vous cherchez une <strong>pharmacie de garde près de Quéven, Hennebont, Lorient, Guidel ou Lanester</strong> ? Notre secteur, le N°561021, regroupe 19 communes du sud-Morbihan et assure une permanence pharmaceutique 24h/24, 7j/7.
+                    </p>
+
+                    <div class="garde-modes">
+                        <div class="garde-mode">
+                            <div class="garde-mode-title">Garde de jour</div>
+                            <div class="garde-mode-hours">Dimanches &amp; jours fériés, 9h&ndash;19h</div>
+                            <p>La pharmacie désignée est ouverte normalement.</p>
+                        </div>
+                        <div class="garde-mode garde-mode--nuit">
+                            <div class="garde-mode-title">Garde de nuit</div>
+                            <div class="garde-mode-hours">19h&ndash;9h</div>
+                            <p>L'accès se fait sur sonnette ou interphone. Seuls les médicaments urgents sont délivrés.</p>
+                        </div>
+                    </div>
+
+                    <h2 class="garde-communes-title">Les <em>19 communes</em> du secteur</h2>
+                    <ul class="communes-list">
+                        <li>Quéven</li><li>Hennebont</li><li>Guidel</li><li>Lanester</li>
+                        <li>Gestel</li><li>Caudan</li><li>Cléguer</li><li>Inzinzac-Lochrist</li>
+                        <li>Languidic</li><li>Pont-Scorff</li><li>Plouay</li><li>Ploemeur</li>
+                        <li>Riantec</li><li>Locmiquélic</li><li>Port-Louis</li><li>Kervignac</li>
+                        <li>Merlevenez</li><li>Plouhinec</li><li>Branderion</li>
+                    </ul>
+                    <p class="communes-note">
+                        Les habitants de <strong>Lorient</strong>, dont la commune dispose de son propre secteur, peuvent également faire appel à notre garde lorsque celle-ci est plus proche.
+                    </p>
+                </div>
+
             </div>
         </div>
     </section>
