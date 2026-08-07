@@ -227,6 +227,16 @@
             height: 82vh;
         }
 
+        /* ...et latéralement: la carte sort de la colonne de lecture (800px).
+           min() + translateX garde 16px de marge sans provoquer de scroll
+           horizontal, contrairement à un 100vw qui inclut la barre de défilement. */
+        .map-container.is-large {
+            width: min(1500px, calc(100vw - 32px));
+            max-width: none;
+            margin-left: 50%;
+            transform: translateX(-50%);
+        }
+
         .map-expand {
             position: absolute;
             top: 12px;
@@ -1243,9 +1253,10 @@
         // décalait les colonnes). Sans ce paramètre, les visiteurs déjà venus
         // gardent l'ancien fichier en cache et la Pharmacie Charnal reste
         // absente de la carte.
-        Papa.parse('../professionnels-sante-queven-carte.csv?v=20260807', {
+        Papa.parse('../professionnels-sante-queven-carte.csv?v=20260807b', {
             download: true,
             header: true,
+            skipEmptyLines: true,
             complete: function(results) {
                 // Plusieurs praticiens partagent la MÊME adresse (cabinet commun:
                 // Dr Lahire et Dr Le Bouquin au 4 Rue de la Gare, etc.). Un marqueur
@@ -1276,7 +1287,12 @@
 
                 console.log('Carte:', results.data.length, 'lignes ->', lieux.size, 'points');
 
+                // Cadrer sur les praticiens réellement présents plutôt que sur
+                // un centre codé en dur: reste juste si le CSV évolue.
+                const coords = [];
+
                 lieux.forEach(function(lieu) {
+                    coords.push([lieu.lat, lieu.lng]);
                     const couleurLieu = categoryColors[lieu.fiches[0].Catégorie] || '#7C9885';
 
                     let popupContent = '<div style="font-family: var(--font-body); min-width: 210px;">';
@@ -1320,10 +1336,15 @@
                         }
                     });
 
+                    // L'itinéraire vise l'ADRESSE, pas les coordonnées: hors des
+                    // commerces référencés dans OSM, la position n'est précise
+                    // qu'à la rue. Google géocode l'adresse exacte, donc l'usage
+                    // réel (s'y rendre) ne dépend pas de cette précision.
+                    const dest = encodeURIComponent(lieu.fiches[0].Adresse);
                     popupContent += `
                             <p style="margin: 12px 0 0 0; font-size: 11px;">
-                                <a href="https://www.google.com/maps/dir/?api=1&destination=${lieu.lat},${lieu.lng}"
-                                   target="_blank"
+                                <a href="https://www.google.com/maps/dir/?api=1&destination=${dest}"
+                                   target="_blank" rel="noopener"
                                    style="color: ${couleurLieu}; text-decoration: none; font-weight: 600;">
                                     🧭 Obtenir l'itinéraire →
                                 </a>
@@ -1335,6 +1356,10 @@
                         icon: createColorIcon(couleurLieu, lieu.fiches.length)
                     }).addTo(map).bindPopup(popupContent);
                 });
+
+                if (coords.length) {
+                    map.fitBounds(coords, { padding: [45, 45], maxZoom: 17 });
+                }
             },
             error: function(error) {
                 console.error('Error loading CSV:', error);
