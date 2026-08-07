@@ -120,58 +120,82 @@
         @media(min-width:768px){.nav-links{display:flex;gap:32px;align-items:center}.mobile-menu-toggle{display:none}}
         @media(max-width:767px){.nav-links{position:fixed;top:72px;right:0;background:#fff;width:100%;max-width:280px;flex-direction:column;padding:32px;gap:24px;box-shadow:0 8px 24px rgba(0,0,0,.1);transform:translateX(100%);transition:transform .3s ease;overflow-y:auto}.nav-links.active{display:flex;transform:translateX(0)}.nav-dropdown-menu{position:static;display:flex;flex-direction:column;gap:8px;padding-left:16px;border-left:2px solid #D4E8E0;margin-top:8px;box-shadow:none;background:transparent;list-style:none;opacity:1;border-radius:0;border-right:none;border-top:none;border-bottom:none}.nav-dropdown-toggle::after{display:none}}
 
-        /* === PHARMACIE DE GARDE - HIMS-STYLE OVERRIDES === */
+        /* === PHARMACIE DE GARDE — aligné sur le standard de la homepage ===
+           Fond crème, bandeaux pastel plats, pas de dégradé ni de blob radial,
+           la typographie porte la page, filets fins plutôt que bordures pleines. */
+
+        /* Tokens repris d'index.html (style-v2.css diverge sur ces valeurs) */
+        :root {
+            --cream: #FFFEF9;
+            --pastel-sage: #E8F0EA;
+            --pastel-mint: #D4E8E0;
+            --pastel-cream: #FBF9F6;
+            --copper: #B0732B;
+            --gray-700: #374151;
+        }
+
+        body { background-color: var(--cream); }
+
+        /* Breadcrumb — style-v2.css n'en définit aucun, le fil d'Ariane
+           passait sous la navbar fixe et restait invisible */
+        .breadcrumb { padding-top: 88px; padding-bottom: var(--space-8); }
+        .breadcrumb-list {
+            display: flex; align-items: center; gap: var(--space-8);
+            list-style: none; padding: 0; margin: 0;
+            font-size: var(--text-sm); color: var(--gray-500);
+        }
+        .breadcrumb-list li + li::before { content: '/'; margin-right: var(--space-8); color: var(--gray-300); }
+        .breadcrumb-list a { color: var(--gray-500); text-decoration: none; transition: color var(--duration-fast) var(--ease-standard); }
+        .breadcrumb-list a:hover { color: var(--teal-pro); }
 
         /* Hero Section */
         .gardes-hero {
-            background: linear-gradient(135deg, var(--pastel-sage) 0%, var(--pastel-mint) 100%);
-            padding: var(--space-96) 0 var(--space-64);
+            background: var(--pastel-sage);
+            padding: var(--space-48) 0 var(--space-64);
             color: var(--charcoal);
-            text-align: center;
             position: relative;
-            overflow: hidden;
-        }
-
-        .gardes-hero::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            right: -20%;
-            width: 80%;
-            height: 200%;
-            background: radial-gradient(ellipse at center, rgba(45, 95, 93, 0.08) 0%, transparent 70%);
-            pointer-events: none;
         }
 
         .gardes-hero h1 {
             font-family: var(--font-display);
-            font-size: clamp(2.5rem, 6vw, var(--text-5xl));
-            font-weight: 500;
+            font-size: clamp(2.4rem, 5.2vw, 3.6rem);
+            font-weight: 400;
+            line-height: 0.98;
+            letter-spacing: -0.035em;
+            text-wrap: balance;
             color: var(--charcoal);
-            margin-bottom: var(--space-16);
-            position: relative;
+            margin-bottom: var(--space-24);
+        }
+
+        .gardes-hero h1 .highlight {
+            display: block;
+            color: var(--teal-pro);
+            font-style: italic;
+            letter-spacing: -0.03em;
         }
 
         .gardes-hero .subtitle {
             font-size: var(--text-lg);
-            color: var(--gray-600);
-            position: relative;
+            line-height: 1.55;
+            color: var(--gray-700);
+            max-width: 46ch;
+            margin: 0;
         }
 
         /* Today Guard Section */
         .today-guard-section {
-            background: linear-gradient(135deg, var(--teal-pro) 0%, var(--sage-dark) 100%);
+            background: var(--pastel-mint);
             padding: var(--space-80) 0;
         }
 
         .today-guard-card {
             background: var(--white);
+            border: 1px solid color-mix(in srgb, var(--teal-pro) 18%, transparent);
             border-radius: var(--radius-xl);
             padding: var(--space-48);
             max-width: 500px;
             margin: 0 auto;
             text-align: center;
-            box-shadow: var(--shadow-xl);
         }
 
         .today-guard-date {
@@ -185,6 +209,8 @@
             font-family: var(--font-display);
             font-size: var(--text-2xl);
             font-weight: 500;
+            line-height: 1.15;
+            letter-spacing: -0.02em;
             color: var(--charcoal);
             margin-bottom: var(--space-8);
         }
@@ -208,7 +234,7 @@
 
         .today-guard-secteur {
             font-size: var(--text-xs, 0.75rem);
-            color: var(--gray-400);
+            color: var(--gray-500);
             margin-top: var(--space-12);
             letter-spacing: 0.02em;
         }
@@ -221,8 +247,7 @@
             max-width: 600px;
             margin: 0 auto;
             text-align: center;
-            border: 1px solid var(--beige-dark);
-            box-shadow: var(--shadow-lg);
+            border: 1px solid color-mix(in srgb, var(--teal-pro) 18%, transparent);
         }
 
         .info-3237 p {
@@ -263,11 +288,15 @@
         .faq-section h2 {
             font-family: var(--font-display);
             text-align: center;
-            font-size: clamp(1.875rem, 4vw, var(--text-4xl));
-            font-weight: 500;
+            font-size: clamp(1.6rem, 2.6vw, 2.15rem);
+            font-weight: 400;
+            line-height: 1.1;
+            letter-spacing: -0.02em;
             color: var(--charcoal);
-            margin-bottom: var(--space-64);
+            margin-bottom: var(--space-48);
         }
+
+        .faq-section h2 em { font-style: italic; color: var(--teal-pro); }
 
         .faq-list {
             max-width: 700px;
@@ -276,15 +305,15 @@
 
         .faq-item {
             background: var(--white);
-            border: 1px solid var(--beige-dark);
+            border: 1px solid color-mix(in srgb, var(--teal-pro) 16%, transparent);
             border-radius: var(--radius-lg);
-            margin-bottom: var(--space-16);
+            margin-bottom: var(--space-12);
             overflow: hidden;
-            transition: all var(--duration-normal) var(--ease-standard);
+            transition: border-color var(--duration-normal) var(--ease-standard);
         }
 
         .faq-item:hover {
-            box-shadow: var(--shadow-md);
+            border-color: color-mix(in srgb, var(--teal-pro) 38%, transparent);
         }
 
         .faq-item summary {
@@ -488,7 +517,10 @@
     <!-- Hero -->
     <section class="gardes-hero">
         <div class="container">
-            <h1>Pharmacie de garde à Quéven, Hennebont &amp; Lorient Sud</h1>
+            <h1>
+                Pharmacie de garde
+                <span class="highlight">à Quéven, Hennebont &amp; Lorient Sud</span>
+            </h1>
             <p class="subtitle">Secteur N°561021 — Communes des Deux Vallées Scorff Blavet</p>
         </div>
     </section>
@@ -598,7 +630,7 @@
     <!-- FAQ -->
     <section class="faq-section">
         <div class="container">
-            <h2>Questions fréquentes</h2>
+            <h2>Questions <em>fréquentes</em></h2>
             <div class="faq-list">
                 <details class="faq-item">
                     <summary>Qu'est-ce qui est considéré comme une urgence pharmaceutique?</summary>
@@ -663,10 +695,10 @@
     </section>
 
     <!-- Related pages / Internal linking -->
-    <section style="background: var(--white); padding: var(--space-64) 0; border-top: 1px solid var(--gray-200);">
+    <section style="background: var(--cream); padding: var(--space-64) 0; border-top: 1px solid rgba(45, 95, 93, 0.14);">
         <div class="container" style="max-width: 900px;">
-            <h2 style="font-family: var(--font-display); font-size: var(--text-3xl); font-weight: 500; color: var(--charcoal); text-align: center; margin-bottom: var(--space-48);">
-                Aussi à la Pharmacie Charnal
+            <h2 style="font-family: var(--font-display); font-size: clamp(1.6rem, 2.6vw, 2.15rem); font-weight: 400; line-height: 1.1; letter-spacing: -0.02em; color: var(--charcoal); text-align: center; margin-bottom: var(--space-48);">
+                Aussi <em style="font-style: italic; color: var(--teal-pro);">à la Pharmacie Charnal</em>
             </h2>
             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: var(--space-24);">
                 <a href="index.html" style="background: var(--pastel-sage); padding: var(--space-24); border-radius: var(--radius-lg); text-decoration: none; color: var(--charcoal); transition: transform 0.2s ease;">
