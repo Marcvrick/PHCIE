@@ -11,11 +11,11 @@
     </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" type="image/x-icon" href="../favicon/favicon.ico">
-    <link rel="icon" type="image/png" sizes="32x32" href="../favicon/favicon-32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="../favicon/favicon-16.png">
-    <link rel="icon" type="image/png" sizes="192x192" href="../favicon/favicon-192.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="../favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/x-icon" href="../../favicon/favicon.ico">
+    <link rel="icon" type="image/png" sizes="32x32" href="../../favicon/favicon-32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../../favicon/favicon-16.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="../../favicon/favicon-192.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="../../favicon/apple-touch-icon.png">
     <meta name="description" content="Les conseils de Laure pour protéger votre peau du froid humide et du vent breton. Solutions dermocosmétiques adaptées au climat de Quéven.">
     <meta name="keywords" content="peau sèche hiver breton, vent breton, hydratation peau, climat océanique, céramides, conseil pharmacien Quéven, Bioderma Atoderm, La Roche-Posay Cicaplast">
     <title>Peau Sèche en Hiver Breton | Pharmacie Charnal Quéven</title>
@@ -51,7 +51,7 @@
     <meta name="twitter:title" content="Protéger sa peau sèche de l'hiver breton">
     <meta name="twitter:description" content="Les conseils de Laure pour protéger votre peau du froid humide et du vent breton. Solutions dermocosmétiques adaptées au climat de Quéven.">
     <meta name="twitter:image" content="https://www.pharmaciecharnal.com/images/pharmacie-charnal-logo.png">
-    <link rel="stylesheet" href="../style.css?v=5">
+    <link rel="stylesheet" href="../../style.css?v=5">
     <style>
         .article-content {
             max-width: 800px;
@@ -114,8 +114,8 @@
             font-weight: 600;
         }
         .highlight-box {
-            background: linear-gradient(135deg, var(--sage-light) 0%, var(--teal-light) 100%);
-            border-left: 4px solid var(--sage);
+            background: var(--sage-light);
+            border-left: 2px solid var(--sage);
             padding: var(--space-lg);
             border-radius: var(--radius-md);
             margin: var(--space-xl) 0;
@@ -125,8 +125,8 @@
             margin-bottom: 0;
         }
         .warning-box {
-            background: linear-gradient(135deg, #f9e5d3 0%, #f4d4ba 100%);
-            border-left: 4px solid #e8a87c;
+            background: #f9e5d3;
+            border-left: 2px solid #e8a87c;
             padding: var(--space-lg);
             border-radius: var(--radius-md);
             margin: var(--space-xl) 0;
@@ -259,15 +259,137 @@
     }
     </script>
     <link rel="alternate" type="application/rss+xml" title="Blog Pharmacie Charnal" href="https://www.pharmaciecharnal.com/feed.xml">
+
+    <!-- STANDARD-HOMEPAGE : alignement du gabarit article sur index.html.
+         On n'ecrase PAS les tokens de style.css (--cream, --sage...) : la navbar
+         legacy s'en sert. On ajoute les tokens --hp-* et on les emploie
+         explicitement. La colonne de lecture reste a 800px : sur un article
+         c'est la longueur de ligne optimale, pas une marge perdue. -->
+    <style>
+        :root {
+            --hp-cream: #FFFEF9;
+            --hp-pastel-sage: #E8F0EA;
+            --hp-teal: #2D5F5D;
+            --hp-sage-dark: #5A7563;
+            --hp-gray-700: #374151;
+        }
+
+        body { background-color: var(--hp-cream); }
+
+        /* Bandeau d'en-tete pleine largeur */
+        .article-hero {
+            background: var(--hp-pastel-sage);
+            padding: var(--space-2xl) 0;
+        }
+        .article-hero-inner {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 var(--space-lg);
+        }
+        .article-hero .article-meta {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: var(--space-sm);
+            font-size: var(--text-sm);
+            color: var(--gray);
+            margin-bottom: var(--space-md);
+        }
+        .article-hero h1 {
+            font-family: var(--font-display);
+            font-size: clamp(2.2rem, 4.6vw, 3.2rem);
+            font-weight: 400;
+            line-height: 1;
+            letter-spacing: -0.03em;
+            text-wrap: balance;
+            color: var(--charcoal);
+            margin: 0;
+            /* neutralise .gradient-text de style.css */
+            background: none;
+            -webkit-text-fill-color: currentColor;
+        }
+        .article-hero h1 em {
+            font-style: italic;
+            color: var(--hp-teal);
+        }
+        .article-intro {
+            font-size: var(--text-lg);
+            color: var(--hp-gray-700);
+            line-height: 1.55;
+            margin: var(--space-md) 0 0;
+        }
+
+        .article-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: var(--space-2xl) var(--space-lg);
+        }
+
+        /* Filets fins au lieu des bordures pleines et des ombres portees */
+        .article-body h2 {
+            font-family: var(--font-display);
+            font-weight: 500;
+            letter-spacing: -0.02em;
+            padding-bottom: var(--space-sm);
+            border-bottom: 1px solid color-mix(in srgb, var(--hp-teal) 20%, transparent);
+        }
+        .article-body h3 {
+            font-family: var(--font-display);
+            font-weight: 500;
+            color: var(--hp-teal);
+        }
+        .article-body a { color: var(--hp-teal); }
+        .article-body a:hover { color: var(--hp-sage-dark); }
+
+        .summary-box {
+            background: #FFFFFF;
+            border: 1px solid color-mix(in srgb, var(--hp-sage-dark) 20%, transparent);
+            border-left: 2px solid color-mix(in srgb, var(--hp-sage-dark) 55%, transparent);
+        }
+        .summary-box strong { color: var(--hp-teal); }
+
+        .cta-box {
+            background: var(--hp-pastel-sage);
+            border: 1px solid color-mix(in srgb, var(--hp-sage-dark) 25%, transparent);
+        }
+
+        .illus, .faq-item {
+            background: #FFFFFF;
+            border: 1px solid color-mix(in srgb, var(--hp-sage-dark) 18%, transparent);
+        }
+        .faq-question { color: var(--hp-teal); }
+
+        .data-table th { background: var(--hp-pastel-sage); color: var(--charcoal); }
+        .data-table th, .data-table td {
+            border: 1px solid color-mix(in srgb, var(--hp-sage-dark) 20%, transparent);
+        }
+
+        /* Une URL longue ne doit pas elargir la page */
+        .article-body a, .references a { overflow-wrap: anywhere; }
+
+        @media (max-width: 640px) {
+            .article-hero { padding: var(--space-xl) 0; }
+        }
+
+        /* Un tableau plus large que l'ecran defile dans son propre cadre,
+           il ne pousse pas la page. */
+        @media (max-width: 767px) {
+            .article-body .data-table {
+                display: block;
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+            }
+        }
+    </style>
 </head>
 <body>
     <!-- Navigation -->
     <nav class="navbar">
         <div class="nav-container">
-            <a href="../index.html" class="nav-logo-link">
+            <a href="../../index.html" class="nav-logo-link">
                 <div class="nav-logo">
                     <div class="logo-icon">
-                        <img src="../images/pharmacie-charnal-logo.png" alt="Logo Pharmacie Charnal" style="width: 100%; height: 100%; object-fit: contain;">
+                        <img src="../../images/pharmacie-charnal-logo.png" alt="Logo Pharmacie Charnal" style="width: 100%; height: 100%; object-fit: contain;">
                     </div>
                     <div class="logo-text">
                         <span class="logo-name">Pharmacie Charnal</span>
@@ -283,22 +405,22 @@
             </button>
 
             <ul class="nav-links">
-                <li><a href="../index.html" class="nav-link">Accueil</a></li>
+                <li><a href="../../index.html" class="nav-link">Accueil</a></li>
                 <li class="nav-dropdown">
-                    <a href="../services.html" class="nav-link nav-dropdown-toggle">Services</a>
+                    <a href="../../services.html" class="nav-link nav-dropdown-toggle">Services</a>
                     <ul class="nav-dropdown-menu">
-                        <li><a href="../histoire.html" class="nav-link">Notre Histoire</a></li>
-                        <li><a href="../Nos-marques/nosmarques.html" class="nav-link">Nos Marques</a></li>
-                        <li><a href="../pharmacie-de-garde-queven-hennebont-lorient.html" class="nav-link">Pharmacie de garde</a></li>
-                        <li><a href="../annuaire-sante.html" class="nav-link">Annuaire Santé</a></li>
-                        <li><a href="../Quizzes/guide-quizzes-sante-pharmacie-queven.html" class="nav-link">Quiz santé</a></li>
+                        <li><a href="../../histoire.html" class="nav-link">Notre Histoire</a></li>
+                        <li><a href="../../Nos-marques/nosmarques.html" class="nav-link">Nos Marques</a></li>
+                        <li><a href="../../pharmacie-de-garde-queven-hennebont-lorient.html" class="nav-link">Pharmacie de garde</a></li>
+                        <li><a href="../../annuaire-sante.html" class="nav-link">Annuaire Santé</a></li>
+                        <li><a href="../../Quizzes/guide-quizzes-sante-pharmacie-queven.html" class="nav-link">Quiz santé</a></li>
                     </ul>
                 </li>
-                <li><a href="../blog.html" class="nav-link nav-link-blog active">Au comptoir</a></li>
+                <li><a href="../../blog.html" class="nav-link nav-link-blog active">Au comptoir</a></li>
                 <li class="nav-dropdown">
-                    <a href="../contact.html" class="nav-link nav-dropdown-toggle">Contact</a>
+                    <a href="../../contact.html" class="nav-link nav-dropdown-toggle">Contact</a>
                     <ul class="nav-dropdown-menu">
-                        <li><a href="../recrutement-preparatrice-pharmacie-queven.html" class="nav-link">Recrutement</a></li>
+                        <li><a href="../../recrutement-preparatrice-pharmacie-queven.html" class="nav-link">Recrutement</a></li>
                     </ul>
                 </li>
             </ul>
@@ -310,10 +432,10 @@
         <div class="container">
             <ol class="breadcrumb-list">
                 <li>
-                    <a href="../index.html">Accueil</a>
+                    <a href="../../index.html">Accueil</a>
                 </li>
                 <li>
-                    <a href="../blog.html">Au comptoir</a>
+                    <a href="../../blog.html">Au comptoir</a>
                 </li>
                 <li>
                     Peau sèche en hiver
@@ -322,23 +444,26 @@
         </div>
     </nav>
 
+    <!-- En-tete de l'article, en bandeau pleine largeur -->
+    <header class="article-hero">
+        <div class="article-hero-inner">
+                <div class="article-meta">
+                    <span class="article-date">
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M14 2H12V1C12 0.734784 11.8946 0.48043 11.7071 0.292893C11.5196 0.105357 11.2652 0 11 0C10.7348 0 10.4804 0.105357 10.2929 0.292893C10.1054 0.48043 10 0.734784 10 1V2H6V1C6 0.734784 5.89464 0.48043 5.70711 0.292893C5.51957 0.105357 5.26522 0 5 0C4.73478 0 4.48043 0.105357 4.29289 0.292893C4.10536 0.48043 4 0.734784 4 1V2H2C1.46957 2 0.960859 2.21071 0.585786 2.58579C0.210714 2.96086 0 3.46957 0 4V14C0 14.5304 0.210714 15.0391 0.585786 15.4142C0.960859 15.7893 1.46957 16 2 16H14C14.5304 16 15.0391 15.7893 15.4142 15.4142C15.7893 15.0391 16 14.5304 16 14V4C16 3.46957 15.7893 2.96086 15.4142 2.58579C15.0391 2.21071 14.5304 2 14 2ZM14 14H2V7H14V14Z" fill="currentColor"/>
+                        </svg>
+                        24 janvier 2026
+                    </span>
+                    <span>•</span>
+                    <span>5 min de lecture</span>
+                </div>
+                <h1>Protéger sa peau sèche <em>de l'hiver breton</em></h1>
+                <p class="article-intro">L'hiver s'installe en Bretagne, et avec lui reviennent les sensations de tiraillement, les joues qui rougissent au vent, les mains qui se crevassent. Si votre peau vous semble particulièrement inconfortable ces derniers temps, vous n'êtes pas seul. Le climat breton, avec son alliance unique de froid humide et de vent marin, met notre peau à rude épreuve. Voici comment la protéger efficacement.</p>
+        </div>
+    </header>
+
     <!-- Article Content -->
     <article class="article-content">
-        <header class="article-header">
-            <div class="article-meta">
-                <span class="article-date">
-                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M14 2H12V1C12 0.734784 11.8946 0.48043 11.7071 0.292893C11.5196 0.105357 11.2652 0 11 0C10.7348 0 10.4804 0.105357 10.2929 0.292893C10.1054 0.48043 10 0.734784 10 1V2H6V1C6 0.734784 5.89464 0.48043 5.70711 0.292893C5.51957 0.105357 5.26522 0 5 0C4.73478 0 4.48043 0.105357 4.29289 0.292893C4.10536 0.48043 4 0.734784 4 1V2H2C1.46957 2 0.960859 2.21071 0.585786 2.58579C0.210714 2.96086 0 3.46957 0 4V14C0 14.5304 0.210714 15.0391 0.585786 15.4142C0.960859 15.7893 1.46957 16 2 16H14C14.5304 16 15.0391 15.7893 15.4142 15.4142C15.7893 15.0391 16 14.5304 16 14V4C16 3.46957 15.7893 2.96086 15.4142 2.58579C15.0391 2.21071 14.5304 2 14 2ZM14 14H2V7H14V14Z" fill="currentColor"/>
-                    </svg>
-                    24 janvier 2026
-                </span>
-                <span>•</span>
-                <span>5 min de lecture</span>
-            </div>
-            <h1 style="font-size: var(--text-4xl); color: var(--charcoal); margin-bottom: var(--space-md);">Protéger sa peau sèche de l'hiver breton</h1>
-            <p style="font-size: var(--text-xl); color: var(--gray); line-height: 1.6;">L'hiver s'installe en Bretagne, et avec lui reviennent les sensations de tiraillement, les joues qui rougissent au vent, les mains qui se crevassent. Si votre peau vous semble particulièrement inconfortable ces derniers temps, vous n'êtes pas seul. Le climat breton, avec son alliance unique de froid humide et de vent marin, met notre peau à rude épreuve. Voici comment la protéger efficacement.</p>
-        </header>
-
         <div class="article-body">
             <h2>Le climat breton: un défi unique pour votre peau</h2>
 
@@ -405,13 +530,13 @@
 
             <p>À la pharmacie, nous travaillons avec des laboratoires dont les formules ont fait leurs preuves sur les peaux sensibilisées par le climat.</p>
 
-            <p>Pour les peaux très sèches, <strong><a href="../Nos-marques/bioderma-page.html">Bioderma</a> Atoderm Crème</strong> nourrit intensément sans effet gras, avec une efficacité de 24 heures. L'approche écobiologique de Bioderma aide la peau à retrouver son équilibre naturel.</p>
+            <p>Pour les peaux très sèches, <strong><a href="../../Nos-marques/bioderma-page.html">Bioderma</a> Atoderm Crème</strong> nourrit intensément sans effet gras, avec une efficacité de 24 heures. L'approche écobiologique de Bioderma aide la peau à retrouver son équilibre naturel.</p>
 
-            <p><strong><a href="../Nos-marques/la-roche-posay-page.html">La Roche-Posay</a> Cicaplast Baume B5+</strong> reste une valeur sûre pour la réparation intense. Son utilisation est polyvalente: crème de nuit réparatrice, soin des mains gercées, baume à lèvres. C'est le produit multi-usage que beaucoup de nos clients gardent toujours à portée de main.</p>
+            <p><strong><a href="../../Nos-marques/la-roche-posay-page.html">La Roche-Posay</a> Cicaplast Baume B5+</strong> reste une valeur sûre pour la réparation intense. Son utilisation est polyvalente: crème de nuit réparatrice, soin des mains gercées, baume à lèvres. C'est le produit multi-usage que beaucoup de nos clients gardent toujours à portée de main.</p>
 
             <p>Pour les peaux atopiques ou l'eczéma léger aggravé par l'hiver, <strong>La Roche-Posay Lipikar AP+M</strong> offre une triple réparation avec un effet anti-grattage qui dure 72 heures. À appliquer sur peau humide après la douche pour une pénétration optimale.</p>
 
-            <p>Côté nutrition, <strong><a href="../Nos-marques/nuxe-page.html">Nuxe</a> Rêve de Miel</strong> combine la douceur du miel et des huiles précieuses pour un confort immédiat, particulièrement apprécié le soir.</p>
+            <p>Côté nutrition, <strong><a href="../../Nos-marques/nuxe-page.html">Nuxe</a> Rêve de Miel</strong> combine la douceur du miel et des huiles précieuses pour un confort immédiat, particulièrement apprécié le soir.</p>
 
             <p>N'hésitez pas à passer nous voir pour qu'on adapte ces recommandations à votre type de peau et à vos besoins spécifiques.</p>
 
@@ -484,7 +609,7 @@
     </article>
 
     <!-- Footer -->
-    <footer style="background: linear-gradient(135deg, var(--sage-light) 0%, var(--teal-light) 100%); padding: var(--space-3xl) var(--space-lg); margin-top: var(--space-4xl);">
+    <footer style="background: var(--sage-light); padding: var(--space-3xl) var(--space-lg); margin-top: var(--space-4xl);">
         <div style="max-width: 1200px; margin: 0 auto; color: var(--white);">
             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: var(--space-2xl);">
                 <div>
@@ -500,18 +625,18 @@
                 </div>
                 <div>
                     <h3 style="font-size: var(--text-xl); margin-bottom: var(--space-md);">Liens utiles</h3>
-                    <p><a href="../index.html" style="color: var(--white); text-decoration: none;">Accueil</a></p>
-                    <p><a href="../services.html" style="color: var(--white); text-decoration: none;">Services</a></p>
-                    <p><a href="../blog.html" style="color: var(--white); text-decoration: none;">Au comptoir</a></p>
-                    <p><a href="../Quizzes/guide-quizzes-sante-pharmacie-queven.html" style="color: var(--white); text-decoration: none;">Quiz santé</a></p>
-                    <p><a href="../contact.html" style="color: var(--white); text-decoration: none;">Contact</a></p>
+                    <p><a href="../../index.html" style="color: var(--white); text-decoration: none;">Accueil</a></p>
+                    <p><a href="../../services.html" style="color: var(--white); text-decoration: none;">Services</a></p>
+                    <p><a href="../../blog.html" style="color: var(--white); text-decoration: none;">Au comptoir</a></p>
+                    <p><a href="../../Quizzes/guide-quizzes-sante-pharmacie-queven.html" style="color: var(--white); text-decoration: none;">Quiz santé</a></p>
+                    <p><a href="../../contact.html" style="color: var(--white); text-decoration: none;">Contact</a></p>
                 </div>
             </div>
             <div style="text-align: center; margin-top: var(--space-2xl); padding-top: var(--space-xl); border-top: 1px solid rgba(255,255,255,0.2);">
                 <p style="margin-bottom: var(--space-sm);">
-                    <a href="../mentions-legales.html" style="color: var(--white); text-decoration: none; opacity: 0.8;">Mentions légales</a>
+                    <a href="../../mentions-legales.html" style="color: var(--white); text-decoration: none; opacity: 0.8;">Mentions légales</a>
                     <span style="margin: 0 var(--space-xs); opacity: 0.5;">•</span>
-                    <a href="../donnees-personnelles.html" style="color: var(--white); text-decoration: none; opacity: 0.8;">Données personnelles</a>
+                    <a href="../../donnees-personnelles.html" style="color: var(--white); text-decoration: none; opacity: 0.8;">Données personnelles</a>
                     <span style="margin: 0 var(--space-xs); opacity: 0.5;">•</span>
                     <a href="/feed.xml" style="color: var(--white); text-decoration: none; opacity: 0.8;" title="Flux RSS">RSS</a>                </p>
                 <p>&copy; 2026 Pharmacie Charnal - Tous droits réservés</p>

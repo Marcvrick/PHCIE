@@ -66,7 +66,7 @@
         .article-header { margin-bottom: var(--space-2xl); }
         .article-meta { display: flex; align-items: center; gap: var(--space-md); margin-bottom: var(--space-lg); color: var(--gray); font-size: var(--text-base); }
         .article-date { display: inline-flex; align-items: center; gap: var(--space-xs); }
-        .summary-box { background: linear-gradient(135deg, var(--cream) 0%, #f9f5ed 100%); border-left: 4px solid var(--sage); padding: var(--space-lg); border-radius: var(--radius-md); margin: var(--space-xl) 0 var(--space-2xl) 0; }
+        .summary-box { background: var(--cream); border-left: 2px solid var(--sage); padding: var(--space-lg); border-radius: var(--radius-md); margin: var(--space-xl) 0 var(--space-2xl) 0; }
         .summary-box strong { color: var(--teal); font-size: var(--text-xl); display: block; margin-bottom: var(--space-md); }
         .summary-box ul { margin: 0; padding-left: var(--space-lg); }
         .summary-box li { margin-bottom: var(--space-sm); color: var(--charcoal); }
@@ -79,7 +79,7 @@
         .article-body em { font-style: italic; }
         .article-body a { color: var(--sage); text-decoration: underline; transition: color 0.3s ease; }
         .article-body a:hover { color: var(--sage-dark); }
-        .cta-box { background: linear-gradient(135deg, var(--cream) 0%, var(--cream-dark) 100%); border: 2px solid var(--sage); border-radius: var(--radius-lg); padding: var(--space-xl); margin: var(--space-2xl) 0; text-align: center; }
+        .cta-box { background: var(--cream); border: 1px solid var(--sage); border-radius: var(--radius-lg); padding: var(--space-xl); margin: var(--space-2xl) 0; text-align: center; }
         .cta-box p { color: var(--charcoal); font-size: var(--text-xl); margin-bottom: var(--space-sm); }
         .cta-box .cta-address { color: var(--gray); font-size: var(--text-base); }
         .faq-item { background-color: var(--cream); padding: var(--space-lg); border-radius: var(--radius-md); margin-bottom: var(--space-md); }
@@ -98,11 +98,11 @@
         /* ===========================
            INFOGRAPHIE CRITÈRES
            =========================== */
-        .illus { background: linear-gradient(135deg, var(--cream) 0%, #f0ebe0 100%); border-radius: var(--radius-lg); padding: var(--space-xl); margin: var(--space-2xl) 0; }
+        .illus { background: var(--cream); border-radius: var(--radius-lg); padding: var(--space-xl); margin: var(--space-2xl) 0; }
         .illus-title { text-align: center; font-size: var(--text-lg); font-weight: 700; color: var(--charcoal); margin-bottom: 4px; }
         .illus-sub { text-align: center; font-size: 0.85rem; color: var(--gray); margin-bottom: var(--space-lg); }
         .crit-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: var(--space-md); }
-        .crit-card { background: #FFFFFF; border-radius: var(--radius-md); padding: var(--space-lg); border-left: 4px solid var(--teal); }
+        .crit-card { background: #FFFFFF; border-radius: var(--radius-md); padding: var(--space-lg); border-left: 2px solid var(--teal); }
         .crit-card:nth-child(even) { border-left-color: var(--sage); }
         .crit-num { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--gray); margin-bottom: 4px; }
         .crit-name { font-weight: 700; color: var(--teal); margin-bottom: 6px; font-size: 0.95rem; }
@@ -223,6 +223,128 @@
     }
     </script>
     <link rel="alternate" type="application/rss+xml" title="Blog Pharmacie Charnal" href="https://www.pharmaciecharnal.com/feed.xml">
+
+    <!-- STANDARD-HOMEPAGE : alignement du gabarit article sur index.html.
+         On n'ecrase PAS les tokens de style.css (--cream, --sage...) : la navbar
+         legacy s'en sert. On ajoute les tokens --hp-* et on les emploie
+         explicitement. La colonne de lecture reste a 800px : sur un article
+         c'est la longueur de ligne optimale, pas une marge perdue. -->
+    <style>
+        :root {
+            --hp-cream: #FFFEF9;
+            --hp-pastel-sage: #E8F0EA;
+            --hp-teal: #2D5F5D;
+            --hp-sage-dark: #5A7563;
+            --hp-gray-700: #374151;
+        }
+
+        body { background-color: var(--hp-cream); }
+
+        /* Bandeau d'en-tete pleine largeur */
+        .article-hero {
+            background: var(--hp-pastel-sage);
+            padding: var(--space-2xl) 0;
+        }
+        .article-hero-inner {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 var(--space-lg);
+        }
+        .article-hero .article-meta {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: var(--space-sm);
+            font-size: var(--text-sm);
+            color: var(--gray);
+            margin-bottom: var(--space-md);
+        }
+        .article-hero h1 {
+            font-family: var(--font-display);
+            font-size: clamp(2.2rem, 4.6vw, 3.2rem);
+            font-weight: 400;
+            line-height: 1;
+            letter-spacing: -0.03em;
+            text-wrap: balance;
+            color: var(--charcoal);
+            margin: 0;
+            /* neutralise .gradient-text de style.css */
+            background: none;
+            -webkit-text-fill-color: currentColor;
+        }
+        .article-hero h1 em {
+            font-style: italic;
+            color: var(--hp-teal);
+        }
+        .article-intro {
+            font-size: var(--text-lg);
+            color: var(--hp-gray-700);
+            line-height: 1.55;
+            margin: var(--space-md) 0 0;
+        }
+
+        .article-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: var(--space-2xl) var(--space-lg);
+        }
+
+        /* Filets fins au lieu des bordures pleines et des ombres portees */
+        .article-body h2 {
+            font-family: var(--font-display);
+            font-weight: 500;
+            letter-spacing: -0.02em;
+            padding-bottom: var(--space-sm);
+            border-bottom: 1px solid color-mix(in srgb, var(--hp-teal) 20%, transparent);
+        }
+        .article-body h3 {
+            font-family: var(--font-display);
+            font-weight: 500;
+            color: var(--hp-teal);
+        }
+        .article-body a { color: var(--hp-teal); }
+        .article-body a:hover { color: var(--hp-sage-dark); }
+
+        .summary-box {
+            background: #FFFFFF;
+            border: 1px solid color-mix(in srgb, var(--hp-sage-dark) 20%, transparent);
+            border-left: 2px solid color-mix(in srgb, var(--hp-sage-dark) 55%, transparent);
+        }
+        .summary-box strong { color: var(--hp-teal); }
+
+        .cta-box {
+            background: var(--hp-pastel-sage);
+            border: 1px solid color-mix(in srgb, var(--hp-sage-dark) 25%, transparent);
+        }
+
+        .illus, .faq-item {
+            background: #FFFFFF;
+            border: 1px solid color-mix(in srgb, var(--hp-sage-dark) 18%, transparent);
+        }
+        .faq-question { color: var(--hp-teal); }
+
+        .data-table th { background: var(--hp-pastel-sage); color: var(--charcoal); }
+        .data-table th, .data-table td {
+            border: 1px solid color-mix(in srgb, var(--hp-sage-dark) 20%, transparent);
+        }
+
+        /* Une URL longue ne doit pas elargir la page */
+        .article-body a, .references a { overflow-wrap: anywhere; }
+
+        @media (max-width: 640px) {
+            .article-hero { padding: var(--space-xl) 0; }
+        }
+
+        /* Un tableau plus large que l'ecran defile dans son propre cadre,
+           il ne pousse pas la page. */
+        @media (max-width: 767px) {
+            .article-body .data-table {
+                display: block;
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+            }
+        }
+    </style>
 </head>
 <body>
     <!-- Navigation -->
@@ -278,25 +400,28 @@
         </div>
     </nav>
 
+    <!-- En-tete de l'article, en bandeau pleine largeur -->
+    <header class="article-hero">
+        <div class="article-hero-inner">
+                <div class="article-meta">
+                    <span class="article-date">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                            <line x1="16" y1="2" x2="16" y2="6"></line>
+                            <line x1="8" y1="2" x2="8" y2="6"></line>
+                            <line x1="3" y1="10" x2="21" y2="10"></line>
+                        </svg>
+                        30 juin 2026
+                    </span>
+                    <span>&bull;</span>
+                    <span>Équipe Pharmacie Charnal</span>
+                </div>
+                <h1>Probiotiques: <em>comment choisir le bon pour votre situation?</em></h1>
+        </div>
+    </header>
+
     <!-- Article -->
     <article class="article-content">
-        <header class="article-header">
-            <div class="article-meta">
-                <span class="article-date">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
-                        <line x1="16" y1="2" x2="16" y2="6"></line>
-                        <line x1="8" y1="2" x2="8" y2="6"></line>
-                        <line x1="3" y1="10" x2="21" y2="10"></line>
-                    </svg>
-                    30 juin 2026
-                </span>
-                <span>&bull;</span>
-                <span>Équipe Pharmacie Charnal</span>
-            </div>
-            <h1 class="gradient-text">Probiotiques: comment choisir le bon pour votre situation?</h1>
-        </header>
-
         <img src="../../images/Blog%20photos/blog-24-probiotiques.jpg"
              alt="Jeune femme active prenant un probiotique avec un verre d'eau, conseils pour bien choisir sa souche, Pharmacie Charnal Quéven Bretagne"
              width="1200" height="800"
