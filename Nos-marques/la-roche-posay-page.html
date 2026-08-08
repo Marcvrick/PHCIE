@@ -1706,6 +1706,22 @@
             clip: rect(0, 0, 0, 0);
             border: 0;
         }
+    
+        /* NAVBAR-NORMALISATION — aligner sur nosmarques.html (référence).
+           !important: la navbar porte des styles inline (padding, max-width)
+           qu'aucune règle CSS ne peut battre autrement. */
+        .navbar { padding: 0 !important; }
+        .navbar .nav-container { max-width: 1280px !important; height: 72px !important; }
+        .navbar .nav-links { gap: 32px !important; }
+        .navbar .nav-link { font-size: 16px !important; }
+        .navbar .logo-name { font-size: 18px !important; }
+        .navbar .logo-tagline { font-size: 12px !important; }
+        .navbar .nav-dropdown-menu .nav-link { font-size: 14px !important; }
+        @media (max-width: 767px) {
+            .navbar .nav-links { gap: 24px !important; }
+            .navbar .nav-links .nav-link { font-size: 18px !important; }
+            .navbar .nav-dropdown-menu .nav-link { font-size: 16px !important; }
+        }
     </style>
     <script type="application/ld+json">
     [
