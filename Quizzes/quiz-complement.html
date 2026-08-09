@@ -363,6 +363,7 @@
         .protocol-card-top.bg-curcuma { background: linear-gradient(135deg, #F4E9DC 0%, #EDDCC8 100%); }
 
         .protocol-emoji { font-size: 1.75rem; width: 52px; height: 52px; min-width: 52px; display: flex; align-items: center; justify-content: center; background: rgba(255,255,255,0.7); border-radius: 50%; box-shadow: 0 2px 6px rgba(0,0,0,0.04); }
+        .protocol-emoji img, .alt-icon img { width: 100%; height: 100%; object-fit: contain; border-radius: 50%; padding: 5px; box-sizing: border-box; }
         .protocol-card-top-info { flex: 1; min-width: 0; }
         .protocol-product-name { font-family: var(--font-display); font-size: var(--text-lg); font-weight: 500; color: var(--charcoal); letter-spacing: -0.01em; line-height: 1.2; }
         .protocol-brand-tag { font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--teal-pro); margin-top: 4px; }
@@ -889,6 +890,7 @@
             brand: 'PiLeJe',
             tagline: 'Probiotiques \u2014 \u00e9quilibre de la flore intestinale',
             emoji: '&#x1F9AB;',
+            imageFile: 'complement-lactibiane-reference.jpg',
             bgClass: 'bg-lactibiane',
             altBgClass: 'bg-lactibiane',
             description: 'Lactibiane R\u00e9f\u00e9rence est le probiotique de r\u00e9f\u00e9rence PiLeJe, formul\u00e9 avec 5 souches scientifiquement document\u00e9es pour r\u00e9\u00e9quilibrer la flore intestinale. Chaque g\u00e9lule apporte 10 milliards d\u2019UFC (Unit\u00e9s Formant Colonie), actives jusqu\u2019en fin de vie du produit. Id\u00e9al apr\u00e8s une prise d\u2019antibiotiques, en p\u00e9riode de troubles digestifs ou pour renforcer les d\u00e9fenses immunitaires.',
@@ -910,6 +912,7 @@
             brand: 'PiLeJe',
             tagline: 'Magn\u00e9sium marin \u2014 fatigue, stress, tensions',
             emoji: '&#x26A1;',
+            imageFile: 'complement-formag.webp',
             bgClass: 'bg-formag',
             altBgClass: 'bg-formag',
             description: 'Formag est la formule magn\u00e9sium de r\u00e9f\u00e9rence PiLeJe, con\u00e7ue pour les personnes soumises au stress et \u00e0 la fatigue. Sa combinaison brevet\u00e9e associe le magn\u00e9sium marin Hypro-RI\u00ae (forme hautement biodisponible et non laxative), la taurine et les vitamines B6 et D3 pour une efficacit\u00e9 renforc\u00e9e sur l\u2019\u00e9nergie et le syst\u00e8me nerveux.',
@@ -931,6 +934,7 @@
             brand: 'PiLeJe',
             tagline: 'M\u00e9latonine \u2014 endormissement et sommeil profond',
             emoji: '&#x1F319;',
+            imageFile: 'complement-chronobiane-lp.jpeg',
             bgClass: 'bg-chronobiane',
             altBgClass: 'bg-chronobiane',
             description: 'Chronobiane LP (Lib\u00e9ration Prolong\u00e9e) combine la m\u00e9latonine \u00e0 faible dose (1,9 mg) avec l\u2019eschscholtzia et la valerian\u0065 dans une formule \u00e0 double lib\u00e9ration. La fraction \u00e0 action imm\u00e9diate facilite l\u2019endormissement, la fraction LP maintient un sommeil de qualit\u00e9 toute la nuit, sans accoutumance ni somnolence le matin.',
@@ -952,6 +956,7 @@
             brand: 'PiLeJe',
             tagline: 'Vitamine D3 \u2014 immunit\u00e9, os et vitalit\u00e9 hivernale',
             emoji: '&#x2600;&#xFE0F;',
+            imageFile: 'complement-d3-biane-spray.jpg',
             bgClass: 'bg-d3biane',
             altBgClass: 'bg-d3biane',
             description: 'D3 Biane Spray de PiLeJe apporte 1000 UI de vitamine D3 d\u2019origine naturelle (huile de poissons certifi\u00e9e) sous forme de spray buccal, la voie d\u2019absorption la plus rapide et pratique. La vitamine D est indispensable \u00e0 l\u2019immunit\u00e9, \u00e0 la sant\u00e9 osseuse et \u00e0 la vitalit\u00e9 \u2014 et 80\u00a0% des Fran\u00e7ais en manquent en hiver.',
@@ -973,6 +978,7 @@
             brand: 'Nat&amp;Form',
             tagline: 'Curcuma + poivre noir \u2014 articulations et inflammation',
             emoji: '&#x1F33F;',
+            imageFile: 'complement-curcuma-bio.webp',
             bgClass: 'bg-curcuma',
             altBgClass: 'bg-curcuma',
             description: 'Le Curcuma Bio Nat&Form est issu de l\u2019agriculture biologique certifi\u00e9e, combin\u00e9 au poivre noir (pip\u00e9rine) pour multiplier par 20 l\u2019absorption de la curcumine. Ce duo naturel est reconnu pour ses propri\u00e9t\u00e9s anti-inflammatoires qui soulagent les articulations douloureuses et favorisent la r\u00e9cup\u00e9ration physique, sur une cure d\u2019au moins 2 \u00e0 3 mois.',
@@ -1091,7 +1097,9 @@
 
         var cardHtml = '<div class="protocol-card">' +
             '<div class="protocol-card-top ' + p.bgClass + '">' +
-                '<div class="protocol-emoji">' + p.emoji + '</div>' +
+                '<div class="protocol-emoji">' + (p.imageFile
+                    ? '<img src="../images/medocs/' + p.imageFile + '" alt="' + p.name + '">'
+                    : p.emoji) + '</div>' +
                 '<div class="protocol-card-top-info">' +
                     '<div class="protocol-product-name">' + p.name + '</div>' +
                     '<div class="protocol-brand-tag">' + p.brand + '</div>' +
@@ -1115,7 +1123,9 @@
         var altsHtml = alts.map(function(k) {
             var a = products[k];
             return '<div class="alternative-card" onclick="switchResult(\'' + k + '\')">' +
-                '<div class="alt-icon">' + a.emoji + '</div>' +
+                '<div class="alt-icon">' + (a.imageFile
+                    ? '<img src="../images/medocs/' + a.imageFile + '" alt="' + a.name + '">'
+                    : a.emoji) + '</div>' +
                 '<div class="alt-info"><div class="alt-name">' + a.name + '</div><div class="alt-brand">' + a.brand + ' &middot; ' + a.tagline + '</div></div>' +
                 '<div class="alt-arrow">' + arrowSvg + '</div>' +
             '</div>';

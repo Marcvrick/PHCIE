@@ -952,6 +952,7 @@
             brand: 'AVENE',
             tagline: 'Cr\u00e8me hydratante peaux s\u00e8ches \u00e0 tr\u00e8s s\u00e8ches',
             emoji: '&#x1F4A7;',
+            imageFile: 'soin-peau-hydrance-riche.webp',
             bgClass: 'hydrance',
             altBgClass: 'hydrance-bg',
             description: 'La cr\u00e8me Hydrance Riche d\u2019Av\u00e8ne apporte une hydratation intense et durable aux peaux s\u00e8ches et sensibles. Sa texture onctueuse enveloppe la peau et restaure le confort gr\u00e2ce \u00e0 l\u2019eau thermale d\u2019Av\u00e8ne, apaisante et anti-irritante, combin\u00e9e au Cohederm, un actif brevet\u00e9 qui renforce la barri\u00e8re cutan\u00e9e.',
@@ -973,6 +974,7 @@
             brand: 'CERAVE',
             tagline: 'Hydratation matifiante avec protection solaire',
             emoji: '&#x1F9CA;',
+            imageFile: 'soin-peau-gel-creme-oil-control.webp',
             bgClass: 'cerave',
             altBgClass: 'cerave-bg',
             description: 'Ce gel-cr\u00e8me l\u00e9ger de CeraVe combine hydratation, contr\u00f4le du s\u00e9bum et protection solaire SPF25 en un seul geste. Formul\u00e9 avec 3 c\u00e9ramides essentiels et de la niacinamide, il matifie la peau grasse tout en la prot\u00e9geant. D\u00e9velopp\u00e9 avec des dermatologues, non com\u00e9dog\u00e8ne et parfait sous le maquillage.',
@@ -994,6 +996,7 @@
             brand: 'BIODERMA',
             tagline: 'Soin anti-taches quotidien haute protection',
             emoji: '&#x2600;',
+            imageFile: 'soin-peau-pigmentbio-daily-care.webp',
             bgClass: 'pigmentbio',
             altBgClass: 'pigmentbio-bg',
             description: 'Le Pigmentbio Daily Care de Bioderma unifie le teint et pr\u00e9vient les taches brunes gr\u00e2ce \u00e0 une tr\u00e8s haute protection SPF50+. Sa formule associe la vitamine C stabilis\u00e9e au LumiReveal\u2122 Technology pour r\u00e9duire visiblement les taches existantes tout en prot\u00e9geant la peau des UV.',
@@ -1132,7 +1135,9 @@
             '<div class="product-card">' +
                 '<div class="product-card-top ' + p.bgClass + '">' +
                     '<div class="product-brand-tag">' + p.brand + '</div>' +
-                    '<div class="product-image-placeholder">' + p.emoji + '</div>' +
+                    '<div class="product-image-placeholder">' + (p.imageFile
+                        ? '<img src="../images/medocs/' + p.imageFile + '" alt="' + p.name + '" style="width:100%;height:100%;object-fit:contain;">'
+                        : p.emoji) + '</div>' +
                 '</div>' +
                 '<div class="product-card-body">' +
                     '<div class="product-name">' + p.name + '</div>' +

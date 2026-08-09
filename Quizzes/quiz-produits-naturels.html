@@ -378,6 +378,7 @@
         .protocol-card-top.bg-peach { background: linear-gradient(135deg, #F6E8DF 0%, #EEDBCB 100%); }
 
         .protocol-emoji { font-size: 1.75rem; width: 52px; height: 52px; min-width: 52px; display: flex; align-items: center; justify-content: center; background: rgba(255,255,255,0.7); border-radius: 50%; box-shadow: 0 2px 6px rgba(0,0,0,0.04); }
+        .protocol-emoji img { width: 100%; height: 100%; object-fit: contain; border-radius: 50%; padding: 5px; box-sizing: border-box; }
         .protocol-card-top-info { flex: 1; min-width: 0; }
         .protocol-product-name { font-family: var(--font-display); font-size: var(--text-lg); font-weight: 500; color: var(--charcoal); letter-spacing: -0.01em; line-height: 1.2; }
         .protocol-brand-tag { font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--teal-pro); margin-top: 4px; }
@@ -927,6 +928,7 @@
                 {
                     brand: 'PHYTOSUN AR\u00d4MS', name: 'Sommeil Triple Action', approach: 'Aromath\u00e9rapie',
                     emoji: '\ud83d\udca7', bgClass: 'bg-teal',
+                    imageFile: 'naturels-sommeil-triple-action.jpg',
                     description: 'Complexe d\u2019huiles essentielles formul\u00e9 pour favoriser l\u2019endormissement et un sommeil profond et r\u00e9parateur.',
                     benefits: ['Action en 30 \u00e0 45 minutes', 'Sommeil profond et r\u00e9parateur', '100% naturel, sans d\u00e9pendance'],
                     price: '~11\u00a0\u20ac', format: '30 comprim\u00e9s'
@@ -934,6 +936,7 @@
                 {
                     brand: 'ARAGAN', name: 'SOM\u2022ACTIFS', approach: 'Micronutrition',
                     emoji: '\ud83d\udd2c', bgClass: 'bg-peach',
+                    imageFile: 'naturels-som-actifs.jpg',
                     description: 'Formule synergique associant m\u00e9latonine, plantes (passiflore, eschscholtzia) et magn\u00e9sium pour agir sur toutes les phases du sommeil.',
                     benefits: ['Synergie plantes + m\u00e9latonine + magn\u00e9sium', 'Agit sur endormissement ET maintien du sommeil', 'Technologie microencapsulation'],
                     price: '~15\u00a0\u20ac', format: '30 g\u00e9lules'
@@ -951,6 +954,7 @@
                 {
                     brand: 'NAT&FORM', name: 'Rhodiola Bio', approach: 'Phytoth\u00e9rapie',
                     emoji: '\ud83c\udf3f', bgClass: 'bg-sage',
+                    imageFile: 'naturels-rhodiola-bio.jpg',
                     description: 'La rhodiola est une plante adaptog\u00e8ne qui aide l\u2019organisme \u00e0 s\u2019adapter au stress \u00e9motionnel et physique. Formule bio, g\u00e9lules v\u00e9g\u00e9tales.',
                     benefits: ['Plante adaptog\u00e8ne reconnue', 'R\u00e9duit la fatigue li\u00e9e au stress', '\u00c9quilibre \u00e9motionnel'],
                     price: '~9\u00a0\u20ac', format: '200 g\u00e9lules'
@@ -958,6 +962,7 @@
                 {
                     brand: 'PHYTOSUN AR\u00d4MS', name: 'Stress Triple Action', approach: 'Aromath\u00e9rapie',
                     emoji: '\ud83d\udca7', bgClass: 'bg-teal',
+                    imageFile: 'naturels-stress-triple-action.jpg',
                     description: 'Complexe d\u2019huiles essentielles (lavande, petit grain bigarade, camomille) pour un apaisement rapide d\u00e8s 15 \u00e0 30 minutes.',
                     benefits: ['Action rapide en 15-30 minutes', 'Apaisement profond et durable', 'Sans somnolence'],
                     price: '~9\u00a0\u20ac', format: '30 capsules'
@@ -965,6 +970,7 @@
                 {
                     brand: 'ARAGAN', name: 'SEREN\u2022ACTIFS', approach: 'Micronutrition',
                     emoji: '\ud83d\udd2c', bgClass: 'bg-peach',
+                    imageFile: 'naturels-seren-actifs.webp',
                     description: 'Formule synergique associant safran, magn\u00e9sium, vitamines B et plantes pour r\u00e9\u00e9quilibrer l\u2019humeur et r\u00e9duire le stress.',
                     benefits: ['Synergie 5 sciences (plantes + vitamines + oligo\u00e9l\u00e9ments)', '\u00c9quilibre \u00e9motionnel et humeur', 'Magn\u00e9sium haute absorption'],
                     price: '~17\u00a0\u20ac', format: '30 g\u00e9lules'
@@ -982,6 +988,7 @@
                 {
                     brand: 'NAT&FORM', name: '\u00c9chinac\u00e9e Bio', approach: 'Phytoth\u00e9rapie',
                     emoji: '\ud83c\udf3f', bgClass: 'bg-sage',
+                    imageFile: 'naturels-echinacee-bio.webp',
                     description: 'L\u2019\u00e9chinac\u00e9e stimule les d\u00e9fenses naturelles de l\u2019organisme. Utilis\u00e9e en pr\u00e9vention ou d\u00e8s les premiers signes de faiblesse immunitaire.',
                     benefits: ['Stimule les d\u00e9fenses naturelles', 'Id\u00e9al en pr\u00e9vention hivernale', 'Formule Bio certifi\u00e9e'],
                     price: '~8\u00a0\u20ac', format: '200 g\u00e9lules'
@@ -989,6 +996,7 @@
                 {
                     brand: 'PHYTOSUN AR\u00d4MS', name: 'Aromadoses D\u00e9fenses Naturelles', approach: 'Aromath\u00e9rapie',
                     emoji: '\ud83d\udca7', bgClass: 'bg-teal',
+                    imageFile: 'naturels-aromadoses-defenses.webp',
                     description: 'Capsules d\u2019huiles essentielles (ravintsara, tea tree, thym) pr\u00eates \u00e0 l\u2019emploi pour renforcer l\u2019immunit\u00e9 en p\u00e9riode hivernale.',
                     benefits: ['Huiles essentielles antivirales et antibact\u00e9riennes', 'Capsules pr\u00eates \u00e0 l\u2019emploi, dosage s\u00e9curis\u00e9', 'Efficacit\u00e9 d\u00e8s 24-48h'],
                     price: '~9\u00a0\u20ac', format: '30 capsules'
@@ -996,6 +1004,7 @@
                 {
                     brand: 'ARAGAN', name: 'IMMUN\u2022ACTIFS', approach: 'Micronutrition',
                     emoji: '\ud83d\udd2c', bgClass: 'bg-peach',
+                    imageFile: 'naturels-immun-actifs.webp',
                     description: 'Formule compl\u00e8te associant \u00e9chinac\u00e9e, propolis, ravintsara microencapsul\u00e9, vitamines C, D3, zinc et cuivre pour une action \u00e0 360\u00b0.',
                     benefits: ['Action 360\u00b0 : imm\u00e9diate + prolong\u00e9e + de fond', '10+ actifs synergiques', 'Ravintsara microencapsul\u00e9 (lib\u00e9ration contr\u00f4l\u00e9e)'],
                     price: '~15\u00a0\u20ac', format: '30 g\u00e9lules'
@@ -1013,6 +1022,7 @@
                 {
                     brand: 'NAT&FORM', name: 'Artichaut Bio', approach: 'Phytoth\u00e9rapie',
                     emoji: '\ud83c\udf3f', bgClass: 'bg-sage',
+                    imageFile: 'naturels-artichaut-bio.jpg',
                     description: 'L\u2019artichaut favorise le confort digestif et contribue au fonctionnement normal du foie. Formule bio, g\u00e9lules d\u2019origine v\u00e9g\u00e9tale.',
                     benefits: ['Stimule la digestion et la fonction h\u00e9patique', 'R\u00e9duit les ballonnements', 'Formule Bio, v\u00e9g\u00e9tale'],
                     price: '~8\u00a0\u20ac', format: '200 g\u00e9lules'
@@ -1020,6 +1030,7 @@
                 {
                     brand: 'PHYTOSUN AR\u00d4MS', name: 'Aromadoses Digestion Transit', approach: 'Aromath\u00e9rapie',
                     emoji: '\ud83d\udca7', bgClass: 'bg-teal',
+                    imageFile: 'naturels-aromadoses-digestion.jpg',
                     description: 'Capsules d\u2019huiles essentielles (menthe poivr\u00e9e, basilic, carvi) pour faciliter la digestion et r\u00e9guler le transit.',
                     benefits: ['Soulage l\u2019inconfort apr\u00e8s les repas', 'R\u00e9gule le transit intestinal', 'Capsules pratiques, 1 matin et soir'],
                     price: '~8\u00a0\u20ac', format: '30 capsules'
@@ -1027,6 +1038,7 @@
                 {
                     brand: 'ARAGAN', name: 'BIOTIC\u2022P7 ENT\u00c9RO', approach: 'Micronutrition',
                     emoji: '\ud83d\udd2c', bgClass: 'bg-peach',
+                    imageFile: 'naturels-biotic-p7-entero.webp',
                     description: '7 souches de ferments lactiques (12 milliards d\u2019UFC) pour r\u00e9\u00e9quilibrer la flore intestinale. Conservation au frais pour une viabilit\u00e9 maximale.',
                     benefits: ['12 milliards d\u2019UFC (7 souches compl\u00e9mentaires)', 'Conservation au frais = viabilit\u00e9 garantie', 'Souches ROSELL\u00ae gastro-r\u00e9sistantes'],
                     price: '~28\u00a0\u20ac', format: '30 g\u00e9lules'
@@ -1044,6 +1056,7 @@
                 {
                     brand: 'NAT&FORM', name: 'Thym Bio', approach: 'Phytoth\u00e9rapie',
                     emoji: '\ud83c\udf3f', bgClass: 'bg-sage',
+                    imageFile: 'naturels-thym-bio.webp',
                     description: 'Le thym soutient le confort respiratoire et les d\u00e9fenses naturelles. Utilis\u00e9 traditionnellement pour adoucir la gorge et faciliter la respiration.',
                     benefits: ['Soutient le confort respiratoire', 'Adoucit la gorge', 'Propri\u00e9t\u00e9s antiseptiques naturelles'],
                     price: '~8\u00a0\u20ac', format: '200 g\u00e9lules'
@@ -1051,6 +1064,7 @@
                 {
                     brand: 'PHYTOSUN AR\u00d4MS', name: 'Aromadoses Nez & Gorge', approach: 'Aromath\u00e9rapie',
                     emoji: '\ud83d\udca7', bgClass: 'bg-teal',
+                    imageFile: 'naturels-aromadoses-nez-gorge.webp',
                     description: 'Capsules de 5 huiles essentielles (thym, lavande aspic, eucalyptus, laurier, romarin) pour d\u00e9gager le nez et apaiser la gorge.',
                     benefits: ['D\u00e9congestion rapide en 24-48h', 'Complexe de 5 HE synergiques', 'Convient d\u00e8s 6 ans'],
                     price: '~8\u00a0\u20ac', format: '30 capsules'
@@ -1058,6 +1072,7 @@
                 {
                     brand: 'ARAGAN', name: 'RHIN\u2022ACTIFS BIO', approach: 'Micronutrition',
                     emoji: '\ud83d\udd2c', bgClass: 'bg-peach',
+                    imageFile: 'naturels-rhin-actifs-bio.jpeg',
                     description: 'Formule bio pour le confort respiratoire associant plantes, propolis et oligo\u00e9l\u00e9ments pour une action compl\u00e8te nez-gorge.',
                     benefits: ['Formule Bio certifi\u00e9e', 'Action confort nez et gorge', 'Id\u00e9al aux changements de saison'],
                     price: '~10\u00a0\u20ac', format: '15 g\u00e9lules'
@@ -1169,7 +1184,9 @@
         var productsHtml = prog.products.map(function(p) {
             return '<div class="protocol-card">' +
                 '<div class="protocol-card-top ' + p.bgClass + '">' +
-                    '<div class="protocol-emoji">' + p.emoji + '</div>' +
+                    '<div class="protocol-emoji">' + (p.imageFile
+                        ? '<img src="../images/medocs/' + p.imageFile + '" alt="' + p.name + '">'
+                        : p.emoji) + '</div>' +
                     '<div class="protocol-card-top-info">' +
                         '<div class="protocol-product-name">' + p.name + '</div>' +
                         '<div class="protocol-brand-tag">' + p.brand + '</div>' +
