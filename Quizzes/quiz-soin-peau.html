@@ -334,6 +334,14 @@
         /* Une vraie photo occupe la bande couleur; le 120x160 ci-dessus reste la taille de l'emoji de repli. */
         .product-card-top:has(img) { padding: var(--space-24) var(--space-24); }
         .product-image-placeholder:has(img) { width: 100%; height: 300px; }
+
+        /* Photo produit cliquable + lightbox */
+        .product-image-placeholder img { cursor: zoom-in; }
+        #photoDialog { border: none; padding: 0; background: transparent; max-width: none; max-height: none; width: 100%; height: 100%; position: fixed; inset: 0; overflow: hidden; }
+        #photoDialog[open] { display: flex; align-items: center; justify-content: center; }
+        #photoDialog::backdrop { background: rgba(31, 41, 38, 0.72); }
+        #photoDialog img { display: block; max-width: min(88vw, 460px); max-height: 78vh; background: var(--white); border-radius: var(--radius-lg); padding: var(--space-24); box-sizing: border-box; }
+        #photoDialog figcaption { margin-top: var(--space-12); text-align: center; font-size: var(--text-sm); color: var(--white); }
         /* Les packshots ont un fond blanc opaque: garder la bande pastel dessinerait un cadre de couleur
            autour du blanc. Une vraie photo => panneau blanc, la pastel ne sert que de repli pour l'emoji. */
         .result-view .product-card .product-card-top:has(img) { background: var(--white); border-bottom: 1px solid var(--gray-200); }
@@ -1203,7 +1211,29 @@
     // La Q1 etant l'ecran d'ouverture, l'etat de la barre de progression doit
     // etre pose au chargement: c'est startQuiz qui s'en chargeait avant.
     updateProgress();
+
+    // Lightbox photo produit. Ecouteur delegue: les cartes resultat sont rendues
+    // en innerHTML a plusieurs endroits (simple, featured, alternatives), donc on
+    // ecoute le document plutot que de cabler chaque template.
+    document.addEventListener('click', function (e) {
+        var img = e.target.closest('.product-image-placeholder img');
+        if (!img) return;
+        e.stopPropagation();
+        var dlg = document.getElementById('photoDialog');
+        document.getElementById('photoDialogImg').src = img.currentSrc || img.src;
+        document.getElementById('photoDialogImg').alt = img.alt;
+        document.getElementById('photoDialogCaption').textContent = img.alt;
+        dlg.showModal();
+    });
     </script>
+
+    <!-- Lightbox photo produit : clic n'importe ou (ou Echap) pour fermer -->
+    <dialog id="photoDialog" onclick="this.close()" aria-label="Photo du produit">
+        <figure style="margin:0">
+            <img id="photoDialogImg" src="" alt="">
+            <figcaption id="photoDialogCaption"></figcaption>
+        </figure>
+    </dialog>
 
 </body>
 </html>
