@@ -42,7 +42,7 @@
       "permanent": true
     },
     {
-      "source": "/blog/Peau%20Seche/:slug",
+      "source": "/blog/Peau Seche/:slug",
       "destination": "/blog/:slug",
       "permanent": true
     },
