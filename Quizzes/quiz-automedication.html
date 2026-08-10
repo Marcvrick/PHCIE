@@ -782,14 +782,21 @@
             flex: 1;
         }
 
-        /* Product card top colors by brand */
-        .brand-section:first-child .product-card-top {
+        /* Teinte de bande par marque. Classes explicites et non :first-child /
+           :last-child: le separateur "ou" est lui aussi un enfant du conteneur,
+           un selecteur positionnel ne designe donc pas la carte attendue. */
+        .brand-section--marque .product-card-top {
             background: linear-gradient(135deg, #FFF3E0, #FFE0B2);
         }
 
-        .brand-section:last-child .product-card-top {
+        .brand-section--generique .product-card-top {
             background: linear-gradient(135deg, #E8F5E9, #C8E6C9);
         }
+
+        /* Un seul triangle a l'ecran: repete sur les deux cartes, le signal
+           d'alerte double sans rien apprendre de plus. Le fond corail, le filet
+           rouge et le titre portent la mise en garde sur la seconde carte. */
+        .brand-section--generique .product-warning .panel-icon { display: none; }
 
         /* Smaller product cards in dual mode */
         .dual-brand-container .product-card-top {
@@ -852,13 +859,18 @@
             font-size: var(--text-xs);
         }
 
-        /* Posology + duration side by side once the card has room to breathe */
-        .product-specs-grid { display: grid; grid-template-columns: 1fr; gap: var(--space-16); margin-bottom: var(--space-24); }
+        /* Duree empilee sous la posologie, jamais a cote: la posologie est le bloc
+           qui compte, elle prend toute la largeur au lieu d'etre coupee en colonne
+           etroite. align-content evite que la duree s'etire pour combler la ligne. */
+        .product-specs-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            align-content: start;
+            gap: var(--space-16);
+            margin-bottom: var(--space-24);
+        }
         .product-specs-grid .product-posology,
         .product-specs-grid .product-duration { margin-bottom: 0; }
-        @media (min-width: 480px) {
-            .product-specs-grid { grid-template-columns: 1fr 1fr; }
-        }
 
         /* Brand tag: colored per brand — a white pill would vanish on the white photo panel */
         .product-brand-tag.upsa { background: #FFE0B2; color: #D84315; }
@@ -2763,10 +2775,10 @@
 
                 <div class="dual-brand-container">
                     <div class="dual-brand-divider">ou</div>
-                    <div class="brand-section">
+                    <div class="brand-section brand-section--marque">
                         ${renderProductCard(showDualBrandSanofi ? pSanofi : pUpsa, showDualBrandSanofi ? 'SANOFI' : 'UPSA')}
                     </div>
-                    <div class="brand-section">
+                    <div class="brand-section brand-section--generique">
                         ${renderProductCard(pBiogaran, 'BIOGARAN')}
                     </div>
                 </div>
