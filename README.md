@@ -76,6 +76,13 @@ git add [fichiers] && git commit -m "Message" && git push origin main
 
 ## Changelog
 
+### 10 Août 2026
+
+**Homepage — visuel Dermocosmétique agrandi (non commité) :**
+- `.card--dermo .product-feature-img { transform: scale(1.8) }` + sa variante `:hover` (`scale(1.94) translateY(-4px)`). La règle hover doit être dupliquée : `transform` écrase le scale de base, sans elle le pot rétrécit au survol.
+- Cause : `images/dermocosmetique-product.png` est un carré 750×750 avec beaucoup de vide autour du sujet, alors que les 3 autres visuels sont détourés serré. Le CSS compense — un recrop de l'image rendrait la règle inutile.
+- Vérifié en rendu réel (Puppeteer, 1280px et 390px) : poids visuel aligné sur celui des gélules, pas de rognage sur mobile.
+
 ### 4 Août 2026
 
 **Homepage — hero et services fusionnés en un seul bloc (commits `7a23fee`, `ea8791e`) :**
@@ -159,5 +166,5 @@ git add [fichiers] && git commit -m "Message" && git push origin main
 
 ---
 
-**Dernière mise à jour :** 4 Août 2026
+**Dernière mise à jour :** 10 Août 2026
 **Statut :** En ligne sur www.pharmaciecharnal.com · Migration style-v2.css en cours
