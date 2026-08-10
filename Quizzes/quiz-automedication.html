@@ -1044,7 +1044,7 @@
     </nav>
 
     <!-- PROGRESS -->
-    <div class="progress-container" id="progressContainer" style="display:none;">
+    <div class="progress-container" id="progressContainer">
         <div class="progress-bar-wrapper">
             <div class="progress-dots" id="progressDots">
                 <div class="progress-dot" data-step="1"></div>
@@ -1059,60 +1059,9 @@
     <!-- QUIZ -->
     <div class="quiz-container">
 
-        <!-- INTRO -->
-        <div class="step active" id="step-intro" data-theme="intro">
-            <div class="intro">
-                <div class="intro-eyebrow">
-                    <svg><use href="#i-mortar"/></svg>
-                    Bilan autom&eacute;dication
-                </div>
-
-                <div class="intro-sprig"><svg><use href="#i-sprig"/></svg></div>
-
-                <h1>Quel m&eacute;dicament pour <span class="highlight">vos sympt&ocirc;mes</span>&nbsp;?</h1>
-                <p class="intro-lede">Trouvez le bon traitement sans ordonnance, avec les conseils de votre pharmacien.</p>
-
-                <div class="intro-signature">
-                    <span class="intro-signature-line"></span>
-                    S&eacute;lectionn&eacute; par l&rsquo;&eacute;quipe de la Pharmacie Charnal &agrave; Qu&eacute;ven
-                    <span class="intro-signature-line"></span>
-                </div>
-
-                <div class="intro-features">
-                    <div class="intro-feature">
-                        <div class="feat-icon"><svg><use href="#i-check"/></svg></div>
-                        <div class="feat-body">
-                            <div class="feat-label">Conseils valid&eacute;s</div>
-                            <div class="feat-desc">Posologies et CI v&eacute;rifi&eacute;es</div>
-                        </div>
-                    </div>
-                    <div class="intro-feature">
-                        <div class="feat-icon"><svg><use href="#i-mortar"/></svg></div>
-                        <div class="feat-body">
-                            <div class="feat-label">Sympt&ocirc;mes cibl&eacute;s</div>
-                            <div class="feat-desc">Produit adapt&eacute; &agrave; votre profil</div>
-                        </div>
-                    </div>
-                    <div class="intro-feature">
-                        <div class="feat-icon"><svg><use href="#i-sparkle"/></svg></div>
-                        <div class="feat-body">
-                            <div class="feat-label">Alerte si avis m&eacute;dical requis</div>
-                            <div class="feat-desc">On vous dit quand consulter</div>
-                        </div>
-                    </div>
-                </div>
-
-                <button class="btn btn-primary btn-start" onclick="startQuiz()">
-                    Commencer le bilan
-                    <svg><use href="#i-arrow-right"/></svg>
-                </button>
-
-                <p class="intro-footnote">Ce bilan ne remplace jamais un avis pharmaceutique ou m&eacute;dical. En cas de doute, passez nous voir en officine.</p>
-            </div>
-        </div>
 
         <!-- Q1: Sympt&ocirc;me principal -->
-        <div class="step" id="step-1" data-theme="symptome">
+        <div class="step active" id="step-1" data-theme="symptome">
             <div class="question-header">
                 <div class="question-chip"><span class="question-chip-num">1</span> Vos sympt&ocirc;mes</div>
                 <div class="question-title">Quel est votre probl&egrave;me principal?</div>
@@ -1167,9 +1116,6 @@
                     </div>
                     <div class="option-check"></div>
                 </div>
-            </div>
-            <div class="btn-group">
-                <button class="btn btn-secondary" onclick="goBack()" aria-label="Retour"><svg><use href="#i-arrow-left"/></svg></button>
             </div>
         </div>
 
@@ -1310,7 +1256,7 @@
 
     <script>
     // State
-    let currentStep = 0;
+    let currentStep = 1;
     const totalQuestions = 4;
     let selectedSymptom = null;
     let selectedDetail = null;
@@ -2255,14 +2201,6 @@
     const arrowRightSvg = '<svg><use href="#i-arrow-right"/></svg>';
 
     // Functions
-    function startQuiz() {
-        document.getElementById('step-intro').classList.remove('active');
-        document.getElementById('step-1').classList.add('active');
-        document.getElementById('progressContainer').style.display = 'block';
-        currentStep = 1;
-        updateProgress();
-    }
-
     const TRANSITION_DELAY = 300; // ms before moving to next step
 
     function selectSymptom(el, symptom) {
@@ -2473,12 +2411,7 @@
     }
 
     function goBack() {
-        if (currentStep <= 1) {
-            document.getElementById('step-1').classList.remove('active');
-            document.getElementById('step-intro').classList.add('active');
-            document.getElementById('progressContainer').style.display = 'none';
-            currentStep = 0;
-        } else if (currentStep === 1.5) {
+        if (currentStep === 1.5) {
             // Going back from age question to step 1
             document.getElementById('step-age').classList.remove('active');
             document.getElementById('step-1').classList.add('active');
@@ -2889,15 +2822,15 @@
         brandChoice = null;
         hasBrandQuestion = false;
         isForChild = null;
-        currentStep = 0;
+        currentStep = 1;
+        updateProgress();
 
         document.querySelectorAll('.option').forEach(o => o.classList.remove('selected'));
         document.querySelectorAll('.step').forEach(s => s.classList.remove('active'));
         document.getElementById('interlude').classList.remove('active');
         document.getElementById('step-brand').classList.remove('active');
         document.getElementById('step-age').classList.remove('active');
-        document.getElementById('step-intro').classList.add('active');
-        document.getElementById('progressContainer').style.display = 'none';
+        document.getElementById('step-1').classList.add('active');
         document.getElementById('resultContainer').innerHTML = '';
         window.scrollTo({ top: 0, behavior: 'smooth' });
     }

@@ -593,7 +593,7 @@
     </nav>
 
     <!-- PROGRESS -->
-    <div class="progress-container" id="progressContainer" style="display:none;">
+    <div class="progress-container" id="progressContainer">
         <div class="progress-bar-wrapper">
             <div class="progress-dots" id="progressDots">
                 <div class="progress-dot" data-step="1"></div>
@@ -609,60 +609,9 @@
     <!-- QUIZ -->
     <div class="quiz-container">
 
-        <!-- INTRO -->
-        <div class="step active" id="step-intro" data-theme="intro">
-            <div class="intro">
-                <div class="intro-eyebrow">
-                    <svg><use href="#i-leaf"/></svg>
-                    Bilan bien-&ecirc;tre naturel
-                </div>
-
-                <div class="intro-sprig"><svg><use href="#i-sprig"/></svg></div>
-
-                <h1>Quel programme naturel est <span class="highlight">fait pour vous</span>&nbsp;?</h1>
-                <p class="intro-lede">Cinq questions, un programme personnalis&eacute;. Phytoth&eacute;rapie, aromath&eacute;rapie et micronutrition&nbsp;— choisies parmi nos marques de confiance.</p>
-
-                <div class="intro-signature">
-                    <span class="intro-signature-line"></span>
-                    S&eacute;lectionn&eacute; par l&rsquo;&eacute;quipe de la Pharmacie Charnal &agrave; Qu&eacute;ven
-                    <span class="intro-signature-line"></span>
-                </div>
-
-                <div class="intro-features">
-                    <div class="intro-feature">
-                        <div class="feat-icon"><svg><use href="#i-clock"/></svg></div>
-                        <div class="feat-body">
-                            <div class="feat-label">30 secondes</div>
-                            <div class="feat-desc">5 questions simples</div>
-                        </div>
-                    </div>
-                    <div class="intro-feature">
-                        <div class="feat-icon"><svg><use href="#i-mortar"/></svg></div>
-                        <div class="feat-body">
-                            <div class="feat-label">3 marques expertes</div>
-                            <div class="feat-desc">Nat&amp;Form, Phytosun, Aragan</div>
-                        </div>
-                    </div>
-                    <div class="intro-feature">
-                        <div class="feat-icon"><svg><use href="#i-sparkle"/></svg></div>
-                        <div class="feat-body">
-                            <div class="feat-label">Protocole cibl&eacute;</div>
-                            <div class="feat-desc">Adapt&eacute; &agrave; votre besoin</div>
-                        </div>
-                    </div>
-                </div>
-
-                <button class="btn btn-primary btn-start" onclick="startQuiz()">
-                    Commencer le bilan
-                    <svg><use href="#i-arrow-right"/></svg>
-                </button>
-
-                <p class="intro-footnote">Conseils &agrave; titre indicatif &mdash; un pharmacien reste disponible en officine pour personnaliser.</p>
-            </div>
-        </div>
 
         <!-- Q1 -->
-        <div class="step" id="step-1" data-theme="besoin">
+        <div class="step active" id="step-1" data-theme="besoin">
             <div class="question-header">
                 <div class="question-chip"><span class="question-chip-num">1</span> Votre besoin</div>
                 <div class="question-title">Quel est votre besoin principal en ce moment&nbsp;?</div>
@@ -709,9 +658,6 @@
                     </div>
                     <div class="option-check"></div>
                 </div>
-            </div>
-            <div class="btn-group">
-                <button class="btn btn-secondary" onclick="goBack()" aria-label="Retour"><svg><use href="#i-arrow-left"/></svg></button>
             </div>
         </div>
 
@@ -934,7 +880,7 @@
        ============================================ */
 
     const scores = { sommeil: 0, stress: 0, immunite: 0, digestion: 0, respiration: 0 };
-    let currentStep = 0;
+    let currentStep = 1;
     const totalQuestions = 5;
 
     const checkSvg = '<svg><use href="#i-check"/></svg>';
@@ -1123,14 +1069,6 @@
     };
 
     /* --- QUIZ NAVIGATION --- */
-    function startQuiz() {
-        document.getElementById('step-intro').classList.remove('active');
-        document.getElementById('step-1').classList.add('active');
-        document.getElementById('progressContainer').style.display = 'block';
-        currentStep = 1;
-        updateProgress();
-    }
-
     function selectOption(el, step) {
         var stepEl = document.getElementById('step-' + step);
         stepEl.querySelectorAll('.option').forEach(function(o) { o.classList.remove('selected'); });
@@ -1169,12 +1107,7 @@
     }
 
     function goBack() {
-        if (currentStep <= 1) {
-            document.getElementById('step-1').classList.remove('active');
-            document.getElementById('step-intro').classList.add('active');
-            document.getElementById('progressContainer').style.display = 'none';
-            currentStep = 0;
-        } else {
+        if (currentStep > 1) {
             document.getElementById('step-' + currentStep).classList.remove('active');
             currentStep--;
             document.getElementById('step-' + currentStep).classList.add('active');
@@ -1345,12 +1278,12 @@
 
     function restartQuiz() {
         scores.sommeil = 0; scores.stress = 0; scores.immunite = 0; scores.digestion = 0; scores.respiration = 0;
-        currentStep = 0;
+        currentStep = 1;
+        updateProgress();
         document.querySelectorAll('.option').forEach(function(o) { o.classList.remove('selected'); });
         document.querySelectorAll('.step').forEach(function(s) { s.classList.remove('active'); });
         document.getElementById('interlude').classList.remove('active');
-        document.getElementById('step-intro').classList.add('active');
-        document.getElementById('progressContainer').style.display = 'none';
+        document.getElementById('step-1').classList.add('active');
         document.getElementById('resultContainer').innerHTML = '';
         window.scrollTo({ top: 0, behavior: 'smooth' });
     }
