@@ -351,10 +351,22 @@
         .stock-badge { display: inline-flex; align-items: center; gap: var(--space-8); margin-bottom: var(--space-32); padding: 8px var(--space-16); background: var(--white); border: 1px solid var(--result-accent, var(--sage-natural)); border-radius: var(--radius-full); font-size: var(--text-xs); font-weight: 600; color: var(--result-accent, var(--teal-pro)); }
         .stock-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--result-accent, var(--sage-natural)); box-shadow: 0 0 0 4px color-mix(in srgb, var(--result-accent, var(--sage-natural)) 22%, transparent); }
 
+        /* Result gets more room than the question flow: the client compares products here. */
+        .quiz-container:has(.result-view) { max-width: 1100px; }
+        .result-header-block { max-width: 760px; }
+        .result-narrow { max-width: 760px; margin: 0 auto; }
+
         /* Protocol grid */
         .protocol-label { font-family: var(--font-display); font-style: italic; font-size: var(--text-base); color: var(--gray-600); margin-bottom: var(--space-16); display: flex; align-items: center; gap: var(--space-12); }
         .protocol-label::before, .protocol-label::after { content: ''; flex: 1; height: 1px; background: var(--gray-200); }
         .protocol-grid { display: flex; flex-direction: column; gap: var(--space-16); }
+
+        /* Alternatives as a scannable grid instead of a stacked list, once there's width for it */
+        .alternatives-list { display: flex; flex-direction: column; gap: var(--space-8); }
+        @media (min-width: 700px) {
+            .alternatives-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: var(--space-12); }
+            .alternative-card { margin-bottom: 0; height: 100%; }
+        }
 
         .protocol-card {
             background: var(--white);
@@ -369,10 +381,10 @@
         .protocol-card-top {
             padding: var(--space-20, 20px) var(--space-24) var(--space-16);
             display: flex;
-            align-items: center;
-            gap: var(--space-16);
-            position: relative;
+            flex-direction: column;
+            gap: var(--space-8);
         }
+        .protocol-card-top-main { display: flex; align-items: center; gap: var(--space-16); }
         .protocol-card-top.bg-sage { background: linear-gradient(135deg, #EDF2E8 0%, #E3EBDD 100%); }
         .protocol-card-top.bg-teal { background: linear-gradient(135deg, #DEEAE8 0%, #D0E0DD 100%); }
         .protocol-card-top.bg-peach { background: linear-gradient(135deg, #F6E8DF 0%, #EEDBCB 100%); }
@@ -382,7 +394,14 @@
         .protocol-card-top-info { flex: 1; min-width: 0; }
         .protocol-product-name { font-family: var(--font-display); font-size: var(--text-lg); font-weight: 500; color: var(--charcoal); letter-spacing: -0.01em; line-height: 1.2; }
         .protocol-brand-tag { font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--teal-pro); margin-top: 4px; }
-        .protocol-approach { position: absolute; top: var(--space-12); right: var(--space-16); font-size: 0.65rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--gray-600); background: rgba(255,255,255,0.9); padding: 4px 10px; border-radius: var(--radius-full); }
+        .protocol-approach { align-self: flex-end; width: fit-content; font-size: 0.65rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--gray-600); background: rgba(255,255,255,0.9); padding: 4px 10px; border-radius: var(--radius-full); }
+
+        @media (min-width: 900px) {
+            .protocol-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); align-items: stretch; }
+            .protocol-card { display: flex; flex-direction: column; }
+            .protocol-card-body { display: flex; flex-direction: column; flex: 1; }
+            .protocol-meta { margin-top: auto; }
+        }
 
         .protocol-card-body { padding: var(--space-16) var(--space-24) var(--space-24); }
         .protocol-desc { font-size: var(--text-sm); color: var(--gray-600); line-height: 1.65; margin-bottom: var(--space-16); }
@@ -1236,14 +1255,16 @@
         var productsHtml = prog.products.map(function(p) {
             return '<div class="protocol-card">' +
                 '<div class="protocol-card-top ' + p.bgClass + '">' +
-                    '<div class="protocol-emoji">' + (p.imageFile
-                        ? '<img src="../images/medocs/' + p.imageFile + '" alt="' + p.name + '">'
-                        : p.emoji) + '</div>' +
-                    '<div class="protocol-card-top-info">' +
-                        '<div class="protocol-product-name">' + p.name + '</div>' +
-                        '<div class="protocol-brand-tag">' + p.brand + '</div>' +
-                    '</div>' +
                     '<div class="protocol-approach">' + p.approach + '</div>' +
+                    '<div class="protocol-card-top-main">' +
+                        '<div class="protocol-emoji">' + (p.imageFile
+                            ? '<img src="../images/medocs/' + p.imageFile + '" alt="' + p.name + '">'
+                            : p.emoji) + '</div>' +
+                        '<div class="protocol-card-top-info">' +
+                            '<div class="protocol-product-name">' + p.name + '</div>' +
+                            '<div class="protocol-brand-tag">' + p.brand + '</div>' +
+                        '</div>' +
+                    '</div>' +
                 '</div>' +
                 '<div class="protocol-card-body">' +
                     '<div class="protocol-desc">' + p.description + '</div>' +
@@ -1270,15 +1291,19 @@
         }).join('');
 
         container.innerHTML =
+            '<div class="result-view result-view--single">' +
+            '<div class="result-header-block">' +
             '<div class="result-kicker"><span class="result-kicker-line"></span>Votre r&eacute;sultat</div>' +
             '<div class="result-title">Nous recommandons le programme <span class="highlight">' + prog.title + '</span></div>' +
             '<div class="result-subtitle">' + prog.subtitle + '</div>' +
 
             '<div class="stock-badge"><div class="stock-dot"></div>Disponible en stock &mdash; Pharmacie Charnal, Qu&eacute;ven</div>' +
+            '</div>' +
 
             '<div class="protocol-label">Un protocole en 3 approches compl&eacute;mentaires</div>' +
             '<div class="protocol-grid">' + productsHtml + '</div>' +
 
+            '<div class="result-narrow">' +
             '<div class="tip-box">' +
                 '<div class="tip-header">' +
                     '<div class="tip-icon"><svg><use href="#i-leaf"/></svg></div>' +
@@ -1294,18 +1319,22 @@
                 '<a href="../contact.html" class="btn btn-primary">Passez nous voir en pharmacie <svg><use href="#i-arrow-right"/></svg></a>' +
                 '<a href="../Nos-marques/nosmarques.html" class="btn btn-secondary">D&eacute;couvrir nos marques</a>' +
             '</div>' +
+            '</div>' +
 
             '<div class="alternatives-section">' +
                 '<div class="alternatives-title">Les autres programmes naturels</div>' +
                 '<div class="alternatives-sub">Vous pouvez aussi consulter&nbsp;:</div>' +
-                altsHtml +
+                '<div class="alternatives-list">' + altsHtml + '</div>' +
             '</div>' +
 
+            '<div class="result-narrow">' +
             blogBannerHtml(winner) +
 
             '<div class="disclaimer"><strong>Information</strong> &mdash; Ce bilan est propos&eacute; &agrave; titre indicatif par la Pharmacie Charnal. Il ne remplace en aucun cas un avis m&eacute;dical ou pharmaceutique. Certains produits naturels sont d&eacute;conseill&eacute;s aux femmes enceintes, allaitantes et aux enfants de moins de 6 ans. N&rsquo;h&eacute;sitez pas &agrave; nous consulter en officine pour un conseil adapt&eacute;.</div>' +
 
-            '<div class="restart-section"><button class="restart-link" onclick="restartQuiz()"><svg><use href="#i-rotate"/></svg> Recommencer le bilan</button></div>';
+            '<div class="restart-section"><button class="restart-link" onclick="restartQuiz()"><svg><use href="#i-rotate"/></svg> Recommencer le bilan</button></div>' +
+            '</div>' +
+            '</div>';
     }
 
     function switchResult(k) { renderResult(k); window.scrollTo({ top: 0, behavior: 'smooth' }); }

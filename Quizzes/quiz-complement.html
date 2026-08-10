@@ -339,6 +339,18 @@
         .protocol-label { font-family: var(--font-display); font-style: italic; font-size: var(--text-base); color: var(--gray-600); margin-bottom: var(--space-16); display: flex; align-items: center; gap: var(--space-12); }
         .protocol-label::before, .protocol-label::after { content: ''; flex: 1; height: 1px; background: var(--gray-200); }
 
+        /* Result gets more room than the question flow: the client compares products here. */
+        .quiz-container:has(.result-view) { max-width: 1100px; }
+        .result-header-block { max-width: 760px; }
+        .result-narrow { max-width: 760px; margin: 0 auto; }
+
+        /* Alternatives as a scannable grid instead of a stacked list, once there's width for it */
+        .alternatives-list { display: flex; flex-direction: column; gap: var(--space-8); }
+        @media (min-width: 700px) {
+            .alternatives-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: var(--space-12); }
+            .alternative-card { margin-bottom: 0; height: 100%; }
+        }
+
         .protocol-card {
             background: var(--white);
             border: 1px solid var(--gray-200);
@@ -1184,11 +1196,15 @@
         }).join('');
 
         container.innerHTML =
+            '<div class="result-view result-view--single">' +
+            '<div class="result-narrow">' +
+            '<div class="result-header-block">' +
             '<div class="result-kicker"><span class="result-kicker-line"></span>Votre r&eacute;sultat personnalis&eacute;</div>' +
             '<div class="result-title">Notre conseil pour vous&nbsp;: <span class="highlight">' + p.name + '</span></div>' +
             '<div class="result-subtitle">' + p.why + '</div>' +
 
             '<div class="stock-badge"><div class="stock-dot"></div>Disponible en stock &mdash; Pharmacie Charnal, Qu&eacute;ven</div>' +
+            '</div>' +
 
             '<div class="protocol-label">Votre compl&eacute;ment recommand&eacute;</div>' +
             cardHtml +
@@ -1208,18 +1224,22 @@
                 '<a href="../contact.html" class="btn btn-primary">Passez nous voir en pharmacie <svg><use href="#i-arrow-right"/></svg></a>' +
                 '<a href="../Nos-marques/nosmarques.html" class="btn btn-secondary">D&eacute;couvrir nos marques</a>' +
             '</div>' +
+            '</div>' +
 
             '<div class="alternatives-section">' +
                 '<div class="alternatives-title">Les autres options disponibles</div>' +
                 '<div class="alternatives-sub">Vous pouvez aussi consulter&nbsp;:</div>' +
-                altsHtml +
+                '<div class="alternatives-list">' + altsHtml + '</div>' +
             '</div>' +
 
+            '<div class="result-narrow">' +
             blogBannerHtml(winner) +
 
             '<div class="disclaimer"><strong>Information</strong> &mdash; Ce bilan est propos&eacute; &agrave; titre indicatif par la Pharmacie Charnal. Les compl&eacute;ments alimentaires ne remplacent pas un traitement m&eacute;dical. En cas de traitement en cours, de grossesse, d&rsquo;allaitement ou de pathologie chronique, demandez toujours l&rsquo;avis de votre pharmacien ou m&eacute;decin avant de commencer une cure.</div>' +
 
-            '<div class="restart-section"><button class="restart-link" onclick="restartQuiz()"><svg><use href="#i-rotate"/></svg> Recommencer le bilan</button></div>';
+            '<div class="restart-section"><button class="restart-link" onclick="restartQuiz()"><svg><use href="#i-rotate"/></svg> Recommencer le bilan</button></div>' +
+            '</div>' +
+            '</div>';
     }
 
     function switchResult(k) {
