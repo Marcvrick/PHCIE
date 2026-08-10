@@ -1,14 +1,14 @@
 # Inventaire photo des produits des quiz
 
-Référence de tous les produits recommandés par les 4 quiz du site, pour suivre la création des **photos produit** (une photo par produit). À date, **52 photos sont créées**.
+Référence de tous les produits recommandés par les 4 quiz du site, pour suivre la création des **photos produit** (une photo par produit). À date, **64 photos sont créées**.
 
 **Total : 65 produits** — Dermocosmétique 3 · Automédication 42 · Produits naturels 15 · Compléments 5.
 
 **Source :** extrait du JS de chaque quiz (`Quizzes/quiz-*.html`), champs `name` + `brand`.
 
-**Avancement photos : 52 / 65** — Dermocosmétique 3/3 ✅ · Compléments 5/5 ✅ · Produits naturels 14/15 · Automédication 30/42.
+**Avancement photos : 64 / 65** — Dermocosmétique 3/3 ✅ · Compléments 5/5 ✅ · Automédication 42/42 ✅ · Produits naturels 14/15.
 
-**Restent 13 photos** : les 12 UPSA (sauf Smecta 3 g, déjà fait) et Valériane Bio.
+**Reste 1 photo** : Valériane Bio (NAT&FORM).
 
 ---
 
@@ -68,21 +68,21 @@ Référence de tous les produits recommandés par les 4 quiz du site, pour suivr
 
 ### UPSA — 13
 
-| Produit | Slug photo | État |
-|---|---|---|
-| Efferalgan 1000 mg | `automed-efferalgan-1000` | ☐ |
-| Dafalgan 1000 mg | `automed-dafalgan-1000` | ☐ |
-| Aspirine UPSA Vitamine C | `automed-aspirine-upsa-vit-c` | ☐ |
-| Fervex État Grippal | `automed-fervex-etat-grippal` | ☐ |
-| Mucomyst 200 mg | `automed-mucomyst-200` | ☐ |
-| Oxomémazine UPSA | `automed-oxomemazine-upsa` | ☐ |
-| Phytovex Maux de Gorge Spray | `automed-phytovex-maux-de-gorge` | ☐ |
-| Smecta 3 g | `automed-smecta-3` | ✅ |
-| Smecta Enfant | `automed-smecta-enfant` | ☐ |
-| Donormyl 15 mg | `automed-donormyl-15` | ☐ |
-| UPSA Vitamine C 1000 mg | `automed-upsa-vitamine-c-1000` | ☐ |
-| UPSA Acérola 1000 Bio | `automed-upsa-acerola-1000-bio` | ☐ |
-| Efferalgan Pédiatrique Sirop | `automed-efferalgan-pediatrique` | ☐ |
+| Produit                      | Slug photo                       | État |
+| ---------------------------- | -------------------------------- | ---- |
+| Efferalgan 1000 mg           | `automed-efferalgan-1000`        | ✅    |
+| Dafalgan 1000 mg             | `automed-dafalgan-1000`          | ✅    |
+| Aspirine UPSA Vitamine C     | `automed-aspirine-upsa-vit-c`    | ✅    |
+| Fervex État Grippal          | `automed-fervex-etat-grippal`    | ✅    |
+| Mucomyst 200 mg              | `automed-mucomyst-200`           | ✅    |
+| Oxomémazine UPSA             | `automed-oxomemazine-upsa`       | ✅    |
+| Phytovex Maux de Gorge Spray | `automed-phytovex-maux-de-gorge` | ✅    |
+| Smecta 3 g                   | `automed-smecta-3`               | ✅    |
+| Smecta Enfant                | `automed-smecta-enfant`          | ✅    |
+| Donormyl 15 mg               | `automed-donormyl-15`            | ✅    |
+| UPSA Vitamine C 1000 mg      | `automed-upsa-vitamine-c-1000`   | ✅    |
+| UPSA Acérola 1000 Bio        | `automed-upsa-acerola-1000-bio`  | ✅    |
+| Efferalgan Pédiatrique Sirop | `automed-efferalgan-pediatrique` | ✅    |
 
 ### SANOFI / OPELLA — 4
 
@@ -169,7 +169,7 @@ Référence de tous les produits recommandés par les 4 quiz du site, pour suivr
 
 | Quiz | Carte résultat | Champ | Photos |
 |---|---|---|---|
-| `quiz-automedication.html` | `renderProductCard()` — template literal, var `imageContent` | `p.imageFile` | 30 / 42 |
+| `quiz-automedication.html` | `renderProductCard()` — template literal, var `imageContent` | `p.imageFile` | 42 / 42 |
 | `quiz-soin-peau.html` | ternaire inline dans `.product-image-placeholder` | `p.imageFile` | 3 / 3 |
 | `quiz-produits-naturels.html` | ternaire inline dans `.protocol-emoji` | `p.imageFile` | 14 / 15 |
 | `quiz-complement.html` | ternaire inline dans `.protocol-emoji` **+ `.alt-icon`** (cartes alternatives) | `p.imageFile` / `a.imageFile` | 5 / 5 |

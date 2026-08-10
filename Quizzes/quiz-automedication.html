@@ -2434,6 +2434,23 @@
     function renderResult() {
         const container = document.getElementById('resultContainer');
 
+        // Bandeau affiche quand le quiz renvoie vers un medecin: l'article liste les
+        // medecins, specialistes et laboratoires de Queven. Meme carte .quiz-blog-banner
+        // que le bandeau blog par symptome plus bas.
+        const consultBannerHtml = `
+                <section class="quiz-blog-banner" aria-label="Annuaire des professionnels de santé à Quéven">
+                    <a href="../blog/professionnels-sante-queven-2026.html" class="lbb-card">
+                        <div class="lbb-image">
+                            <img src="../images/Blog%20photos/blog-03-guide-sante-queven.jpeg" alt="Médecins, laboratoires et professionnels de santé à Quéven" loading="lazy" decoding="async">
+                        </div>
+                        <div class="lbb-body">
+                            <span class="lbb-eyebrow">Au comptoir &middot; trouver un professionnel</span>
+                            <h2 class="lbb-title">Guide santé Quéven: tous les professionnels médicaux</h2>
+                            <span class="lbb-cta">Voir les médecins et spécialistes <span aria-hidden="true">&rarr;</span></span>
+                        </div>
+                    </a>
+                </section>`;
+
         // Check for alerts or prolonged duration
         if (hasAlert || selectedDuration === 'prolonge') {
             container.innerHTML = `
@@ -2447,6 +2464,7 @@
                         <strong>Passez nous voir \u00e0 la pharmacie</strong> pour une orientation adapt\u00e9e, ou consultez votre m\u00e9decin traitant.
                     </p>
                 </div>
+                ${consultBannerHtml}
                 <div class="disclaimer">
                     <strong>Pharmacie Charnal</strong> \u2014 32 Place de Toulouse, 56530 Qu\u00e9ven<br>
                     T\u00e9l : 02 97 05 09 31
@@ -2472,6 +2490,7 @@
                         <strong>Passez nous voir \u00e0 la pharmacie</strong> \u2014 nous pourrons vous orienter vers votre m\u00e9decin ou vous proposer des alternatives adapt\u00e9es.
                     </p>
                 </div>
+                ${consultBannerHtml}
                 <div class="disclaimer">
                     <strong>Pharmacie Charnal</strong> \u2014 32 Place de Toulouse, 56530 Qu\u00e9ven<br>
                     T\u00e9l : 02 97 05 09 31
