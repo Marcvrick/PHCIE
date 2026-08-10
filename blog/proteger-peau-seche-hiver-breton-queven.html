@@ -343,6 +343,21 @@
         .article-body a { color: var(--hp-teal); }
         .article-body a:hover { color: var(--hp-sage-dark); }
 
+        .infographie-peau {
+            margin: var(--space-xl) 0;
+            padding: var(--space-lg);
+            background: var(--hp-cream, #FFFEF9);
+            border: 1px solid #D6E0D8;
+            border-radius: var(--radius-md);
+        }
+        .infographie-peau svg { width: 100%; height: auto; display: block; }
+        .infographie-peau figcaption {
+            margin-top: var(--space-md);
+            font-size: 0.85rem;
+            color: #6B7280;
+            text-align: center;
+        }
+
         .summary-box {
             background: #FFFFFF;
             border: 1px solid color-mix(in srgb, var(--hp-sage-dark) 20%, transparent);
@@ -488,6 +503,78 @@
             <p>En parallèle, l'air froid extérieur, naturellement sec, absorbe avidement l'humidité de la peau. À l'intérieur, le chauffage assèche encore l'atmosphère, créant un déficit d'humidité constant qui puise dans les réserves hydriques de l'épiderme. La peau perd progressivement son élasticité, devient rugueuse, et développe ces sensations de tiraillement que vous connaissez bien.</p>
 
             <p>Au niveau microscopique, les céramides, ces lipides qui forment le "mortier" entre les cellules de la peau, se fragilisent. Leur architecture compacte se désorganise, laissant l'eau s'échapper plus facilement. C'est mesurable: la perte insensible en eau augmente considérablement en hiver.</p>
+
+            <figure class="infographie-peau">
+                <svg viewBox="0 0 600 690" role="img" aria-labelledby="info-titre info-desc" xmlns="http://www.w3.org/2000/svg">
+                    <title id="info-titre">Pourquoi l'hiver breton dessèche la peau</title>
+                    <desc id="info-desc">Trois volets. Ce que subit la peau: 80 à 90 % d'humidité dehors, des passages de 5 °C à 20 °C plusieurs fois par jour, 30 % d'humidité dans un intérieur chauffé, un vent marin chargé d'embruns salés. Ce qui se passe dans la peau: vasoconstriction, puis baisse du sébum, puis affaiblissement du film hydrolipidique, puis désorganisation des céramides, l'eau s'échappant plus vite qu'elle n'est remplacée. Les bons repères: douche tiède de 5 à 10 minutes, chauffage à 19-20 °C, humidité intérieure entre 40 et 60 %, 1,5 litre d'eau par jour.</desc>
+
+                    <text x="0" y="30" font-family="var(--font-display), Georgia, serif" font-size="27" fill="#2D5F5D">Pourquoi l'hiver breton dessèche la peau</text>
+                    <text x="0" y="54" font-family="var(--font-body), sans-serif" font-size="14" fill="#6B7280">Un froid humide n'agit pas comme un froid sec.</text>
+
+                    <text x="0" y="96" font-family="var(--font-body), sans-serif" font-size="12" font-weight="600" letter-spacing="1.4" fill="#5A7563">CE QUE SUBIT LA PEAU</text>
+
+                    <rect x="0" y="110" width="292" height="86" rx="10" fill="#FFFFFF" stroke="#D6E0D8"/>
+                    <text x="20" y="150" font-family="var(--font-display), Georgia, serif" font-size="27" fill="#2D5F5D">80 à 90 %</text>
+                    <text x="20" y="174" font-family="var(--font-body), sans-serif" font-size="14" fill="#374151">d'humidité dehors</text>
+
+                    <rect x="308" y="110" width="292" height="86" rx="10" fill="#FFFFFF" stroke="#D6E0D8"/>
+                    <text x="328" y="150" font-family="var(--font-display), Georgia, serif" font-size="27" fill="#2D5F5D">5 °C vers 20 °C</text>
+                    <text x="328" y="174" font-family="var(--font-body), sans-serif" font-size="14" fill="#374151">plusieurs fois par jour</text>
+
+                    <rect x="0" y="208" width="292" height="86" rx="10" fill="#FFFFFF" stroke="#D6E0D8"/>
+                    <text x="20" y="248" font-family="var(--font-display), Georgia, serif" font-size="27" fill="#2D5F5D">30 %</text>
+                    <text x="20" y="272" font-family="var(--font-body), sans-serif" font-size="14" fill="#374151">d'humidité dans un intérieur chauffé</text>
+
+                    <rect x="308" y="208" width="292" height="86" rx="10" fill="#FFFFFF" stroke="#D6E0D8"/>
+                    <text x="328" y="248" font-family="var(--font-display), Georgia, serif" font-size="27" fill="#2D5F5D">Vent marin</text>
+                    <text x="328" y="272" font-family="var(--font-body), sans-serif" font-size="14" fill="#374151">embruns salés, action abrasive</text>
+
+                    <text x="0" y="342" font-family="var(--font-body), sans-serif" font-size="12" font-weight="600" letter-spacing="1.4" fill="#5A7563">CE QUI SE PASSE DANS LA PEAU</text>
+
+                    <rect x="0" y="356" width="132" height="82" rx="10" fill="#E8F0EA"/>
+                    <text x="66" y="392" text-anchor="middle" font-family="var(--font-body), sans-serif" font-size="14" fill="#2D5F5D">Vaso-</text>
+                    <text x="66" y="412" text-anchor="middle" font-family="var(--font-body), sans-serif" font-size="14" fill="#2D5F5D">constriction</text>
+                    <text x="148" y="403" text-anchor="middle" font-family="var(--font-body), sans-serif" font-size="18" fill="#7C9885">&#8594;</text>
+
+                    <rect x="164" y="356" width="132" height="82" rx="10" fill="#E8F0EA"/>
+                    <text x="230" y="392" text-anchor="middle" font-family="var(--font-body), sans-serif" font-size="14" fill="#2D5F5D">Moins</text>
+                    <text x="230" y="412" text-anchor="middle" font-family="var(--font-body), sans-serif" font-size="14" fill="#2D5F5D">de sébum</text>
+                    <text x="312" y="403" text-anchor="middle" font-family="var(--font-body), sans-serif" font-size="18" fill="#7C9885">&#8594;</text>
+
+                    <rect x="328" y="356" width="132" height="82" rx="10" fill="#E8F0EA"/>
+                    <text x="394" y="384" text-anchor="middle" font-family="var(--font-body), sans-serif" font-size="14" fill="#2D5F5D">Film hydro-</text>
+                    <text x="394" y="402" text-anchor="middle" font-family="var(--font-body), sans-serif" font-size="14" fill="#2D5F5D">lipidique</text>
+                    <text x="394" y="420" text-anchor="middle" font-family="var(--font-body), sans-serif" font-size="14" fill="#2D5F5D">affaibli</text>
+                    <text x="476" y="403" text-anchor="middle" font-family="var(--font-body), sans-serif" font-size="18" fill="#7C9885">&#8594;</text>
+
+                    <rect x="492" y="356" width="108" height="82" rx="10" fill="#E8F0EA"/>
+                    <text x="546" y="392" text-anchor="middle" font-family="var(--font-body), sans-serif" font-size="14" fill="#2D5F5D">Céramides</text>
+                    <text x="546" y="412" text-anchor="middle" font-family="var(--font-body), sans-serif" font-size="14" fill="#2D5F5D">désorganisés</text>
+
+                    <rect x="0" y="452" width="600" height="52" rx="10" fill="#2D5F5D"/>
+                    <text x="300" y="484" text-anchor="middle" font-family="var(--font-display), Georgia, serif" font-size="20" fill="#FFFEF9">L'eau s'échappe plus vite qu'elle n'est remplacée</text>
+
+                    <text x="0" y="552" font-family="var(--font-body), sans-serif" font-size="12" font-weight="600" letter-spacing="1.4" fill="#5A7563">LES BONS REPÈRES</text>
+
+                    <rect x="0" y="566" width="138" height="94" rx="10" fill="#FFFFFF" stroke="#D6E0D8"/>
+                    <text x="69" y="608" text-anchor="middle" font-family="var(--font-display), Georgia, serif" font-size="24" fill="#2D5F5D">5 à 10 min</text>
+                    <text x="69" y="632" text-anchor="middle" font-family="var(--font-body), sans-serif" font-size="13" fill="#374151">douche tiède</text>
+
+                    <rect x="154" y="566" width="138" height="94" rx="10" fill="#FFFFFF" stroke="#D6E0D8"/>
+                    <text x="223" y="608" text-anchor="middle" font-family="var(--font-display), Georgia, serif" font-size="24" fill="#2D5F5D">19-20 °C</text>
+                    <text x="223" y="632" text-anchor="middle" font-family="var(--font-body), sans-serif" font-size="13" fill="#374151">chauffage</text>
+
+                    <rect x="308" y="566" width="138" height="94" rx="10" fill="#FFFFFF" stroke="#D6E0D8"/>
+                    <text x="377" y="608" text-anchor="middle" font-family="var(--font-display), Georgia, serif" font-size="24" fill="#2D5F5D">40-60 %</text>
+                    <text x="377" y="632" text-anchor="middle" font-family="var(--font-body), sans-serif" font-size="13" fill="#374151">humidité intérieure</text>
+
+                    <rect x="462" y="566" width="138" height="94" rx="10" fill="#FFFFFF" stroke="#D6E0D8"/>
+                    <text x="531" y="608" text-anchor="middle" font-family="var(--font-display), Georgia, serif" font-size="24" fill="#2D5F5D">1,5 L</text>
+                    <text x="531" y="632" text-anchor="middle" font-family="var(--font-body), sans-serif" font-size="13" fill="#374151">d'eau par jour</text>
+                </svg>
+                <figcaption>Le froid humide breton fragilise la barrière cutanée par une autre voie que le froid sec.</figcaption>
+            </figure>
 
             <h2>Comment protéger efficacement votre peau</h2>
 
