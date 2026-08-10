@@ -351,10 +351,11 @@
         .stock-badge { display: inline-flex; align-items: center; gap: var(--space-8); margin-bottom: var(--space-32); padding: 8px var(--space-16); background: var(--white); border: 1px solid var(--result-accent, var(--sage-natural)); border-radius: var(--radius-full); font-size: var(--text-xs); font-weight: 600; color: var(--result-accent, var(--teal-pro)); }
         .stock-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--result-accent, var(--sage-natural)); box-shadow: 0 0 0 4px color-mix(in srgb, var(--result-accent, var(--sage-natural)) 22%, transparent); }
 
-        /* Result gets more room than the question flow: the client compares products here. */
-        .quiz-container:has(.result-view) { max-width: 1100px; }
-        .result-header-block { max-width: 760px; }
-        .result-narrow { max-width: 760px; margin: 0 auto; }
+        /* Result gets more room than the question flow: the client compares products here.
+           Every block shares ONE width so left and right edges line up down the page. */
+        .quiz-container:has(.result-view) { max-width: 1040px; }
+        .result-header-block, .result-narrow { max-width: none; }
+        .result-subtitle { max-width: 68ch; }
 
         /* Protocol grid */
         .protocol-label { font-family: var(--font-display); font-style: italic; font-size: var(--text-base); color: var(--gray-600); margin-bottom: var(--space-16); display: flex; align-items: center; gap: var(--space-12); }
@@ -364,7 +365,7 @@
         /* Alternatives as a scannable grid instead of a stacked list, once there's width for it */
         .alternatives-list { display: flex; flex-direction: column; gap: var(--space-8); }
         @media (min-width: 700px) {
-            .alternatives-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: var(--space-12); }
+            .alternatives-list { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--space-12); }
             .alternative-card { margin-bottom: 0; height: 100%; }
         }
 
@@ -401,6 +402,9 @@
             .protocol-card { display: flex; flex-direction: column; }
             .protocol-card-body { display: flex; flex-direction: column; flex: 1; }
             .protocol-meta { margin-top: auto; }
+            /* Fixed band height so the three colored headers end on the same line
+               even when one product name wraps to two lines. */
+            .protocol-card-top { min-height: 150px; justify-content: center; }
         }
 
         .protocol-card-body { padding: var(--space-16) var(--space-24) var(--space-24); }

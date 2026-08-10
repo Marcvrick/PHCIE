@@ -339,15 +339,16 @@
         .protocol-label { font-family: var(--font-display); font-style: italic; font-size: var(--text-base); color: var(--gray-600); margin-bottom: var(--space-16); display: flex; align-items: center; gap: var(--space-12); }
         .protocol-label::before, .protocol-label::after { content: ''; flex: 1; height: 1px; background: var(--gray-200); }
 
-        /* Result gets more room than the question flow: the client compares products here. */
-        .quiz-container:has(.result-view) { max-width: 1100px; }
-        .result-header-block { max-width: 760px; }
-        .result-narrow { max-width: 760px; margin: 0 auto; }
+        /* Result gets more room than the question flow: the client compares products here.
+           Every block shares ONE width so left and right edges line up down the page. */
+        .quiz-container:has(.result-view) { max-width: 920px; }
+        .result-header-block, .result-narrow { max-width: none; }
+        .result-subtitle { max-width: 68ch; }
 
         /* Alternatives as a scannable grid instead of a stacked list, once there's width for it */
         .alternatives-list { display: flex; flex-direction: column; gap: var(--space-8); }
         @media (min-width: 700px) {
-            .alternatives-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: var(--space-12); }
+            .alternatives-list { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--space-12); }
             .alternative-card { margin-bottom: 0; height: 100%; }
         }
 

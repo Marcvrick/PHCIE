@@ -347,10 +347,12 @@
         /* === RESULT === */
         .result-container { padding-top: var(--space-32); padding-bottom: var(--space-64); }
 
-        /* Result gets more room than the question flow: the client compares products here. */
-        .quiz-container:has(.result-view) { max-width: 1100px; }
-        .result-header-block { max-width: 700px; }
-        .result-narrow { max-width: 760px; margin: 0 auto; }
+        /* Result gets more room than the question flow: the client compares products here.
+           Every block shares ONE width so left and right edges line up down the page. */
+        .quiz-container:has(.result-view) { max-width: 920px; }
+        .quiz-container:has(.result-view--dual) { max-width: 1100px; }
+        .result-header-block, .result-narrow { max-width: none; }
+        .result-subtitle, .brand-note-text, .child-warning-box { max-width: 68ch; }
         .result-kicker { display: inline-flex; align-items: center; gap: var(--space-8); font-family: var(--font-display); font-style: italic; font-size: var(--text-sm); color: var(--teal-pro); margin-bottom: var(--space-12); }
         .result-kicker-line { width: 24px; height: 1px; background: var(--teal-pro); opacity: 0.4; }
 
@@ -463,8 +465,9 @@
            Packshots carres (600x600): c'est la hauteur qui dimensionne, object-fit: contain fait le reste. */
         .product-card-top:has(img) { padding: var(--space-24) var(--space-24); }
         .product-image-placeholder:has(img) { width: 100%; height: 300px; }
-        /* Les packshots .jpg ont un fond blanc opaque: l'arrondi evite le rectangle colle sur la bande pastel. */
-        .product-image-placeholder img { border-radius: 12px; }
+        /* Les packshots ont un fond blanc opaque: garder la bande pastel dessinerait un cadre de couleur
+           autour du blanc. Une vraie photo => panneau blanc, la pastel ne sert que de repli pour l'emoji. */
+        .result-view .product-card .product-card-top:has(img) { background: var(--white); border-bottom: 1px solid var(--gray-200); }
 
         .product-brand-tag {
             position: absolute;
@@ -475,7 +478,7 @@
             text-transform: uppercase;
             letter-spacing: 0.08em;
             color: var(--teal-pro);
-            background: rgba(255,255,255,0.9);
+            background: var(--paper-warm);
             padding: var(--space-4) var(--space-12);
             border-radius: var(--radius-full);
         }
@@ -799,17 +802,27 @@
             padding: var(--space-24);
         }
 
-        .dual-brand-container .product-image-placeholder {
-            width: 80px;
-            height: 100px;
-            font-size: 2.5rem;
+        /* Same band height whether the card shows a photo or the emoji fallback,
+           otherwise the two product titles sit at different heights side by side. */
+        .dual-brand-container .product-image-placeholder,
+        .dual-brand-container .product-image-placeholder:has(img) {
+            width: 100%;
+            height: 200px;
+            font-size: 3rem;
         }
 
-        .dual-brand-container .product-image-placeholder:has(img) { width: 100%; height: 220px; }
+        .dual-brand-container .product-card { display: flex; flex-direction: column; }
 
         .dual-brand-container .product-card-body {
             padding: var(--space-24);
+            display: flex;
+            flex-direction: column;
+            flex: 1;
         }
+
+        /* Price and availability sit on the card floor so both cards line up */
+        .dual-brand-container .product-price-row { margin-top: auto; }
+        .dual-brand-container .stock-badge { margin-bottom: 0; }
 
         .dual-brand-container .product-posology h4,
         .dual-brand-container .product-warning h4 {
@@ -833,7 +846,7 @@
             .product-specs-grid .product-duration { flex-direction: column; align-items: flex-start; gap: var(--space-8); }
         }
 
-        /* Brand tag: colored per brand instead of a generic white pill */
+        /* Brand tag: colored per brand — a white pill would vanish on the white photo panel */
         .product-brand-tag.upsa { background: #FFE0B2; color: #D84315; }
         .product-brand-tag.biogaran { background: #C8E6C9; color: #2E7D32; }
         .product-brand-tag.sanofi { background: #BBDEFB; color: #1565C0; }
@@ -851,7 +864,8 @@
         }
         @media (min-width: 900px) {
             .dual-brand-divider { display: flex; }
-            .dual-brand-container .product-image-placeholder:has(img) { height: 260px; }
+            .dual-brand-container .product-image-placeholder,
+            .dual-brand-container .product-image-placeholder:has(img) { height: 240px; }
             .dual-brand-container .product-card-top,
             .dual-brand-container .product-card-body { padding: var(--space-32); }
             .dual-brand-container .product-posology h4,
@@ -866,6 +880,8 @@
             .product-card--featured .product-card-top { flex: 0 0 320px; display: flex; align-items: center; justify-content: center; padding: var(--space-40) var(--space-32); }
             .product-card--featured .product-image-placeholder:has(img) { width: 100%; height: 100%; max-height: 360px; }
             .product-card--featured .product-card-body { flex: 1; padding: var(--space-40); }
+            /* Side by side, the separator runs vertically instead of across */
+            .result-view .product-card--featured .product-card-top:has(img) { border-bottom: none; border-right: 1px solid var(--gray-200); }
         }
 
         /* bgClass for sommeil/vitalite */
