@@ -509,19 +509,44 @@
             margin-bottom: var(--space-24);
         }
 
-        .product-posology {
-            background: var(--paper-warm);
-            border-radius: var(--radius-lg);
-            padding: var(--space-16) var(--space-24);
+        /* Les trois panneaux d'info partagent la meme ossature: filet de couleur a
+           gauche, teinte assortie, titre icone + libelle dans la couleur du filet.
+           Teal = posologie, bleu = duree, rouge = mise en garde. Le beige d'origine
+           ne disait rien de medical. */
+        .product-posology,
+        .product-duration,
+        .product-warning {
+            border-left: 3px solid;
+            border-radius: var(--radius-base);
+            padding: var(--space-16);
             margin-bottom: var(--space-24);
         }
 
-        .product-posology h4 {
+        /* flex-start, pas center: sur un titre qui passe a la ligne ("Duree de
+           traitement" en colonne etroite) l'icone flotterait entre les deux lignes. */
+        .product-posology h4,
+        .product-duration h4,
+        .product-warning h4 {
+            display: flex;
+            align-items: flex-start;
+            gap: var(--space-8);
             font-size: var(--text-sm);
             font-weight: 600;
-            color: var(--charcoal);
+            line-height: 1.35;
             margin-bottom: var(--space-8);
         }
+
+        .panel-icon { width: 18px; height: 18px; flex-shrink: 0; margin-top: 1px; }
+
+        .product-posology { background: var(--pastel-teal); border-left-color: var(--teal-pro); }
+        .product-posology h4 { color: var(--teal-pro); }
+
+        .product-duration { background: var(--pastel-blue); border-left-color: var(--bleu-confiance); }
+        .product-duration h4 { color: var(--bleu-confiance); }
+        .product-duration p { font-size: var(--text-sm); color: var(--gray-600); line-height: 1.6; }
+
+        .product-warning { background: var(--pastel-coral); border-left-color: var(--alert-red); }
+        .product-warning h4 { color: var(--alert-red); }
 
         .product-posology ul {
             list-style: none;
@@ -542,23 +567,8 @@
             top: 10px;
             width: 6px;
             height: 6px;
-            background: var(--sage-natural);
+            background: var(--teal-pro);
             border-radius: 50%;
-        }
-
-        .product-warning {
-            background: var(--pastel-coral);
-            border-left: 3px solid var(--alert-red);
-            border-radius: var(--radius-base);
-            padding: var(--space-16);
-            margin-bottom: var(--space-24);
-        }
-
-        .product-warning h4 {
-            font-size: var(--text-sm);
-            font-weight: 600;
-            color: var(--alert-red);
-            margin-bottom: var(--space-8);
         }
 
         .product-warning p {
@@ -567,29 +577,6 @@
             line-height: 1.6;
         }
 
-        .product-duration {
-            display: flex;
-            align-items: center;
-            gap: var(--space-12);
-            padding: var(--space-16);
-            background: var(--paper-warm);
-            border-radius: var(--radius-base);
-            margin-bottom: var(--space-24);
-        }
-
-        .product-duration-icon {
-            font-size: var(--text-xl);
-        }
-
-        .product-duration-text {
-            font-size: var(--text-sm);
-            color: var(--charcoal);
-        }
-
-        .product-duration-text strong {
-            display: block;
-            color: var(--teal-pro);
-        }
 
         /* Tip box — conseil d'officine */
         .tip-box { margin-top: var(--space-32); padding: var(--space-24) var(--space-24); background: var(--white); border-radius: var(--radius-xl); border: 1px solid var(--gray-200); position: relative; overflow: hidden; }
@@ -689,11 +676,18 @@
             margin-top: var(--space-12);
         }
 
+        /* C'est une posologie: meme code couleur teal et meme icone que le panneau principal */
         .complementary-posology {
+            display: flex;
+            align-items: center;
+            gap: 6px;
             font-size: var(--text-xs);
-            color: var(--gray-500);
+            font-weight: 500;
+            color: var(--teal-pro);
             margin-top: var(--space-8);
         }
+
+        .complementary-posology svg { width: 14px; height: 14px; flex-shrink: 0; }
 
         /* Alert Box — MEDICAL (preserved exactly) */
         .alert-box {
@@ -824,6 +818,27 @@
         .dual-brand-container .product-price-row { margin-top: auto; }
         .dual-brand-container .stock-badge { margin-bottom: 0; }
 
+        /* Cote a cote, chaque section doit tomber sur la meme ligne dans les deux cartes:
+           les lignes du conteneur traversent brand-section > product-card > product-card-body
+           via subgrid, et chaque bloc se voit assigner sa ligne explicitement (le prix est
+           optionnel, une auto-placement decalerait tout ce qui suit). */
+        @media (min-width: 900px) {
+            /* row-gap a 0: sinon l'ecart de 32px du conteneur se glisserait entre
+               chaque ligne interne des cartes (nom, posologie, alerte...). */
+            .dual-brand-container { grid-template-rows: repeat(7, auto); row-gap: 0; column-gap: var(--space-32); }
+            .dual-brand-container .brand-section,
+            .dual-brand-container .product-card { display: grid; grid-row: span 7; grid-template-rows: subgrid; }
+            .dual-brand-container .product-card-body { display: grid; grid-row: span 6; grid-template-rows: subgrid; }
+
+            .dual-brand-container .product-card-top { grid-row: 1; }
+            .dual-brand-container .product-name { grid-row: 1; }
+            .dual-brand-container .product-brand { grid-row: 2; }
+            .dual-brand-container .product-specs-grid { grid-row: 3; }
+            .dual-brand-container .product-warning { grid-row: 4; }
+            .dual-brand-container .product-price-row { grid-row: 5; margin-top: 0; }
+            .dual-brand-container .stock-badge { grid-row: 6; align-self: start; }
+        }
+
         .dual-brand-container .product-posology h4,
         .dual-brand-container .product-warning h4 {
             font-size: var(--text-xs);
@@ -843,7 +858,6 @@
         .product-specs-grid .product-duration { margin-bottom: 0; }
         @media (min-width: 480px) {
             .product-specs-grid { grid-template-columns: 1fr 1fr; }
-            .product-specs-grid .product-duration { flex-direction: column; align-items: flex-start; gap: var(--space-8); }
         }
 
         /* Brand tag: colored per brand — a white pill would vanish on the white photo panel */
@@ -936,6 +950,11 @@
                 <path d="M4 10h16l-2 6a3 3 0 0 1-3 2H9a3 3 0 0 1-3-2L4 10z"/>
                 <path d="M8 10v-2a4 4 0 0 1 8 0v2"/>
                 <path d="M16 4l4-1"/>
+            </symbol>
+            <symbol id="i-alert" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 4.5 2.8 20a1 1 0 0 0 .87 1.5h16.66A1 1 0 0 0 21.2 20L12 4.5z"/>
+                <path d="M12 10v4"/>
+                <path d="M12 17.5h.01"/>
             </symbol>
             <symbol id="i-sparkle" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
                 <path d="M12 3v3M12 18v3M3 12h3M18 12h3M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M5.6 18.4l2.1-2.1M16.3 7.7l2.1-2.1"/>
@@ -2615,21 +2634,18 @@
 
                         <div class="product-specs-grid">
                             <div class="product-posology">
-                                <h4>&#x1F4CB; Posologie</h4>
+                                <h4><svg class="panel-icon"><use href="#i-mortar"/></svg> Posologie</h4>
                                 <ul>${posologyHtml}</ul>
                             </div>
 
                             <div class="product-duration">
-                                <div class="product-duration-icon">&#x23F1;</div>
-                                <div class="product-duration-text">
-                                    <strong>Dur\u00e9e de traitement</strong>
-                                    ${p.duration}
-                                </div>
+                                <h4><svg class="panel-icon"><use href="#i-clock"/></svg> Dur\u00e9e de traitement</h4>
+                                <p>${p.duration}</p>
                             </div>
                         </div>
 
                         <div class="product-warning">
-                            <h4>&#x26A0;&#xFE0F; \u00c0 savoir</h4>
+                            <h4><svg class="panel-icon"><use href="#i-alert"/></svg> \u00c0 savoir</h4>
                             <p>${p.warnings}</p>
                         </div>
 
@@ -2670,7 +2686,7 @@
                                     <div class="complementary-badge">Optionnel</div>
                                 </div>
                                 ${why ? `<div class="complementary-why">&#x1F4A1; <strong>Pourquoi?</strong> ${why}</div>` : `<div class="complementary-why">${desc}</div>`}
-                                ${posology ? `<div class="complementary-posology">&#x1F4CB; ${posology}</div>` : ''}
+                                ${posology ? `<div class="complementary-posology"><svg><use href="#i-mortar"/></svg> ${posology}</div>` : ''}
                             </div>
                         `;
                     }).join('')}
