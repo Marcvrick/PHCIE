@@ -396,6 +396,28 @@
         .stock-badge { display: inline-flex; align-items: center; gap: var(--space-8); margin-bottom: var(--space-32); padding: 8px var(--space-16); background: var(--white); border: 1px solid var(--sage-natural); border-radius: var(--radius-full); font-size: var(--text-xs); font-weight: 600; color: var(--teal-pro); }
         .stock-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--sage-natural); box-shadow: 0 0 0 4px color-mix(in srgb, var(--sage-natural) 22%, transparent); }
 
+        /* Bandeau article de blog (meme carte que pharmacie-de-garde) */
+        .quiz-blog-banner { margin: var(--space-32) 0; }
+        .quiz-blog-banner .lbb-card { display: flex; align-items: stretch; background: var(--white); border: 1px solid var(--beige); border-radius: 16px; overflow: hidden; text-decoration: none; color: inherit; box-shadow: 0 6px 22px rgba(45, 95, 93, .08); transition: transform .2s ease, box-shadow .2s ease; }
+        .quiz-blog-banner .lbb-card:hover { transform: translateY(-3px); box-shadow: 0 12px 30px rgba(45, 95, 93, .15); }
+        .quiz-blog-banner .lbb-image { flex: 0 0 38%; max-width: 320px; overflow: hidden; background: var(--cream); }
+        .quiz-blog-banner .lbb-image img { width: 100%; height: 100%; min-height: 180px; object-fit: cover; display: block; }
+        .quiz-blog-banner .lbb-body { flex: 1 1 auto; padding: 1.6rem 1.8rem; display: flex; flex-direction: column; justify-content: center; gap: .5rem; }
+        .quiz-blog-banner .lbb-eyebrow { font-size: .8rem; letter-spacing: .08em; text-transform: uppercase; font-weight: 600; color: var(--lavande); }
+        .quiz-blog-banner .lbb-title { font-family: var(--font-display); font-size: 1.45rem; line-height: 1.25; margin: 0; font-weight: 400; color: var(--teal-pro); }
+        .quiz-blog-banner .lbb-cta { font-weight: 600; color: var(--bleu-confiance); font-size: .95rem; margin-top: .2rem; }
+        .quiz-blog-banner .lbb-card:hover .lbb-cta { color: var(--teal-pro); }
+        @media (max-width: 640px) {
+            .quiz-blog-banner .lbb-card { flex-direction: column; }
+            .quiz-blog-banner .lbb-image { flex-basis: auto; max-width: none; }
+            .quiz-blog-banner .lbb-image img { min-height: 200px; }
+            .quiz-blog-banner .lbb-title { font-size: 1.25rem; }
+        }
+
+        .product-price-row { display: flex; align-items: center; justify-content: space-between; padding-top: var(--space-12); margin-bottom: var(--space-16); border-top: 1px dashed var(--gray-200); }
+        .product-price { font-family: var(--font-display); font-size: var(--text-lg); font-weight: 500; color: var(--teal-pro); }
+        .product-price span { font-family: var(--font-body); font-size: var(--text-xs); font-weight: 400; color: var(--gray-500); margin-left: var(--space-4); }
+
         /* Product Card */
         .product-card {
             background: var(--white);
@@ -431,6 +453,13 @@
             justify-content: center;
             font-size: 3.5rem;
         }
+
+        /* Une vraie photo occupe la bande couleur; le 120x160 ci-dessus reste la taille de l'emoji de repli.
+           Packshots carres (600x600): c'est la hauteur qui dimensionne, object-fit: contain fait le reste. */
+        .product-card-top:has(img) { padding: var(--space-24) var(--space-24); }
+        .product-image-placeholder:has(img) { width: 100%; height: 300px; }
+        /* Les packshots .jpg ont un fond blanc opaque: l'arrondi evite le rectangle colle sur la bande pastel. */
+        .product-image-placeholder img { border-radius: 12px; }
 
         .product-brand-tag {
             position: absolute;
@@ -827,6 +856,8 @@
             font-size: 2.5rem;
         }
 
+        .dual-brand-container .product-image-placeholder:has(img) { width: 100%; height: 220px; }
+
         .dual-brand-container .product-card-body {
             padding: var(--space-24);
         }
@@ -871,6 +902,7 @@
             .option-icon { width: 40px; height: 40px; min-width: 40px; }
             .product-card-top { padding: var(--space-32) var(--space-24); }
             .product-image-placeholder { width: 100px; height: 120px; font-size: 2.5rem; }
+            .product-image-placeholder:has(img), .dual-brand-container .product-image-placeholder:has(img) { width: 100%; height: 200px; }
             .product-card-body { padding: var(--space-24); }
             .dual-brand-intro { gap: var(--space-8); }
             .brand-pill { padding: var(--space-4) var(--space-16); font-size: var(--text-xs); }
@@ -1253,6 +1285,7 @@
         // DOULEUR
         paracetamol: {
             name: 'Parac\u00e9tamol 1000 mg',
+            price: '2\u00a0\u20ac',
             brand: 'BIOGARAN CONSEIL',
             tagline: 'Antalgique et antipyr\u00e9tique',
             emoji: '&#x1F48A;',
@@ -1272,6 +1305,7 @@
         },
         ibuprofene: {
             name: 'Ibuprof\u00e8ne 400 mg',
+            price: '2\u00a0\u20ac',
             brand: 'BIOGARAN CONSEIL',
             tagline: 'Anti-inflammatoire',
             emoji: '&#x1F4AA;',
@@ -1293,6 +1327,7 @@
         // ALLERGIE
         cetirizine: {
             name: 'C\u00e9tirizine 10 mg',
+            price: '2\u00a0\u20ac',
             brand: 'BIOGARAN CONSEIL',
             tagline: 'Antihistaminique 2\u00e8me g\u00e9n\u00e9ration',
             emoji: '&#x1F33C;',
@@ -1311,6 +1346,7 @@
         // GORGE
         pastillegorge: {
             name: 'Pastilles Amylm\u00e9tacr\u00e9sol',
+            price: '7\u00a0\u20ac',
             brand: 'BIOGARAN CONSEIL',
             tagline: 'Antiseptique local miel-citron',
             emoji: '&#x1F36F;',
@@ -1330,6 +1366,7 @@
         },
         collutoire: {
             name: 'Collutoire Spray',
+            price: '7\u00a0\u20ac',
             brand: 'BIOGARAN CONSEIL',
             tagline: 'Antiseptique + anesth\u00e9siant local',
             emoji: '&#x1F4A8;',
@@ -1348,6 +1385,7 @@
         // DIGESTIF
         macrogol: {
             name: 'Macrogol 10 g',
+            price: '3\u00a0\u20ac',
             brand: 'BIOGARAN CONSEIL',
             tagline: 'Laxatif osmotique doux',
             emoji: '&#x1F4A7;',
@@ -1365,6 +1403,7 @@
         },
         loperamide: {
             name: 'Lop\u00e9ramide 2 mg',
+            price: '2\u00a0\u20ac',
             brand: 'BIOGARAN CONSEIL',
             tagline: 'Anti-diarrh\u00e9ique',
             emoji: '&#x1F6BD;',
@@ -1382,6 +1421,7 @@
         },
         metopimazine: {
             name: 'M\u00e9topimazine 7,5 mg',
+            price: '2\u00a0\u20ac',
             brand: 'BIOGARAN CONSEIL',
             tagline: 'Anti-naus\u00e9eux orodispersible',
             emoji: '&#x1F922;',
@@ -1400,6 +1440,7 @@
         },
         phloroglucinol: {
             name: 'Phloroglucinol 80 mg',
+            price: '3\u00a0\u20ac',
             brand: 'BIOGARAN CONSEIL',
             tagline: 'Antispasmodique',
             emoji: '&#x1F4AB;',
@@ -1419,6 +1460,7 @@
         },
         omeprazole: {
             name: 'Om\u00e9prazole 20 mg',
+            price: '10\u00a0\u20ac',
             brand: 'BIOGARAN CONSEIL',
             tagline: 'Anti-acide (IPP)',
             emoji: '&#x1F525;',
@@ -1437,6 +1479,7 @@
         // TOUX
         oxom\u00e9mazine: {
             name: 'Oxom\u00e9mazine Sirop',
+            price: '5\u00a0\u20ac',
             brand: 'BIOGARAN CONSEIL',
             tagline: 'Antitussif pour toux s\u00e8che',
             emoji: '&#x1F634;',
@@ -1455,6 +1498,7 @@
         },
         carbocisteine: {
             name: 'Carbocist\u00e9ine Sirop 5%',
+            price: '4\u00a0\u20ac',
             brand: 'BIOGARAN CONSEIL',
             tagline: 'Fluidifiant bronchique pour toux grasse',
             emoji: '&#x1F4A8;',
@@ -1473,6 +1517,7 @@
         // BR\u00dbLURE
         trolamine: {
             name: 'Trolamine 0,67% \u00c9mulsion',
+            price: '6\u00a0\u20ac',
             brand: 'BIOGARAN CONSEIL',
             tagline: 'Soin des br\u00fblures superficielles',
             emoji: '&#x2600;&#xFE0F;',
@@ -1492,6 +1537,7 @@
         },
         chlorhexidine: {
             name: 'Chlorhexidine Spray',
+            price: '5\u00a0\u20ac',
             brand: 'BIOGARAN CONSEIL',
             tagline: 'Antiseptique cutan\u00e9',
             emoji: '&#x1FA79;',
@@ -1512,6 +1558,7 @@
         // COMPL\u00c9MENTS
         levure: {
             name: 'Levure Saccharomyces boulardii',
+            price: '6\u00a0\u20ac',
             brand: 'BIOGARAN CONSEIL',
             tagline: 'Probiotique intestinal',
             emoji: '&#x1F9AB;',
@@ -1523,6 +1570,7 @@
         },
         alginate: {
             name: 'Alginate de Sodium/Bicarbonate',
+            price: '5\u00a0\u20ac',
             brand: 'BIOGARAN CONSEIL',
             tagline: 'Pansement gastrique',
             emoji: '&#x1F9F4;',
@@ -1534,6 +1582,7 @@
         },
         bainbouche: {
             name: 'Chlorhexidine Bain de Bouche',
+            price: '2\u00a0\u20ac',
             brand: 'BIOGARAN CONSEIL',
             tagline: 'Antiseptique bucco-dentaire',
             emoji: '&#x1F9F4;',
@@ -1545,6 +1594,7 @@
         },
         racecadotril: {
             name: 'Rac\u00e9cadotril 100 mg',
+            price: '4\u00a0\u20ac',
             brand: 'BIOGARAN CONSEIL',
             tagline: 'Antis\u00e9cr\u00e9toire intestinal',
             emoji: '&#x1F4A7;',
@@ -1560,6 +1610,7 @@
         // DOULEUR & FI\u00c8VRE UPSA
         efferalgan1000: {
             name: 'Efferalgan 1000 mg',
+            price: '1\u00a0\u20ac',
             brand: 'UPSA',
             tagline: 'Parac\u00e9tamol effervescent',
             emoji: '&#x1F48A;',
@@ -1578,6 +1629,7 @@
         },
         dafalgan1000: {
             name: 'Dafalgan 1000 mg',
+            price: '1\u00a0\u20ac',
             brand: 'UPSA',
             tagline: 'Parac\u00e9tamol comprim\u00e9 pellic\u00fal\u00e9',
             emoji: '&#x1F48A;',
@@ -1596,6 +1648,7 @@
         },
         aspirineupsa: {
             name: 'Aspirine UPSA Vitamine C',
+            price: '7\u00a0\u20ac',
             brand: 'UPSA',
             tagline: 'Antalgique + Vitamine C',
             emoji: '&#x1F34B;',
@@ -1616,6 +1669,7 @@
         // ORL & VOIES RESPIRATOIRES UPSA
         fervex: {
             name: 'Fervex \u00c9tat Grippal',
+            price: '7\u00a0\u20ac',
             brand: 'UPSA',
             tagline: 'Parac\u00e9tamol + Antihistaminique + Vitamine C',
             emoji: '&#x1F912;',
@@ -1634,6 +1688,7 @@
         },
         mucomyst: {
             name: 'Mucomyst 200 mg',
+            price: '6\u00a0\u20ac',
             brand: 'UPSA',
             tagline: 'Mucolytique - Fluidifiant bronchique',
             emoji: '&#x1F4A8;',
@@ -1652,6 +1707,7 @@
         },
         oxomemazineupsa: {
             name: 'Oxom\u00e9mazine UPSA',
+            price: '6\u00a0\u20ac',
             brand: 'UPSA',
             tagline: 'Sirop antitussif pour toux s\u00e8che',
             emoji: '&#x1F634;',
@@ -1670,6 +1726,7 @@
         },
         phytovex: {
             name: 'Phytovex Maux de Gorge Spray',
+            price: '9\u00a0\u20ac',
             brand: 'UPSA',
             tagline: 'Dispositif m\u00e9dical naturel',
             emoji: '&#x1F33F;',
@@ -1689,6 +1746,7 @@
         // DIGESTIF UPSA
         smecta: {
             name: 'Smecta 3 g',
+            price: '5\u00a0\u20ac',
             brand: 'UPSA',
             tagline: 'Pansement digestif - Diosmectite',
             emoji: '&#x1F6BD;',
@@ -1708,6 +1766,7 @@
         },
         smecta_enfant: {
             name: 'Smecta Enfant',
+            price: '5\u00a0\u20ac',
             brand: 'UPSA',
             tagline: 'Pansement digestif p\u00e9diatrique',
             emoji: '&#x1F6BD;',
@@ -1727,6 +1786,7 @@
         },
         macrogol_enfant: {
             name: 'Macrogol 4 g Enfant',
+            price: '2\u00a0\u20ac',
             brand: 'BIOGARAN CONSEIL',
             tagline: 'Laxatif osmotique p\u00e9diatrique',
             emoji: '&#x1F4A9;',
@@ -1749,6 +1809,7 @@
         // SOMMEIL UPSA
         donormyl: {
             name: 'Donormyl 15 mg',
+            price: '3\u00a0\u20ac',
             brand: 'UPSA',
             tagline: 'Antihistaminique s\u00e9datif',
             emoji: '&#x1F634;',
@@ -1769,6 +1830,7 @@
         // VITALIT\u00c9 UPSA
         vitamineC_upsa: {
             name: 'UPSA Vitamine C 1000 mg',
+            price: '5\u00a0\u20ac',
             brand: 'UPSA',
             tagline: 'Compl\u00e9ment alimentaire effervescent',
             emoji: '&#x1F34A;',
@@ -1779,6 +1841,7 @@
         },
         acerolabio: {
             name: 'UPSA Ac\u00e9rola 1000 Bio',
+            price: '10\u00a0\u20ac',
             brand: 'UPSA',
             tagline: 'Vitamine C naturelle Bio',
             emoji: '&#x1F352;',
@@ -1792,6 +1855,7 @@
 
         paracetamol_enfant: {
             name: 'Parac\u00e9tamol Sirop P\u00e9diatrique',
+            price: '1\u00a0\u20ac',
             brand: 'BIOGARAN CONSEIL',
             tagline: 'Sirop avec pipette doseuse',
             emoji: '&#x1F476;',
@@ -1812,6 +1876,7 @@
         },
         efferalgan_enfant: {
             name: 'Efferalgan P\u00e9diatrique Sirop',
+            price: '1\u00a0\u20ac',
             brand: 'UPSA',
             tagline: 'Sirop fraise avec seringue doseuse',
             emoji: '&#x1F353;',
@@ -1831,6 +1896,7 @@
         },
         ibuprofene_enfant: {
             name: 'Ibuprof\u00e8ne Sirop Enfant',
+            price: '2\u00a0\u20ac',
             brand: 'BIOGARAN CONSEIL',
             tagline: 'Sirop anti-inflammatoire p\u00e9diatrique',
             emoji: '&#x1F476;',
@@ -1851,6 +1917,7 @@
         },
         cetirizine_enfant: {
             name: 'C\u00e9tirizine Gouttes P\u00e9diatriques',
+            price: '2\u00a0\u20ac',
             brand: 'SUR ORDONNANCE',
             tagline: 'Solution buvable en gouttes (prescription)',
             emoji: '&#x1F33C;',
@@ -1871,6 +1938,7 @@
         },
         carbocisteine_enfant: {
             name: 'Carbocist\u00e9ine Sirop Enfant 2%',
+            price: '5\u00a0\u20ac',
             brand: 'BIOGARAN CONSEIL',
             tagline: 'Fluidifiant bronchique p\u00e9diatrique',
             emoji: '&#x1F476;',
@@ -1895,6 +1963,7 @@
         // DIGESTIF SANOFI
         maalox: {
             name: 'Maalox Maux d\'Estomac',
+            price: '8\u00a0\u20ac',
             brand: 'SANOFI / OPELLA',
             tagline: 'Antiacide action rapide',
             emoji: '&#x1F525;',
@@ -1914,6 +1983,7 @@
         },
         dulcolax: {
             name: 'Dulcolax 5 mg',
+            price: '9\u00a0\u20ac',
             brand: 'SANOFI / OPELLA',
             tagline: 'Laxatif stimulant ponctuel',
             emoji: '&#x1F4A9;',
@@ -1935,6 +2005,7 @@
         // GORGE SANOFI
         maxilase: {
             name: 'Maxilase Comprim\u00e9s',
+            price: '3\u00a0\u20ac',
             brand: 'SANOFI / OPELLA',
             tagline: 'Anti-inflammatoire naturel (adulte)',
             emoji: '&#x1F33F;',
@@ -1955,6 +2026,7 @@
         },
         maxilase_enfant: {
             name: 'Maxilase Sirop',
+            price: '6\u00a0\u20ac',
             brand: 'SANOFI / OPELLA',
             tagline: 'Anti-inflammatoire naturel (sirop)',
             emoji: '&#x1F33F;',
@@ -1976,6 +2048,7 @@
         },
         amylase_sirop_enfant: {
             name: 'Alpha-amylase Sirop',
+            price: '4\u00a0\u20ac',
             brand: 'BIOGARAN CONSEIL',
             tagline: 'Anti-inflammatoire naturel (sirop)',
             emoji: '&#x1F33F;',
@@ -1999,6 +2072,7 @@
         // GORGE ENFANT HOMEOPATHIE
         homeogene9: {
             name: 'Hom\u00e9og\u00e8ne 9',
+            price: '8\u00a0\u20ac',
             brand: 'BOIRON',
             tagline: 'Hom\u00e9opathie mal de gorge',
             emoji: '&#x1F33F;',
@@ -2545,6 +2619,11 @@
                             <p>${p.warnings}</p>
                         </div>
 
+                        ${p.price ? `
+                        <div class="product-price-row">
+                            <div class="product-price">${p.price}<span>prix indicatif</span></div>
+                        </div>` : ''}
+
                         <div class="stock-badge">
                             <div class="stock-dot"></div>
                             Disponible \u00e0 la pharmacie
@@ -2592,6 +2671,43 @@
             ? `<div class="child-warning-box">&#x26A0;&#xFE0F; <strong>Pr\u00e9caution :</strong> ${symptomConfig.childWarning}</div>`
             : '';
 
+        // Bandeau vers l'article de blog qui traite du sympt&ocirc;me choisi.
+        // Un sympt&ocirc;me absent de la table = pas de bandeau.
+        const blogBySymptom = {
+            douleur:  { url: '../blog/14-paracetamol-ibuprofene-aspirine/paracetamol-ibuprofene-aspirine-lequel-choisir-queven.html',
+                        img: 'blog-14-paracetamol-ibuprofene-aspirine.jpg',
+                        title: 'Paracétamol, ibuprofène, aspirine : lequel choisir et pourquoi?' },
+            allergie: { url: '../blog/allergie-pollen-bretagne-queven.html',
+                        img: 'blog-10-allergie-pollen-bretagne.jpg',
+                        title: 'Allergie au pollen: comment bien vivre la saison en Bretagne?' },
+            digestif: { url: '../blog/gastro-enterite-prevention-bons-reflexes-queven.html',
+                        img: 'blog-07-gastro-enterite-prevention.jpg',
+                        title: 'Gastro-entérite: comment s’en protéger et bien réagir?' },
+            brulure:  { url: '../blog/26-coups-de-soleil/coups-de-soleil-prevenir-traiter-queven.html',
+                        img: 'blog-26-coups-de-soleil.jpg',
+                        title: 'Coup de soleil: comment réagir et quand s’inquiéter?' },
+            gorge:    { url: '../blog/prevenir-maux-hiver-queven.html',
+                        img: 'blog-01-prevenir-maux-hiver.jpg',
+                        title: 'Prévenir les maux de l’hiver' },
+            toux:     { url: '../blog/prevenir-maux-hiver-queven.html',
+                        img: 'blog-01-prevenir-maux-hiver.jpg',
+                        title: 'Prévenir les maux de l’hiver' }
+        };
+        const blogPost = blogBySymptom[selectedSymptom];
+        const blogBannerHtml = blogPost ? `
+                <section class="quiz-blog-banner" aria-label="Article de blog sur le sujet">
+                    <a href="${blogPost.url}" class="lbb-card">
+                        <div class="lbb-image">
+                            <img src="../images/Blog%20photos/${blogPost.img}" alt="${blogPost.title}" loading="lazy" decoding="async">
+                        </div>
+                        <div class="lbb-body">
+                            <span class="lbb-eyebrow">Au comptoir &middot; pour aller plus loin</span>
+                            <h2 class="lbb-title">${blogPost.title}</h2>
+                            <span class="lbb-cta">Lire l’article <span aria-hidden="true">&rarr;</span></span>
+                        </div>
+                    </a>
+                </section>` : '';
+
         if (showDualBrand) {
             container.innerHTML = `
                 <div class="result-kicker"><span class="result-kicker-line"></span>Nos recommandations</div>
@@ -2622,6 +2738,8 @@
                     </div>
                     <div class="tip-text">${(showDualBrandSanofi ? pSanofi : pUpsa).alertConsult || pBiogaran.alertConsult}</div>
                 </div>
+
+                ${blogBannerHtml}
 
                 <div class="disclaimer">
                     <strong>Information</strong> \u2014 Ce guide est propos\u00e9 \u00e0 titre indicatif par la Pharmacie Charnal. Il ne remplace pas l\u2019avis d\u2019un professionnel de sant\u00e9. En cas de doute, passez nous voir ou consultez votre m\u00e9decin.
@@ -2687,6 +2805,8 @@
                     </div>
                     <div class="tip-text">${p.alertConsult}</div>
                 </div>
+
+                ${blogBannerHtml}
 
                 <div class="disclaimer">
                     <strong>Information</strong> \u2014 Ce guide est propos\u00e9 \u00e0 titre indicatif par la Pharmacie Charnal. Il ne remplace pas l\u2019avis d\u2019un professionnel de sant\u00e9. En cas de doute, passez nous voir ou consultez votre m\u00e9decin.

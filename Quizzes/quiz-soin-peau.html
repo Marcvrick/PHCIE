@@ -342,6 +342,11 @@
             font-size: 3.5rem;
         }
 
+        /* Une vraie photo occupe la bande couleur; le 120x160 ci-dessus reste la taille de l'emoji de repli. */
+        .product-card-top:has(img) { padding: var(--space-24) var(--space-24); }
+        .product-image-placeholder:has(img) { width: 100%; height: 300px; }
+        .product-image-placeholder img { border-radius: 12px; }
+
         .product-brand-tag {
             position: absolute;
             top: var(--space-16);
@@ -477,6 +482,24 @@
         .alt-arrow svg { width: 16px; height: 16px; }
 
         /* Disclaimer */
+        /* Bandeau article de blog (meme carte que pharmacie-de-garde) */
+        .quiz-blog-banner { margin: var(--space-32) 0; }
+        .quiz-blog-banner .lbb-card { display: flex; align-items: stretch; background: var(--white); border: 1px solid var(--beige); border-radius: 16px; overflow: hidden; text-decoration: none; color: inherit; box-shadow: 0 6px 22px rgba(45, 95, 93, .08); transition: transform .2s ease, box-shadow .2s ease; }
+        .quiz-blog-banner .lbb-card:hover { transform: translateY(-3px); box-shadow: 0 12px 30px rgba(45, 95, 93, .15); }
+        .quiz-blog-banner .lbb-image { flex: 0 0 38%; max-width: 320px; overflow: hidden; background: var(--cream); }
+        .quiz-blog-banner .lbb-image img { width: 100%; height: 100%; min-height: 180px; object-fit: cover; display: block; }
+        .quiz-blog-banner .lbb-body { flex: 1 1 auto; padding: 1.6rem 1.8rem; display: flex; flex-direction: column; justify-content: center; gap: .5rem; }
+        .quiz-blog-banner .lbb-eyebrow { font-size: .8rem; letter-spacing: .08em; text-transform: uppercase; font-weight: 600; color: var(--lavande); }
+        .quiz-blog-banner .lbb-title { font-family: var(--font-display); font-size: 1.45rem; line-height: 1.25; margin: 0; font-weight: 400; color: var(--teal-pro); }
+        .quiz-blog-banner .lbb-cta { font-weight: 600; color: var(--bleu-confiance); font-size: .95rem; margin-top: .2rem; }
+        .quiz-blog-banner .lbb-card:hover .lbb-cta { color: var(--teal-pro); }
+        @media (max-width: 640px) {
+            .quiz-blog-banner .lbb-card { flex-direction: column; }
+            .quiz-blog-banner .lbb-image { flex-basis: auto; max-width: none; }
+            .quiz-blog-banner .lbb-image img { min-height: 200px; }
+            .quiz-blog-banner .lbb-title { font-size: 1.25rem; }
+        }
+
         .disclaimer { margin-top: var(--space-48); padding: var(--space-16) var(--space-24); background: transparent; border-top: 1px solid var(--gray-200); border-bottom: 1px solid var(--gray-200); font-size: var(--text-xs); color: var(--gray-500); line-height: 1.7; text-align: center; }
         .disclaimer strong { color: var(--gray-600); font-weight: 700; }
 
@@ -509,6 +532,7 @@
             .option-icon { width: 40px; height: 40px; min-width: 40px; }
             .product-card-top { padding: var(--space-32) var(--space-24); }
             .product-image-placeholder { width: 100px; height: 120px; font-size: 2.5rem; }
+            .product-image-placeholder:has(img) { width: 100%; height: 200px; }
         }
     </style>
     <link rel="alternate" type="application/rss+xml" title="Blog Pharmacie Charnal" href="https://www.pharmaciecharnal.com/feed.xml">
@@ -1102,6 +1126,34 @@
         return winner;
     }
 
+    // Bandeau vers l'article de blog qui traite du resultat. Produit absent de la table = pas de bandeau.
+    var blogByProduct = {
+        hydrance:   { url: '../blog/proteger-peau-seche-hiver-breton-queven.html',
+                      img: 'blog-32-peau-seche-hiver-breton.jpg',
+                      title: 'Protéger sa peau sèche de l’hiver breton' },
+        cerave:     { url: '../blog/protection-solaire-printemps-bretagne-queven.html',
+                      img: 'blog-11-protection-solaire-printemps.jpg',
+                      title: 'Premiers soleils sur la côte: protéger sa peau dès le printemps' },
+        pigmentbio: { url: '../blog/protection-solaire-printemps-bretagne-queven.html',
+                      img: 'blog-11-protection-solaire-printemps.jpg',
+                      title: 'Premiers soleils sur la côte: protéger sa peau dès le printemps' }
+    };
+
+    function blogBannerHtml(key) {
+        var b = blogByProduct[key];
+        if (!b) return '';
+        return '<section class="quiz-blog-banner" aria-label="Article de blog sur le sujet">' +
+            '<a href="' + b.url + '" class="lbb-card">' +
+                '<div class="lbb-image"><img src="../images/Blog%20photos/' + b.img + '" alt="' + b.title + '" loading="lazy" decoding="async"></div>' +
+                '<div class="lbb-body">' +
+                    '<span class="lbb-eyebrow">Au comptoir &middot; pour aller plus loin</span>' +
+                    '<h2 class="lbb-title">' + b.title + '</h2>' +
+                    '<span class="lbb-cta">Lire l&rsquo;article <span aria-hidden="true">&rarr;</span></span>' +
+                '</div>' +
+            '</a>' +
+        '</section>';
+    }
+
     function renderResult(force) {
         var winner = force || getWinner();
         var p = products[winner];
@@ -1172,6 +1224,8 @@
                 '<div class="alternatives-sub">Vous pouvez aussi consulter&nbsp;:</div>' +
                 altsHtml +
             '</div>' +
+
+            blogBannerHtml(winner) +
 
             '<div class="disclaimer"><strong>Information</strong> &mdash; Ce bilan personnalis&eacute; est propos&eacute; &agrave; titre indicatif par la Pharmacie Charnal. Il ne remplace en aucun cas un diagnostic dermatologique. N&rsquo;h&eacute;sitez pas &agrave; nous consulter en officine.</div>' +
 

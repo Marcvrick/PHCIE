@@ -409,6 +409,24 @@
         .alt-arrow svg { width: 16px; height: 16px; }
 
         /* Disclaimer */
+        /* Bandeau article de blog (meme carte que pharmacie-de-garde) */
+        .quiz-blog-banner { margin: var(--space-32) 0; }
+        .quiz-blog-banner .lbb-card { display: flex; align-items: stretch; background: var(--white); border: 1px solid var(--beige); border-radius: 16px; overflow: hidden; text-decoration: none; color: inherit; box-shadow: 0 6px 22px rgba(45, 95, 93, .08); transition: transform .2s ease, box-shadow .2s ease; }
+        .quiz-blog-banner .lbb-card:hover { transform: translateY(-3px); box-shadow: 0 12px 30px rgba(45, 95, 93, .15); }
+        .quiz-blog-banner .lbb-image { flex: 0 0 38%; max-width: 320px; overflow: hidden; background: var(--cream); }
+        .quiz-blog-banner .lbb-image img { width: 100%; height: 100%; min-height: 180px; object-fit: cover; display: block; }
+        .quiz-blog-banner .lbb-body { flex: 1 1 auto; padding: 1.6rem 1.8rem; display: flex; flex-direction: column; justify-content: center; gap: .5rem; }
+        .quiz-blog-banner .lbb-eyebrow { font-size: .8rem; letter-spacing: .08em; text-transform: uppercase; font-weight: 600; color: var(--lavande); }
+        .quiz-blog-banner .lbb-title { font-family: var(--font-display); font-size: 1.45rem; line-height: 1.25; margin: 0; font-weight: 400; color: var(--teal-pro); }
+        .quiz-blog-banner .lbb-cta { font-weight: 600; color: var(--bleu-confiance); font-size: .95rem; margin-top: .2rem; }
+        .quiz-blog-banner .lbb-card:hover .lbb-cta { color: var(--teal-pro); }
+        @media (max-width: 640px) {
+            .quiz-blog-banner .lbb-card { flex-direction: column; }
+            .quiz-blog-banner .lbb-image { flex-basis: auto; max-width: none; }
+            .quiz-blog-banner .lbb-image img { min-height: 200px; }
+            .quiz-blog-banner .lbb-title { font-size: 1.25rem; }
+        }
+
         .disclaimer { margin-top: var(--space-48); padding: var(--space-16) var(--space-24); background: transparent; border-top: 1px solid var(--gray-200); border-bottom: 1px solid var(--gray-200); font-size: var(--text-xs); color: var(--gray-500); line-height: 1.7; text-align: center; }
         .disclaimer strong { color: var(--gray-600); font-weight: 700; }
 
@@ -1085,6 +1103,40 @@
         return winner;
     }
 
+    // Bandeau vers l'article de blog qui traite du resultat. Produit absent de la table = pas de bandeau.
+    const blogByProduct = {
+        lactibiane:  { url: '../blog/24-probiotiques-bien-choisir/probiotiques-guide-pratique-choisir-queven.html',
+                       img: 'blog-24-probiotiques.jpg',
+                       title: 'Probiotiques: comment choisir le bon pour votre situation?' },
+        formag:      { url: '../blog/Moral%20en%20berne/fatigue-moral-fin-hiver-queven.html',
+                       img: 'blog-06-fatigue-moral-fin-hiver.png',
+                       title: 'Fatigue, moral en berne: comment tenir le coup en fin d’hiver?' },
+        chronobiane: { url: '../blog/troubles-sommeil-solutions-naturelles-queven.html',
+                       img: 'blog-12-troubles-sommeil-naturel.jpg',
+                       title: 'Troubles du sommeil: les solutions naturelles pour retrouver des nuits sereines' },
+        d3biane:     { url: '../blog/13-complements-alimentaires/complements-alimentaires-pharmacie-internet-queven.html',
+                       img: 'blog-13-complements-alimentaires-internet.jpg',
+                       title: 'Compléments alimentaires: pharmacie ou internet ? Ce que votre pharmacien vérifie pour vous' },
+        curcuma:     { url: '../blog/humidite-douleurs-articulaires-queven.html',
+                       img: 'blog-05-humidite-douleurs-articulaires.png',
+                       title: 'L’humidité et les douleurs articulaires par temps de pluie' }
+    };
+
+    function blogBannerHtml(key) {
+        const b = blogByProduct[key];
+        if (!b) return '';
+        return '<section class="quiz-blog-banner" aria-label="Article de blog sur le sujet">' +
+            '<a href="' + b.url + '" class="lbb-card">' +
+                '<div class="lbb-image"><img src="../images/Blog%20photos/' + b.img + '" alt="' + b.title + '" loading="lazy" decoding="async"></div>' +
+                '<div class="lbb-body">' +
+                    '<span class="lbb-eyebrow">Au comptoir &middot; pour aller plus loin</span>' +
+                    '<h2 class="lbb-title">' + b.title + '</h2>' +
+                    '<span class="lbb-cta">Lire l&rsquo;article <span aria-hidden="true">&rarr;</span></span>' +
+                '</div>' +
+            '</a>' +
+        '</section>';
+    }
+
     function renderResult(force) {
         const winner = force || getWinner();
         const p = products[winner];
@@ -1162,6 +1214,8 @@
                 '<div class="alternatives-sub">Vous pouvez aussi consulter&nbsp;:</div>' +
                 altsHtml +
             '</div>' +
+
+            blogBannerHtml(winner) +
 
             '<div class="disclaimer"><strong>Information</strong> &mdash; Ce bilan est propos&eacute; &agrave; titre indicatif par la Pharmacie Charnal. Les compl&eacute;ments alimentaires ne remplacent pas un traitement m&eacute;dical. En cas de traitement en cours, de grossesse, d&rsquo;allaitement ou de pathologie chronique, demandez toujours l&rsquo;avis de votre pharmacien ou m&eacute;decin avant de commencer une cure.</div>' +
 
