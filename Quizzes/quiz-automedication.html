@@ -891,9 +891,9 @@
         /* Single-product result: image left, content right once there's room for it */
         @media (min-width: 780px) {
             .product-card--featured { display: flex; align-items: stretch; }
-            .product-card--featured .product-card-top { flex: 0 0 320px; display: flex; align-items: center; justify-content: center; padding: var(--space-40) var(--space-32); }
+            .product-card--featured .product-card-top { flex: 0 0 320px; display: flex; align-items: center; justify-content: center; padding: var(--space-32); }
             .product-card--featured .product-image-placeholder:has(img) { width: 100%; height: 100%; max-height: 360px; }
-            .product-card--featured .product-card-body { flex: 1; padding: var(--space-40); }
+            .product-card--featured .product-card-body { flex: 1; padding: var(--space-32); }
             /* Side by side, the separator runs vertically instead of across */
             .result-view .product-card--featured .product-card-top:has(img) { border-bottom: none; border-right: 1px solid var(--gray-200); }
         }
@@ -1642,6 +1642,7 @@
             brand: 'UPSA',
             tagline: 'Parac\u00e9tamol effervescent',
             emoji: '&#x1F48A;',
+            imageFile: 'automed-efferalgan-1000.png',
             bgClass: 'douleur',
             description: 'L\'Efferalgan effervescent agit rapidement gr\u00e2ce \u00e0 sa dissolution. Le parac\u00e9tamol soulage les douleurs l\u00e9g\u00e8res \u00e0 mod\u00e9r\u00e9es et fait baisser la fi\u00e8vre en environ 30 minutes.',
             shortDesc: 'Parac\u00e9tamol effervescent \u00e0 action rapide contre douleur et fi\u00e8vre.',
@@ -1661,6 +1662,7 @@
             brand: 'UPSA',
             tagline: 'Parac\u00e9tamol comprim\u00e9 pellic\u00fal\u00e9',
             emoji: '&#x1F48A;',
+            imageFile: 'automed-dafalgan-1000.webp',
             bgClass: 'douleur',
             description: 'Le Dafalgan en comprim\u00e9 \u00e0 avaler est id\u00e9al pour les personnes suivant un r\u00e9gime sans sel. M\u00eame efficacit\u00e9 que l\'effervescent, format discret et pratique.',
             shortDesc: 'Parac\u00e9tamol sans sodium, format discret \u00e0 avaler.',
@@ -1680,6 +1682,7 @@
             brand: 'UPSA',
             tagline: 'Antalgique + Vitamine C',
             emoji: '&#x1F34B;',
+            imageFile: 'automed-aspirine-upsa-vit-c.jpg',
             bgClass: 'douleur',
             description: 'L\'aspirine associ\u00e9e \u00e0 la vitamine C est efficace contre les douleurs l\u00e9g\u00e8res et les \u00e9tats grippaux avec fatigue. Action anti-inflammatoire et antipyr\u00e9tique.',
             shortDesc: 'Aspirine avec vitamine C pour douleurs et fatigue passag\u00e8re.',
@@ -1701,6 +1704,7 @@
             brand: 'UPSA',
             tagline: 'Parac\u00e9tamol + Antihistaminique + Vitamine C',
             emoji: '&#x1F912;',
+            imageFile: 'automed-fervex-etat-grippal.jpg',
             bgClass: 'gorge',
             description: 'Fervex traite plusieurs sympt\u00f4mes d\'un coup : fi\u00e8vre, maux de t\u00eate, \u00e9coulement nasal gr\u00e2ce \u00e0 l\'antihistaminique. Format boisson chaude r\u00e9confortant.',
             shortDesc: 'Traitement complet de l\'\u00e9tat grippal en boisson chaude.',
@@ -1720,6 +1724,7 @@
             brand: 'UPSA',
             tagline: 'Mucolytique - Fluidifiant bronchique',
             emoji: '&#x1F4A8;',
+            imageFile: 'automed-mucomyst-200.jpg',
             bgClass: 'toux',
             description: 'L\'ac\u00e9tylcyst\u00e9ine du Mucomyst fluidifie les s\u00e9cr\u00e9tions bronchiques \u00e9paisses pour faciliter leur expulsion. Pour les toux grasses avec encombrement.',
             shortDesc: 'Fluidifie les s\u00e9cr\u00e9tions pour faciliter l\'expectoration.',
@@ -1739,6 +1744,7 @@
             brand: 'UPSA',
             tagline: 'Sirop antitussif pour toux s\u00e8che',
             emoji: '&#x1F634;',
+            imageFile: 'automed-oxomemazine-upsa.jpg',
             bgClass: 'toux',
             description: 'L\'oxom\u00e9mazine calme efficacement la toux s\u00e8che irritante, particuli\u00e8rement la nuit. Action sur le centre de la toux avec effet s\u00e9datif b\u00e9n\u00e9fique pour le sommeil.',
             shortDesc: 'Calme la toux s\u00e8che irritante, surtout nocturne.',
@@ -1758,6 +1764,7 @@
             brand: 'UPSA',
             tagline: 'Dispositif m\u00e9dical naturel',
             emoji: '&#x1F33F;',
+            imageFile: 'automed-phytovex-maux-de-gorge.jpg',
             bgClass: 'gorge',
             description: 'Spray \u00e0 base de glyc\u00e9rol v\u00e9g\u00e9tal, miel et extraits de plantes. Forme un film protecteur sur la muqueuse, soulagement d\u00e8s la premi\u00e8re pulv\u00e9risation.',
             shortDesc: 'Spray naturel qui forme un film protecteur apaisant.',
@@ -1798,6 +1805,7 @@
             brand: 'UPSA',
             tagline: 'Pansement digestif p\u00e9diatrique',
             emoji: '&#x1F6BD;',
+            imageFile: 'automed-smecta-enfant.jpg',
             bgClass: 'digestif',
             description: 'Diosmectite adapt\u00e9e aux enfants d\u00e8s 2 ans. Prot\u00e8ge la muqueuse intestinale et adsorbe les toxines en douceur.',
             shortDesc: 'Pansement intestinal naturel pour les enfants.',
@@ -1841,6 +1849,7 @@
             brand: 'UPSA',
             tagline: 'Antihistaminique s\u00e9datif',
             emoji: '&#x1F634;',
+            imageFile: 'automed-donormyl-15.jpg',
             bgClass: 'sommeil',
             description: 'La doxylamine aide \u00e0 l\'endormissement en cas d\'insomnie occasionnelle. Effet s\u00e9datif puissant, r\u00e9serv\u00e9 aux insomnies ponctuelles de quelques jours.',
             shortDesc: 'Aide \u00e0 l\'endormissement pour insomnie passag\u00e8re.',
@@ -1862,6 +1871,7 @@
             brand: 'UPSA',
             tagline: 'Compl\u00e9ment alimentaire effervescent',
             emoji: '&#x1F34A;',
+            imageFile: 'automed-upsa-vitamine-c-1000.png',
             bgClass: 'vitalite',
             shortDesc: 'Vitamine C pour r\u00e9duire la fatigue passag\u00e8re.',
             posology: '1 comprim\u00e9 effervescent le matin',
@@ -1873,6 +1883,7 @@
             brand: 'UPSA',
             tagline: 'Vitamine C naturelle Bio',
             emoji: '&#x1F352;',
+            imageFile: 'automed-upsa-acerola-1000-bio.jpg',
             bgClass: 'vitalite',
             shortDesc: 'Vitamine C naturelle issue de l\'ac\u00e9rola biologique.',
             posology: '1 comprim\u00e9 \u00e0 croquer le matin',
@@ -1908,6 +1919,7 @@
             brand: 'UPSA',
             tagline: 'Sirop fraise avec seringue doseuse',
             emoji: '&#x1F353;',
+            imageFile: 'automed-efferalgan-pediatrique.jpg',
             bgClass: 'douleur',
             description: 'Sirop de parac\u00e9tamol go\u00fbt fraise avec seringue gradu\u00e9e selon le poids. Pour enfants de 3 \u00e0 32 kg (naissance \u00e0 ~12 ans).',
             shortDesc: 'Sirop parac\u00e9tamol go\u00fbt fraise adapt\u00e9 aux enfants.',
@@ -2698,7 +2710,7 @@
         const forWhoDualText = isForChild ? 'Deux options pour votre enfant' : 'Deux options pour vous';
 
         const childWarningHtml = (isForChild && symptomConfig.childWarning)
-            ? `<div class="child-warning-box">&#x26A0;&#xFE0F; <strong>Pr\u00e9caution :</strong> ${symptomConfig.childWarning}</div>`
+            ? `<div class="child-warning-box"><strong>Pr\u00e9caution :</strong> ${symptomConfig.childWarning}</div>`
             : '';
 
         // Bandeau vers l'article de blog qui traite du sympt&ocirc;me choisi.
@@ -2804,7 +2816,6 @@
 
             const brandNoteHtml = (brandNote && isSingleBrand) ? `
                 <div class="brand-recommendation-note">
-                    <div class="brand-note-icon">&#x26A0;&#xFE0F;</div>
                     <div class="brand-note-text">${brandNote}</div>
                 </div>
             ` : (reasonText && brandChoice) ? `

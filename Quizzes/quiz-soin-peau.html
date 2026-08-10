@@ -312,9 +312,9 @@
         /* Featured card: image left, content right once there's room for it */
         @media (min-width: 780px) {
             .product-card--featured { display: flex; align-items: stretch; }
-            .product-card--featured .product-card-top { flex: 0 0 320px; display: flex; align-items: center; justify-content: center; padding: var(--space-40) var(--space-32); }
+            .product-card--featured .product-card-top { flex: 0 0 320px; display: flex; align-items: center; justify-content: center; padding: var(--space-32); }
             .product-card--featured .product-image-placeholder:has(img) { width: 100%; height: 100%; max-height: 360px; }
-            .product-card--featured .product-card-body { flex: 1; padding: var(--space-40); }
+            .product-card--featured .product-card-body { flex: 1; padding: var(--space-32); }
             /* Side by side, the separator runs vertically instead of across */
             .result-view .product-card--featured .product-card-top:has(img) { border-bottom: none; border-right: 1px solid var(--gray-200); }
         }
