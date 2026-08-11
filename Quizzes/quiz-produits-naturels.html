@@ -107,6 +107,7 @@
             --space-32: 32px;
             --space-48: 48px;
             --space-64: 64px;
+            --space-80: 80px;
             --space-96: 96px;
 
             /* Typographie */
@@ -451,17 +452,51 @@
         .restart-link svg { width: 14px; height: 14px; }
 
         /* === FOOTER === */
-        .footer { background: var(--charcoal); color: var(--white); padding: var(--space-64) 0 var(--space-32); width: 100%; margin-top: auto; }
+        .footer { background: var(--charcoal); color: var(--white); padding: var(--space-80) 0 var(--space-32); width: 100%; margin-top: auto; }
         .footer .container { max-width: 1280px; margin: 0 auto; padding: 0 var(--space-24); }
-        .footer-bottom { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: var(--space-16); }
-        .footer-copyright { font-size: var(--text-sm); color: rgba(255, 255, 255, 0.8); }
+
+        .footer-grid { display: grid; grid-template-columns: 1fr; gap: var(--space-48); margin-bottom: var(--space-64); }
+        @media (min-width: 768px) { .footer-grid { grid-template-columns: 2fr 1fr 1fr 1fr; } }
+
+        .footer-brand p { font-size: var(--text-base); color: rgba(255, 255, 255, 0.7); line-height: 1.7; margin-top: var(--space-16); max-width: 320px; }
+        .footer-logo { display: flex; align-items: center; gap: var(--space-12); }
+        .footer-logo-icon { width: 48px; height: 48px; border-radius: var(--radius-lg); overflow: hidden; background: var(--white); }
+        .footer-logo-icon img { width: 100%; height: 100%; object-fit: contain; }
+        .footer-logo-text { font-family: var(--font-display); font-size: var(--text-xl); font-weight: 600; }
+
+        .footer-col h4 { font-size: var(--text-sm); font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: rgba(255, 255, 255, 0.5); margin-bottom: var(--space-24); }
+        .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: var(--space-12); }
+        .footer-col li { font-size: var(--text-base); color: rgba(255, 255, 255, 0.6); }
+        .footer-col a { font-size: var(--text-base); color: rgba(255, 255, 255, 0.8); transition: color var(--duration-fast) var(--ease-standard); }
+        .footer-col a:hover { color: var(--white); }
+
+        .footer-social { display: flex; gap: var(--space-16); margin-top: var(--space-24); }
+        .footer-social a { width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; border: 1px solid rgba(255, 255, 255, 0.2); border-radius: var(--radius-full); color: rgba(255, 255, 255, 0.8); transition: all var(--duration-fast) var(--ease-standard); }
+        .footer-social a:hover { background: var(--white); color: var(--charcoal); border-color: var(--white); }
+        .footer-social svg { width: 20px; height: 20px; }
+
+        .footer-bottom { padding-top: var(--space-32); border-top: 1px solid rgba(255, 255, 255, 0.1); display: flex; flex-direction: column; gap: var(--space-16); align-items: center; }
+        @media (min-width: 768px) { .footer-bottom { flex-direction: row; justify-content: space-between; } }
+        .footer-copyright { font-size: var(--text-sm); color: rgba(255, 255, 255, 0.5); }
         .footer-legal { display: flex; gap: var(--space-24); }
-        .footer-legal a { font-size: var(--text-sm); color: rgba(255, 255, 255, 0.7); text-decoration: none; transition: color var(--duration-normal) var(--ease-standard); }
+        .footer-legal a { font-size: var(--text-sm); color: rgba(255, 255, 255, 0.5); }
         .footer-legal a:hover { color: var(--white); }
 
         @media (max-width: 767px) {
-            .footer { padding: var(--space-48) 0 var(--space-32); }
-            .footer-bottom { flex-direction: column; text-align: center; }
+            .footer { padding: var(--space-48) 0 var(--space-24); }
+            .footer-grid { display: grid; grid-template-columns: 1fr 1fr; grid-template-areas: "brand brand" "contact horaires"; gap: var(--space-24); }
+            .footer-brand { grid-area: brand; }
+            .footer-brand p { font-size: var(--text-sm); margin-top: var(--space-12); }
+            .footer-social { margin-top: var(--space-16); }
+            .footer-social a { width: 40px; height: 40px; }
+            .footer-col.footer-nav { display: none; }
+            .footer-col.footer-contact { grid-area: contact; }
+            .footer-col.footer-horaires { grid-area: horaires; }
+            .footer-col h4 { font-size: var(--text-xs); margin-bottom: var(--space-12); }
+            .footer-col ul { gap: var(--space-8); }
+            .footer-col li, .footer-col a { font-size: var(--text-sm); }
+            .footer-bottom { padding-top: var(--space-24); text-align: center; }
+            .footer-legal { gap: var(--space-16); }
         }
 
         /* === RESPONSIVE === */
@@ -835,6 +870,58 @@
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <div class="footer-logo">
+                        <div class="footer-logo-icon">
+                            <img src="../images/pharmacie-charnal-logo.png" alt="Logo Pharmacie Charnal">
+                        </div>
+                        <span class="footer-logo-text">Pharmacie Charnal</span>
+                    </div>
+                    <p>Votre pharmacie familiale depuis plus de 40 ans. Une tradition de soins personnalis&eacute;s et attentifs &agrave; Qu&eacute;ven.</p>
+                    <div class="footer-social">
+                        <a href="https://www.instagram.com/pharmaciecharnalqueven/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="2" y="2" width="20" height="20" rx="5"/>
+                                <circle cx="12" cy="12" r="4"/>
+                                <circle cx="17.5" cy="6.5" r="1.5" fill="currentColor"/>
+                            </svg>
+                        </a>
+                        <a href="https://www.facebook.com/pharmaciecharnal/" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+                <div class="footer-col footer-nav">
+                    <h4>Navigation</h4>
+                    <ul>
+                        <li><a href="../index.html">Accueil</a></li>
+                        <li><a href="../services.html">Services</a></li>
+                        <li><a href="../histoire.html">Notre Histoire</a></li>
+                        <li><a href="../blog.html">Au Comptoir</a></li>
+                        <li><a href="guide-quizzes-sante-pharmacie-queven.html">Quiz sant&eacute;</a></li>
+                        <li><a href="../contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col footer-contact">
+                    <h4>Contact</h4>
+                    <ul>
+                        <li>32 Place de Toulouse</li>
+                        <li>56530 Qu&eacute;ven</li>
+                        <li><a href="tel:0297050931">02 97 05 09 31</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col footer-horaires">
+                    <h4>Horaires</h4>
+                    <ul>
+                        <li>Lun-Ven: 9h-12h30 / 14h-19h15</li>
+                        <li>Samedi: 9h-12h30</li>
+                        <li>Dimanche: Ferm&eacute;</li>
+                    </ul>
+                </div>
+            </div>
             <div class="footer-bottom">
                 <p class="footer-copyright">&copy; 2026 Pharmacie Charnal. Tous droits r&eacute;serv&eacute;s.</p>
                 <div class="footer-legal">
