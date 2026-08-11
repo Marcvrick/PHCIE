@@ -254,8 +254,17 @@
         .age-item::before { content: "\2022"; position: absolute; left: 0; color: var(--gray); }
         .age-item:last-child { margin-bottom: 0; }
 
+        .med-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-md); }
+        .med-card { background: #FFFFFF; border: 1px solid var(--beige); border-radius: var(--radius-md); padding: var(--space-md); }
+        .med-name { font-weight: 700; color: var(--charcoal); font-size: 0.88rem; margin-bottom: 4px; line-height: 1.3; }
+        .med-reason { font-size: 0.78rem; color: var(--gray); line-height: 1.4; }
+
         @media (max-width: 600px) {
             .age-grid { grid-template-columns: 1fr; }
+            .med-grid { grid-template-columns: 1fr 1fr; }
+        }
+        @media (max-width: 420px) {
+            .med-grid { grid-template-columns: 1fr; }
         }
     </style>
 
@@ -610,10 +619,33 @@
 
             <p>Plusieurs classes de médicaments aggravent le risque en période de forte chaleur (Ameli.fr): les diurétiques et certains antihypertenseurs, qui accentuent la déshydratation, les anti-inflammatoires et l'aspirine, les neuroleptiques et les antidépresseurs, qui perturbent la thermorégulation, le lithium, dont la toxicité augmente en cas de déshydratation, et les somnifères ou anxiolytiques, qui diminuent la vigilance face aux premiers signes. Le message reste toujours le même: on n'arrête jamais un traitement de soi-même en pleine canicule, on en parle à son médecin ou à son pharmacien, surtout en cas de polymédication.</p>
 
-            <div class="cta-box">
-                <p><strong>Une ordonnance à revoir avant l'été?</strong></p>
-                <p>Passez nous voir, on regarde ensemble si votre traitement ou celui d'un proche demande une vigilance particulière par forte chaleur.</p>
-                <p class="cta-address">32 Place de Toulouse, Quéven</p>
+            <!-- INFOGRAPHIE: medicaments et forte chaleur -->
+            <div class="illus">
+                <div class="illus-title">Médicaments et forte chaleur: 5 familles à surveiller</div>
+                <div class="illus-sub">Ce qui aggrave le risque, en un coup d'œil</div>
+                <div class="med-grid">
+                    <div class="med-card">
+                        <div class="med-name">Diurétiques &amp; antihypertenseurs</div>
+                        <div class="med-reason">Accentuent la déshydratation</div>
+                    </div>
+                    <div class="med-card">
+                        <div class="med-name">AINS &amp; aspirine</div>
+                        <div class="med-reason">Aggravent la déshydratation</div>
+                    </div>
+                    <div class="med-card">
+                        <div class="med-name">Neuroleptiques &amp; antidépresseurs</div>
+                        <div class="med-reason">Perturbent la thermorégulation</div>
+                    </div>
+                    <div class="med-card">
+                        <div class="med-name">Lithium</div>
+                        <div class="med-reason">Devient toxique en cas de déshydratation</div>
+                    </div>
+                    <div class="med-card">
+                        <div class="med-name">Somnifères &amp; anxiolytiques</div>
+                        <div class="med-reason">Diminuent la vigilance aux premiers signes</div>
+                    </div>
+                </div>
+                <div class="illus-foot">Source: Ameli.fr, Assurance Maladie. Ne jamais arrêter un traitement seul.</div>
             </div>
 
             <!-- INFOGRAPHIE: comparatif enfant vs senior -->
@@ -688,7 +720,7 @@
 
             <p><strong>La chaleur ne prévient pas toujours à l'avance.</strong> Chez un enfant ou une personne âgée, quelques signes suffisent à faire la différence entre un épisode qui passe seul et une urgence qui ne doit pas attendre.</p>
 
-            <p><strong>Repérer ces signes tôt, c'est souvent ce qui évite l'urgence.</strong></p>
+            <p><strong>Repérer ces signes tôt, c'est souvent ce qui évite l'urgence.</strong> Passez nous voir si un traitement, le vôtre ou celui d'un proche, vous inquiète pour l'été.</p>
 
             <hr style="border: none; border-top: 1px solid var(--beige); margin: var(--space-2xl) 0;">
 

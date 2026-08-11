@@ -58,13 +58,7 @@ Chez une personne âgée, le signe qui doit inquiéter en premier n'est pas la f
 
 Plusieurs classes de médicaments aggravent le risque en période de forte chaleur (Ameli.fr): les diurétiques et certains antihypertenseurs, qui accentuent la déshydratation, les anti-inflammatoires et l'aspirine, les neuroleptiques et les antidépresseurs, qui perturbent la thermorégulation, le lithium, dont la toxicité augmente en cas de déshydratation, et les somnifères ou anxiolytiques, qui diminuent la vigilance face aux premiers signes. Le message reste toujours le même: on n'arrête jamais un traitement de soi-même en pleine canicule, on en parle à son médecin ou à son pharmacien, surtout en cas de polymédication.
 
----
-
-**Une ordonnance à revoir avant l'été?**
-Passez nous voir, on regarde ensemble si votre traitement ou celui d'un proche demande une vigilance particulière par forte chaleur.
-32 Place de Toulouse, Quéven
-
----
+[INFOGRAPHIE HTML: médicaments et forte chaleur, 5 classes à surveiller (diurétiques/antihypertenseurs, AINS/aspirine, neuroleptiques/antidépresseurs, lithium, somnifères/anxiolytiques) avec la raison en une ligne pour chacune]
 
 [INFOGRAPHIE HTML: comparatif enfant vs senior, "signes qui alertent en premier", colonne enfant (fontanelle creuse, refus de boire, somnolence, couches sèches) / colonne senior (confusion, désorientation, propos incohérents, pas forcément de fièvre)]
 
@@ -92,7 +86,7 @@ Plusieurs signaux imposent d'appeler le 15 ou le 112 sans délai, quel que soit 
 
 **La chaleur ne prévient pas toujours à l'avance.** Chez un enfant ou une personne âgée, quelques signes suffisent à faire la différence entre un épisode qui passe seul et une urgence qui ne doit pas attendre.
 
-**Repérer ces signes tôt, c'est souvent ce qui évite l'urgence.**
+**Repérer ces signes tôt, c'est souvent ce qui évite l'urgence.** Passez nous voir si un traitement, le vôtre ou celui d'un proche, vous inquiète pour l'été.
 
 ---
 
