@@ -1247,6 +1247,12 @@ p {
             justify-content: center;
             padding: calc(var(--space-32) * 0.8);
             overflow: hidden;
+            /* --tile est posée sur chaque carte : la photo du hero de la page
+               de la marque, recadrée en 480x320. Le pastel en dessous sert de
+               repli si la tuile ne charge pas. */
+            background-image: var(--tile);
+            background-size: cover;
+            background-position: center;
         }
 
         .brand-card-image a {
@@ -1258,19 +1264,25 @@ p {
             cursor: pointer;
         }
 
-        /* Pastel backgrounds alternating */
-        .brand-card:nth-child(6n+1) .brand-card-image { background: var(--pastel-mint); }
-        .brand-card:nth-child(6n+2) .brand-card-image { background: var(--pastel-peach); }
-        .brand-card:nth-child(6n+3) .brand-card-image { background: var(--pastel-lavender); }
-        .brand-card:nth-child(6n+4) .brand-card-image { background: var(--pastel-sage); }
-        .brand-card:nth-child(6n+5) .brand-card-image { background: var(--beige); }
-        .brand-card:nth-child(6n+6) .brand-card-image { background: var(--pastel-teal); }
+        /* Pastel backgrounds alternating — repli sous la tuile */
+        .brand-card:nth-child(6n+1) .brand-card-image { background-color: var(--pastel-mint); }
+        .brand-card:nth-child(6n+2) .brand-card-image { background-color: var(--pastel-peach); }
+        .brand-card:nth-child(6n+3) .brand-card-image { background-color: var(--pastel-lavender); }
+        .brand-card:nth-child(6n+4) .brand-card-image { background-color: var(--pastel-sage); }
+        .brand-card:nth-child(6n+5) .brand-card-image { background-color: var(--beige); }
+        .brand-card:nth-child(6n+6) .brand-card-image { background-color: var(--pastel-teal); }
 
+        /* Voile blanc : la photo devient une texture, le logo garde ses
+           couleurs de marque. 72% par défaut, ce qui laisse 12 des 15 marques
+           au-dessus de 4,5:1 de contraste. Deux logos clairs portent un --veil
+           propre sur leur carte : Boiron (bleu clair) à 88%, Avène (corail) à
+           94%. Le corail d'Avène plafonne à 2,5:1 même sur blanc pur, c'est sa
+           charte et non un réglage à trouver. */
         .brand-card-image::before {
             content: '';
             position: absolute;
             inset: 0;
-            background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.4) 0%, transparent 60%);
+            background: rgba(255, 255, 255, var(--veil, 0.72));
             pointer-events: none;
         }
 
@@ -1581,7 +1593,7 @@ p {
             <div class="brands-grid">
                 <!-- Bioderma -->
                 <article class="brand-card" data-category="dermatologie">
-                    <div class="brand-card-image">
+                    <div class="brand-card-image" style="--tile:url(logos/tiles/Bioderma.webp)">
                         <a href="bioderma-page.html">
                             <img loading="lazy" width="160" height="80" src="logos/Bioderma.png" alt="Logo Bioderma" class="brand-logo">
                         </a>
@@ -1603,7 +1615,7 @@ p {
 
                 <!-- La Roche-Posay -->
                 <article class="brand-card" data-category="dermatologie">
-                    <div class="brand-card-image">
+                    <div class="brand-card-image" style="--tile:url(logos/tiles/La-Roche-Posay.webp)">
                         <a href="la-roche-posay-page.html">
                             <img loading="lazy" width="160" height="80" src="logos/La-roche-posay.png" alt="Logo La Roche-Posay" class="brand-logo">
                         </a>
@@ -1625,9 +1637,9 @@ p {
 
                 <!-- Avène -->
                 <article class="brand-card" data-category="dermatologie">
-                    <div class="brand-card-image">
+                    <div class="brand-card-image" style="--tile:url(logos/tiles/Avene.webp); --veil:.94">
                         <a href="avene-page.html">
-                            <img loading="lazy" width="160" height="80" src="logos/Avene.jpeg" alt="Logo Avène" class="brand-logo">
+                            <img loading="lazy" width="160" height="80" src="logos/cut/Avene.webp" alt="Logo Avène" class="brand-logo">
                         </a>
                     </div>
                     <div class="brand-card-content">
@@ -1647,9 +1659,9 @@ p {
 
                 <!-- Nuxe -->
                 <article class="brand-card" data-category="cosmetique">
-                    <div class="brand-card-image">
+                    <div class="brand-card-image" style="--tile:url(logos/tiles/Nuxe.webp)">
                         <a href="nuxe-page.html">
-                            <img loading="lazy" width="160" height="80" src="logos/Nuxe.jpeg" alt="Logo Nuxe" class="brand-logo">
+                            <img loading="lazy" width="160" height="80" src="logos/cut/Nuxe.webp" alt="Logo Nuxe" class="brand-logo">
                         </a>
                     </div>
                     <div class="brand-card-content">
@@ -1669,7 +1681,7 @@ p {
 
                 <!-- La Rosée -->
                 <article class="brand-card" data-category="cosmetique">
-                    <div class="brand-card-image">
+                    <div class="brand-card-image" style="--tile:url(logos/tiles/La-Rosee.webp)">
                         <a href="larosee-page.html">
                             <img loading="lazy" width="160" height="80" src="logos/la-rosee.svg" alt="Logo La Rosée" class="brand-logo">
                         </a>
@@ -1691,7 +1703,7 @@ p {
 
                 <!-- Klorane -->
                 <article class="brand-card" data-category="capillaire">
-                    <div class="brand-card-image">
+                    <div class="brand-card-image" style="--tile:url(logos/tiles/Klorane.webp)">
                         <a href="klorane-page.html">
                             <img loading="lazy" width="160" height="80" src="logos/Klorane.png" alt="Logo Klorane" class="brand-logo">
                         </a>
@@ -1713,7 +1725,7 @@ p {
 
                 <!-- Biocanina -->
                 <article class="brand-card" data-category="animaux">
-                    <div class="brand-card-image">
+                    <div class="brand-card-image" style="--tile:url(logos/tiles/Biocanina.webp)">
                         <a href="biocanina-page.html">
                             <img loading="lazy" width="160" height="80" src="logos/Biocanina.png" alt="Logo Biocanina" class="brand-logo">
                         </a>
@@ -1735,9 +1747,9 @@ p {
 
                 <!-- Biogaran -->
                 <article class="brand-card" data-category="complements">
-                    <div class="brand-card-image">
+                    <div class="brand-card-image" style="--tile:url(logos/tiles/Biogaran.webp)">
                         <a href="biogaran-page.html">
-                            <img loading="lazy" width="160" height="80" src="logos/biogaran_logo.jpg" alt="Logo Biogaran" class="brand-logo">
+                            <img loading="lazy" width="160" height="80" src="logos/cut/Biogaran.webp" alt="Logo Biogaran" class="brand-logo">
                         </a>
                     </div>
                     <div class="brand-card-content">
@@ -1757,7 +1769,7 @@ p {
 
                 <!-- Nat&Form -->
                 <article class="brand-card" data-category="complements">
-                    <div class="brand-card-image">
+                    <div class="brand-card-image" style="--tile:url(logos/tiles/NatForm.webp)">
                         <a href="natform-page.html">
                             <img loading="lazy" width="160" height="80" src="logos/NatForm.avif" alt="Logo Nat&Form" class="brand-logo">
                         </a>
@@ -1779,9 +1791,9 @@ p {
 
                 <!-- PiLeJe -->
                 <article class="brand-card" data-category="complements">
-                    <div class="brand-card-image">
+                    <div class="brand-card-image" style="--tile:url(logos/tiles/PiLeJe.webp)">
                         <a href="pileje-page.html">
-                            <img loading="lazy" width="160" height="80" src="logos/Pileje-Logo.jpg" alt="Logo PiLeJe" class="brand-logo">
+                            <img loading="lazy" width="160" height="80" src="logos/cut/PiLeJe.webp" alt="Logo PiLeJe" class="brand-logo">
                         </a>
                     </div>
                     <div class="brand-card-content">
@@ -1801,7 +1813,7 @@ p {
 
                 <!-- Boiron -->
                 <article class="brand-card" data-category="homeopathie">
-                    <div class="brand-card-image">
+                    <div class="brand-card-image" style="--tile:url(logos/tiles/Boiron.webp); --veil:.88">
                         <a href="boiron-page.html">
                             <img loading="lazy" width="160" height="80" src="logos/boiron-logo-png-transparent.png" alt="Logo Boiron" class="brand-logo">
                         </a>
@@ -1823,9 +1835,9 @@ p {
 
                 <!-- Mustela -->
                 <article class="brand-card" data-category="bebe">
-                    <div class="brand-card-image">
+                    <div class="brand-card-image" style="--tile:url(logos/tiles/Mustela.webp)">
                         <a href="mustela-page.html">
-                            <img loading="lazy" width="160" height="80" src="logos/Mustella.93ejXIozyf171udveJDY7QHaEK" alt="Logo Mustela" class="brand-logo">
+                            <img loading="lazy" width="160" height="80" src="logos/cut/Mustela.webp" alt="Logo Mustela" class="brand-logo">
                         </a>
                     </div>
                     <div class="brand-card-content">
@@ -1845,9 +1857,9 @@ p {
 
                 <!-- Aragan -->
                 <article class="brand-card" data-category="complements">
-                    <div class="brand-card-image">
+                    <div class="brand-card-image" style="--tile:url(logos/tiles/Aragan.webp)">
                         <a href="aragan-page.html">
-                            <img loading="lazy" width="160" height="80" src="logos/aragan_logo.jpg" alt="Logo Aragan" class="brand-logo">
+                            <img loading="lazy" width="160" height="80" src="logos/cut/Aragan.webp" alt="Logo Aragan" class="brand-logo">
                         </a>
                     </div>
                     <div class="brand-card-content">
@@ -1867,7 +1879,7 @@ p {
 
                 <!-- S.I.D Nutrition -->
                 <article class="brand-card" data-category="complements">
-                    <div class="brand-card-image">
+                    <div class="brand-card-image" style="--tile:url(logos/tiles/SID-Nutrition.webp)">
                         <a href="sid-nutrition-page.html">
                             <img loading="lazy" width="160" height="80" src="logos/sid-nutrition.png" alt="Logo S.I.D Nutrition" class="brand-logo">
                         </a>
@@ -1889,7 +1901,7 @@ p {
 
                 <!-- Bion 3 -->
                 <article class="brand-card" data-category="complements">
-                    <div class="brand-card-image">
+                    <div class="brand-card-image" style="--tile:url(logos/tiles/Bion-3.webp)">
                         <a href="bion3-page.html">
                             <img loading="lazy" width="160" height="80" src="logos/Bion3_logo.png" alt="Logo Bion 3" class="brand-logo">
                         </a>
