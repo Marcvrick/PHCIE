@@ -1,36 +1,47 @@
 /* Navigation mobile — source unique, injectée par build.js sur toutes les pages.
  *
- * Chargée en `defer` : elle s'exécute APRÈS les scripts inline de fin de page.
  * 69 pages portent encore un ancien handler de hamburger enfoui dans un script
- * de page (jusqu'à 1642 lignes chez quiz-automedication) — impossible à retirer
- * sans découper chaque script à la main. Le clone du bouton coupe court : cloner
- * un noeud ne recopie pas ses écouteurs, donc tout handler hérité disparaît et
- * seul celui d'ici reste. Le bug de 2026-08-12 (13 pages basculant `nav-open` ou
- * `open` alors que style.css n'implémente que `.nav-links.active`) ne peut plus
- * se reproduire : une seule classe, définie ici.
+ * de page (jusqu'à 1642 lignes chez quiz-automedication) : impossible à retirer
+ * sans découper chaque script à la main. Il faut donc les neutraliser à
+ * l'exécution, et sans dépendre de l'ordre de chargement — les pages marques
+ * bindent le leur dans un `requestIdleCallback(initPage, {timeout: 2000})`,
+ * donc bien après ce fichier, quel que soit `defer`.
+ *
+ * D'où l'écoute en phase de CAPTURE sur document : elle passe avant tout
+ * listener posé sur le bouton, peu importe quand il a été posé.
+ * stopImmediatePropagation() coupe l'évènement là, les anciens handlers ne le
+ * voient jamais, et le double-toggle (deux bascules sur un clic = menu qui ne
+ * s'ouvre pas) ne peut plus se produire.
+ *
+ * Le bug du 12 août 2026 — 13 pages basculant `nav-open` ou `open` alors que
+ * style.css n'implémente que `.nav-links.active` — est fermé par construction :
+ * une seule classe, définie ici.
  */
 (function () {
-    var toggle = document.querySelector('.mobile-menu-toggle');
-    var navLinks = document.querySelector('.nav-links');
-    if (!toggle || !navLinks) return;
+    function nav() { return document.querySelector('.nav-links'); }
 
-    var clean = toggle.cloneNode(true);
-    toggle.parentNode.replaceChild(clean, toggle);
+    document.addEventListener('click', function (e) {
+        var el = e.target;
+        if (!el || !el.closest) return;
+        var btn = el.closest('.mobile-menu-toggle');
+        if (!btn) return;
 
-    clean.addEventListener('click', function (e) {
-        // Les anciens scripts posent aussi un listener « clic hors du menu » sur
-        // document, dont la closure pointe encore sur le bouton d'origine — pour
-        // eux, un clic sur le clone est un clic dehors, et ils referment aussitôt.
-        // Couper la propagation les met hors circuit sans toucher à leur code.
-        e.stopPropagation();
-        var isOpen = navLinks.classList.toggle('active');
-        clean.setAttribute('aria-expanded', isOpen);
-    });
+        e.stopImmediatePropagation();
+        e.preventDefault();
+
+        var links = nav();
+        if (!links) return;
+        var isOpen = links.classList.toggle('active');
+        btn.setAttribute('aria-expanded', isOpen);
+    }, true);
 
     // Fermeture au clic hors du menu.
     document.addEventListener('click', function (e) {
-        if (navLinks.contains(e.target) || clean.contains(e.target)) return;
-        navLinks.classList.remove('active');
-        clean.setAttribute('aria-expanded', 'false');
+        var links = nav();
+        if (!links || !links.classList.contains('active')) return;
+        if (links.contains(e.target)) return;
+        links.classList.remove('active');
+        var btn = document.querySelector('.mobile-menu-toggle');
+        if (btn) btn.setAttribute('aria-expanded', 'false');
     });
 })();
