@@ -842,5 +842,16 @@
     </footer>
 
     <script src="../../animations.js" defer></script>
+    <script>
+        // Mobile nav toggle — style.css implements .nav-links.active
+        const navToggle = document.querySelector('.mobile-menu-toggle');
+        const navLinks = document.querySelector('.nav-links');
+        if (navToggle && navLinks) {
+            navToggle.addEventListener('click', function() {
+                const isOpen = navLinks.classList.toggle('active');
+                navToggle.setAttribute('aria-expanded', isOpen);
+            });
+        }
+    </script>
 </body>
 </html>

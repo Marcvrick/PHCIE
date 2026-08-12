@@ -927,7 +927,7 @@
         const navLinks = document.querySelector('.nav-links');
         if (toggle && navLinks) {
             toggle.addEventListener('click', function() {
-                const isOpen = navLinks.classList.toggle('open');
+                const isOpen = navLinks.classList.toggle('active');
                 toggle.setAttribute('aria-expanded', isOpen);
                 toggle.classList.toggle('active', isOpen);
             });

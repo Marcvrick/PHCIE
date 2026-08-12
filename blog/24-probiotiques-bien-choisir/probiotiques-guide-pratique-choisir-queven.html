@@ -767,7 +767,7 @@
             toggle.addEventListener('click', () => {
                 const expanded = toggle.getAttribute('aria-expanded') === 'true';
                 toggle.setAttribute('aria-expanded', String(!expanded));
-                navLinks.classList.toggle('nav-open');
+                navLinks.classList.toggle('active');
             });
         }
         document.querySelectorAll('.nav-dropdown-toggle').forEach(btn => {
