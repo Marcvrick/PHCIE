@@ -61,11 +61,35 @@ website-pharmacie-charnal/
 
 ---
 
+## Partials partagés — ne jamais éditer une navbar à la main
+
+La navbar et la liste Navigation du footer ne s'éditent **que** dans `_partials/`, puis
+`node build.js` les retamponne dans les 69 pages. Éditer la navbar d'une page directement
+revient à recréer le bug du 12 août 2026 : 13 articles avaient dérivé, leur menu mobile ne
+s'ouvrait plus, et « Quiz santé » était devenu inatteignable.
+
+| Fichier | Rôle |
+|---|---|
+| [`_partials/navbar.html`](_partials/navbar.html) | source unique du menu principal |
+| [`_partials/footer-nav.html`](_partials/footer-nav.html) | source unique des `<li>` sous `<h4>Navigation</h4>` |
+| [`nav.js`](nav.js) | ouverture/fermeture du menu mobile, chargé en `defer` sur chaque page |
+| [`build.js`](build.js) | tamponne les trois éléments ci-dessus, sur place |
+
+`{{ROOT}}` dans un partial devient le préfixe relatif de la page (`../`, `../../`…), et
+`data-nav="clé"` reçoit la classe `active` sur la page correspondante. build.js ne touche à
+rien d'autre : `<head>`, CSS inline, JSON-LD et contenu restent la propriété de chaque page.
+
 ## Commandes rapides
 
 ```bash
 # Test local
 python3 -m http.server 8000
+
+# Appliquer les partials après édition de _partials/
+node build.js
+
+# Vérifier qu'aucune page n'a dérivé (sort en 1 si oui)
+node build.js --check
 
 # Déployer
 git add [fichiers] && git commit -m "Message" && git push origin main

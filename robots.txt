@@ -1,5 +1,5 @@
 # Robots.txt - Pharmacie Charnal
-# Dernière mise à jour: 20 février 2026
+# Dernière mise à jour: 12 août 2026
 # Ce fichier indique aux robots d'indexation comment explorer le site
 
 # Autoriser tous les robots à indexer tout le contenu
@@ -8,6 +8,7 @@ Allow: /
 Disallow: /blog/07-gastro-enterite/infographie-gastro-enterite.html
 Disallow: /blog/09-mars-bleu/infographie-mars-bleu.html
 Disallow: /Nos-marques/TEMPLATE-marque.html
+Disallow: /_partials/
 
 # Sitemap XML
 Sitemap: https://www.pharmaciecharnal.com/sitemap.xml

@@ -95,8 +95,20 @@ annuaire-sante.html
 **Blog:** `blog/*.html` (13 articles). Sources .md organisees dans des dossiers numerotes (`01-prevenir-maux-hiver/`, `04-detox-apres-fetes/`, ..., `12-troubles-sommeil/`) — numerotation alignee sur les posts GMB. Les .html restent a la racine de `blog/` (URLs live du site).
 **Marques:** `Nos-marques/*.html` (16 pages + nosmarques.html index + TEMPLATE-marque.html)
 **Quiz:** `Quizzes/*.html` (quiz-automedication, quiz-soin-peau, quiz-produits-naturels, quiz-coming-soon, guide-quizzes-sante)
-**Assets:** `images/`, `style.css`, `style-v2.css`, `animations.js`
+**Assets:** `images/`, `style.css`, `style-v2.css`, `animations.js`, `nav.js`
+**Partials:** `_partials/navbar.html`, `_partials/footer-nav.html` + `build.js`
 **Guides:** `Guide Badge produit style HIMS.md`
+
+### Navbar et footer — INTERDIT de les éditer dans une page
+
+Le menu principal et la liste Navigation du footer sont générés. Les modifier passe **toujours**
+par `_partials/`, puis `node build.js` (qui les retamponne dans les 69 pages). Éditer la navbar
+d'une page directement, ou copier-coller l'en-tête d'une page existante pour en créer une
+nouvelle, recrée le bug du 12 août 2026 : 13 articles avaient dérivé, leur menu mobile ne
+s'ouvrait plus, et « Quiz santé » était inatteignable depuis ces pages.
+
+`node build.js --check` sort en 1 si une page a dérivé — à lancer avant tout commit qui touche
+à un en-tête. Le comportement du hamburger vit dans `nav.js` seul, jamais dans un script de page.
 
 ---
 

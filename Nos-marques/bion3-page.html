@@ -1497,43 +1497,43 @@
 </head>
 <body>
     <!-- Navigation -->
-    <nav class="navbar" style="position: fixed; top: 0; left: 0; right: 0; z-index: 1000; background-color: rgba(250, 248, 245, 0.95); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-bottom: 1px solid var(--beige); padding: var(--space-16) 0;">
-        <div class="nav-container" style="max-width: 1200px; margin: 0 auto; padding: 0 var(--space-24); display: flex; align-items: center; justify-content: space-between; gap: var(--space-32);">
-            <a href="../index.html" class="nav-logo-link" style="display: flex; align-items: center; gap: var(--space-12); text-decoration: none;">
-                <div class="nav-logo" style="display: flex; align-items: center; gap: var(--space-12);">
-                    <div class="logo-icon" style="width: 48px; height: 48px;">
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="../index.html" class="nav-logo-link">
+                <div class="nav-logo">
+                    <div class="logo-icon">
                         <img src="../images/pharmacie-charnal-logo.png" alt="Logo Pharmacie Charnal" style="width: 100%; height: 100%; object-fit: contain;">
                     </div>
-                    <div class="logo-text" style="display: flex; flex-direction: column;">
-                        <span class="logo-name" style="font-family: var(--font-display); font-size: 1.125rem; font-weight: 600; color: var(--charcoal);">Pharmacie Charnal</span>
-                        <span class="logo-tagline" style="font-size: 0.875rem; color: var(--gray-light);">Quéven</span>
+                    <div class="logo-text">
+                        <span class="logo-name">Pharmacie Charnal</span>
+                        <span class="logo-tagline">Quéven</span>
                     </div>
                 </div>
             </a>
+            <!-- Bouton hamburger mobile -->
             <button class="mobile-menu-toggle" aria-label="Menu" aria-expanded="false">
-                <span class="hamburger-line" style="width: 24px; height: 2px; background: var(--charcoal); border-radius: 2px;"></span>
-                <span class="hamburger-line" style="width: 24px; height: 2px; background: var(--charcoal); border-radius: 2px;"></span>
-                <span class="hamburger-line" style="width: 24px; height: 2px; background: var(--charcoal); border-radius: 2px;"></span>
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
             </button>
 
             <ul class="nav-links">
-                <li><a href="../index.html" class="nav-link">Accueil</a></li>
+                <li><a href="../index.html" class="nav-link" data-nav="accueil">Accueil</a></li>
                 <li class="nav-dropdown">
-                    <a href="../services.html" class="nav-link nav-dropdown-toggle">Services</a>
+                    <a href="../services.html" class="nav-link nav-dropdown-toggle" data-nav="services">Services</a>
                     <ul class="nav-dropdown-menu">
-                        <li><a href="../histoire.html" class="nav-link">Notre Histoire</a></li>
-                        <li><a href="nosmarques.html" class="nav-link">Nos Marques</a></li>
-                        <li><a href="../pharmacie-de-garde-queven-hennebont-lorient.html" class="nav-link">Pharmacie de garde</a></li>
-                        <li><a href="../annuaire-sante.html" class="nav-link">Annuaire Santé</a></li>
-                        <li><a href="../Quizzes/guide-quizzes-sante-pharmacie-queven.html" class="nav-link">Quiz santé</a></li>
+                        <li><a href="../histoire.html" class="nav-link" data-nav="histoire">Notre Histoire</a></li>
+                        <li><a href="../Nos-marques/nosmarques.html" class="nav-link active" data-nav="marques">Nos Marques</a></li>
+                        <li><a href="../pharmacie-de-garde-queven-hennebont-lorient.html" class="nav-link" data-nav="garde">Pharmacie de garde</a></li>
+                        <li><a href="../annuaire-sante.html" class="nav-link" data-nav="annuaire">Annuaire Santé</a></li>
+                        <li><a href="../Quizzes/guide-quizzes-sante-pharmacie-queven.html" class="nav-link" data-nav="quiz">Quiz santé</a></li>
                     </ul>
                 </li>
-                <li><a href="../blog.html" class="nav-link nav-link-blog" style="background: #b4a6d7; color: white; border-radius: 9999px;">Au comptoir</a></li>
+                <li><a href="../blog.html" class="nav-link nav-link-blog" data-nav="blog">Au comptoir</a></li>
                 <li class="nav-dropdown">
-                    <a href="../contact.html" class="nav-link nav-dropdown-toggle">Contact</a>
+                    <a href="../contact.html" class="nav-link nav-dropdown-toggle" data-nav="contact">Contact</a>
                     <ul class="nav-dropdown-menu">
-                        <li><a href="../contact.html" class="nav-link">Contact</a></li>
-                        <li><a href="../contact.html#recrutement" class="nav-link">Recrutement</a></li>
+                        <li><a href="../recrutement-preparatrice-pharmacie-queven.html" class="nav-link" data-nav="recrutement">Recrutement</a></li>
                     </ul>
                 </li>
             </ul>
@@ -2253,7 +2253,8 @@
                         <li><a href="../index.html">Accueil</a></li>
                         <li><a href="../services.html">Services</a></li>
                         <li><a href="../histoire.html">Notre Histoire</a></li>
-                        <li><a href="../blog.html">Au Comptoir</a></li>
+                        <li><a href="../Nos-marques/nosmarques.html">Nos Marques</a></li>
+                        <li><a href="../blog.html">Au comptoir</a></li>
                         <li><a href="../Quizzes/guide-quizzes-sante-pharmacie-queven.html">Quiz santé</a></li>
                         <li><a href="../contact.html">Contact</a></li>
                     </ul>
@@ -2384,5 +2385,6 @@
         setTimeout(initPage, 200);
     }
     </script>
+    <script src="../nav.js" defer></script>
 </body>
 </html>
