@@ -347,7 +347,13 @@
             border-radius: var(--radius-base);
             border: none;
             cursor: pointer;
-            transition: all var(--duration-normal) var(--ease-standard);
+            /* transform sur le tempo court : la pression doit rester sous 160ms,
+               la couleur et l'ombre gardent le tempo normal */
+            transition: transform var(--duration-fast) var(--ease-standard),
+                        background-color var(--duration-normal) var(--ease-standard),
+                        border-color var(--duration-normal) var(--ease-standard),
+                        color var(--duration-normal) var(--ease-standard),
+                        box-shadow var(--duration-normal) var(--ease-standard);
             text-decoration: none;
         }
 
@@ -356,10 +362,13 @@
             color: var(--white);
         }
 
-        .btn-primary:hover {
-            transform: scale(1.02);
-            box-shadow: 0 8px 24px rgba(45, 95, 93, 0.25);
-            background: #245250;
+        /* garde pointer: fine, sinon iOS colle le scale(1.02) après le tap */
+        @media (hover: hover) and (pointer: fine) {
+            .btn-primary:hover {
+                transform: scale(1.02);
+                box-shadow: 0 8px 24px rgba(45, 95, 93, 0.25);
+                background: #245250;
+            }
         }
 
         .btn-primary:active {
@@ -572,7 +581,7 @@
             border-radius: 10px;
             background: var(--card-accent, var(--teal-pro));
             opacity: 0;
-            transition: opacity var(--duration-normal) var(--ease-standard);
+            transition: opacity var(--duration-fast) var(--ease-standard);
             pointer-events: none;
         }
 
@@ -581,6 +590,10 @@
             .svc:hover .svc-title { color: var(--card-accent, var(--teal-pro)); }
             .svc:hover .svc-go { transform: translateX(4px); opacity: 1; }
         }
+
+        /* Retour au doigt : hors du bloc hover, sinon le tactile n'accuse rien */
+        .svc:active::before { opacity: 0.1; }
+        .svc:active .svc-go { transform: translateX(4px); opacity: 1; }
 
         .svc:focus-visible {
             outline: 2px solid var(--teal-pro);
@@ -614,8 +627,8 @@
             align-self: center;
             color: var(--card-accent, var(--teal-pro));
             opacity: 0.45;
-            transition: transform var(--duration-normal) var(--ease-standard),
-                        opacity var(--duration-normal) var(--ease-standard);
+            transition: transform var(--duration-fast) var(--ease-standard),
+                        opacity var(--duration-fast) var(--ease-standard);
         }
 
         @media (max-width: 619px) {
@@ -1644,6 +1657,22 @@
         @keyframes marquee {
             0% { transform: translateX(0); }
             100% { transform: translateX(-50%); }
+        }
+
+        /* === MOUVEMENT RÉDUIT ===
+           Le bandeau défilant tourne en boucle infinie : il s'arrête net.
+           Les transitions ne sont pas supprimées, seulement raccourcies.
+           Un état qui change sans aucun pont est plus brutal qu'une
+           transition de 120ms. */
+        @media (prefers-reduced-motion: reduce) {
+            .marquee-track { animation: none; }
+
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 120ms !important;
+                scroll-behavior: auto !important;
+            }
         }
 
         /* === EDITORIAL SECTIONS (HIMS 2-Column Alternating) === */
