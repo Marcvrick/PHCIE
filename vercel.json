@@ -27,16 +27,6 @@
   ],
   "redirects": [
     {
-      "source": "/Nos-marques/caudalie-page",
-      "destination": "/Nos-marques/nosmarques",
-      "permanent": true
-    },
-    {
-      "source": "/Nos-marques/caudalie-page.html",
-      "destination": "/Nos-marques/nosmarques",
-      "permanent": true
-    },
-    {
       "source": "/blog/Moral%20en%20berne/:slug",
       "destination": "/blog/:slug",
       "permanent": true
