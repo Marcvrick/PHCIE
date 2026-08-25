@@ -84,7 +84,7 @@
         @media(min-width:768px){.nav-links{display:flex;gap:32px;align-items:center}.mobile-menu-toggle{display:none}}
         @media(max-width:767px){.nav-links{position:fixed;top:72px;right:0;background:#fff;width:100%;max-width:280px;flex-direction:column;padding:32px;gap:24px;box-shadow:0 8px 24px rgba(0,0,0,.1);transform:translateX(100%);transition:transform .3s ease;overflow-y:auto}.nav-links.active{display:flex;transform:translateX(0)}.nav-dropdown-menu{position:static;display:flex;flex-direction:column;gap:8px;padding-left:16px;border-left:2px solid #D4E8E0;margin-top:8px;box-shadow:none;background:transparent;list-style:none;opacity:1;border-radius:0;border-right:none;border-top:none;border-bottom:none}.nav-dropdown-toggle::after{display:none}}
 
-        /* === BLOG « Au comptoir » — aligné sur le standard de la homepage.
+        /* === BLOG « Au comptoir », aligné sur le standard de la homepage.
            L'accent de cette page reste la lavande #b4a6d7, la signature
            éditoriale du blog (bouton de nav, dates, liens). === */
 
@@ -100,7 +100,7 @@
 
         body { background-color: var(--cream); }
 
-        /* Breadcrumb — style-v2.css n'en définit aucun, le fil d'Ariane
+        /* Breadcrumb, style-v2.css n'en définit aucun, le fil d'Ariane
            passait sous la navbar fixe et restait invisible */
         .breadcrumb { padding-top: 88px; padding-bottom: var(--space-8); }
         .breadcrumb-list {
@@ -112,7 +112,7 @@
         .breadcrumb-list a { color: var(--gray-500); text-decoration: none; transition: color var(--duration-fast) var(--ease-standard); }
         .breadcrumb-list a:hover { color: var(--teal-pro); }
 
-        /* Hero — bandeau pastel plat, en lavande pour marquer « Au comptoir » */
+        /* Hero, bandeau pastel plat, en lavande pour marquer « Au comptoir » */
         .blog-hero {
             background: var(--pastel-lavender);
             padding: var(--space-48) 0 var(--space-64);
@@ -164,7 +164,7 @@
             }
         }
 
-        /* Blog cards — filets fins, plus d'ombre portée au survol */
+        /* Blog cards, filets fins, plus d'ombre portée au survol */
         .blog-card {
             background-color: var(--white);
             border: 1px solid color-mix(in srgb, var(--lavande-deep) 18%, transparent);
@@ -187,7 +187,7 @@
             cursor: pointer;
             overflow: hidden;
         }
-        /* Enfant DIRECT seulement : sinon ce display:block écrase le
+        /* Enfant DIRECT seulement: sinon ce display:block écrase le
            inline-flex de .blog-link et la flèche tombe sous le libellé */
         .blog-card > a {
             display: block;
@@ -325,6 +325,28 @@
         <div class="container">
             <div class="blog-articles-grid">
 
+                <!-- Article - Rentrée, remettre son ado dans le rythme (31 AOÛT 2026) -->
+                <article class="blog-card fade-up">
+                    <a href="blog/33-rentree-rythme-ado/rentree-rythme-sommeil-ado-queven.html">
+                        <div class="blog-image-placeholder" style="background: url('images/Blog%20photos/blog-36-rentree-rythme-ado.jpg') center/cover; padding: 0; font-size: 0;">
+                            <img src="images/Blog%20photos/blog-36-rentree-rythme-ado.jpg" alt="Adolescent au réveil difficile la veille de la rentrée scolaire, conseils pharmacie, Pharmacie Charnal Quéven" width="1264" height="848" style="width: 100%; height: 100%; object-fit: cover; display: block;">
+                        </div>
+                    </a>
+                    <div class="blog-content">
+                        <span class="blog-date">31 Août 2026</span>
+                        <h2 class="blog-title">Rentrée: comment remettre votre ado dans le rythme</h2>
+                        <p class="blog-excerpt">
+                            Trois à quatre heures de décalage après les vacances, un petit-déjeuner sur cinq qui saute: ce qui remet vraiment un ado dans le rythme, et les deux minéraux dont on parle à tort et à travers.
+                        </p>
+                        <a href="blog/33-rentree-rythme-ado/rentree-rythme-sommeil-ado-queven.html" class="blog-link">
+                            <span>Lire la suite</span>
+                            <svg width="30" height="30" viewBox="0 0 24 24" fill="none">
+                                <path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </a>
+                    </div>
+                </article>
+
                 <!-- Article - Coup de chaleur et canicule (11 AOÛT 2026) -->
                 <article class="blog-card fade-up">
                     <a href="blog/32-coup-de-chaleur-canicule/coup-de-chaleur-canicule-enfants-seniors-queven.html">
@@ -413,7 +435,7 @@
                     </div>
                 </article>
 
-                <!-- Article - Tiques en Bretagne : prévention et réaction (6 JUILLET 2026) -->
+                <!-- Article - Tiques en Bretagne: prévention et réaction (6 JUILLET 2026) -->
                 <article class="blog-card fade-up">
                     <a href="blog/25-tiques-bretagne/tiques-bretagne-prevention-reaction-queven.html">
                         <div class="blog-image-placeholder" style="background: url('images/Blog%20photos/blog-25-tiques-bretagne-prevention.jpg') center/cover; padding: 0; font-size: 0;">
@@ -435,7 +457,7 @@
                     </div>
                 </article>
 
-                <!-- Article - Probiotiques : bien choisir (30 JUIN 2026) -->
+                <!-- Article - Probiotiques: bien choisir (30 JUIN 2026) -->
                 <article class="blog-card fade-up">
                     <a href="blog/24-probiotiques-bien-choisir/probiotiques-guide-pratique-choisir-queven.html">
                         <div class="blog-image-placeholder" style="background: url('images/Blog%20photos/blog-24-probiotiques.jpg') center/cover; padding: 0; font-size: 0;">
@@ -479,7 +501,7 @@
                     </div>
                 </article>
 
-                <!-- Article - Coup de soleil : réagir et quand s'inquiéter (17 JUIN 2026) -->
+                <!-- Article - Coup de soleil: réagir et quand s'inquiéter (17 JUIN 2026) -->
                 <article class="blog-card fade-up">
                     <a href="blog/26-coups-de-soleil/coups-de-soleil-prevenir-traiter-queven.html">
                         <div class="blog-image-placeholder" style="background: url('images/Blog%20photos/blog-26-coups-de-soleil.jpg') center/cover; padding: 0; font-size: 0;">
@@ -501,7 +523,7 @@
                     </div>
                 </article>
 
-                <!-- Article - Hydratation en été : au-delà de l'eau (9 JUIN 2026) -->
+                <!-- Article - Hydratation en été: au-delà de l'eau (9 JUIN 2026) -->
                 <article class="blog-card fade-up">
                     <a href="blog/22-hydratation-ete/hydratation-ete-deshydratation-queven.html">
                         <div class="blog-image-placeholder" style="background: url('images/Blog%20photos/blog-23-hydratation-ete.jpg') center/cover; padding: 0; font-size: 0;">
@@ -510,9 +532,9 @@
                     </a>
                     <div class="blog-content">
                         <span class="blog-date">9 Juin 2026</span>
-                        <h2 class="blog-title">Hydratation en été : au-delà de l'eau</h2>
+                        <h2 class="blog-title">Hydratation en été: au-delà de l'eau</h2>
                         <p class="blog-excerpt">
-                            L'eau ne fait pas tout. Électrolytes, aliments riches en eau, personnes à risque : comment bien s'hydrater quand il fait chaud, sans se tromper.
+                            L'eau ne fait pas tout. Électrolytes, aliments riches en eau, personnes à risque: comment bien s'hydrater quand il fait chaud, sans se tromper.
                         </p>
                         <a href="blog/22-hydratation-ete/hydratation-ete-deshydratation-queven.html" class="blog-link">
                             <span>Lire la suite</span>
@@ -523,7 +545,7 @@
                     </div>
                 </article>
 
-                <!-- Article - Génériques : pourquoi votre boîte change (2 JUIN 2026) -->
+                <!-- Article - Génériques: pourquoi votre boîte change (2 JUIN 2026) -->
                 <article class="blog-card fade-up">
                     <a href="blog/21-generiques-biogaran/generiques-pourquoi-boite-change-pharmacie-queven.html">
                         <div class="blog-image-placeholder" style="background: url('images/Blog%20photos/blog-22-generiques-biogaran.jpg') center/cover; padding: 0; font-size: 0;">
@@ -532,7 +554,7 @@
                     </a>
                     <div class="blog-content">
                         <span class="blog-date">2 Juin 2026</span>
-                        <h2 class="blog-title">Génériques : pourquoi votre boîte change parfois (et c'est OK)</h2>
+                        <h2 class="blog-title">Génériques: pourquoi votre boîte change parfois (et c'est OK)</h2>
                         <p class="blog-excerpt">
                             Même molécule, même dosage, bioéquivalence certifiée par l'ANSM. Ce que veut vraiment dire une boîte qui change à la pharmacie.
                         </p>
@@ -554,9 +576,9 @@
                     </a>
                     <div class="blog-content">
                         <span class="blog-date">25 Mai 2026</span>
-                        <h2 class="blog-title">Peau de bébé (0-3 ans) : la routine de soin essentielle</h2>
+                        <h2 class="blog-title">Peau de bébé (0-3 ans): la routine de soin essentielle</h2>
                         <p class="blog-excerpt">
-                            Sérum physiologique, gel lavant doux, crème barrière : trois produits suffisent à couvrir 90% des besoins de la peau de bébé.
+                            Sérum physiologique, gel lavant doux, crème barrière: trois produits suffisent à couvrir 90% des besoins de la peau de bébé.
                         </p>
                         <a href="blog/20-routine-soin-bebe/routine-soin-bebe-0-3-ans-queven.html" class="blog-link">
                             <span>Lire la suite</span>
@@ -576,9 +598,9 @@
                     </a>
                     <div class="blog-content">
                         <span class="blog-date">18 Mai 2026</span>
-                        <h2 class="blog-title">Chien et chat : les essentiels santé en pharmacie pour le printemps</h2>
+                        <h2 class="blog-title">Chien et chat: les essentiels santé en pharmacie pour le printemps</h2>
                         <p class="blog-excerpt">
-                            Antiparasitaires, vermifuges, hygiène : tout ce que la pharmacie fait pour votre chien ou chat. Guide pratique pour le printemps en Bretagne.
+                            Antiparasitaires, vermifuges, hygiène: tout ce que la pharmacie fait pour votre chien ou chat. Guide pratique pour le printemps en Bretagne.
                         </p>
                         <a href="blog/19-chiens-chats-pharmacie/chiens-chats-pharmacie-queven.html" class="blog-link">
                             <span>Lire la suite</span>
@@ -593,14 +615,14 @@
                 <article class="blog-card fade-up">
                     <a href="blog/quel-shampoing-pharmacie-choisir-queven.html">
                         <div class="blog-image-placeholder" style="background: url('images/Blog%20photos/blog-18-shampoings-pharmacie.jpg') center/cover; padding: 0; font-size: 0;">
-                            <img src="images/Blog%20photos/blog-18-shampoings-pharmacie.jpg" alt="Femme sereine aux cheveux naturels mi-longs, cardigan sage green — choisir son shampoing pharmacie à Quéven" width="1204" height="803" style="width: 100%; height: 100%; object-fit: cover; display: block;">
+                            <img src="images/Blog%20photos/blog-18-shampoings-pharmacie.jpg" alt="Femme sereine aux cheveux naturels mi-longs, cardigan sage green, choisir son shampoing pharmacie à Quéven" width="1204" height="803" style="width: 100%; height: 100%; object-fit: cover; display: block;">
                         </div>
                     </a>
                     <div class="blog-content">
                         <span class="blog-date">11 Mai 2026</span>
                         <h2 class="blog-title">Quel shampoing pharmacie choisir? Klorane, Bioderma, Avène, Nuxe</h2>
                         <p class="blog-excerpt">
-                            Quatre marques, quatre profils capillaires différents. Notre guide pour s'orienter sans se tromper selon votre cuir chevelu — et les gestes qui font vraiment la différence.
+                            Quatre marques, quatre profils capillaires différents. Notre guide pour s'orienter sans se tromper selon votre cuir chevelu, et les gestes qui font vraiment la différence.
                         </p>
                         <a href="blog/quel-shampoing-pharmacie-choisir-queven.html" class="blog-link">
                             <span>Lire la suite</span>
@@ -615,14 +637,14 @@
                 <article class="blog-card fade-up">
                     <a href="blog/17-stress-examens-ados/stress-examens-ados-queven.html">
                         <div class="blog-image-placeholder" style="background: url('images/Blog%20photos/blog-17-stress-examens-ados.jpg') center/cover; padding: 0; font-size: 0;">
-                            <img src="images/Blog%20photos/blog-17-stress-examens-ados.jpg" alt="Jeune femme d'une vingtaine d'années en pull rose, expression fatiguée mais déterminée — stress des examens, Pharmacie Charnal Quéven" width="1204" height="803" style="width: 100%; height: 100%; object-fit: cover; display: block;">
+                            <img src="images/Blog%20photos/blog-17-stress-examens-ados.jpg" alt="Jeune femme d'une vingtaine d'années en pull rose, expression fatiguée mais déterminée, stress des examens, Pharmacie Charnal Quéven" width="1204" height="803" style="width: 100%; height: 100%; object-fit: cover; display: block;">
                         </div>
                     </a>
                     <div class="blog-content">
                         <span class="blog-date">4 Mai 2026</span>
-                        <h2 class="blog-title">Stress des examens : comment aider les ados (et les parents)</h2>
+                        <h2 class="blog-title">Stress des examens: comment aider les ados (et les parents)</h2>
                         <p class="blog-excerpt">
-                            Bac, brevet, concours : reconnaître un stress qui dépasse la normale, ce qui aide vraiment (sommeil, magnésium) et quand consulter. Conseils pharmacie à Quéven.
+                            Bac, brevet, concours: reconnaître un stress qui dépasse la normale, ce qui aide vraiment (sommeil, magnésium) et quand consulter. Conseils pharmacie à Quéven.
                         </p>
                         <a href="blog/17-stress-examens-ados/stress-examens-ados-queven.html" class="blog-link">
                             <span>Lire la suite</span>
@@ -637,14 +659,14 @@
                 <article class="blog-card fade-up">
                     <a href="blog/16-courbatures-reprise-sport/courbatures-reprise-sport-printemps-queven.html">
                         <div class="blog-image-placeholder" style="background: url('images/Blog%20photos/blog-16-courbatures-reprise-sport.jpg') center/cover; padding: 0; font-size: 0;">
-                            <img src="images/Blog%20photos/blog-16-courbatures-reprise-sport.jpg" alt="Homme grisonnant en t-shirt de sport terracotta sur fond studio clair — courbatures et reprise du sport, Pharmacie Charnal Quéven" width="1204" height="803" style="width: 100%; height: 100%; object-fit: cover; display: block;">
+                            <img src="images/Blog%20photos/blog-16-courbatures-reprise-sport.jpg" alt="Homme grisonnant en t-shirt de sport terracotta sur fond studio clair, courbatures et reprise du sport, Pharmacie Charnal Quéven" width="1204" height="803" style="width: 100%; height: 100%; object-fit: cover; display: block;">
                         </div>
                     </a>
                     <div class="blog-content">
                         <span class="blog-date">28 Avril 2026</span>
                         <h2 class="blog-title">Courbatures et reprise du sport au printemps: ce qui marche vraiment</h2>
                         <p class="blog-excerpt">
-                            DOMS, arnica, ibuprofène, magnésium, rhabdomyolyse: ce qui fonctionne vraiment pour la reprise du vélo, de la rando ou du running — et ce qui n'est qu'un placebo.
+                            DOMS, arnica, ibuprofène, magnésium, rhabdomyolyse: ce qui fonctionne vraiment pour la reprise du vélo, de la rando ou du running, et ce qui n'est qu'un placebo.
                         </p>
                         <a href="blog/16-courbatures-reprise-sport/courbatures-reprise-sport-printemps-queven.html" class="blog-link">
                             <span>Lire la suite</span>
@@ -659,7 +681,7 @@
                 <article class="blog-card fade-up">
                     <a href="blog/15-jambes-lourdes/jambes-lourdes-circulation-veineuse-queven.html">
                         <div class="blog-image-placeholder" style="background: url('images/Blog%20photos/blog-15-jambes-lourdes.jpg') center/cover; padding: 0; font-size: 0;">
-                            <img src="images/Blog%20photos/blog-15-jambes-lourdes.jpg" alt="Femme en cardigan vert dans un studio neutre — jambes lourdes et insuffisance veineuse, Pharmacie Charnal Quéven" width="1204" height="803" style="width: 100%; height: 100%; object-fit: cover; display: block;">
+                            <img src="images/Blog%20photos/blog-15-jambes-lourdes.jpg" alt="Femme en cardigan vert dans un studio neutre, jambes lourdes et insuffisance veineuse, Pharmacie Charnal Quéven" width="1204" height="803" style="width: 100%; height: 100%; object-fit: cover; display: block;">
                         </div>
                     </a>
                     <div class="blog-content">
@@ -681,12 +703,12 @@
                 <article class="blog-card fade-up">
                     <a href="blog/14-paracetamol-ibuprofene-aspirine/paracetamol-ibuprofene-aspirine-lequel-choisir-queven.html">
                         <div class="blog-image-placeholder" style="background: url('images/Blog%20photos/blog-14-paracetamol-ibuprofene-aspirine.jpg') center/cover; padding: 0; font-size: 0;">
-                            <img src="images/Blog%20photos/blog-14-paracetamol-ibuprofene-aspirine.jpg" alt="Pharmacienne présentant des boîtes de paracétamol et d'ibuprofène — guide du bon antalgique, Pharmacie Charnal Quéven" width="680" height="680" style="width: 100%; height: 100%; object-fit: cover; display: block;">
+                            <img src="images/Blog%20photos/blog-14-paracetamol-ibuprofene-aspirine.jpg" alt="Pharmacienne présentant des boîtes de paracétamol et d'ibuprofène, guide du bon antalgique, Pharmacie Charnal Quéven" width="680" height="680" style="width: 100%; height: 100%; object-fit: cover; display: block;">
                         </div>
                     </a>
                     <div class="blog-content">
                         <span class="blog-date">14 Avril 2026</span>
-                        <h2 class="blog-title">Paracétamol, ibuprofène, aspirine : lequel choisir et pourquoi?</h2>
+                        <h2 class="blog-title">Paracétamol, ibuprofène, aspirine: lequel choisir et pourquoi?</h2>
                         <p class="blog-excerpt">
                             Les trois soulagent la douleur, mais pas de la même façon. Ce guide explique les différences, les bonnes indications et les contre-indications essentielles.
                         </p>
@@ -703,12 +725,12 @@
                 <article class="blog-card fade-up">
                     <a href="blog/13-complements-alimentaires/complements-alimentaires-pharmacie-internet-queven.html">
                         <div class="blog-image-placeholder" style="background: url('images/Blog%20photos/blog-13-complements-alimentaires-internet.jpg') center/cover; padding: 0; font-size: 0;">
-                            <img src="images/Blog%20photos/blog-13-complements-alimentaires-internet.jpg" alt="Femme lisant l'étiquette d'un complément alimentaire — pharmacie ou internet, conseils pharmacien Quéven" width="680" height="680" style="width: 100%; height: 100%; object-fit: cover; display: block;">
+                            <img src="images/Blog%20photos/blog-13-complements-alimentaires-internet.jpg" alt="Femme lisant l'étiquette d'un complément alimentaire, pharmacie ou internet, conseils pharmacien Quéven" width="680" height="680" style="width: 100%; height: 100%; object-fit: cover; display: block;">
                         </div>
                     </a>
                     <div class="blog-content">
                         <span class="blog-date">8 Avril 2026</span>
-                        <h2 class="blog-title">Compléments alimentaires: pharmacie ou internet ? Ce que votre pharmacien vérifie pour vous</h2>
+                        <h2 class="blog-title">Compléments alimentaires: pharmacie ou internet? Ce que votre pharmacien vérifie pour vous</h2>
                         <p class="blog-excerpt">
                             Risques des achats en ligne, formes biodisponibles, interactions médicamenteuses: ce que votre pharmacien vérifie avant de vous remettre un complément.
                         </p>
@@ -725,7 +747,7 @@
                 <article class="blog-card fade-up">
                     <a href="blog/troubles-sommeil-solutions-naturelles-queven.html">
                         <div class="blog-image-placeholder" style="background: url('images/Blog%20photos/blog-12-troubles-sommeil-naturel.jpg') center/cover; padding: 0; font-size: 0;">
-                            <img src="images/Blog%20photos/blog-12-troubles-sommeil-naturel.jpg" alt="Homme bâillant en pull mauve, illustrant les troubles du sommeil — conseils pharmacien Quéven" width="680" height="680" style="width: 100%; height: 100%; object-fit: cover; display: block;">
+                            <img src="images/Blog%20photos/blog-12-troubles-sommeil-naturel.jpg" alt="Homme bâillant en pull mauve, illustrant les troubles du sommeil, conseils pharmacien Quéven" width="680" height="680" style="width: 100%; height: 100%; object-fit: cover; display: block;">
                         </div>
                     </a>
                     <div class="blog-content">
@@ -769,7 +791,7 @@
                 <article class="blog-card fade-up">
                     <a href="blog/allergie-pollen-bretagne-queven.html">
                         <div class="blog-image-placeholder" style="background: url('images/Blog%20photos/blog-10-allergie-pollen-bretagne.jpg') center/cover; padding: 0; font-size: 0;">
-                            <img src="images/Blog%20photos/blog-10-allergie-pollen-bretagne.jpg" alt="Femme souffrant d'allergie au pollen en Bretagne — conseils pharmacien Quéven" width="680" height="680" style="width: 100%; height: 100%; object-fit: cover; display: block;">
+                            <img src="images/Blog%20photos/blog-10-allergie-pollen-bretagne.jpg" alt="Femme souffrant d'allergie au pollen en Bretagne, conseils pharmacien Quéven" width="680" height="680" style="width: 100%; height: 100%; object-fit: cover; display: block;">
                         </div>
                     </a>
                     <div class="blog-content">
@@ -787,11 +809,11 @@
                     </div>
                 </article>
 
-                <!-- Article - Mars Bleu : dépistage cancer colorectal (10 MARS 2026) -->
+                <!-- Article - Mars Bleu: dépistage cancer colorectal (10 MARS 2026) -->
                 <article class="blog-card fade-up">
                     <a href="blog/mars-bleu-depistage-cancer-colorectal-queven.html">
                         <div class="blog-image-placeholder" style="background: url('images/Blog%20photos/blog-09-mars-bleu-depistage-colorectal.jpg') center/cover; padding: 0; font-size: 0;">
-                            <img src="images/Blog%20photos/blog-09-mars-bleu-depistage-colorectal.jpg" alt="Homme serein portant un ruban bleu — Mars Bleu, dépistage cancer colorectal" width="680" height="680" style="width: 100%; height: 100%; object-fit: cover; display: block;">
+                            <img src="images/Blog%20photos/blog-09-mars-bleu-depistage-colorectal.jpg" alt="Homme serein portant un ruban bleu, Mars Bleu, dépistage cancer colorectal" width="680" height="680" style="width: 100%; height: 100%; object-fit: cover; display: block;">
                         </div>
                     </a>
                     <div class="blog-content">
@@ -809,7 +831,7 @@
                     </div>
                 </article>
 
-                <!-- Article - Gastro-entérite : prévention et bons réflexes (3 MARS 2026) -->
+                <!-- Article - Gastro-entérite: prévention et bons réflexes (3 MARS 2026) -->
                 <article class="blog-card fade-up">
                     <a href="blog/gastro-enterite-prevention-bons-reflexes-queven.html">
                         <div class="blog-image-placeholder" style="background: url('images/Blog%20photos/blog-07-gastro-enterite-prevention.jpg') center/cover; padding: 0; font-size: 0;">
@@ -945,7 +967,7 @@
                 <article class="blog-card fade-up">
                     <a href="blog/prevenir-maux-hiver-queven.html">
                         <div class="blog-image-placeholder" style="background: url('images/Blog%20photos/blog-01-prevenir-maux-hiver.jpg') center/cover; padding: 0; font-size: 0;">
-                            <img src="images/Blog%20photos/blog-01-prevenir-maux-hiver.jpg" alt="Femme avec tisane et pull chaud — conseils pour prévenir les maux de l'hiver, pharmacie Quéven" width="680" height="680" style="width: 100%; height: 100%; object-fit: cover; display: block;">
+                            <img src="images/Blog%20photos/blog-01-prevenir-maux-hiver.jpg" alt="Femme avec tisane et pull chaud, conseils pour prévenir les maux de l'hiver, pharmacie Quéven" width="680" height="680" style="width: 100%; height: 100%; object-fit: cover; display: block;">
                         </div>
                     </a>
                     <div class="blog-content">
@@ -967,7 +989,7 @@
                 <article class="blog-card fade-up">
                     <a href="blog/vaccination-adulte-guide-pratique.html">
                         <div class="blog-image-placeholder" style="background: url('images/Blog%20photos/blog-02-vaccination-adulte.jpg') center/cover; padding: 0; font-size: 0;">
-                            <img src="images/Blog%20photos/blog-02-vaccination-adulte.jpg" alt="Infirmière préparant un vaccin — guide pratique vaccination adulte, pharmacie Charnal Quéven" width="680" height="680" style="width: 100%; height: 100%; object-fit: cover; display: block;">
+                            <img src="images/Blog%20photos/blog-02-vaccination-adulte.jpg" alt="Infirmière préparant un vaccin, guide pratique vaccination adulte, pharmacie Charnal Quéven" width="680" height="680" style="width: 100%; height: 100%; object-fit: cover; display: block;">
                         </div>
                     </a>
                     <div class="blog-content">
@@ -989,7 +1011,7 @@
                 <article class="blog-card fade-up">
                     <a href="blog/professionnels-sante-queven-2026.html">
                         <div class="blog-image-placeholder" style="background: url('images/Blog%20photos/blog-03-guide-sante-queven.jpeg') center/cover; padding: 0; font-size: 0;">
-                            <img src="images/Blog%20photos/blog-03-guide-sante-queven.jpeg" alt="Carte interactive des professionnels de santé à Quéven — médecins, laboratoires, pharmacie Charnal" width="680" height="680" style="width: 100%; height: 100%; object-fit: cover; display: block;">
+                            <img src="images/Blog%20photos/blog-03-guide-sante-queven.jpeg" alt="Carte interactive des professionnels de santé à Quéven, médecins, laboratoires, pharmacie Charnal" width="680" height="680" style="width: 100%; height: 100%; object-fit: cover; display: block;">
                         </div>
                     </a>
                     <div class="blog-content">
@@ -1050,9 +1072,9 @@
                     <div class="blog-image-placeholder">🚗</div>
                     <div class="blog-content">
                         <span class="blog-date">1 Décembre 2024</span>
-                        <h2 class="blog-title">Nouveau : Service Drive disponible</h2>
+                        <h2 class="blog-title">Nouveau: Service Drive disponible</h2>
                         <p class="blog-excerpt">
-                            Commandez vos médicaments par téléphone et récupérez-les sans sortir de votre voiture. Simple, rapide et pratique !
+                            Commandez vos médicaments par téléphone et récupérez-les sans sortir de votre voiture. Simple, rapide et pratique!
                         </p>
                         <a href="#" class="blog-link">
                             <span>Lire la suite</span>
@@ -1085,7 +1107,7 @@
 
             </div>
 
-            <!-- Pagination — rendue automatiquement par JS -->
+            <!-- Pagination, rendue automatiquement par JS -->
             <nav class="blog-pagination" id="blogPagination" aria-label="Pagination blog" style="display: flex; justify-content: center; align-items: center; gap: 12px; margin-top: var(--space-64); padding-top: var(--space-32);"></nav>
 
         </div>
@@ -1182,7 +1204,7 @@
 
         // Afficher seulement les articles de cette page
         articles.forEach(function (a, i) {
-            a.style.display = (i >= start && i < end) ? '' : 'none';
+            a.style.display = (i >= start && i < end)? '': 'none';
         });
 
         // Styles inline partagés
@@ -1201,7 +1223,7 @@
 
         // Bouton Précédent
         if (page > 1) {
-            html += '<a href="blog.html' + (page - 1 > 1 ? '?page=' + (page - 1) : '') + '" style="' + wideBtn + '">'
+            html += '<a href="blog.html' + (page - 1 > 1? '?page=' + (page - 1): '') + '" style="' + wideBtn + '">'
                   + '<svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M19 12H5M12 19l-7-7 7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>'
                   + 'Précédent</a>';
         }
@@ -1211,7 +1233,7 @@
             if (p === page) {
                 html += '<span style="' + activeBtn + '" aria-current="page">' + p + '</span>';
             } else {
-                var href = p === 1 ? 'blog.html' : 'blog.html?page=' + p;
+                var href = p === 1? 'blog.html': 'blog.html?page=' + p;
                 html += '<a href="' + href + '" style="' + idleBtn + '">' + p + '</a>';
             }
         }

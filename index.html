@@ -16,15 +16,15 @@
     <link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16.png">
     <link rel="icon" type="image/png" sizes="192x192" href="favicon/favicon-192.png">
     <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">
-    <meta name="description" content="Pharmacie Charnal à Quéven (56), proche de Lorient. Vaccination, ordonnances, livraison à domicile, parapharmacie et conseil pharmacien depuis plus de 40 ans. Tél : 02 97 05 09 31.">
-    <title>Pharmacie Charnal — Pharmacie à Quéven (56) | Vaccination, conseil, parapharmacie</title>
+    <meta name="description" content="Pharmacie Charnal à Quéven (56), proche de Lorient. Vaccination, ordonnances, livraison à domicile, parapharmacie et conseil pharmacien depuis plus de 40 ans. Tél: 02 97 05 09 31.">
+    <title>Pharmacie Charnal, Pharmacie à Quéven (56) | Vaccination, conseil, parapharmacie</title>
     <link rel="canonical" href="https://www.pharmaciecharnal.com/">
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="Pharmacie Charnal">
     <meta property="og:url" content="https://www.pharmaciecharnal.com/">
-    <meta property="og:title" content="Pharmacie Charnal — Pharmacie à Quéven (56)">
+    <meta property="og:title" content="Pharmacie Charnal, Pharmacie à Quéven (56)">
     <meta property="og:description" content="Pharmacie familiale à Quéven, proche de Lorient. Vaccination, ordonnances, livraison à domicile, parapharmacie et conseil pharmacien depuis plus de 40 ans.">
     <meta property="og:image" content="https://www.pharmaciecharnal.com/images/Pharmacie%20Charnal%20Queven%20vectorielle.jpg">
 
@@ -32,7 +32,7 @@
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:site" content="@PharmacieCharnal">
     <meta name="twitter:url" content="https://www.pharmaciecharnal.com/">
-    <meta name="twitter:title" content="Pharmacie Charnal — Pharmacie à Quéven (56)">
+    <meta name="twitter:title" content="Pharmacie Charnal, Pharmacie à Quéven (56)">
     <meta name="twitter:description" content="Pharmacie familiale à Quéven, proche de Lorient. Vaccination, ordonnances, livraison à domicile, parapharmacie et conseil pharmacien depuis plus de 40 ans.">
     <meta name="twitter:image" content="https://www.pharmaciecharnal.com/images/Pharmacie%20Charnal%20Queven%20vectorielle.jpg">
 
@@ -347,7 +347,7 @@
             border-radius: var(--radius-base);
             border: none;
             cursor: pointer;
-            /* transform sur le tempo court : la pression doit rester sous 160ms,
+            /* transform sur le tempo court: la pression doit rester sous 160ms,
                la couleur et l'ombre gardent le tempo normal */
             transition: transform var(--duration-fast) var(--ease-standard),
                         background-color var(--duration-normal) var(--ease-standard),
@@ -396,9 +396,9 @@
             padding: var(--space-16) var(--space-48);
         }
 
-        /* === HERO — bloc unifié : accroche + la pharmacie + services ===
+        /* === HERO, bloc unifié: accroche + la pharmacie + services ===
            Pas de badge-pilule, pas de capsules de stats, pas de blobs radiaux,
-           pas de grille de cartes : le seul événement visuel est la pharmacie
+           pas de grille de cartes: le seul événement visuel est la pharmacie
            réelle. Tout le reste est typographique. */
         .hero {
             position: relative;
@@ -418,7 +418,7 @@
             max-width: 1280px;
             margin: 0 auto;
             padding: 0 var(--space-24);
-            /* colonne unique : surcharge le `1fr 1fr` de style-v2.css */
+            /* colonne unique: surcharge le `1fr 1fr` de style-v2.css */
             display: grid;
             grid-template-columns: 1fr;
             justify-items: stretch;
@@ -426,7 +426,7 @@
             gap: var(--space-48);
         }
 
-        /* --- Rangée 1 : l'accroche à gauche, la photo à droite --- */
+        /* --- Rangée 1: l'accroche à gauche, la photo à droite --- */
         .hero-top {
             display: grid;
             grid-template-columns: 1fr;
@@ -478,7 +478,7 @@
             gap: var(--space-24);
         }
 
-        /* --- Les chiffres, en bandeau composé : plus de capsules de verre --- */
+        /* --- Les chiffres, en bandeau composé: plus de capsules de verre --- */
         .hero-facts {
             display: flex;
             flex-wrap: wrap;
@@ -504,7 +504,7 @@
             color: color-mix(in srgb, var(--teal-pro) 32%, transparent);
         }
 
-        /* --- La photo : bande pleine largeur, ratio d'origine, sans recadrage --- */
+        /* --- La photo: bande pleine largeur, ratio d'origine, sans recadrage --- */
         .hero-figure {
             margin: 0;
             display: block;
@@ -521,7 +521,7 @@
                         0 2px 6px rgba(31, 33, 33, 0.05);
         }
 
-        /* --- Rangée 2 : les services, en index composé --- */
+        /* --- Rangée 2: les services, en index composé --- */
         .hero-services {
             display: grid;
             gap: var(--space-24);
@@ -591,7 +591,7 @@
             .svc:hover .svc-go { transform: translateX(4px); opacity: 1; }
         }
 
-        /* Retour au doigt : hors du bloc hover, sinon le tactile n'accuse rien */
+        /* Retour au doigt: hors du bloc hover, sinon le tactile n'accuse rien */
         .svc:active::before { opacity: 0.1; }
         .svc:active .svc-go { transform: translateX(4px); opacity: 1; }
 
@@ -645,8 +645,8 @@
         .card--sage     { --card-accent: var(--sage-dark);      }
         .card--peach    { --card-accent: var(--copper);         }
 
-        /* --- Mobile : la pharmacie passe juste sous le titre --- */
-        /* --- Mobile : titre, photo, puis l'amorce --- */
+        /* --- Mobile: la pharmacie passe juste sous le titre --- */
+        /* --- Mobile: titre, photo, puis l'amorce --- */
         @media (max-width: 899px) {
             .hero-container {
                 display: flex;
@@ -690,7 +690,7 @@
             }
         }
 
-        /* === PRODUCT CARDS (Redesign v2 — asymmetric grid) === */
+        /* === PRODUCT CARDS (Redesign v2, asymmetric grid) === */
         /* ROLLBACK: To restore the old 4-column Hims layout, see backup in index-backup-products-old.html */
         .product-features {
             padding: var(--space-24) 0 var(--space-32);
@@ -735,7 +735,7 @@
         }
 
         /* Foldables / wide phones (e.g. ~600-760px): cap the 2-col grid so the
-           square cards don't become oversized — center it to add side margins */
+           square cards don't become oversized, center it to add side margins */
         @media (min-width: 480px) and (max-width: 767px) {
             .product-features-grid {
                 max-width: 352px;
@@ -836,7 +836,7 @@
         }
 
         /* ponytail: le PNG du pot (750x750) a beaucoup de marge vide autour du sujet,
-           contrairement aux autres visuels détourés serré — on compense au rendu. */
+           contrairement aux autres visuels détourés serré, on compense au rendu. */
         .card--dermo .product-feature-img { transform: scale(1.8); }
         .card--dermo:hover .product-feature-img { transform: scale(1.94) translateY(-4px); }
 
@@ -1660,7 +1660,7 @@
         }
 
         /* === MOUVEMENT RÉDUIT ===
-           Le bandeau défilant tourne en boucle infinie : il s'arrête net.
+           Le bandeau défilant tourne en boucle infinie: il s'arrête net.
            Les transitions ne sont pas supprimées, seulement raccourcies.
            Un état qui change sans aucun pont est plus brutal qu'une
            transition de 120ms. */
@@ -1947,17 +1947,18 @@
 
         .brands-strip-logos {
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
+            grid-template-columns: repeat(2, minmax(0, 1fr));
             gap: var(--space-16);
         }
 
         @media (min-width: 768px) {
             .brands-strip-logos {
-                grid-template-columns: repeat(6, 1fr);
+                grid-template-columns: repeat(6, minmax(0, 1fr));
             }
         }
 
         .brands-strip-logo-card {
+            min-width: 0;
             background: var(--white);
             border-radius: var(--radius-lg);
             display: flex;
@@ -1974,44 +1975,44 @@
         }
 
         .brands-strip-logo-card img {
-            max-width: 120px;
+            max-width: min(120px, 100%);
             max-height: 48px;
             object-fit: contain;
         }
 
-        /* +25% sur Nuxe, Avène, Klorane (logos visuellement plus petits) — desktop uniquement */
+        /* +25% sur Nuxe, Avène, Klorane (logos visuellement plus petits), desktop uniquement */
         /* +30% sur PiLeJe et Boiron (logos naturellement plus petits) */
         @media (min-width: 768px) {
             .brands-strip-logo-card img[alt="Nuxe"],
             .brands-strip-logo-card img[alt="Avène"],
             .brands-strip-logo-card img[alt="Klorane"] {
-                max-width: 150px;
+                max-width: min(150px, 100%);
                 max-height: 60px;
             }
             .brands-strip-logo-card img[alt="PiLeJe"],
             .brands-strip-logo-card img[alt="Boiron"] {
-                max-width: 156px;
+                max-width: min(156px, 100%);
                 max-height: 62px;
             }
         }
 
-        /* +30% sur la zone medium (Samsung Fold ~1024x768, tablettes) — la grille reste
+        /* +30% sur la zone medium (Samsung Fold ~1024x768, tablettes), la grille reste
            a 6 colonnes, donc on reduit aussi le padding des cartes pour donner de la place */
         @media (min-width: 768px) and (max-width: 1024px) {
             .brands-strip-logo-card { padding: var(--space-12); }
             .brands-strip-logo-card img {
-                max-width: 156px;
+                max-width: min(156px, 100%);
                 max-height: 62px;
             }
             .brands-strip-logo-card img[alt="Nuxe"],
             .brands-strip-logo-card img[alt="Avène"],
             .brands-strip-logo-card img[alt="Klorane"] {
-                max-width: 195px;
+                max-width: min(195px, 100%);
                 max-height: 78px;
             }
             .brands-strip-logo-card img[alt="PiLeJe"],
             .brands-strip-logo-card img[alt="Boiron"] {
-                max-width: 203px;
+                max-width: min(203px, 100%);
                 max-height: 81px;
             }
         }
@@ -2020,14 +2021,14 @@
         @media (min-width: 768px) {
             .brands-strip-logo-card img[alt="Nuxe"],
             .brands-strip-logo-card img[alt="Avène"] {
-                max-width: 195px;
+                max-width: min(195px, 100%);
                 max-height: 78px;
             }
         }
         @media (min-width: 768px) and (max-width: 1024px) {
             .brands-strip-logo-card img[alt="Nuxe"],
             .brands-strip-logo-card img[alt="Avène"] {
-                max-width: 254px;
+                max-width: min(254px, 100%);
                 max-height: 101px;
             }
         }
@@ -2037,14 +2038,14 @@
             .brands-strip-header { justify-content: center; text-align: center; flex-direction: column; align-items: center; }
             .brands-strip-logos { gap: 12px; }
             .brands-strip-logo-card { padding: var(--space-16) var(--space-12); }
-            .brands-strip-logo-card img { max-width: 110px; max-height: 48px; }
+            .brands-strip-logo-card img { max-width: min(110px, 100%); max-height: 48px; }
             .brands-strip-logo-card img[alt="Nuxe"],
             .brands-strip-logo-card img[alt="Avène"],
             .brands-strip-logo-card img[alt="Klorane"],
             .brands-strip-logo-card img[alt="PiLeJe"],
             .brands-strip-logo-card img[alt="Boiron"],
             .brands-strip-logo-card img[alt="Bion 3"] {
-                max-width: 143px;
+                max-width: min(143px, 100%);
                 max-height: 62px;
             }
             .brands-strip-container { padding: 0 var(--space-16); overflow: hidden; }
@@ -2508,11 +2509,11 @@
         </div>
     </nav>
 
-    <!-- Hero — bloc unifié : accroche + la pharmacie + services -->
+    <!-- Hero, bloc unifié: accroche + la pharmacie + services -->
     <section class="hero">
         <div class="hero-container">
 
-            <!-- Rangée 1 : l'accroche à gauche, la photo à droite -->
+            <!-- Rangée 1: l'accroche à gauche, la photo à droite -->
             <div class="hero-top">
                 <div class="hero-lede">
                     <h1 class="hero-title">
@@ -2542,7 +2543,7 @@
                 <span><b>4,9</b> sur Google</span>
             </p>
 
-            <!-- Rangée 2 : les services, en index -->
+            <!-- Rangée 2: les services, en index -->
             <div class="hero-services">
                 <h2 class="hero-services-title">On s'occupe de <em>Vous</em></h2>
 
@@ -2767,7 +2768,7 @@
                     </div>
                 </article>
 
-                <!-- Secondary articles (right) — refreshed by JS when fetch succeeds -->
+                <!-- Secondary articles (right), refreshed by JS when fetch succeeds -->
                 <div class="blog-secondary-list" id="blog-secondary-list">
                     <a class="blog-mini-card" id="mini-card-1" href="blog/28-meduses-plages-bretonnes/meduses-plages-bretonnes-queven.html">
                         <img class="blog-mini-img" id="mini-img-1" src="images/Blog%20photos/blog-31-meduses-plages-bretonnes.jpg" alt="">
@@ -2948,7 +2949,7 @@
 
         const idleCallback = window.requestIdleCallback || (cb => setTimeout(cb, 200));
 
-        // Scroll animations — deferred to idle (visual only, not interaction-critical)
+        // Scroll animations, deferred to idle (visual only, not interaction-critical)
         idleCallback(() => {
             const observerOptions = {
                 root: null,
@@ -2997,7 +2998,7 @@
                     var dateEl = firstCard.querySelector('.blog-date');
                     var imgEl = firstCard.querySelector('.blog-image-placeholder img');
                     var articleLink = firstCard.querySelector('a');
-                    var articleUrl = articleLink ? articleLink.getAttribute('href') : 'blog.html';
+                    var articleUrl = articleLink? articleLink.getAttribute('href'): 'blog.html';
 
                     if (titleEl) {
                         document.getElementById('latest-article-title').textContent = titleEl.textContent;
@@ -3031,7 +3032,7 @@
                         var miniDate = card.querySelector('.blog-date');
                         var miniImg = card.querySelector('.blog-image-placeholder img');
                         var miniLinkEl = card.querySelector('a');
-                        var miniUrl = miniLinkEl ? miniLinkEl.getAttribute('href') : 'blog.html';
+                        var miniUrl = miniLinkEl? miniLinkEl.getAttribute('href'): 'blog.html';
 
                         var miniCardEl = document.getElementById('mini-card-' + i);
                         if (miniCardEl && miniUrl) miniCardEl.setAttribute('href', miniUrl);
@@ -3050,11 +3051,11 @@
                 });
         });
 
-        // Brand spotlight removed — brands-strip logos rotate 6 random brands on load
+        // Brand spotlight removed, brands-strip logos rotate 6 random brands on load
 
 
         // ==========================================
-        // "Les marques qu'on aime" — rotation aléatoire de 6 logos
+        // "Les marques qu'on aime", rotation aléatoire de 6 logos
         // ==========================================
         (function () {
             var brands = [
@@ -3091,11 +3092,11 @@
                 if (!container) return;
                 // Le nombre de cartes suit la grille CSS affichée (2 cols mobile -> 4, 6 cols desktop -> 6)
                 var cols = getComputedStyle(container).gridTemplateColumns.split(' ').length;
-                var count = cols <= 2 ? 4 : 6;
+                var count = cols <= 2? 4: 6;
                 var selected = shuffle(brands).slice(0, count);
 
                 container.innerHTML = selected.map(function (brand) {
-                    var attrs = brand.width ? ' width="' + brand.width + '" height="' + brand.height + '"' : '';
+                    var attrs = brand.width? ' width="' + brand.width + '" height="' + brand.height + '"': '';
                     return '<a href="' + brand.page + '" class="brands-strip-logo-card">' +
                         '<img src="' + brand.logo + '" alt="' + brand.name + '"' + attrs + '>' +
                     '</a>';

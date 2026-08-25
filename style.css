@@ -394,6 +394,14 @@ a {
     transform: translateY(0);
 }
 
+/* Le dernier menu déroulant s'ouvre vers la gauche: ancré à left:0 il dépassait
+   du viewport et provoquait un défilement horizontal de la page entière, y compris
+   fermé (visibility:hidden reste dans le flux de calcul de la largeur). */
+.nav-links > .nav-dropdown:last-child .nav-dropdown-menu {
+    left: auto;
+    right: 0;
+}
+
 .nav-dropdown-menu li {
     width: 100%;
 }
