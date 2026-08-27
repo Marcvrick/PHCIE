@@ -458,7 +458,7 @@
         @media (hover: hover) { .article-card:hover { transform: translateY(-2px); box-shadow: var(--shadow-md); } }
         .article-card-image { flex: 0 0 40%; max-width: 200px; overflow: hidden; background: var(--beige); }
         .article-card-image img { width: 100%; height: 100%; min-height: 120px; object-fit: cover; display: block; }
-        .article-card-body { flex: 1 1 auto; padding: var(--space-16) var(--space-20); display: flex; flex-direction: column; justify-content: center; gap: 6px; }
+        .article-card-body { flex: 1 1 auto; padding: var(--space-16) var(--space-24); display: flex; flex-direction: column; justify-content: center; gap: 6px; }
         .article-card-eyebrow { font-size: var(--text-xs); text-transform: uppercase; letter-spacing: 0.05em; color: var(--gray-500); }
         .article-card-title { font-family: var(--font-display); font-size: var(--text-lg); font-weight: 500; line-height: 1.25; color: var(--charcoal); margin: 0; }
         .article-card-cta { font-size: var(--text-sm); font-weight: 600; color: var(--card-accent, var(--teal-pro)); }
@@ -471,6 +471,17 @@
         .shero-figure { margin: 0; }
         .shero-figure img { display: block; width: 100%; max-width: 420px; height: auto; margin-left: auto; border-radius: var(--radius-2xl); box-shadow: var(--shadow-lg); }
         @media (max-width: 899px) { .shero-figure img { max-width: 320px; margin: 0 auto; } }
+
+        /* Table et liste numerotee pour les cartes de contenu long (classes, formes, mode d'emploi). */
+        .info-table-wrap { overflow-x: auto; margin-top: var(--space-16); }
+        .info-table { width: 100%; border-collapse: collapse; font-size: var(--text-sm); }
+        .info-table th, .info-table td { text-align: left; padding: var(--space-12) var(--space-16); border-bottom: 1px solid var(--gray-200); vertical-align: top; }
+        .info-table th { font-family: var(--font-display); font-weight: 600; color: var(--card-accent, var(--teal-pro)); white-space: nowrap; }
+        .info-table td { color: var(--gray-600); }
+        .card-ol { padding-left: 1.3em; margin: var(--space-12) 0 0; display: flex; flex-direction: column; gap: 6px; }
+        .card-ol li { color: var(--gray-600); line-height: 1.6; padding-left: 4px; }
+        .card-ol li::marker { color: var(--card-accent, var(--teal-pro)); font-weight: 600; }
+        .callout-warning { background: color-mix(in srgb, var(--card-accent, var(--teal-pro)) 8%, var(--white)); border-left: 3px solid var(--card-accent, var(--teal-pro)); border-radius: var(--radius-base); padding: var(--space-12) var(--space-16); margin-top: var(--space-16); font-size: var(--text-sm); color: var(--gray-700); }
     </style>
 
     <meta name="description" content="Vaccination contre la grippe à la pharmacie de Quéven, sans rendez-vous, sans ordonnance, remboursée. Campagne annuelle à partir de la mi-octobre.">
@@ -692,39 +703,39 @@
         <div class="container">
             <div class="faq-list">
                 <details class="faq-item">
-                    <summary>Faut-il un rendez-vous pour se faire vacciner contre la grippe en pharmacie ?</summary>
+                    <summary>Faut-il un rendez-vous pour se faire vacciner contre la grippe en pharmacie?</summary>
                     <p>Non, la vaccination se fait sans rendez-vous.</p>
                 </details>
                 <details class="faq-item">
-                    <summary>Faut-il une ordonnance pour le vaccin contre la grippe ?</summary>
+                    <summary>Faut-il une ordonnance pour le vaccin contre la grippe?</summary>
                     <p>Non, aucune ordonnance n'est nécessaire à la pharmacie Charnal.</p>
                 </details>
                 <details class="faq-item">
-                    <summary>Quand commence la campagne de vaccination contre la grippe ?</summary>
+                    <summary>Quand commence la campagne de vaccination contre la grippe?</summary>
                     <p>Habituellement à partir du 15 octobre.</p>
                 </details>
                 <details class="faq-item">
-                    <summary>La vaccination contre la grippe est-elle remboursée ?</summary>
+                    <summary>La vaccination contre la grippe est-elle remboursée?</summary>
                     <p>Oui, à la pharmacie Charnal.</p>
                 </details>
                 <details class="faq-item">
-                    <summary>Faut-il être à jeun pour le vaccin contre la grippe ?</summary>
+                    <summary>Faut-il être à jeun pour le vaccin contre la grippe?</summary>
                     <p>Non, aucune préparation particulière n'est nécessaire. Vous pouvez manger et boire normalement.</p>
                 </details>
                 <details class="faq-item">
-                    <summary>Vaut-il mieux se faire vacciner le matin ou l’après-midi ?</summary>
+                    <summary>Vaut-il mieux se faire vacciner le matin ou l’après-midi?</summary>
                     <p>Les deux sont possibles, aucun horaire n’est imposé.</p>
                 </details>
                 <details class="faq-item">
-                    <summary>Combien de temps avant d’être protégé après le vaccin contre la grippe ?</summary>
+                    <summary>Combien de temps avant d’être protégé après le vaccin contre la grippe?</summary>
                     <p>Environ deux semaines après l’injection.</p>
                 </details>
                 <details class="faq-item">
-                    <summary>Quels sont les effets secondaires possibles du vaccin contre la grippe ?</summary>
+                    <summary>Quels sont les effets secondaires possibles du vaccin contre la grippe?</summary>
                     <p>Généralement légers et passagers: douleur au point d'injection, parfois fatigue ou légère fièvre.</p>
                 </details>
                 <details class="faq-item">
-                    <summary>Dans quels cas la vaccination contre la grippe est-elle reportée ?</summary>
+                    <summary>Dans quels cas la vaccination contre la grippe est-elle reportée?</summary>
                     <p>En cas de fièvre ou d'infection aiguë le jour du rendez-vous.</p>
                 </details>
             </div>
@@ -734,7 +745,7 @@
     <!-- CTA -->
     <section class="services-cta">
         <div class="container">
-            <h2>La campagne approche ?</h2>
+            <h2>La campagne approche?</h2>
             <p>Passez nous voir dès l'ouverture de la campagne, sans rendez-vous.</p>
             <a href="contact.html" class="btn btn-primary">Venez en pharmacie</a>
         </div>

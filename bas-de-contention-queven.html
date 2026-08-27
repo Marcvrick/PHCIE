@@ -458,7 +458,7 @@
         @media (hover: hover) { .article-card:hover { transform: translateY(-2px); box-shadow: var(--shadow-md); } }
         .article-card-image { flex: 0 0 40%; max-width: 200px; overflow: hidden; background: var(--beige); }
         .article-card-image img { width: 100%; height: 100%; min-height: 120px; object-fit: cover; display: block; }
-        .article-card-body { flex: 1 1 auto; padding: var(--space-16) var(--space-20); display: flex; flex-direction: column; justify-content: center; gap: 6px; }
+        .article-card-body { flex: 1 1 auto; padding: var(--space-16) var(--space-24); display: flex; flex-direction: column; justify-content: center; gap: 6px; }
         .article-card-eyebrow { font-size: var(--text-xs); text-transform: uppercase; letter-spacing: 0.05em; color: var(--gray-500); }
         .article-card-title { font-family: var(--font-display); font-size: var(--text-lg); font-weight: 500; line-height: 1.25; color: var(--charcoal); margin: 0; }
         .article-card-cta { font-size: var(--text-sm); font-weight: 600; color: var(--card-accent, var(--teal-pro)); }
@@ -471,9 +471,20 @@
         .shero-figure { margin: 0; }
         .shero-figure img { display: block; width: 100%; max-width: 420px; height: auto; margin-left: auto; border-radius: var(--radius-2xl); box-shadow: var(--shadow-lg); }
         @media (max-width: 899px) { .shero-figure img { max-width: 320px; margin: 0 auto; } }
+
+        /* Table et liste numerotee pour les cartes de contenu long (classes, formes, mode d'emploi). */
+        .info-table-wrap { overflow-x: auto; margin-top: var(--space-16); }
+        .info-table { width: 100%; border-collapse: collapse; font-size: var(--text-sm); }
+        .info-table th, .info-table td { text-align: left; padding: var(--space-12) var(--space-16); border-bottom: 1px solid var(--gray-200); vertical-align: top; }
+        .info-table th { font-family: var(--font-display); font-weight: 600; color: var(--card-accent, var(--teal-pro)); white-space: nowrap; }
+        .info-table td { color: var(--gray-600); }
+        .card-ol { padding-left: 1.3em; margin: var(--space-12) 0 0; display: flex; flex-direction: column; gap: 6px; }
+        .card-ol li { color: var(--gray-600); line-height: 1.6; padding-left: 4px; }
+        .card-ol li::marker { color: var(--card-accent, var(--teal-pro)); font-weight: 600; }
+        .callout-warning { background: color-mix(in srgb, var(--card-accent, var(--teal-pro)) 8%, var(--white)); border-left: 3px solid var(--card-accent, var(--teal-pro)); border-radius: var(--radius-base); padding: var(--space-12) var(--space-16); margin-top: var(--space-16); font-size: var(--text-sm); color: var(--gray-700); }
     </style>
 
-    <meta name="description" content="Bas de contention Innothera et Sigvaris à la pharmacie de Quéven, remboursement possible sur ordonnance avec forfait Sécurité sociale sur certains modèles.">
+    <meta name="description" content="Bas de contention Innothera et Sigvaris à la pharmacie de Quéven: formes, classes de compression, mode d'emploi et contre-indications.">
     <title>Bas de contention Innothera et Sigvaris | Pharmacie Charnal - Quéven</title>
     <link rel="canonical" href="https://www.pharmaciecharnal.com/bas-de-contention-queven.html">
 
@@ -637,8 +648,8 @@
             <div class="services-list">
                 <div id="bas-de-contention" class="service-detail-card" style="scroll-margin-top: 120px; --card-accent: var(--sage-dark);">
                     <div>
-                        <h3>Ce qu’il faut savoir</h3>
-                        <p>Le remboursement est possible sur ordonnance, avec un forfait de la Sécurité sociale sur certains modèles.</p>
+                        <h3>Ce qu'il faut savoir</h3>
+                        <p>Le remboursement est possible sur ordonnance, avec un forfait de la Sécurité sociale sur certains modèles. Le nombre de paires prises en charge par an et le complément éventuel de mutuelle dépendent de la référence prescrite: demandez le détail à l'équipe officinale.</p>
                         <ul>
                             <li><span class="check">✓</span> Marques Innothera et Sigvaris</li>
                             <li><span class="check">✓</span> Remboursement possible sur ordonnance</li>
@@ -656,6 +667,130 @@
                         </a>
                     </div>
                 </div>
+
+                <div id="a-quoi-servent" class="service-detail-card" style="scroll-margin-top: 120px; --card-accent: var(--sage-dark);">
+                    <div>
+                        <h3>À quoi servent les bas de contention</h3>
+                        <p>Les bas, chaussettes et collants de contention sont des dispositifs médicaux de compression veineuse. La pression est maximale à la cheville et décroît vers le haut de la jambe, ce qui favorise le retour veineux et limite lourdeur, gonflement et complications veineuses.</p>
+                        <ul>
+                            <li><span class="check">✓</span> Jambes lourdes, douleurs, impatiences ou fatigue des jambes</li>
+                            <li><span class="check">✓</span> Varicosités et varices</li>
+                            <li><span class="check">✓</span> Œdème d'origine veineuse, surtout en fin de journée</li>
+                            <li><span class="check">✓</span> Suites de sclérothérapie ou de chirurgie veineuse, sur prescription</li>
+                            <li><span class="check">✓</span> Antécédent de phlébite et syndrome post-thrombotique</li>
+                            <li><span class="check">✓</span> Prévention de récidive d'ulcère veineux</li>
+                            <li><span class="check">✓</span> Immobilisation, voyage prolongé ou grossesse, selon avis adapté</li>
+                        </ul>
+                        <div class="callout-warning">Une jambe soudainement gonflée, rouge, chaude ou douloureuse, un essoufflement ou une douleur thoracique nécessitent un avis médical urgent avant toute compression: ces symptômes peuvent évoquer une phlébite ou une embolie.</div>
+                        <div class="service-links-row">
+                            <a href="https://www.has-sante.fr/jcms/c_1009308/fr/compression-medicale-dans-les-affections-veineuses-chroniques-fiche-buts" class="service-link" target="_blank" rel="noopener">HAS, compression médicale veineuse →</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="formes-disponibles" class="service-detail-card" style="scroll-margin-top: 120px; --card-accent: var(--sage-dark);">
+                    <div>
+                        <h3>Les formes disponibles</h3>
+                        <div class="info-table-wrap">
+                        <table class="info-table">
+                            <thead><tr><th>Forme</th><th>Couvre</th><th>Souvent choisie pour</th></tr></thead>
+                            <tbody>
+                                <tr><td>Chaussettes / mi-bas</td><td>Du pied jusqu'au-dessous du genou</td><td>La plupart des symptômes veineux du bas de jambe</td></tr>
+                                <tr><td>Bas-cuisse</td><td>Du pied à la cuisse</td><td>Atteinte veineuse ou varices remontant au-dessus du genou</td></tr>
+                                <tr><td>Collants</td><td>Les deux jambes, jusqu'à la taille</td><td>Symptômes plus hauts, grossesse, maintien global</td></tr>
+                                <tr><td>Ouvert ou fermé</td><td>Orteils visibles ou couverts</td><td>Ouvert si sensibilité ou déformation des orteils; fermé selon confort</td></tr>
+                            </tbody>
+                        </table>
+                        </div>
+                        <p>Le modèle sous le genou suffit souvent quand les troubles restent localisés au mollet. Le bon choix dépend surtout de la localisation des troubles, de la morphologie, de la mobilité et de la prescription.</p>
+                    </div>
+                </div>
+
+                <div id="classes-compression" class="service-detail-card" style="scroll-margin-top: 120px; --card-accent: var(--sage-dark);">
+                    <div>
+                        <h3>Les classes de compression</h3>
+                        <div class="info-table-wrap">
+                        <table class="info-table">
+                            <thead><tr><th>Classe</th><th>Niveau</th><th>Usages fréquents</th></tr></thead>
+                            <tbody>
+                                <tr><td>Classe I</td><td>Légère</td><td>Inconfort léger, jambes lourdes, prévention</td></tr>
+                                <tr><td>Classe II</td><td>Modérée</td><td>Varices marquées, symptômes réguliers, œdème léger à modéré</td></tr>
+                                <tr><td>Classe III</td><td>Forte</td><td>Insuffisance veineuse avancée, œdème important, antécédent de thrombose</td></tr>
+                                <tr><td>Classe IV</td><td>Très forte</td><td>Situations sévères (lymphœdème, atteintes complexes), prise en charge spécialisée</td></tr>
+                            </tbody>
+                        </table>
+                        </div>
+                        <p>La HAS recommande la pression la plus forte supportée par la personne. Les classes II à IV méritent une évaluation médicale ou pharmaceutique avant l'achat.</p>
+                    </div>
+                </div>
+
+                <div id="bien-choisir" class="service-detail-card" style="scroll-margin-top: 120px; --card-accent: var(--sage-dark);">
+                    <div>
+                        <h3>Bien choisir en pharmacie</h3>
+                        <p>La prise de mesure est déterminante pour l'efficacité du dispositif.</p>
+                        <ul>
+                            <li><span class="check">✓</span> Le matin, avant que les jambes ne gonflent</li>
+                            <li><span class="check">✓</span> Sur peau sèche</li>
+                            <li><span class="check">✓</span> Tour de cheville, tour de mollet, parfois tour de cuisse et hauteur talon-genou</li>
+                            <li><span class="check">✓</span> Taille définie par le tableau du fabricant, pas par la taille habituelle de vêtements</li>
+                        </ul>
+                        <p>Pour un choix adapté, précisez au comptoir: vos symptômes, la zone concernée, vos difficultés pratiques (arthrose des mains, mobilité réduite), vos antécédents (diabète, artériopathie, insuffisance cardiaque) et le contexte (voyage, grossesse, poste debout, ordonnance).</p>
+                    </div>
+                </div>
+
+                <div id="mode-emploi" class="service-detail-card" style="scroll-margin-top: 120px; --card-accent: var(--sage-dark);">
+                    <div>
+                        <h3>Mode d'emploi</h3>
+                        <p>Le dispositif se porte le matin, avant le lever ou juste après, et s'enlève le soir, sauf consigne différente.</p>
+                        <ol class="card-ol">
+                            <li>Retirez bagues et bijoux pouvant accrocher le tissu</li>
+                            <li>Retournez le bas jusqu'au talon, sans retourner le pied entier</li>
+                            <li>Positionnez le pied et le talon</li>
+                            <li>Déroulez progressivement le tissu vers le mollet ou la cuisse, sans tirer sur le bord supérieur</li>
+                            <li>Lissez les plis: aucun bourrelet ne doit comprimer la peau</li>
+                            <li>Vérifiez l'absence de douleur, d'engourdissement ou d'orteils bleus ou froids</li>
+                        </ol>
+                        <p>Un enfile-bas ou des gants texturés facilitent l'usage, en particulier pour les classes fortes ou en cas de force réduite dans les mains.</p>
+                        <div class="service-links-row">
+                            <a href="https://www.ameli.fr/assure/sante/bons-gestes/quotidien/utiliser-bas-collants-compression" class="service-link" target="_blank" rel="noopener">Ameli, utiliser bas et collants de compression →</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="entretien" class="service-detail-card" style="scroll-margin-top: 120px; --card-accent: var(--sage-dark);">
+                    <div>
+                        <h3>Entretien</h3>
+                        <ul>
+                            <li><span class="check">✓</span> Lavez-les après chaque journée de port, à la main ou selon l'étiquette, à basse température</li>
+                            <li><span class="check">✓</span> Lessive douce, sans eau très chaude, javel, sèche-linge ni assouplissant sauf indication contraire</li>
+                            <li><span class="check">✓</span> Séchage à plat ou à l'air libre, loin d'une source de chaleur</li>
+                            <li><span class="check">✓</span> Vérifiez régulièrement l'élasticité et les zones distendues</li>
+                        </ul>
+                        <p>Un bas détendu, troué ou trop grand ne délivre plus la compression attendue. Deux paires en alternance permettent de laver quotidiennement sans interrompre le port.</p>
+                    </div>
+                </div>
+
+                <div id="contre-indications" class="service-detail-card" style="scroll-margin-top: 120px; --card-accent: var(--sage-dark);">
+                    <div>
+                        <h3>Contre-indications et précautions</h3>
+                        <p>La principale précaution concerne l'artériopathie des membres inférieurs: comprimer une jambe dont l'apport artériel est insuffisant peut être dangereux.</p>
+                        <ul>
+                            <li><span class="check">✓</span> Artériopathie, douleur au mollet à la marche, pieds froids, pouls des pieds difficilement perceptibles</li>
+                            <li><span class="check">✓</span> Diabète compliqué de neuropathie, avec diminution de sensibilité</li>
+                            <li><span class="check">✓</span> Insuffisance cardiaque non stabilisée ou œdème d'origine incertaine</li>
+                            <li><span class="check">✓</span> Dermatose inflammatoire, infection cutanée ou allergie aux composants</li>
+                            <li><span class="check">✓</span> Douleur aiguë inexpliquée</li>
+                        </ul>
+                        <div class="callout-warning">Arrêtez le port et demandez conseil rapidement en cas de douleur inhabituelle, fourmillements persistants, orteils bleutés ou très pâles, refroidissement du pied ou irritation importante.</div>
+                    </div>
+                </div>
+
+                <div id="a-retenir" class="service-detail-card" style="scroll-margin-top: 120px; --card-accent: var(--sage-dark);">
+                    <div>
+                        <h3>À retenir</h3>
+                        <p>Pour des jambes lourdes en fin de journée sans maladie artérielle connue, un mi-bas médical bien mesuré et porté dès le matin est souvent une option pertinente. Une jambe soudainement gonflée, rouge ou douloureuse d'un seul côté nécessite un avis médical avant toute compression.</p>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -665,16 +800,32 @@
         <div class="container">
             <div class="faq-list">
                 <details class="faq-item">
-                    <summary>Les bas de contention sont-ils remboursés ?</summary>
+                    <summary>Les bas de contention sont-ils remboursés?</summary>
                     <p>Oui, sur ordonnance, avec un forfait de la Sécurité sociale sur certains modèles.</p>
                 </details>
                 <details class="faq-item">
-                    <summary>Quelles marques de bas de contention la pharmacie propose-t-elle ?</summary>
+                    <summary>Quelles marques de bas de contention la pharmacie propose-t-elle?</summary>
                     <p>Innothera et Sigvaris.</p>
                 </details>
                 <details class="faq-item">
-                    <summary>Faut-il une ordonnance pour des bas de contention ?</summary>
+                    <summary>Faut-il une ordonnance pour des bas de contention?</summary>
                     <p>Oui, pour bénéficier du remboursement.</p>
+                </details>
+                <details class="faq-item">
+                    <summary>Les bas de contention sont-ils dangereux en cas d'artérite?</summary>
+                    <p>Potentiellement: comprimer une jambe dont l'apport artériel est insuffisant peut être dangereux. Un avis médical est nécessaire en cas d'artériopathie.</p>
+                </details>
+                <details class="faq-item">
+                    <summary>Quand porter ses bas de contention?</summary>
+                    <p>Le matin, avant le lever ou juste après, et les retirer le soir, sauf consigne différente.</p>
+                </details>
+                <details class="faq-item">
+                    <summary>Combien de paires de bas de contention sont remboursées par an?</summary>
+                    <p>Le nombre de paires prises en charge dépend de la prescription et du modèle. Demandez le détail à l'équipe officinale.</p>
+                </details>
+                <details class="faq-item">
+                    <summary>Quelle classe de compression choisir?</summary>
+                    <p>Cela dépend de la sévérité des troubles et de la tolérance. Les classes II à IV méritent un avis médical ou pharmaceutique.</p>
                 </details>
             </div>
         </div>
@@ -683,7 +834,7 @@
     <!-- CTA -->
     <section class="services-cta">
         <div class="container">
-            <h2>Besoin de bas de contention ?</h2>
+            <h2>Besoin de bas de contention?</h2>
             <p>Passez nous voir avec votre ordonnance.</p>
             <a href="contact.html" class="btn btn-primary">Venez en pharmacie</a>
         </div>

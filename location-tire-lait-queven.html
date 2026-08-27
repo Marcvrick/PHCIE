@@ -458,7 +458,7 @@
         @media (hover: hover) { .article-card:hover { transform: translateY(-2px); box-shadow: var(--shadow-md); } }
         .article-card-image { flex: 0 0 40%; max-width: 200px; overflow: hidden; background: var(--beige); }
         .article-card-image img { width: 100%; height: 100%; min-height: 120px; object-fit: cover; display: block; }
-        .article-card-body { flex: 1 1 auto; padding: var(--space-16) var(--space-20); display: flex; flex-direction: column; justify-content: center; gap: 6px; }
+        .article-card-body { flex: 1 1 auto; padding: var(--space-16) var(--space-24); display: flex; flex-direction: column; justify-content: center; gap: 6px; }
         .article-card-eyebrow { font-size: var(--text-xs); text-transform: uppercase; letter-spacing: 0.05em; color: var(--gray-500); }
         .article-card-title { font-family: var(--font-display); font-size: var(--text-lg); font-weight: 500; line-height: 1.25; color: var(--charcoal); margin: 0; }
         .article-card-cta { font-size: var(--text-sm); font-weight: 600; color: var(--card-accent, var(--teal-pro)); }
@@ -471,6 +471,17 @@
         .shero-figure { margin: 0; }
         .shero-figure img { display: block; width: 100%; max-width: 420px; height: auto; margin-left: auto; border-radius: var(--radius-2xl); box-shadow: var(--shadow-lg); }
         @media (max-width: 899px) { .shero-figure img { max-width: 320px; margin: 0 auto; } }
+
+        /* Table et liste numerotee pour les cartes de contenu long (classes, formes, mode d'emploi). */
+        .info-table-wrap { overflow-x: auto; margin-top: var(--space-16); }
+        .info-table { width: 100%; border-collapse: collapse; font-size: var(--text-sm); }
+        .info-table th, .info-table td { text-align: left; padding: var(--space-12) var(--space-16); border-bottom: 1px solid var(--gray-200); vertical-align: top; }
+        .info-table th { font-family: var(--font-display); font-weight: 600; color: var(--card-accent, var(--teal-pro)); white-space: nowrap; }
+        .info-table td { color: var(--gray-600); }
+        .card-ol { padding-left: 1.3em; margin: var(--space-12) 0 0; display: flex; flex-direction: column; gap: 6px; }
+        .card-ol li { color: var(--gray-600); line-height: 1.6; padding-left: 4px; }
+        .card-ol li::marker { color: var(--card-accent, var(--teal-pro)); font-weight: 600; }
+        .callout-warning { background: color-mix(in srgb, var(--card-accent, var(--teal-pro)) 8%, var(--white)); border-left: 3px solid var(--card-accent, var(--teal-pro)); border-radius: var(--radius-base); padding: var(--space-12) var(--space-16); margin-top: var(--space-16); font-size: var(--text-sm); color: var(--gray-700); }
     </style>
 
     <meta name="description" content="Location de tire-lait Medela à la pharmacie de Quéven, kit double pompage disponible, prise en charge par l'Assurance Maladie sur ordonnance.">
@@ -655,7 +666,7 @@
 
                 <div id="kit-double-pompage" class="service-detail-card" style="scroll-margin-top: 120px; --card-accent: var(--copper);">
                     <div>
-                        <h3>Qu'est-ce que le kit double pompage ?</h3>
+                        <h3>Qu'est-ce que le kit double pompage?</h3>
                         <p>Le kit double pompage permet de tirer le lait des deux seins en même temps, au lieu d'un seul. La séance de tirage est plus courte, et la stimulation plus complète aide à maintenir la lactation.</p>
                         <ul>
                             <li><span class="check">✓</span> Tire les deux seins simultanément</li>
@@ -673,27 +684,27 @@
         <div class="container">
             <div class="faq-list">
                 <details class="faq-item">
-                    <summary>Quelle marque de tire-lait la pharmacie loue-t-elle ?</summary>
+                    <summary>Quelle marque de tire-lait la pharmacie loue-t-elle?</summary>
                     <p>Medela, une marque suisse de référence en maternité, spécialisée dans le matériel d'allaitement.</p>
                 </details>
                 <details class="faq-item">
-                    <summary>Faut-il une ordonnance pour louer un tire-lait ?</summary>
+                    <summary>Faut-il une ordonnance pour louer un tire-lait?</summary>
                     <p>Oui, l'ordonnance est nécessaire pour la prise en charge par l'Assurance Maladie. Elle peut être délivrée par un médecin ou une sage-femme.</p>
                 </details>
                 <details class="faq-item">
-                    <summary>Qui peut prescrire l’ordonnance pour un tire-lait ?</summary>
+                    <summary>Qui peut prescrire l’ordonnance pour un tire-lait?</summary>
                     <p>Un médecin ou une sage-femme. Retrouvez les professionnels de santé de Quéven dans notre annuaire.</p>
                 </details>
                 <details class="faq-item">
-                    <summary>Combien de temps peut-on louer un tire-lait ?</summary>
+                    <summary>Combien de temps peut-on louer un tire-lait?</summary>
                     <p>La durée de location n'est pas limitée.</p>
                 </details>
                 <details class="faq-item">
-                    <summary>Qu’est-ce que le kit double pompage ?</summary>
+                    <summary>Qu’est-ce que le kit double pompage?</summary>
                     <p>Un kit qui permet de tirer le lait des deux seins simultanément au lieu d'un seul, ce qui raccourcit la séance de tirage.</p>
                 </details>
                 <details class="faq-item">
-                    <summary>Le kit double pompage est-il disponible ?</summary>
+                    <summary>Le kit double pompage est-il disponible?</summary>
                     <p>Oui, en supplément de la location du tire-lait.</p>
                 </details>
             </div>
@@ -703,7 +714,7 @@
     <!-- CTA -->
     <section class="services-cta">
         <div class="container">
-            <h2>Besoin d'un tire-lait ?</h2>
+            <h2>Besoin d'un tire-lait?</h2>
             <p>Passez à la pharmacie avec votre ordonnance.</p>
             <a href="contact.html" class="btn btn-primary">Venez en pharmacie</a>
         </div>
