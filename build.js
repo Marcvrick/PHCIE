@@ -52,6 +52,9 @@ function navKey(rel) {
     if (base === 'contact.html') return 'contact';
     if (base.startsWith('pharmacie-de-garde')) return 'garde';
     if (base.startsWith('recrutement')) return 'recrutement';
+    if (base.startsWith('test-angine') || base.startsWith('location-tire-lait')
+        || base.startsWith('automesure-tension') || base.startsWith('vaccination-grippe')
+        || base.startsWith('bas-de-contention')) return 'services';
     return null;
 }
 

@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Fiche de suivi de la tension artérielle - Pharmacie Charnal</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@400;500;600&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+    @page { size: A4 portrait; margin: 0; }
+    * { box-sizing: border-box; }
+    html, body { width: 210mm; margin: 0; padding: 0; font-family: 'DM Sans', -apple-system, sans-serif; color: #1F2121; }
+    *, *::before, *::after { print-color-adjust: exact !important; -webkit-print-color-adjust: exact !important; }
+
+    .page { width: 210mm; height: 297mm; page-break-after: always; page-break-inside: avoid; padding: 14mm 16mm; position: relative; }
+    .page:last-child { page-break-after: auto; }
+
+    .brand-header { display: flex; align-items: center; gap: 10mm; margin-bottom: 8mm; border-bottom: 2px solid #2D5F5D; padding-bottom: 6mm; }
+    .brand-header img { width: 16mm; height: 16mm; border-radius: 3mm; object-fit: contain; }
+    .brand-name { font-family: 'Fraunces', Georgia, serif; font-size: 16pt; font-weight: 600; color: #2D5F5D; }
+    .brand-tagline { font-size: 8pt; color: #6B7280; text-transform: uppercase; letter-spacing: 0.05em; }
+
+    h1 { font-family: 'Fraunces', Georgia, serif; font-weight: 500; font-size: 18pt; color: #1F2121; margin: 0 0 3mm; }
+    .subtitle { font-size: 10pt; color: #4B5563; margin: 0 0 8mm; }
+
+    .rule-box { background: #E8F0EA; border-radius: 3mm; padding: 5mm 6mm; margin-bottom: 6mm; font-size: 9pt; line-height: 1.5; }
+    .rule-box strong { color: #2D5F5D; }
+
+    table.releve { width: 100%; border-collapse: collapse; font-size: 8.5pt; }
+    table.releve th, table.releve td { border: 1px solid #D1D5DB; padding: 2.2mm 1.5mm; text-align: center; }
+    table.releve thead th { background: #D0E5E4; color: #2D5F5D; font-weight: 700; }
+    table.releve .day-col { background: #FBF9F6; font-weight: 700; color: #2D5F5D; white-space: nowrap; }
+    table.releve .moment-col { font-weight: 500; }
+
+    .footer-note { position: absolute; bottom: 12mm; left: 16mm; right: 16mm; font-size: 8pt; color: #6B7280; text-align: center; border-top: 1px solid #E5E7EB; padding-top: 3mm; }
+
+    .back-section { margin-bottom: 7mm; }
+    .back-section h2 { font-family: 'Fraunces', Georgia, serif; font-size: 13pt; font-weight: 500; color: #2D5F5D; margin: 0 0 3mm; }
+    .back-section ul { margin: 0; padding-left: 5mm; font-size: 9.5pt; line-height: 1.7; }
+    .back-section li { margin-bottom: 1.5mm; }
+</style>
+</head>
+<body>
+
+<!-- PAGE 1: recto, le relevé -->
+<div class="page">
+    <div class="brand-header">
+        <img src="../images/pharmacie-charnal-logo.png" alt="">
+        <div>
+            <div class="brand-name">Pharmacie Charnal</div>
+            <div class="brand-tagline">Quéven</div>
+        </div>
+    </div>
+
+    <h1>Fiche de suivi de la tension artérielle</h1>
+    <p class="subtitle">À remplir sur 3 jours, puis à rapporter à la pharmacie ou au médecin.</p>
+
+    <div class="rule-box">
+        <strong>La règle des 3 :</strong> 3 mesures le matin (avant le petit-déjeuner et avant la prise
+        d'un éventuel traitement), 3 mesures le soir (avant le coucher), à 1 à 2 minutes d'intervalle
+        entre chaque mesure, pendant 3 jours de suite. Restez assis, au repos, depuis au moins 5 minutes
+        avant la première mesure de chaque série.
+    </div>
+
+    <table class="releve">
+        <thead>
+            <tr>
+                <th style="width:14%;">Jour</th>
+                <th style="width:10%;">Moment</th>
+                <th style="width:9%;">Mesure</th>
+                <th style="width:17%;">Systolique (mmHg)</th>
+                <th style="width:17%;">Diastolique (mmHg)</th>
+                <th style="width:17%;">Pouls (bpm)</th>
+                <th style="width:16%;">Heure</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="day-col" rowspan="6">Jour 1<br><span style="font-weight:400; font-size:7pt;">___ / ___</span></td>
+                <td class="moment-col" rowspan="3">Matin</td>
+                <td>1</td><td></td><td></td><td></td><td></td>
+            </tr>
+            <tr><td>2</td><td></td><td></td><td></td><td></td></tr>
+            <tr><td>3</td><td></td><td></td><td></td><td></td></tr>
+            <tr>
+                <td class="moment-col" rowspan="3">Soir</td>
+                <td>1</td><td></td><td></td><td></td><td></td>
+            </tr>
+            <tr><td>2</td><td></td><td></td><td></td><td></td></tr>
+            <tr><td>3</td><td></td><td></td><td></td><td></td></tr>
+
+            <tr>
+                <td class="day-col" rowspan="6">Jour 2<br><span style="font-weight:400; font-size:7pt;">___ / ___</span></td>
+                <td class="moment-col" rowspan="3">Matin</td>
+                <td>1</td><td></td><td></td><td></td><td></td>
+            </tr>
+            <tr><td>2</td><td></td><td></td><td></td><td></td></tr>
+            <tr><td>3</td><td></td><td></td><td></td><td></td></tr>
+            <tr>
+                <td class="moment-col" rowspan="3">Soir</td>
+                <td>1</td><td></td><td></td><td></td><td></td>
+            </tr>
+            <tr><td>2</td><td></td><td></td><td></td><td></td></tr>
+            <tr><td>3</td><td></td><td></td><td></td><td></td></tr>
+
+            <tr>
+                <td class="day-col" rowspan="6">Jour 3<br><span style="font-weight:400; font-size:7pt;">___ / ___</span></td>
+                <td class="moment-col" rowspan="3">Matin</td>
+                <td>1</td><td></td><td></td><td></td><td></td>
+            </tr>
+            <tr><td>2</td><td></td><td></td><td></td><td></td></tr>
+            <tr><td>3</td><td></td><td></td><td></td><td></td></tr>
+            <tr>
+                <td class="moment-col" rowspan="3">Soir</td>
+                <td>1</td><td></td><td></td><td></td><td></td>
+            </tr>
+            <tr><td>2</td><td></td><td></td><td></td><td></td></tr>
+            <tr><td>3</td><td></td><td></td><td></td><td></td></tr>
+        </tbody>
+    </table>
+
+    <div class="footer-note">
+        Pharmacie Charnal · 32 Place de Toulouse, 56530 Quéven · 02 97 05 09 31
+    </div>
+</div>
+
+<!-- PAGE 2: verso, comment bien mesurer -->
+<div class="page">
+    <div class="brand-header">
+        <img src="../images/pharmacie-charnal-logo.png" alt="">
+        <div>
+            <div class="brand-name">Pharmacie Charnal</div>
+            <div class="brand-tagline">Quéven</div>
+        </div>
+    </div>
+
+    <h1>Comment bien mesurer sa tension</h1>
+    <p class="subtitle">Quelques règles simples pour un relevé fiable.</p>
+
+    <div class="back-section">
+        <h2>Avant la mesure</h2>
+        <ul>
+            <li>Restez assis et au repos pendant au moins 5 minutes avant de commencer.</li>
+            <li>Évitez de fumer, boire du café ou faire un effort dans les 30 minutes précédentes.</li>
+            <li>Videz votre vessie si besoin, une vessie pleine peut fausser la mesure.</li>
+        </ul>
+    </div>
+
+    <div class="back-section">
+        <h2>Pendant la mesure</h2>
+        <ul>
+            <li>Asseyez-vous, dos calé contre le dossier, pieds à plat au sol, jambes non croisées.</li>
+            <li>Posez le bras nu sur une table, à hauteur du cœur.</li>
+            <li>Positionnez le brassard directement sur la peau, 2 à 3 cm au-dessus du pli du coude.</li>
+            <li>Ne parlez pas et ne bougez pas pendant la prise de mesure.</li>
+        </ul>
+    </div>
+
+    <div class="back-section">
+        <h2>Pour le relevé sur 3 jours</h2>
+        <ul>
+            <li>Faites 3 mesures consécutives le matin et 3 le soir, à 1 à 2 minutes d'intervalle.</li>
+            <li>Notez chaque mesure, même si un chiffre vous semble inhabituel.</li>
+            <li>Rapportez la fiche complète à la pharmacie ou à votre médecin pour interprétation.</li>
+        </ul>
+    </div>
+
+    <div class="footer-note">
+        Un tensiomètre est disponible en vente, prêt ou location à la pharmacie Charnal.
+    </div>
+</div>
+
+</body>
+</html>
