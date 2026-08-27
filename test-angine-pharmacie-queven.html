@@ -484,7 +484,7 @@
         .callout-warning { background: color-mix(in srgb, var(--card-accent, var(--teal-pro)) 8%, var(--white)); border-left: 3px solid var(--card-accent, var(--teal-pro)); border-radius: var(--radius-base); padding: var(--space-12) var(--space-16); margin-top: var(--space-16); font-size: var(--text-sm); color: var(--gray-700); }
     </style>
 
-    <meta name="description" content="Test rapide de l'angine (TROD) à la pharmacie de Quéven: résultat en 5 minutes, sans rendez-vous, 15€. Test de la cystite également disponible.">
+    <meta name="description" content="Test rapide de l'angine (TROD) à la pharmacie de Quéven: résultat en 5 minutes, sans rendez-vous, 15€. Score de Mac Isaac, antibiotique sans ordonnance, test de la cystite.">
     <title>Test angine et cystite en pharmacie | Pharmacie Charnal - Quéven</title>
     <link rel="canonical" href="https://www.pharmaciecharnal.com/test-angine-pharmacie-queven.html">
 
@@ -541,7 +541,7 @@
           "itemOffered": {
             "@type": "Service",
             "name": "Test rapide de la cystite",
-            "description": "Test rapide disponible en pharmacie, sans rendez-vous.",
+            "description": "Test rapide disponible en pharmacie, sans rendez-vous, réservé aux femmes de 16 à 65 ans.",
             "provider": {
               "@id": "https://www.pharmaciecharnal.com/#pharmacy"
             }
@@ -671,13 +671,66 @@
                     </div>
                 </div>
 
+                <div id="score-mac-isaac" class="service-detail-card" style="scroll-margin-top: 120px; --card-accent: var(--bleu-confiance);">
+                    <div>
+                        <h3>Le score de Mac Isaac: comment le pharmacien décide</h3>
+                        <p>Le test n'est pas systématique. Le pharmacien évalue d'abord un score selon les symptômes.</p>
+                        <div class="info-table-wrap">
+                        <table class="info-table">
+                            <thead><tr><th>Critère</th><th>Points</th></tr></thead>
+                            <tbody>
+                                <tr><td>Fièvre supérieure à 38°C</td><td>+1</td></tr>
+                                <tr><td>Absence de toux</td><td>+1</td></tr>
+                                <tr><td>Ganglions au cou sensibles</td><td>+1</td></tr>
+                                <tr><td>Amygdales gonflées ou avec dépôts</td><td>+1</td></tr>
+                                <tr><td>Âge 15 à 44 ans</td><td>0</td></tr>
+                                <tr><td>Âge 45 ans et plus</td><td>−1</td></tr>
+                            </tbody>
+                        </table>
+                        </div>
+                        <p>Un score de 2 points ou plus indique le TROD. En dessous, un antibiotique n'est généralement pas nécessaire.</p>
+                        <div class="service-links-row">
+                            <a href="https://www.has-sante.fr/jcms/p_3529230/fr/choix-et-durees-d-antibiotherapies-angine-aigue-de-l-adulte" class="service-link" target="_blank" rel="noopener">HAS, antibiothérapie de l'angine →</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="antibiotique-sans-ordonnance" class="service-detail-card" style="scroll-margin-top: 120px; --card-accent: var(--bleu-confiance);">
+                    <div>
+                        <h3>Antibiotique sans ordonnance si le test est positif</h3>
+                        <p>Depuis le décret du 17 juin 2024, un résultat positif au TROD angine permet au pharmacien de délivrer directement un antibiotique, sans ordonnance médicale.</p>
+                        <ul>
+                            <li><span class="check">✓</span> Tarif national: 10€ pour le test seul</li>
+                            <li><span class="check">✓</span> 15€ lorsqu'il inclut la délivrance de l'antibiotique</li>
+                        </ul>
+                        <div class="service-links-row">
+                            <a href="https://www.ameli.fr/assure/sante/themes/cystite/cystite-pharmacie-depistage-antibiotique" class="service-link" target="_blank" rel="noopener">Ameli, dépistage et antibiotique en pharmacie →</a>
+                        </div>
+                    </div>
+                </div>
+
                 <div id="test-cystite" class="service-detail-card" style="scroll-margin-top: 120px; --card-accent: var(--bleu-confiance);">
                     <div>
                         <h3>Test de la cystite</h3>
-                        <p>Le même dispositif de test rapide existe pour la cystite, directement à la pharmacie.</p>
+                        <p>Le TROD cystite repose sur une bandelette urinaire qui recherche des nitrites et des leucocytes dans les urines.</p>
                         <ul>
+                            <li><span class="check">✓</span> Réservé aux femmes de 16 à 65 ans</li>
+                            <li><span class="check">✓</span> Non proposé en cas de grossesse</li>
                             <li><span class="check">✓</span> Sans rendez-vous</li>
                             <li><span class="check">✓</span> Prix: 15€</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div id="quand-consulter" class="service-detail-card" style="scroll-margin-top: 120px; --card-accent: var(--bleu-confiance);">
+                    <div>
+                        <h3>Quand consulter malgré le test</h3>
+                        <p>Une consultation médicale reste nécessaire dans certaines situations.</p>
+                        <ul>
+                            <li><span class="check">✓</span> Grossesse, anomalie de l'appareil urinaire, insuffisance rénale sévère ou immunodépression</li>
+                            <li><span class="check">✓</span> Plus de 75 ans, ou plus de 65 ans avec plusieurs facteurs de fragilité</li>
+                            <li><span class="check">✓</span> Symptômes de cystite qui persistent ou s'aggravent après 3 jours</li>
+                            <li><span class="check">✓</span> Récidive dans les 2 semaines suivant le traitement</li>
                         </ul>
                     </div>
                 </div>
@@ -691,11 +744,11 @@
             <div class="faq-list">
                 <details class="faq-item">
                     <summary>Le test de l'angine en pharmacie, c'est gratuit?</summary>
-                    <p>Non, le test est facturé 15€ à la pharmacie Charnal.</p>
+                    <p>Non, le test est facturé à la pharmacie Charnal.</p>
                 </details>
                 <details class="faq-item">
                     <summary>Combien coûte le test de l'angine en pharmacie?</summary>
-                    <p>15€, résultat en 5 minutes, sans rendez-vous.</p>
+                    <p>15€ à la pharmacie Charnal, résultat en 5 minutes, sans rendez-vous.</p>
                 </details>
                 <details class="faq-item">
                     <summary>Le test de l'angine est-il proposé aux enfants?</summary>
@@ -703,7 +756,23 @@
                 </details>
                 <details class="faq-item">
                     <summary>La pharmacie fait-elle aussi le test de la cystite?</summary>
-                    <p>Oui, au même prix de 15€, sans rendez-vous.</p>
+                    <p>Oui, au même prix de 15€, sans rendez-vous, pour les femmes de 16 à 65 ans.</p>
+                </details>
+                <details class="faq-item">
+                    <summary>Comment le pharmacien décide-t-il de faire le TROD angine?</summary>
+                    <p>Il utilise le score de Mac Isaac: fièvre, absence de toux, ganglions sensibles, amygdales gonflées et âge. À partir de 2 points, le test est indiqué.</p>
+                </details>
+                <details class="faq-item">
+                    <summary>Peut-on avoir un antibiotique sans ordonnance après un TROD angine positif?</summary>
+                    <p>Oui, depuis le décret du 17 juin 2024, si le résultat est positif.</p>
+                </details>
+                <details class="faq-item">
+                    <summary>Le TROD cystite est-il possible pendant la grossesse?</summary>
+                    <p>Non, cette prise en charge simplifiée ne concerne pas les femmes enceintes.</p>
+                </details>
+                <details class="faq-item">
+                    <summary>Que faire si les symptômes de cystite persistent après le traitement?</summary>
+                    <p>Consultez un médecin: une réévaluation est nécessaire, en particulier après 3 jours sans amélioration ou en cas de récidive rapprochée.</p>
                 </details>
             </div>
         </div>
