@@ -46,7 +46,7 @@ Les oméga 3, souvent proposés aux jeunes qui décrochent en classe, ne constit
 
 ## Pourquoi est-il épuisé alors qu'il n'a rien fait de l'été?
 
-Parce que son horloge interne s'est décalée. Pendant les vacances, un adolescent se couche volontiers vers minuit ou une heure et se lève vers midi. L'écart avec les horaires scolaires atteint souvent trois à quatre heures, et la puberté décale déjà naturellement le rythme veille-sommeil vers le tard.
+Parce que son horloge interne s'est décalée. Pendant les vacances, un adolescent se couche volontiers vers minuit et se lève entre 9 h et 11 h. L'écart avec les horaires scolaires atteint souvent trois à quatre heures, et la puberté décale déjà naturellement le rythme veille-sommeil vers le tard.
 
 Ce décalage se corrige, mais pas en une nuit. La méthode qui fonctionne tient en trois gestes:
 
@@ -81,44 +81,70 @@ Cette carence ne se traite pas au jugé. Le fer initié en routine expose à des
 
 Le second relève de la prévention, pas du laboratoire. Le consensus français de 2022 recommande 400 à 800 UI de vitamine D par jour de 2 à 18 ans, et 800 à 1 600 UI en présence de facteurs de risque: obésité, peau foncée, absence d'exposition solaire, alimentation végétalienne. Sous le ciel breton, d'octobre à mars, la synthèse cutanée est quasi nulle. Le dosage sanguin de la 25-OH-vitamine D n'a pas à être systématique: il se discute devant des facteurs de risque ou des symptômes. L'ANSM rappelle de passer par un médicament plutôt qu'un complément alimentaire chez l'enfant, pour limiter le risque de surdosage.
 
-            <div class="illus">
-                <div class="illus-title">Fatigue de rentrée: complément, dosage ou médecin?</div>
-                <div class="illus-sub">Votre ado est fatigué: depuis quand, et avec quels signes?</div>
-                <div class="flow-head"><span>Ce que vous observez</span><span>Le réflexe</span><span>Le piège</span></div>
-                <div class="flow">
-                    <div class="flow-row lv-green">
-                        <div class="flow-sit">Coucher tardif, lever difficile, fatigue apparue après les vacances</div>
-                        <div class="flow-do">Recaler le rythme, lumière le matin, petit-déjeuner quotidien</div>
-                        <div class="flow-dont">acheter un complément « concentration » d'emblée</div>
+            <figure class="illus" role="group" aria-label="Recaler l'horloge de sommeil en dix jours">
+                <div class="illus-kicker">En pratique</div>
+                <div class="illus-title">Dix jours pour recaler l'horloge</div>
+                <div class="illus-sub">Le coucher recule peu, le lever beaucoup. C'est ce décalage qui fatigue, avant toute idée de carence.</div>
+
+                <div class="clock">
+                    <div class="clock-axis" aria-hidden="true">
+                        <span style="left:5.6%">21 h</span>
+                        <span style="left:22.2%">minuit</span>
+                        <span style="left:38.9%">3 h</span>
+                        <span style="left:55.6%">6 h</span>
+                        <span style="left:72.2%">9 h</span>
+                        <span style="left:88.9%">12 h</span>
                     </div>
-                    <div class="flow-row lv-red">
-                        <div class="flow-sit">Adolescente réglée, pâleur, essoufflement, règles abondantes, chute de cheveux</div>
-                        <div class="flow-do">Médecin et dosage de ferritine</div>
-                        <div class="flow-dont">prendre du fer sans bilan</div>
+                    <div class="clock-row">
+                        <div class="clock-lab">Vacances<span class="clock-when"> &middot; minuit &rarr; 9 h-11 h</span></div>
+                        <div class="clock-track">
+                            <div class="clock-mid" style="left:22.2%"></div>
+                            <div class="clock-bar is-holiday" style="left:22.2%;width:50%">minuit &rarr; 9 h-11 h</div>
+                            <div class="clock-fuzz" style="left:72.2%;width:11.1%"></div>
+                        </div>
                     </div>
-                    <div class="flow-row lv-orange">
-                        <div class="flow-sit">Peu d'exposition au soleil, peau foncée, alimentation végétalienne, obésité</div>
-                        <div class="flow-do">Demander conseil pour la vitamine D</div>
-                        <div class="flow-dont">multiplier les produits sans vérifier les doses</div>
+                    <div class="clock-row">
+                        <div class="clock-lab">Décalage</div>
+                        <div class="clock-track is-thin">
+                            <div class="clock-delta" style="left:13.9%;width:8.3%">1 h 30</div>
+                            <div class="clock-delta" style="left:61.1%;width:22.2%">2 à 4 h</div>
+                        </div>
                     </div>
-                    <div class="flow-row lv-red">
-                        <div class="flow-sit">Fatigue persistante après trois semaines de rythme régulier</div>
-                        <div class="flow-do">Consultation médicale</div>
-                        <div class="flow-dont">mettre cela uniquement sur le compte de la rentrée</div>
+                    <div class="clock-row">
+                        <div class="clock-lab">École<span class="clock-when"> &middot; 22 h 30 &rarr; 7 h &middot; 8 h 30 de sommeil</span></div>
+                        <div class="clock-track">
+                            <div class="clock-mid" style="left:22.2%"></div>
+                            <div class="clock-bar is-school" style="left:13.9%;width:47.2%">22 h 30 &rarr; 7 h &middot; 8 h 30 de sommeil</div>
+                        </div>
                     </div>
-                    <div class="flow-row lv-red">
-                        <div class="flow-sit">Tristesse durable, repli, perte d'intérêt, difficultés d'attention anciennes</div>
-                        <div class="flow-do">En parler rapidement à un professionnel</div>
-                        <div class="flow-dont">répondre uniquement par des vitamines</div>
+                    <div class="clock-cap">Le coucher ne recule que de <strong>1 h 30</strong>. C'est le lever qui bouge, de <strong>2 à 4 h</strong> selon les jours. Ce n'est pas une nuit de retard à rattraper, c'est une horloge à déplacer.</div>
+                </div>
+
+                <div class="steps">
+                    <div class="step">
+                        <div class="step-num">Jours 1 à 3</div>
+                        <div class="step-do">Coucher et réveil avancés de 15 minutes.</div>
+                        <div class="step-txt"><svg class="step-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#A9631A" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg><span>Lumière du jour dans l'heure qui suit le lever, volets ouverts en grand.</span></div>
+                    </div>
+                    <div class="step">
+                        <div class="step-num">Jours 4 à 6</div>
+                        <div class="step-do">Encore 15 à 20 minutes gagnées le soir.</div>
+                        <div class="step-txt"><svg class="step-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#5A7563" stroke-width="2" stroke-linecap="round" aria-hidden="true"><rect x="7" y="2" width="10" height="20" rx="2"/><path d="M11 18h2"/><path d="M3 3l18 18"/></svg><span>Écrans coupés une heure avant le coucher, téléphone hors de la chambre.</span></div>
+                    </div>
+                    <div class="step">
+                        <div class="step-num">Jours 7 à 9</div>
+                        <div class="step-do">Petit-déjeuner à heure fixe, week-end compris.</div>
+                        <div class="step-txt"><svg class="step-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#2D5F5D" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><span>Pas de grasse matinée au-delà d'une heure de décalage.</span></div>
+                    </div>
+                    <div class="step is-last">
+                        <div class="step-num">Jour 10</div>
+                        <div class="step-do">L'heure cible est atteinte.</div>
+                        <div class="step-txt"><svg class="step-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#5A7563" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1111.2 3a7 7 0 009.8 9.8z"/></svg><span>Le sommeil profond, lui, met encore quelques jours à se réorganiser.</span></div>
                     </div>
                 </div>
-                <div class="flow-legend">
-                    <span><i style="background:#50A686"></i>Ajuster les habitudes</span>
-                    <span><i style="background:#D4882A"></i>Demander conseil en pharmacie</span>
-                    <span><i style="background:#B3261E"></i>Consulter ou faire un bilan</span>
-                </div>
-                <div class="illus-foot">Une carence se mesure. Une fatigue se comprend avant de se compléter</div>
-            </div>
+
+                <figcaption class="illus-foot">Repère: <strong>8 à 10 heures</strong> de sommeil par nuit sont recommandées entre 13 et 18 ans. Une nuit d'école de 22 h 30 à 7 h en fait 8 h 30, dans cette fourchette.</figcaption>
+            </figure>
 
 ---
 
@@ -128,15 +154,54 @@ Passez nous voir. On regarde ensemble ce qui relève du rythme, et ce qui mérit
 
 ---
 
-            <div class="illus">
-                <div class="illus-title">Concentration: les 4 leviers qui comptent plus qu'une gélule</div>
-                <div class="illus-sub">Classés par effet documenté, du plus au moins déterminant</div>
+            <figure class="illus" role="group" aria-label="Trier une fatigue de rentrée: ajuster, demander conseil ou consulter">
+                <div class="illus-kicker">Comment trier</div>
+                <div class="illus-title">Complément, dosage ou médecin?</div>
+                <div class="illus-sub">Votre ado est fatigué: depuis quand, et avec quels signes? Les cinq situations sont classées du plus simple au plus urgent.</div>
+                <div class="flow-head" aria-hidden="true"><span>Ce que vous observez</span><span>Le réflexe</span><span>Le piège</span></div>
+                <div class="flow">
+                    <div class="flow-row lv-green">
+                        <div><span class="flow-chip">Ajuster</span><div class="flow-sit">Coucher tardif, lever difficile, fatigue apparue après les vacances</div></div>
+                        <div class="flow-do">Recaler le rythme, lumière le matin, petit-déjeuner quotidien</div>
+                        <div class="flow-dont">Acheter un complément « concentration » d'emblée</div>
+                    </div>
+                    <div class="flow-row lv-orange">
+                        <div><span class="flow-chip">Conseil</span><div class="flow-sit">Peu d'exposition au soleil, peau foncée, alimentation végétalienne, obésité</div></div>
+                        <div class="flow-do">Demander conseil pour la vitamine D</div>
+                        <div class="flow-dont">Multiplier les produits sans vérifier les doses</div>
+                    </div>
+                    <div class="flow-row lv-red">
+                        <div><span class="flow-chip">Consulter</span><div class="flow-sit">Adolescente réglée, pâleur, essoufflement, règles abondantes, chute de cheveux</div></div>
+                        <div class="flow-do">Médecin et dosage de ferritine</div>
+                        <div class="flow-dont">Prendre du fer sans bilan</div>
+                    </div>
+                    <div class="flow-row lv-red">
+                        <div><span class="flow-chip">Consulter</span><div class="flow-sit">Fatigue persistante après trois semaines de rythme régulier</div></div>
+                        <div class="flow-do">Consultation médicale</div>
+                        <div class="flow-dont">Mettre cela uniquement sur le compte de la rentrée</div>
+                    </div>
+                    <div class="flow-row lv-red">
+                        <div><span class="flow-chip">Consulter</span><div class="flow-sit">Tristesse durable, repli, perte d'intérêt, difficultés d'attention anciennes</div></div>
+                        <div class="flow-do">En parler rapidement à un professionnel</div>
+                        <div class="flow-dont">Répondre uniquement par des vitamines</div>
+                    </div>
+                </div>
+                <figcaption class="illus-foot">Une carence <strong>se mesure</strong>. Une fatigue <strong>se comprend</strong> avant de se compléter.</figcaption>
+            </figure>
+
+            <figure class="illus" role="group" aria-label="Les quatre leviers de la concentration, classés par effet documenté">
+                <div class="illus-kicker">Ce qui compte</div>
+                <div class="illus-title">Les 4 leviers qui comptent plus qu'une gélule</div>
+                <div class="illus-sub">Classés par effet documenté, du plus au moins déterminant. Le premier pèse plus que les trois autres réunis.</div>
                 <div class="pillars">
-                    <div class="pillar">
-                        <div class="pillar-rank">Levier 1</div>
-                        <div class="pillar-name">Sommeil régulier</div>
-                        <div class="pillar-dose">8 à 10 h par nuit, 13-18 ans</div>
-                        <div class="pillar-why">Sans sommeil suffisant, la mémoire et l'attention chutent.</div>
+                    <div class="pillar is-lead">
+                        <div class="pillar-big" aria-hidden="true">1</div>
+                        <div>
+                            <div class="pillar-rank">Levier 1</div>
+                            <div class="pillar-name">Sommeil régulier</div>
+                            <div class="pillar-dose">8 à 10 h par nuit, 13-18 ans</div>
+                            <div class="pillar-why">Sans sommeil suffisant, la mémoire et l'attention chutent. Aucun complément ne compense une dette de sommeil.</div>
+                        </div>
                     </div>
                     <div class="pillar">
                         <div class="pillar-rank">Levier 2</div>
@@ -149,6 +214,10 @@ Passez nous voir. On regarde ensemble ce qui relève du rythme, et ce qui mérit
                         <div class="pillar-name">Petit-déjeuner</div>
                         <div class="pillar-dose">Tous les jours, heure stable</div>
                         <div class="pillar-why">Lait et tartines, yaourt et fruit, ou un reste salé. Manger un peu vaut mieux qu'un repas parfait un jour sur trois.</div>
+                        <div class="picto" aria-hidden="true">
+                            <svg width="21" height="27" viewBox="0 0 24 32" fill="#C2C8C5"><circle cx="12" cy="7" r="5"/><path d="M2 32c0-6.1 4.5-11 10-11s10 4.9 10 11z"/></svg><svg width="21" height="27" viewBox="0 0 24 32" fill="#2D5F5D"><circle cx="12" cy="7" r="5"/><path d="M2 32c0-6.1 4.5-11 10-11s10 4.9 10 11z"/></svg><svg width="21" height="27" viewBox="0 0 24 32" fill="#2D5F5D"><circle cx="12" cy="7" r="5"/><path d="M2 32c0-6.1 4.5-11 10-11s10 4.9 10 11z"/></svg><svg width="21" height="27" viewBox="0 0 24 32" fill="#2D5F5D"><circle cx="12" cy="7" r="5"/><path d="M2 32c0-6.1 4.5-11 10-11s10 4.9 10 11z"/></svg><svg width="21" height="27" viewBox="0 0 24 32" fill="#2D5F5D"><circle cx="12" cy="7" r="5"/><path d="M2 32c0-6.1 4.5-11 10-11s10 4.9 10 11z"/></svg>
+                        </div>
+                        <div class="picto-cap"><strong>1 collégien sur 5</strong> ne prend jamais de petit-déjeuner en semaine (EnCLASS 2022).</div>
                     </div>
                     <div class="pillar">
                         <div class="pillar-rank">Levier 4</div>
@@ -157,17 +226,13 @@ Passez nous voir. On regarde ensemble ce qui relève du rythme, et ce qui mérit
                         <div class="pillar-why">Fer chez l'adolescente réglée symptomatique, vitamine D en cas de risque. Le bon complément dépend d'un dosage.</div>
                     </div>
                 </div>
-                <div class="silh">
-                    <svg width="26" height="34" viewBox="0 0 24 32" fill="#B0B7B4" aria-hidden="true"><circle cx="12" cy="7" r="5"/><path d="M2 32c0-6.1 4.5-11 10-11s10 4.9 10 11z"/></svg><svg width="26" height="34" viewBox="0 0 24 32" fill="#2D5F5D" aria-hidden="true"><circle cx="12" cy="7" r="5"/><path d="M2 32c0-6.1 4.5-11 10-11s10 4.9 10 11z"/></svg><svg width="26" height="34" viewBox="0 0 24 32" fill="#2D5F5D" aria-hidden="true"><circle cx="12" cy="7" r="5"/><path d="M2 32c0-6.1 4.5-11 10-11s10 4.9 10 11z"/></svg><svg width="26" height="34" viewBox="0 0 24 32" fill="#2D5F5D" aria-hidden="true"><circle cx="12" cy="7" r="5"/><path d="M2 32c0-6.1 4.5-11 10-11s10 4.9 10 11z"/></svg><svg width="26" height="34" viewBox="0 0 24 32" fill="#2D5F5D" aria-hidden="true"><circle cx="12" cy="7" r="5"/><path d="M2 32c0-6.1 4.5-11 10-11s10 4.9 10 11z"/></svg>
-                </div>
-                <div class="silh-num"><strong>1 collégien sur 5</strong> ne prend jamais de petit-déjeuner en semaine (EnCLASS 2022)</div>
                 <div class="confuse">
                     <div class="confuse-title">À ne pas confondre</div>
                     <p><strong>Magnésium:</strong> se discute au cas par cas en période d'examens, à la dose la plus basse, ne remplace pas le sommeil.</p>
                     <p><strong>Oméga 3 et gommes « mémoire »:</strong> effet au mieux modeste et incertain, jamais un traitement du trouble de l'attention.</p>
                     <p><strong>Boissons énergisantes:</strong> elles perturbent le sommeil et aggravent le problème.</p>
                 </div>
-            </div>
+            </figure>
 
 ## Avant d'acheter: ce que nous vérifions
 
