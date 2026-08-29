@@ -79,6 +79,22 @@ s'ouvrait plus, et « Quiz santé » était devenu inatteignable.
 `data-nav="clé"` reçoit la classe `active` sur la page correspondante. build.js ne touche à
 rien d'autre : `<head>`, CSS inline, JSON-LD et contenu restent la propriété de chaque page.
 
+## Sitemap — les `<lastmod>` se recalent tout seuls
+
+`sitemap.xml` ne s'édite plus à la main pour les dates. [`sync-sitemap.js`](sync-sitemap.js)
+lit la vraie date de chaque page (dernier commit qui l'a touchée, ou aujourd'hui si le
+fichier est modifié / non suivi) et réécrit les `<lastmod>`. Il tourne automatiquement au
+`git commit` via [`hooks/pre-commit`](hooks/pre-commit), qui rajoute le sitemap au commit.
+
+Un `<lastmod>` périmé fait dépriorer le recrawl : le 29 août 2026, services.html annonçait
+encore 2026-03-30 pour une page refaite le 27/08, et GSC ne rattachait plus l'URL au
+sitemap (« No referring sitemaps detected »). 60 des 66 URL étaient dans le même état,
+une annonçait même une date future (2026-08-31).
+
+Les mtimes du disque ne sont jamais lues : une resync iCloud les réécrit toutes en bloc.
+
+Sur un poste neuf, activer le hook une fois : `git config core.hooksPath hooks`
+
 ## Commandes rapides
 
 ```bash
@@ -90,6 +106,12 @@ node build.js
 
 # Vérifier qu'aucune page n'a dérivé (sort en 1 si oui)
 node build.js --check
+
+# Recaler les lastmod du sitemap (automatique au commit)
+node sync-sitemap.js
+
+# Vérifier le sitemap sans rien écrire (sort en 1 si une date dérive ou une URL est morte)
+node sync-sitemap.js --check
 
 # Déployer
 git add [fichiers] && git commit -m "Message" && git push origin main
