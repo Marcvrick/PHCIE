@@ -11,6 +11,7 @@
  *   1. <nav class="navbar"> … </nav>        <- _partials/navbar.html
  *   2. le <ul> sous <h4>Navigation</h4>     <- _partials/footer-nav.html
  *   3. <script src="nav.js" defer>          <- injecté avant </body>
+ *   4. la bande teal juste avant <footer>   <- injectée (voir TEAL_BAND)
  *
  * Le reste de la page n'est jamais lu ni réécrit. Idempotent : deux passes
  * consécutives ne produisent aucun diff.
@@ -109,6 +110,26 @@ function replaceFooterNav(html, rel) {
         + '\n' + (indent ? indent[1] : ' '.repeat(20)) + html.slice(close);
 }
 
+/* La bande teal qui sépare le contenu du footer, présente sur l'accueil.
+   `--teal-pro` n'est pas défini dans style.css (seulement style-v2.css et les
+   <style> inline), d'où la valeur de repli. */
+const TEAL_BAND = '<div style="background: var(--teal-pro, #2D5F5D); height: 80px;"></div>';
+const TEAL_BAND_RE =
+    /[ \t]*<!-- Teal band above footer -->\n[ \t]*<div style="[^"]*"><\/div>\n+[ \t]*/;
+
+function insertTealBand(html, rel) {
+    // On retire la bande existante avant de la réécrire : idempotent, et une
+    // bande qui aurait dérivé (autre hauteur, autre couleur) est remise d'aplomb.
+    const out = html.replace(TEAL_BAND_RE, (m) => /\n([ \t]*)$/.exec(m)?.[1] ?? '');
+    const m = /<footer\b[^>]*>/.exec(out);
+    if (!m) return out;
+    const indent = /\n([ \t]*)$/.exec(out.slice(0, m.index));
+    const ind = indent ? indent[1] : '    ';
+    return out.slice(0, m.index)
+        + `<!-- Teal band above footer -->\n${ind}${TEAL_BAND}\n\n${ind}`
+        + out.slice(m.index);
+}
+
 function injectNavScript(html, rel) {
     if (/<script[^>]+src="[^"]*nav\.js"/.test(html)) return html;
     const depth = rel.split('/').length - 1;
@@ -139,7 +160,7 @@ for (const rel of walk(ROOT).sort()) {
     const before = read(rel);
     const withNav = replaceNavbar(before, rel);
     if (withNav === null) { skipped++; continue; }
-    const after = injectNavScript(replaceFooterNav(withNav, rel), rel);
+    const after = injectNavScript(insertTealBand(replaceFooterNav(withNav, rel), rel), rel);
     stamped++;
     if (after === before) continue;
     drifted.push(rel);
