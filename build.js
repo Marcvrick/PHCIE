@@ -12,6 +12,8 @@
  *   2. le <ul> sous <h4>Navigation</h4>     <- _partials/footer-nav.html
  *   3. <script src="nav.js" defer>          <- injecté avant </body>
  *   4. la bande teal juste avant <footer>   <- injectée (voir TEAL_BAND)
+ *   5. la section « Au comptoir » d'index   <- les 5 premières .blog-card
+ *      (1 article vedette + 4 secondaires)      de blog.html
  *
  * Le reste de la page n'est jamais lu ni réécrit. Idempotent : deux passes
  * consécutives ne produisent aucun diff.
@@ -150,6 +152,90 @@ function read(rel) {
     return fs.readFileSync(path.join(ROOT, rel), 'utf8');
 }
 
+/* ------------------------------------------------------------------ *
+ * Section « Au comptoir » de l'accueil, alignée sur blog.html.
+ *
+ * index.html embarquait les 5 articles en dur et un fetch('blog.html') les
+ * réécrivait au chargement : le visiteur voyait d'abord l'ancien article, image
+ * comprise, puis la substitution. On les écrit ici, au build. Le fetch reste en
+ * place comme filet (il ne réécrit plus que des valeurs identiques).
+ * ------------------------------------------------------------------ */
+
+/* Les 5 premières cartes de blog.html, dans l'ordre de publication. */
+function readBlogCards(n) {
+    const html = read('blog.html');
+    const cards = [];
+    const re = /<article class="blog-card\b/g;
+    let m;
+    while ((m = re.exec(html)) && cards.length < n) {
+        const end = closeAt(html, m.index, 'article');
+        if (end < 0) throw new Error('blog.html : <article class="blog-card"> non refermée');
+        const card = html.slice(m.index, end);
+        const pick = (r) => (r.exec(card) || [, null])[1];
+        cards.push({
+            url: pick(/<a href="([^"]*)"/),
+            img: pick(/<div class="blog-image-placeholder"[^>]*>\s*<img src="([^"]*)"/),
+            alt: pick(/<div class="blog-image-placeholder"[^>]*>\s*<img [^>]*\balt="([^"]*)"/),
+            date: pick(/<span class="blog-date">([\s\S]*?)<\/span>/),
+            title: pick(/<h2 class="blog-title">([\s\S]*?)<\/h2>/),
+            excerpt: pick(/<p class="blog-excerpt">([\s\S]*?)<\/p>/),
+        });
+    }
+    return cards;
+}
+
+/* La balise ouvrante qui porte id="…", sous forme [début, fin[. */
+function tagRangeById(html, id, rel) {
+    const at = html.indexOf(`id="${id}"`);
+    if (at < 0) throw new Error(`${rel} : id="${id}" introuvable`);
+    return [html.lastIndexOf('<', at), html.indexOf('>', at) + 1];
+}
+
+function setAttr(html, id, attr, value, rel) {
+    if (value == null) return html;
+    const [start, end] = tagRangeById(html, id, rel);
+    const tag = html.slice(start, end);
+    const re = new RegExp(`(\\s${attr}=")[^"]*(")`);
+    if (!re.test(tag)) throw new Error(`${rel} : ${id} n'a pas d'attribut ${attr}`);
+    return html.slice(0, start) + tag.replace(re, `$1${value}$2`) + html.slice(end);
+}
+
+/* Le contenu de l'élément porteur de id="…". Ces éléments (span, h2, h3, p)
+   n'ont pas d'enfants : le premier `</` rencontré est bien leur fermeture. */
+function setInner(html, id, value, rel) {
+    if (value == null) return html;
+    const [, open] = tagRangeById(html, id, rel);
+    const close = html.indexOf('</', open);
+    if (close < 0) throw new Error(`${rel} : ${id} non refermé`);
+    return html.slice(0, open) + value.trim() + html.slice(close);
+}
+
+function syncHomeBlog(html, rel) {
+    if (rel !== 'index.html') return html;
+    const cards = readBlogCards(5);
+    if (!cards.length) return html;
+
+    const [f, ...minis] = cards;
+    let out = html;
+    out = setAttr(out, 'latest-article-image-link', 'href', f.url, rel);
+    out = setAttr(out, 'latest-article-link', 'href', f.url, rel);
+    out = setAttr(out, 'latest-article-img', 'src', f.img, rel);
+    out = setAttr(out, 'latest-article-img', 'alt', f.alt, rel);
+    out = setInner(out, 'latest-article-date', f.date, rel);
+    out = setInner(out, 'latest-article-title', f.title, rel);
+    out = setInner(out, 'latest-article-excerpt', f.excerpt, rel);
+
+    minis.forEach((c, i) => {
+        const n = i + 1;
+        out = setAttr(out, `mini-card-${n}`, 'href', c.url, rel);
+        out = setAttr(out, `mini-img-${n}`, 'src', c.img, rel);
+        out = setAttr(out, `mini-img-${n}`, 'alt', c.alt || '', rel);
+        out = setInner(out, `mini-date-${n}`, c.date, rel);
+        out = setInner(out, `mini-title-${n}`, c.title, rel);
+    });
+    return out;
+}
+
 function walk(dir, out = []) {
     for (const e of fs.readdirSync(dir, { withFileTypes: true })) {
         if (e.isDirectory()) {
@@ -167,7 +253,8 @@ for (const rel of walk(ROOT).sort()) {
     const before = read(rel);
     const withNav = replaceNavbar(before, rel);
     if (withNav === null) { skipped++; continue; }
-    const after = injectNavScript(insertTealBand(replaceFooterNav(withNav, rel), rel), rel);
+    const after = syncHomeBlog(
+        injectNavScript(insertTealBand(replaceFooterNav(withNav, rel), rel), rel), rel);
     stamped++;
     if (after === before) continue;
     drifted.push(rel);
