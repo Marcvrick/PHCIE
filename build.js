@@ -111,9 +111,16 @@ function replaceFooterNav(html, rel) {
 }
 
 /* La bande teal qui sépare le contenu du footer, présente sur l'accueil.
-   `--teal-pro` n'est pas défini dans style.css (seulement style-v2.css et les
-   <style> inline), d'où la valeur de repli. */
-const TEAL_BAND = '<div style="background: var(--teal-pro, #2D5F5D); height: 80px;"></div>';
+   Couleur en dur plutôt que var(--teal-pro) : les 8 pages Nos-marques
+   redéfinissent --teal-pro sur la couleur de la marque (Aragan cyan, Pileje
+   navy…), la bande y virait donc au bleu ou au vert. Le footer, lui, est
+   charcoal partout.
+   Les pages Quizzes ont un <body> en flex column + align-items:center : sans
+   `width:100%` la bande se réduit à sa largeur de contenu (zéro), et sans
+   `flex-shrink:0` ses 80px se font écraser. Le footer de ces pages porte déjà
+   `width:100%` pour la même raison. */
+const TEAL_BAND = '<div style="background: #2D5F5D; height: 80px;'
+    + ' width: 100%; flex-shrink: 0;"></div>';
 const TEAL_BAND_RE =
     /[ \t]*<!-- Teal band above footer -->\n[ \t]*<div style="[^"]*"><\/div>\n+[ \t]*/;
 
