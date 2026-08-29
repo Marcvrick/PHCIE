@@ -446,9 +446,50 @@
         }
         .summary-box strong { color: var(--hp-teal); }
 
+        /* CTA blog - fond gradient (images/cta-gradient.jpg), voile teal, texte blanc */
         .cta-box {
-            background: var(--hp-pastel-sage);
-            border: 1px solid color-mix(in srgb, var(--hp-sage-dark) 25%, transparent);
+            position: relative;
+            overflow: hidden;
+            border: 0;
+            border-radius: 18px;
+            text-align: center;
+            padding: 52px 44px;
+            background: url(../../images/cta-gradient-aurora.jpg) center 55% / cover no-repeat #2D5F5D;
+        }
+        .cta-box::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(105deg, rgba(13,48,49,.62), rgba(18,66,64,.46));
+        }
+        .cta-box > * { position: relative; }
+        .cta-box p {
+            margin: 0 0 12px;
+            font-size: 1.22rem;
+            line-height: 1.5;
+            color: #F3FAF4;
+        }
+        .cta-box p strong,
+        .cta-box h3 {
+            display: block;
+            font-family: var(--font-display);
+            font-weight: 500;
+            font-size: 1.78rem;
+            line-height: 1.2;
+            letter-spacing: -.015em;
+            color: #FFFFFF;
+            margin: 0 0 16px;
+        }
+        .cta-box .cta-address {
+            margin: 20px 0 0;
+            font-size: .94rem;
+            color: #C6E1CD;
+        }
+        @media (max-width: 767px) {
+            .cta-box { padding: 38px 26px !important; }
+            .cta-box p { font-size: 1.08rem; }
+            .cta-box p strong,
+            .cta-box h3 { font-size: 1.45rem; }
         }
 
         .illus, .faq-item {
@@ -881,6 +922,9 @@
     </article>
 
     <!-- Footer -->
+    <!-- Teal band above footer -->
+    <div style="background: var(--teal-pro, #2D5F5D); height: 80px;"></div>
+
     <footer class="footer">
         <div class="container">
             <div class="footer-content">
