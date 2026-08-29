@@ -1,9 +1,14 @@
 #!/bin/sh
-# Recale les <lastmod> du sitemap sur les pages du commit, puis les embarque.
+# 1. Refuse le commit si une page a dérivé des partials ou si la section
+#    « Au comptoir » de l'accueil n'est plus alignée sur blog.html.
+# 2. Recale les <lastmod> du sitemap sur les pages du commit, puis les embarque.
 # Installation : git config core.hooksPath hooks   (déjà fait sur ce poste)
 set -e
 
 command -v node >/dev/null 2>&1 || { echo "pre-commit: node absent, sitemap non recalé" >&2; exit 0; }
 
-node "$(git rev-parse --show-toplevel)/sync-sitemap.js"
-git add "$(git rev-parse --show-toplevel)/sitemap.xml"
+ROOT="$(git rev-parse --show-toplevel)"
+
+node "$ROOT/build.js" --check
+node "$ROOT/sync-sitemap.js"
+git add "$ROOT/sitemap.xml"

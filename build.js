@@ -267,6 +267,6 @@ console.log(`${drifted.length} ${verb}`);
 for (const d of drifted) console.log(`   ${d}`);
 
 if (CHECK && drifted.length) {
-    console.error('\n--check : des pages ont dérivé des partials. Lancer `node build.js`.');
+    console.error('\n--check : ces pages ne sont plus à jour. Lancer `node build.js`.');
     process.exit(1);
 }
