@@ -26,7 +26,7 @@
 git add [fichiers] && git commit -m "Message" && git push origin main
 ```
 
-## App Planning RH — Repo SÉPARÉ
+## App Planning RH: Repo SÉPARÉ
 
 L'app de planning RH n'est PLUS dans ce repo depuis le 19 avril 2026.
 
@@ -45,7 +45,7 @@ Pour préserver l'ancienne URL publique `https://www.pharmaciecharnal.com/planni
 
 - **Fichier:** `planning/index.html` (ne PAS supprimer)
 - **Comportement:** GitHub Pages sert le dossier sur `/planning` → meta refresh `0s` → `window.location.replace` vers PLPH
-- **Note:** `vercel.json` contient aussi une règle `/planning`, mais GitHub Pages l'ignore — elle est conservée au cas où le site migrerait un jour vers Vercel
+- **Note:** `vercel.json` contient aussi une règle `/planning`, mais GitHub Pages l'ignore, elle est conservée au cas où le site migrerait un jour vers Vercel
 
 ---
 
@@ -92,23 +92,34 @@ recrutement-preparatrice-pharmacie-queven.html
 annuaire-sante.html
 ```
 
-**Blog:** `blog/*.html` (13 articles). Sources .md organisees dans des dossiers numerotes (`01-prevenir-maux-hiver/`, `04-detox-apres-fetes/`, ..., `12-troubles-sommeil/`) — numerotation alignee sur les posts GMB. Les .html restent a la racine de `blog/` (URLs live du site).
+**Blog:** `blog/*.html` (13 articles). Sources .md organisees dans des dossiers numerotes (`01-prevenir-maux-hiver/`, `04-detox-apres-fetes/`, ..., `12-troubles-sommeil/`), numerotation alignee sur les posts GMB. Les .html restent a la racine de `blog/` (URLs live du site).
 **Marques:** `Nos-marques/*.html` (16 pages + nosmarques.html index + TEMPLATE-marque.html)
 **Quiz:** `Quizzes/*.html` (quiz-automedication, quiz-soin-peau, quiz-produits-naturels, quiz-coming-soon, guide-quizzes-sante)
 **Assets:** `images/`, `style.css`, `style-v2.css`, `animations.js`, `nav.js`
 **Partials:** `_partials/navbar.html`, `_partials/footer-nav.html` + `build.js`
 **Guides:** `Guide Badge produit style HIMS.md`
 
-### Navbar et footer — INTERDIT de les éditer dans une page
+### Régions générées par build.js: INTERDIT de les éditer dans une page
 
-Le menu principal et la liste Navigation du footer sont générés. Les modifier passe **toujours**
-par `_partials/`, puis `node build.js` (qui les retamponne dans les 69 pages). Éditer la navbar
-d'une page directement, ou copier-coller l'en-tête d'une page existante pour en créer une
-nouvelle, recrée le bug du 12 août 2026 : 13 articles avaient dérivé, leur menu mobile ne
-s'ouvrait plus, et « Quiz santé » était inatteignable depuis ces pages.
+`build.js` réécrit cinq régions dans les 74 pages, et rien d'autre:
 
-`node build.js --check` sort en 1 si une page a dérivé — à lancer avant tout commit qui touche
-à un en-tête. Le comportement du hamburger vit dans `nav.js` seul, jamais dans un script de page.
+1. `<nav class="navbar">` depuis `_partials/navbar.html`
+2. le `<ul>` sous `<h4>Navigation</h4>` du footer depuis `_partials/footer-nav.html`
+3. `<script src="nav.js" defer>` avant `</body>`
+4. la bande teal de 80px juste avant `<footer>` (couleur en dur `#2D5F5D`, plus
+   `width: 100%; flex-shrink: 0` sans quoi elle disparaît sur les pages `Quizzes/`)
+5. la section « Au comptoir » d'`index.html`, depuis les 5 premières `.blog-card` de `blog.html`
+
+Les modifier passe **toujours** par la source, puis `node build.js`. Éditer la navbar d'une page
+directement, ou copier-coller l'en-tête d'une page existante pour en créer une nouvelle, recrée
+le bug du 12 août 2026 : 13 articles avaient dérivé, leur menu mobile ne s'ouvrait plus, et
+« Quiz santé » était inatteignable depuis ces pages.
+
+Publier un article demande de l'ajouter à `blog.html` **puis** de lancer `node build.js`, sinon
+l'accueil reste sur l'article précédent et son image clignote au chargement.
+
+`node build.js --check` sort en 1 si une page a dérivé. Le hook `pre-commit` le lance et refuse
+le commit. Le comportement du hamburger vit dans `nav.js` seul, jamais dans un script de page.
 
 ---
 
@@ -486,7 +497,7 @@ Quand Claude cree une nouvelle page HTML :
 
 ## Architecture Schema (IMPORTANT)
 
-**Principe : schema Pharmacy unique sur la homepage, references @id partout ailleurs.**
+**Principe: schema Pharmacy unique sur la homepage, references @id partout ailleurs.**
 
 ```
 index.html (homepage)
@@ -503,7 +514,7 @@ Autres pages
 ```
 
 **Interdit :** Copier-coller le schema Pharmacy (address, openingHours, reviews) sur d'autres pages.
-**aggregateRating :** Toujours `"4.9"` — valeur unique, definie uniquement sur la homepage.
+**aggregateRating :** Toujours `"4.9"`, valeur unique, definie uniquement sur la homepage.
 
 ---
 
@@ -511,15 +522,15 @@ Autres pages
 
 ### Structure `<head>` obligatoire
 
-Chaque page marque doit contenir dans cet ordre :
+Chaque page marque doit contenir dans cet ordre:
 1. Google Analytics (`G-2Q64V6B0QE`)
 2. `<meta charset>` + `<meta viewport>`
-3. Favicons (5 liens : ico, png 32, png 16, png 192, apple-touch-icon) avec `../favicon/`
-4. `<title>` : `NomMarque : Slogan | Pharmacie Charnal`
-5. `<meta name="description">` : unique par marque, mentionner Queven
-6. `<link rel="canonical">` : `https://www.pharmaciecharnal.com/Nos-marques/nom-page.html`
+3. Favicons (5 liens: ico, png 32, png 16, png 192, apple-touch-icon) avec `../favicon/`
+4. `<title>`: `NomMarque : Slogan | Pharmacie Charnal`
+5. `<meta name="description">`: unique par marque, mentionner Queven
+6. `<link rel="canonical">`: `https://www.pharmaciecharnal.com/Nos-marques/nom-page.html`
 7. OG tags (type, url, title, description, image, locale)
-8. Google Fonts — **pattern async obligatoire** (voir section Performance Mobile) — JAMAIS `rel="stylesheet"` synchrone
+8. Google Fonts, **pattern async obligatoire** (voir section Performance Mobile), JAMAIS `rel="stylesheet"` synchrone
 10. `<style>` inline avec variables CSS de la marque
 
 ### Hero Photo — Workflow d'intégration (standard 2026-05-12)
