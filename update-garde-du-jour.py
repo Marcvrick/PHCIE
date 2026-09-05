@@ -83,7 +83,10 @@ for code, communes in SECTEURS:
 if cartes:
     corps = "\n\n".join(cartes)
 else:
-    corps = (f'                    <!-- {libelle} : aucune garde de journée désignée, '
+    # Pas d'espace avant les deux-points: la regle typographique du projet
+    # (voir CLAUDE.md) et un hook la reapplique. Ecrire ' :' ferait diverger
+    # le script et le hook a chaque passage, et `--check` crierait au loup.
+    corps = (f'                    <!-- {libelle}: aucune garde de journée désignée, '
              f'les pharmacies du secteur sont ouvertes normalement -->')
 
 bloc = f"                    {DEBUT}\n{corps}\n                    {FIN}"
