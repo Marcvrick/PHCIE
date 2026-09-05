@@ -1,8 +1,8 @@
 ---
-title: "Tiques en Bretagne: piqûre, prévention et réaction — ce qu'il faut vraiment faire"
+title: "Tiques en Bretagne: piqûre, prévention et maladie de Lyme"
 description: "Tique fixée? Érythème migrant? Guide pratique pour retirer une tique, reconnaître la maladie de Lyme et se protéger en Bretagne. Conseils de votre pharmacie à Quéven."
 date: 2026-07-06
-dateModified: 2026-07-06
+dateModified: 2026-09-05
 author: Équipe Pharmacie Charnal
 categories:
   - Conseils santé
@@ -30,7 +30,7 @@ og_image: "og-25-tiques-bretagne-prevention.jpg"
 
 ---
 
-# Tiques en Bretagne: piqûre, prévention et réaction — ce qu'il faut vraiment faire
+# Tiques en Bretagne: piqûre, prévention et maladie de Lyme
 
 La semaine dernière, une maman est passée chez nous avec son fils de 8 ans. Elle avait trouvé une tique bien accrochée derrière le genou — il était allé ramasser des pommes de pin en lisière de forêt le week-end d'avant. « J'ai mis de l'alcool dessus pour l'endormir avant de la retirer, c'est bien ça?» Non. C'est exactement ce qu'il ne faut pas faire.
 
@@ -162,6 +162,12 @@ Le retrait rapide est votre meilleure protection. Une tique retirée en moins de
 ---
 
 ## Questions fréquentes
+
+**Y a-t-il vraiment des tiques en Bretagne?**
+Oui, et parmi les plus précoces de France. Le climat océanique doux du Morbihan réveille les tiques dès que les températures dépassent régulièrement 7 à 8°C: leur saison s'étend d'avril à octobre, avec un pic en juin-septembre (Santé Publique France, 2024). L'espèce présente ici est Ixodes ricinus, dont 5 à 30% des individus portent la bactérie de la maladie de Lyme selon les milieux. Les forêts humides, le bocage et les landes du Morbihan comptent parmi les zones de densité élevée.
+
+**Combien de temps une tique reste-t-elle accrochée?**
+Bien plus longtemps qu'on ne l'imagine: une tique non repérée reste fixée plusieurs jours, le temps de se gorger, avant de se détacher seule. C'est précisément le problème, puisque la transmission de Borrelia demande en général au moins 24 heures de fixation (Institut Pasteur). Le bon réflexe n'est jamais d'attendre qu'elle tombe: retirez-la au tire-tique dès que vous la voyez, puis surveillez la zone pendant 30 jours.
 
 **Peut-on attraper la maladie de Lyme dès les premières minutes d'une piqûre?**
 Non. La transmission de Borrelia nécessite en général une fixation d'au moins 24 heures (Institut Pasteur). Les piqûres brèves, détectées et retirées rapidement, présentent un risque très faible. C'est pourquoi l'inspection systématique dans les heures suivant une sortie en nature reste l'un des gestes préventifs les plus efficaces.

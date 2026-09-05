@@ -1,8 +1,8 @@
 ---
-title: "Méduses sur les plages bretonnes: que faire en cas de piqûre?"
-description: "Piqûre de méduse en Bretagne: les bons gestes, ce qu'il ne faut jamais faire, quand consulter. Le guide pratique de votre pharmacie à Quéven"
+title: "Méduses en Bretagne: les reconnaître et soigner la piqûre"
+description: "Méduse bleue, blanche ou petite transparente: reconnaître les espèces des plages bretonnes, les bons gestes en cas de piqûre et quand consulter. Pharmacie à Quéven"
 date: 2026-07-13
-dateModified: 2026-07-13
+dateModified: 2026-09-05
 author: Équipe Pharmacie Charnal
 categories:
   - Conseils santé
@@ -26,24 +26,24 @@ image: "<!-- TODO: Ajouter image hero -->"
 
 ---
 
-# Méduses sur les plages bretonnes: que faire en cas de piqûre?
+# Méduses en Bretagne: les reconnaître et soigner la piqûre
 
 Plein été à Guidel-Plages. L'eau est enfin bonne, les enfants sautent dans les vagues. Soudain, un cri: une brûlure vive sur le mollet, une traînée rouge qui remonte. Une méduse.
 
 Chaque année, la scène se répète sur nos plages du Morbihan. La bonne nouvelle, c'est que dans l'immense majorité des cas, une piqûre de méduse se soigne simplement, sur place, en quelques minutes. Encore faut-il connaître les bons gestes, et surtout éviter ceux qui font empirer les choses. Voici ce que nous conseillons en pharmacie quand vous poussez la porte avec une trace de méduse sur la peau.
 
-## Quelles méduses croise-t-on sur les plages bretonnes?
+## Méduse bleue, blanche ou transparente: laquelle avez-vous croisée?
 
-La Bretagne compte une poignée d'espèces habituelles, la plupart bénignes. Sur nos côtes, l'aurélie transparente et le gros rhizostome blanc sont les plus fréquents et provoquent rarement plus qu'une légère démangeaison. Les vraies gêneuses restent la pélagie, la méduse boussole et la cyanée bleue, dont les tentacules urticants laissent des marques douloureuses.
+C'est la première question qu'on nous pose au comptoir, et presque toujours dans ces mots-là: « une petite méduse transparente », « une grosse méduse blanche », « une méduse bleue ». La Bretagne compte une poignée d'espèces habituelles, la plupart bénignes. La petite méduse transparente, c'est l'aurélie, et la grosse blanche est un rhizostome: les deux sont les plus fréquentes sur nos côtes et provoquent rarement plus qu'une légère démangeaison. La méduse bleue, elle, est une cyanée. Avec la pélagie et la méduse boussole, ce sont les trois vraies gêneuses, dont les tentacules urticants laissent des marques douloureuses.
 
-| Espèce | À quoi elle ressemble | Dangerosité |
-|---|---|---|
-| Aurélie (*Aurelia aurita*) | Transparente ou bleutée, quatre anneaux en trèfle, 10 à 30 cm | Faible: légère irritation |
-| Rhizostome (*Rhizostoma octopus*) | Blanche crémeuse, bords violacés, jusqu'à 1 mètre | Très faible: démangeaisons possibles |
-| Méduse boussole (*Chrysaora hysoscella*) | Ombrelle beige, 16 bandes brunes en rayons | Modérée: piqûre urticante |
-| Cyanée bleue (*Cyanea lamarckii*) | Ombrelle bleue, tentacules longs et nombreux | Modérée à forte |
-| Pélagie (*Pelagia noctiluca*) | Rose ou violacée, petites verrues sur l'ombrelle | Forte: brûlure marquée |
-| Physalie (*Physalia physalis*) | Flotteur gonflé bleu-rosé, longs filaments | Très forte: rare ici, à ne jamais toucher |
+| Espèce | Le nom qu'on lui donne | À quoi elle ressemble | Dangerosité |
+|---|---|---|---|
+| Aurélie (*Aurelia aurita*) | La petite méduse transparente | Transparente ou bleutée, quatre anneaux en trèfle, 10 à 30 cm | Faible: légère irritation |
+| Rhizostome (*Rhizostoma octopus*) | La grosse méduse blanche | Blanche crémeuse, bords violacés, jusqu'à 1 mètre | Très faible: démangeaisons possibles |
+| Méduse boussole (*Chrysaora hysoscella*) | La méduse rayée | Ombrelle beige, 16 bandes brunes en rayons | Modérée: piqûre urticante |
+| Cyanée bleue (*Cyanea lamarckii*) | La méduse bleue | Ombrelle bleue, tentacules longs et nombreux | Modérée à forte |
+| Pélagie (*Pelagia noctiluca*) | La méduse rose ou violette | Rose ou violacée, petites verrues sur l'ombrelle | Forte: brûlure marquée |
+| Physalie (*Physalia physalis*) | La galère portugaise | Flotteur gonflé bleu-rosé, longs filaments | Très forte: rare ici, à ne jamais toucher |
 
 **Attention:** la physalie, aussi appelée galère portugaise, n'est pas vraiment une méduse mais une colonie d'organismes (un siphonophore). Longtemps rare en Bretagne, elle s'échoue par épisodes, au gré des vents et des tempêtes, notamment dans le Finistère. Elle ressemble à un sac plastique translucide bleuté posé sur le sable, prolongé de filaments de plusieurs mètres. Ils restent redoutables même hors de l'eau. On ne la touche sous aucun prétexte.
 
@@ -157,6 +157,9 @@ Une piqûre de méduse fait mal sur le moment, mais elle se règle presque toujo
 ---
 
 ## Questions fréquentes
+
+**Quelle est cette méduse bleue qu'on voit en Bretagne?**
+C'est une cyanée (*Cyanea lamarckii*), l'espèce à ombrelle bleue et longs tentacules de nos côtes. Sa piqûre est nettement plus douloureuse que celle de la petite méduse transparente (l'aurélie) ou de la grosse méduse blanche (le rhizostome), sans être dangereuse pour un adulte en bonne santé. Rincez à l'eau de mer, jamais à l'eau douce.
 
 **Faut-il vraiment mettre de la chaleur sur une piqûre de méduse?**
 Oui. Le venin de méduse est thermolabile, c'est-à-dire qu'il se dégrade sous l'effet de la chaleur. Après avoir rincé à l'eau de mer, une source de chaleur sèche ou de l'eau chaude supportable aide à soulager la douleur. À défaut de chaleur, une poche de froid dans un linge calme aussi la brûlure.

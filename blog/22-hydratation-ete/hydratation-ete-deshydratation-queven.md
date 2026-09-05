@@ -1,8 +1,8 @@
 ---
-title: "Hydratation en été : au-delà de l'eau"
-description: "Bien s'hydrater l'été ne se résume pas à boire de l'eau. Électrolytes, aliments, populations à risque, déshydratation : les conseils de Laure à Quéven."
+title: "Hydratation en été : faut-il boire salé quand il fait chaud?"
+description: "Pourquoi le corps réclame du sel quand il fait chaud, quand une solution de réhydratation (SRO) est utile en canicule, et les signes de déshydratation. Conseils de Laure à Quéven."
 date: 2026-06-09
-dateModified: 2026-06-09
+dateModified: 2026-09-05
 author: Équipe Pharmacie Charnal
 categories:
   - Conseils santé
@@ -27,7 +27,7 @@ image: "blog-23-hydratation-ete.jpg"
 
 ---
 
-# Hydratation en été : au-delà de l'eau
+# Hydratation en été: faut-il boire salé quand il fait chaud?
 
 Premières vraies chaleurs sur le Morbihan. Le thermomètre grimpe, et avec lui une question qui revient sans cesse en pharmacie: "Faut-il vraiment boire autant?" La réponse est oui. Surtout, il faut boire mieux.
 
@@ -66,7 +66,7 @@ C'est un levier précieux pour les personnes qui "n'aiment pas l'eau" et peinent
 
 Un gaspacho tomate-concombre, une salade de pastèque à la menthe, une soupe froide de courgette: autant de façons de tenir le cap sans forcer sur les bouteilles. Sur le marché du mardi à Quéven, tout est là à cette saison.
 
-## Café, thé, alcool : lesquels comptent vraiment?
+## Café, thé, alcool: lesquels comptent vraiment?
 
 Le café ne déshydrate pas, contrairement à une idée tenace. Plusieurs études le confirment: en consommation modérée, jusqu'à 3 ou 4 tasses par jour, le café participe normalement à votre hydratation. Son léger effet diurétique ne devient significatif qu'à très forte dose, et il s'atténue chez les buveurs réguliers. Votre café du matin compte donc dans le total.
 
@@ -82,7 +82,7 @@ Passez nous voir, on prend le temps d'en parler avant les fortes chaleurs.
 
 ---
 
-## Les électrolytes et les SRO : quand en avez-vous besoin?
+## Pourquoi prendre du sel quand il fait chaud: électrolytes et SRO
 
 Pour une journée normale, l'eau et une alimentation équilibrée suffisent à couvrir vos besoins en minéraux. Trois situations changent la donne et justifient un apport ciblé en électrolytes: un effort physique de plus d'une heure, une canicule prolongée, ou un épisode de diarrhée ou de gastro-entérite estivale.
 
@@ -129,6 +129,9 @@ Bien s'hydrater l'été, c'est l'un des gestes de santé les plus simples et les
 ---
 
 ## Questions fréquentes
+
+**Faut-il manger ou boire plus salé quand il fait chaud?**
+En transpirant vous perdez de l'eau et du sodium. Boire uniquement de l'eau pure en grande quantité après avoir beaucoup transpiré dilue ce qui reste de sel dans le sang, ce qui peut donner crampes et maux de tête en fin de journée. Une alimentation normale couvre ce besoin dans la plupart des cas: un repas salé, une soupe froide, une eau minéralisée. Le complément en électrolytes ne devient utile que sur un effort de plus d'une heure, une canicule prolongée ou une diarrhée.
 
 **Faut-il boire 1,5 litre d'eau par jour même sans avoir soif?**
 Les apports conseillés par l'EFSA sont de 2 litres pour une femme et 2,5 litres pour un homme, toutes sources confondues, dont 20 à 30% viennent des aliments. En été, ces besoins augmentent. La soif arrivant trop tard, mieux vaut boire régulièrement par petites gorgées plutôt que d'attendre le signal.

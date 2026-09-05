@@ -1,8 +1,8 @@
 ---
-title: "Stress des examens : comment aider les ados (et les parents)"
-description: "Bac, brevet, concours : reconnaître un stress pathologique, quelles solutions naturelles marchent vraiment et quand consulter. Conseils pharmacie à Quéven."
+title: "Stress des examens : symptômes et que prendre, chez l'ado"
+description: "Stress des examens chez l'ado: les symptômes qui alertent, ce qui marche vraiment (magnésium, plantes, sommeil), ce qui ne sert à rien et quand consulter. Pharmacie à Quéven."
 date: 2026-05-04
-dateModified: 2026-05-04
+dateModified: 2026-09-05
 author: Équipe Pharmacie Charnal
 categories:
   - Conseils santé
@@ -30,7 +30,7 @@ og_image: "og-17-stress-examens-ados.jpg"
 
 ---
 
-# Stress des examens : comment aider les ados (et les parents)
+# Stress des examens : symptômes et que prendre, chez l'ado
 
 Il y a quelques jours, une maman est passée nous voir, l'air aussi stressé que son fils. "Il révise jusqu'à deux heures du matin, il mange à peine, et le matin il a mal au ventre avant même d'ouvrir un livre." Son fils passe son bac de français dans trois semaines. Dehors, le soleil breton commençait à chauffer les toits de Quéven — et lui n'avait pas mis le nez dehors depuis dix jours.
 
@@ -46,7 +46,7 @@ Près de 45% des lycéens se déclarent fréquemment stressés en période d'exa
 
 Sous pression, l'organisme sécrète du cortisol. En petites doses, c'est utile: ça affûte l'attention, booste la vigilance. Le problème, c'est quand ce stress dure. Un cortisol chroniquement élevé interfère avec l'hippocampe — la zone du cerveau qui consolide les souvenirs pendant le sommeil. En clair: trop stressé, l'ado révise mais retient moins. C'est un cercle vicieux documenté par la recherche, pas une excuse.
 
-## Quels signes doivent vous alerter?
+## Stress des examens : quels symptômes doivent vous alerter?
 
 Environ un lycéen sur cinq présente des symptômes d'anxiété suffisamment intenses pour perturber significativement ses apprentissages (Santé Publique France, 2022). Le stress d'examen est normal — c'est ce qui arrive après, quand il envahit tout le reste, qui doit vous alerter.
 
@@ -78,7 +78,7 @@ Quelques règles concrètes qui font une vraie différence:
 
 Sur la mélatonine: des parents nous demandent régulièrement si ça peut aider leur ado à s'endormir. C'est une option raisonnable pour des troubles ponctuels du rythme veille/sommeil — mais à des doses faibles (0,5 à 1 mg), pas à 10 mg. Les dosages en vente libre sont très variables. Venez nous en parler avant d'acheter.
 
-## Le magnésium aide-t-il vraiment contre le stress?
+## Que prendre contre le stress des examens? Le magnésium et les plantes
 
 Le magnésium est l'option la plus documentée pour le stress chronique. Le mécanisme est bien établi: le stress augmente les pertes urinaires de magnésium, et un déficit en magnésium amplifie la réactivité au stress. Un deuxième cercle vicieux. Selon l'étude nationale INCA3 coordonnée par l'ANSES (2017), environ 70% des femmes et 68% des hommes ont des apports en magnésium inférieurs au besoin nutritionnel moyen recommandé — chez les ados qui mangent peu ou de façon déséquilibrée en période de révisions, c'est encore plus fréquent.
 

@@ -2,7 +2,7 @@
 title: "Jambes lourdes: comprendre d'où elles viennent et comment les soulager"
 description: "Pourquoi vos jambes pèsent plus à la fin de journée? Votre pharmacie à Quéven explique l'insuffisance veineuse et les solutions qui marchent vraiment."
 date: 2026-04-21
-dateModified: 2026-04-21
+dateModified: 2026-09-05
 author: Équipe Pharmacie Charnal
 categories:
   - Conseils santé
@@ -137,7 +137,7 @@ Les quatre classes de compression correspondent à des pressions croissantes à 
 
 **La règle pratique:** on les enfile le matin au lever (quand les jambes ne sont pas encore gonflées) et on les garde toute la journée. On les retire le soir. Une paire dure environ six mois en usage quotidien, d'où le plafond de huit paires remboursées par an.
 
-## Les plantes veinotoniques sont-elles vraiment efficaces?
+## Quel veinotonique choisir: plantes, diosmine ou Daflon?
 
 Plusieurs plantes ont une efficacité documentée dans l'IVC légère à modérée, dont trois reconnues par l'Agence européenne du médicament (EMA) en usage traditionnel:
 
@@ -225,4 +225,4 @@ Oui, c'est un des meilleurs gestes possibles. La combinaison marche (pompe du mo
 
 ---
 
-**Article précédent:** [Paracétamol, ibuprofène, aspirine: lequel choisir ? Le guide de votre pharmacien](../14-paracetamol-ibuprofene-aspirine/paracetamol-ibuprofene-aspirine-lequel-choisir-queven.html)
+**Article précédent:** [Paracétamol, ibuprofène, aspirine: lequel choisir? Le guide de votre pharmacien](../14-paracetamol-ibuprofene-aspirine/paracetamol-ibuprofene-aspirine-lequel-choisir-queven.html)

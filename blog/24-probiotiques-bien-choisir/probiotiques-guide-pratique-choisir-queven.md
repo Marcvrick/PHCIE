@@ -1,8 +1,8 @@
 ---
-title: "Probiotiques: comment choisir le bon pour votre situation?"
+title: "Quel probiotique choisir: diarrhée, antibiotiques, intestin irritable"
 description: "Tous les probiotiques ne se valent pas. Votre pharmacie à Quéven vous explique souches, dosages, lecture d'étiquette et les pièges du marketing pour vraiment bien choisir."
 date: 2026-06-30
-dateModified: 2026-06-30
+dateModified: 2026-09-05
 author: Équipe Pharmacie Charnal
 categories:
   - Conseils santé
@@ -28,7 +28,7 @@ image: "blog-24-probiotiques.jpg"
 
 ---
 
-# Probiotiques: comment choisir le bon pour votre situation?
+# Quel probiotique choisir: diarrhée, antibiotiques, intestin irritable
 
 Chaque semaine, des patients passent nous voir avec la même boîte de probiotiques achetée en grande surface, en posant la question: "C'est bien ça?" Je regarde l'étiquette. Aucune souche identifiée. Un dosage en "milliards de bactéries" sans préciser à quelle date. Conservation "à température ambiante" pour une formule sans protection gastrique. La réponse honnête: difficile à dire.
 
@@ -62,7 +62,7 @@ Les souches les mieux documentées pour les situations courantes en officine:
 | *Lactobacillus reuteri* DSM 17938 | Coliques du nourrisson | Modéré (ECR) |
 | *Bifidobacterium animalis* BB-12 | Constipation, transit lent | Modéré |
 
-## Dans quels cas les probiotiques vous aident vraiment?
+## Quel probiotique pour la diarrhée, les antibiotiques ou l'intestin irritable?
 
 La diarrhée associée aux antibiotiques (DAA) est l'indication la mieux documentée. Une méta-analyse portant sur 6 352 participants démontre que les probiotiques réduisent ce risque de 40% (World Gastroenterology Organisation, 2023). C'est suffisamment solide pour le recommander dès le premier jour de traitement.
 

@@ -1,8 +1,8 @@
 ---
-title: "Trousse de pharmacie de voyage: que faut-il vraiment emporter en famille?"
-description: "Trousse de pharmacie de voyage en famille: l'essentiel à emporter cet été, des médicaments de base aux anti-moustiques. Conseils de votre pharmacie à Quéven"
+title: "Trousse à pharmacie de voyage: la liste pour partir avec des enfants"
+description: "La liste de la trousse à pharmacie de voyage quand on part avec des enfants: médicaments de base, diarrhée du voyageur, mal des transports, anti-moustiques par âge. Pharmacie à Quéven"
 date: 2026-06-23
-dateModified: 2026-06-23
+dateModified: 2026-09-05
 author: Équipe Pharmacie Charnal
 categories:
   - Conseils santé
@@ -28,7 +28,7 @@ image: "blog-27-trousse-de-voyage.jpg"
 
 ---
 
-# Trousse de pharmacie de voyage: que faut-il vraiment emporter en famille?
+# Trousse à pharmacie de voyage: la liste pour partir avec des enfants
 
 La valise est ouverte sur le lit. Les maillots, c'est fait. Les chargeurs, presque. Et la trousse de pharmacie? On y pense souvent en dernier, parfois sur le parking de la pharmacie un samedi midi, cinq minutes avant la fermeture.
 
@@ -40,7 +40,7 @@ Entre 20 et 60% des voyageurs vers une zone à risque rencontrent un trouble dig
 
 Le bon moment, c'est une semaine avant le départ. Cela laisse le temps de renouveler une ordonnance, de commander un produit en rupture, ou de faire le point sur un traitement chronique. La veille à 22h, il est déjà trop tard. Profitez-en pour vérifier aussi que rien n'est périmé: un tube de crème ouvert l'été dernier a souvent rendu l'âme.
 
-## Que mettre dans la trousse de base pour toute la famille?
+## Que mettre dans sa trousse à pharmacie de voyage: la liste de base
 
 Six familles de produits couvrent l'immense majorité des bobos de vacances. Inutile d'emporter une armoire à pharmacie: un antalgique, de quoi gérer le ventre, le nécessaire pour les plaies, une protection solaire, un répulsif moustiques et, selon les trajets, un anti mal des transports. Le reste s'ajuste à votre famille et à votre destination.
 

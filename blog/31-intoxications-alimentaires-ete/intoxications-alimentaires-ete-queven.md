@@ -2,7 +2,7 @@
 title: "Intoxications alimentaires d'été : aliments à risque et bons réflexes"
 description: "Œufs, viande, mayonnaise maison: les aliments à risque en été et les bons réflexes en cas d'intoxication. Conseils de votre pharmacie à Quéven"
 date: 2026-08-11
-dateModified: 2026-08-11
+dateModified: 2026-09-05
 author: Équipe Pharmacie Charnal
 categories:
   - Conseils santé
@@ -29,7 +29,7 @@ image: "<!-- TODO: Ajouter image hero -->"
 
 ---
 
-# Intoxications alimentaires d'été : aliments à risque et bons réflexes
+# Intoxications alimentaires d'été: aliments à risque et bons réflexes
 
 Mi-juillet. Un pique-nique en famille sur une plage du Morbihan. Trente-six heures plus tard, une patiente et deux de ses enfants sont pliés en deux, diarrhées et fièvre à l'appui. Le médecin évoque une salmonellose.
 
@@ -43,7 +43,7 @@ Nous voyons revenir les mêmes scénarios chaque été: aliments manipulés à m
 
 [INFOGRAPHIE HTML: la zone de danger bactérienne, ≤4°C zone sûre / 5-60°C zone de danger / ≥70°C cuisson sûre]
 
-## Quels sont les 6 aliments à surveiller en priorité?
+## Mayonnaise, œufs, viande: les 6 aliments à surveiller
 
 Six familles d'aliments concentrent l'essentiel des toxi-infections alimentaires estivales selon les autorités sanitaires: œufs, viandes crues ou mi-cuites, poissons, crustacés, mayonnaise maison et pâtisseries à la crème. Chacun appelle une règle de cuisson ou de conservation précise, pas un renoncement.
 
@@ -134,11 +134,11 @@ Les symptômes se ressemblent beaucoup et seul un examen médical, parfois une c
 
 **Références :**
 
-1. Santé publique France — surveillance des toxi-infections alimentaires collectives (TIAC), pic saisonnier estival
-2. ANSES — recommandations hygiène alimentaire domestique et chaîne du froid, zone de danger bactérienne 5-60°C
-3. ANSM — usage et contre-indications du lopéramide (fièvre, sang dans les selles)
-4. VIDAL — posologies paracétamol adulte et enfant
-5. HAS — prise en charge de la gastro-entérite aiguë, réhydratation orale en première intention
-6. Ameli.fr / Assurance Maladie — symptômes et conduite à tenir face à une intoxication alimentaire
-7. RappelConso (gouvernement) — vérification des rappels de produits alimentaires
-8. Institut Pasteur — Salmonella, Listeria, Staphylococcus aureus: biologie et prévention
+1. Santé publique France, surveillance des toxi-infections alimentaires collectives (TIAC), pic saisonnier estival
+2. ANSES, recommandations hygiène alimentaire domestique et chaîne du froid, zone de danger bactérienne 5-60°C
+3. ANSM, usage et contre-indications du lopéramide (fièvre, sang dans les selles)
+4. VIDAL, posologies paracétamol adulte et enfant
+5. HAS, prise en charge de la gastro-entérite aiguë, réhydratation orale en première intention
+6. Ameli.fr / Assurance Maladie, symptômes et conduite à tenir face à une intoxication alimentaire
+7. RappelConso (gouvernement), vérification des rappels de produits alimentaires
+8. Institut Pasteur, Salmonella, Listeria, Staphylococcus aureus: biologie et prévention
