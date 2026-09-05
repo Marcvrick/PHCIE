@@ -86,7 +86,13 @@ Passez nous voir, on prend le temps d'en parler avant les fortes chaleurs.
 
 Pour une journée normale, l'eau et une alimentation équilibrée suffisent à couvrir vos besoins en minéraux. Trois situations changent la donne et justifient un apport ciblé en électrolytes: un effort physique de plus d'une heure, une canicule prolongée, ou un épisode de diarrhée ou de gastro-entérite estivale.
 
-Pour le sport long en pleine chaleur, une boisson isotonique restitue l'eau et les minéraux plus vite que l'eau seule. Pour la canicule, des pastilles ou poudres d'électrolytes à dissoudre dans une gourde font le travail sans apporter de sucre.
+Pour le sport long en pleine chaleur, une boisson isotonique restitue l'eau et les minéraux plus vite que l'eau seule. Pour la canicule, des pastilles ou poudres d'électrolytes à dissoudre dans une gourde compensent les pertes. Le peu de sucre qu'elles contiennent est utile: il fait passer le sodium et l'eau dans les cellules.
+
+### Les pastilles Hydratis, ce qu'elles font et ce qu'elles ne font pas
+
+C'est la marque dont on nous parle le plus au comptoir depuis deux étés, et nous la référençons. Une pastille dans un verre de 250 ml, deux dans une gourde de 500 ml, et vous obtenez une boisson dosée en sodium, potassium, magnésium et zinc, avec juste assez de glucose pour que le sodium et l'eau passent dans les cellules. Pour une journée de chaleur, une rando ou un effort qui dure, c'est un bon produit, et il vous évite le sucre d'un soda.
+
+Une précision qui revient chaque été: **Hydratis n'est pas un soluté de réhydratation orale**. C'est un complément alimentaire, pas un médicament. Une gourde préparée apporte environ 230 mg de sodium par litre, là où un SRO recommandé par l'OMS en apporte près de 1 700. Contre une gastro, chez un nourrisson ou une personne âgée, la pastille ne remplace pas le sachet de SRO. Le fabricant lui-même demande un avis de professionnel de santé en cas d'insuffisance rénale, de diabète, de maladie cardiovasculaire, après 70 ans et chez l'enfant de 3 à 4 ans. La dose maximale est de 5 pastilles par jour chez l'adulte, 3 chez l'enfant de 4 à 10 ans et après 50 ans.
 
 La diarrhée est le cas le plus sérieux. Elle vide l'organisme de son eau et de ses sels à grande vitesse. Les solutés de réhydratation orale (SRO), disponibles en pharmacie, reconstituent précisément l'équilibre eau, sucre et minéraux selon les formulations recommandées par l'OMS. Ils sont indispensables chez le nourrisson et la personne âgée, deux publics chez qui une diarrhée d'été peut devenir grave en quelques heures. Jamais d'eau pure seule, jamais de soda contre une gastro.
 
@@ -130,6 +136,9 @@ Bien s'hydrater l'été, c'est l'un des gestes de santé les plus simples et les
 
 ## Questions fréquentes
 
+**Les pastilles Hydratis remplacent-elles un soluté de réhydratation?**
+Non. Hydratis est un complément alimentaire, pas un médicament. Une gourde préparée apporte environ 230 mg de sodium par litre, contre près de 1 700 mg pour un soluté de réhydratation orale recommandé par l'OMS. C'est un bon produit pour une journée de chaleur, une rando ou un effort qui dure. Contre une gastro-entérite, chez un nourrisson ou une personne âgée, il faut un sachet de SRO, pas une pastille. Demandez un avis en cas d'insuffisance rénale, de diabète ou de maladie cardiovasculaire.
+
 **Faut-il manger ou boire plus salé quand il fait chaud?**
 En transpirant vous perdez de l'eau et du sodium. Boire uniquement de l'eau pure en grande quantité après avoir beaucoup transpiré dilue ce qui reste de sel dans le sang, ce qui peut donner crampes et maux de tête en fin de journée. Une alimentation normale couvre ce besoin dans la plupart des cas: un repas salé, une soupe froide, une eau minéralisée. Le complément en électrolytes ne devient utile que sur un effort de plus d'une heure, une canicule prolongée ou une diarrhée.
 
@@ -156,7 +165,8 @@ Les diurétiques, les anti-inflammatoires comme l'ibuprofène, certains traiteme
 2. ANSES: repères sur l'hydratation et part des aliments dans les apports hydriques (20-30%)
 3. Ordre national des pharmaciens (CNOP): fortes chaleurs, canicule et médicaments, les bons réflexes
 4. ANSM: bon usage des médicaments en cas de vague de chaleur (diurétiques, AINS, IEC/ARA2, lithium)
-5. OMS: composition des solutés de réhydratation orale (SRO)
-6. Santé publique France: recommandations canicule et plateforme Canicule info service (0 800 06 66 66)
-7. Service-public.fr: déshydratation des personnes âgées, conseils de prévention en cas de fortes chaleurs
-8. Université de Birmingham (PLoS ONE, 2014): café et hydratation, pas de déshydratation à consommation modérée
+5. OMS/UNICEF: composition du soluté de réhydratation orale à osmolarité réduite (sodium 75 mmol/L, soit environ 1 700 mg/L)
+6. Hydratis: [composition, dosage et précautions d'emploi des pastilles](https://www.hydratis.co/products/tube-20-pastilles-electrolytes)
+7. Santé publique France: recommandations canicule et plateforme Canicule info service (0 800 06 66 66)
+8. Service-public.fr: déshydratation des personnes âgées, conseils de prévention en cas de fortes chaleurs
+9. Université de Birmingham (PLoS ONE, 2014): café et hydratation, pas de déshydratation à consommation modérée

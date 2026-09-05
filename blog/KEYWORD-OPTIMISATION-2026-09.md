@@ -203,11 +203,32 @@ crampes abdominales, détox après fêtes, coup de chaleur canicule, professionn
   ancres « À lire aussi » et navigation précédent/suivant des autres articles
 - `node build.js --check` passe (0 dérive), tous les blocs JSON-LD du site restent valides
 
-**À trancher par Dany**
+**Hydratis, traité le 2026-09-05**
 
-La requête `hydratis` sort en position 2 avec 106 impressions et 0 clic sur 3 mois. La marque
-n'est citée nulle part dans l'article. La citer aurait du sens uniquement si la pharmacie la
-référence: à confirmer avant d'écrire quoi que ce soit.
+Dany a confirmé que la pharmacie référence la marque. Décision: mention dans l'article, pas de
+page de marque dans `Nos-marques/`.
+
+Ajouté à l'article hydratation été: un H3 « Les pastilles Hydratis, ce qu'elles font et ce
+qu'elles ne font pas », plus une entrée de FAQ « Les pastilles Hydratis remplacent-elles un
+soluté de réhydratation? » (visible + Schema FAQPage).
+
+L'angle est la distinction que la requête de marque ne pose jamais et qu'une pharmacienne doit
+poser: **Hydratis est un complément alimentaire, pas un SRO**. Une gourde préparée apporte
+environ 230 mg de sodium par litre (2 pastilles dans 500 ml, 58 mg de sodium par pastille),
+là où un SRO OMS à osmolarité réduite en apporte près de 1 700 (75 mmol/L). Contre une gastro
+chez un nourrisson ou une personne âgée, la pastille ne remplace pas le sachet.
+
+Deux corrections au passage, trouvées en vérifiant la composition sur le site du fabricant:
+
+- l'article affirmait que les pastilles d'électrolytes compensent les pertes « sans apporter de
+  sucre ». C'est faux pour Hydratis (dextrose, 1,8 g de sucres par pastille) et le sucre y est
+  fonctionnel: le glucose est ce qui fait entrer le sodium et l'eau dans les cellules. Phrase
+  corrigée.
+- plusieurs sources secondaires annoncent de la stévia. La liste d'ingrédients officielle
+  indique du **sucralose**. C'est la liste officielle qui a été retenue.
+
+Source ajoutée aux références de l'article: fiche produit Hydratis (valeurs nutritionnelles
+pour 5 pastilles, dose maximale, publics nécessitant un avis médical).
 
 ## Règle appliquée aux réécritures
 
