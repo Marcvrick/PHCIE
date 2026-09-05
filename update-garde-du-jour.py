@@ -61,7 +61,8 @@ for code, communes in SECTEURS:
     ferie = e.get("ferie", "")
     label = f"Garde {ferie}, 9h&ndash;19h" if ferie else "Garde de journée, 9h&ndash;19h"
     for nom in e["jour"]:
-        
+        # deux formes possibles : "NOM - PHCIE X - VILLE" ou "NOM (Ville)"
+        # (pas de nom reel en exemple : ce fichier est dans un repo public)
         m = re.match(r"^(.*?)\s*\(([^)]+)\)$", nom)
         if m:
             pharmacie, ville = m.group(1), m.group(2)
