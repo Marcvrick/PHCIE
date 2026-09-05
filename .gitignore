@@ -32,3 +32,11 @@ node_modules/
 *.bak
 *.backup
 *~
+
+# Plannings de garde (JAMAIS en git, donc jamais deployes)
+# Un planning publie annonce a l'avance quel pharmacien sera seul le soir.
+# Voir CLAUDE.md, section "Regle de securite".
+Pharmacies de garde/
+**/Planning*.pdf
+planning-garde*
+*planning*garde*

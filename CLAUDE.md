@@ -5,9 +5,77 @@
 
 ---
 
+## ⚠️ RÈGLE DE SÉCURITÉ: aucun calendrier de gardes sur le site
+
+**Le site ne publie jamais de planning de gardes, même limité aux gardes de journée.**
+
+Le dimanche, la pharmacie de garde de journée est aussi celle de la nuit suivante. Un
+calendrier permet donc de savoir des semaines à l'avance quel pharmacien sera seul dans
+son officine tel soir, et de le planifier. C'est la raison d'être du système du 3237.
+
+| | Publiable |
+|---|---|
+| Qui est de garde **aujourd'hui**, en journée (samedi, dimanche, jour férié) | oui |
+| Une date future ou passée, un tableau, un planning, un PDF de planning | **non** |
+| Toute garde de nuit (19h-9h), y compris celle du dimanche ou d'un jour férié | **non** |
+| Des données de planning en JS/JSON, même non affichées à l'écran | **non** |
+
+**La nuit passe par le 3237**, qui enregistre l'identité de l'appelant avant de lui
+indiquer la pharmacie, où il est ensuite attendu.
+
+Une donnée non affichée reste publiée: elle est lisible via « afficher le code source ».
+Vérifier ce que contient le **HTML servi**, pas seulement ce que l'écran montre.
+
+**Incidents du 5 septembre 2026** sur `pharmacie-de-garde-queven-hennebont-lorient.html`:
+
+1. 795 lignes `type: "Nuit"` dans le JavaScript, soit le planning de nuit complet des
+   secteurs 561021 et 561020 de février 2026 à janvier 2027.
+2. 189 lignes de gardes de journée pour la même période, qui désignent indirectement les
+   gardes de nuit du dimanche. On pouvait lire le 5 septembre que la Pharmacie Charnal
+   serait de garde le dimanche 25 octobre 2026.
+3. La carte du jour nommait la pharmacie de nuit dès 19h, tous les jours.
+
+Les trois sont corrigés. `gardesData` et `gardesData561020` sont vides.
+
+### Comment la garde du jour est affichée
+
+**Source du planning:** le vault iCloud, **hors du repo**.
+`Pharma/GESTION/Plannings de garde/planning-gardes-2026.{md,json}` + le PDF du groupement.
+Le repo git local `/Users/mc` n'a aucun remote, le planning ne part jamais en ligne.
+
+**Injection:** `python3 update-garde-du-jour.py` écrit dans la page la garde de journée du
+**jour même**, en dur dans le HTML, et rien d'autre. Aucun objet de planning n'est embarqué.
+
+- Jour ouvrable: aucune carte, seul le 3237 s'affiche.
+- Dimanche ou jour férié: une carte par pharmacie de garde de journée.
+- `update-garde-du-jour.py 2026-09-06` pour tester une date, `--check` pour ne rien écrire.
+
+**Filet côté client:** un script masque toute carte dont la date n'est pas celle du visiteur,
+ou hors du créneau 9h-19h. Si la mise à jour quotidienne saute, la page n'affiche rien plutôt
+qu'une information périmée. Ne pas le retirer.
+
+**Ne jamais re-stocker un planning dans le fichier.** Une seule date à la fois.
+
+### Contrôles
+
+| Script | Rôle |
+|---|---|
+| `check-garde-privacy.py --check` | échoue si un calendrier, une garde de nuit ou une 2e date apparaît. **Câblé dans `hooks/pre-commit`, bloquant.** |
+| `update-garde-du-jour.py --check` | échoue si la date de la page n'est pas celle du jour |
+
+Ne jamais contourner avec `git commit --no-verify` sur cette page.
+
+---
+
 ## Configuration GitHub Pages
 
-**Repository:** `https://github.com/Marcvrick/Pharmacie-Charnal`
+> **`vercel.json` est ignoré.** Le site est servi par GitHub Pages (`server: GitHub.com`,
+> CNAME → `marcvrick.github.io`), pas par Vercel. Vérifié le 5 septembre 2026: aucun des
+> 5 en-têtes de sécurité déclarés dans `vercel.json` n'est servi, et sa redirection
+> `/planning` n'est pas appliquée. Pas d'exécution côté serveur, donc pas de fonction
+> serverless: tout ce qui doit changer chaque jour passe par un rebuild + push.
+
+**Repository:** `https://github.com/Marcvrick/PHCIE` (renommé le 2026-08-04, ancien nom `Pharmacie-Charnal`)
 - **Branche principale:** `main` (déploiement automatique)
 - **Branche de travail:** `pharmacie-charnal`
 - **GitHub Pages:** Activé sur `main`

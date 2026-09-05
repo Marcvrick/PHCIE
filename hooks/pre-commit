@@ -1,7 +1,9 @@
 #!/bin/sh
 # 1. Refuse le commit si une page a dérivé des partials ou si la section
 #    « Au comptoir » de l'accueil n'est plus alignée sur blog.html.
-# 2. Recale les <lastmod> du sitemap sur les pages du commit, puis les embarque.
+# 2. Refuse le commit si la page de garde contient un calendrier ou une garde
+#    de nuit (regle de securite, voir CLAUDE.md).
+# 3. Recale les <lastmod> du sitemap sur les pages du commit, puis les embarque.
 # Installation : git config core.hooksPath hooks   (déjà fait sur ce poste)
 set -e
 
@@ -10,5 +12,15 @@ command -v node >/dev/null 2>&1 || { echo "pre-commit: node absent, sitemap non 
 ROOT="$(git rev-parse --show-toplevel)"
 
 node "$ROOT/build.js" --check
+
+# Confidentialite des gardes : aucun calendrier, aucune garde de nuit.
+# Bloquant. Ne jamais contourner avec --no-verify sur cette page.
+if command -v python3 >/dev/null 2>&1; then
+    python3 "$ROOT/check-garde-privacy.py" --check
+else
+    echo "pre-commit: python3 absent, controle des gardes IMPOSSIBLE" >&2
+    exit 1
+fi
+
 node "$ROOT/sync-sitemap.js"
 git add "$ROOT/sitemap.xml"
