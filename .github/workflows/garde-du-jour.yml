@@ -66,5 +66,21 @@ jobs:
           git config user.name  "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add pharmacie-de-garde-queven-hennebont-lorient.html
-          git commit -m "Garde du jour: $(TZ=Europe/Paris date +%Y-%m-%d)"
-          git push
+          MSG="Garde du jour: $(TZ=Europe/Paris date +%Y-%m-%d)"
+
+          # Un commit par jour archiverait 116 noms de pharmacies de garde par an
+          # dans l'historique public. La rotation etant cyclique, cet historique
+          # permettrait d'extrapoler les gardes a venir: exactement le calendrier
+          # que ce dispositif existe pour ne pas publier.
+          # On remplace donc le commit precedent du bot au lieu d'en empiler un,
+          # de sorte qu'un seul nom vive dans l'historique a la fois.
+          if [ "$(git log -1 --format=%ae)" = "41898282+github-actions[bot]@users.noreply.github.com" ] \
+             && git log -1 --format=%s | grep -q '^Garde du jour:'; then
+            echo "Remplacement du commit precedent du bot."
+            git commit --amend -m "$MSG"
+            git push --force-with-lease
+          else
+            echo "Le dernier commit n'est pas du bot, on empile."
+            git commit -m "$MSG"
+            git push
+          fi
