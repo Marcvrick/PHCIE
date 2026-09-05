@@ -45,10 +45,23 @@ args = [a for a in sys.argv[1:] if not a.startswith("--")]
 jour = date.fromisoformat(args[0]) if args else date.today()
 iso = jour.isoformat()
 
-if not SOURCE.exists():
-    sys.exit(f"ECHEC : source introuvable\n  {SOURCE}\n"
-             "  (le planning vit dans le vault, jamais dans ce repo)")
-planning = json.loads(SOURCE.read_text(encoding="utf-8"))
+# Deux sources possibles, jamais le repo :
+#  - en local : le fichier du vault (jour ET nuit, usage interne)
+#  - en CI    : le secret GitHub PLANNING_GARDES_JOUR, qui ne contient QUE les
+#               gardes de journee. Les gardes de nuit ne quittent pas le disque.
+import os
+
+brut = os.environ.get("PLANNING_GARDES_JOUR")
+if brut:
+    planning = json.loads(brut)
+    origine = "secret PLANNING_GARDES_JOUR"
+elif SOURCE.exists():
+    planning = json.loads(SOURCE.read_text(encoding="utf-8"))
+    origine = str(SOURCE)
+else:
+    sys.exit("ECHEC : aucune source de planning\n"
+             f"  ni la variable PLANNING_GARDES_JOUR, ni {SOURCE}\n"
+             "  (le planning ne vit jamais dans ce repo)")
 
 num = "1er" if jour.day == 1 else str(jour.day)
 libelle = f"{JOURS[jour.weekday()]} {num} {MOIS[jour.month - 1]} {jour.year}"
@@ -149,6 +162,7 @@ if src != orig:
     print(f"  + {iso} ({libelle}) : {len(cartes)} carte(s) écrite(s)")
 else:
     print(f"  = {iso} : déjà à jour ({len(cartes)} carte(s))")
+print(f"  source : {origine}")
 
 # ------------------------------------------------- vérification par les VALEURS
 final = PAGE.read_text(encoding="utf-8")

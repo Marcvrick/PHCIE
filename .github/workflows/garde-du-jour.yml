@@ -1,0 +1,70 @@
+name: Garde du jour
+
+# Met à jour chaque matin la pharmacie de garde de JOURNÉE affichée sur la page,
+# sans dépendre d'un poste de travail. Tourne sur les runners GitHub.
+#
+# Le planning ne vit PAS dans ce dépôt. Il est fourni par le secret
+# PLANNING_GARDES_JOUR, qui ne contient que les gardes de journée : les gardes
+# de nuit ne quittent jamais le poste de Dany. Voir CLAUDE.md, règle de sécurité.
+#
+# Pour (re)poser le secret depuis le Mac :
+#   gh secret set PLANNING_GARDES_JOUR --repo Marcvrick/PHCIE \
+#     < "$HOME/Library/Mobile Documents/com~apple~CloudDocs/MarcOS/Pharma/GESTION/Plannings de garde/planning-gardes-JOUR-uniquement.json"
+
+on:
+  schedule:
+    # 05:10 UTC = 07:10 à Paris l'été, 06:10 l'hiver. Avant l'ouverture (9h).
+    - cron: "10 5 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: garde-du-jour
+  cancel-in-progress: false
+
+jobs:
+  maj:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Le secret doit être posé
+        env:
+          PLANNING_GARDES_JOUR: ${{ secrets.PLANNING_GARDES_JOUR }}
+        run: |
+          if [ -z "$PLANNING_GARDES_JOUR" ]; then
+            echo "::error::Secret PLANNING_GARDES_JOUR absent. Voir l'en-tête de ce fichier."
+            exit 1
+          fi
+
+      - name: Injecter la garde du jour
+        env:
+          PLANNING_GARDES_JOUR: ${{ secrets.PLANNING_GARDES_JOUR }}
+          TZ: Europe/Paris
+        run: python3 update-garde-du-jour.py
+
+      - name: Contrôle de confidentialité (bloquant)
+        run: |
+          python3 check-garde-privacy.py --check
+          python3 update-garde-du-jour.py --check
+        env:
+          PLANNING_GARDES_JOUR: ${{ secrets.PLANNING_GARDES_JOUR }}
+          TZ: Europe/Paris
+
+      - name: Publier si la page a changé
+        run: |
+          if git diff --quiet -- pharmacie-de-garde-queven-hennebont-lorient.html; then
+            echo "Aucun changement, rien à publier."
+            exit 0
+          fi
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add pharmacie-de-garde-queven-hennebont-lorient.html
+          git commit -m "Garde du jour: $(TZ=Europe/Paris date +%Y-%m-%d)"
+          git push
