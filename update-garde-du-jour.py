@@ -66,14 +66,34 @@ else:
 num = "1er" if jour.day == 1 else str(jour.day)
 libelle = f"{JOURS[jour.weekday()]} {num} {MOIS[jour.month - 1]} {jour.year}"
 
+# Quels jours peuvent etre publies, et d'ou vient le nom.
+#
+# Dimanche et jour ferie : le planning designe une garde de JOURNEE (`jour`).
+#   Verifie sur les 63 dates concernees des deux secteurs : la pharmacie de la
+#   nuit est LA MEME, sans exception. La publier ne revele donc rien de plus.
+# Samedi : le planning n'a pas de categorie samedi, il ne porte qu'une entree
+#   `nuit`. C'est pourtant bien la garde du samedi, qui couvre la journee ET la
+#   soiree (Dany, 05/09/2026). On la publie donc le samedi.
+# Lundi a vendredi : l'entree `nuit` est une garde de nuit pure. JAMAIS publiee.
+SAMEDI = 5
+
 cartes = []
 for code, communes in SECTEURS:
     e = planning.get(code, {}).get(iso)
-    if not e or not e.get("jour"):
-        continue  # jour ouvrable : aucune garde de journée désignée
+    if not e:
+        continue
     ferie = e.get("ferie", "")
-    label = f"Garde {ferie}, 9h&ndash;19h" if ferie else "Garde de journée, 9h&ndash;19h"
-    for nom in e["jour"]:
+    if e.get("jour"):
+        noms = e["jour"]
+        label = f"Garde du {ferie}" if ferie else "Garde du dimanche"
+        if jour.weekday() == SAMEDI:
+            label = "Garde du samedi"
+    elif jour.weekday() == SAMEDI and e.get("nuit"):
+        noms = e["nuit"]
+        label = "Garde du samedi"
+    else:
+        continue  # jour ouvrable : rien a publier, le 3237 prend le relais
+    for nom in noms:
         # deux formes possibles : "NOM - PHCIE X - VILLE" ou "NOM (Ville)"
         # (pas de nom reel en exemple : ce fichier est dans un repo public)
         m = re.match(r"^(.*?)\s*\(([^)]+)\)$", nom)
@@ -167,6 +187,16 @@ print(f"  source : {origine}")
 # ------------------------------------------------- vérification par les VALEURS
 final = PAGE.read_text(encoding="utf-8")
 fuites = []
+
+# Garde-fou dur : un lundi-vendredi non ferie ne porte qu'une garde de NUIT.
+# Publier un nom ce jour-la serait exactement la fuite que tout ce dispositif
+# existe pour empecher.
+ferie_du_jour = any(planning.get(c, {}).get(iso, {}).get("ferie")
+                    for c, _ in SECTEURS)
+jour_publiable = jour.weekday() in (5, 6) or ferie_du_jour
+if cartes and not jour_publiable:
+    fuites.append(f"{len(cartes)} carte(s) publiée(s) un "
+                  f"{JOURS[jour.weekday()].lower()} non férié : ce serait une garde de nuit")
 dates = set(re.findall(r'data-garde-date="(\d{4}-\d{2}-\d{2})"', final))
 if dates - {iso}:
     fuites.append(f"date(s) autre(s) que {iso} : {sorted(dates - {iso})}")
