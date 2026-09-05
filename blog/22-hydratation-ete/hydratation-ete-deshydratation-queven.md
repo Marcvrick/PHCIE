@@ -1,5 +1,5 @@
 ---
-title: "Hydratation en été : faut-il boire salé quand il fait chaud?"
+title: "Hydratation en été : faut-il prendre du sel quand il fait chaud?"
 description: "Pourquoi le corps réclame du sel quand il fait chaud, quand une solution de réhydratation (SRO) est utile en canicule, et les signes de déshydratation. Conseils de Laure à Quéven."
 date: 2026-06-09
 dateModified: 2026-09-05
@@ -27,7 +27,7 @@ image: "blog-23-hydratation-ete.jpg"
 
 ---
 
-# Hydratation en été: faut-il boire salé quand il fait chaud?
+# Hydratation en été: faut-il prendre du sel quand il fait chaud?
 
 Premières vraies chaleurs sur le Morbihan. Le thermomètre grimpe, et avec lui une question qui revient sans cesse en pharmacie: "Faut-il vraiment boire autant?" La réponse est oui. Surtout, il faut boire mieux.
 
@@ -139,7 +139,7 @@ Bien s'hydrater l'été, c'est l'un des gestes de santé les plus simples et les
 **Les pastilles Hydratis remplacent-elles un soluté de réhydratation?**
 Non. Hydratis est un complément alimentaire, pas un médicament. Une gourde préparée apporte environ 230 mg de sodium par litre, contre près de 1 700 mg pour un soluté de réhydratation orale recommandé par l'OMS. C'est un bon produit pour une journée de chaleur, une rando ou un effort qui dure. Contre une gastro-entérite, chez un nourrisson ou une personne âgée, il faut un sachet de SRO, pas une pastille. Demandez un avis en cas d'insuffisance rénale, de diabète ou de maladie cardiovasculaire.
 
-**Faut-il manger ou boire plus salé quand il fait chaud?**
+**Faut-il manger plus salé quand il fait chaud?**
 En transpirant vous perdez de l'eau et du sodium. Boire uniquement de l'eau pure en grande quantité après avoir beaucoup transpiré dilue ce qui reste de sel dans le sang, ce qui peut donner crampes et maux de tête en fin de journée. Une alimentation normale couvre ce besoin dans la plupart des cas: un repas salé, une soupe froide, une eau minéralisée. Le complément en électrolytes ne devient utile que sur un effort de plus d'une heure, une canicule prolongée ou une diarrhée.
 
 **Faut-il boire 1,5 litre d'eau par jour même sans avoir soif?**

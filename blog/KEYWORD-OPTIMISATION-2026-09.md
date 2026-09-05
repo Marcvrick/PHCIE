@@ -65,9 +65,12 @@ Un cluster entier sur le **sel par forte chaleur** que l'article traite en langa
 - Requêtes: `hydratis` (106 imp, pos 2), `solution de réhydratation canicule` (28),
   `sel et chaleur` (26), `pourquoi prendre du sel quand il fait chaud` (23),
   `boire salé quand il fait chaud` (22), `sels minéraux chaleur` (22), `sro canicule` (13)
-- **Mots-clés cibles: « faut-il boire salé quand il fait chaud » + « solution de réhydratation (SRO) canicule »**
-- Action: un H2 en langage courant sur le sel et la chaleur. « sels minéraux » n'apparaît
-  qu'une fois, « boire salé » jamais.
+- **Mots-clés cibles: « faut-il prendre du sel quand il fait chaud » + « solution de réhydratation (SRO) canicule »**
+- Action: un H2 en langage courant sur le sel et la chaleur. « sels minéraux » n'apparaît qu'une fois.
+- La requête brute est `boire salé quand il fait chaud`. Reprise telle quelle dans le titre le
+  2026-09-05, puis corrigée le jour même: on mange salé, on ne boit pas salé. Une requête n'est
+  pas une phrase. Retenu: « faut-il prendre du sel quand il fait chaud », qui pèse d'ailleurs
+  plus (23 impressions contre 22).
 - Manque au sitemap (voir plus bas). C'est la 2e page du site en clics.
 
 ### 3. Trousse de voyage (1 835 imp, pos 6,7, 1 clic)
@@ -174,7 +177,7 @@ l'absence du sitemap est l'explication la plus simple à écarter en premier.
 | Article | Ancien titre | Nouveau titre | Ajout dans le corps |
 |---|---|---|---|
 | Méduses | Méduses sur les plages bretonnes: que faire en cas de piqûre? | Méduses en Bretagne: les reconnaître, soigner la piqûre | Colonne « Le nom qu'on lui donne » dans le tableau des espèces (méduse bleue, grosse blanche, petite transparente), FAQ « Quelle est cette méduse bleue qu'on voit en Bretagne? » |
-| Hydratation été | Hydratation en été: au-delà de l'eau | Hydratation en été: faut-il boire salé quand il fait chaud? | H2 « Pourquoi prendre du sel quand il fait chaud », FAQ « Faut-il manger ou boire plus salé quand il fait chaud? » |
+| Hydratation été | Hydratation en été: au-delà de l'eau | Hydratation en été: faut-il prendre du sel quand il fait chaud? | H2 « Pourquoi prendre du sel quand il fait chaud », FAQ « Faut-il manger plus salé quand il fait chaud? » |
 | Trousse voyage | Trousse de pharmacie de voyage: que faut-il vraiment emporter en famille? | Trousse à pharmacie de voyage: la liste avec des enfants | H2 « Que mettre dans sa trousse à pharmacie de voyage: la liste de base » |
 | Stress examens | Stress examens ados: que faire? | Stress des examens: symptômes et que prendre, chez l'ado | H2 « quels symptômes doivent vous alerter », H2 « Que prendre contre le stress des examens? » |
 | Tiques | Tiques Bretagne: prévention et réaction | Tiques en Bretagne: piqûre, prévention et maladie de Lyme | FAQ « Y a-t-il vraiment des tiques en Bretagne? » et « Combien de temps une tique reste-t-elle accrochée? » |
