@@ -615,9 +615,10 @@
                 <img src="infographie-champignons-bretagne.png"
                      alt="Infographie: reconnaître l'amanite phalloïde (chapeau vert-olive, anneau, volve), chiffres clés des intoxications 2024 et les gestes qui protègent, Pharmacie Charnal Quéven"
                      width="682" height="1024"
-                     style="max-width:480px;width:100%;height:auto;border-radius:var(--radius-md);border:1px solid var(--beige);"
-                     loading="lazy">
-                <p style="font-size:0.82rem;color:var(--gray);margin-top:var(--space-sm);">Reconnaître l'amanite phalloïde et les gestes qui protègent</p>
+                     style="max-width:480px;width:100%;height:auto;border-radius:var(--radius-md);border:1px solid var(--beige);cursor:zoom-in;"
+                     loading="lazy"
+                     onclick="document.getElementById('img-modal-img').src=this.src; document.getElementById('img-modal').classList.add('open');">
+                <p style="font-size:0.82rem;color:var(--gray);margin-top:var(--space-sm);">Reconnaître l'amanite phalloïde et les gestes qui protègent (cliquer pour agrandir)</p>
             </div>
 
             <h2>L'essentiel à retenir</h2>
@@ -708,6 +709,31 @@
 
         </div>
     </article>
+
+    <!-- Lightbox: agrandissement de l'infographie -->
+    <div id="img-modal" class="img-modal" onclick="this.classList.remove('open');" role="dialog" aria-label="Image agrandie">
+        <img id="img-modal-img" src="" alt="">
+    </div>
+    <style>
+        .img-modal {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(20, 20, 20, 0.9);
+            z-index: 9999;
+            align-items: center;
+            justify-content: center;
+            padding: var(--space-lg);
+            cursor: zoom-out;
+        }
+        .img-modal.open { display: flex; }
+        .img-modal img {
+            max-width: 92vw;
+            max-height: 92vh;
+            border-radius: var(--radius-md);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+        }
+    </style>
 
     <!-- Footer -->
     <!-- Teal band above footer -->
@@ -804,6 +830,12 @@
                     btn.closest('.nav-dropdown').classList.toggle('open');
                 }
             });
+        });
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                const modal = document.getElementById('img-modal');
+                if (modal) modal.classList.remove('open');
+            }
         });
     </script>
     <script src="../../nav.js" defer></script>
