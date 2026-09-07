@@ -51,7 +51,7 @@ Dans les deux cas: **une** accent, pas un arc-en-ciel. Les cartes jaunes (grenou
 - Barres horizontales de ranking
 - Bandeau noir pour un titre de section
 - Drapeaux / icônes de pays
-- Frise 1-2–3 en pied de page
+- Frise 1-2-3 en pied de page
 
 ### Densité
 
@@ -118,6 +118,11 @@ Generous margins. Cards aligned to an invisible grid. No watermarks, no QR code,
 | `LANGUE` | Tous les libellés dans cette langue, écrits déjà corrects dans le prompt. |
 
 Moins de cartes = plus lisible. Si le texte sort tordu, régénérer avec **moins de faits**, pas plus d’instructions.
+
+**Insertion dans l’article : lightbox obligatoire.** Une fois le PNG téléchargé et placé dans le
+dossier de l’article, l’image cliquable (agrandissement plein écran, fermeture au clic/Échap) est
+une étape systématique, pas optionnelle. Procédure et snippet exact:
+`~/.claude/skills/pharmacie-charnal-blog/references/blog-article-template.md` § *7bis*.
 
 ---
 
