@@ -17,7 +17,8 @@ tags:
   - Quéven
   - Bretagne
   - Morbihan
-image: "<!-- TODO: Ajouter image hero -->"
+image: "blog-37-champignons-bretagne.jpg"
+og_image: "og-37-champignons-bretagne.jpg"
 ---
 
 **L'essentiel en 3 points:**
