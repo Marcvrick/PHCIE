@@ -601,6 +601,16 @@
 
             <p><strong>À savoir:</strong> la crème solaire seule ne suffit pas. Elle se combine au chapeau, aux lunettes filtrantes, aux vêtements couvrants et à l'évitement des heures les plus chaudes.</p>
 
+            <div style="text-align:center; margin: var(--space-2xl) 0;">
+                <img src="infographie-coup-de-soleil.png"
+                     alt="Infographie: coup de soleil à Quéven, chiffres clés sur les UV et les bons gestes en pharmacie"
+                     width="768" height="1024"
+                     style="max-width:480px;width:100%;height:auto;border-radius:var(--radius-md);border:1px solid var(--beige);cursor:zoom-in;"
+                     loading="lazy"
+                     onclick="document.getElementById('img-modal-img').src=this.src; document.getElementById('img-modal').classList.add('open');">
+                <p style="font-size:0.82rem;color:var(--gray);margin-top:var(--space-sm);">Coup de soleil: prévenir, apaiser, protéger (cliquer pour agrandir)</p>
+            </div>
+
             <h2>Cloques, fièvre, enfant en bas âge: quand faut-il consulter?</h2>
 
             <p>Certains signes dépassent le conseil en pharmacie. Une consultation s'impose en cas de cloques étendues, de brûlure touchant le visage, les mains ou une grande surface du corps, ou de signes généraux comme la fièvre, les frissons, les nausées ou les maux de tête. Chez le nourrisson, un coup de soleil peut constituer une urgence: sa peau, plus fine, se déshydrate vite.</p>
@@ -732,6 +742,31 @@
 
         </div>
     </article>
+
+    <!-- Lightbox: agrandissement de l'infographie -->
+    <div id="img-modal" class="img-modal" onclick="this.classList.remove('open');" role="dialog" aria-label="Image agrandie">
+        <img id="img-modal-img" src="" alt="">
+    </div>
+    <style>
+        .img-modal {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(20, 20, 20, 0.9);
+            z-index: 9999;
+            align-items: center;
+            justify-content: center;
+            padding: var(--space-lg);
+            cursor: zoom-out;
+        }
+        .img-modal.open { display: flex; }
+        .img-modal img {
+            max-width: 92vw;
+            max-height: 92vh;
+            border-radius: var(--radius-md);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+        }
+    </style>
 
     <!-- Footer -->
     <!-- Teal band above footer -->

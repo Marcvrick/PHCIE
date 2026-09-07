@@ -2,7 +2,7 @@
 title: "Méduses en Bretagne: les reconnaître et soigner la piqûre"
 description: "Méduse bleue, blanche ou petite transparente: reconnaître les espèces des plages bretonnes, les bons gestes en cas de piqûre et quand consulter. Pharmacie à Quéven"
 date: 2026-07-13
-dateModified: 2026-09-05
+dateModified: 2026-09-07
 author: Équipe Pharmacie Charnal
 categories:
   - Conseils santé
@@ -16,7 +16,7 @@ tags:
   - été
   - Quéven
   - Bretagne
-image: "<!-- TODO: Ajouter image hero -->"
+image: "infographie-meduses-bretagne.png"
 ---
 
 **L'essentiel en 3 points:**
@@ -46,6 +46,8 @@ C'est la première question qu'on nous pose au comptoir, et presque toujours dan
 | Physalie (*Physalia physalis*) | La galère portugaise | Flotteur gonflé bleu-rosé, longs filaments | Très forte: rare ici, à ne jamais toucher |
 
 **Attention:** la physalie, aussi appelée galère portugaise, n'est pas vraiment une méduse mais une colonie d'organismes (un siphonophore). Longtemps rare en Bretagne, elle s'échoue par épisodes, au gré des vents et des tempêtes, notamment dans le Finistère. Elle ressemble à un sac plastique translucide bleuté posé sur le sable, prolongé de filaments de plusieurs mètres. Ils restent redoutables même hors de l'eau. On ne la touche sous aucun prétexte.
+
+![Infographie: les méduses de Bretagne, espèces et dangerosité](infographie-meduses-bretagne.png)
 
 ## Comment une méduse pique-t-elle vraiment?
 

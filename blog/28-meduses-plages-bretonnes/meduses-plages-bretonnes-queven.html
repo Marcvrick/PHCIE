@@ -547,6 +547,16 @@
 
             <p><strong>Attention:</strong> la physalie, aussi appelée galère portugaise, n'est pas vraiment une méduse mais une colonie d'organismes (un siphonophore). Longtemps rare en Bretagne, elle s'échoue par épisodes, au gré des vents et des tempêtes, notamment dans le Finistère. Elle ressemble à un sac plastique translucide bleuté posé sur le sable, prolongé de filaments de plusieurs mètres. Ils restent redoutables même hors de l'eau. On ne la touche sous aucun prétexte.</p>
 
+            <div style="text-align:center; margin: var(--space-2xl) 0;">
+                <img src="infographie-meduses-bretagne.png"
+                     alt="Infographie: les méduses de Bretagne, espèces, dangerosité et gestes en cas de piqûre"
+                     width="768" height="1024"
+                     style="max-width:480px;width:100%;height:auto;border-radius:var(--radius-md);border:1px solid var(--beige);cursor:zoom-in;"
+                     loading="lazy"
+                     onclick="document.getElementById('img-modal-img').src=this.src; document.getElementById('img-modal').classList.add('open');">
+                <p style="font-size:0.82rem;color:var(--gray);margin-top:var(--space-sm);">Méduses de Bretagne: espèces et dangerosité (cliquer pour agrandir)</p>
+            </div>
+
             <h2>Comment une méduse pique-t-elle vraiment?</h2>
 
             <p>La piqûre n'a rien d'une morsure. Les tentacules sont tapissés de millions de cellules microscopiques, les cnidocytes, dont chacune contient une petite capsule sous pression: le nématocyste. Au moindre frôlement, cette capsule éjecte un filament-harpon en quelques centaines de nanosecondes, l'un des mouvements les plus rapides du monde animal, qui perce la peau et injecte le venin.</p>
@@ -757,6 +767,31 @@
 
         </div>
     </article>
+
+    <!-- Lightbox: agrandissement de l'infographie -->
+    <div id="img-modal" class="img-modal" onclick="this.classList.remove('open');" role="dialog" aria-label="Image agrandie">
+        <img id="img-modal-img" src="" alt="">
+    </div>
+    <style>
+        .img-modal {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(20, 20, 20, 0.9);
+            z-index: 9999;
+            align-items: center;
+            justify-content: center;
+            padding: var(--space-lg);
+            cursor: zoom-out;
+        }
+        .img-modal.open { display: flex; }
+        .img-modal img {
+            max-width: 92vw;
+            max-height: 92vh;
+            border-radius: var(--radius-md);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+        }
+    </style>
 
     <!-- Footer -->
     <!-- Teal band above footer -->

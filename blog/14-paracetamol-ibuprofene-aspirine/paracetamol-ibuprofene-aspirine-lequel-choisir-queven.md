@@ -2,7 +2,7 @@
 title: "Paracétamol, ibuprofène, aspirine : quelle différence et lequel choisir ?"
 description: "Paracétamol, ibuprofène ou aspirine ? Ce guide pratique explique les différences, les bonnes indications et les contre-indications à connaître avant de vous automédier à Quéven."
 date: 2026-04-14
-dateModified: 2026-09-05
+dateModified: 2026-09-07
 author: Équipe Pharmacie Charnal
 categories:
   - Conseils santé
@@ -18,7 +18,7 @@ tags:
   - douleur
   - Quéven
   - Bretagne
-image: "blog-14-paracetamol-ibuprofene-aspirine.jpg"
+image: "infographie-paracetamol-ibuprofene-aspirine.png"
 og_image: "og-14-paracetamol-ibuprofene-aspirine.jpg"
 ---
 
@@ -156,6 +156,8 @@ C'est le point le plus important de cet article, et celui qui justifie de passer
 - Vous avez une **maladie du foie** (hépatite, cirrhose), réduire la dose à 2 g/j maximum
 - Vous avez une consommation régulière d'alcool
 - Vous prenez déjà d'autres médicaments contenant du paracétamol (fréquent dans les produits "rhume" ou "grippe" vendus en pharmacie, risque de surdosage involontaire)
+
+![Infographie: paracétamol, ibuprofène, aspirine, posologies maximales et contre-indications à connaître](infographie-paracetamol-ibuprofene-aspirine.png)
 
 ## Peut-on alterner ou combiner paracétamol et ibuprofène?
 

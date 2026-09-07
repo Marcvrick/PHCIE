@@ -623,6 +623,16 @@
 
             <p>En début de cure, des ballonnements légers et des flatulences sont normaux pendant 3 à 7 jours d'adaptation. Si l'inconfort est marqué, réduire temporairement la dose.</p>
 
+            <div style="text-align:center; margin: var(--space-2xl) 0;">
+                <img src="infographie-gelule-probiotique.png"
+                     alt="Infographie: bien choisir son probiotique, souche complète, dosage garanti à la DDM, gélule gastro-résistante, espacement avec l'antibiotique, Pharmacie Charnal Quéven"
+                     width="768" height="1024"
+                     style="max-width:480px;width:100%;height:auto;border-radius:var(--radius-md);border:1px solid var(--beige);cursor:zoom-in;"
+                     loading="lazy"
+                     onclick="document.getElementById('img-modal-img').src=this.src; document.getElementById('img-modal').classList.add('open');">
+                <p style="font-size:0.82rem;color:var(--gray);margin-top:var(--space-sm);">Bien choisir son probiotique, en un coup d'œil (cliquer pour agrandir)</p>
+            </div>
+
             <!-- Tableau récapitulatif -->
             <h2>L'essentiel à retenir</h2>
 
@@ -730,6 +740,31 @@
 
         </div>
     </article>
+
+    <!-- Lightbox: agrandissement de l'infographie -->
+    <div id="img-modal" class="img-modal" onclick="this.classList.remove('open');" role="dialog" aria-label="Image agrandie">
+        <img id="img-modal-img" src="" alt="">
+    </div>
+    <style>
+        .img-modal {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(20, 20, 20, 0.9);
+            z-index: 9999;
+            align-items: center;
+            justify-content: center;
+            padding: var(--space-lg);
+            cursor: zoom-out;
+        }
+        .img-modal.open { display: flex; }
+        .img-modal img {
+            max-width: 92vw;
+            max-height: 92vh;
+            border-radius: var(--radius-md);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+        }
+    </style>
 
     <!-- Footer -->
     <!-- Teal band above footer -->

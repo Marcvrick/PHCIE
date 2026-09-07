@@ -2,7 +2,7 @@
 title: "Quel probiotique choisir: diarrhée, antibiotiques, intestin irritable"
 description: "Tous les probiotiques ne se valent pas. Votre pharmacie à Quéven vous explique souches, dosages, lecture d'étiquette et les pièges du marketing pour vraiment bien choisir."
 date: 2026-06-30
-dateModified: 2026-09-05
+dateModified: 2026-09-07
 author: Équipe Pharmacie Charnal
 categories:
   - Conseils santé
@@ -18,7 +18,7 @@ tags:
   - Quéven
   - Bretagne
   - compléments alimentaires
-image: "blog-24-probiotiques.jpg"
+image: "infographie-gelule-probiotique.png"
 ---
 
 **L'essentiel en 3 points:**
@@ -137,6 +137,8 @@ Autres profils à surveiller:
 - **Antifongiques systémiques:** réduisent l'efficacité de *Saccharomyces boulardii*; espacer ou éviter l'association
 
 En début de cure, des ballonnements légers et des flatulences sont normaux pendant 3 à 7 jours d'adaptation. Si l'inconfort est marqué, réduire temporairement la dose.
+
+![Infographie: bien choisir son probiotique, souche complète, dosage garanti à la DDM, gélule gastro-résistante, espacement avec l'antibiotique, Pharmacie Charnal Quéven](infographie-gelule-probiotique.png)
 
 ## L'essentiel à retenir
 

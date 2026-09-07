@@ -629,6 +629,16 @@
 
             <p>La diarrhée est le cas le plus sérieux. Elle vide l'organisme de son eau et de ses sels à grande vitesse. Les solutés de réhydratation orale, disponibles en pharmacie, reconstituent précisément l'équilibre eau, sucre et minéraux selon les formulations recommandées par l'OMS. Jamais d'eau pure seule, jamais de soda contre une gastro.</p>
 
+            <div style="text-align:center; margin: var(--space-2xl) 0;">
+                <img src="infographie-hydratation-electrolytes.png"
+                     alt="Infographie hydratation en été: teneur en eau des aliments, apports conseillés 2 à 2,5 L par jour, électrolytes et SRO, signes de déshydratation, Pharmacie Charnal Quéven"
+                     width="768" height="1024"
+                     style="max-width:480px;width:100%;height:auto;border-radius:var(--radius-md);border:1px solid var(--beige);cursor:zoom-in;"
+                     loading="lazy"
+                     onclick="document.getElementById('img-modal-img').src=this.src; document.getElementById('img-modal').classList.add('open');">
+                <p style="font-size:0.82rem;color:var(--gray);margin-top:var(--space-sm);">Bien s'hydrater en été: eau, aliments, électrolytes et SRO (cliquer pour agrandir)</p>
+            </div>
+
             <h2>Qui doit redoubler de vigilance en cas de forte chaleur?</h2>
 
             <p>Trois profils sont plus exposés et méritent une attention particulière dès que la température monte: les personnes âgées, les nourrissons, et les personnes sous traitement chronique. Pour ces publics, une déshydratation peut s'installer vite et sans signal évident.</p>
@@ -794,6 +804,31 @@
 
         </div>
     </article>
+
+    <!-- Lightbox: agrandissement de l'infographie -->
+    <div id="img-modal" class="img-modal" onclick="this.classList.remove('open');" role="dialog" aria-label="Image agrandie">
+        <img id="img-modal-img" src="" alt="">
+    </div>
+    <style>
+        .img-modal {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(20, 20, 20, 0.9);
+            z-index: 9999;
+            align-items: center;
+            justify-content: center;
+            padding: var(--space-lg);
+            cursor: zoom-out;
+        }
+        .img-modal.open { display: flex; }
+        .img-modal img {
+            max-width: 92vw;
+            max-height: 92vh;
+            border-radius: var(--radius-md);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+        }
+    </style>
 
     <!-- Footer -->
     <!-- Teal band above footer -->

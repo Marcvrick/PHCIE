@@ -2,7 +2,7 @@
 title: "Hydratation en été : faut-il prendre du sel quand il fait chaud?"
 description: "Pourquoi le corps réclame du sel quand il fait chaud, quand une solution de réhydratation (SRO) est utile en canicule, et les signes de déshydratation. Conseils de Laure à Quéven."
 date: 2026-06-09
-dateModified: 2026-09-05
+dateModified: 2026-09-07
 author: Équipe Pharmacie Charnal
 categories:
   - Conseils santé
@@ -17,7 +17,7 @@ tags:
   - été
   - Quéven
   - Bretagne
-image: "blog-23-hydratation-ete.jpg"
+image: "infographie-hydratation-electrolytes.png"
 ---
 
 **L'essentiel en 3 points :**
@@ -95,6 +95,8 @@ C'est la marque dont on nous parle le plus au comptoir depuis deux étés, et no
 Une précision qui revient chaque été: **Hydratis n'est pas un soluté de réhydratation orale**. C'est un complément alimentaire, pas un médicament. Une gourde préparée apporte environ 230 mg de sodium par litre, là où un SRO recommandé par l'OMS en apporte près de 1 700. Contre une gastro, chez un nourrisson ou une personne âgée, la pastille ne remplace pas le sachet de SRO. Le fabricant lui-même demande un avis de professionnel de santé en cas d'insuffisance rénale, de diabète, de maladie cardiovasculaire, après 70 ans et chez l'enfant de 3 à 4 ans. La dose maximale est de 5 pastilles par jour chez l'adulte, 3 chez l'enfant de 4 à 10 ans et après 50 ans.
 
 La diarrhée est le cas le plus sérieux. Elle vide l'organisme de son eau et de ses sels à grande vitesse. Les solutés de réhydratation orale (SRO), disponibles en pharmacie, reconstituent précisément l'équilibre eau, sucre et minéraux selon les formulations recommandées par l'OMS. Ils sont indispensables chez le nourrisson et la personne âgée, deux publics chez qui une diarrhée d'été peut devenir grave en quelques heures. Jamais d'eau pure seule, jamais de soda contre une gastro.
+
+![Infographie hydratation en été: teneur en eau des aliments, apports conseillés 2 à 2,5 L par jour, électrolytes et SRO, signes de déshydratation, Pharmacie Charnal Quéven](infographie-hydratation-electrolytes.png)
 
 ## Qui doit redoubler de vigilance en cas de forte chaleur?
 

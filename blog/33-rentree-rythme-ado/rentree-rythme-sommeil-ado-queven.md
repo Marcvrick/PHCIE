@@ -2,7 +2,7 @@
 title: "Rentrée: comment remettre votre ado dans le rythme"
 description: "Réveil décalé, petit-déjeuner sauté, compléments inutiles: comment remettre votre ado dans le rythme à la rentrée. Conseils pharmacie à Quéven"
 date: 2026-08-31
-dateModified: 2026-08-31
+dateModified: 2026-09-07
 author: Équipe Pharmacie Charnal
 categories:
   - Conseils santé
@@ -20,7 +20,7 @@ tags:
   - compléments alimentaires
   - Quéven
   - Bretagne
-image: "blog-36-rentree-rythme-ado.jpg"
+image: "infographie-reveil-rythme-sommeil.png"
 ---
 
 **L'essentiel en 3 points :**
@@ -251,6 +251,8 @@ Deux choses sur lesquelles je ne transige pas. Les boissons énergisantes d'abor
 ## Mon bilan prévention: 30 minutes pour les 18-25 ans
 
 Si votre aîné entre dans la tranche des 18-25 ans, il a droit à un rendez-vous de prévention pris en charge à 100%, sans avance de frais ni ordonnance, que nous réalisons en pharmacie sur 30 à 45 minutes. On y aborde les antécédents, l'alimentation, l'activité physique, les consommations, le sommeil, les vaccinations et la santé mentale. Il ne remplace ni une consultation ni un bilan sanguin en présence de symptômes: il sert à repérer les risques et à orienter.
+
+![Infographie: recaler le sommeil de l'ado à la rentrée en 10 jours, repères sommeil, fer et vitamine D](infographie-reveil-rythme-sommeil.png)
 
 ## Quand ce n'est plus une fatigue de rentrée?
 

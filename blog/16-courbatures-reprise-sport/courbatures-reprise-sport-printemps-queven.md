@@ -2,7 +2,7 @@
 title: "Courbatures et reprise du sport au printemps: ce qui marche vraiment"
 description: "Reprise du vélo, de la rando, du running? Votre pharmacie à Quéven explique les courbatures DOMS et les solutions qui fonctionnent — et celles qui sont du placebo."
 date: 2026-04-28
-dateModified: 2026-09-05
+dateModified: 2026-09-07
 author: Équipe Pharmacie Charnal
 categories:
   - Conseils santé
@@ -18,7 +18,7 @@ tags:
   - rhabdomyolyse
   - Quéven
   - Bretagne
-image: "blog-16-courbatures-reprise-sport.jpg"
+image: "infographie-courbatures-sport.png"
 og_image: "og-16-courbatures-reprise-sport.jpg"
 ---
 
@@ -58,6 +58,8 @@ Règle pratique: froid d'abord, chaleur ensuite. Appliquer le froid 10 à 15 min
 Nous avons trois familles de solutions en libre accès: les **gels révulsifs** (camphre, menthol, eucalyptus, effet contra-irritant et vasodilatateur), les **gels à l'arnica**, et les **roll-on décontractants** à base d'huiles essentielles. Les gels anti-inflammatoires à base de diclofénac ou kétoprofène sont soit OTC en faible dosage, soit sur ordonnance selon la formulation.
 
 L'arnica mérite une mention spéciale: une étude publiée dans *Phytotherapy Research* en 2013 a montré qu'une application topique immédiate après un exercice excentrique intense, poursuivie pendant 96 h, **réduit significativement la douleur à 72 h** par rapport au placebo (évaluation sur échelle VAS et douleur à la palpation). Pas d'effet sur les marqueurs biologiques d'inflammation (CPK, CRP), mais l'effet antalgique local est bien réel. Je recommande les gels combinant arnica, gaulthérie et eucalyptus citronné, chez <a href="../../Nos-marques/boiron-page.html">Boiron</a> ou <a href="../../Nos-marques/sid-nutrition-page.html">S.I.D Nutrition</a>.
+
+![Infographie: courbatures et reprise du sport au printemps, chiffres clés et bons réflexes](infographie-courbatures-sport.png)
 
 ---
 

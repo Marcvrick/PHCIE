@@ -698,6 +698,16 @@
                 <p style="text-align: center; color: #888; margin: 24px 0 0 0; font-size: 0.8rem; font-style: italic;">Aucune marque n'est universellement supérieure, le bon choix dépend du cuir chevelu et de la fibre.</p>
             </div>
 
+            <div style="text-align:center; margin: var(--space-2xl) 0;">
+                <img src="infographie-shampoing.png"
+                     alt="Infographie: 4 marques de shampoing pharmacie et leur profil, fréquence de lavage et rinçage recommandés, Pharmacie Charnal Quéven"
+                     width="768" height="1024"
+                     style="max-width:480px;width:100%;height:auto;border-radius:var(--radius-md);border:1px solid var(--beige);cursor:zoom-in;"
+                     loading="lazy"
+                     onclick="document.getElementById('img-modal-img').src=this.src; document.getElementById('img-modal').classList.add('open');">
+                <p style="font-size:0.82rem;color:var(--gray);margin-top:var(--space-sm);">Klorane, Bioderma Nodé, Avène, Nuxe: le repère rapide en un coup d'œil (cliquer pour agrandir)</p>
+            </div>
+
             <h2>Quels gestes améliorent vraiment l'effet du shampoing?</h2>
 
             <p>Le meilleur shampoing du monde ne compense pas une routine inadaptée. Selon les recommandations générales de l'Académie américaine de dermatologie (AAD), plusieurs paramètres pèsent autant que la formule du produit lui-même: la fréquence de lavage, la température de l'eau, la quantité utilisée et la durée du rinçage.</p>
@@ -850,6 +860,31 @@
             </nav>
         </div>
     </article>
+
+    <!-- Lightbox: agrandissement de l'infographie -->
+    <div id="img-modal" class="img-modal" onclick="this.classList.remove('open');" role="dialog" aria-label="Image agrandie">
+        <img id="img-modal-img" src="" alt="">
+    </div>
+    <style>
+        .img-modal {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(20, 20, 20, 0.9);
+            z-index: 9999;
+            align-items: center;
+            justify-content: center;
+            padding: var(--space-lg);
+            cursor: zoom-out;
+        }
+        .img-modal.open { display: flex; }
+        .img-modal img {
+            max-width: 92vw;
+            max-height: 92vh;
+            border-radius: var(--radius-md);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+        }
+    </style>
 
     <!-- Footer -->
     <!-- Teal band above footer -->

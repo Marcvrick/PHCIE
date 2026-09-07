@@ -706,6 +706,16 @@
 
             <p>Les veinotoniques médicamenteux (diosmine, hespéridine, troxérutine), dont le plus connu est le Daflon, ont été progressivement déremboursés: 35% à 15% en 2006, puis déremboursement complet au 1er janvier 2008 au motif d'un service médical rendu insuffisant (HAS). Une méta-revue Cochrane a néanmoins confirmé qu'ils réduisent l'œdème et améliorent les crampes, les fourmillements et l'agitation des jambes, sans effet démontré sur la prévention des phlébites. Beaucoup de patients restent attachés à ces molécules et rapportent un vrai soulagement. Notre conseil: en cas de prise au long cours, alterner les molécules tous les 3 mois pour éviter un phénomène d'échappement. Pour choisir entre les différentes formes disponibles (gélules, teintures mères, extraits standardisés), notre <a href="../13-complements-alimentaires/complements-alimentaires-pharmacie-internet-queven.html">guide sur les compléments alimentaires</a> explique ce que je vérifie avant de vous conseiller une marque.</p>
 
+            <div style="text-align:center; margin: var(--space-2xl) 0;">
+                <img src="infographie-jambes-lourdes.png"
+                     alt="Infographie: jambes lourdes, comprendre et soulager la circulation veineuse, chiffres clés et bons réflexes"
+                     width="768" height="1024"
+                     style="max-width:480px;width:100%;height:auto;border-radius:var(--radius-md);border:1px solid var(--beige);cursor:zoom-in;"
+                     loading="lazy"
+                     onclick="document.getElementById('img-modal-img').src=this.src; document.getElementById('img-modal').classList.add('open');">
+                <p style="font-size:0.82rem;color:var(--gray);margin-top:var(--space-sm);">Jambes lourdes: comprendre et soulager la circulation veineuse (cliquer pour agrandir)</p>
+            </div>
+
             <h2>5 gestes du quotidien qui changent tout</h2>
 
             <p>Aucun produit ne remplace ces cinq réflexes. Ils sont gratuits, ils fonctionnent, et combinés à une bonne compression, ils règlent déjà une grande partie du problème.</p>
@@ -845,6 +855,31 @@
             </nav>
         </div>
     </article>
+
+    <!-- Lightbox: agrandissement de l'infographie -->
+    <div id="img-modal" class="img-modal" onclick="this.classList.remove('open');" role="dialog" aria-label="Image agrandie">
+        <img id="img-modal-img" src="" alt="">
+    </div>
+    <style>
+        .img-modal {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(20, 20, 20, 0.9);
+            z-index: 9999;
+            align-items: center;
+            justify-content: center;
+            padding: var(--space-lg);
+            cursor: zoom-out;
+        }
+        .img-modal.open { display: flex; }
+        .img-modal img {
+            max-width: 92vw;
+            max-height: 92vh;
+            border-radius: var(--radius-md);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+        }
+    </style>
 
     <!-- Footer -->
     <!-- Teal band above footer -->

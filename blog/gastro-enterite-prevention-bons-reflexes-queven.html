@@ -647,6 +647,16 @@
                 <li>Les personnes âgées doivent être particulièrement vigilantes: la sensation de soif diminue avec l'âge</li>
             </ul>
 
+            <div style="text-align:center; margin: var(--space-2xl) 0;">
+                <img src="infographie-gastro-enterite.png"
+                     alt="Poster infographique gastro-entérite: sachet de réhydratation orale (SRO) dissous dans un verre d'eau, chiffres clés sur la prévention, l'hydratation et le traitement, Pharmacie Charnal Quéven"
+                     width="768" height="1024"
+                     style="max-width:480px;width:100%;height:auto;border-radius:var(--radius-md);border:1px solid var(--beige);cursor:zoom-in;"
+                     loading="lazy"
+                     onclick="document.getElementById('img-modal-img').src=this.src; document.getElementById('img-modal').classList.add('open');">
+                <p style="font-size:0.82rem;color:var(--gray);margin-top:var(--space-sm);">Gastro-entérite: prévention et bons réflexes en un coup d'œil (cliquer pour agrandir)</p>
+            </div>
+
             <h3>Reprendre l'alimentation progressivement</h3>
 
             <p>Contrairement à une idée reçue, le jeûne prolongé n'est pas recommandé. Reprenez l'alimentation assez vite, en privilégiant les aliments faciles à digérer: riz, pâtes, carottes cuites, banane bien mûre, compotes, biscottes. Évitez les produits laitiers non fermentés, les plats gras et épicés, et l'alcool.</p>
@@ -838,6 +848,31 @@
             </nav>
         </div>
     </article>
+
+    <!-- Lightbox: agrandissement de l'infographie -->
+    <div id="img-modal" class="img-modal" onclick="this.classList.remove('open');" role="dialog" aria-label="Image agrandie">
+        <img id="img-modal-img" src="" alt="">
+    </div>
+    <style>
+        .img-modal {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(20, 20, 20, 0.9);
+            z-index: 9999;
+            align-items: center;
+            justify-content: center;
+            padding: var(--space-lg);
+            cursor: zoom-out;
+        }
+        .img-modal.open { display: flex; }
+        .img-modal img {
+            max-width: 92vw;
+            max-height: 92vh;
+            border-radius: var(--radius-md);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+        }
+    </style>
 
     <!-- Footer -->
     <!-- Teal band above footer -->

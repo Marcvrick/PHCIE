@@ -761,6 +761,16 @@
                 <p><strong>Application concrète:</strong> appliquer la crème 30 minutes avant la sortie, sur toutes les zones exposées (on oublie souvent les oreilles, la nuque, le dessus des mains). Renouveler toutes les 2 heures et après chaque bain ou transpiration.</p>
             </div>
 
+            <div style="text-align:center; margin: var(--space-2xl) 0;">
+                <img src="infographie-protection-solaire.png"
+                     alt="Infographie: protection solaire au printemps en Bretagne, indice UV, SPF et gestes essentiels, Pharmacie Charnal Quéven"
+                     width="768" height="1024"
+                     style="max-width:480px;width:100%;height:auto;border-radius:var(--radius-md);border:1px solid var(--beige);cursor:zoom-in;"
+                     loading="lazy"
+                     onclick="document.getElementById('img-modal-img').src=this.src; document.getElementById('img-modal').classList.add('open');">
+                <p style="font-size:0.82rem;color:var(--gray);margin-top:var(--space-sm);">Indice UV, SPF et gestes essentiels dès le printemps en Bretagne (cliquer pour agrandir)</p>
+            </div>
+
             <h2>Filtres minéraux ou chimiques: comment s'y retrouver?</h2>
 
             <p>C'est une question que nous entendons plusieurs fois par semaine en pharmacie. En résumé:</p>
@@ -1011,6 +1021,31 @@
             </nav>
         </div>
     </article>
+
+    <!-- Lightbox: agrandissement de l'infographie -->
+    <div id="img-modal" class="img-modal" onclick="this.classList.remove('open');" role="dialog" aria-label="Image agrandie">
+        <img id="img-modal-img" src="" alt="">
+    </div>
+    <style>
+        .img-modal {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(20, 20, 20, 0.9);
+            z-index: 9999;
+            align-items: center;
+            justify-content: center;
+            padding: var(--space-lg);
+            cursor: zoom-out;
+        }
+        .img-modal.open { display: flex; }
+        .img-modal img {
+            max-width: 92vw;
+            max-height: 92vh;
+            border-radius: var(--radius-md);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+        }
+    </style>
 
     <!-- Footer -->
     <!-- Teal band above footer -->

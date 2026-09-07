@@ -921,6 +921,16 @@
 
             <p>Si votre aîné entre dans la tranche des 18-25 ans, il a droit à un rendez-vous de prévention pris en charge à 100%, sans avance de frais ni ordonnance, que nous réalisons en pharmacie sur 30 à 45 minutes. On y aborde les antécédents, l'alimentation, l'activité physique, les consommations, le sommeil, les vaccinations et la santé mentale. Il ne remplace ni une consultation ni un bilan sanguin en présence de symptômes: il sert à repérer les risques et à orienter.</p>
 
+            <div style="text-align:center; margin: var(--space-2xl) 0;">
+                <img src="infographie-reveil-rythme-sommeil.png"
+                     alt="Infographie: recaler le sommeil de l'ado à la rentrée en 10 jours, repères sommeil, fer et vitamine D"
+                     width="1536" height="2048"
+                     style="max-width:480px;width:100%;height:auto;border-radius:var(--radius-md);border:1px solid var(--beige);cursor:zoom-in;"
+                     loading="lazy"
+                     onclick="document.getElementById('img-modal-img').src=this.src; document.getElementById('img-modal').classList.add('open');">
+                <p style="font-size:0.82rem;color:var(--gray);margin-top:var(--space-sm);">Repères pour recaler le rythme de sommeil en 10 jours (cliquer pour agrandir)</p>
+            </div>
+
             <h2>Quand ce n'est plus une fatigue de rentrée?</h2>
 
             <p>Une fatigue de recalage cède quand le rythme se réinstalle. Si trois semaines d'horaires réguliers ne changent rien, consultez le médecin, en particulier devant l'un de ces tableaux:</p>
@@ -1028,6 +1038,30 @@
         </div>
     </article>
 
+    <!-- Lightbox: agrandissement de l'infographie -->
+    <div id="img-modal" class="img-modal" onclick="this.classList.remove('open');" role="dialog" aria-label="Image agrandie">
+        <img id="img-modal-img" src="" alt="">
+    </div>
+    <style>
+        .img-modal {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(20, 20, 20, 0.9);
+            z-index: 9999;
+            align-items: center;
+            justify-content: center;
+            padding: var(--space-lg);
+            cursor: zoom-out;
+        }
+        .img-modal.open { display: flex; }
+        .img-modal img {
+            max-width: 92vw;
+            max-height: 92vh;
+            border-radius: var(--radius-md);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+        }
+    </style>
 
     <!-- Footer -->
     <!-- Teal band above footer -->

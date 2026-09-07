@@ -653,6 +653,16 @@
             <h3>Et le fer? On y pense aussi</h3>
             <p>Une fatigue qui traîne chez une femme en âge de procréer doit faire penser à une <strong>carence en fer</strong>. C'est un piège classique: on met tout sur le compte de l'hiver, alors qu'un bilan sanguin simple aurait identifié le problème. Signes évocateurs: fatigue intense, pâleur, essoufflement à l'effort, chute de cheveux, ongles cassants. Si vous vous reconnaissez, parlez-en à votre médecin pour un dosage de ferritine.</p>
 
+            <div style="text-align:center; margin: var(--space-2xl) 0;">
+                <img src="infographie-vitamine-d-flacon.png"
+                     alt="Infographie: fatigue hivernale, vitamine D, luminothérapie, magnésium et safran pour retrouver l'énergie"
+                     width="1512" height="2016"
+                     style="max-width:480px;width:100%;height:auto;border-radius:var(--radius-md);border:1px solid var(--beige);cursor:zoom-in;"
+                     loading="lazy"
+                     onclick="document.getElementById('img-modal-img').src=this.src; document.getElementById('img-modal').classList.add('open');">
+                <p style="font-size:0.82rem;color:var(--gray);margin-top:var(--space-sm);">Vitamine D, luminothérapie, magnésium: les repères contre la fatigue hivernale (cliquer pour agrandir)</p>
+            </div>
+
             <h2>5 habitudes pour tenir jusqu'au printemps</h2>
 
             <p><strong>Sortez, même sous la pluie.</strong> Même par temps couvert à Quéven, la lumière extérieure atteint 2 000 à 5 000 lux, 4 à 10 fois plus que votre salon. 20 à 30 minutes de marche le matin, même sous un ciel gris, font une vraie différence pour recaler votre horloge interne.</p>
@@ -801,6 +811,31 @@
             </nav>
         </div>
     </article>
+
+    <!-- Lightbox: agrandissement de l'infographie -->
+    <div id="img-modal" class="img-modal" onclick="this.classList.remove('open');" role="dialog" aria-label="Image agrandie">
+        <img id="img-modal-img" src="" alt="">
+    </div>
+    <style>
+        .img-modal {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(20, 20, 20, 0.9);
+            z-index: 9999;
+            align-items: center;
+            justify-content: center;
+            padding: var(--space-lg);
+            cursor: zoom-out;
+        }
+        .img-modal.open { display: flex; }
+        .img-modal img {
+            max-width: 92vw;
+            max-height: 92vh;
+            border-radius: var(--radius-md);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+        }
+    </style>
 
     <!-- Footer -->
     <!-- Teal band above footer -->

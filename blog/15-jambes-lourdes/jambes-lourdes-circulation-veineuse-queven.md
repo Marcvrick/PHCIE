@@ -2,7 +2,7 @@
 title: "Jambes lourdes: comprendre d'où elles viennent et comment les soulager"
 description: "Pourquoi vos jambes pèsent plus à la fin de journée? Votre pharmacie à Quéven explique l'insuffisance veineuse et les solutions qui marchent vraiment."
 date: 2026-04-21
-dateModified: 2026-09-05
+dateModified: 2026-09-07
 author: Équipe Pharmacie Charnal
 categories:
   - Conseils santé
@@ -17,7 +17,7 @@ tags:
   - phytothérapie
   - Quéven
   - Bretagne
-image: "blog-15-jambes-lourdes.jpg"
+image: "infographie-jambes-lourdes.png"
 og_image: "og-15-jambes-lourdes.jpg"
 ---
 
@@ -148,6 +148,8 @@ Plusieurs plantes ont une efficacité documentée dans l'IVC légère à modér�
 - **Le fragon** ou petit houx (*Ruscus aculeatus*): ses ruscogénines ont une action vasoconstrictrice veineuse documentée
 
 Les veinotoniques médicamenteux (diosmine, hespéridine, troxérutine), dont le plus connu est le Daflon, ont été progressivement déremboursés: 35% à 15% en 2006, puis déremboursement complet au 1er janvier 2008 au motif d'un service médical rendu insuffisant (HAS). Une méta-revue Cochrane a néanmoins confirmé qu'ils réduisent l'œdème et améliorent les crampes, les fourmillements et l'agitation des jambes, sans effet démontré sur la prévention des phlébites. Beaucoup de patients y sont attachés et rapportent un vrai soulagement. Notre conseil: en cas de prise au long cours, alterner les molécules tous les 3 mois pour éviter un phénomène d'échappement.
+
+![Infographie: jambes lourdes, comprendre et soulager la circulation veineuse, chiffres clés et bons réflexes](infographie-jambes-lourdes.png)
 
 ## 5 gestes du quotidien qui changent tout
 

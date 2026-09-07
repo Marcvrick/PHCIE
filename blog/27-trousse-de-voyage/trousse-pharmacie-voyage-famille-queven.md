@@ -2,7 +2,7 @@
 title: "Trousse à pharmacie de voyage: la liste pour partir avec des enfants"
 description: "La liste de la trousse à pharmacie de voyage quand on part avec des enfants: médicaments de base, diarrhée du voyageur, mal des transports, anti-moustiques par âge. Pharmacie à Quéven"
 date: 2026-06-23
-dateModified: 2026-09-05
+dateModified: 2026-09-07
 author: Équipe Pharmacie Charnal
 categories:
   - Conseils santé
@@ -18,7 +18,7 @@ tags:
   - Quéven
   - Bretagne
   - Morbihan
-image: "blog-27-trousse-de-voyage.jpg"
+image: "infographie-trousse-voyage.png"
 ---
 
 **L'essentiel en 3 points:**
@@ -79,6 +79,8 @@ Glissez aussi un thermomètre numérique: avec de jeunes enfants, c'est l'objet 
   </div>
   <p style="text-align: center; color: #7C9885; font-size: 0.82em; margin: 20px 0 0;">À compléter selon votre famille: traitements chroniques, ordonnances, carnet de santé des enfants, un antihistaminique oral en cas d'allergie et des dosettes de sérum physiologique pour les yeux et le nez.</p>
 </div>
+
+![Trousse de pharmacie de voyage ouverte avec paracétamol, SRO, pansements, crème solaire et répulsif anti-moustiques, dosages et repères pour partir en famille, Pharmacie Charnal Quéven](infographie-trousse-voyage.png)
 
 ## Comment gérer la diarrhée du voyageur, surtout chez l'enfant?
 

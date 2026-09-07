@@ -2,7 +2,7 @@
 title: "Coup de soleil: comment réagir et quand s'inquiéter?"
 description: "Coup de soleil à Quéven: les bons gestes dans les premières heures, les soins efficaces et les signes qui doivent vous amener à consulter. Conseils de votre pharmacie"
 date: 2026-06-17
-dateModified: 2026-06-17
+dateModified: 2026-09-07
 author: Équipe Pharmacie Charnal
 categories:
   - Conseils santé
@@ -18,7 +18,7 @@ tags:
   - Quéven
   - Bretagne
   - Morbihan
-image: "blog-26-coups-de-soleil.jpg"
+image: "infographie-coup-de-soleil.png"
 ---
 
 **L'essentiel en 3 points:**
@@ -94,6 +94,8 @@ Le bon réflexe se joue en deux temps: apaiser après l'exposition, et bien prot
 Côté protection, le choix se fait selon votre tolérance et votre phototype, pas selon la mode du « minéral contre chimique ». À indice égal, les deux types de filtres protègent aussi bien: un filtre minéral (oxyde de zinc, dioxyde de titane) est simplement mieux toléré sur les peaux réactives et les tout-petits dès 6 mois. Un SPF 50 filtre environ 98% des UVB, un SPF 30 environ 96,7%. La vraie différence se joue surtout dans la quantité appliquée et le renouvellement toutes les deux heures.
 
 **À savoir:** la crème solaire seule ne suffit pas. Elle se combine au chapeau, aux lunettes filtrantes, aux vêtements couvrants et à l'évitement des heures les plus chaudes.
+
+![Infographie: coup de soleil à Quéven, chiffres clés sur les UV et les bons gestes en pharmacie](infographie-coup-de-soleil.png)
 
 ## Cloques, fièvre, enfant en bas âge: quand faut-il consulter?
 
