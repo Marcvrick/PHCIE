@@ -735,9 +735,10 @@
                 <img src="infographie-coup-de-chaleur-canicule.png"
                      alt="Infographie: coup de chaleur, seuil à 40°C, signes qui alertent chez le bébé et le senior, médicaments à risque et les 3 gestes à faire, Pharmacie Charnal Quéven"
                      width="2016" height="2688"
-                     style="max-width:480px;width:100%;height:auto;border-radius:var(--radius-md);border:1px solid var(--beige);"
-                     loading="lazy">
-                <p style="font-size:0.82rem;color:var(--gray);margin-top:var(--space-sm);">Coup de chaleur: les signes qui alertent, par âge</p>
+                     style="max-width:480px;width:100%;height:auto;border-radius:var(--radius-md);border:1px solid var(--beige);cursor:zoom-in;"
+                     loading="lazy"
+                     onclick="document.getElementById('img-modal-img').src=this.src; document.getElementById('img-modal').classList.add('open');">
+                <p style="font-size:0.82rem;color:var(--gray);margin-top:var(--space-sm);">Coup de chaleur: les signes qui alertent, par âge (cliquer pour agrandir)</p>
             </div>
 
             <h2>L'essentiel à retenir</h2>
@@ -844,6 +845,31 @@
         </div>
     </article>
 
+    <!-- Lightbox: agrandissement de l'infographie -->
+    <div id="img-modal" class="img-modal" onclick="this.classList.remove('open');" role="dialog" aria-label="Image agrandie">
+        <img id="img-modal-img" src="" alt="">
+    </div>
+    <style>
+        .img-modal {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(20, 20, 20, 0.9);
+            z-index: 9999;
+            align-items: center;
+            justify-content: center;
+            padding: var(--space-lg);
+            cursor: zoom-out;
+        }
+        .img-modal.open { display: flex; }
+        .img-modal img {
+            max-width: 92vw;
+            max-height: 92vh;
+            border-radius: var(--radius-md);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+        }
+    </style>
+
     <!-- Footer -->
     <!-- Teal band above footer -->
     <div style="background: #2D5F5D; height: 80px; width: 100%; flex-shrink: 0;"></div>
@@ -916,6 +942,12 @@
                 navToggle.setAttribute('aria-expanded', isOpen);
             });
         }
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                const modal = document.getElementById('img-modal');
+                if (modal) modal.classList.remove('open');
+            }
+        });
     </script>
     <script src="../../nav.js" defer></script>
 </body>
