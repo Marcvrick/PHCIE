@@ -2,7 +2,7 @@
 title: "Intoxications alimentaires d'été : aliments à risque et bons réflexes"
 description: "Œufs, viande, mayonnaise maison: les aliments à risque en été et les bons réflexes en cas d'intoxication. Conseils de votre pharmacie à Quéven"
 date: 2026-08-11
-dateModified: 2026-09-05
+dateModified: 2026-09-07
 author: Équipe Pharmacie Charnal
 categories:
   - Conseils santé
@@ -19,7 +19,7 @@ tags:
   - été
   - Quéven
   - Bretagne
-image: "<!-- TODO: Ajouter image hero -->"
+image: "infographie-intoxications-alimentaires-ete.png"
 ---
 
 **L'essentiel en 3 points :**
@@ -42,6 +42,8 @@ Entre 5°C et 60°C, la zone dite « de danger », les bactéries alimentaires d
 Nous voyons revenir les mêmes scénarios chaque été: aliments manipulés à mains nues, ustensiles partagés entre cru et cuit, glacière mal isolée oubliée en plein soleil. Chaque montée du thermomètre s'accompagne d'une hausse des cas que nous recevons en pharmacie.
 
 [INFOGRAPHIE HTML: la zone de danger bactérienne, ≤4°C zone sûre / 5-60°C zone de danger / ≥70°C cuisson sûre]
+
+![Infographie: la zone de danger bactérienne 5-60°C, les 6 aliments à risque, les délais d'apparition des symptômes et les bons réflexes](infographie-intoxications-alimentaires-ete.png)
 
 ## Mayonnaise, œufs, viande: les 6 aliments à surveiller
 
