@@ -4,7 +4,7 @@
   <!-- Page d'accueil -->
   <url>
     <loc>https://www.pharmaciecharnal.com/</loc>
-    <lastmod>2026-09-05</lastmod>
+    <lastmod>2026-09-07</lastmod>
   </url>
 
   <!-- Pages principales -->
@@ -51,7 +51,7 @@
 
   <url>
     <loc>https://www.pharmaciecharnal.com/blog.html</loc>
-    <lastmod>2026-09-05</lastmod>
+    <lastmod>2026-09-07</lastmod>
   </url>
 
   <url>
@@ -110,8 +110,13 @@
 
   <!-- Articles de blog -->
   <url>
+    <loc>https://www.pharmaciecharnal.com/blog/35-champignons-bretagne/champignons-bretagne-cueillette-identification-queven.html</loc>
+    <lastmod>2026-09-07</lastmod>
+  </url>
+
+  <url>
     <loc>https://www.pharmaciecharnal.com/blog/33-rentree-rythme-ado/rentree-rythme-sommeil-ado-queven.html</loc>
-    <lastmod>2026-09-05</lastmod>
+    <lastmod>2026-09-07</lastmod>
   </url>
 
   <url>

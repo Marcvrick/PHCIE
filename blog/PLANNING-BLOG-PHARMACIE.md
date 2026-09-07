@@ -1,7 +1,7 @@
 # PLANNING BLOG PHARMACIE CHARNAL
 
 Planning éditorial - Pharmacie Charnal à Quéven
-**Dernière mise à jour**: 25 août 2026
+**Dernière mise à jour**: 5 septembre 2026
 
 > ⚠️ **SOURCE UNIQUE DU PLANNING.** Ce fichier est la seule référence pour les dates, titres et statuts d'articles. La stratégie SEO (principes, checklist, banque d'idées) reste dans [SEO blog strategy.md](SEO%20blog%20strategy.md) — mais son ancien planning hebdo a été retiré pour éviter les doublons contradictoires. Ne jamais recréer un calendrier ailleurs.
 >
@@ -26,11 +26,60 @@ Planning éditorial - Pharmacie Charnal à Quéven
 | 30 | Lun 11 août 2026 | Intoxications alimentaires d'été: aliments à risque et bons réflexes | Long éditorial | PiLeJe (probiotiques) | ✅ **PUBLIÉ 4 août 2026** (dossier `31-intoxications-alimentaires-ete/`, hero + OG générés, photo femme tenant son ventre, GMB #33, `blog.html` + `sitemap.xml` + `feed.xml` + `llms.txt` à jour, double-lien nav avec #28 Premiers secours). |
 | 31 | Lun 18 août 2026 | Coup de chaleur et canicule: reconnaître les signes chez l'enfant et le senior | Long éditorial |, | ✅ **PUBLIÉ** (dossier `32-coup-de-chaleur-canicule/`, HTML en ligne, hero `blog-35` + OG générés, GMB #35, présent dans `blog.html` + `sitemap.xml` + `feed.xml` + `llms.txt`. Lien « Article suivant » vers #32 Rentrée ajouté le 25 août 2026). |
 | 32 | Lun 31 août 2026 | Rentrée: comment remettre votre ado dans le rythme | Long éditorial |, | ✅ **PUBLIÉ 25 août 2026** (dossier `33-rentree-rythme-ado/`, en ligne, daté du 31 août. Hero `blog-36` + OG générés, 3 infographies CSS/SVG, `blog.html` + `sitemap.xml` + `feed.xml` + `llms.txt` à jour, double lien nav avec #31. Shortlink da.gd/hGSw7z, is.gd en panne. Titre initial « votre ado a-t-il besoin de vitamines » abandonné: à la rentrée le parent ne cherche pas « concentration », l'axe est le rythme. Revue médicale appliquée (oméga 3 nuancés, magnésium sans dose par défaut, vitamine D préventive sans dosage systématique, encadré urgence 15/3114). Reste: publication GMB #36, Instagram, Facebook, LinkedIn). |
+| 33 | Lun 14 sept 2026 | Champignons en Bretagne: bien les reconnaître et savoir où faire vérifier sa récolte | Long éditorial |, | 📝 **RÉDIGÉ 6 sept 2026**, dossier `35-champignons-bretagne/` (.md + .html + fiche GMB #37, da.gd/MAF9TH). Bloquant levé: Dany confirme que Laure n'identifie pas les champignons au comptoir, donc l'article oriente vers l'Association Mycologique Ploemeur-Morbihan (permanences lundi oct-nov) et le centre antipoison Grand Ouest (02 41 48 21 21), jamais vers un service en pharmacie, tout en citant que l'ANSES nomme « certains pharmaciens » parmi les relais possibles. Chiffres sourcés au rapport ANSES 2025-VIG-0015 (1 320 intoxiqués juil-déc 2024, pic octobre, 3 décès, confusion amanite phalloïde/coulemelle) lu directement en PDF, croisé avec les notes de recherche de Dany (`blog/DRAFT/GROK.md`, `Perplexity 1.md`). Reste: image hero + OG, ajout à `blog.html`/`sitemap.xml`/`feed.xml`/`llms.txt` au moment de la publication. |
+| 34 | Lun 21 sept 2026 | Poux de rentrée: les repérer, les traiter, ce qui ne marche pas | Long |, | 🔜 **À ÉCRIRE**, dossier `34-poux-rentree/` déjà réservé. Créneau confirmé dans la fenêtre décidée le 25 août. |
+| 35 | Lun 28 sept 2026 | Octobre Rose: le dépistage du cancer du sein en pratique | Long éditorial |, | 🔜 **À ÉCRIRE**. Publier **avant le 1er octobre** pour être indexé quand le mois démarre. Reprendre la forme de #09 Mars Bleu (dépistage colorectal), qui existe déjà et sert de modèle. Mots-clés: `depistage cancer du sein quel age`, `mammographie tous les combien`, `depistage cancer du sein ameli`. |
+| 36 | Lun 5 oct 2026 | Grippe ou Covid: comment faire la différence, et qui doit se faire vacciner | Long éditorial |, | 🔜 **À ÉCRIRE**. Publier **avant l'ouverture de la campagne** (mi-octobre en général, 14 oct en 2025, date 2026-2027 pas encore officielle au 2 sept, à vérifier sur ameli.fr). **Anti-cannibalisation: ne pas refaire `vaccination-grippe-queven.html`** (page service = prendre rendez-vous ici) ni `vaccination-adulte-guide-pratique` (rappels 25/45/65 ans). L'angle du blog est le tri des symptômes et l'éligibilité. Lier vers la page service, pas la concurrencer. Mots-clés: `grippe ou covid comment savoir`, `vaccin grippe pharmacie sans ordonnance`, `vaccin grippe pharmacien age`. |
+| 37 | Lun 12 oct 2026 | Chute de cheveux d'automne: combien de temps ça dure, quand s'inquiéter | Buying-intent | Klorane | 🔜 **À ÉCRIRE**. Pic saisonnier septembre-octobre. Autocomplétion dense: `chute de cheveux automne femme`, `perte de cheveux automne durée`, `perte de cheveux automne que faire`, `chute de cheveux saisonnière automne`. Sert aussi de maillage vers `quel-shampoing-pharmacie-choisir`, qui est à zéro impression, et vers la page marque Klorane. |
+| 38 | Lun 19 oct 2026 | Changement d'heure: remettre un enfant dans son rythme | Long |, | 🔜 **À ÉCRIRE**. Passage à l'heure d'hiver le **dimanche 25 octobre 2026**, publier une semaine avant. **Anti-cannibalisation: angle enfant et bébé obligatoire.** L'adulte est déjà couvert par `troubles-sommeil-solutions-naturelles`, l'adolescent par #32. Mots-clés: `changement d heure sommeil bebe`, `changement d'heure sommeil enfant`. |
+| 39 | Lun 26 oct 2026 | Arrêter de fumer: ce que la pharmacie prend en charge | Buying-intent |, | 🔜 **À ÉCRIRE**. Publier avant le 1er novembre pour le Mois sans tabac. Angle officinal: substituts nicotiniques remboursés, dosage, échec des demi-mesures. Autocomplétion majoritairement `hypnose` et `laser`, deux méthodes hors pharmacie: le dire franchement plutôt que de l'ignorer. |
 
+> ✅ **Plan septembre-octobre 2026 VALIDÉ PAR DANY le 5 septembre.** Sept créneaux, un par lundi, du 14 septembre au 26 octobre. Les sept sujets sont arrêtés, il reste à les écrire. Raisonnement et arbitrages: voir « Pourquoi ces sept sujets » plus bas.
+>
 > 📌 **Poux de rentrée: reporté à mi-septembre 2026** (décision Dany, 25 août 2026). La contamination démarre bien dès le brassage des classes, mais le parent ne cherche « poux » qu'après avoir trouvé quelque chose sur une tête, soit deux à trois semaines après la rentrée, souvent via le mot de l'école. Un article publié le 31 août serait lu la semaine des fournitures scolaires. Créneau retenu: lundi 14 ou 21 septembre, dossier `34-poux-rentree/` réservé. Chiffre à ne pas reprendre tel quel: les « 6 à 8 millions d'enfants par an en France » circulent sans source primaire identifiable.
 >
 > ✅ **Tiques (#25) — PUBLIÉ en juillet 2026** (`25-tiques-bretagne/`), dans la fenêtre prévue (pic saison Lyme). Ancien verrou « première semaine de juillet, jamais avant » levé: article en ligne dans `blog.html`.
 >
+### Pourquoi ces sept sujets (analyse du 5 septembre 2026)
+
+**Le problème que ce planning doit régler.** Le trafic du blog s'est effondré depuis mi-août:
+**1 975 impressions le 15 août, 326 le 2 septembre, soit -83 %.** Tout venait des articles d'été
+(méduses, hydratation, canicule, tiques) qui sortent de saison en bloc. Le blog n'a rien pour
+l'automne. Ce n'est pas un problème de qualité, c'est un problème de calendrier.
+
+**Ce sur quoi la sélection s'appuie, et ce qui manque.** Le site n'a pas d'historique
+septembre-octobre: les données Search Console ne démarrent qu'en février 2026. Impossible donc
+de s'appuyer sur la saison dernière. Les volumes DataForSEO sont hors d'atteinte, le compte
+OpenSEO n'a plus de crédits. La sélection combine donc: le calendrier sanitaire français
+(prévisible), l'autocomplétion Google pour les formulations, et l'analyse anti-cannibalisation
+contre les 31 articles déjà publiés. **Aucun chiffre de volume de recherche n'est avancé ici,
+il n'y en a pas.**
+
+**Le format qui marche sur ce site.** L'article méduses est le premier gisement du site
+(8 771 impressions, position 7,3) et c'est un article d'**identification d'un risque local et
+saisonnier**. Tiques, deuxième du même genre, fonctionne aussi. Les champignons sont exactement
+cette forme, à la bonne saison, avec en plus un rôle officiel du pharmacien reconnu par l'ANSES.
+C'est la raison pour laquelle ce sujet ouvre le planning plutôt que les poux.
+
+**Ce qui a été écarté, et pourquoi**
+
+- **Vitamine D et immunité d'hiver.** Écarté malgré la présence du sujet dans le plan de mars:
+  `prevenir-maux-hiver` couvre déjà vitamine D, immunité et gestes du quotidien, et son titre a
+  été recalé le 5 septembre sur « Immunité en hiver ». Un article dédié se cannibaliserait.
+- **Mal de dos, migraines.** Priorité 1 du plan de mars, jamais publiés, gros volume, mais
+  evergreen: aucune urgence à les caler en septembre-octobre. Ils tiennent la banc.
+- **Mycoses et verrues plantaires, allergie aux acariens, ménopause, reflux.** Sujets valides,
+  gardés en réserve. Sept créneaux, sept sujets, pas de remplissage.
+
+**Le vrai levier, plus gros que n'importe quel article de blog.** `pharmacie de garde lorient`
+apporte **4 270 impressions et 87 clics** sur 12 mois, en position 7, avec 2 % de clics. Toute la
+famille « pharmacie de garde » et « pharmacie ouverte » pèse plusieurs milliers d'impressions
+supplémentaires. C'est de loin la première demande du site, elle est servie par une page service
+et non par le blog. **Passer cette page de la position 7 à la position 3 rapporterait plus que
+les sept articles ci-dessous réunis.** À traiter séparément du planning éditorial.
+
+---
+
 > **Marques restant à couvrir**: Boiron (homéopathie → automne), Bion3 (couvert par #24 Probiotiques), Biogaran (couvert par #21). Voir [BRAND-BLOG-MAPPING.md](BRAND-BLOG-MAPPING.md).
 
 ---
