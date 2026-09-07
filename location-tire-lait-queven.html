@@ -267,7 +267,7 @@
         }
         .service-icon svg { width: 24px; height: 24px; }
 
-        .service-detail-card h3 {
+        .service-detail-card h2, .service-detail-card h3 {
             font-family: var(--font-display);
             font-size: var(--text-2xl);
             font-weight: 500;
@@ -410,11 +410,11 @@
         .footer-logo-name { font-family: var(--font-display); font-size: var(--text-lg); font-weight: 600; color: var(--white); }
         .footer-logo-tagline { font-size: var(--text-xs); color: rgba(255, 255, 255, 0.6); text-transform: uppercase; letter-spacing: 0.05em; }
         .footer-about p { font-size: var(--text-sm); line-height: 1.7; color: rgba(255, 255, 255, 0.7); margin-bottom: var(--space-24); }
-        .footer-social h4 { font-family: var(--font-display); font-size: var(--text-sm); font-weight: 600; color: var(--white); margin-bottom: var(--space-12); }
+        .footer-social h3, .footer-social h4 { font-family: var(--font-display); font-size: var(--text-sm); font-weight: 600; color: var(--white); margin-bottom: var(--space-12); }
         .social-links { display: flex; gap: var(--space-12); }
         .social-link { display: flex; align-items: center; justify-content: center; width: 40px; height: 40px; border-radius: 50%; background: rgba(255, 255, 255, 0.1); color: rgba(255, 255, 255, 0.8); transition: all var(--duration-normal) var(--ease-standard); text-decoration: none; }
         .social-link:hover { background: rgba(255, 255, 255, 0.2); color: var(--white); }
-        .footer-col h4 { font-family: var(--font-display); font-size: var(--text-sm); font-weight: 600; color: var(--white); margin-bottom: var(--space-16); }
+        .footer-col h3, .footer-col h4 { font-family: var(--font-display); font-size: var(--text-sm); font-weight: 600; color: var(--white); margin-bottom: var(--space-16); }
         .footer-col ul { list-style: none; padding: 0; }
         .footer-col ul li { font-size: var(--text-sm); color: rgba(255, 255, 255, 0.7); margin-bottom: var(--space-8); line-height: 1.5; }
         .footer-col ul li a { color: rgba(255, 255, 255, 0.7); text-decoration: none; transition: color var(--duration-normal) var(--ease-standard); }
@@ -654,7 +654,7 @@
             <div class="services-list">
                 <div id="tire-lait" class="service-detail-card" style="scroll-margin-top: 120px; --card-accent: var(--copper);">
                     <div>
-                        <h3>Ce qu'il faut savoir</h3>
+                        <h2>Ce qu'il faut savoir</h2>
                         <p>La location est prise en charge par l'Assurance Maladie sur ordonnance, délivrée par un médecin ou une sage-femme, pour tout allaitement maternel.</p>
                         <ul>
                             <li><span class="check">✓</span> Marque Medela</li>
@@ -671,14 +671,14 @@
 
                 <div id="medela" class="service-detail-card" style="scroll-margin-top: 120px; --card-accent: var(--copper);">
                     <div>
-                        <h3>Medela, une marque de référence en maternité</h3>
+                        <h2>Medela, une marque de référence en maternité</h2>
                         <p>Medela est une marque suisse spécialisée dans le matériel d'allaitement, largement utilisée dans les maternités. La pharmacie Charnal loue ses tire-lait électriques.</p>
                     </div>
                 </div>
 
                 <div id="kit-double-pompage" class="service-detail-card" style="scroll-margin-top: 120px; --card-accent: var(--copper);">
                     <div>
-                        <h3>Qu'est-ce que le kit double pompage?</h3>
+                        <h2>Qu'est-ce que le kit double pompage?</h2>
                         <p>Le kit double pompage permet de tirer le lait des deux seins en même temps, au lieu d'un seul. La séance de tirage est plus courte, et la stimulation plus complète aide à maintenir la lactation.</p>
                         <ul>
                             <li><span class="check">✓</span> Tire les deux seins simultanément</li>
@@ -690,7 +690,7 @@
 
                 <div id="tarif-location" class="service-detail-card" style="scroll-margin-top: 120px; --card-accent: var(--copper);">
                     <div>
-                        <h3>Le tarif de la location</h3>
+                        <h2>Le tarif de la location</h2>
                         <p>Le tarif remboursé par l'Assurance Maladie est de 7,50€ par semaine sur ordonnance.</p>
                         <div class="service-links-row">
                             <a href="https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000038219823" class="service-link" target="_blank" rel="noopener">Texte officiel, tarifs de location →</a>
@@ -700,7 +700,7 @@
 
                 <div id="reste-a-charge" class="service-detail-card" style="scroll-margin-top: 120px; --card-accent: var(--copper);">
                     <div>
-                        <h3>Les kits téterelle: ce qui est remboursé</h3>
+                        <h2>Les kits téterelle: ce qui est remboursé</h2>
                         <p>Les kits personnels (téterelle, biberon, tube) sont remboursés séparément de la location, avec un tarif de base et un prix limite de vente.</p>
                         <div class="info-table-wrap">
                         <table class="info-table">
@@ -785,7 +785,7 @@
                     </div>
                     <p>Votre pharmacie familiale depuis plus de 40 ans. Une tradition de soins personnalisés et attentifs.</p>
                     <div class="footer-social">
-                        <h4>Suivez-nous</h4>
+                        <h3>Suivez-nous</h3>
                         <div class="social-links">
                             <a href="https://www.instagram.com/pharmaciecharnalqueven/" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Instagram">
                                 <svg width="30" height="30" viewBox="0 0 24 24" fill="none">
@@ -803,7 +803,7 @@
                     </div>
                 </div>
                 <div class="footer-col">
-                    <h4>Navigation</h4>
+                    <h3>Navigation</h3>
                     <ul>
                         <li><a href="/">Accueil</a></li>
                         <li><a href="services.html">Services</a></li>
@@ -815,7 +815,7 @@
                     </ul>
                 </div>
                 <div class="footer-col">
-                    <h4>Contact</h4>
+                    <h3>Contact</h3>
                     <ul>
                         <li>32 Place de Toulouse</li>
                         <li>56530 Quéven</li>
@@ -823,7 +823,7 @@
                     </ul>
                 </div>
                 <div class="footer-col">
-                    <h4>Horaires</h4>
+                    <h3>Horaires</h3>
                     <ul>
                         <li>Lun-Ven: 9h-12h30 / 14h-19h15</li>
                         <li>Samedi: 9h-12h30</li>

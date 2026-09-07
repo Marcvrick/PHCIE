@@ -796,7 +796,7 @@ p {
     margin-top: var(--space-24);
 }
 
-.footer-social h4 {
+.footer-social h3, .footer-social h4 {
     color: var(--white);
     font-size: var(--text-base);
     margin-bottom: var(--space-16);
@@ -829,7 +829,7 @@ p {
     height: 20px;
 }
 
-.footer-col h4 {
+.footer-col h3, .footer-col h4 {
     color: var(--white);
     font-size: var(--text-base);
     margin-bottom: var(--space-16);
@@ -913,7 +913,7 @@ p {
         grid-area: hours;
     }
 
-    .footer-col h4 {
+    .footer-col h3, .footer-col h4 {
         font-size: var(--text-sm);
     }
 

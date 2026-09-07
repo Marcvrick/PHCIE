@@ -95,7 +95,7 @@ function replaceNavbar(html, rel) {
 }
 
 function replaceFooterNav(html, rel) {
-    const h4 = /<h4\b[^>]*>\s*Navigation\s*<\/h4>/i.exec(html);
+    const h4 = /<h([34])\b[^>]*>\s*Navigation\s*<\/h\1>/i.exec(html);
     if (!h4) return html;
     const ulStart = html.indexOf('<ul', h4.index + h4[0].length);
     if (ulStart < 0) return html;

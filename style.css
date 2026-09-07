@@ -1167,7 +1167,7 @@ a {
     margin-top: var(--space-lg);
 }
 
-.footer-social h4 {
+.footer-social h3, .footer-social h4 {
     color: var(--white);
     font-size: var(--text-lg);
     margin-bottom: var(--space-md);
@@ -1317,7 +1317,7 @@ section[id] {
     scroll-margin-top: 100px;
 }
 
-.footer-col h4 {
+.footer-col h3, .footer-col h4 {
     color: var(--white);
     font-size: var(--text-lg);
     margin-bottom: var(--space-md);
