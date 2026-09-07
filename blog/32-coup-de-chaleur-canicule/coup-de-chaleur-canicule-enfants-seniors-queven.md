@@ -2,7 +2,7 @@
 title: "Coup de chaleur et canicule : reconnaître les signes chez l'enfant et le senior"
 description: "Enfants et seniors sont les plus exposés au coup de chaleur en canicule. Signes à repérer, médicaments à risque, gestes avant les secours à Quéven"
 date: 2026-08-18
-dateModified: 2026-08-18
+dateModified: 2026-09-07
 author: Équipe Pharmacie Charnal
 categories:
   - Conseils santé
@@ -28,7 +28,7 @@ og_image: "og-35-coup-de-chaleur-canicule.jpg"
 
 ---
 
-# Coup de chaleur et canicule : reconnaître les signes chez l'enfant et le senior
+# Coup de chaleur et canicule: reconnaître les signes chez l'enfant et le senior
 
 Mi-août. Le thermomètre grimpe à Quéven, et pas seulement l'après-midi. Une patiente vient nous voir pour sa mère de 84 ans, un peu confuse depuis la veille, qu'elle attribuait à la fatigue du grand âge. Après quelques questions, la fatigue s'est révélée être tout autre chose.
 
@@ -76,6 +76,8 @@ Ils sont déconseillés en cas d'insuffisance rénale ou d'anurie, ce qui justif
 
 Plusieurs signaux imposent d'appeler le 15 ou le 112 sans délai, quel que soit l'âge: une température corporelle supérieure ou égale à 40°C, une perte de connaissance, des convulsions, ou un délire (Ameli.fr). Chez le senior, une confusion brutale ou une aggravation en quelques heures suffit à elle seule à déclencher l'appel, même sans thermomètre disponible.
 
+![Infographie: coup de chaleur, seuil à 40°C, signes qui alertent chez le bébé et le senior, médicaments à risque et les 3 gestes à faire](infographie-coup-de-chaleur-canicule.png)
+
 ## L'essentiel à retenir
 
 | Situation | Geste immédiat | Qui consulter |
@@ -113,18 +115,18 @@ Diurétiques, certains antihypertenseurs, anti-inflammatoires, neuroleptiques, a
 
 ---
 
-**Pour aller plus loin :** les gestes de premiers secours détaillés, quel que soit l'âge: [Premiers secours été : les gestes essentiels](../29-premiers-secours-ete/premiers-secours-ete-gestes-essentiels-queven.html)
+**Pour aller plus loin :** les gestes de premiers secours détaillés, quel que soit l'âge: [Premiers secours été: les gestes essentiels](../29-premiers-secours-ete/premiers-secours-ete-gestes-essentiels-queven.html)
 
 ---
 
 **Références :**
 
-1. Santé publique France, Chaleur et santé, bilan de l'été 2025 : plus de 5 700 décès attribuables à la chaleur, dont plus de 1 900 pendant les épisodes de canicule
-2. Santé publique France, Chaleur et santé, bilan de l'été 2024 : plus de 3 700 décès attribuables sur la saison, personnes de 75 ans et plus majoritaires
-3. Ameli.fr / Assurance Maladie, Canicule et soins urgents : épuisement, déshydratation et coup de chaleur : définition, seuil de 40°C, médicaments déconseillés (paracétamol, aspirine, AINS)
-4. Ameli.fr / Assurance Maladie, prévenir les risques médicamenteux en cas de fortes chaleurs : liste des classes de médicaments à risque
+1. Santé publique France, Chaleur et santé, bilan de l'été 2025: plus de 5 700 décès attribuables à la chaleur, dont plus de 1 900 pendant les épisodes de canicule
+2. Santé publique France, Chaleur et santé, bilan de l'été 2024: plus de 3 700 décès attribuables sur la saison, personnes de 75 ans et plus majoritaires
+3. Ameli.fr / Assurance Maladie, Canicule et soins urgents: épuisement, déshydratation et coup de chaleur: définition, seuil de 40°C, médicaments déconseillés (paracétamol, aspirine, AINS)
+4. Ameli.fr / Assurance Maladie, prévenir les risques médicamenteux en cas de fortes chaleurs: liste des classes de médicaments à risque
 5. Ameli.fr / Assurance Maladie, conseils pour protéger les plus jeunes en période de fortes chaleurs
-6. Haute Autorité de Santé (HAS), solutés de réhydratation orale : indications, posologie, contre-indications
-7. VIDAL, coup de chaleur et déshydratation : conduite à tenir
-8. Sémiologie pédiatrique de la déshydratation : signes de déshydratation extracellulaire (fontanelle, pli cutané) chez le nourrisson
+6. Haute Autorité de Santé (HAS), solutés de réhydratation orale: indications, posologie, contre-indications
+7. VIDAL, coup de chaleur et déshydratation: conduite à tenir
+8. Sémiologie pédiatrique de la déshydratation: signes de déshydratation extracellulaire (fontanelle, pli cutané) chez le nourrisson
 
