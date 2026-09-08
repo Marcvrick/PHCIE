@@ -119,7 +119,7 @@ Generous margins. Cards aligned to an invisible grid. No watermarks, no QR code,
 
 Moins de cartes = plus lisible. Si le texte sort tordu, régénérer avec **moins de faits**, pas plus d’instructions.
 
-**Insertion dans l’article : lightbox obligatoire.** Une fois le PNG téléchargé et placé dans le
+**Insertion dans l’article: lightbox obligatoire.** Une fois le PNG téléchargé et placé dans le
 dossier de l’article, l’image cliquable (agrandissement plein écran, fermeture au clic/Échap) est
 une étape systématique, pas optionnelle. Procédure et snippet exact:
 `~/.claude/skills/pharmacie-charnal-blog/references/blog-article-template.md` § *7bis*.
