@@ -18,6 +18,14 @@ La nuit passe par le 3237, qui enregistre l'identite de l'appelant.
 
 Ce script retire du fichier public tout ce qui constitue un calendrier, puis
 verifie par les VALEURS qu'il n'en reste rien.
+
+En plus de ce retrait, le script verifie aussi qu'un element SANS RAPPORT avec
+les gardes n'a pas ete efface par erreur en meme temps : le bandeau "dernier
+article de blog" (section .latest-blog-banner + script d'auto-fetch). Le
+05/09/2026 le nettoyage du calendrier avait aussi supprime ce bandeau en
+collateral (jamais demande) ; corrige le 14/09/2026. Ce garde-fou bloque toute
+recidive, ici plutot que dans un script separe car ce fichier est deja le seul
+point de passage oblige avant tout commit touchant cette page.
 """
 import re
 import sys
@@ -145,9 +153,28 @@ if len(dates_garde) > 1:
 if len(libelles) > 1:
     fuites.append(f"{len(libelles)} dates affichees dans les cartes : {sorted(libelles)}")
 
+# ------------------------------------------ 5. presence du bandeau dernier article
+# Verification positive (pas une fuite a retirer) : ces marqueurs doivent
+# EXISTER. S'ils manquent, le bandeau a ete efface, par erreur ou en meme
+# temps qu'un autre nettoyage.
+manques = []
+for motif, libelle in [
+    (r'class="latest-blog-banner"', "section .latest-blog-banner"),
+    (r'id="lbb-link"', "lien du bandeau (lbb-link)"),
+    (r'id="lbb-title"', "titre du bandeau (lbb-title)"),
+    (r"Auto-fetch du dernier article depuis blog\.html", "script d'auto-fetch"),
+]:
+    if not re.search(motif, final):
+        manques.append(libelle)
+
 print("\n--- verification ---")
 if fuites:
     for f in fuites:
         print(f"  FUITE : {f}")
+if manques:
+    for m in manques:
+        print(f"  MANQUE : {m} (bandeau dernier article de blog effacé)")
+if fuites or manques:
     sys.exit(1)
 print("  aucun calendrier, aucune garde de nuit, aucune date future dans la page  OK")
+print("  bandeau dernier article de blog present  OK")
