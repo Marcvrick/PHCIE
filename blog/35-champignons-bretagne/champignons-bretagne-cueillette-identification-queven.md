@@ -2,7 +2,7 @@
 title: "Champignons en Bretagne: bien les reconnaître et savoir où faire vérifier sa récolte"
 description: "Amanite phalloïde, cèpes, girolles: reconnaître les champignons du Morbihan et savoir où faire vérifier sa récolte à l'automne. Pharmacie à Quéven"
 date: 2026-09-07
-dateModified: 2026-09-07
+dateModified: 2026-09-14
 author: Équipe Pharmacie Charnal
 categories:
   - Conseils santé
@@ -134,7 +134,7 @@ Le signal le plus trompeur est le délai: des troubles digestifs qui apparaissen
 
 Contactez immédiatement le centre antipoison et de toxicovigilance du Grand Ouest, qui couvre la Bretagne, au **02 41 48 21 21** (24h/24), dès les premiers symptômes ou en cas de doute après ingestion, même sans symptôme. Composez le **15** (SAMU) ou le **112** en cas de vomissements importants, de signes de déshydratation chez un enfant, ou de tout signe neurologique (vertiges, confusion). Emportez si possible les restes du repas ou une photo de la récolte: c'est souvent ce qui permet d'orienter le traitement le plus vite.
 
-![Infographie: reconnaître l'amanite phalloïde (chapeau vert-olive, anneau, volve), chiffres clés des intoxications 2024 et les gestes qui protègent](infographie-champignons-bretagne.png)
+![Infographie: bien reconnaître l'amanite phalloïde (chapeau vert-olive, anneau, volve), chiffres clés des intoxications 2024 et où faire vérifier sa récolte dans le Morbihan](infographie-champignons-bretagne.png)
 
 ## L'essentiel à retenir
 
