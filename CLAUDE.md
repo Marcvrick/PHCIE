@@ -199,6 +199,7 @@ le commit. Le comportement du hamburger vit dans `nav.js` seul, jamais dans un s
 
 **Cosmétiques:** Bioderma, La Roche-Posay, Avène, Nuxe, La Rosée, Mustela, Klorane
 **Compléments:** PiLeJe, S.I.D Nutrition, Boiron, Aragan, Nat&Form, Bion 3, Biogaran
+**Parasitologie (poux):** Pouxit, Biogaran (gamme Conseil/Kids)
 
 **❌ Ne JAMAIS inventer de marques**
 
