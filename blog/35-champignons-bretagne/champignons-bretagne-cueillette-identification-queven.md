@@ -2,7 +2,7 @@
 title: "Champignons en Bretagne: bien les reconnaître et savoir où faire vérifier sa récolte"
 description: "Amanite phalloïde, cèpes, girolles: reconnaître les champignons du Morbihan et savoir où faire vérifier sa récolte à l'automne. Pharmacie à Quéven"
 date: 2026-09-07
-dateModified: 2026-09-14
+dateModified: 2026-09-15
 author: Équipe Pharmacie Charnal
 categories:
   - Conseils santé
