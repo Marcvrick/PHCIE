@@ -189,6 +189,34 @@ l'accueil reste sur l'article précédent et son image clignote au chargement.
 `node build.js --check` sort en 1 si une page a dérivé. Le hook `pre-commit` le lance et refuse
 le commit. Le comportement du hamburger vit dans `nav.js` seul, jamais dans un script de page.
 
+### Publier un article touche aussi `sitemap.xml`, `llms.txt`, `feed.xml` (aucun n'est automatique)
+
+Trouvé le 21 septembre 2026: l'article #34 (Poux de rentrée) était en ligne, dans `blog.html`
+et l'accueil, depuis une semaine sans apparaître dans aucun des trois. Aucun outil du repo ne
+le détecte:
+
+- `sync-sitemap.js` ne fait que **recaler les `<lastmod>` des URL déjà présentes** dans
+  `sitemap.xml` (via `git log`). Il ne compare jamais la liste des `.html` sur le disque à la
+  liste des `<loc>` du sitemap, donc un article absent du fichier reste invisible pour
+  Google sans qu'aucun check n'échoue, ni en local ni au hook `pre-commit`.
+- `llms.txt` et `feed.xml` (RSS) sont des fichiers texte édités à la main, aucun script ne les
+  régénère depuis `blog.html`.
+
+**Checklist à chaque nouvel article, en plus de `blog.html` + `node build.js`:**
+
+1. `sitemap.xml` — ajouter un bloc `<url>` sous `<!-- Articles de blog -->` avec le `<loc>`
+   de l'article. Le `<lastmod>` sera recalé automatiquement au commit par `sync-sitemap.js`
+   (hook `pre-commit`), pas la peine de chercher la date exacte.
+2. `llms.txt` — ajouter une ligne dans `## Articles récents` (nouvel article en tête de liste)
+   et mettre à jour `> Last updated: YYYY-MM-DD`.
+3. `feed.xml` — ajouter un `<item>` (titre, lien, guid, pubDate au format RFC 822, description
+   courte **sans accents**, cf. items existants) et mettre à jour `<lastBuildDate>`.
+
+Aucun de ces trois n'est vérifié par `node build.js --check` ni par le hook `pre-commit`: la
+seule garde est de le faire à chaque publication. Valider avec
+`python3 -c "import xml.etree.ElementTree as ET; ET.parse('sitemap.xml')"` (idem `feed.xml`)
+avant de committer.
+
 ---
 
 ## Règles de Contenu Web

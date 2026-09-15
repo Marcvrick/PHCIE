@@ -30,13 +30,13 @@ og_image: "og-38-poux-rentree.jpg"
 
 # Poux de rentrée: les repérer, les traiter, ce qui ne marche pas
 
-Un mercredi soir de septembre. Le mot de l'école, plié en quatre au fond du cartable, ressort au moment du bain. Le réflexe classique: foncer au rayon parapharmacie, prendre le produit qui promet d'agir en une seule application, traiter toute la maison le soir même. Personne n'a encore regardé la tête.
+Un mercredi soir de septembre. Au moment du bain, l'enfant se gratte la tête. Le réflexe classique: foncer au rayon parapharmacie, prendre le produit qui promet d'agir en une seule application, traiter toute la maison le soir même. Personne n'a encore regardé la tête.
 
-Dans les écoles de Quéven comme partout ailleurs, ce mot revient chaque année en septembre et octobre, dès que les classes se mélangent à la cantine et à la récréation. La question qu'on pose toujours en premier, chez nous: avez-vous vu un pou vivant, ou seulement lu le mot?
+Dans les écoles de Quéven comme partout ailleurs, les poux reviennent chaque année en septembre et octobre, dès que les classes se mélangent à la cantine et à la récréation. La question qu'on pose toujours en premier, chez nous: avez-vous vu un pou vivant, ou seulement entendu dire qu'il y en avait dans la classe?
 
 ## Comment repérer un pou vivant sur la tête de mon enfant?
 
-Un pou adulte mesure 2 à 4 mm, ne saute pas et ne vole pas: il se déplace uniquement de cheveu en cheveu, par contact direct (Ameli, 2025). Environ 40% des enfants infestés ne se grattent pas du tout. Le seul diagnostic fiable est le peignage à la lumière, nuque et derrière les oreilles, pas le mot photocopié de l'école.
+Un pou adulte mesure 2 à 4 mm, ne saute pas et ne vole pas: il se déplace uniquement de cheveu en cheveu, par contact direct (Ameli, 2025). Environ 40% des enfants infestés ne se grattent pas du tout. Le seul diagnostic fiable est le peignage à la lumière, nuque et derrière les oreilles, pas une suspicion.
 
 Le geste qui tranche: pincer ce qu'on voit collé au cheveu. Une lente vivante ne coulisse pas, elle est soudée près de la racine par une sorte de ciment naturel. Une pellicule, elle, part au moindre souffle. Une femelle pond 5 à 10 œufs par jour pendant 20 à 30 jours, soit 100 à 300 œufs sur sa vie. Les lentes éclosent en 7 à 10 jours, l'adulte est formé en 10 à 15 jours de plus. Le pic de consultations arrive typiquement dix à quinze jours après la rentrée: le temps que les premiers poux transmis dans la cour se reproduisent et que leurs œufs éclosent à leur tour.
 
@@ -123,7 +123,7 @@ Deux repères simples pour trancher. Des poux vivants retrouvés deux jours apr�
 | Situation | Le bon geste | Qui consulter |
 |---|---|---|
 | Pou vivant vu sur une tête | Lotion diméticone + peigne métal, 2 applications à J0 et J+7/10 | Votre pharmacien |
-| Mot de l'école, aucun pou vu | Peignage minutieux à la lumière avant tout traitement | Votre pharmacien |
+| Suspicion, aucun pou vu | Peignage minutieux à la lumière avant tout traitement | Votre pharmacien |
 | Poux vivants encore présents 2 jours après le 2e traitement | Ne pas répéter le même produit | [Médecin traitant](https://www.pharmaciecharnal.com/blog/professionnels-sante-queven-2026.html) |
 | Enfant asthmatique ou nourrisson | Pas de spray; peigne quotidien pendant 2 semaines pour les tout-petits | Votre pharmacien |
 
