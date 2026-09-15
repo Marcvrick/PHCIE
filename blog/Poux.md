@@ -1,7 +1,7 @@
 # Poux de rentrée: notes de recherche (construction article)
 
 **Créneau:** lundi 21 septembre 2026, dossier prévu `34-poux-rentree/`
-**Titre planning:** Poux de rentrée: les repérer, les traiter, ce qui ne marche pas
+**Titre planning:** Poux de rentrée: les repérer, les traiter, ce qui marche
 **Statut:** notes, pas l’article. Pas de marque citée tant que le référencement n’est pas confirmé (Pouxit / Paranix / 5/5 absents de `approved-brands.md`).
 
 Chiffre à ne **jamais** reprendre: « 6 à 8 millions d’enfants par an en France » (aucune source primaire). Chiffre Ameli: jusqu’à **20 % des enfants scolarisés** chaque année, surtout 3-10 ans.

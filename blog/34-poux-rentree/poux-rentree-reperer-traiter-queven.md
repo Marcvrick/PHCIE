@@ -1,6 +1,6 @@
 ---
-title: "Poux de rentrée: les repérer, les traiter, ce qui ne marche pas"
-description: "Poux de rentrée: repérer un pou vivant, qui traiter, le traitement de référence en pharmacie, et ce qui ne marche pas. Pharmacie à Quéven"
+title: "Poux de rentrée: les repérer, les traiter, ce qui marche"
+description: "Poux de rentrée: repérer un pou vivant, qui traiter, et le traitement qui marche vraiment. Pharmacie à Quéven"
 date: 2026-09-21
 dateModified: 2026-09-21
 author: Équipe Pharmacie Charnal
@@ -28,7 +28,7 @@ og_image: "og-38-poux-rentree.jpg"
 
 ---
 
-# Poux de rentrée: les repérer, les traiter, ce qui ne marche pas
+# Poux de rentrée: les repérer, les traiter, ce qui marche
 
 Un mercredi soir de septembre. Au moment du bain, l'enfant se gratte la tête. Le réflexe classique: foncer au rayon parapharmacie, prendre le produit qui promet d'agir en une seule application, traiter toute la maison le soir même. Personne n'a encore regardé la tête.
 
