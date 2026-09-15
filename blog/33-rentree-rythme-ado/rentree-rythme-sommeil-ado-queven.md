@@ -2,7 +2,7 @@
 title: "Rentrée: comment remettre votre ado dans le rythme"
 description: "Réveil décalé, petit-déjeuner sauté, compléments inutiles: comment remettre votre ado dans le rythme à la rentrée. Conseils pharmacie à Quéven"
 date: 2026-08-31
-dateModified: 2026-09-07
+dateModified: 2026-09-15
 author: Équipe Pharmacie Charnal
 categories:
   - Conseils santé
