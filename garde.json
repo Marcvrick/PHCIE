@@ -1,0 +1,20 @@
+{
+  "date": "2026-10-31",
+  "libelle": "Samedi 31 octobre 2026",
+  "cartes": [
+    {
+      "pharmacie": "DE LA MAIRIE",
+      "ville": "Languidic",
+      "label": "Garde du samedi",
+      "secteur_code": "561021",
+      "secteur_communes": "Quéven, Hennebont, Guidel…"
+    },
+    {
+      "pharmacie": "VICTORIA",
+      "ville": "Lorient",
+      "label": "Garde du samedi",
+      "secteur_code": "561020",
+      "secteur_communes": "Lorient, Lanester, Ploemeur, Larmor-Plage"
+    }
+  ]
+}
