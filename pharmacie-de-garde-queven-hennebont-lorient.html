@@ -656,9 +656,9 @@
 
                 <!-- Colonne action -->
                 <div class="garde-action">
-                    <!-- GARDE-DU-JOUR:DEBUT -->
-                    <!-- Mercredi 16 septembre 2026: aucune garde de journée désignée, les pharmacies du secteur sont ouvertes normalement -->
-                    <!-- GARDE-DU-JOUR:FIN -->
+                    <!-- La garde du jour n'est plus embarquée ici: voir le script de
+                         récupération en bas de page (branche garde-data, jamais sur main). -->
+                    <div id="garde-du-jour" aria-live="polite"></div>
 
                     <div class="call-card">
                         <div class="call-card-label">Pour connaître la pharmacie de garde</div>
@@ -969,21 +969,46 @@
 
     <script src="animations.js"></script>
     <script>
-        // La garde du jour est écrite en dur dans le HTML par
-        // update-garde-du-jour.py, une seule date. Ce filet la masque si la mise à
-        // jour quotidienne a sauté, ou hors du créneau 9h-19h : mieux vaut ne rien
-        // afficher qu'une information périmée. La nuit passe par le 3237.
+        // La garde du jour ne vit plus dans cette page : elle est sur la branche
+        // `garde-data` (non protégée, jamais déployée), amendée chaque jour par
+        // le workflow garde-du-jour.yml. On va la chercher au chargement et on ne
+        // l'affiche que si sa date correspond à aujourd'hui ET qu'on est dans le
+        // créneau 9h-19h : si la mise à jour quotidienne a sauté, rien ne s'affiche
+        // plutôt qu'une information périmée. La nuit passe par le 3237.
+        // Voir CLAUDE.md, "Règle de sécurité".
         (function () {
+            var mount = document.getElementById('garde-du-jour');
+            if (!mount) return;
             var n = new Date();
             var today = n.getFullYear() + '-'
                 + String(n.getMonth() + 1).padStart(2, '0') + '-'
                 + String(n.getDate()).padStart(2, '0');
             var ouvert = n.getHours() >= 9 && n.getHours() < 19;
-            document.querySelectorAll('[data-garde-date]').forEach(function (el) {
-                if (el.dataset.gardeDate !== today || !ouvert) {
-                    el.style.display = 'none';
-                }
-            });
+            if (!ouvert) return;
+            var url = 'https://raw.githubusercontent.com/Marcvrick/PHCIE/garde-data/garde.json?_=' + Date.now();
+            fetch(url, { cache: 'no-store' })
+                .then(function (r) { return r.ok ? r.json() : null; })
+                .then(function (data) {
+                    if (!data || data.date !== today || !Array.isArray(data.cartes)) return;
+                    data.cartes.forEach(function (c) {
+                        var el = document.createElement('div');
+                        el.className = 'today-guard-card';
+                        el.innerHTML =
+                            '<div class="today-guard-date"></div>'
+                            + '<div class="today-guard-pharmacie"></div>'
+                            + '<div class="today-guard-ville"></div>'
+                            + '<div class="today-guard-type"></div>'
+                            + '<div class="today-guard-secteur"></div>';
+                        el.querySelector('.today-guard-date').textContent = data.libelle;
+                        el.querySelector('.today-guard-pharmacie').textContent = 'Pharmacie ' + c.pharmacie;
+                        el.querySelector('.today-guard-ville').textContent = c.ville;
+                        el.querySelector('.today-guard-type').textContent = c.label;
+                        el.querySelector('.today-guard-secteur').textContent =
+                            'Secteur de garde N°' + c.secteur_code + ' (' + c.secteur_communes + ')';
+                        mount.appendChild(el);
+                    });
+                })
+                .catch(function () { /* silencieux : mieux vaut rien qu'une erreur visible */ });
         })();
 
         // Mobile menu toggle

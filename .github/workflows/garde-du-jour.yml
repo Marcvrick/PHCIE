@@ -10,6 +10,13 @@ name: Garde du jour
 # Pour (re)poser le secret depuis le Mac :
 #   gh secret set PLANNING_GARDES_JOUR --repo Marcvrick/PHCIE \
 #     < "$HOME/Library/Mobile Documents/com~apple~CloudDocs/MarcOS/Pharma/GESTION/Plannings de garde/planning-gardes-JOUR-uniquement.json"
+#
+# `main` n'est JAMAIS touché par ce workflow (branch protection posée le 19
+# avril 2026, après un force-push qui avait écrasé l'historique public du
+# site). La valeur du jour vit sur `garde-data`, une branche dédiée, non
+# protégée, jamais déployée : seul ce fichier JSON y est amendé chaque jour
+# (voir "Publier sur garde-data" ci-dessous). La page va le chercher par
+# fetch() au chargement — voir pharmacie-de-garde-queven-hennebont-lorient.html.
 
 on:
   schedule:
@@ -28,7 +35,17 @@ jobs:
   maj:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout main (lecture seule, jamais modifié)
+        uses: actions/checkout@v4
+        with:
+          path: site
+
+      - name: Checkout garde-data (branche dédiée, non protégée)
+        uses: actions/checkout@v4
+        with:
+          ref: garde-data
+          path: garde-data
+          fetch-depth: 2
 
       - uses: actions/setup-python@v5
         with:
@@ -43,44 +60,36 @@ jobs:
             exit 1
           fi
 
-      - name: Injecter la garde du jour
+      - name: Calculer et vérifier la garde du jour (bloquant)
+        working-directory: site
         env:
           PLANNING_GARDES_JOUR: ${{ secrets.PLANNING_GARDES_JOUR }}
           TZ: Europe/Paris
-        run: python3 update-garde-du-jour.py
-
-      - name: Contrôle de confidentialité (bloquant)
         run: |
-          python3 check-garde-privacy.py --check
-          python3 update-garde-du-jour.py --check
-        env:
-          PLANNING_GARDES_JOUR: ${{ secrets.PLANNING_GARDES_JOUR }}
-          TZ: Europe/Paris
+          python3 update-garde-du-jour.py --out ../garde-data/garde.json
+          python3 update-garde-du-jour.py --check --out ../garde-data/garde.json
 
-      - name: Publier si la page a changé
+      - name: Publier sur garde-data (jamais sur main)
+        working-directory: garde-data
         run: |
-          if git diff --quiet -- pharmacie-de-garde-queven-hennebont-lorient.html; then
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add garde.json
+          if git diff --cached --quiet; then
             echo "Aucun changement, rien à publier."
             exit 0
           fi
-          git config user.name  "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add pharmacie-de-garde-queven-hennebont-lorient.html
           MSG="Garde du jour: $(TZ=Europe/Paris date +%Y-%m-%d)"
 
-          # Un commit par jour archiverait 116 noms de pharmacies de garde par an
-          # dans l'historique public. La rotation etant cyclique, cet historique
-          # permettrait d'extrapoler les gardes a venir: exactement le calendrier
-          # que ce dispositif existe pour ne pas publier.
-          # On remplace donc le commit precedent du bot au lieu d'en empiler un,
-          # de sorte qu'un seul nom vive dans l'historique a la fois.
-          if [ "$(git log -1 --format=%ae)" = "41898282+github-actions[bot]@users.noreply.github.com" ] \
-             && git log -1 --format=%s | grep -q '^Garde du jour:'; then
-            echo "Remplacement du commit precedent du bot."
+          # Cette branche ne sert qu'à porter la valeur du jour : elle n'est ni
+          # déployée ni destinée à être consultée. Un commit par jour y
+          # archiverait pourtant la même fuite que sur main (116 noms par an,
+          # rotation extrapolable — voir CLAUDE.md). On amende donc toujours le
+          # commit précédent, un seul vit ici à la fois. `non_fast_forward` ne
+          # s'applique qu'à `main` : ce force-push n'a pas besoin de dérogation.
+          if git log -1 --format=%ae 2>/dev/null | grep -q '^41898282+github-actions\[bot\]@users.noreply.github.com$'; then
             git commit --amend -m "$MSG"
-            git push --force-with-lease
           else
-            echo "Le dernier commit n'est pas du bot, on empile."
             git commit -m "$MSG"
-            git push
           fi
+          git push --force-with-lease origin garde-data
