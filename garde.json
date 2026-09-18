@@ -1,0 +1,20 @@
+{
+  "date": "2026-10-24",
+  "libelle": "Samedi 24 octobre 2026",
+  "cartes": [
+    {
+      "pharmacie": "CHARNAL",
+      "ville": "Quéven",
+      "label": "Garde du samedi",
+      "secteur_code": "561021",
+      "secteur_communes": "Quéven, Hennebont, Guidel…"
+    },
+    {
+      "pharmacie": "SADOUL - PHCIE DE MONISTROL",
+      "ville": "Lorient",
+      "label": "Garde du samedi",
+      "secteur_code": "561020",
+      "secteur_communes": "Lorient, Lanester, Ploemeur, Larmor-Plage"
+    }
+  ]
+}
