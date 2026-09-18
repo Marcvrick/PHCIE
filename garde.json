@@ -1,0 +1,20 @@
+{
+  "date": "2026-10-03",
+  "libelle": "Samedi 3 octobre 2026",
+  "cartes": [
+    {
+      "pharmacie": "DES MINAHOUETS",
+      "ville": "Locmiquélic",
+      "label": "Garde du samedi",
+      "secteur_code": "561021",
+      "secteur_communes": "Quéven, Hennebont, Guidel…"
+    },
+    {
+      "pharmacie": "LE GUENNEC BOULAIRE - PHCIE DU PLESSIS-RÉPUBLIQUE",
+      "ville": "Lanester",
+      "label": "Garde du samedi",
+      "secteur_code": "561020",
+      "secteur_communes": "Lorient, Lanester, Ploemeur, Larmor-Plage"
+    }
+  ]
+}
