@@ -1,0 +1,20 @@
+{
+  "date": "2026-11-07",
+  "libelle": "Samedi 7 novembre 2026",
+  "cartes": [
+    {
+      "pharmacie": "VERTE",
+      "ville": "Quéven",
+      "label": "Garde du samedi",
+      "secteur_code": "561021",
+      "secteur_communes": "Quéven, Hennebont, Guidel…"
+    },
+    {
+      "pharmacie": "FOUGERAY-CLAEYSSENS - PHCIE DE LOMENER",
+      "ville": "Ploemeur",
+      "label": "Garde du samedi",
+      "secteur_code": "561020",
+      "secteur_communes": "Lorient, Lanester, Ploemeur, Larmor-Plage"
+    }
+  ]
+}
