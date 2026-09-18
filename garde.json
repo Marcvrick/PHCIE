@@ -1,0 +1,20 @@
+{
+  "date": "2026-11-14",
+  "libelle": "Samedi 14 novembre 2026",
+  "cartes": [
+    {
+      "pharmacie": "DE GESTEL",
+      "ville": "Gestel",
+      "label": "Garde du samedi",
+      "secteur_code": "561021",
+      "secteur_communes": "Quéven, Hennebont, Guidel…"
+    },
+    {
+      "pharmacie": "BICHELOT-ROYANT - PHCIE DU CENTRE",
+      "ville": "Lanester",
+      "label": "Garde du samedi",
+      "secteur_code": "561020",
+      "secteur_communes": "Lorient, Lanester, Ploemeur, Larmor-Plage"
+    }
+  ]
+}
