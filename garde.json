@@ -1,0 +1,20 @@
+{
+  "date": "2026-10-10",
+  "libelle": "Samedi 10 octobre 2026",
+  "cartes": [
+    {
+      "pharmacie": "DE LA MADELEINE",
+      "ville": "Merlevenez",
+      "label": "Garde du samedi",
+      "secteur_code": "561021",
+      "secteur_communes": "Quéven, Hennebont, Guidel…"
+    },
+    {
+      "pharmacie": "BODEAU - PHCIE DE LA RADE",
+      "ville": "Lorient",
+      "label": "Garde du samedi",
+      "secteur_code": "561020",
+      "secteur_communes": "Lorient, Lanester, Ploemeur, Larmor-Plage"
+    }
+  ]
+}
