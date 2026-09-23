@@ -50,6 +50,8 @@ Les bornes d'âge (50-74 ans) tiennent toujours à la date de publication de cet
 
 En Bretagne, la participation reste au-dessus de la moyenne nationale sans être majoritaire: 52,4% sur la période 2024-2025 contre 45,7% en France, et 51,9% dans le Morbihan (Santé publique France, mise à jour du 6 juillet 2026). Autrement dit, dans le Morbihan, un peu moins d'une femme sur deux concernée par le programme n'a toujours pas fait sa mammographie.
 
+![Infographie: le dépistage du cancer du sein en pratique, de 50 à 74 ans tous les 2 ans, courrier de la caisse, prise en charge à 100%, rôle de la pharmacie de Quéven](infographie-octobre-rose-mammographie.png)
+
 ## La mammographie, tous les combien de temps?
 
 Tous les 2 ans, de 50 à 74 ans, tant qu'aucun symptôme n'apparaît entre-temps. L'examen comprend deux clichés par sein, parfois un troisième si le radiologue en a besoin, et un examen clinique par le radiologue le jour même. Si la première lecture est normale, un second radiologue relit systématiquement les clichés: c'est la double lecture, propre au programme organisé. En Bretagne, le résultat définitif arrive environ 15 jours après l'examen.
@@ -121,8 +123,6 @@ Passez nous voir. Nous vous expliquons la liste des radiologues agréés et ce q
 Non. La Lorientaise est une course et marche réservée aux femmes, 6 kilomètres, qui se tient à Lorient le dimanche 4 octobre 2026 pour sa 17e édition. Les inscriptions individuelles sont closes depuis la mi-septembre, mais l'organisation cherche encore des bénévoles. En quinze ans, l'évènement a reversé plus de 840 000 euros au comité du Morbihan de la Ligue contre le cancer.
 
 Courir en rose ne remplace pas le rendez-vous chez le radiologue agréé. L'évènement compte parce qu'il rappelle, chaque année, qu'un peu moins d'une femme sur deux dans le Morbihan n'a toujours pas fait sa mammographie de dépistage organisé.
-
-![Infographie: le dépistage du cancer du sein en pratique, de 50 à 74 ans tous les 2 ans, courrier de la caisse, prise en charge à 100%, rôle de la pharmacie de Quéven](infographie-octobre-rose-mammographie.png)
 
 ## L'essentiel à retenir
 
