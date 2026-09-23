@@ -40,6 +40,8 @@ Après 65 ans, la sensation de soif s'atténue et les reins concentrent moins bi
 
 Sur la saison 2025, plus de 5 700 décès ont été attribués à une exposition à la chaleur en France, dont plus de 1 900 pendant les seuls épisodes de canicule (Santé publique France, bilan de l'été 2025). Les personnes de 75 ans et plus représentent près des trois quarts de ces décès.
 
+![Infographie: coup de chaleur, seuil à 40°C, signes qui alertent chez le bébé et le senior, médicaments à risque et les 3 gestes à faire](infographie-coup-de-chaleur-canicule.png)
+
 ## À partir de quand parle-t-on vraiment de coup de chaleur?
 
 Le coup de chaleur se définit par une température corporelle supérieure ou égale à 40°C, associée à des troubles de la conscience: perte de connaissance, convulsions, délire ou coma (Ameli.fr, Assurance Maladie). En dessous de ce seuil, avec des maux de tête, des vertiges ou des nausées mais l'esprit clair, on parle plutôt d'insolation ou de simple déshydratation, généralement réversibles avec de l'ombre et de l'eau.
@@ -58,9 +60,28 @@ Chez une personne âgée, le signe qui doit inquiéter en premier n'est pas la f
 
 Plusieurs classes de médicaments aggravent le risque en période de forte chaleur (Ameli.fr): les diurétiques et certains antihypertenseurs, qui accentuent la déshydratation, les anti-inflammatoires et l'aspirine, les neuroleptiques et les antidépresseurs, qui perturbent la thermorégulation, le lithium, dont la toxicité augmente en cas de déshydratation, et les somnifères ou anxiolytiques, qui diminuent la vigilance face aux premiers signes. Le message reste toujours le même: on n'arrête jamais un traitement de soi-même en pleine canicule, on en parle à son médecin ou à son pharmacien, surtout en cas de polymédication.
 
-[INFOGRAPHIE HTML: médicaments et forte chaleur, 5 classes à surveiller (diurétiques/antihypertenseurs, AINS/aspirine, neuroleptiques/antidépresseurs, lithium, somnifères/anxiolytiques) avec la raison en une ligne pour chacune]
+<div class="illus">
+<div class="illus-title">Médicaments et forte chaleur: 5 familles à surveiller</div>
+<div class="illus-sub">Ce qui aggrave le risque, en un coup d'œil</div>
+<div class="med-grid">
+<div class="med-card"><div class="med-name">Diurétiques & antihypertenseurs</div><div class="med-reason">Accentuent la déshydratation</div></div>
+<div class="med-card"><div class="med-name">AINS & aspirine</div><div class="med-reason">Aggravent la déshydratation</div></div>
+<div class="med-card"><div class="med-name">Neuroleptiques & antidépresseurs</div><div class="med-reason">Perturbent la thermorégulation</div></div>
+<div class="med-card"><div class="med-name">Lithium</div><div class="med-reason">Devient toxique en cas de déshydratation</div></div>
+<div class="med-card"><div class="med-name">Somnifères & anxiolytiques</div><div class="med-reason">Diminuent la vigilance aux premiers signes</div></div>
+</div>
+<div class="illus-foot">Source: Ameli.fr, Assurance Maladie. Ne jamais arrêter un traitement seul.</div>
+</div>
 
-[INFOGRAPHIE HTML: comparatif enfant vs senior, "signes qui alertent en premier", colonne enfant (fontanelle creuse, refus de boire, somnolence, couches sèches) / colonne senior (confusion, désorientation, propos incohérents, pas forcément de fièvre)]
+<div class="illus">
+<div class="illus-title">Enfant ou senior: les signes qui alertent en premier</div>
+<div class="illus-sub">Le même coup de chaleur, deux tableaux différents</div>
+<div class="age-grid">
+<div class="age-col is-enfant"><div class="age-head">Chez le bébé</div><div class="age-item">Fontanelle creuse</div><div class="age-item">Refus de boire</div><div class="age-item">Somnolence, pleurs faibles</div><div class="age-item">Couches sèches plusieurs heures</div></div>
+<div class="age-col is-senior"><div class="age-head">Chez le senior</div><div class="age-item">Confusion, désorientation</div><div class="age-item">Propos incohérents</div><div class="age-item">Somnolence inhabituelle</div><div class="age-item">Pas forcément de fièvre</div></div>
+</div>
+<div class="illus-foot">Source: Ameli.fr, Assurance Maladie.</div>
+</div>
 
 ## Ce qu'il ne faut surtout pas faire
 
@@ -75,8 +96,6 @@ Ils sont déconseillés en cas d'insuffisance rénale ou d'anurie, ce qui justif
 ## Quand faut-il appeler les secours sans attendre?
 
 Plusieurs signaux imposent d'appeler le 15 ou le 112 sans délai, quel que soit l'âge: une température corporelle supérieure ou égale à 40°C, une perte de connaissance, des convulsions, ou un délire (Ameli.fr). Chez le senior, une confusion brutale ou une aggravation en quelques heures suffit à elle seule à déclencher l'appel, même sans thermomètre disponible.
-
-![Infographie: coup de chaleur, seuil à 40°C, signes qui alertent chez le bébé et le senior, médicaments à risque et les 3 gestes à faire](infographie-coup-de-chaleur-canicule.png)
 
 ## L'essentiel à retenir
 

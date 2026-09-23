@@ -40,6 +40,8 @@ Un pou adulte mesure 2 à 4 mm, ne saute pas et ne vole pas: il se déplace uniq
 
 Le geste qui tranche: pincer ce qu'on voit collé au cheveu. Une lente vivante ne coulisse pas, elle est soudée près de la racine par une sorte de ciment naturel. Une pellicule, elle, part au moindre souffle. Une femelle pond 5 à 10 œufs par jour pendant 20 à 30 jours, soit 100 à 300 œufs sur sa vie. Les lentes éclosent en 7 à 10 jours, l'adulte est formé en 10 à 15 jours de plus. Le pic de consultations arrive typiquement dix à quinze jours après la rentrée: le temps que les premiers poux transmis dans la cour se reproduisent et que leurs œufs éclosent à leur tour.
 
+![Infographie: repérer un pou vivant, le protocole de traitement en 2 applications, la résistance aux pyréthrinoïdes, et ce qui ne marche pas (mayonnaise, vinaigre, huiles essentielles), Pharmacie Charnal Quéven](infographie-poux-rentree.png)
+
 ## Qui faut-il traiter dans la famille?
 
 La règle est la même pour la Société Française de Dermatologie (communiqué du 4 novembre 2019), le VIDAL et le Conseil supérieur d'hygiène publique: on inspecte toutes les têtes du foyer, mais on ne traite que celles où un pou vivant a été vu, le même jour. Traiter une tête où aucun pou n'a été vu ne sert à rien: le produit élimine les poux déjà présents, il ne protège pas contre une contamination future.
@@ -115,8 +117,6 @@ Les poux touchent toutes les catégories sociales. Ils ne sont pas un signe de m
 Des démangeaisons qui persistent plusieurs jours après un traitement bien conduit ne signifient pas qu'il a échoué. C'est le vrai piège du deuxième passage en pharmacie: le prurit peut survivre au pou. Le repère le plus fiable reste le contrôle à deux jours après la seconde application.
 
 Deux repères simples pour trancher. Des poux vivants retrouvés deux jours après la seconde application, c'est un échec réel, qui justifie un avis médical. Des lentes vides et collées, encore visibles des semaines plus tard, ne veulent pas dire que l'infestation est active: elles peuvent rester accrochées au cheveu pendant des mois après un traitement efficace. Deux précautions à connaître avant d'appliquer une lotion: elle est contre-indiquée en spray chez l'enfant asthmatique (préférer la lotion), et les diméticones sont inflammables, à tenir éloignées d'une flamme, d'une plaque ou d'un sèche-cheveux pendant le temps de pose.
-
-![Infographie: repérer un pou vivant, le protocole de traitement en 2 applications, la résistance aux pyréthrinoïdes, et ce qui ne marche pas (mayonnaise, vinaigre, huiles essentielles), Pharmacie Charnal Quéven](infographie-poux-rentree.png)
 
 ## L'essentiel à retenir
 

@@ -58,6 +58,8 @@ Cette volve est souvent enterrée: il faut déterrer le pied en entier pour la v
 
 **Attention:** le vrai danger de l'amanite phalloïde, c'est le délai. Les premiers symptômes digestifs n'apparaissent que 6 à 24 heures après le repas, parfois plus tard. Cette accalmie trompeuse retarde la prise en charge alors que le foie est déjà attaqué. Toute gêne digestive qui survient plusieurs heures après un repas de champignons est une urgence, pas un simple embarras gastrique.
 
+![Infographie: bien reconnaître l'amanite phalloïde (chapeau vert-olive, anneau, volve), chiffres clés des intoxications 2024 et où faire vérifier sa récolte dans le Morbihan](infographie-champignons-bretagne.png)
+
 ## Pourquoi tant d'intoxications chaque automne?
 
 Entre le 1er juillet et le 31 décembre 2024, 1 320 personnes se sont intoxiquées en France lors d'un repas de champignons, dont 41 cas (3,1%) de gravité forte (ANSES, 2025). La cause la plus fréquente: une identification insuffisante avant de passer à table.
@@ -133,8 +135,6 @@ La cuisson protège autant que l'identification: en 2024, près d'un repas sur d
 Le signal le plus trompeur est le délai: des troubles digestifs qui apparaissent plus de 6 heures après un repas de champignons, même légers, sont plus inquiétants que des symptômes précoces, car ils évoquent le syndrome phalloïdien.
 
 Contactez immédiatement le centre antipoison et de toxicovigilance du Grand Ouest, qui couvre la Bretagne, au **02 41 48 21 21** (24h/24), dès les premiers symptômes ou en cas de doute après ingestion, même sans symptôme. Composez le **15** (SAMU) ou le **112** en cas de vomissements importants, de signes de déshydratation chez un enfant, ou de tout signe neurologique (vertiges, confusion). Emportez si possible les restes du repas ou une photo de la récolte: c'est souvent ce qui permet d'orienter le traitement le plus vite.
-
-![Infographie: bien reconnaître l'amanite phalloïde (chapeau vert-olive, anneau, volve), chiffres clés des intoxications 2024 et où faire vérifier sa récolte dans le Morbihan](infographie-champignons-bretagne.png)
 
 ## L'essentiel à retenir
 

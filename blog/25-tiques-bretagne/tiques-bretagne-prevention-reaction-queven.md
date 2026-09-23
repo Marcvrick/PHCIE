@@ -105,6 +105,8 @@ L'érythème migrant est présent dans 80% des cas de maladie de Lyme au stade 1
 
 Si vous observez ce signe: consultez votre médecin traitant dans la journée ou le lendemain. Le traitement antibiotique au stade 1 est très efficace et prévient les complications neurologiques, articulaires et cardiaques du Lyme.
 
+![Infographie: tiques en Bretagne, chiffres clés sur la piqûre, la maladie de Lyme et les bons gestes de prévention, Pharmacie Charnal Quéven](infographie-tiques-bretagne.png)
+
 ## Qui risque vraiment de développer la maladie de Lyme?
 
 Même piqué par une tique infectée, le risque de développer la maladie de Lyme reste de 1 à 3% si la tique a été retirée rapidement (HAS, recommandations 2025). En France, plusieurs milliers de cas de Lyme sont diagnostiqués et traités chaque année (Santé Publique France, 2024), bien moins que les estimations parfois relayées qui confondent cas confirmés, suspicions et autres maladies vectorielles à tiques.
@@ -139,8 +141,6 @@ Pour la grande majorité des piqûres détectées rapidement, une vigilance de 3
 - **Doute sur le retrait** (tique pas entièrement extraite, début d'infection locale): venez nous voir
 
 Le traitement de référence au stade 1 est la doxycycline 200 mg/jour pendant 14 jours (HAS 2025), médicament sur ordonnance uniquement, contre-indiqué chez la femme enceinte (alternative: amoxicilline 50 mg/kg/j en 3 prises, 14 jours) et chez l'enfant de moins de 8 ans. Ne commencez jamais un traitement sans avis médical.
-
-![Infographie: tiques en Bretagne, chiffres clés sur la piqûre, la maladie de Lyme et les bons gestes de prévention, Pharmacie Charnal Quéven](infographie-tiques-bretagne.png)
 
 ## L'essentiel à retenir
 
