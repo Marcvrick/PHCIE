@@ -101,7 +101,9 @@ Facts to place, exactly these, one per card — do not add others:
 - [AVERTISSEMENT COURT]
 - [PIED DE PAGE / MARQUE]
 
-Generous margins. Cards aligned to an invisible grid. No watermarks, no QR code, no logos except [MARQUE SI BESOIN].
+Generous margins. Cards aligned to an invisible grid. No watermarks, no QR code, no pharmacy logo or invented pharmacy name anywhere on the image (the real logo is composited locally afterward, see below). No English text if the language is French — check every visible label, including any text printed on the subject itself (equipment screens, packaging, signage).
+
+Leave the bottom [X]% of the poster completely blank (cream/white, nothing drawn) for the real logo + signature to be added afterward.
 ```
 
 ---
@@ -118,6 +120,16 @@ Generous margins. Cards aligned to an invisible grid. No watermarks, no QR code,
 | `LANGUE` | Tous les libellés dans cette langue, écrits déjà corrects dans le prompt. |
 
 Moins de cartes = plus lisible. Si le texte sort tordu, régénérer avec **moins de faits**, pas plus d’instructions.
+
+**Chaque carte doit se comprendre seule** (règle Dany, validée sur l'article Octobre Rose #39, sept. 2026). Un chiffre posé sans son cadre ("15 jours", "74 images") ne veut rien dire pour quelqu'un qui n'a pas lu l'article: la carte doit porter la phrase complète ("15 jours avant le résultat de la mammographie"), jamais juste le nombre + un mot-clé. Le bandeau rappel type "être rappelée n'est pas une annonce" doit être écrit en une ou deux phrases explicites, pas en slogan.
+
+**Le logo n'est jamais dessiné par le modèle.** Même en interdisant explicitement d'inventer un nom de pharmacie, le modèle a un jour inventé "Pharmacie de Confiance" avec son propre logo générique. Toujours laisser un bas de page vierge dans le prompt, puis composer le vrai logo (`images/pharmacie-charnal-logo.png`) + la signature en Python/Pillow après téléchargement (police Georgia / Georgia Italic, qui reflète le traitement serif de la homepage, jamais la police du titre de l'affiche). Script de référence: voir l'historique de génération de l'article `36-octobre-rose/`.
+
+**Sujet: la machine/l'objet plutôt qu'un décor administratif.** Sur Octobre Rose, un 1er essai centrait la photo sur une lettre d'invitation + stylo: rejeté par Dany car hors-sujet ("une lettre, ce n'est pas le dépistage"). Le sujet photographié doit être l'objet ou le geste du thème (l'appareil, l'organe, l'insecte...), pas un artefact administratif qui l'entoure.
+
+**Vérifier le langage sur l'objet lui-même.** Un appareil ou un objet avec une étiquette/écran visible peut recevoir un texte en anglais par défaut du modèle (ex. "MAMMOGRAPHY DIGITAL" au lieu de "MAMMOGRAPHIE NUMÉRIQUE"), même quand tout le reste du prompt est en français. Nommer explicitement le texte exact attendu sur l'objet.
+
+**En cas de doute sur un choix visuel (icône, cadrage, couleur), demander plutôt que régénérer à l'aveugle.** Dany a explicitement demandé d'être consulté sur ces choix plutôt que de laisser Claude itérer seul.
 
 **Insertion dans l’article: lightbox obligatoire.** Une fois le PNG téléchargé et placé dans le
 dossier de l’article, l’image cliquable (agrandissement plein écran, fermeture au clic/Échap) est

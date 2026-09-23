@@ -1,7 +1,7 @@
 # Pharmacie Charnal - Quéven
 
 > Language: fr
-> Last updated: 2026-09-21
+> Last updated: 2026-09-28
 > Sitemap: https://www.pharmaciecharnal.com/sitemap.xml
 
 > Pharmacie familiale indépendante à Quéven (Morbihan, Bretagne) depuis 1984. Délivrance d'ordonnances, vaccinations, livraison à domicile, parapharmacie et produits naturels.
@@ -57,6 +57,7 @@ Quéven, Lorient, Lanester, Hennebont et communes environnantes du Morbihan.
 
 ## Articles récents
 
+- [Octobre Rose: la mammographie, à quel âge et tous les combien de temps?](https://www.pharmaciecharnal.com/blog/36-octobre-rose/octobre-rose-mammographie-age-frequence-queven.html)
 - [Poux de rentrée: les repérer, les traiter, ce qui marche](https://www.pharmaciecharnal.com/blog/34-poux-rentree/poux-rentree-reperer-traiter-queven.html)
 - [Champignons en Bretagne: bien les reconnaître et savoir où faire vérifier sa récolte](https://www.pharmaciecharnal.com/blog/35-champignons-bretagne/champignons-bretagne-cueillette-identification-queven.html)
 - [Rentrée: comment remettre votre ado dans le rythme](https://www.pharmaciecharnal.com/blog/33-rentree-rythme-ado/rentree-rythme-sommeil-ado-queven.html)

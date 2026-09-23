@@ -5,13 +5,21 @@
     <link>https://www.pharmaciecharnal.com</link>
     <description>Au comptoir de la Pharmacie Charnal a Queven : conseils sante, prevention hiver, vaccinations, phytotherapie, dermatologie. Articles rediges par nos pharmaciens.</description>
     <language>fr-FR</language>
-    <lastBuildDate>Mon, 21 Sep 2026 09:00:00 +0200</lastBuildDate>
+    <lastBuildDate>Mon, 28 Sep 2026 09:00:00 +0200</lastBuildDate>
     <atom:link href="https://www.pharmaciecharnal.com/feed.xml" rel="self" type="application/rss+xml"/>
     <image>
       <url>https://www.pharmaciecharnal.com/images/pharmacie-charnal-logo.png</url>
       <title>Blog Pharmacie Charnal - Au comptoir</title>
       <link>https://www.pharmaciecharnal.com</link>
     </image>
+
+    <item>
+      <title>Octobre Rose : la mammographie, a quel age et tous les combien de temps ?</title>
+      <link>https://www.pharmaciecharnal.com/blog/36-octobre-rose/octobre-rose-mammographie-age-frequence-queven.html</link>
+      <guid>https://www.pharmaciecharnal.com/blog/36-octobre-rose/octobre-rose-mammographie-age-frequence-queven.html</guid>
+      <pubDate>Mon, 28 Sep 2026 09:00:00 +0200</pubDate>
+      <description>61 214 nouveaux cas et 12 765 deces en 2023 : de 50 a 74 ans, une mammographie tous les 2 ans, prise en charge a 100% par l'Assurance Maladie.</description>
+    </item>
 
     <item>
       <title>Poux de rentree : les reperer, les traiter, ce qui ne marche pas</title>
