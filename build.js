@@ -31,7 +31,7 @@ const CHECK = process.argv.includes('--check');
 // Dossiers hors site : sauvegardes, maquettes, contenu non publié.
 const SKIP_DIRS = new Set([
     '.git', 'node_modules', '_partials', 'favicon', 'images', 'fonts', 'videos',
-    'Design Test Index', 'index-redesign', 'docs', 'Blog posts IG', 'planning',
+    'docs', 'Blog posts IG', 'planning',
     'Pharmacies de garde', 'GMB', 'photos', 'logos',
 ]);
 
