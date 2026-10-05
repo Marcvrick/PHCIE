@@ -22,7 +22,7 @@ image: "<!-- TODO: Ajouter image hero -->"
 ---
 
 **L'essentiel en 3 points:**
-- En octobre, vous voyez tomber les cheveux mis au repos pendant l'été: ils lâchent 2 à 4 mois plus tard. Ce rythme saisonnier est mesuré chez les hommes (Randall et Ebling, 1991) comme chez les femmes (Kunz et coll., 2009)
+- Les cheveux qui tombent ont été mis au repos pendant l'été: ils lâchent 2 à 4 mois plus tard. Ce rythme saisonnier est mesuré chez les hommes (Randall et Ebling, 1991) comme chez les femmes (Kunz et coll., 2009)
 - Sans traitement, la chute ralentit d'ici 3 à 6 mois, puis la densité met 6 à 9 mois à revenir (British Association of Dermatologists, Académie américaine de dermatologie)
 - Fer, biotine ou cure: pas à l'aveugle. Voyez un médecin si des plaques apparaissent, si le cuir chevelu fait mal, ou si la chute dure plus de 6 mois
 
