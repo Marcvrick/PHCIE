@@ -23,7 +23,7 @@ image: "<!-- TODO: Ajouter image hero -->"
 
 **L'essentiel en 3 points:**
 - Chez 14 hommes suivis 18 mois, la chute atteignait environ 60 cheveux par jour à son plus haut, plus du double de l'hiver (Randall et Ebling, 1991). Le cheveu au repos tombe 2 à 4 mois plus tard: c'est la chute que vous voyez en octobre
-- Une chute diffuse de ce type ralentit en général en 3 à 6 mois. Le volume met plus longtemps à revenir: 6 à 9 mois en général (Académie américaine de dermatologie)
+- Une chute diffuse de ce type ralentit en général en 3 à 6 mois. Le volume met plus longtemps à revenir: 6 à 9 mois (Académie américaine de dermatologie)
 - Fer, biotine et cures ne se décident pas sur la bonde de douche. Plaques, cuir chevelu douloureux, ou chute au-delà de 6 mois: on oriente vers le médecin
 
 ---
