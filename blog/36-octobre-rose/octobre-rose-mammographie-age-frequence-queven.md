@@ -20,9 +20,9 @@ image: "<!-- TODO: Ajouter image hero -->"
 ---
 
 **L'essentiel en 3 points:**
-- 61 214 nouveaux cas de cancer du sein et 12 765 décès en France en 2023, environ 1 femme sur 8 concernée au cours de sa vie. Détecté tôt, le pronostic change nettement
-- De 50 à 74 ans, une mammographie tous les 2 ans chez un radiologue agréé, sur invitation de l'Assurance Maladie, prise en charge à 100% sans avance de frais
-- Nous expliquons le courrier et nous orientons. Nous ne remettons pas de kit pour le sein et nous ne posons pas de diagnostic
+- Cancer le plus fréquent chez les femmes en France: repéré tôt, il se soigne nettement mieux
+- Dès 50 ans et jusqu'à 74, la caisse vous invite tous les 2 ans à une mammographie chez un radiologue de la liste, prise en charge à 100% sans avance de frais
+- À la pharmacie, on vous aide à décrypter le courrier et à préparer le rendez-vous. L'examen et le diagnostic relèvent du radiologue et du médecin
 
 ---
 
@@ -44,13 +44,13 @@ Chez l'homme, la maladie existe aussi, mais reste rare: environ 1% des cas. Il n
 
 ## Qui est concerné par le dépistage organisé?
 
-Le programme national s'adresse aux femmes de 50 à 74 ans, sans symptôme et sans antécédent personnel ou familial particulier, avec une mammographie tous les 2 ans (Institut national du cancer). Ce n'est pas toutes les femmes de cette tranche d'âge: un risque élevé ou très élevé en sort, même entre 50 et 74 ans, pour un suivi individualisé avec le médecin.
+Le programme national s'adresse aux femmes de 50 à 74 ans, sans symptôme et sans antécédent personnel ou familial particulier, avec une mammographie tous les 2 ans (Institut national du cancer). Les femmes à risque élevé ou très élevé n'en font pas partie, même entre 50 et 74 ans: leur médecin organise un suivi individualisé.
 
 La densité mammaire après la ménopause, le tabac, l'alcool, le surpoids ou un traitement hormonal de la ménopause augmentent le risque sans justifier, à eux seuls, un autre rythme que celui du programme. Un examen clinique des seins, par un médecin, un gynécologue ou une sage-femme, est recommandé une fois par an dès 25 ans, quel que soit le niveau de risque. Ce n'est pas une mammographie, et ce n'est pas un geste que la pharmacie réalise.
 
-Les bornes d'âge (50-74 ans) tiennent toujours à la date de publication de cet article. La Haute Autorité de Santé a publié en mars 2026 une note de cadrage pour évaluer un élargissement aux 45-49 ans et aux 75-79 ans. Tant que le programme n'a pas changé officiellement, les bornes actuelles restent la référence.
+Ces bornes (50-74 ans) sont celles en vigueur à la date de publication de cet article. La Haute Autorité de Santé a publié en mars 2026 une note de cadrage pour évaluer un élargissement aux 45-49 ans et aux 75-79 ans. Tant que le programme n'a pas changé officiellement, les bornes actuelles restent la référence.
 
-En Bretagne, la participation restait au-dessus de la moyenne nationale sans être majoritaire: 55,1% en 2023 contre 46,5% en France sur 2022-2023 (Agence régionale de santé Bretagne, Santé publique France). Depuis, la participation nationale a reculé à 45,7% sur 2024-2025. Autrement dit, en Bretagne comme ailleurs, un peu moins d'une femme sur deux concernée par le programme n'a toujours pas fait sa mammographie.
+En Bretagne, la participation restait au-dessus de la moyenne nationale sans être majoritaire: 55,1% en 2023 contre 46,5% en France sur 2022-2023 (Agence régionale de santé Bretagne, Santé publique France). Depuis, la participation nationale a reculé à 45,7% sur 2024-2025. Au niveau national, plus d'une femme concernée sur deux n'a donc pas fait sa mammographie. En Bretagne, c'était près de 45% en 2023.
 
 ![Infographie: le dépistage du cancer du sein en pratique, de 50 à 74 ans tous les 2 ans, courrier de la caisse, prise en charge à 100%, rôle de la pharmacie de Quéven](infographie-octobre-rose-mammographie.png)
 
@@ -68,7 +68,7 @@ Le courrier n'est jamais arrivé, ou il est perdu? Plusieurs options selon votre
 
 **Le jour J.** Carte Vitale, invitation, anciennes mammographies si vous en avez. Pas de crème, de poudre, de parfum ni de déodorant sur les seins et les aisselles, un haut facile à enlever. Si les règles sont encore là, les seins sont en général moins sensibles dans les 15 jours qui suivent leur début.
 
-Sur la douleur, autant être honnête: c'est variable d'une femme à l'autre. L'Institut national du cancer la décrit comme "désagréable, voire douloureuse", quelques secondes le temps de la compression. Le dire au radiologue ou au manipulateur aide à ajuster le geste.
+Sur la douleur, c'est variable d'une femme à l'autre. L'Institut national du cancer la décrit comme "désagréable, voire douloureuse", quelques secondes le temps de la compression. Le dire au radiologue ou au manipulateur aide à ajuster le geste.
 
 <div class="illus">
 <div class="illus-title">Sur 1000 femmes qui font la mammographie</div>
