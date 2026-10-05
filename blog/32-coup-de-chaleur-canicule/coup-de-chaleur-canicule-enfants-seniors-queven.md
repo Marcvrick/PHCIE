@@ -30,7 +30,7 @@ og_image: "og-35-coup-de-chaleur-canicule.jpg"
 
 # Coup de chaleur et canicule: reconnaître les signes chez l'enfant et le senior
 
-Mi-août. Le thermomètre grimpe à Quéven, et pas seulement l'après-midi. Une patiente vient nous voir pour sa mère de 84 ans, un peu confuse depuis la veille, qu'elle attribuait à la fatigue du grand âge. Après quelques questions, la fatigue s'est révélée être tout autre chose.
+En pleine chaleur, une confusion chez un senior se met facilement sur le compte de la fatigue du grand âge. Ce peut être un coup de chaleur.
 
 Ce n'est pas un hasard si les enfants et les seniors reviennent chaque année dans les mêmes statistiques. Leur thermorégulation fonctionne différemment de celle d'un adulte en bonne santé, et les signes qui doivent alerter ne sont pas toujours ceux qu'on attend.
 

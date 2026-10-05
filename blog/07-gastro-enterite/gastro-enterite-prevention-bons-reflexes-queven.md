@@ -28,7 +28,7 @@ image: "<!-- TODO: Ajouter image hero -->"
 
 # Gastro-entérite : comment s'en protéger et bien réagir?
 
-Scène classique de février. Un parent arrive au comptoir, un peu pressé : «Je voudrais du lopéramide, et c'est quoi le mieux pour mon fils de 4 ans? Il vomit depuis ce matin.» En dix minutes, on parle réhydratation, alimentation, gestes barrières — et surtout, on évite les erreurs les plus fréquentes.
+Réhydratation, alimentation, gestes barrières: voici les réflexes qui comptent face à une gastro, et les erreurs les plus fréquentes à éviter.
 
 Comme chaque fin d'hiver à Quéven, la gastro fait le tour des familles, des écoles et des maisons de retraite. Les virus qui la causent sont redoutablement contagieux. Mais avec les bons réflexes, on peut limiter la casse — et éviter de contaminer tout le foyer.
 

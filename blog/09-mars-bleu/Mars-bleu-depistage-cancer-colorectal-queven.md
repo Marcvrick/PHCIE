@@ -29,9 +29,7 @@ share_updated: 2026-03-03T17:03:36-03:00
 
 # Mars Bleu : un test simple peut vous sauver la vie
 
-La semaine dernière, un monsieur d'une soixantaine d'années est venu chercher son traitement habituel. En discutant, je lui ai demandé s'il avait fait son test de dépistage colorectal. Il m'a regardée, un peu gêné : « Non, je sais que j'ai reçu le courrier, mais bon... c'est pas très agréable comme sujet. » On en a parlé cinq minutes. Il est reparti avec son kit sous le bras.
-
-Ce genre d'échange, on en a régulièrement. Et c'est exactement pour ça que Mars Bleu existe : pour qu'on ose en parler, sans tabou, sans gêne.
+Le cancer colorectal est un sujet dont on parle peu, par gêne. Mars Bleu existe pour qu'on ose en parler, sans tabou, sans gêne.
 
 ## Pourquoi Mars Bleu nous concerne tous?
 

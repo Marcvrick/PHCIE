@@ -32,7 +32,7 @@ og_image: "og-25-tiques-bretagne-prevention.jpg"
 
 # Tiques en Bretagne: piqûre, prévention et maladie de Lyme
 
-La semaine dernière, une maman est passée chez nous avec son fils de 8 ans. Elle avait trouvé une tique bien accrochée derrière le genou, il était allé ramasser des pommes de pin en lisière de forêt le week-end d'avant. « J'ai mis de l'alcool dessus pour l'endormir avant de la retirer, c'est bien ça?» Non. C'est exactement ce qu'il ne faut pas faire.
+Une tique accrochée à la peau: beaucoup pensent l'endormir avec de l'alcool avant de la retirer. C'est exactement ce qu'il ne faut pas faire.
 
 Cette confusion est extrêmement fréquente. Et en Bretagne, avec ses landes, son bocage et ses forêts, la saison des tiques est bel et bien là: les premières chaleurs du printemps morbihannais, même timides, suffisent à réactiver leur activité. Si vous aimez vous promener en forêt de Brocéliande, jardiner, ou simplement faire courir les enfants dans les herbes hautes, ce guide est fait pour vous.
 

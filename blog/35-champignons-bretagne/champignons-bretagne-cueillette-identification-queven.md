@@ -30,9 +30,9 @@ og_image: "og-37-champignons-bretagne.jpg"
 
 # Champignons en Bretagne: bien les reconnaître et savoir où faire vérifier sa récolte
 
-Mi-octobre, forêt de Camors. Le sous-bois est détrempé par la pluie du week-end, exactement ce qu'il faut pour les girolles. La semaine dernière, une cliente est passée nous montrer son panier en pharmacie: de belles girolles, quelques cèpes, et deux ou trois champignons qu'elle n'arrivait pas à nommer.
+Mi-octobre en Bretagne, le sous-bois est détrempé par la pluie, exactement ce qu'il faut pour les girolles et les cèpes. Reste le champignon qu'on n'arrive pas à nommer.
 
-Notre réponse a été honnête. Nous ne sommes pas formées à la mycologie et nous ne pouvons pas garantir l'identification d'une récolte sur cette seule base. Ce n'est pas un détail: une confusion peut coûter cher. Voici où nous l'avons orientée, et ce que nous conseillons à quiconque revient de la forêt avec un panier plein.
+Une pharmacie ne peut pas l'identifier: nous ne sommes pas formées à la mycologie et nous ne pouvons pas garantir l'identification d'une récolte sur cette seule base. Une confusion peut coûter cher. Voici où faire vérifier sa récolte, et ce que nous conseillons à quiconque revient de la forêt avec un panier plein.
 
 ## Quand ramasser les champignons en Bretagne?
 
