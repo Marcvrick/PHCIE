@@ -36,9 +36,9 @@ og_image: "og-21-routine-soin-bebe.jpg"
 
 ---
 
-Un jeune couple est passé nous voir la semaine dernière, leur bébé dans les bras, les yeux cernés et un peu perdus. Ils revenaient de la maternité de Lorient trois jours plus tôt et se retrouvaient au rayon soins bébé de la pharmacie, face à une vingtaine de produits différents. "On ne sait pas quoi prendre, tout semble indispensable."
+Au rayon soins bébé, une vingtaine de produits différents, et tout semble indispensable aux jeunes parents.
 
-C'est l'une des questions les plus fréquentes au comptoir dès les premiers jours. La bonne nouvelle: prendre soin de la peau de votre tout-petit ne demande pas une trousse ultra-sophistiquée. Quelques gestes simples, des produits bien choisis, et de la régularité. Voici ce que je conseille concrètement, de la naissance jusqu'aux 3 ans de votre enfant.
+La bonne nouvelle: prendre soin de la peau de votre tout-petit ne demande pas une trousse ultra-sophistiquée. Quelques gestes simples, des produits bien choisis, et de la régularité. Voici ce que je conseille concrètement, de la naissance jusqu'aux 3 ans de votre enfant.
 
 *À lire aussi: [Peau sèche en hiver breton: comment la protéger?](../Peau%20Seche/proteger-peau-seche-hiver-breton-queven.html)*
 

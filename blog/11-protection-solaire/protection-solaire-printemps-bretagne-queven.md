@@ -31,9 +31,7 @@ image: "blog-11-protection-solaire-printemps.jpg"
 
 # Premiers soleils sur la côte : protéger sa peau dès le printemps
 
-La semaine dernière, une patiente est entrée avec un coup de soleil sur le nez et les pommettes. « Mais il faisait 16 degrés, je ne comprends pas! » Elle avait passé deux heures à jardiner un samedi d'éclaircies à Quéven. Pas de crème, pas de chapeau. En mars.
-
-C'est une scène que nous voyons chaque année dès les premiers beaux jours. Et elle illustre parfaitement le piège breton : le vent frais, les nuages intermittents et la brise atlantique masquent la réalité des rayons UV. On se croit à l'abri. On ne l'est pas.
+Vent frais, nuages intermittents, brise atlantique: en Bretagne, tout donne l'impression que les rayons UV ne sont pas un sujet. Ils le sont dès les premiers beaux jours. On se croit à l'abri. On ne l'est pas.
 
 ## Pourquoi la Bretagne est-elle si touchée par les cancers de la peau?
 

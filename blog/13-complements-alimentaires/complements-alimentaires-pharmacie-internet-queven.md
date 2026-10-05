@@ -33,7 +33,7 @@ og_image: "og-13-complements-alimentaires-internet.jpg"
 
 # Compléments alimentaires: pharmacie ou internet? Ce que votre pharmacien vérifie pour vous
 
-La semaine dernière, une patiente est passée nous voir avec une boîte dans la main. « J'ai trouvé le même magnésium sur Amazon, deux fois moins cher. C'est pareil, non? » J'ai regardé l'étiquette: magnésium oxyde, 375 mg. Chez nous, c'est du bisglycinate. Pas la même forme, pas la même absorption, pas le même résultat. Cette conversation, nous l'avons plusieurs fois par semaine.
+Magnésium oxyde, 375 mg d'un côté. Bisglycinate de l'autre. Sur l'étiquette, c'est « du magnésium » dans les deux cas, mais pas la même forme, pas la même absorption, pas le même résultat. La différence se joue sur ce genre de détail, que le prix ne montre pas.
 
 La question n'est pas de savoir si internet est bien ou mal. C'est une question de risque. Et sur les compléments alimentaires, ce risque est plus élevé qu'on ne le pense.
 

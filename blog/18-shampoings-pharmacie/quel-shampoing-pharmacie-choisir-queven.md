@@ -36,7 +36,7 @@ og_image: "og-18-shampoings-pharmacie.jpg"
 
 ---
 
-Une cliente est passée nous voir il y a quelques jours, un peu déconfite. "J'ai testé trois shampoings différents en deux mois, et mes cheveux n'ont jamais été aussi ternes." En regardant les flacons qu'elle nous a montrés, on a vite compris: trois marques très bien, trois usages totalement inadaptés à son profil. Le shampoing ne fait pas tout, mais le mauvais shampoing peut effectivement aggraver une situation.
+Trois shampoings essayés en deux mois, et des cheveux toujours ternes: trois marques très bien, mais trois usages inadaptés au profil. Le shampoing ne fait pas tout, mais le mauvais shampoing peut aggraver une situation.
 
 Mai à Quéven, c'est la saison où les cheveux commencent à signaler la transition: pollen encore présent, premiers vrais soleils, eau de mer et piscine qui se rapprochent. Beaucoup de patientes anticipent l'été et veulent retrouver un cuir chevelu apaisé avant les vacances. C'est aussi le moment où les chutes de cheveux saisonnières du printemps deviennent visibles dans la brosse.
 

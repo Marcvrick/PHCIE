@@ -35,7 +35,7 @@ og_image: "og-20-chiens-chats-pharmacie.jpg"
 
 ---
 
-Une cliente est passée nous voir lundi matin, un peu paniquée. Elle avait emmené son labrador en balade en forêt près de Pont-Scorff le week-end précédent, et venait de découvrir trois tiques accrochées sous le ventre du chien. Sa question, on l'entend souvent au comptoir: "Est-ce que je peux trouver quelque chose ici ou il faut aller chez le vétérinaire?"
+Puces, tiques, vers: avec les premières balades en forêt, la question revient. Pharmacie ou vétérinaire?
 
 La réponse est simple: pour la prévention courante (puces, tiques, vers, hygiène quotidienne), la pharmacie suffit dans 90% des cas. Pour une pathologie, une plaie qui ne cicatrise pas, un animal qui boite ou qui change de comportement, c'est le vétérinaire qu'il faut consulter. La Bretagne, avec son climat doux et humide, est une région particulièrement exposée aux parasites externes: autant savoir s'y prendre tôt dans la saison plutôt que rattraper une infestation.
 

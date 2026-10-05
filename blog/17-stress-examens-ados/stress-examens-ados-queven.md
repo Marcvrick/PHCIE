@@ -32,7 +32,7 @@ og_image: "og-17-stress-examens-ados.jpg"
 
 # Stress des examens: symptômes et que prendre, chez l'ado
 
-Il y a quelques jours, une maman est passée nous voir, l'air aussi stressé que son fils. "Il révise jusqu'à deux heures du matin, il mange à peine, et le matin il a mal au ventre avant même d'ouvrir un livre." Son fils passe son bac de français dans trois semaines. Dehors, le soleil breton commençait à chauffer les toits de Quéven, et lui n'avait pas mis le nez dehors depuis dix jours.
+Le bac de français approche. Dans les chambres des lycéens, on révise tard, on mange moins, et le ventre se serre avant même d'ouvrir un cahier.
 
 Mai, c'est ça. La lumière revient, les terrasses de la place se remplissent, et dans les chambres des lycéens, le stress monte en même temps que le mercure. Cette période est épuisante pour les ados. Elle l'est souvent autant pour les parents qui les regardent s'effondrer ou se murer dans leurs cours.
 
