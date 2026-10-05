@@ -5,13 +5,21 @@
     <link>https://www.pharmaciecharnal.com</link>
     <description>Au comptoir de la Pharmacie Charnal a Queven : conseils sante, prevention hiver, vaccinations, phytotherapie, dermatologie. Articles rediges par nos pharmaciens.</description>
     <language>fr-FR</language>
-    <lastBuildDate>Mon, 28 Sep 2026 09:00:00 +0200</lastBuildDate>
+    <lastBuildDate>Mon, 05 Oct 2026 09:00:00 +0200</lastBuildDate>
     <atom:link href="https://www.pharmaciecharnal.com/feed.xml" rel="self" type="application/rss+xml"/>
     <image>
       <url>https://www.pharmaciecharnal.com/images/pharmacie-charnal-logo.png</url>
       <title>Blog Pharmacie Charnal - Au comptoir</title>
       <link>https://www.pharmaciecharnal.com</link>
     </image>
+
+    <item>
+      <title>Chute de cheveux d'automne : combien de temps ca dure, quand s'inquieter</title>
+      <link>https://www.pharmaciecharnal.com/blog/37-chute-cheveux-automne/chute-cheveux-automne-duree-quand-sinquieter-queven.html</link>
+      <guid>https://www.pharmaciecharnal.com/blog/37-chute-cheveux-automne/chute-cheveux-automne-duree-quand-sinquieter-queven.html</guid>
+      <pubDate>Mon, 05 Oct 2026 09:00:00 +0200</pubDate>
+      <description>Les cheveux tombent en octobre et c'est un rythme naturel : la phase de chute dure 3 a 6 mois. Ce qui aide, ce qui ne sert a rien, et les cas ou voir un medecin.</description>
+    </item>
 
     <item>
       <title>Octobre Rose : la mammographie, a quel age et tous les combien de temps ?</title>
